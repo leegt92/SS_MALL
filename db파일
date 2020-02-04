@@ -1,0 +1,373 @@
+/* 회원 */
+CREATE TABLE MEMBER (
+	m_number NUMBER NOT NULL, /* 회원번호 */
+	m_name VARCHAR2(8), /* 이름 */
+	m_gender VARCHAR2(8), /* 성별 */
+	m_age NUMBER(3), /* 나이 */
+	m_scnumber VARCHAR2(13), /* 주민번호 */
+	m_email VARCHAR2(50), /* 이메일 */
+	m_adress VARCHAR2(50), /* 주소 */
+	m_phonenum VARCHAR2(11), /* 핸드폰 */
+	m_point NUMBER, /* 포인트 */
+	m_recive_emali NUMBER(1), /* Email수신 */
+	m_authority VARCHAR2(10), /* 회원등급 */
+	m_id VARCHAR2(10), /* 아이디 */
+	m_password VARCHAR2(10), /* 비밀번호 */
+	m_price NUMBER, /* 총구매금액 */
+	m_enabled NUMBER(1) /* 활성화여부 */
+);
+
+COMMENT ON TABLE MEMBER IS '회원';
+
+COMMENT ON COLUMN MEMBER.m_number IS '회원번호';
+
+COMMENT ON COLUMN MEMBER.m_name IS '이름';
+
+COMMENT ON COLUMN MEMBER.m_gender IS '성별';
+
+COMMENT ON COLUMN MEMBER.m_age IS '나이';
+
+COMMENT ON COLUMN MEMBER.m_scnumber IS '주민번호';
+
+COMMENT ON COLUMN MEMBER.m_email IS '이메일';
+
+COMMENT ON COLUMN MEMBER.m_adress IS '주소';
+
+COMMENT ON COLUMN MEMBER.m_phonenum IS '핸드폰';
+
+COMMENT ON COLUMN MEMBER.m_point IS '포인트';
+
+COMMENT ON COLUMN MEMBER.m_recive_emali IS 'Email수신';
+
+COMMENT ON COLUMN MEMBER.m_authority IS '회원등급';
+
+COMMENT ON COLUMN MEMBER.m_id IS '아이디';
+
+COMMENT ON COLUMN MEMBER.m_password IS '비밀번호';
+
+COMMENT ON COLUMN MEMBER.m_price IS '총구매금액';
+
+COMMENT ON COLUMN MEMBER.m_enabled IS '활성화여부';
+
+CREATE UNIQUE INDEX PK_MEMBER
+	ON MEMBER (
+		m_number ASC
+	);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT PK_MEMBER
+		PRIMARY KEY (
+			m_number
+		);
+
+/* 상품 */
+CREATE TABLE Product (
+	p_number NUMBER NOT NULL, /* 상품번호 */
+	p_name VARCHAR2(50), /* 상품명 */
+	p_price NUMBER, /* 상품가격 */
+	p_brand VARCHAR2(10), /* 브랜드 */
+	p_stock VARCHAR2(20), /* 재고 */
+	p_description VARCHAR2(100), /* 상품내용 */
+	p_image VARCHAR2(30), /* 이미지 */
+	p_released_date VARCHAR2(20), /* 출시일자 */
+	p_amount NUMBER, /* 판매수량 */
+	p_category VARCHAR2(50) /* 카테고리 */
+);
+
+COMMENT ON TABLE Product IS '상품';
+
+COMMENT ON COLUMN Product.p_number IS '상품번호';
+
+COMMENT ON COLUMN Product.p_name IS '상품명';
+
+COMMENT ON COLUMN Product.p_price IS '상품가격';
+
+COMMENT ON COLUMN Product.p_brand IS '브랜드';
+
+COMMENT ON COLUMN Product.p_stock IS '재고';
+
+COMMENT ON COLUMN Product.p_description IS '상품내용';
+
+COMMENT ON COLUMN Product.p_image IS '이미지';
+
+COMMENT ON COLUMN Product.p_released_date IS '출시일자';
+
+COMMENT ON COLUMN Product.p_amount IS '판매수량';
+
+COMMENT ON COLUMN Product.p_category IS '카테고리';
+
+CREATE UNIQUE INDEX PK_Product
+	ON Product (
+		p_number ASC
+	);
+
+ALTER TABLE Product
+	ADD
+		CONSTRAINT PK_Product
+		PRIMARY KEY (
+			p_number
+		);
+
+/* 구매 */
+CREATE TABLE Buy (
+	b_number NUMBER NOT NULL, /* 구매번호 */
+	m_number NUMBER, /* 회원번호 */
+	p_number NUMBER, /* 상품번호 */
+	b_date DATE /* 구매일자 */
+);
+
+COMMENT ON TABLE Buy IS '구매';
+
+COMMENT ON COLUMN Buy.b_number IS '구매번호';
+
+COMMENT ON COLUMN Buy.m_number IS '회원번호';
+
+COMMENT ON COLUMN Buy.p_number IS '상품번호';
+
+COMMENT ON COLUMN Buy.b_date IS '구매일자';
+
+CREATE UNIQUE INDEX PK_Buy
+	ON Buy (
+		b_number ASC
+	);
+
+ALTER TABLE Buy
+	ADD
+		CONSTRAINT PK_Buy
+		PRIMARY KEY (
+			b_number
+		);
+
+/* 게시판 */
+CREATE TABLE Board (
+	bId VARCHAR2(10) NOT NULL, /* 아이디 */
+	bTitle VARCHAR2(10), /* 타이틀 */
+	bName VARCHAR2(10), /* 이름 */
+	bDate DATE, /* 날짜 */
+	bHit NUMBER, /* 조회수 */
+	bContent VARCHAR2(20), /* 정보 */
+	bStep VARCHAR2(20), /* 스텝 */
+	bIndent VARCHAR2(20), /* 인덴트 */
+	bGroup VARCHAR2(20), /* 그룹 */
+	bTotalLike NUMBER, /* 전체좋아요 */
+	bType VARCHAR2(20), /* 타입 */
+	t_number NUMBER, /* 타입번호 */
+	m_number NUMBER /* 회원번호 */
+);
+
+COMMENT ON TABLE Board IS '게시판';
+
+COMMENT ON COLUMN Board.bId IS '아이디';
+
+COMMENT ON COLUMN Board.bTitle IS '타이틀';
+
+COMMENT ON COLUMN Board.bName IS '이름';
+
+COMMENT ON COLUMN Board.bDate IS '날짜';
+
+COMMENT ON COLUMN Board.bHit IS '조회수';
+
+COMMENT ON COLUMN Board.bContent IS '정보';
+
+COMMENT ON COLUMN Board.bStep IS '스텝';
+
+COMMENT ON COLUMN Board.bIndent IS '인덴트';
+
+COMMENT ON COLUMN Board.bGroup IS '그룹';
+
+COMMENT ON COLUMN Board.bTotalLike IS '전체좋아요';
+
+COMMENT ON COLUMN Board.bType IS '타입';
+
+COMMENT ON COLUMN Board.t_number IS '타입번호';
+
+COMMENT ON COLUMN Board.m_number IS '회원번호';
+
+CREATE UNIQUE INDEX PK_Board
+	ON Board (
+		bId ASC
+	);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT PK_Board
+		PRIMARY KEY (
+			bId
+		);
+
+/* 장바구니 */
+CREATE TABLE Cart (
+	c_id VARCHAR2(10) NOT NULL, /* 아이디 */
+	m_number NUMBER, /* 회원번호 */
+	p_number NUMBER, /* 상품번호 */
+	c_grandtotal NUMBER /* 토탈 */
+);
+
+COMMENT ON TABLE Cart IS '장바구니';
+
+COMMENT ON COLUMN Cart.c_id IS '아이디';
+
+COMMENT ON COLUMN Cart.m_number IS '회원번호';
+
+COMMENT ON COLUMN Cart.p_number IS '상품번호';
+
+COMMENT ON COLUMN Cart.c_grandtotal IS '토탈';
+
+CREATE UNIQUE INDEX PK_Cart
+	ON Cart (
+		c_id ASC
+	);
+
+ALTER TABLE Cart
+	ADD
+		CONSTRAINT PK_Cart
+		PRIMARY KEY (
+			c_id
+		);
+
+/* 게시판타입 */
+CREATE TABLE Type (
+	t_number NUMBER NOT NULL, /* 타입번호 */
+	t_kind VARCHAR2(10) NOT NULL /* 게시판 종류 */
+);
+
+COMMENT ON TABLE Type IS '게시판타입';
+
+COMMENT ON COLUMN Type.t_number IS '타입번호';
+
+COMMENT ON COLUMN Type.t_kind IS '게시판 종류';
+
+CREATE UNIQUE INDEX PK_Type
+	ON Type (
+		t_number ASC
+	);
+
+ALTER TABLE Type
+	ADD
+		CONSTRAINT PK_Type
+		PRIMARY KEY (
+			t_number
+		);
+
+/* 권한 */
+CREATE TABLE Authority (
+	m_number NUMBER, /* 회원번호 */
+	a_authority VARCHAR2(10) /* 권한 */
+);
+
+COMMENT ON TABLE Authority IS '권한';
+
+COMMENT ON COLUMN Authority.m_number IS '회원번호';
+
+COMMENT ON COLUMN Authority.a_authority IS '권한';
+
+/* 환불 */
+CREATE TABLE Refund (
+	r_number NUMBER NOT NULL, /* 환불번호 */
+	b_number NUMBER, /* 구매번호 */
+	r_price NUMBER, /* 환불금액 */
+	r_type VARCHAR2(10) /* 환불방식 */
+);
+
+COMMENT ON TABLE Refund IS '환불';
+
+COMMENT ON COLUMN Refund.r_number IS '환불번호';
+
+COMMENT ON COLUMN Refund.b_number IS '구매번호';
+
+COMMENT ON COLUMN Refund.r_price IS '환불금액';
+
+COMMENT ON COLUMN Refund.r_type IS '환불방식';
+
+CREATE UNIQUE INDEX PK_Refund
+	ON Refund (
+		r_number ASC
+	);
+
+ALTER TABLE Refund
+	ADD
+		CONSTRAINT PK_Refund
+		PRIMARY KEY (
+			r_number
+		);
+
+ALTER TABLE Buy
+	ADD
+		CONSTRAINT FK_MEMBER_TO_Buy
+		FOREIGN KEY (
+			m_number
+		)
+		REFERENCES MEMBER (
+			m_number
+		);
+
+ALTER TABLE Buy
+	ADD
+		CONSTRAINT FK_Product_TO_Buy
+		FOREIGN KEY (
+			p_number
+		)
+		REFERENCES Product (
+			p_number
+		);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_Type_TO_Board
+		FOREIGN KEY (
+			t_number
+		)
+		REFERENCES Type (
+			t_number
+		);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_MEMBER_TO_Board
+		FOREIGN KEY (
+			m_number
+		)
+		REFERENCES MEMBER (
+			m_number
+		);
+
+ALTER TABLE Cart
+	ADD
+		CONSTRAINT FK_MEMBER_TO_Cart
+		FOREIGN KEY (
+			m_number
+		)
+		REFERENCES MEMBER (
+			m_number
+		);
+
+ALTER TABLE Cart
+	ADD
+		CONSTRAINT FK_Product_TO_Cart
+		FOREIGN KEY (
+			p_number
+		)
+		REFERENCES Product (
+			p_number
+		);
+
+ALTER TABLE Authority
+	ADD
+		CONSTRAINT FK_MEMBER_TO_Authority
+		FOREIGN KEY (
+			m_number
+		)
+		REFERENCES MEMBER (
+			m_number
+		);
+
+ALTER TABLE Refund
+	ADD
+		CONSTRAINT FK_Buy_TO_Refund
+		FOREIGN KEY (
+			b_number
+		)
+		REFERENCES Buy (
+			b_number
+		);
