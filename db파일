@@ -371,3 +371,66 @@ ALTER TABLE Refund
 		REFERENCES Buy (
 			b_number
 		);
+
+create sequence product_seq;
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '리슐리유', '1,500,000','고야드','100','고야드 리슐리유','wallet1','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '빅투와르', '1,500,000','고야드','100','고야드 빅투와르','wallet2','2016/5/17',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '슈프림 웹', '4,500,000','구찌','100','구찌 슈프림 웹','wallet3','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '슈프림 지퍼', '3,300,000','구찌','100','구찌 슈프림 지퍼','wallet4','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '다미에인피니', '940,000','루이비통','100','루이비통 다미에인피니','wallet5','2016/5/20',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '오거나이저', '1,400,000','루이비통','100','루이비통 오거나이저','wallet6','2016/5/19',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '플레밍', '2,100,000','에르메스','100','에르메스 플레밍','wallet7','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '맨하탄 듀오', '1,900,000','에르메스','100','에르메스 맨하탄 듀오','wallet8','2016/5/18',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '도큐먼트 사피아노', '1,000,000','프라다','100','프라다 도큐먼트 사피아노','wallet9','2016/5/17',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '사피아노 레더', '1,000,000','프라다','100','프라다 사피아노 레더','wallet10','2016/5/17',0,'지갑');
+
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '포르토피노', '10,000,000','iwc','100','iwc 포르토피노','watch1','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '샤프하우젠', '8,100,000','iwc','100','iwc 샤프하우젠','watch2','2016/5/17',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '데이토나', '25,000,000','롤렉스','100','롤렉스 데이토나','watch3','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '서브마리너', '8,900,000','롤렉스','100','롤렉스 서브마리너','watch4','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '드빌 프레스티지', '3,200,000','오메가','100','오메가 드빌 프레스티지','watch5','2016/5/20',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '아쿠아테라', '2,700,000','오메가','100','오메가 아쿠아테라','watch6','2016/5/19',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '까레라', '3,200,000','태그호이어','100','태그호이어 까레라','watch7','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '까레라 메탈', '2,700,000','태그호이어','100','태그호이어 까레라 메탈','watch8','2016/5/18',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '컴플리케이션', '190,000,000','파텍필립','100','파텍필립 컴플리케이션','watch9','2016/5/17',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '노틸러스', '90,000,000','파텍필립','100','파텍필립 노틸러스','watch10','2016/5/17',0,'시계');
