@@ -342,9 +342,8 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
 						Wallet
 					</button>
-
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
-						Watches
+						Watch
 					</button>
 				</div>
 
@@ -564,17 +563,12 @@
 			</div>
 
 			<div class="row isotope-grid">
-				<c:forEach items="${product}" var="var">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${var.p_category}">
+				<c:forEach items="${product}" var="product">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.p_category}">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-<<<<<<< HEAD
-							<img src="productimage/${product.p_image}.PNG" alt="IMG-PRODUCT" width=300px height=400px>
-=======
-							<img src="productimage/${var.p_image}.PNG" width="300" height="300">
->>>>>>> origin/dev_hyemin
-
+							<img src="productimage/${product.p_image}.PNG" alt="IMG-PRODUCT" width="300" height="300">
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
@@ -583,11 +577,10 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									${var.p_name}
+									${product.p_name}원
 								</a>
-
 								<span class="stext-105 cl3">
-									${var.p_price}won
+									${product.p_price}원
 								</span>
 							</div>
 

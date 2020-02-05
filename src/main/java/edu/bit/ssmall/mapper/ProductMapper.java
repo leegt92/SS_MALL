@@ -8,7 +8,8 @@ import edu.bit.ssmall.productVO.ProductVO;
 
 public interface ProductMapper {
 	
-	@Select("select * from product")
+
+	@Select("select * from product  order by p_name desc")
 	public List<ProductVO> selectProductList();		
 
 }
