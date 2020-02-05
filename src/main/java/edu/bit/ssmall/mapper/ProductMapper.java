@@ -8,7 +8,7 @@ import edu.bit.ssmall.productVO.ProductVO;
 
 public interface ProductMapper {
 	
-	@Select("select p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category from product")
+	@Select("select p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category from product order by p_name desc")
 	public List<ProductVO> selectProductList();		
 
 }
