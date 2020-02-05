@@ -28,7 +28,7 @@ public class ProductController {
 
 	@RequestMapping("/productView")
 	public String product(Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		
+		response.setContentType("image/png");
 		model.addAttribute("product", productService.selectProductList());
 		
 		return "product";
