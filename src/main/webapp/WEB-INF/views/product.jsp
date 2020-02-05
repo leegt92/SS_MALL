@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<title>Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +37,6 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 </head>
 <body class="animsition">
 	
@@ -341,20 +339,8 @@
 						All Products
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".wallet">
+						Wallet
 					</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
@@ -578,12 +564,12 @@
 			</div>
 
 			<div class="row isotope-grid">
-				<c:forEach items="${product}" var="product">
+				<c:forEach items="${product}" var="var">
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="productimage/${product.p_image}.png" alt="IMG-PRODUCT">
+							<img src="productimage/${var.p_image}.PNG" width="300" height="300">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -593,11 +579,11 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									<p>${product.p_name}</p>
+									${var.p_name}
 								</a>
 
 								<span class="stext-105 cl3">
-									$16.64
+									${var.p_price}won
 								</span>
 							</div>
 
@@ -609,9 +595,9 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				</c:forEach>
-
 			</div>
 
 			<!-- Load more -->
