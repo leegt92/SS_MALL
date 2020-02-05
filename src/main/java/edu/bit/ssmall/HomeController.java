@@ -16,11 +16,6 @@ public class HomeController {
 	public String home(Model model) {
 
 		return "home";
-	}
-	
-	@RequestMapping(value = "/productView", method = RequestMethod.GET)
-	public String productView(Model model) {
 
-		return "product";
-	}
+	}	
 }

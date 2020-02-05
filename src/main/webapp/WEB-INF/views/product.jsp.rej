@@ -1,0 +1,9 @@
+diff a/src/main/webapp/WEB-INF/views/product.jsp b/src/main/webapp/WEB-INF/views/product.jsp	(rejected hunks)
+@@ -581,6 +581,7 @@
+ 					<!-- Block2 -->
+ 					<div class="block2">
+ 						<div class="block2-pic hov-img0">
++							<img src="images/logo.png" alt="IMG-PRODUCT">
+ 
+ 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+ 								Quick View
