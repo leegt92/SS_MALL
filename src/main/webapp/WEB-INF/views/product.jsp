@@ -339,11 +339,11 @@
 						All Products
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".wallet">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
 						Wallet
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
 						Watches
 					</button>
 				</div>
@@ -565,7 +565,7 @@
 
 			<div class="row isotope-grid">
 				<c:forEach items="${product}" var="var">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${var.p_category}">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
