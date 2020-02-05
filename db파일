@@ -1,18 +1,18 @@
 /* 회원 */
 CREATE TABLE MEMBER (
 	m_number NUMBER NOT NULL, /* 회원번호 */
-	m_name VARCHAR2(8), /* 이름 */
-	m_gender VARCHAR2(8), /* 성별 */
+	m_name VARCHAR2(200), /* 이름 */
+	m_gender VARCHAR2(200), /* 성별 */
 	m_age NUMBER(3), /* 나이 */
-	m_scnumber VARCHAR2(13), /* 주민번호 */
-	m_email VARCHAR2(50), /* 이메일 */
-	m_adress VARCHAR2(50), /* 주소 */
-	m_phonenum VARCHAR2(11), /* 핸드폰 */
+	m_scnumber VARCHAR2(200), /* 주민번호 */
+	m_email VARCHAR2(200), /* 이메일 */
+	m_adress VARCHAR2(200), /* 주소 */
+	m_phonenum VARCHAR2(200), /* 핸드폰 */
 	m_point NUMBER, /* 포인트 */
 	m_recive_emali NUMBER(1), /* Email수신 */
-	m_authority VARCHAR2(10), /* 회원등급 */
-	m_id VARCHAR2(10), /* 아이디 */
-	m_password VARCHAR2(10), /* 비밀번호 */
+	m_authority VARCHAR2(200), /* 회원등급 */
+	m_id VARCHAR2(200), /* 아이디 */
+	m_password VARCHAR2(200), /* 비밀번호 */
 	m_price NUMBER, /* 총구매금액 */
 	m_enabled NUMBER(1) /* 활성화여부 */
 );
@@ -64,15 +64,15 @@ ALTER TABLE MEMBER
 /* 상품 */
 CREATE TABLE Product (
 	p_number NUMBER NOT NULL, /* 상품번호 */
-	p_name VARCHAR2(50), /* 상품명 */
-	p_price NUMBER, /* 상품가격 */
-	p_brand VARCHAR2(10), /* 브랜드 */
-	p_stock VARCHAR2(20), /* 재고 */
-	p_description VARCHAR2(100), /* 상품내용 */
-	p_image VARCHAR2(30), /* 이미지 */
-	p_released_date VARCHAR2(20), /* 출시일자 */
+	p_name VARCHAR2(200), /* 상품명 */
+	p_price VARCHAR2(200), /* 상품가격 */
+	p_brand VARCHAR2(200), /* 브랜드 */
+	p_stock VARCHAR2(200), /* 재고 */
+	p_description VARCHAR2(200), /* 상품내용 */
+	p_image VARCHAR2(200), /* 이미지 */
+	p_released_date VARCHAR2(200), /* 출시일자 */
 	p_amount NUMBER, /* 판매수량 */
-	p_category VARCHAR2(50) /* 카테고리 */
+	p_category VARCHAR2(200) /* 카테고리 */
 );
 
 COMMENT ON TABLE Product IS '상품';
@@ -141,17 +141,17 @@ ALTER TABLE Buy
 
 /* 게시판 */
 CREATE TABLE Board (
-	bId VARCHAR2(10) NOT NULL, /* 아이디 */
-	bTitle VARCHAR2(10), /* 타이틀 */
-	bName VARCHAR2(10), /* 이름 */
+	bId VARCHAR2(200) NOT NULL, /* 아이디 */
+	bTitle VARCHAR2(200), /* 타이틀 */
+	bName VARCHAR2(200), /* 이름 */
 	bDate DATE, /* 날짜 */
 	bHit NUMBER, /* 조회수 */
-	bContent VARCHAR2(20), /* 정보 */
-	bStep VARCHAR2(20), /* 스텝 */
-	bIndent VARCHAR2(20), /* 인덴트 */
-	bGroup VARCHAR2(20), /* 그룹 */
+	bContent VARCHAR2(200), /* 정보 */
+	bStep VARCHAR2(200), /* 스텝 */
+	bIndent VARCHAR2(200), /* 인덴트 */
+	bGroup VARCHAR2(200), /* 그룹 */
 	bTotalLike NUMBER, /* 전체좋아요 */
-	bType VARCHAR2(20), /* 타입 */
+	bType VARCHAR2(200), /* 타입 */
 	t_number NUMBER, /* 타입번호 */
 	m_number NUMBER /* 회원번호 */
 );
@@ -198,7 +198,7 @@ ALTER TABLE Board
 
 /* 장바구니 */
 CREATE TABLE Cart (
-	c_id VARCHAR2(10) NOT NULL, /* 아이디 */
+	c_id VARCHAR2(200) NOT NULL, /* 아이디 */
 	m_number NUMBER, /* 회원번호 */
 	p_number NUMBER, /* 상품번호 */
 	c_grandtotal NUMBER /* 토탈 */
@@ -229,7 +229,7 @@ ALTER TABLE Cart
 /* 게시판타입 */
 CREATE TABLE Type (
 	t_number NUMBER NOT NULL, /* 타입번호 */
-	t_kind VARCHAR2(10) NOT NULL /* 게시판 종류 */
+	t_kind VARCHAR2(200) /* 게시판 종류 */
 );
 
 COMMENT ON TABLE Type IS '게시판타입';
@@ -253,7 +253,7 @@ ALTER TABLE Type
 /* 권한 */
 CREATE TABLE Authority (
 	m_number NUMBER, /* 회원번호 */
-	a_authority VARCHAR2(10) /* 권한 */
+	a_authority VARCHAR2(200) /* 권한 */
 );
 
 COMMENT ON TABLE Authority IS '권한';
@@ -267,7 +267,7 @@ CREATE TABLE Refund (
 	r_number NUMBER NOT NULL, /* 환불번호 */
 	b_number NUMBER, /* 구매번호 */
 	r_price NUMBER, /* 환불금액 */
-	r_type VARCHAR2(10) /* 환불방식 */
+	r_type VARCHAR2(200) /* 환불방식 */
 );
 
 COMMENT ON TABLE Refund IS '환불';
@@ -371,3 +371,66 @@ ALTER TABLE Refund
 		REFERENCES Buy (
 			b_number
 		);
+
+create sequence product_seq;
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '리슐리유', '1,500,000','고야드','100','고야드 리슐리유','wallet1','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '빅투와르', '1,500,000','고야드','100','고야드 빅투와르','wallet2','2016/5/17',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '슈프림 웹', '4,500,000','구찌','100','구찌 슈프림 웹','wallet3','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '슈프림 지퍼', '3,300,000','구찌','100','구찌 슈프림 지퍼','wallet4','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '다미에인피니', '940,000','루이비통','100','루이비통 다미에인피니','wallet5','2016/5/20',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '오거나이저', '1,400,000','루이비통','100','루이비통 오거나이저','wallet6','2016/5/19',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '플레밍', '2,100,000','에르메스','100','에르메스 플레밍','wallet7','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '맨하탄 듀오', '1,900,000','에르메스','100','에르메스 맨하탄 듀오','wallet8','2016/5/18',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '도큐먼트 사피아노', '1,000,000','프라다','100','프라다 도큐먼트 사피아노','wallet9','2016/5/17',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '사피아노 레더', '1,000,000','프라다','100','프라다 사피아노 레더','wallet10','2016/5/17',0,'지갑');
+
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '포르토피노', '10,000,000','iwc','100','iwc 포르토피노','watch1','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '샤프하우젠', '8,100,000','iwc','100','iwc 샤프하우젠','watch2','2016/5/17',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '데이토나', '25,000,000','롤렉스','100','롤렉스 데이토나','watch3','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '서브마리너', '8,900,000','롤렉스','100','롤렉스 서브마리너','watch4','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '드빌 프레스티지', '3,200,000','오메가','100','오메가 드빌 프레스티지','watch5','2016/5/20',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '아쿠아테라', '2,700,000','오메가','100','오메가 아쿠아테라','watch6','2016/5/19',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '까레라', '3,200,000','태그호이어','100','태그호이어 까레라','watch7','2016/5/16',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '까레라 메탈', '2,700,000','태그호이어','100','태그호이어 까레라 메탈','watch8','2016/5/18',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '컴플리케이션', '190,000,000','파텍필립','100','파텍필립 컴플리케이션','watch9','2016/5/17',0,'시계');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '노틸러스', '90,000,000','파텍필립','100','파텍필립 노틸러스','watch10','2016/5/17',0,'시계');
