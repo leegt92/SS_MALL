@@ -65,9 +65,9 @@ ALTER TABLE MEMBER
 CREATE TABLE Product (
 	p_number NUMBER NOT NULL, /* 상품번호 */
 	p_name VARCHAR2(200), /* 상품명 */
-	p_price VARCHAR2(200), /* 상품가격 */
+	p_price NUMBER, /* 상품가격 */
 	p_brand VARCHAR2(200), /* 브랜드 */
-	p_stock VARCHAR2(200), /* 재고 */
+	p_stock NUMBER, /* 재고 */
 	p_description VARCHAR2(200), /* 상품내용 */
 	p_image VARCHAR2(200), /* 이미지 */
 	p_released_date VARCHAR2(200), /* 출시일자 */
@@ -147,9 +147,9 @@ CREATE TABLE Board (
 	bDate DATE, /* 날짜 */
 	bHit NUMBER, /* 조회수 */
 	bContent VARCHAR2(200), /* 정보 */
-	bStep VARCHAR2(200), /* 스텝 */
-	bIndent VARCHAR2(200), /* 인덴트 */
-	bGroup VARCHAR2(200), /* 그룹 */
+	bStep NUMBER, /* 스텝 */
+	bIndent NUMBER, /* 인덴트 */
+	bGroup NUMBER, /* 그룹 */
 	bTotalLike NUMBER, /* 전체좋아요 */
 	bType VARCHAR2(200), /* 타입 */
 	t_number NUMBER, /* 타입번호 */
