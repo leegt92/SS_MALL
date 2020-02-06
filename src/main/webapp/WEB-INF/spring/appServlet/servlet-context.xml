@@ -20,8 +20,6 @@
 	<resources mapping="/productimage" location="/resources/productimage/" />
 	<resources mapping="/vendor" location="/resources/vendor/" />
 	<!--<resources mapping="/**" location="/resources/" /> -->
-	
-	
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

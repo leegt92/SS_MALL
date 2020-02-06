@@ -19,7 +19,6 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping("/productView")
-
 	public String product(Model model) {
 
 		model.addAttribute("product", productService.selectProductList());

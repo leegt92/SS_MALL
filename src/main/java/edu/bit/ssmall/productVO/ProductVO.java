@@ -12,6 +12,7 @@ public class ProductVO {
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
+
 	public int getP_number() {
 		return p_number;
 	}

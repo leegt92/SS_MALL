@@ -344,8 +344,14 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
 						Wallet
 					</button>
+<<<<<<< HEAD
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
 						Watch
+=======
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
+						Watches
+>>>>>>> 52f7b15f7b0358365c2a216532a6e368fc8ecc86
 					</button>
 				</div>
 
