@@ -434,3 +434,27 @@ values(product_seq.nextval, '컴플리케이션', 190000000,'파텍필립',100,'
 
 insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_image,p_released_date,p_amount,p_category)
 values(product_seq.nextval, '노틸러스', 90000000,'파텍필립',100,'파텍필립 노틸러스','watch10','2016/5/17',0,'시계');
+
+================================
+
+update product set p_image = 'wallet1.PNG' where p_number = 1;
+update product set p_image = 'wallet2.PNG' where p_number = 2;
+update product set p_image = 'wallet3.PNG' where p_number = 3;
+update product set p_image = 'wallet4.PNG' where p_number = 4;
+update product set p_image = 'wallet5.PNG' where p_number = 5;
+update product set p_image = 'wallet6.PNG' where p_number = 6;
+update product set p_image = 'wallet7.PNG' where p_number = 7;
+update product set p_image = 'wallet8.PNG' where p_number = 8;
+update product set p_image = 'wallet9.PNG' where p_number = 9;
+update product set p_image = 'wallet10.PNG' where p_number = 10;
+
+update product set p_image = 'watch1.PNG' where p_number = 11;
+update product set p_image = 'watch2.PNG' where p_number = 12;
+update product set p_image = 'watch3.PNG' where p_number = 13;
+update product set p_image = 'watch4.PNG' where p_number = 14;
+update product set p_image = 'watch5.PNG' where p_number = 15;
+update product set p_image = 'watch6.PNG' where p_number = 16;
+update product set p_image = 'watch7.PNG' where p_number = 17;
+update product set p_image = 'watch8.PNG' where p_number = 18;
+update product set p_image = 'watch9.PNG' where p_number = 19;
+update product set p_image = 'watch10.PNG' where p_number = 20;
