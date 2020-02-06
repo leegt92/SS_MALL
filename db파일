@@ -360,6 +360,9 @@ ALTER TABLE Image
 create sequence product_seq;
 
 insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_released_date,p_amount,p_category)
+values(product_seq.nextval, '리슐리유', 1500000,'고야드',100,'고야드 리슐리유','2016/5/16',0,'지갑');
+
+insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_released_date,p_amount,p_category)
 values(product_seq.nextval, '빅투와르', 1500000,'고야드',100,'고야드 빅투와르','2016/5/17',0,'지갑');
 
 insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_released_date,p_amount,p_category)
