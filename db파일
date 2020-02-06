@@ -1,4 +1,4 @@
-/* 회원 */
+* 회원 */
 CREATE TABLE MEMBER (
 	m_number NUMBER NOT NULL, /* 회원번호 */
 	m_name VARCHAR2(200), /* 이름 */
@@ -69,7 +69,6 @@ CREATE TABLE Product (
 	p_brand VARCHAR2(200), /* 브랜드 */
 	p_stock NUMBER, /* 재고 */
 	p_description VARCHAR2(200), /* 상품내용 */
-	p_image VARCHAR2(200), /* 이미지 */
 	p_released_date VARCHAR2(200), /* 출시일자 */
 	p_amount NUMBER, /* 판매수량 */
 	p_category VARCHAR2(200) /* 카테고리 */
@@ -88,8 +87,6 @@ COMMENT ON COLUMN Product.p_brand IS '브랜드';
 COMMENT ON COLUMN Product.p_stock IS '재고';
 
 COMMENT ON COLUMN Product.p_description IS '상품내용';
-
-COMMENT ON COLUMN Product.p_image IS '이미지';
 
 COMMENT ON COLUMN Product.p_released_date IS '출시일자';
 
@@ -152,7 +149,7 @@ CREATE TABLE Board (
 	bGroup NUMBER, /* 그룹 */
 	bTotalLike NUMBER, /* 전체좋아요 */
 	bType VARCHAR2(200), /* 타입 */
-	t_number NUMBER, /* 타입번호 */
+	bTotalrepot NUMBER, /* 누적신고수 */
 	m_number NUMBER /* 회원번호 */
 );
 
@@ -180,7 +177,7 @@ COMMENT ON COLUMN Board.bTotalLike IS '전체좋아요';
 
 COMMENT ON COLUMN Board.bType IS '타입';
 
-COMMENT ON COLUMN Board.t_number IS '타입번호';
+COMMENT ON COLUMN Board.bTotalrepot IS '누적신고수';
 
 COMMENT ON COLUMN Board.m_number IS '회원번호';
 
@@ -226,30 +223,6 @@ ALTER TABLE Cart
 			c_id
 		);
 
-/* 게시판타입 */
-CREATE TABLE Type (
-	t_number NUMBER NOT NULL, /* 타입번호 */
-	t_kind VARCHAR2(200) /* 게시판 종류 */
-);
-
-COMMENT ON TABLE Type IS '게시판타입';
-
-COMMENT ON COLUMN Type.t_number IS '타입번호';
-
-COMMENT ON COLUMN Type.t_kind IS '게시판 종류';
-
-CREATE UNIQUE INDEX PK_Type
-	ON Type (
-		t_number ASC
-	);
-
-ALTER TABLE Type
-	ADD
-		CONSTRAINT PK_Type
-		PRIMARY KEY (
-			t_number
-		);
-
 /* 권한 */
 CREATE TABLE Authority (
 	m_number NUMBER, /* 회원번호 */
@@ -292,6 +265,18 @@ ALTER TABLE Refund
 			r_number
 		);
 
+/* 이미지 */
+CREATE TABLE Image (
+	p_number NUMBER, /* 상품번호 */
+	I_name VARCHAR2(200) /* 이미지명 */
+);
+
+COMMENT ON TABLE Image IS '이미지';
+
+COMMENT ON COLUMN Image.p_number IS '상품번호';
+
+COMMENT ON COLUMN Image.I_name IS '이미지명';
+
 ALTER TABLE Buy
 	ADD
 		CONSTRAINT FK_MEMBER_TO_Buy
@@ -310,16 +295,6 @@ ALTER TABLE Buy
 		)
 		REFERENCES Product (
 			p_number
-		);
-
-ALTER TABLE Board
-	ADD
-		CONSTRAINT FK_Type_TO_Board
-		FOREIGN KEY (
-			t_number
-		)
-		REFERENCES Type (
-			t_number
 		);
 
 ALTER TABLE Board
@@ -370,6 +345,16 @@ ALTER TABLE Refund
 		)
 		REFERENCES Buy (
 			b_number
+		);
+
+ALTER TABLE Image
+	ADD
+		CONSTRAINT FK_Product_TO_Image
+		FOREIGN KEY (
+			p_number
+		)
+		REFERENCES Product (
+			p_number
 		);
 
 create sequence product_seq;
