@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,8 +344,14 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
 						Wallet
 					</button>
+<<<<<<< HEAD
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
 						Watch
+=======
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
+						Watches
+>>>>>>> 52f7b15f7b0358365c2a216532a6e368fc8ecc86
 					</button>
 				</div>
 
@@ -568,7 +576,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="productimage/${product.p_image}.PNG" alt="IMG-PRODUCT" width="300" height="300">
+							<img src="productimage/${product.p_image}" alt="IMG-PRODUCT" width="300" height="300">
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
@@ -577,10 +585,10 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									${product.p_name}원
+									${product.p_name}
 								</a>
 								<span class="stext-105 cl3">
-									${product.p_price}원
+									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
 								</span>
 							</div>
 
