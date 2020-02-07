@@ -23,7 +23,7 @@
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	
 	
-=======
+
 	<resources mapping="/resources/**" location="/resources/"/>
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/fonts/**" location="/resources/fonts/" />
@@ -32,7 +32,7 @@
 	<resources mapping="/productimage/**" location="/resources/productimage/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" /> 
 	<!-- <resources mapping="/**" location="/resources/" /> -->
->>>>>>> origin/master
+
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

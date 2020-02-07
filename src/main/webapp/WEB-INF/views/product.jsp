@@ -583,11 +583,9 @@
 									${product.p_name}
 								</a>
 								<span class="stext-105 cl3">
-<<<<<<< HEAD
-									${product.p_price}
-=======
+
 									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
->>>>>>> origin/master
+
 								</span>
 							</div>
 
