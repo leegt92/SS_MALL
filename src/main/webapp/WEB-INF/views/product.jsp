@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,6 +344,7 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
 						Wallet
 					</button>
+
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
 						Watch
 					</button>
@@ -568,7 +571,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="productimage/${product.p_image}.PNG" alt="IMG-PRODUCT" width="300" height="300">
+							<img src="productimage/${product.i_image}" alt="IMG-PRODUCT" width="300" height="300">
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
@@ -580,7 +583,11 @@
 									${product.p_name}
 								</a>
 								<span class="stext-105 cl3">
-									${product.p_price}원
+<<<<<<< HEAD
+									${product.p_price}
+=======
+									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
+>>>>>>> origin/master
 								</span>
 							</div>
 
