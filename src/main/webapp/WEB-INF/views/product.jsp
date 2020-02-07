@@ -344,14 +344,9 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
 						Wallet
 					</button>
-<<<<<<< HEAD
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
-						Watch
-=======
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".시계">
-						Watches
->>>>>>> 52f7b15f7b0358365c2a216532a6e368fc8ecc86
+						Watch
 					</button>
 				</div>
 
@@ -576,7 +571,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="productimage/${product.p_image}" alt="IMG-PRODUCT" width="300" height="300">
+							<img src="productimage/${product.i_image}" alt="IMG-PRODUCT" width="300" height="300">
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
