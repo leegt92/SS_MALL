@@ -19,10 +19,5 @@ public class HomeController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) {
-
-		return "myPage";
-
-	}	
+	
 }
