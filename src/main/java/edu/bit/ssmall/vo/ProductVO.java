@@ -1,4 +1,4 @@
-package edu.bit.ssmall.productVO;
+package edu.bit.ssmall.vo;
 
 public class ProductVO {
 
@@ -8,7 +8,6 @@ public class ProductVO {
 	private String p_brand;
 	private int p_stock;
 	private String p_description;
-	private String p_image;
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
@@ -48,12 +47,6 @@ public class ProductVO {
 	}
 	public void setP_description(String p_description) {
 		this.p_description = p_description;
-	}
-	public String getP_image() {
-		return p_image;
-	}
-	public void setP_image(String p_image) {
-		this.p_image = p_image;
 	}
 	public String getP_released_date() {
 		return p_released_date;
