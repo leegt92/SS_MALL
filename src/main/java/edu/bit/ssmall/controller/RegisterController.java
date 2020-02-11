@@ -4,22 +4,18 @@ package edu.bit.ssmall.controller;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.bit.ssmall.exception.AlreadyExistingIdException;
 import edu.bit.ssmall.service.RegisterService;
 import edu.bit.ssmall.valid.MemberValidator;
-import edu.bit.ssmall.vo.MemberVO;
+import edu.bit.ssmall.vo.RegisterRequest;
 
 @Controller
 public class RegisterController {
@@ -47,36 +43,31 @@ public class RegisterController {
 		} else {
 			ModelAndView mv = new ModelAndView("register2");
 			
-			mv.addObject("memberVO", new MemberVO());
+			mv.addObject("registerRequest", new RegisterRequest());
 			return mv;
 		}
-	}	
-
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-	    binder.setValidator(new MemberValidator());
 	}
 
+	
 	@RequestMapping("/register.do")
-	public String registerDo(@Valid MemberVO memberVO, BindingResult result, HttpServletResponse response) throws Exception {
-		System.out.println("회원가입 시작");
+	public ModelAndView registerDo(RegisterRequest regReq, Errors errors) throws Exception{
+	
+		new MemberValidator().validate(regReq, errors);
 		
-		if(result.hasErrors()) {
-			return "redirect:register1";		
+		if(errors.hasErrors()) {
+			ModelAndView mv = new ModelAndView("register2");
+			return mv;
 		}
-		else{
-			registerService.register(memberVO);
-			return "redirect:login";
+		try {
+			registerService.register(regReq); 
+		} catch (AlreadyExistingIdException e) {
+			e.printStackTrace();
+			errors.rejectValue("m_id", "duplicate", "이미 가입된 아이디입니다.");
+			ModelAndView mv = new ModelAndView("register2");
+			return mv;
 		}
+		ModelAndView mv = new ModelAndView("login");
+		return mv;
 	}
-
-	// id 중복 체크 컨트롤러
-	@RequestMapping(value = "/idChk", method = RequestMethod.GET)
-	@ResponseBody
-	public int idChk(@RequestParam("m_id") String m_id) {
-		System.out.println("아이디 중복체크");
-		return registerService.idChk(m_id);
-	}
-
 
 }

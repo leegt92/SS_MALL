@@ -1,12 +1,27 @@
 package edu.bit.ssmall.valid;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import edu.bit.ssmall.vo.MemberVO;
+import edu.bit.ssmall.vo.RegisterRequest;
 
 public class MemberValidator implements Validator{
+	
+	private static final String emailRegExp =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
+            "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private Pattern pattern;
+ 
+    public void RegisterRequestValidator() {
+        pattern = Pattern.compile(emailRegExp);
+    }
+
+
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -17,19 +32,24 @@ public class MemberValidator implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		System.out.println("validate()");
+
+		RegisterRequest regReq = (RegisterRequest) target;
+
+		if(regReq.getM_email() == null || regReq.getM_email().trim().isEmpty()) {
+			errors.rejectValue("m_email", "required", "필수 정보 입니다.");
+		} 
 		
-		MemberVO memberVO = (MemberVO) target;
+
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_name", "required", "필수 정보 입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_id", "required", "필수 정보 입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_password", "required", "필수 정보 입니다.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_checkpassword", "required", "필수 정보 입니다.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_age", "required", "필수 정보 입니다.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_email", "required", "필수 정보 입니다.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_adress", "required", "필수 정보 입니다.");
         
-        if(!memberVO.getM_password().isEmpty()) {
-            if(!memberVO.isEqualsPassword()) {
+        if(!regReq.getM_password().isEmpty()) {
+            if(!regReq.isEqualsPassword()) {
                 errors.rejectValue("m_checkpassword", "nomatch", "비밀번호가 일치하지 않습니다.");
             }
         }
