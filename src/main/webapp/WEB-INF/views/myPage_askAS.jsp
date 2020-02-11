@@ -95,7 +95,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequest">
                   <span data-feather="users"></span>
-                  <b>▶1:1 문의</b>
+                  <b>1:1 문의</b>
                 </a>
               </li>
               <!-- <li class="nav-item">
@@ -107,7 +107,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askAS">
                   <span data-feather="layers"></span>
-                  <b>A/S 서비스 신청</b>
+                  <b>▶A/S 서비스 신청</b>
                 </a>
               </li>
             </ul>
@@ -132,16 +132,16 @@
 				">
 					<form>
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							문의 및 건의사항을 작성해 주세요.
+							A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="글 제목을 입력하세요."
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="제품명을 입력하세요"
 							style="padding-left: 30px;">
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="글 내용을 입력하세요" ></textarea>
+							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="제품의 하자사항과 세부 요청사항을 입력하세요"></textarea>
 						</div>
 
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">

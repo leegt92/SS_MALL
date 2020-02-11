@@ -25,32 +25,4 @@ public class ProductController {
 		
 		return "product";
 	}
-	
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Model model) {
-
-		return "myPage";
-
-	}	
-	
-	@RequestMapping(value = "/myPage_shoppingList", method = RequestMethod.GET)
-	public String myPage_shoppingList(Model model) {
-
-		return "myPage_shoppingList";
-
-	}	
-	
-	@RequestMapping(value = "/myPage_orderedList", method = RequestMethod.GET)
-	public String myPage_orderedList(Model model) {
-
-		return "myPage_orderedList";
-
-	}	
-	
-	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
-	public String myPage_askRequest(Model model) {
-
-		return "myPage_askRequest";
-
-	}	
 }
