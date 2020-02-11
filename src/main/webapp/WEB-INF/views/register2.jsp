@@ -155,6 +155,8 @@
 					<div class="flex-c-m">
 						<button id="reg_submit" type="submit" class="btn btn-secondary" disabled="disabled">완료</button>
 					</div>
+					
+					
 
 				</form>
 			</div>

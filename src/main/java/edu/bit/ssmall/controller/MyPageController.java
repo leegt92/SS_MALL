@@ -52,4 +52,18 @@ public class MyPageController {
 		return "myPage_askAS";
 
 	}
+	
+	@RequestMapping(value = "/myPage_reviseInformation", method = RequestMethod.GET)
+	public String myPage_reviseInformation(Model model) {
+
+		return "myPage_reviseInformation";
+
+	}
+	
+	@RequestMapping(value = "/myPage_reviseInformation2", method = RequestMethod.GET)
+	public String myPage_reviseInformation2(Model model) {
+
+		return "myPage_reviseInformation2";
+
+	}
 }
