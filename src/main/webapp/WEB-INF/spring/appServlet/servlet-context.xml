@@ -21,7 +21,7 @@
 	<resources mapping="/productimage/**" location="/resources/productimage/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/login/**" location="/resources/login/" />
-	<resources mapping="/register/**" location="/resources/register/" />  
+	
 	<!-- <resources mapping="/**" location="/resources/" /> -->
 
 
