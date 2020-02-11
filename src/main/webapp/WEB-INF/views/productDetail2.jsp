@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,6 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -333,87 +333,90 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+			<a href="/ssmall/" class="stext-109 cl8 hov-cl1 trans-04">
+				Main
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
+			<a href="productView" class="stext-109 cl8 hov-cl1 trans-04">
+				상품
+			<%-- <c:forEach items="${productDetail}" var="productDetail" begin="0" end="0">
+				${productDetail.p_category}
+				</c:forEach> --%>
+				<%-- ${product1.p_name} --%>
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Lightweight Jacket
+				<c:forEach items="${productDetail}" var="productDetail" begin="0" end="0">
+				${productDetail.p_name}
+				</c:forEach>
+				<%-- ${product1.p_name} --%>
+				<%-- jsp파일에서, 받아온 객체에서 p_name 에서 하나만 뽑아내고 싶었는데, 그걸 못해서 forEach으로 돌리고 반복횟수를 1회로 했음. 그래서 1개 나옴
+				근데 이건 임시방편이니까, 그걸 할 수 있는 방법을 알고싶음 --%>
 			</span>
 		</div>
 	</div>
 		
 
 	<!-- Product Detail -->
+	
+	
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-md-6 col-lg-7 p-b-30">
 					<div class="p-l-25 p-r-30 p-lr-0-lg">
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
+							
+							
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+								<c:forEach items="${productDetail}" var="productDetail">
+								<div class="item-slick3" data-thumb="productimage/${productDetail.i_name}">
+								
 									<div class="wrap-pic-w pos-relative">
-										<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+										<img src="productimage/${productDetail.i_name}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${productDetail.i_name}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
-
-								<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-
-								<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
+							
+							
 						</div>
 					</div>
 				</div>
-					
+				
+				
+				
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
+					<c:forEach items="${productDetail}" var="productDetail" begin="0" end="0">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							Lightweight Jacket
+							${productDetail.p_name}
 						</h4>
 
 						<span class="mtext-106 cl2">
-							$58.79
+							<fmt:formatNumber value="${productDetail.p_price}" pattern="###,###,###"/>원
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+							${productDetail.p_description}
 						</p>
+						</c:forEach>
 						
 						<!--  -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
-									Size
+									Size<br/>
+									사용할건지 말건지 확인
 								</div>
 
 								<div class="size-204 respon6-next">
@@ -432,7 +435,8 @@
 
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
-									Color
+									Color<br/>
+									사용할건지 말건지 확인
 								</div>
 
 								<div class="size-204 respon6-next">
@@ -469,6 +473,7 @@
 								</div>
 							</div>	
 						</div>
+						
 
 						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
@@ -492,6 +497,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
@@ -500,15 +506,15 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description 상품설명 설명</a>
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information상세정보. 크기 길이 등</a>
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews구매후기 리뷰 이게 댓글임(1)댓글갯수</a>
 						</li>
 					</ul>
 
@@ -518,7 +524,7 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+									상품설명
 								</p>
 							</div>
 						</div>
@@ -530,11 +536,11 @@
 									<ul class="p-lr-28 p-lr-15-sm">
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												Weight
+												명칭<br/>Weight
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												0.79 kg
+												값<br/> 0.79 kg
 											</span>
 										</li>
 
@@ -596,7 +602,8 @@
 											<div class="size-207">
 												<div class="flex-w flex-sb-m p-b-17">
 													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande
+														Ariana Grande<br/>
+														더미. 게시판이 아니라 걍 모양세만 낸거임
 													</span>
 
 													<span class="fs-18 cl11">
@@ -610,6 +617,8 @@
 
 												<p class="stext-102 cl6">
 													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+													<br/>
+													더미. 게시판이 아니라 걍 모양세만 낸거임
 												</p>
 											</div>
 										</div>
@@ -617,16 +626,18 @@
 										<!-- Add review -->
 										<form class="w-full">
 											<h5 class="mtext-108 cl2 p-b-7">
-												Add a review
+												Add a review 리뷰를 적어주세요
 											</h5>
 
 											<p class="stext-102 cl6">
-												Your email address will not be published. Required fields are marked *
+												Your email address will not be published. Required fields are marked *<br/>
+												이메일 없이도 할 수 있습니다.
 											</p>
 
 											<div class="flex-w flex-m p-t-50 p-b-23">
 												<span class="stext-102 cl3 m-r-16">
-													Your Rating
+													Your Rating<br/>
+													별. 추천수. 지울껀지 냅둘껀지. 기능은 안함.
 												</span>
 
 												<span class="wrap-rating fs-18 cl11 pointer">
@@ -641,23 +652,23 @@
 
 											<div class="row p-b-25">
 												<div class="col-12 p-b-5">
-													<label class="stext-102 cl3" for="review">Your review</label>
+													<label class="stext-102 cl3" for="review">Your review<br/>리뷰적는곳 적히기는 하는데 DB전송안됨</label>
 													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 												</div>
 
 												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="name">Name</label>
+													<label class="stext-102 cl3" for="name">Name이름</label>
 													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
 												</div>
 
 												<div class="col-sm-6 p-b-5">
-													<label class="stext-102 cl3" for="email">Email</label>
+													<label class="stext-102 cl3" for="email">Email이메일</label>
 													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
 												</div>
 											</div>
 
 											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-												Submit
+												Submit제출
 											</button>
 										</form>
 									</div>
@@ -671,11 +682,13 @@
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
+				상품 짤막설명?
 			</span>
 
 			<span class="stext-107 cl6 p-lr-25">
 				Categories: Jacket, Men
+				카테고리나 등등
+
 			</span>
 		</div>
 	</section>
@@ -686,7 +699,7 @@
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Related Products
+					Related Products 관련상품 혹은 인기상품
 				</h3>
 			</div>
 
@@ -1126,6 +1139,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 								<div class="slick3 gallery-lb">
 									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+									
 										<div class="wrap-pic-w pos-relative">
 											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
 
