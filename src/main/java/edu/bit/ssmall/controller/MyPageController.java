@@ -60,10 +60,17 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_reviseInformation2")
 	public String myPage_reviseInformation2(Model model) {
 
 		return "myPage_reviseInformation2";
+
+	}
+	
+	@RequestMapping(value = "/myPage_reviseInformation3", method = RequestMethod.GET)
+	public String myPage_reviseInformation3(Model model) {
+
+		return "myPage_reviseInformation3";
 
 	}
 }

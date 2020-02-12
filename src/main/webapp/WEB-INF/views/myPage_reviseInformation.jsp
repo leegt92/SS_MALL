@@ -115,9 +115,9 @@
         </nav>
 		
 		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
-		<div class="container-login100" style="background-image: url('login/images/bg-02.jpg');height: 400px;">
+		<div class="container-login100" style="background-image: url('login/images/bg-02.jpg');height: 400px; border:3px solid black;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form id="login" action="myPage_reviseInformation2" class="login100-form validate-form" method="post">
+				<form id="login" action="myPage_reviseInformation2" class="login100-form validate-form" method="GET">
 					
 
 					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px;">
@@ -162,36 +162,6 @@
       feather.replace()
     </script>
 
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
+    
   </body>
 </html>
