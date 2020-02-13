@@ -42,6 +42,11 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<style>
+.bg-light {
+	background-color: rgba(149, 204, 210, 0.2)!important;
+}
+</style>
   </head>
 
   <body>
