@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.ProductMapper;
-import edu.bit.ssmall.productVO.ProductVO;
+import edu.bit.ssmall.vo.ProductVO;
 @Service
 public class ProductService {
 

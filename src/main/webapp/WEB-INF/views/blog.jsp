@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Blog</title>
+	<title>SS_MALL</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -70,44 +70,51 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub-menu">
+								<a href="homeview">홈</a>
+								<!-- <ul class="sub-menu">
 									<li><a href="index.html">Homepage 1</a></li>
 									<li><a href="home-02.html">Homepage 2</a></li>
 									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+								</ul> -->
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="productView">상품</a>
 							</li>
-
+							
+							<li>
+								<a href="cartview" >장바구니</a>
+							</li>
+<!-- 
 							<li class="label1" data-label1="hot">
 								<a href="shoping-cart.html">Features</a>
-							</li>
-
-							<li class="active-menu">
-								<a href="blog.html">Blog</a>
-							</li>
-
+							</li> -->
 							<li>
+								<a href="/">공지사항</a>
+							</li>
+
+							<li> <!-- class="active-menu" -->
+								<a href="blogview">회사소개</a>
+							</li>
+
+							<!-- <li>
 								<a href="about.html">About</a>
 							</li>
 
 							<li>
 								<a href="contact.html">Contact</a>
-							</li>
+							</li> -->
 						</ul>
 					</div>	
 
-					<!-- Icon header -->
+				<!-- 	 Icon header --> 
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
@@ -129,7 +136,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -188,11 +195,11 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="homeview">홈</a>
 					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
+						<!-- <li><a href="index.html">Homepage 1</a></li>
 						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li> -->
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -200,28 +207,33 @@
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="productView">상품</a>
 				</li>
+				
+				<li>
+					<a href="cartview" >장바구니</a>
+				</li>
+				
+				<li>
+					<a href="">공지사항</a>
+				</li>
+				
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="blogview">회사소개</a>
 				</li>
 
-				<li>
-					<a href="blog.html">Blog</a>
-				</li>
-
-				<li>
+				<!-- <li>
 					<a href="about.html">About</a>
 				</li>
 
 				<li>
 					<a href="contact.html">Contact</a>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 
-		<!-- Modal Search -->
+		<!-- <!-- Modal Search 
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
@@ -235,10 +247,10 @@
 					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
 			</div>
-		</div>
-	</header>
+		</div> -->
+	</header> 
 
-	<!-- Cart -->
+	<!-- <!-- Cart 
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
@@ -321,15 +333,27 @@
 				</div>
 			</div>
 		</div>
+	</div> -->
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				홈
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				회사소개
+			</span>
+		</div>
 	</div>
 
-
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-02.jpg');">
+	<!-- <!-- Title page 
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bglogo.PNG');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Blog
+			SS_MALL
 		</h2>
-	</section>	
+	</section>	 -->
 
 
 	<!-- Content page -->
@@ -340,10 +364,10 @@
 					<div class="p-r-45 p-r-0-lg">
 						<!-- item blog -->
 						<div class="p-b-63">
-							<a href="blog-detail.html" class="hov-img0 how-pos5-parent">
-								<img src="images/blog-04.jpg" alt="IMG-BLOG">
+							<p class="hov-img0 how-pos5-parent"><!-- hov-img0 -->
+								<img src="images/icons/productlogo.png" alt="IMG-BLOG">
 
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
+								<!-- <div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
 										22
 									</span>
@@ -351,21 +375,22 @@
 									<span class="stext-109 cl3 txt-center">
 										Jan 2018
 									</span>
-								</div>
-							</a>
+								</div> -->
+							</p>
 
 							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="blog-detail.html" class="ltext-108 cl2 hov-cl1 trans-04">
-										8 Inspiring Ways to Wear Dresses in the Winter
-									</a>
-								</h4>
+								<!-- <h4 class="p-b-15"> -->
+									<p class="ltext-108 cl2 trans-04"> <!-- hov-cl1  -->
+										회사소개
+									</p>
+								<!-- </h4> -->
 
 								<p class="stext-117 cl6">
-									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
+									남성 명품 전문 쇼핑몰 상승몰입니다. 저희 회사는 보다 편리하게 구매를 할 수 있게끔 홈페이지를 꾸며 놓았습니다.
+									또한 체계화된 AS로 고객분들의 편리함에 최선을 다하도록 하였습니다. 
 								</p>
 
-								<div class="flex-w flex-sb-m p-t-18">
+								<!-- <div class="flex-w flex-sb-m p-t-18">
 									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
 										<span>
 											<span class="cl4">By</span> Admin  
@@ -382,21 +407,57 @@
 										</span>
 									</span>
 
-									<a href="blog-detail.html" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+									<a href="blogview2" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
 										Continue Reading
 
 										<i class="fa fa-long-arrow-right m-l-9"></i>
 									</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 
 						<!-- item blog -->
 						<div class="p-b-63">
-							<a href="blog-detail.html" class="hov-img0 how-pos5-parent">
-								<img src="images/blog-05.jpg" alt="IMG-BLOG">
+							<p  class="hov-img0 how-pos5-parent">
+								<!-- <img src="images/blog-05.jpg" alt="IMG-BLOG"> -->
+								<div id="map" style="width:100%;height:350px;"></div>
+									
+									<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
+									<script>
+											var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+											    mapOption = { 
+											        center: new kakao.maps.LatLng(37.552475,126.937825), // 지도의 중심좌표
+											        level: 3 // 지도의 확대 레벨
+											    };
+											var map = new kakao.maps.Map(mapContainer, mapOption);
+											
+											// 마커가 표시될 위치입니다 
+											var markerPosition  = new kakao.maps.LatLng(37.552475,126.937825); 
 
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
+											// 마커를 생성합니다
+											var marker = new kakao.maps.Marker({
+											    position: markerPosition
+											});
+
+											// 마커가 지도 위에 표시되도록 설정합니다
+											marker.setMap(map);
+
+											var iwContent = '<div style="padding:5px;">비트캠프 신촌센터 <br><a href="https://map.kakao.com/link/map/비트캠프 신촌센터,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/비트캠프 신촌센터,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+											    iwPosition = new kakao.maps.LatLng(37.552475,126.937825); //인포윈도우 표시 위치입니다
+
+											// 인포윈도우를 생성합니다
+											var infowindow = new kakao.maps.InfoWindow({
+											    position : iwPosition, 
+											    content : iwContent 
+											});
+											  
+											// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+											infowindow.open(map, marker); 
+											
+									</script>
+								
+
+							<!-- 	<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
 										18
 									</span>
@@ -404,22 +465,22 @@
 									<span class="stext-109 cl3 txt-center">
 										Jan 2018
 									</span>
-								</div>
-							</a>
+								</div> -->
+							</p>
 
 							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="blog-detail.html" class="ltext-108 cl2 hov-cl1 trans-04">
-										The Great Big List of Men’s Gifts for the Holidays 
-									</a>
-								</h4>
+								<!-- <h4 class="p-b-15"> -->
+									<p  class="ltext-108 cl2  trans-04">
+										오시는길
+									</p>
+								<!-- </h4> -->
 
 								<p class="stext-117 cl6">
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+								<!-- <div class="flex-w flex-sb-m p-t-18">
+									< <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
 										<span>
 											<span class="cl4">By</span> Admin  
 											<span class="cl12 m-l-4 m-r-6">|</span>
@@ -433,14 +494,14 @@
 										<span>
 											8 Comments
 										</span>
-									</span>
+									</span> 
 
-									<a href="blog-detail.html" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+									<a href="blogview2" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
 										Continue Reading
 
 										<i class="fa fa-long-arrow-right m-l-9"></i>
 									</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 
@@ -471,7 +532,7 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<div class="flex-w flex-sb-m p-t-18">
+								<!-- <div class="flex-w flex-sb-m p-t-18">
 									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
 										<span>
 											<span class="cl4">By</span> Admin  
@@ -488,16 +549,16 @@
 										</span>
 									</span>
 
-									<a href="blog-detail.html" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+									<a href="blogview2" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
 										Continue Reading
 
 										<i class="fa fa-long-arrow-right m-l-9"></i>
 									</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 
-						<!-- Pagination -->
+						<!-- <!-- Pagination 
 						<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
 							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
 								1
@@ -506,19 +567,19 @@
 							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
 								2
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
 				<div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
-						<div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
+						<!-- <div class="bor17 of-hidden pos-relative">
+							 <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
 
-							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
+							 <button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
 								<i class="zmdi zmdi-search"></i>
-							</button>
-						</div>
+							</button> 
+						</div> -->
 
 						<div class="p-t-55">
 							<h4 class="mtext-112 cl2 p-b-33">
@@ -528,22 +589,22 @@
 							<ul>
 								<li class="bor18">
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Fashion
+										회사소개									
 									</a>
 								</li>
 
 								<li class="bor18">
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Beauty
+										오시는길
 									</a>
 								</li>
 
 								<li class="bor18">
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Street Style
+										이용약관
 									</a>
 								</li>
-
+<!-- 
 								<li class="bor18">
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Life Style
@@ -554,11 +615,11 @@
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										DIY & Crafts
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 
-						<div class="p-t-65">
+						<!-- <div class="p-t-65">
 							<h4 class="mtext-112 cl2 p-b-33">
 								Featured Products
 							</h4>
@@ -613,7 +674,7 @@
 								</li>
 							</ul>
 						</div>
-
+ --><!-- 
 						<div class="p-t-55">
 							<h4 class="mtext-112 cl2 p-b-20">
 								Archive
@@ -716,9 +777,9 @@
 									</a>
 								</li>
 							</ul>
-						</div>
+						</div> -->
 
-						<div class="p-t-50">
+						<!-- <div class="p-t-50">
 							<h4 class="mtext-112 cl2 p-b-27">
 								Tags
 							</h4>
@@ -744,16 +805,159 @@
 									Crafts
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>	
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-500 cl0 p-b-30">
+						Category
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+								Watch
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+								Wallet
+							</a>
+						</li>
+
+					
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-500 cl0 p-b-30">
+						Help
+					</h4>
+
+					
+						<!-- <li class="p-b-10">
+							 <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a> 
+						</li> -->
+
+
+						<p class="stext-130 cl7 size-201">
+							● 대표 전화번호: 02-1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">
+							● 고객센터 : 1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">
+							● 이메일문의 : abcdefg@abcdefg.com
+						</p>
+						<p class="stext-130 cl7 size-201">
+							● FAQ
+						</p>
+					
+					
+				</div> 
+
+				<div class="col-sm-3 col-lg-50 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						Directions
+				 </h4>
+				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+								
+				
+				  <!--  <ul>
+					<li class="p-b-10">
+							 <a href="mapview" class="stext-107 cl7 hov-cl1 trans-04">
+								오시는길
+						     </a> 
+				     </li>
+				   </ul>  -->
+
+					 <!-- <p class="stext-130 cl7 size-201">
+						서울시 서대문구 비트동 비트빌딩 201동 201호
+					</p>  -->
+					
+					
+					<div class="p-t-27">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
+					</div>
+				</div>
+				
+				  <div class="col-sm-6 col-lg-3 p-b-50">
+				  	<img src="images/icons/mainlogo.png" width="500">
+					<!-- <h4 class="stext-301 cl0 p-b-30">
+						Newsletter
+					</h4>
+
+					<form>
+						<div class="wrap-input1 w-full p-b-4">
+							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+							<div class="focus-input1 trans-04"></div>
+						</div>
+
+						<div class="p-t-18">
+							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								Subscribe
+							</button>
+						</div>
+					</form> -->
+				</div>  
+			</div>
+
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
+				</div>
+
+				<p class="stext-107 cl6 txt-center">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+				</p>
+			</div>
+		</div>
+	</footer>
 	
 		
 
-	<!-- Footer -->
+	<!-- <!-- Footer 
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
@@ -889,15 +1093,15 @@
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 
 				</p>
 			</div>
 		</div>
 	</footer>
-
+ -->
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
@@ -926,6 +1130,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
+<script src="js/main.js"></script>
+	 	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
+	<script>
+		$('#map1').click(function(){
+			var container = document.getElementById('map1');
+			 var options = {
+				center: new kakao.maps.LatLng(37.552475, 126.937825),
+				level: 3
+			}; 
+			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+
+		});
+	</script> 
+	<span class="bt-basic" id="map"></span>  
+<!--===============================================================================================-->
+	
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){

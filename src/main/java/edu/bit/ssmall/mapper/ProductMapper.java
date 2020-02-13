@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import edu.bit.ssmall.productVO.ProductVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 public interface ProductMapper {
 	

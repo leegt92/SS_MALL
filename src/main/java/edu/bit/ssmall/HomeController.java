@@ -18,4 +18,11 @@ public class HomeController {
 		return "home";
 
 	}	
+	
+	@RequestMapping(value = "/homeview", method = RequestMethod.GET)
+	public String home2(Model model) {
+
+		return "home";
+
+	}	
 }
