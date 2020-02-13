@@ -584,7 +584,13 @@
 									${product.p_name}
 								</a>
 								<span class="stext-105 cl3">
+<<<<<<< HEAD
 									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
+=======
+
+									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
+
+>>>>>>> origin/dev_chajin
 								</span>
 							</div>
 

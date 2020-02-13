@@ -23,6 +23,13 @@ public class HomeController {
 	public String myPage(Model model) {
 
 		return "myPage";
+	}
+	
+	@RequestMapping(value = "/homeview", method = RequestMethod.GET)
+	public String home2(Model model) {
+
+		return "home";
+
 
 	}	
 }

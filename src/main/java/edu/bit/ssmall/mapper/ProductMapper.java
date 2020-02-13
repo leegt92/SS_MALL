@@ -3,8 +3,9 @@ package edu.bit.ssmall.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
-
 import edu.bit.ssmall.vo.ProductImageVO;
+
+
 
 public interface ProductMapper {
 	
