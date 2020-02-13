@@ -75,9 +75,9 @@
                 </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
-                  <b>회원 정보 수정</b>
+                  <b>▶회원 정보 수정</b>
                 </a>
               </li>
               <li class="nav-item">
@@ -95,7 +95,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequest">
                   <span data-feather="users"></span>
-                  <b>▶1:1 문의</b>
+                  <b>1:1 문의</b>
                 </a>
               </li>
               <!-- <li class="nav-item">
@@ -130,7 +130,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form>
+					<form id="withdrawFinal">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							회원탈퇴 사유를 작성해주세요(선택사항).
 						</h4>
@@ -233,9 +233,18 @@
 
 
      <script>
-		$("#decide_withdraw").click(function() {
-			alert("탈퇴가 정상적으로 처리되었습니다.")
-		});
+     $("#withdrawFinal").submit(function(event) {
+ 	 	event.preventDefault();
+			Swal.fire({
+			icon: 'success',
+			position: 'center',
+			title: '탈퇴완료',
+			text: '탈퇴가 최종적으로 완료되었습니다.',	
+			}).then(function() {
+				var elem = document.getElementById('withdrawFinal');
+				elem.submit();
+			});
+ });
 	</script>
   </body>
 </html>

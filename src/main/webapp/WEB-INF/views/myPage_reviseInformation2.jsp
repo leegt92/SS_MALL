@@ -75,7 +75,7 @@
                 </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
                   <b>▶회원 정보 수정</b>
                 </a>
@@ -116,21 +116,21 @@
 		
 		<div class="limiter" style="position:fixed;left: 770px;width: 330px;top: 100px;">
 		<div class="container-login100"
-			style="background-color: #bebebe; border:3px solid black">
+			style="background-color: #bebebe;border:3px solid black;width: 660px;height: 806px;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				
 
 
 
 				<form action="myPage_reviseInformation2" class="container-login100"
-					method="get" id="reviseInformation">
-					<span class="login100-form-title p-b-49" style="position:fixed;top: 120px;"	><font size="5em"><b>회원정보 수정</b></font></span>
+					method="post" id="reviseInformation">
+					<span class="login100-form-title p-b-49" style="position:fixed;top: 120px;left: 1020px;"	><font size="5em"><b>회원정보 수정</b></font></span>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="아이디 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">아이디</font></span> <input class="input100"
 							id="m_id" type="text" name="m_id" placeholder="아이디는 수정이 불가능합니다"
-							maxlength="10" style="width: 220px;"> <span class="focus-input100"
+							maxlength="10" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
 						<div id="id_check"> </div>
 					</div>
@@ -142,7 +142,7 @@
 						<span class="label-input100"><font size="4em" color="black">비밀번호</font></span> 
 						<input class="input100" id="m_password"
 							type="password" name="m_password" placeholder="수정할 비밀번호를 입력해주세요"
-							maxlength="20" style="width: 220px;"> <span class="focus-input100"
+							maxlength="20" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf190;"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-23"
@@ -150,14 +150,14 @@
 						<span class="label-input100"><font size="4em" color="black">비밀번호 확인</font></span> 
 						<input class="input100" id="m_checkpassword"
 							type="password" name="m_checkpassword"
-							placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="width: 220px;"> <span
+							placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이름 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">이름</font></span> <input class="input100"
-							type="text" name="m_name" placeholder="수정할 이름을 입력해주세요" maxlength="5" style="width: 220px;">
+							type="text" name="m_name" placeholder="수정할 이름을 입력해주세요" maxlength="5" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 						
 					</div>
@@ -165,21 +165,21 @@
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="나이 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">나이</font></span> <input class="input100"
-							type="text" name="m_age" placeholder="수정할 나이를 입력해주세요" maxlength="2" style="width: 220px;">
+							type="text" name="m_age" placeholder="수정할 나이를 입력해주세요" maxlength="2" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이메일 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">이메일</font></span> <input class="input100"
-							type="text" name="m_email" placeholder="이메일은 수정이 불가능합니다." style="width: 220px;"> <span
+							type="text" name="m_email" placeholder="이메일은 수정이 불가능합니다." style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="배송지 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">주소</font></span> <input class="input100"
-							type="text" name="m_adress" placeholder="수정할 주소를 입력해주세요" style="width: 220px;"> <span
+							type="text" name="m_adress" placeholder="수정할 주소를 입력해주세요" style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
@@ -187,24 +187,29 @@
 						data-validate="핸드폰번호 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input class="input100"
 							type="text" name="m_phonenum" placeholder="수정할 핸드폰번호를 입력해주세요"
-							maxlength="11" style="width: 220px;"> <span class="focus-input100"
+							maxlength="11" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23">
-						<font size="4em" color="black">이메일 수신여부</font><span class="label-input100"></span> <input type="radio"
-							name="m_receive_email" value="1">광고성 이메일을 수신하겠습니다. <input type="radio"
-							name="m_receive_email" value="0">광고성 이메일을 수신하지 않겠습니다.
+						<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> <input type="radio"
+							name="m_receive_email" value="1"><font size="2em" color="black" style="position:fixed;left: 845px;bottom: 220px;">광고성 이메일을 수신하겠습니다.</font> 
+							<input type="radio"
+							name="m_receive_email" value="0" style="position:fixed;top: 790px;"><font size="2em" color="black" style="position:fixed;left: 845px;bottom: 201px;">광고성 이메일을 수신하지 않겠습니다.</font>
 					</div>
 
 					<div class="flex-c-m">
-						<button id="revise_submit" class="btn btn-secondary">수정완료</button>
+						<button id="revise_submit" class="btn btn-secondary" style="position:fixed;top: 830px;left: 1010px;">수정완료</button>
 						<button id="withdraw_submit" class="btn btn-secondary" style="
+    						position:fixed;
     						margin-left: 10px;
     						padding-left: 0px;
     						padding-bottom: 0px;
     						padding-top: 0px;
     						padding-right: 0px;
+    						top: 830px;
+    						left: 1090px;
+    						height: 35px;
     						"><a href = "/ssmall/myPage_reviseInformation3" class="btn btn-secondary">회원탈퇴</a></button>
 					</div>
 					
@@ -227,7 +232,6 @@
     <script src="js/sweetalert2.js"></script>
     <script src="js/sweetalert1.js"></script>
     <script src="js/alert.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     
 
@@ -242,9 +246,18 @@
     
     <script>
     	
-	    $("#reviseInformation").submit(function() {
-				alert("수정이 완료되었습니다.");
-		}); 
+	    $("#reviseInformation").submit(function(event) {
+	    	 	event.preventDefault();
+				Swal.fire({
+				icon: 'success',
+				position: 'center',
+				title: '수정완료',
+				text: '수정이 완료되었습니다.',	
+				}).then(function() {
+					var elem = document.getElementById('reviseInformation');
+					elem.submit();
+				});
+	    });
     		
 			
     		

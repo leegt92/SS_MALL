@@ -75,7 +75,7 @@
                 </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
                   <b>▶회원 정보 수정</b>
                 </a>
