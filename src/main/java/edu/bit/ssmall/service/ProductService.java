@@ -7,14 +7,15 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.ProductMapper;
-import edu.bit.ssmall.vo.ProductVO;
+import edu.bit.ssmall.vo.ProductImageVO;
+
 @Service
 public class ProductService {
 
 	@Inject
 	ProductMapper productMapper;
 	
-	public List<ProductVO> selectProductList() {
+	public List<ProductImageVO> selectProductList() {
 		
 		return productMapper.selectProductList();
 	}

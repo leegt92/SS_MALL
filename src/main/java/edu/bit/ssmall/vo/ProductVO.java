@@ -12,7 +12,15 @@ public class ProductVO {
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
+	
+	private String i_name;
 
+	public String getI_name() {
+		return i_name;
+	}
+	public void setI_name(String i_name) {
+		this.i_name = i_name;
+	}
 	public int getP_number() {
 		return p_number;
 	}
@@ -74,9 +82,4 @@ public class ProductVO {
 		this.p_category = p_category;
 	}
 
-	
-	
-	
-
-	
 }
