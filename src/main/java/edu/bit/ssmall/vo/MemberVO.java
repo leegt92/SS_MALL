@@ -12,9 +12,23 @@ public class MemberVO {
 	private String m_authority; // 권한
 	private String m_id; //아이디
 	private String m_password; //비밀번호
+	private String m_checkpassword; //비밀번호확인
 	private int m_price; // 지금까지 구매한 총금액
 	private int m_enabled; // 활성화 여부
 
+	public boolean isEqualsPassword() {
+		return m_password.equals(m_checkpassword);
+	}
+
+	public String getM_checkpassword() {
+		return m_checkpassword;
+	}
+
+	public void setM_checkpassword(String m_checkpassword) {
+		this.m_checkpassword = m_checkpassword;
+	}
+
+	
 	public String getM_receive_email() {
 		return m_receive_email;
 	}

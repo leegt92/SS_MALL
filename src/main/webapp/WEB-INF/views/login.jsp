@@ -57,20 +57,20 @@
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "아이디를 입력하세요">
 						<span class="label-input100">아이디</span>
-						<input id= "m_id" class="input100" type="text" name="m_id" placeholder="아이디를 입력하세요" maxlength="10">
+						<input id= "m_id" class="input100" type="text" name="m_id" placeholder="아이디를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요">
 						<span class="label-input100">비밀번호</span>
-						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="비밀번호를 입력하세요" maxlength="20">
+						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="비밀번호를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<br>
 					<div class="flex-c-m">
-						<input id="submit" class="btn btn-secondary" type="button" value="로그인"><pre> </pre>
+						<input class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
 						
-						<input id="register" type="button" class="btn btn-secondary" value="회원가입">						
+						<a href="register2"><button type="button" class="btn btn-secondary">회원가입</button></a>				
 					</div>
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
@@ -102,34 +102,6 @@
 	
 
 	<div id="dropDownSelect1"></div>
-	
 
-	
-	<script type="text/javascript">
-	$(document).ready(function(e){
-		$('#submit').click(function(){
-
-			// 입력 값 체크
-			if($.trim($('#m_Id').val()) == ''){
-				alert("아이디를 입력해 주세요.");
-				$('#m_Id').focus();
-				return;
-			}else if($.trim($('#m_password').val()) == ''){
-				alert("패스워드를 입력해 주세요.");
-				$('#m_password').focus();
-				return;
-			}
-			
-			//전송
-			$('#login').submit();
-		});
-		
-		//회원가입 버튼
-		$('#register').click(function() {
-			location.href="register1";
-		});
-		
-	});
-</script>
 </body>
 </html>

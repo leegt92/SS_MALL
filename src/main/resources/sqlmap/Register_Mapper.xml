@@ -7,16 +7,22 @@
 	
 	
 	
-	<insert id="register" parameterType="edu.bit.ssmall.vo.RegisterRequest">
+	<insert id="register" parameterType="edu.bit.ssmall.vo.MemberVO">
 		<![CDATA[ 
         Insert into member(m_number, m_name, m_age, m_email, m_adress, m_phonenum, m_point, m_receive_email, m_authority, m_id, m_password, m_price, m_enabled)
-        values(member_seq.nextval,#{regReq.m_name},#{regReq.m_age},#{regReq.m_email} , #{regReq.m_adress}, #{regReq.m_phonenum}, 0, '수신', '일반회원', #{regReq.m_id} ,#{regReq.m_password}, 0, 1)
+        values(member_seq.nextval,#{memberVO.m_name},#{memberVO.m_age},#{memberVO.m_email} , #{memberVO.m_adress}, #{memberVO.m_phonenum}, 0, '수신', '일반회원', #{memberVO.m_id} ,#{memberVO.m_password}, 0, 1)
 		]]>
 	</insert>
 	
-	<select id="idChk" resultType="edu.bit.ssmall.vo.MemberVO" parameterType="edu.bit.ssmall.vo.RegisterRequest">
+	<select id="idChk" resultType="int" parameterType="edu.bit.ssmall.vo.MemberVO">
 		<![CDATA[
-		Select m_id FROM MEMBER WHERE m_id = #{regReq.m_id}
+		Select count(*) FROM MEMBER WHERE m_id = #{memberVO.m_id}
+		]]>
+	</select>
+	
+	<select id="emailChk" resultType="int" parameterType="edu.bit.ssmall.vo.MemberVO">
+		<![CDATA[
+		Select count(*) FROM MEMBER WHERE m_email = #{memberVO.m_email}
 		]]>
 	</select>
 	
