@@ -1,4 +1,4 @@
-package edu.bit.ssmall.productVO;
+package edu.bit.ssmall.vo;
 
 public class ProductImageVO {
 

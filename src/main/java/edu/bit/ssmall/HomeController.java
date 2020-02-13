@@ -19,5 +19,12 @@ public class HomeController {
 
 	}	
 	
-	
+
+	@RequestMapping(value = "/homeview", method = RequestMethod.GET)
+	public String home2(Model model) {
+
+		return "home";
+
+	}	
+
 }
