@@ -1,5 +1,9 @@
 package edu.bit.ssmall.vo;
 
+import java.util.Set;
+
+import org.springframework.security.authentication.jaas.AuthorityGranter;
+
 public class MemberVO {
 
 	private int m_number;
@@ -15,7 +19,7 @@ public class MemberVO {
 	private String m_checkpassword; //비밀번호확인
 	private int m_price; // 지금까지 구매한 총금액
 	private int m_enabled; // 활성화 여부
-
+	
 	public boolean isEqualsPassword() {
 		return m_password.equals(m_checkpassword);
 	}

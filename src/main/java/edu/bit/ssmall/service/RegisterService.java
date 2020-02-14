@@ -16,19 +16,22 @@ public class RegisterService {
 	
 	
 	
-	public void register(MemberVO memberVO) throws Exception {
+	public int register(MemberVO memberVO) throws Exception {
        
         int id = registerMapper.idChk(memberVO);
         int email = registerMapper.emailChk(memberVO);
         
-        if(id==1) {
-            throw new AlreadyExistingIdException(memberVO.getM_id()+" is alreay exist");
-        } else if (email == 1){
-        	throw new AlreadyExistingEmailException(memberVO.getM_email()+" is alreay exist");
+        if(id==1) {          
+        	System.out.println("아이디존재");
+        	return 1;
+        } else if (email == 1){     
+        	System.out.println("이메일존재");
+        	return 2;
         }
-        
         registerMapper.register(memberVO);
+        
+      
+        return 0;
     }
 
-	
 }

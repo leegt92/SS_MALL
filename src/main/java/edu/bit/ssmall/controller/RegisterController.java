@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.bit.ssmall.exception.AlreadyExistingEmailException;
 import edu.bit.ssmall.exception.AlreadyExistingIdException;
 import edu.bit.ssmall.service.RegisterService;
+import edu.bit.ssmall.valid.EmailCheck;
 import edu.bit.ssmall.valid.MemberValidator;
 import edu.bit.ssmall.vo.MemberVO;
 
@@ -42,7 +43,7 @@ public class RegisterController {
 		return "register1";
 	}
 
-	@RequestMapping("/register2")
+	@RequestMapping(value ="/register2", method = RequestMethod.POST)
 	public String register2(@RequestParam(value="agree", defaultValue="false") Boolean agree, HttpServletResponse response, Model model) throws Exception {
 		if(!agree) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -170,28 +171,24 @@ public class RegisterController {
 	@RequestMapping("/register.do")
 	public String registerDo(HttpServletRequest request,MemberVO memberVO, Errors errors, Model model, HttpServletResponse response) throws Exception{
 		System.out.println("회원가입시작");
-		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();	
-		
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 		String addr3 = request.getParameter("addr3");
-		System.out.println(addr1);
-		System.out.println(addr2);
-		System.out.println(addr3);
+		EmailCheck eCheck = new EmailCheck();
+		String chk = eCheck.check(addr1, addr2, addr3);
 		
-		if(addr1.trim().isEmpty() || addr2.trim().isEmpty() || addr3.trim().isEmpty()) {
-			System.out.println("주소 널값!!");
+		if(chk.equals(null)) {
+	
 			out.println("<script>alert('주소가 정보가 누락되었습니다.');</script>");			 
 			out.flush(); 
 			
 			model.addAttribute("m_email", memberVO.getM_email());
 			return "register2";
 		}
-		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
-		memberVO.setM_adress(M_adress);
-		
+
+		memberVO.setM_adress(chk);		
 		new MemberValidator().validate(memberVO, errors);//유효성 검사
 		
 		if(errors.hasErrors()) {
@@ -201,31 +198,29 @@ public class RegisterController {
 			model.addAttribute("m_email", memberVO.getM_email());
 			return "register2";
 		}
+		
 		String hashpw = passwordEncoder.encode(memberVO.getM_password());
 		memberVO.setM_password(hashpw); // 암호화 저장
-
-		try {
-			registerService.register(memberVO); 
-		} catch (AlreadyExistingIdException e) {
-			e.printStackTrace();
+		 
+		
+		if(registerService.register(memberVO) == 1) {
 			errors.rejectValue("m_id", "duplicate", "이미 가입된 아이디입니다.");
-			
 			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
 			out.flush();
 			model.addAttribute("m_email", memberVO.getM_email());
 			return "register2";
-		}catch(AlreadyExistingEmailException e2) {
-			e2.printStackTrace();
-			errors.rejectValue("m_email", "duplicate", "이미 가입된 이메일입니다.");
-			
+		} else if(registerService.register(memberVO) == 2){	
+			errors.rejectValue("m_email", "duplicate", "이미 가입된 이메일입니다.");			
 			out.println("<script>alert('이미 가입된 이메일입니다. 다른 이메일로 가입해주세요!');</script>");			 
 			out.flush();
 			return "register1";
 		}
-				 
+		 
 		out.println("<script>alert('회원가입이 완료되었습니다!');</script>");			 
 		out.flush();
 		
 		return "login";
 	}
+
+	
 }

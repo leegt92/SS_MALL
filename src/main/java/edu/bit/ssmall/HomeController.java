@@ -31,5 +31,12 @@ public class HomeController {
 		return "home";
 
 
-	}	
+	}
+	@RequestMapping(value = "/AccessDenine", method = RequestMethod.GET)
+	public String AccessDenine(Model model) {
+
+		return "AccessDenine";
+
+	}
+	
 }

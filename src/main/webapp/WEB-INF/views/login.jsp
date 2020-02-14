@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +51,11 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('login/images/bg-02.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form id="login" action="login.do" class="login100-form validate-form" method="post">
+				<form:form id="login" action="login" class="login100-form validate-form" method="post">
+					
+					<c:if test="${param.error != null }">
+						<script>alert("로그인에 실패하셨습니다. 아이디와 비밀번호를 확인해주세요");</script>
+					</c:if>
 					<span class="login100-form-title p-b-49">
 						로그인
 					</span>
@@ -70,7 +75,7 @@
 					<div class="flex-c-m">
 						<input class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
 						
-						<a href="register2"><button type="button" class="btn btn-secondary">회원가입</button></a>				
+						<a href="register1"><button type="button" class="btn btn-secondary">회원가입</button></a>				
 					</div>
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
@@ -79,23 +84,15 @@
 					</div>
 
 					<div class="flex-c-m">
-						<a href="fbLogin" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="twLogin" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
-						</a>
-
-						<a href="gooLogin" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
-						</a>
-					</div>
-
-				
-					
-					
-				</form>
+						<!-- 네이버 로그인 창으로 이동 -->
+						<div id="naver_id_login" style="text-align:center">
+							<a href="${url}">
+							<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+							</a>
+						</div>
+						<br>		
+					</div>	
+				</form:form>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +64,7 @@
 			style="background-image: url('login/images/bg-02.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				
-				<form role="form" action="emailcheck" method="POST">
+				<form:form role="form" action="emailcheck" method="POST">
 					
 					<h3>이메일 인증</h3>
 					<br>
@@ -72,7 +73,7 @@
 						<button type="submit" name="submit" class="btn btn-link">이메일 인증받기</button>
 					</div>		
 				
-				</form>
+				</form:form>
 				
 			</div>
 		</div>

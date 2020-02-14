@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +64,7 @@
 			style="background-image: url('login/images/bg-02.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				
-				<form role="form" action="emailcheck.do" method="POST">
+				<form:form role="form" action="emailcheck.do" method="POST">
 					<input type="hidden" name="m_email" value="${m_email}">
 					<input type="hidden" name="code" value="${code}">
 					<h3>인증번호 입력</h3>
@@ -73,7 +74,7 @@
 						<button type="submit" name="submit" class="btn btn-secondary">인증번호 전송</button>
 					</div>		
 				
-				</form>
+				</form:form>
 				
 			</div>
 		</div>
