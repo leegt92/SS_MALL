@@ -138,7 +138,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form>
+					<form id="submitASRequest">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요
 						</h4>
@@ -234,12 +234,31 @@
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
+  	<script>
+    	
+	    $("#submitASRequest").submit(function(event) {
+	    	 	event.preventDefault();
+				Swal.fire({
+				icon: 'success',
+				position: 'center',
+				title: 'A/S신청 완료',
+				text: 'A/S신청이 완료되었습니다.',	
+				}).then(function() {
+					var elem = document.getElementById('submitASRequest');
+					elem.submit();
+				});
+	    });
+    		
+			
+    		
+	</script>
 
    
   </body>
