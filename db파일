@@ -1,15 +1,13 @@
-* 회원 */
+/* 회원 */
 CREATE TABLE MEMBER (
 	m_number NUMBER NOT NULL, /* 회원번호 */
 	m_name VARCHAR2(200), /* 이름 */
-	m_gender VARCHAR2(200), /* 성별 */
 	m_age NUMBER(3), /* 나이 */
-	m_scnumber VARCHAR2(200), /* 주민번호 */
 	m_email VARCHAR2(200), /* 이메일 */
 	m_adress VARCHAR2(200), /* 주소 */
 	m_phonenum VARCHAR2(200), /* 핸드폰 */
 	m_point NUMBER, /* 포인트 */
-	m_recive_emali NUMBER(1), /* Email수신 */
+	m_receive_email VARCHAR2(100), /* Email수신 */
 	m_authority VARCHAR2(200), /* 회원등급 */
 	m_id VARCHAR2(200), /* 아이디 */
 	m_password VARCHAR2(200), /* 비밀번호 */
@@ -23,11 +21,7 @@ COMMENT ON COLUMN MEMBER.m_number IS '회원번호';
 
 COMMENT ON COLUMN MEMBER.m_name IS '이름';
 
-COMMENT ON COLUMN MEMBER.m_gender IS '성별';
-
 COMMENT ON COLUMN MEMBER.m_age IS '나이';
-
-COMMENT ON COLUMN MEMBER.m_scnumber IS '주민번호';
 
 COMMENT ON COLUMN MEMBER.m_email IS '이메일';
 
@@ -37,7 +31,7 @@ COMMENT ON COLUMN MEMBER.m_phonenum IS '핸드폰';
 
 COMMENT ON COLUMN MEMBER.m_point IS '포인트';
 
-COMMENT ON COLUMN MEMBER.m_recive_emali IS 'Email수신';
+COMMENT ON COLUMN MEMBER.m_receive_email IS 'Email수신';
 
 COMMENT ON COLUMN MEMBER.m_authority IS '회원등급';
 
@@ -150,7 +144,8 @@ CREATE TABLE Board (
 	bTotalLike NUMBER, /* 전체좋아요 */
 	bType VARCHAR2(200), /* 타입 */
 	bTotalrepot NUMBER, /* 누적신고수 */
-	m_number NUMBER /* 회원번호 */
+	m_number NUMBER, /* 회원번호 */
+	p_number NUMBER /* 상품번호 */
 );
 
 COMMENT ON TABLE Board IS '게시판';
@@ -180,6 +175,8 @@ COMMENT ON COLUMN Board.bType IS '타입';
 COMMENT ON COLUMN Board.bTotalrepot IS '누적신고수';
 
 COMMENT ON COLUMN Board.m_number IS '회원번호';
+
+COMMENT ON COLUMN Board.p_number IS '상품번호';
 
 CREATE UNIQUE INDEX PK_Board
 	ON Board (
@@ -223,18 +220,6 @@ ALTER TABLE Cart
 			c_id
 		);
 
-/* 권한 */
-CREATE TABLE Authority (
-	m_number NUMBER, /* 회원번호 */
-	a_authority VARCHAR2(200) /* 권한 */
-);
-
-COMMENT ON TABLE Authority IS '권한';
-
-COMMENT ON COLUMN Authority.m_number IS '회원번호';
-
-COMMENT ON COLUMN Authority.a_authority IS '권한';
-
 /* 환불 */
 CREATE TABLE Refund (
 	r_number NUMBER NOT NULL, /* 환불번호 */
@@ -268,14 +253,17 @@ ALTER TABLE Refund
 /* 이미지 */
 CREATE TABLE Image (
 	p_number NUMBER, /* 상품번호 */
-	I_name VARCHAR2(200) /* 이미지명 */
+	i_name VARCHAR2(200), /* 이미지명 */
+	i_type NUMBER /* 이미지타입 */
 );
 
 COMMENT ON TABLE Image IS '이미지';
 
 COMMENT ON COLUMN Image.p_number IS '상품번호';
 
-COMMENT ON COLUMN Image.I_name IS '이미지명';
+COMMENT ON COLUMN Image.i_name IS '이미지명';
+
+COMMENT ON COLUMN Image.i_type IS '이미지타입';
 
 ALTER TABLE Buy
 	ADD
@@ -307,6 +295,16 @@ ALTER TABLE Board
 			m_number
 		);
 
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_Product_TO_Board
+		FOREIGN KEY (
+			p_number
+		)
+		REFERENCES Product (
+			p_number
+		);
+
 ALTER TABLE Cart
 	ADD
 		CONSTRAINT FK_MEMBER_TO_Cart
@@ -325,16 +323,6 @@ ALTER TABLE Cart
 		)
 		REFERENCES Product (
 			p_number
-		);
-
-ALTER TABLE Authority
-	ADD
-		CONSTRAINT FK_MEMBER_TO_Authority
-		FOREIGN KEY (
-			m_number
-		)
-		REFERENCES MEMBER (
-			m_number
 		);
 
 ALTER TABLE Refund
@@ -357,7 +345,9 @@ ALTER TABLE Image
 			p_number
 		);
 
+create sequence member_seq;
 create sequence product_seq;
+create sequence board_seq;
 
 insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_released_date,p_amount,p_category)
 values(product_seq.nextval, '리슐리유', 1500000,'고야드',100,'고야드 리슐리유','2016/5/16',0,'지갑');
@@ -421,25 +411,7 @@ insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_rel
 values(product_seq.nextval, '노틸러스', 90000000,'파텍필립',100,'파텍필립 노틸러스','2016/5/17',0,'시계');
 
 
-insert into Image(p_number, i_name) values(1,'wallet1.PNG');
-insert into Image(p_number, i_name) values(2,'wallet2.PNG');
-insert into Image(p_number, i_name) values(3,'wallet3.PNG');
-insert into Image(p_number, i_name) values(4,'wallet4.PNG');
-insert into Image(p_number, i_name) values(5,'wallet5.PNG');
-insert into Image(p_number, i_name) values(6,'wallet6.PNG');
-insert into Image(p_number, i_name) values(7,'wallet7.PNG');
-insert into Image(p_number, i_name) values(8,'wallet8.PNG');
-insert into Image(p_number, i_name) values(9,'wallet9.PNG');
-insert into Image(p_number, i_name) values(10,'wallet10.PNG');
-
-insert into Image(p_number, i_name) values(11,'watch1.PNG');
-insert into Image(p_number, i_name) values(12,'watch2.PNG');
-insert into Image(p_number, i_name) values(13,'watch3.PNG');
-insert into Image(p_number, i_name) values(14,'watch4.PNG');
-insert into Image(p_number, i_name) values(15,'watch5.PNG');
-insert into Image(p_number, i_name) values(16,'watch6.PNG');
-insert into Image(p_number, i_name) values(17,'watch7.PNG');
-insert into Image(p_number, i_name) values(18,'watch8.PNG');
-insert into Image(p_number, i_name) values(19,'watch9.PNG');
-insert into Image(p_number, i_name) values(20,'watch10.PNG');
+insert into Image(p_number, i_name, i_type) values(1,'wallet1.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(1,'wallet1_1.PNG', '2');
+insert into Image(p_number, i_name, i_type) values(1,'wallet1_2.PNG', '3');
 
