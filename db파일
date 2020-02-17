@@ -414,4 +414,24 @@ values(product_seq.nextval, '노틸러스', 90000000,'파텍필립',100,'파텍�
 insert into Image(p_number, i_name, i_type) values(1,'wallet1.PNG', '1');
 insert into Image(p_number, i_name, i_type) values(1,'wallet1_1.PNG', '2');
 insert into Image(p_number, i_name, i_type) values(1,'wallet1_2.PNG', '3');
+insert into Image(p_number, i_name, i_type) values(2,'wallet2.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(3,'wallet3.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(4,'wallet4.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(5,'wallet5.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(6,'wallet6.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(7,'wallet7.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(8,'wallet8.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(9,'wallet9.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(10,'wallet10.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(11,'watch1.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(12,'watch2.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(13,'watch3.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(14,'watch4.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(15,'watch5.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(16,'watch6.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(17,'watch7.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(18,'watch8.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(19,'watch9.PNG', '1');
+insert into Image(p_number, i_name, i_type) values(20,'watch10.PNG', '1');
+
 
