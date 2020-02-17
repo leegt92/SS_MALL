@@ -13,10 +13,13 @@ public class LoginService {
 	LoginMapper loginMapper;
 	
 	
-	public MemberVO login(String m_id, String m_password) {
+	public MemberVO login(String m_id) throws Exception{
 		
-		return loginMapper.login(m_id, m_password);
+		return loginMapper.login(m_id);
 	}
+
+
+	
 
 
 	

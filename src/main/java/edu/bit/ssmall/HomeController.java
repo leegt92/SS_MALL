@@ -19,12 +19,33 @@ public class HomeController {
 
 	}	
 	
+<<<<<<< HEAD
 
+=======
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	public String myPage(Model model) {
+
+		return "myPage";
+	}
+	
+>>>>>>> origin/dev_hyemin
 	@RequestMapping(value = "/homeview", method = RequestMethod.GET)
 	public String home2(Model model) {
 
 		return "home";
 
+<<<<<<< HEAD
 	}	
 
+=======
+
+	}
+	@RequestMapping(value = "/AccessDenine", method = RequestMethod.GET)
+	public String AccessDenine(Model model) {
+
+		return "AccessDenine";
+
+	}
+	
+>>>>>>> origin/dev_hyemin
 }

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +52,7 @@
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="homeview" class="logo">
 						<img src="images/icons/mainlogo.png" alt="IMG-LOGO"  >
 					</a>
 
@@ -56,7 +60,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="#">홈</a>
+								<a href="homeview">홈</a>
 							</li>
 
 							<li>
@@ -68,10 +72,10 @@
 							
 							
 							<li>
-								<a href="list">공지사항</a>
+								<a href="notice">공지사항</a>
 							</li>
 							<li>
-								<a href="blogview">회사소개</a>
+								<a href="companyView">회사소개</a>
 							</li>
 							
 						</ul>
@@ -99,7 +103,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/productlogo.png" alt="IMG-LOGO" ></a>
+				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO" ></a>
 			</div>
 
 			<!-- Icon header -->
@@ -124,7 +128,7 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="#">홈</a>
+					<a href="homeview">홈</a>
 					<!-- <ul class="sub-menu-m">
 						<li><a href="index.html">Homepage 1</a></li>
 						<li><a href="home-02.html">Homepage 2</a></li>
@@ -139,27 +143,12 @@
 					<a href="productView">상품</a>
 				</li>
 				<li>
-					<a href="#">공지사항</a>
+					<a href="notice">공지사항</a>
 				</li>
 				<li>
-					<a href="blogview">Blog</a>
-				</li>
-<!-- 
-				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="blogview">회사소개</a>
 				</li>
 
-				<li>
-					<a href="blog.html">Blog</a>
-				</li>
-
-				<li>
-					<a href="about.html">About</a>
-				</li>
-
-				<li>
-					<a href="contact.html">Contact</a>
-				</li> -->
 			</ul>
 		</div>
 
@@ -194,127 +183,158 @@
 			</div>
 
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
+				<div class="sidebar-gallery w-full p-tb-30">
 				<ul class="sidebar-link w-full">
+					
+					<sec:authorize access="isAnonymous()">
+						<li class="p-b-13">
+							<a href="login" class="stext-102 cl2 hov-cl1 trans-04">
+								<p style="font-weight: bold; font-size: 1.5em;">로그인</p>
+							</a>
+						</li>	
+					</sec:authorize>
+					
+					<sec:authorize access="hasRole('ADMIN')">
+						<a href="#" onclick="document.getElementById('logout').submit();"><button class="btn btn-link btn-sm">로그아웃</button></a>
+						<form id="logout" action="logout" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							
+						</form>
+						
+						
+						<li class="p-b-13">
+							<a href="admin" class="stext-102 cl2 hov-cl1 trans-04">
+								<p style="font-weight: bold; font-size: 1.5em;">관리자페이지 </p>
+							</a>
+						</li>
+					</sec:authorize>
+					<sec:authorize access="hasRole('USER')">
+						<a href="#" onclick="document.getElementById('logout').submit();"><button class="btn btn-link btn-sm">로그아웃</button></a>
+						<form id="logout" action="logout" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							
+						</form>
+						
+						
+						<li class="p-b-13">
+						<a href="myPage" class="stext-102 cl2 hov-cl1 trans-04">
+							<p style="font-weight: bold; font-size: 1.5em;">마이페이지 </p>
+						</a>
+						</li>
+						
+						<li class="p-b-13">
+						<a href="cart" class="stext-102 cl2 hov-cl1 trans-04">
+							<p style="font-weight: bold; font-size: 1.5em;">장바구니 </p>
+						</a>
+						</li>
+					</sec:authorize>
+
 					<li class="p-b-13">
-						<a href="login" class="stext-102 cl2 hov-cl1 trans-04">
-							로그인
+						<a href="productView" class="stext-102 cl2 hov-cl1 trans-04">
+							<p style="font-weight: bold; font-size: 1.5em;">상품 </p>
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Wishlist
+						<a href="notice" class="stext-102 cl2 hov-cl1 trans-04"> 
+							<p style="font-weight: bold; font-size: 1.5em;">공지사항</p>
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Account
+						<a href="companyView" class="stext-102 cl2 hov-cl1 trans-04">
+							<p style="font-weight: bold; font-size: 1.5em;">회사소개</p>
 						</a>
 					</li>
 
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Track Oder
-						</a>
-					</li>
-
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Refunds
-						</a>
-					</li>
-
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Help & FAQs
-						</a>
-					</li>
 				</ul>
+				</div>
 
 				<div class="sidebar-gallery w-full p-tb-30">
-					<span class="mtext-101 cl5">
-						SS_MALL
-					</span>
+					<span class="mtext-101 cl5"> SS_MALL </span>
 
-					 <div class="flex-w flex-sb p-t-36 gallery-lb">
-					
+					<div class="flex-w flex-sb p-t-36 gallery-lb">
+
 						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model1.PNG" data-lightbox="model" 
-							style="background-image: url('images/model1.PNG');"></a>
-						</div> 
-						
-					
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model2.PNG" data-lightbox="model" 
-							style="background-image: url('images/model2.PNG');"></a>
+							<a class="item-gallery bg-img1" href="images/model1.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model1.PNG');"></a>
 						</div>
 
+
 						<!-- item gallery sidebar -->
 						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model3.PNG" data-lightbox="model" 
-							style="background-image: url('images/model3.PNG');"></a>
+							<a class="item-gallery bg-img1" href="images/model2.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model2.PNG');"></a>
 						</div>
 
 						<!-- item gallery sidebar -->
 						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model4.PNG" data-lightbox="model" 
-							style="background-image: url('images/model4.PNG');"></a>
-						</div>
- 
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model5.PNG" data-lightbox="model" 
-							style="background-image: url('images/model5.PNG');"></a>
-						</div> 
-						
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model6.PNG" data-lightbox="model" 
-							style="background-image: url('images/model6.PNG');"></a>
-						</div>
-						
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model7.PNG" data-lightbox="model" 
-							style="background-image: url('images/model7.PNG');"></a>
+							<a class="item-gallery bg-img1" href="images/model3.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model3.PNG');"></a>
 						</div>
 
 						<!-- item gallery sidebar -->
 						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model8.PNG" data-lightbox="model" 
-							style="background-image: url('images/model8.PNG');"></a>
+							<a class="item-gallery bg-img1" href="images/model4.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model4.PNG');"></a>
 						</div>
 
 						<!-- item gallery sidebar -->
 						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/model9.PNG" data-lightbox="model" 
-							style="background-image: url('images/model9.PNG');"></a>
+							<a class="item-gallery bg-img1" href="images/model5.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model5.PNG');"></a>
 						</div>
-						
-						
+
+						<!-- item gallery sidebar -->
+						<div class="wrap-item-gallery m-b-10">
+							<a class="item-gallery bg-img1" href="images/model6.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model6.PNG');"></a>
+						</div>
+
+
+						<!-- item gallery sidebar -->
+						<div class="wrap-item-gallery m-b-10">
+							<a class="item-gallery bg-img1" href="images/model7.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model7.PNG');"></a>
+						</div>
+
+						<!-- item gallery sidebar -->
+						<div class="wrap-item-gallery m-b-10">
+							<a class="item-gallery bg-img1" href="images/model8.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model8.PNG');"></a>
+						</div>
+
+						<!-- item gallery sidebar -->
+						<div class="wrap-item-gallery m-b-10">
+							<a class="item-gallery bg-img1" href="images/model9.PNG"
+								data-lightbox="model"
+								style="background-image: url('images/model9.PNG');"></a>
+						</div>
+
+
 
 						<!-- <!-- item gallery sidebar
 						<div class="wrap-item-gallery m-b-10">
 							<a class="item-gallery bg-img1" href="images/gallery-09.jpg" data-lightbox="gallery" 
 							style="background-image: url('images/gallery-09.jpg');"></a>
-						</div> --> 
+						</div> -->
 					</div>
 				</div>
 
 				<div class="sidebar-gallery w-full">
-					<span class="mtext-101 cl5">
-						인사말
-					</span>
+					<span class="mtext-101 cl5"> 인사말 </span>
 
-					<p class="stext-108 cl6 p-t-27">
-						안녕하세요. 
-						남자 명품 시계,지갑을 판매하는 상승몰입니다.
-						저희 쇼핑몰은 여러가지 명품을 취급하여 고객님들께서 많은 종류의 명품과 제품을 볼 수 있도록 하였습니다.
-						다른 쇼핑몰보다 체계화된 AS도 받을 수 있으니 즐거운 쇼핑 되시길 바랍니다.
-					</p>
+					<p class="stext-108 cl6 p-t-27">안녕하세요. 남자 명품 시계,지갑을 판매하는
+						상승몰입니다. 저희 쇼핑몰은 여러가지 명품을 취급하여 고객님들께서 많은 종류의 명품과 제품을 볼 수 있도록 하였습니다.
+						다른 쇼핑몰보다 체계화된 AS도 받을 수 있으니 즐거운 쇼핑 되시길 바랍니다.</p>
 				</div>
 			</div>
 		</div>
@@ -412,7 +432,7 @@
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
 			<div class="slick1">
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/main01.PNG); "  data-thumb="images/main01.PNG" data-caption="Watch">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(images/main01.PNG);"  data-thumb="images/main01.PNG" data-caption="Watch">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -428,7 +448,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -452,7 +472,7 @@
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -485,13 +505,13 @@
 
 								
 							</div>
-
+						</a>
 							<div class="block1-txt-child2 p-b-4 trans-05">
 								<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
 								</div>
 							</div>
-						</a>
+						
 					</div>
 				</div>
 
@@ -505,8 +525,6 @@
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Wallet
 								</span>
-
-								
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
@@ -553,50 +571,29 @@
 						Help
 					</h4>
 
+					<p class="stext-130 cl7 size-201">
+						● 대표 전화번호: 02-1234-5678
+					</p>
 					
-						<!-- <li class="p-b-10">
-							 <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a> 
-						</li> -->
-
-
-						<p class="stext-130 cl7 size-201">
-							● 대표 전화번호: 02-1234-5678
-						</p>
-						<p class="stext-130 cl7 size-201">
-							● 고객센터 : 1234-5678
-						</p>
-						<p class="stext-130 cl7 size-201">
-							● 이메일문의 : abcdefg@abcdefg.com
-						</p>
-						<p class="stext-130 cl7 size-201">
-							● FAQ
-						</p>
+					<p class="stext-130 cl7 size-201">
+						● 고객센터 : 1234-5678
+					</p>
+					
+					<p class="stext-130 cl7 size-201">
+						● 이메일문의 : abcdefg@abcdefg.com
+					</p>
+					
+					<p class="stext-130 cl7 size-201">
+						● FAQ
+					</p>
 					
 					
 				</div> 
 
 				<div class="col-sm-3 col-lg-50 p-b-40" >
-					<h4 class="stext-500 cl0 p-b-30">
-						Directions
-				 </h4>
-				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-								
-				
-				  <!--  <ul>
-					<li class="p-b-10">
-							 <a href="mapview" class="stext-107 cl7 hov-cl1 trans-04">
-								오시는길
-						     </a> 
-				     </li>
-				   </ul>  -->
-
-					 <!-- <p class="stext-130 cl7 size-201">
-						서울시 서대문구 비트동 비트빌딩 201동 201호
-					</p>  -->
-					
-					
+					<h4 class="stext-500 cl0 p-b-30">Directions</h4>
+				 		<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+			
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>

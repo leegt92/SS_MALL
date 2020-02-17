@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,8 +53,53 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 <script src="login/js/main.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
 
 
+	function execPostCode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+				// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+				var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraRoadAddr += data.bname;
+				}
+				// 건물명이 있고, 공동주택일 경우 추가한다.
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraRoadAddr += (extraRoadAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+				}
+				// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+				if (extraRoadAddr !== '') {
+					extraRoadAddr = ' (' + extraRoadAddr + ')';
+				}
+				// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+				if (fullRoadAddr !== '') {
+					fullRoadAddr += extraRoadAddr;
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				console.log(data.zonecode);
+				console.log(fullRoadAddr);
+
+				$("[name=addr1]").val(data.zonecode);
+				$("[name=addr2]").val(fullRoadAddr);
+
+				/* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+				document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+				document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+			}
+		}).open();
+	}
+</script>
 
 </head>
 <body>
@@ -77,131 +123,92 @@
 
 
 
-				<form action="register.do" class="login100-form validate-form"
-					method="post" id="register">
+				<form:form role="form" commandName="memberVO" action="register.do" method="post" class="login100-form validate-form"> 				
 					<span class="login100-form-title p-b-49"> 회원가입 </span>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="아이디 입력해주세요">
-						<span class="label-input100">아이디</span> <input class="input100"
-							id="m_id" type="text" name="m_id" placeholder="아이디 입력해주세요"
-							maxlength="10"> <span class="focus-input100"
-							data-symbol="&#xf206;"></span>
-						<div id="id_check"> </div>
-					</div>
-
-
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="비밀번호 입력해주세요">
-						<span class="label-input100">비밀번호</span> 
-						<input class="input100" id="m_password"
-							type="password" name="m_password" placeholder="비밀번호 입력해주세요"
-							maxlength="20"> <span class="focus-input100"
-							data-symbol="&#xf190;"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="비밀번호 한번더 입력해주세요">
-						<span class="label-input100">비밀번호 확인</span> 
-						<input class="input100" id="m_checkpassword"
-							type="password" name="m_checkpassword"
-							placeholder="비밀번호 확인해주세요" maxlength="20"> <span
-							class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="이름 입력해주세요">
-						<span class="label-input100">이름</span> <input class="input100"
-							type="text" name="m_name" placeholder="이름 입력해주세요" maxlength="5">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-						
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="나이 입력해주세요">
-						<span class="label-input100">나이</span> <input class="input100"
-							type="text" name="m_age" placeholder="나이 입력해주세요" maxlength="2">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="이메일 입력해주세요">
-						<span class="label-input100">이메일</span> <input class="input100"
-							type="text" name="m_email" placeholder="이메일 입력해주세요"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="배송지 입력해주세요">
-						<span class="label-input100">주소</span> <input class="input100"
-							type="text" name="m_adress" placeholder="주소 입력해주세요"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="핸드폰번호 입력해주세요">
-						<span class="label-input100">핸드폰번호</span> <input class="input100"
-							type="text" name="m_phonenum" placeholder="핸드폰번호 입력해주세요"
-							maxlength="11"> <span class="focus-input100"
-							data-symbol="&#xf206;"></span>
+					
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">아이디</span>
+						<form:input class="input100" type="text" placeholder="아이디 입력해주세요" path="m_id"/>
+						<form:errors path="m_id" cssStyle="color:red;"/> 
+						<span class="focus-input100" data-symbol="&#xf206;"></span>					
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23">
-						이메일 수신여부<span class="label-input100"></span> <input type="radio"
-							name="m_receive_email" value="1">수신 <input type="radio"
-							name="m_receive_email" value="0">비수신
+						<span class="label-input100">비밀번호</span> 
+						<form:input class="input100" type="password" placeholder="패스워드 입력해주세요" path="m_password"/>
+						<form:errors path="m_password" cssStyle="color:red;"/> 
+						<span class="focus-input100" data-symbol="&#xf206;"></span>				
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">비밀번호</span> 
+						<form:input class="input100" type="password" placeholder="패스워드 확인해주세요"  path="m_checkpassword"/>
+						<form:errors path="m_checkpassword" cssStyle="color:red;"/> 
+						<span class="focus-input100" data-symbol="&#xf206;"></span>				
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">이름</span> 
+						<form:input class="input100" type="text" placeholder="이름 입력해주세요" path="m_name"/>
+						<form:errors path="m_name" cssStyle="color:red;"/> 
+						<span class="focus-input100" data-symbol="&#xf206;"></span>				
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">나이</span> 
+						<form:input class="input100" type="text" placeholder="나이 입력해주세요" path="m_age"/>
+						<form:errors path="m_age" cssStyle="color:red;"/> 
+						<span class="focus-input100" data-symbol="&#xf206;"></span>				
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">이메일</span> 
+						<input class="input100" type="email" value="${m_email}" name="m_email" readonly="readonly"/>						
+						<span class="focus-input100" data-symbol="&#xf206;"></span>				
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">주소</span><br>
+						<input class="form-control" style="width: 40%; display: inline;"
+							placeholder="우편번호" name="addr1" id="addr1" type="text"
+							readonly="readonly">
+						<button type="button" class="btn btn-default"
+							onclick="execPostCode();">
+							<i class="fa fa-search"></i> 우편번호 찾기
+						</button>
+					</div>
+					<div class="form-group">
+						<input class="form-control" style="top: 5px;" placeholder="도로명 주소"
+							name="addr2" id="addr2" type="text" readonly="readonly" />
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="상세주소" name="addr3"
+							id="addr3" type="text" />
+					</div>
+			
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100">핸드폰번호</span> 
+						<form:input class="input100" type="text" placeholder="핸드폰번호 입력해주세요 (-)포함"  path="m_phonenum"/>
+						<form:errors path="m_phonenum" cssStyle="color:red;"/> 
+						<span class="focus-input100" data-symbol="&#xf206;"></span>				
 					</div>
 
 					<div class="flex-c-m">
-						<button id="reg_submit" type="submit" class="btn btn-secondary" disabled="disabled">완료</button>
+		       			<button type="submit" class="btn btn-secondary">가입하기</button><pre> </pre>
+		                <button type="reset" class="btn btn-secondary">취소하기</button>
 					</div>
+<<<<<<< HEAD
 					
 					
 
 				</form>
+=======
+				</form:form>
+>>>>>>> origin/dev_hyemin
 			</div>
 		</div>
 	</div>
-
-
 	<div id="dropDownSelect1"></div>
 
-	<script>
-	$("#reg_submit").click(function(){
-		
-		$('#register').submit();
-	})
-	
-	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-	$("#m_id").blur(function() {
-		// id = "id_reg" / name = "userId"
-		var m_id = $('#m_id').val();
-		$.ajax({
-			url : './idChk?m_id=' + m_id,
-			type : 'get',
-			success : function(data) {
-				console.log("1 = 중복o / 0 = 중복x : "+ data);							
-				
-				if (data == 1) {
-					// 1 : 아이디가 중복되는 문구
-					$("#id_check").text("사용중인 아이디입니다");
-					$("#id_check").css("color", "red");
-					$("#reg_submit").attr("disabled", true);
-				}else{
-					// 1 : 아이디가 중복 안되는 문구
-					$("#id_check").text("사용가능한 아이디입니다");
-					$("#id_check").css("color", "blue");
-					$("#reg_submit").attr("disabled",false );
-				}
-	
-						
-					
-				}, error : function() {
-						console.log("실패");
-				}
-			});
-		});
-</script>
-	
 </body>
 </html>
