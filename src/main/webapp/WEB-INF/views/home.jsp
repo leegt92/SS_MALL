@@ -470,6 +470,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
 					
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600" >
 								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
@@ -479,6 +482,7 @@
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
 								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 >>>>>>> origin/dev_sangseung
+<<<<<<< HEAD
 =======
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
@@ -489,6 +493,8 @@
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
 								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 >>>>>>> parent of b212a41... 1
+=======
+>>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
 									Shop Now
 								</a>
 							</div>
@@ -514,12 +520,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600" data-filter=".지갑">
 								<a href="productView/wallet" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 =======
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
 								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 >>>>>>> origin/dev_sangseung
+<<<<<<< HEAD
 =======
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
 								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
@@ -528,6 +538,8 @@
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
 								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 >>>>>>> parent of b212a41... 1
+=======
+>>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
 									Shop Now
 								</a>
 							</div>
@@ -569,12 +581,15 @@
 						</a>
 							<div class="block1-txt-child2 p-b-4 trans-05">
 >>>>>>> origin/dev_sangseung
+<<<<<<< HEAD
 =======
 							<div class="block1-txt-child2 p-b-4 trans-05">
 >>>>>>> parent of b212a41... 1
 =======
 							<div class="block1-txt-child2 p-b-4 trans-05">
 >>>>>>> parent of b212a41... 1
+=======
+>>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
 								<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
 								</div>
@@ -679,7 +694,12 @@
 					</p>  -->
 					
 					
+
 					<h4 class="stext-500 cl0 p-b-30">Directions</h4>
+				 		<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+			
+
+			<h4 class="stext-500 cl0 p-b-30">Directions</h4>
 				 		<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
 			
 

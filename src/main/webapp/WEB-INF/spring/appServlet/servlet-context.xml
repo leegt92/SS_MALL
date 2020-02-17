@@ -47,6 +47,7 @@
 	<beans:bean id="naverClientSecret" class="java.lang.String">
 	    <beans:constructor-arg value="045Ev3gTPS" />
 	</beans:bean>
+
 	
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
 	    <beans:constructor-arg value="http://localhost:8282/ssmall/naver/callback" />
@@ -59,10 +60,14 @@
 	    <beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
 	
+
+	
+
 	<!-- 구글 -->
 	<beans:bean id="googleClientID" class="java.lang.String">
         <beans:constructor-arg value="364293928910-f71a0lqh95btqqjaa25jo2954447m05m.apps.googleusercontent.com" />
 	</beans:bean>
+
 	
 	<beans:bean id="googleClientSecret" class="java.lang.String">
 		<beans:constructor-arg value="WHuLzt8WRrUbVK9I9BSjCAkA" />
@@ -79,6 +84,11 @@
 		<beans:constructor-arg ref="googleRedirectUrl" />
 	</beans:bean>
 	
+
+	
+	
+	
+
 	<beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
 		<beans:constructor-arg ref="googleClientID" />
 		<beans:constructor-arg ref="googleClientSecret" />
