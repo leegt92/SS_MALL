@@ -10,5 +10,7 @@ public interface LoginMapper {
 	@Select("select * from member where m_id = #{m_id}")
 	public MemberVO login(@Param("m_id")String m_id);
 	
-	
+	@Select("select * from member where m_naver = #{memberVO.m_naver}")	
+	public MemberVO getBySns(@Param("memberVO")MemberVO memberVO);
+
 }

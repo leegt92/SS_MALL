@@ -85,13 +85,13 @@
 
 					<div class="flex-c-m">
 						<!-- 네이버 로그인 창으로 이동 -->
-						<div id="naver_id_login" style="text-align:center">
-							<a href="${url}">
-							<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-							</a>
-						</div>
-						<br>		
-					</div>	
+						<a href="${naver_url}" ><img width="300" src="login/images/NaverLogin.png" alt="NaverLogin"/></a>							
+					</div>
+					<br/>
+					<div class="flex-c-m">
+						<!-- 네이버 로그인 창으로 이동 -->
+						<a href="${google_url}"><img width="300" src="login/images/GoogleLogin.png" alt="GoogleLogin"/></a>		
+					</div>		
 				</form:form>
 			</div>
 		</div>

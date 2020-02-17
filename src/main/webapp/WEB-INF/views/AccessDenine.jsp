@@ -5,14 +5,14 @@
 <html lang="ko">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Access Denied</title>
+    <title>해당 주소에 접근할 수 없습니다.</title>
 </head>
 
 <body>
 
-<h1>Access Denied!</h1>
-
+<p>해당 주소에 접근할 수 없습니다.</p>
 <h3>[<a href="<c:url value="/" />">홈</a>]</h3>
 
+	
 </body>
 </html>
