@@ -51,18 +51,14 @@
   </head>
 
   <body>
-<<<<<<< HEAD
-=======
- 
- 
->>>>>>> origin/dev_hyemin
+
   
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
  	"></a>
-      <a href="/ssmall" style="color:white">홈</a>
+      <a href="/ssmall" style="color:white">홈<c:out value="${m_number}"/> </a>
       <a href="/ssmall/productView" style="color:white">상품</a>
       <a href="/ssmall/cartview" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
