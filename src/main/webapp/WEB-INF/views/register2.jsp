@@ -197,14 +197,10 @@
 		       			<button type="submit" class="btn btn-secondary">가입하기</button><pre> </pre>
 		                <button type="reset" class="btn btn-secondary">취소하기</button>
 					</div>
-<<<<<<< HEAD
-					
-					
 
-				</form>
-=======
+
 				</form:form>
->>>>>>> origin/dev_hyemin
+
 			</div>
 		</div>
 	</div>

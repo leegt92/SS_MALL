@@ -168,7 +168,7 @@ public class RegisterController {
 	     }    
 	}
 	
-	@RequestMapping("/register.do")
+	@RequestMapping(value= "/register.do" , method = RequestMethod.POST)
 	public String registerDo(HttpServletRequest request,MemberVO memberVO, Errors errors, Model model, HttpServletResponse response) throws Exception{
 		System.out.println("회원가입시작");
 		response.setContentType("text/html; charset=UTF-8");
