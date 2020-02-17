@@ -42,15 +42,23 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<style>
+.bg-light {
+	background-color: rgba(149, 204, 210, 0.2)!important;
+}
+</style>
   </head>
 
   <body>
   
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a href="#" class="logo"><img src="images/icons/logo-02.png" alt="IMG-LOGO"></a>
-      <a href="home" style="color:white">Home</a>
-      <a href="productView" style="color:white">Shop</a>
-      <a href="shoping-cart.html" style="color:white">Features</a>
+     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+    width: 200px;
+    height: 60px;
+ 	"></a>
+      <a href="/ssmall" style="color:white">홈</a>
+      <a href="/ssmall/productView" style="color:white">상품</a>
+      <a href="/ssmall/cartview" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
@@ -64,7 +72,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -75,7 +83,7 @@
                 </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
                   <b>회원 정보 수정</b>
                 </a>
@@ -130,7 +138,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form>
+					<form id="submitAskRequest">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							문의 및 건의사항을 작성해 주세요.
 						</h4>
@@ -226,12 +234,31 @@
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
+    <script>
+    	
+	    $("#submitAskRequest").submit(function(event) {
+	    	 	event.preventDefault();
+				Swal.fire({
+				icon: 'success',
+				position: 'center',
+				title: '문의신청 완료',
+				text: '문의신청이 완료되었습니다.',	
+				}).then(function() {
+					var elem = document.getElementById('submitAskRequest');
+					elem.submit();
+				});
+	    });
+    		
+			
+    		
+	</script>
 
    
   </body>

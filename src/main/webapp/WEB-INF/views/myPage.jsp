@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ 
 <!doctype html>
 <html lang="en">
   <head>
@@ -42,15 +43,28 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<style>
+.bg-light {
+	background-color: rgba(149, 204, 210, 0.2)!important;
+}
+</style>
   </head>
 
   <body>
+<<<<<<< HEAD
+=======
+ 
+ 
+>>>>>>> origin/dev_hyemin
   
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a href="#" class="logo"><img src="images/icons/logo-02.png" alt="IMG-LOGO"></a>
-      <a href="home" style="color:white">Home</a>
-      <a href="productView" style="color:white">Shop</a>
-      <a href="shoping-cart.html" style="color:white">Features</a>
+      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+    width: 200px;
+    height: 60px;
+ 	"></a>
+      <a href="/ssmall" style="color:white">홈</a>
+      <a href="/ssmall/productView" style="color:white">상품</a>
+      <a href="/ssmall/cartview" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
@@ -64,7 +78,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style="width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -215,6 +229,41 @@
       feather.replace()
     </script>
 
+<<<<<<< HEAD
     
+=======
+    <!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: false
+              }
+            }]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+    </script>
+   
+>>>>>>> origin/dev_hyemin
   </body>
 </html>

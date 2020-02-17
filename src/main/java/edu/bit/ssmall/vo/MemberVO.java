@@ -8,25 +8,62 @@ public class MemberVO {
 	private String m_email; //이메일
 	private String m_adress; //주소
 	private String m_phonenum; //핸드폰번호
-	private int m_receive_email;
-	private String m_authority;
-	private String m_id;
-	private String m_password;
-	private String m_checkpassword;
-	private int m_price;
-	private int m_enabled;
+	private String m_receive_email; //이메일 수신여부
+	private String m_authority; // 권한
+	private String m_id; //아이디
+	private String m_password; //비밀번호
+	private String m_checkpassword; //비밀번호확인
+	private int m_price; // 지금까지 구매한 총금액
+	private int m_enabled; // 활성화 여부
+	private String m_naver;
+	private String m_facebook;
+	private String m_google;
+	
 	
 	public boolean isEqualsPassword() {
 		return m_password.equals(m_checkpassword);
 	}
+
+	
+	public String getM_naver() {
+		return m_naver;
+	}
+
+	public void setM_naver(String m_naver) {
+		this.m_naver = m_naver;
+	}
+
+	public String getM_facebook() {
+		return m_facebook;
+	}
+
+	public void setM_facebook(String m_facebook) {
+		this.m_facebook = m_facebook;
+	}
+
+	public String getM_google() {
+		return m_google;
+	}
+
+	public void setM_google(String m_google) {
+		this.m_google = m_google;
+	}
+
 	public String getM_checkpassword() {
 		return m_checkpassword;
 	}
+
 	public void setM_checkpassword(String m_checkpassword) {
 		this.m_checkpassword = m_checkpassword;
 	}
+
 	
-	
+	public String getM_receive_email() {
+		return m_receive_email;
+	}
+	public void setM_receive_email(String m_receive_email) {
+		this.m_receive_email = m_receive_email;
+	}
 	
 	public int getM_number() {
 		return m_number;
@@ -64,12 +101,7 @@ public class MemberVO {
 	public void setM_phonenum(String m_phonenum) {
 		this.m_phonenum = m_phonenum;
 	}
-	public int getM_receive_email() {
-		return m_receive_email;
-	}
-	public void setM_receive_email(int m_receive_email) {
-		this.m_receive_email = m_receive_email;
-	}
+	
 	public String getM_authority() {
 		return m_authority;
 	}

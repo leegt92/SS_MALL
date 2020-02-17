@@ -42,15 +42,23 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<style>
+.bg-light {
+	background-color: rgba(149, 204, 210, 0.2)!important;
+}
+</style>
   </head>
 
   <body>
   
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a href="#" class="logo"><img src="images/icons/logo-02.png" alt="IMG-LOGO"></a>
-      <a href="home" style="color:white">Home</a>
-      <a href="productView" style="color:white">Shop</a>
-      <a href="shoping-cart.html" style="color:white">Features</a>
+     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+    width: 200px;
+    height: 60px;
+ 	"></a>
+      <a href="/ssmall" style="color:white">홈</a>
+      <a href="/ssmall/productView" style="color:white">상품</a>
+      <a href="/ssmall/cartview" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
@@ -64,7 +72,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -75,9 +83,9 @@
                 </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
-                  <b>회원 정보 수정</b>
+                  <b>▶회원 정보 수정</b>
                 </a>
               </li>
               <li class="nav-item">
@@ -95,7 +103,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequest">
                   <span data-feather="users"></span>
-                  <b>▶1:1 문의</b>
+                  <b>1:1 문의</b>
                 </a>
               </li>
               <!-- <li class="nav-item">
@@ -130,7 +138,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form>
+					<form id="withdrawFinal">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							회원탈퇴 사유를 작성해주세요(선택사항).
 						</h4>
@@ -233,9 +241,18 @@
 
 
      <script>
-		$("#decide_withdraw").click(function() {
-			alert("탈퇴가 정상적으로 처리되었습니다.")
-		});
+     $("#withdrawFinal").submit(function(event) {
+ 	 	event.preventDefault();
+			Swal.fire({
+			icon: 'success',
+			position: 'center',
+			title: '탈퇴완료',
+			text: '탈퇴가 최종적으로 완료되었습니다.',	
+			}).then(function() {
+				var elem = document.getElementById('withdrawFinal');
+				elem.submit();
+			});
+ });
 	</script>
   </body>
 </html>

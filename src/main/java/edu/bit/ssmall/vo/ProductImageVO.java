@@ -8,13 +8,20 @@ public class ProductImageVO {
 	private String p_brand;
 	private int p_stock;
 	private String p_description;
-	private String p_image;
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
 	
 	private String i_name;
+	private int i_type;
 
+	
+	public int getI_type() {
+		return i_type;
+	}
+	public void setI_type(int i_type) {
+		this.i_type = i_type;
+	}
 	public String getI_name() {
 		return i_name;
 	}
@@ -56,12 +63,6 @@ public class ProductImageVO {
 	}
 	public void setP_description(String p_description) {
 		this.p_description = p_description;
-	}
-	public String getP_image() {
-		return p_image;
-	}
-	public void setP_image(String p_image) {
-		this.p_image = p_image;
 	}
 	public String getP_released_date() {
 		return p_released_date;
