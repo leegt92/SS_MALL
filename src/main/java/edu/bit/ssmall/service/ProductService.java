@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import edu.bit.ssmall.mapper.ProductMapper;
 import edu.bit.ssmall.vo.ProductImageVO;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/dev_hyemin
 @Service
 public class ProductService {
 

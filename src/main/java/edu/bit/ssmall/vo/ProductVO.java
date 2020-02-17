@@ -8,26 +8,11 @@ public class ProductVO {
 	private String p_brand;
 	private int p_stock;
 	private String p_description;
-<<<<<<< HEAD
-	private String p_image;
-	private String p_released_date;
-	private int p_amount;
-	private String p_category;
-	
-	private String i_name;
-
-	public String getI_name() {
-		return i_name;
-	}
-	public void setI_name(String i_name) {
-		this.i_name = i_name;
-	}
-=======
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
 
->>>>>>> origin/dev_hyemin
+
 	public int getP_number() {
 		return p_number;
 	}
@@ -64,15 +49,7 @@ public class ProductVO {
 	public void setP_description(String p_description) {
 		this.p_description = p_description;
 	}
-<<<<<<< HEAD
-	public String getP_image() {
-		return p_image;
-	}
-	public void setP_image(String p_image) {
-		this.p_image = p_image;
-	}
-=======
->>>>>>> origin/dev_hyemin
+
 	public String getP_released_date() {
 		return p_released_date;
 	}
@@ -92,12 +69,5 @@ public class ProductVO {
 		this.p_category = p_category;
 	}
 
-<<<<<<< HEAD
-=======
-	
-	
-	
 
-	
->>>>>>> origin/dev_hyemin
 }
