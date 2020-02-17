@@ -426,13 +426,14 @@
 									Best Watch
 								</h2>
 							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+					
+							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600" >
+								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
+								<!-- <button id="watch" type="button"class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">Shop Now</button> -->
 									Shop Now
-								</a>
+								</a> 
 							</div>
-						</div>
+					   </div>
 					</div>
 				</div>
 
@@ -451,8 +452,8 @@
 								</h2>
 							</div>
 								
-							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600" data-filter=".지갑">
+								<a href="productView/wallet" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 									Shop Now
 								</a>
 							</div>
@@ -486,7 +487,7 @@
 								
 							</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-txt-child2 p-b-4 trans-05" >
 								<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
 								</div>
@@ -539,7 +540,7 @@
 						</li>
 
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productView/wallet" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
 						</li>
@@ -584,18 +585,7 @@
 				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
 								
 				
-				  <!--  <ul>
-					<li class="p-b-10">
-							 <a href="mapview" class="stext-107 cl7 hov-cl1 trans-04">
-								오시는길
-						     </a> 
-				     </li>
-				   </ul>  -->
-
-					 <!-- <p class="stext-130 cl7 size-201">
-						서울시 서대문구 비트동 비트빌딩 201동 201호
-					</p>  -->
-					
+				 
 					
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
@@ -908,6 +898,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
+		/*-------------------------------------------------*/
+		
+
 	</script>
 <!--===============================================================================================-->
  <script src="js/main.js"></script>
