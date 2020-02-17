@@ -19,6 +19,12 @@ public class LoginService {
 	}
 
 
+	public MemberVO getBySns(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return loginMapper.getBySns(memberVO);
+	}
+
+
 	
 
 

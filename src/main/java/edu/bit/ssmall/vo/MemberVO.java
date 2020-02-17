@@ -1,9 +1,5 @@
 package edu.bit.ssmall.vo;
 
-import java.util.Set;
-
-import org.springframework.security.authentication.jaas.AuthorityGranter;
-
 public class MemberVO {
 
 	private int m_number;
@@ -19,9 +15,38 @@ public class MemberVO {
 	private String m_checkpassword; //비밀번호확인
 	private int m_price; // 지금까지 구매한 총금액
 	private int m_enabled; // 활성화 여부
+	private String m_naver;
+	private String m_facebook;
+	private String m_google;
+	
 	
 	public boolean isEqualsPassword() {
 		return m_password.equals(m_checkpassword);
+	}
+
+	
+	public String getM_naver() {
+		return m_naver;
+	}
+
+	public void setM_naver(String m_naver) {
+		this.m_naver = m_naver;
+	}
+
+	public String getM_facebook() {
+		return m_facebook;
+	}
+
+	public void setM_facebook(String m_facebook) {
+		this.m_facebook = m_facebook;
+	}
+
+	public String getM_google() {
+		return m_google;
+	}
+
+	public void setM_google(String m_google) {
+		this.m_google = m_google;
 	}
 
 	public String getM_checkpassword() {

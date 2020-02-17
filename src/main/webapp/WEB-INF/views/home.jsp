@@ -5,6 +5,15 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,26 +204,36 @@
 					</sec:authorize>
 					
 					<sec:authorize access="hasRole('ADMIN')">
-						<a href="#" onclick="document.getElementById('logout').submit();"><button class="btn btn-link btn-sm">로그아웃</button></a>
-						<form id="logout" action="logout" method="POST">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							
-						</form>
+						<li class="p-b-13">
+							<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
+						</li>
 						
-						
+						<li class="p-b-13">
+							<a href="#" class="stext-102 cl2 hov-cl1 trans-04" onclick="document.getElementById('logout').submit();">
+							<p style="font-weight: bold; font-size: 1.5em;">로그아웃</p></a>
+							<form id="logout" action="logout" method="POST">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+							</form>
+						</li>
+			
 						<li class="p-b-13">
 							<a href="admin" class="stext-102 cl2 hov-cl1 trans-04">
 								<p style="font-weight: bold; font-size: 1.5em;">관리자페이지 </p>
 							</a>
 						</li>
 					</sec:authorize>
+					
 					<sec:authorize access="hasRole('USER')">
-						<a href="#" onclick="document.getElementById('logout').submit();"><button class="btn btn-link btn-sm">로그아웃</button></a>
-						<form id="logout" action="logout" method="POST">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							
-						</form>
-						
+						<li class="p-b-13">
+							<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
+						</li>
+						<li class="p-b-13">
+							<a href="#" class="stext-102 cl2 hov-cl1 trans-04" onclick="document.getElementById('logout').submit();">
+							<p style="font-weight: bold; font-size: 1.5em;">로그아웃</p></a>
+							<form id="logout" action="logout" method="POST">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+							</form>
+						</li>
 						
 						<li class="p-b-13">
 						<a href="myPage" class="stext-102 cl2 hov-cl1 trans-04">
@@ -336,6 +355,8 @@
 						상승몰입니다. 저희 쇼핑몰은 여러가지 명품을 취급하여 고객님들께서 많은 종류의 명품과 제품을 볼 수 있도록 하였습니다.
 						다른 쇼핑몰보다 체계화된 AS도 받을 수 있으니 즐거운 쇼핑 되시길 바랍니다.</p>
 				</div>
+				
+				
 			</div>
 		</div>
 	</aside>
