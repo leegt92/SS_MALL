@@ -9,50 +9,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="login/images/icons/favicon.ico" />
+<link rel="icon" type="image/png" href="/ssmall/login/images/icons/favicon.ico" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/vendor/bootstrap/css/bootstrap.min.css">
+	href="/ssmall/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="/ssmall/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/fonts/iconic/css/material-design-iconic-font.min.css">
+	href="/ssmall/login/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/vendor/animate/animate.css">
+	href="/ssmall/login/vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/vendor/css-hamburgers/hamburgers.min.css">
+	href="/ssmall/login/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/vendor/animsition/css/animsition.min.css">
+	href="/ssmall/login/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/vendor/select2/select2.min.css">
+	href="/ssmall/login/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="login/vendor/daterangepicker/daterangepicker.css">
+	href="/ssmall/login/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="login/css/util.css">
-<link rel="stylesheet" type="text/css" href="login/css/main.css">
+<link rel="stylesheet" type="text/css" href="/ssmall/login/css/util.css">
+<link rel="stylesheet" type="text/css" href="/ssmall/login/css/main.css">
 <!--===============================================================================================-->
-<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/ssmall/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-<script src="login/vendor/animsition/js/animsition.min.js"></script>
+<script src="/ssmall/login/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-<script src="login/vendor/bootstrap/js/popper.js"></script>
-<script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/ssmall/login/vendor/bootstrap/js/popper.js"></script>
+<script src="/ssmall/login/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script src="login/vendor/select2/select2.min.js"></script>
+<script src="/ssmall/login/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-<script src="login/vendor/daterangepicker/moment.min.js"></script>
-<script src="login/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="/ssmall/login/vendor/daterangepicker/moment.min.js"></script>
+<script src="/ssmall/login/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-<script src="login/vendor/countdowntime/countdowntime.js"></script>
+<script src="/ssmall/login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-<script src="login/js/main.js"></script>
+<script src="/ssmall/login/js/main.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 
@@ -106,39 +106,14 @@
 
 	<div class="limiter">
 		<div class="container-login100"
-			style="background-image: url('login/images/bg-02.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-
-				<form:form role="form" commandName="memberVO" action="register.do" method="post" class="login100-form validate-form"> 				
-					<span class="login100-form-title p-b-49"> 회원가입 </span>
-					
-					<div class="wrap-input100 validate-input m-b-23">
-						<span class="label-input100">아이디</span>
-						<form:input class="input100" type="text" placeholder="아이디 입력해주세요" path="m_id"/>
-						<form:errors path="m_id" cssStyle="color:red;"/> 
-						<span class="focus-input100" data-symbol="&#xf206;"></span>					
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23">
-						<span class="label-input100">비밀번호</span> 
-						<form:input class="input100" type="password" placeholder="패스워드 입력해주세요" path="m_password"/>
-						<form:errors path="m_password" cssStyle="color:red;"/> 
-						<span class="focus-input100" data-symbol="&#xf206;"></span>				
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-23">
-						<span class="label-input100">비밀번호</span> 
-						<form:input class="input100" type="password" placeholder="패스워드 확인해주세요"  path="m_checkpassword"/>
-						<form:errors path="m_checkpassword" cssStyle="color:red;"/> 
-						<span class="focus-input100" data-symbol="&#xf206;"></span>				
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-23">
-						<span class="label-input100">이름</span> 
-						<form:input class="input100" type="text" placeholder="이름 입력해주세요" path="m_name"/>
-						<form:errors path="m_name" cssStyle="color:red;"/> 
-						<span class="focus-input100" data-symbol="&#xf206;"></span>				
-					</div>
+			style="background-image: url('/ssmall/login/images/bg-02.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">	
+				<form:form role="form" commandName="memberVO"  action="/ssmall/kakaoRegister" method="post" class="login100-form validate-form"> 				
+					<input class="input100" type="hidden" value="${memberVO.m_email}" name="m_id" >
+					<input class="input100" type="hidden" value="${memberVO.m_kakao}" name="m_password" >
+					<input class="input100" type="hidden" value="${memberVO.m_name}" name="m_name" >
+					<input class="input100" type="hidden" value="${memberVO.m_kakao}" name="m_kakao">
+					<input class="input100" type="hidden" value="${memberVO.m_email}" name="m_email">			
 					
 					<div class="wrap-input100 validate-input m-b-23">
 						<span class="label-input100">나이</span> 
@@ -147,12 +122,7 @@
 						<span class="focus-input100" data-symbol="&#xf206;"></span>				
 					</div>
 					
-					<div class="wrap-input100 validate-input m-b-23">
-						<span class="label-input100">이메일</span> 
-						<input class="input100" type="email" value="${m_email}" name="m_email" readonly="readonly"/>						
-						<span class="focus-input100" data-symbol="&#xf206;"></span>				
-					</div>
-
+					
 					<div class="wrap-input100 validate-input m-b-23">
 						<span class="label-input100">주소</span><br>
 						<input class="form-control" style="width: 40%; display: inline;"

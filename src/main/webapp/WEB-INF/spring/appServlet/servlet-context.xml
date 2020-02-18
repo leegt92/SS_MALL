@@ -20,6 +20,7 @@
 	<resources mapping="/productimage/**" location="/resources/productimage/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/login/**" location="/resources/login/" />
+	
 	<!-- <resources mapping="/**" location="/resources/" /> -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -50,36 +51,7 @@
 	    <beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
 	
-	<!-- 구글 -->
-	<beans:bean id="googleClientID" class="java.lang.String">
-        <beans:constructor-arg value="364293928910-f71a0lqh95btqqjaa25jo2954447m05m.apps.googleusercontent.com" />
-	</beans:bean>
-	
-	<beans:bean id="googleClientSecret" class="java.lang.String">
-		<beans:constructor-arg value="WHuLzt8WRrUbVK9I9BSjCAkA" />
-	</beans:bean>
-	
-	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:8282/ssmall/google/callback" />
-	</beans:bean>
-    
-	<beans:bean id="googleSns" class="edu.bit.ssmall.oauth.SnsValue">
-	    <beans:constructor-arg value="google" />
-	    <beans:constructor-arg ref="googleClientID" />
-	    <beans:constructor-arg ref="googleClientSecret" />
-		<beans:constructor-arg ref="googleRedirectUrl" />
-	</beans:bean>
-	
-	<beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
-		<beans:constructor-arg ref="googleClientID" />
-		<beans:constructor-arg ref="googleClientSecret" />
-	</beans:bean>
-    
-	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
-        <beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" />
-        <!-- <beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" /> -->
-        <beans:property name="redirectUri" ref="googleRedirectUrl" />
-	</beans:bean>	
+
 
 
 </beans:beans>

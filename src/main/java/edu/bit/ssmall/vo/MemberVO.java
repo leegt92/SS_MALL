@@ -15,16 +15,38 @@ public class MemberVO {
 	private String m_checkpassword; //비밀번호확인
 	private int m_price; // 지금까지 구매한 총금액
 	private int m_enabled; // 활성화 여부
-	private String m_naver;
-	private String m_facebook;
-	private String m_google;
+	private int m_point;
+	private String m_naver; //네이버토큰
+	private String m_facebook; //미정
+	private String m_kakao; // 카카오토큰
 	
 	
+	@Override
+	public String toString() {
+		return "MemberVO [m_number=" + m_number + ", m_name=" + m_name + ", m_age=" + m_age + ", m_email=" + m_email
+				+ ", m_adress=" + m_adress + ", m_phonenum=" + m_phonenum + ", m_receive_email=" + m_receive_email
+				+ ", m_authority=" + m_authority + ", m_id=" + m_id + ", m_password=" + m_password
+				+ ", m_checkpassword=" + m_checkpassword + ", m_price=" + m_price + ", m_enabled=" + m_enabled
+				+ ", m_point=" + m_point + ", m_naver=" + m_naver + ", m_facebook=" + m_facebook + ", m_google="
+				+ m_kakao + "]";
+	}
+
+
 	public boolean isEqualsPassword() {
 		return m_password.equals(m_checkpassword);
 	}
 
 	
+	public int getM_point() {
+		return m_point;
+	}
+
+
+	public void setM_point(int m_point) {
+		this.m_point = m_point;
+	}
+
+
 	public String getM_naver() {
 		return m_naver;
 	}
@@ -41,12 +63,12 @@ public class MemberVO {
 		this.m_facebook = m_facebook;
 	}
 
-	public String getM_google() {
-		return m_google;
+	public String getM_kakao() {
+		return m_kakao;
 	}
 
-	public void setM_google(String m_google) {
-		this.m_google = m_google;
+	public void setM_kakao(String m_kakao) {
+		this.m_kakao = m_kakao;
 	}
 
 	public String getM_checkpassword() {

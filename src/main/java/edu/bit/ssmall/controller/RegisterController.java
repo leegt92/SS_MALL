@@ -14,12 +14,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.bit.ssmall.service.RegisterService;
 import edu.bit.ssmall.valid.MemberValidator;
+import edu.bit.ssmall.valid.SocialValidator;
 import edu.bit.ssmall.vo.MemberVO;
 
 @Controller
@@ -179,9 +181,9 @@ public class RegisterController {
 		
 		//회원가입시 적은 주소에서 한가지라도 입력안한다면 null을 반환하는 함수
 		//아니라면 addr1+addr2+addr3을 반환
-		String chk = registerService.check(addr1, addr2, addr3);
+		int chk = registerService.check(addr1, addr2, addr3);
 		
-		if(chk.equals(null)) {
+		if(chk==1) {
 	
 			out.println("<script>alert('주소가 정보가 누락되었습니다.');</script>");			 
 			out.flush(); 
@@ -189,9 +191,10 @@ public class RegisterController {
 			model.addAttribute("m_email", memberVO.getM_email());
 			return "register2";
 		}
-
-		memberVO.setM_adress(chk);//m_adress을 합침		
 		
+		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
+		memberVO.setM_adress(M_adress);//m_adress을 합침	
+				
 		new MemberValidator().validate(memberVO, errors);//유효성 검사
 		
 		if(errors.hasErrors()) {
@@ -206,7 +209,8 @@ public class RegisterController {
 		
 		String hashpw = passwordEncoder.encode(memberVO.getM_password());
 		memberVO.setM_password(hashpw); // 암호화 해서 저장한다.
-		 
+		System.out.println(memberVO);
+		
 		//아이디 , 이메일 중복검사를 통해 아이디중복이면 1을 반환 이메일 중독이면 2를 반환한다.
 		if(registerService.register(memberVO) == 1) {
 			errors.rejectValue("m_id", "duplicate", "이미 가입된 아이디입니다.");
@@ -226,6 +230,100 @@ public class RegisterController {
 		
 		return "login";
 	}
-
 	
+	//네이버회원가입 
+	@RequestMapping("/naverRegister")
+	public String naverRegister(Model model, MemberVO memberVO, Errors errors, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println("네이버 회원가입시작");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();	
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String addr3 = request.getParameter("addr3");
+		
+		int chk = registerService.check(addr1, addr2, addr3);
+		
+		if(chk == 1) {
+			
+			out.println("<script>alert('주소가 정보가 누락되었습니다.');</script>");			 
+			out.flush(); 
+			
+			model.addAttribute("memberVO", memberVO);
+			return "naverRegister";
+		}
+		
+		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
+		memberVO.setM_adress(M_adress);//m_adress을 합침	
+		
+		
+		new SocialValidator().validate(memberVO, errors);//유효성 검사
+		
+		if(errors.hasErrors()) {
+			//에러가 발생한다면 정보다시 확인하라는 경고창 띄우고
+			//메일은 값을 넘겨서 입력안해도 되게한다.
+			System.out.println("에러발생");		
+			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
+			out.flush();
+			model.addAttribute("memberVO", memberVO);
+			return "naverRegister";
+		}
+		
+		String pw = passwordEncoder.encode(memberVO.getM_password());
+		memberVO.setM_password(pw); // 네이버 토큰을 비밀번호로해서 암호화 해서 저장한다.
+		
+		registerService.naverRegister(memberVO);
+		out.println("<script>alert('회원가입이 완료되었습니다!');</script>");			 
+		out.flush();
+		
+		model.addAttribute("member", memberVO);
+		return "naverLogin";
+	}
+	
+	//카카오회원가입
+	@RequestMapping("/kakaoRegister")
+	public String kakaoRegister(Model model, MemberVO memberVO, Errors errors, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println("카카오 회원가입시작");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();	
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String addr3 = request.getParameter("addr3");
+		
+		int chk = registerService.check(addr1, addr2, addr3);
+		
+		if(chk==1) {
+			
+			out.println("<script>alert('주소가 정보가 누락되었습니다.');</script>");			 
+			out.flush(); 
+			
+			model.addAttribute("memberVO", memberVO);
+			return "kakaoRegister";
+		}
+		
+		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
+		memberVO.setM_adress(M_adress);//m_adress을 합침	
+		
+		new SocialValidator().validate(memberVO, errors);//유효성 검사
+		
+		if(errors.hasErrors()) {
+			//에러가 발생한다면 정보다시 확인하라는 경고창 띄우고
+			System.out.println("에러발생");		
+			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
+			out.flush();
+			model.addAttribute("memberVO", memberVO);
+			return "kakaoRegister";
+		}
+		
+		String pw = passwordEncoder.encode(memberVO.getM_password());
+		memberVO.setM_password(pw); // 네이버 토큰을 비밀번호로해서 암호화 해서 저장한다.
+		
+		registerService.kakaoRegister(memberVO);
+		out.println("<script>alert('회원가입이 완료되었습니다!');</script>");			 
+		out.flush();
+		
+		model.addAttribute("member", memberVO);
+		return "kakaoLogin";
+	}
 }

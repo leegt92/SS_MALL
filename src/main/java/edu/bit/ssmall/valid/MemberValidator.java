@@ -43,7 +43,6 @@ public class MemberValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_id", "required", "필수 정보 입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_password", "required", "필수 정보 입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_checkpassword", "required", "필수 정보 입니다.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_age", "required", "필수 정보 입니다.");
 		ValidationUtils.rejectIfEmpty(errors, "m_phonenum", "required", "필수 정보 입니다.");
 		
 		if (!Pattern.matches("^[가-힣a-zA-Z]*$", memberVO.getM_name()) || memberVO.getM_name().length() > 20) {
@@ -63,8 +62,8 @@ public class MemberValidator implements Validator {
 			errors.rejectValue("m_age", "error", "나이를 제대로 입력하세요");
 		}
 		
-		if (!Pattern.matches("(01[016789])-(\\d{3,4})-(\\d{4})", memberVO.getM_phonenum())){
-			errors.rejectValue("m_phonenum", "error", "핸드폰번호를 -포함해서 입력해주세요");
+		if (!Pattern.matches("(01[016789])(\\d{3,4})(\\d{4})", memberVO.getM_phonenum())){
+			errors.rejectValue("m_phonenum", "error", "핸드폰번호를 -없이 제대로 입력해주세요");
 		}
 		if (!memberVO.getM_password().isEmpty()) {
 			if (!memberVO.isEqualsPassword()) {

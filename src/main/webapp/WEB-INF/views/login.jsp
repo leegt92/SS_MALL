@@ -46,35 +46,36 @@
 <!--===============================================================================================-->
 	<script src="login/js/main.js"></script>
 </head>
+
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('login/images/bg-02.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form:form id="login" action="login" class="login100-form validate-form" method="post">
-					
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">		
+				<form:form id="login" action="login" class="login100-form validate-form" method="post">				
 					<c:if test="${param.error != null }">
 						<script>alert("로그인에 실패하셨습니다. 아이디와 비밀번호를 확인해주세요");</script>
 					</c:if>
 					<span class="login100-form-title p-b-49">
 						로그인
-					</span>
-
+					</span>				
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "아이디를 입력하세요">
-						<span class="label-input100">아이디</span>
+						<span class="label-input100">아이디</span>														
 						<input id= "m_id" class="input100" type="text" name="m_id" placeholder="아이디를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-
 					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요">
 						<span class="label-input100">비밀번호</span>
 						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="비밀번호를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
+					</div>					
+					
+					
+				
 					<br>
+	
 					<div class="flex-c-m">
-						<input class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
-						
+						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>				
 						<a href="register1"><button type="button" class="btn btn-secondary">회원가입</button></a>				
 					</div>
 					<div class="txt1 text-center p-t-54 p-b-20">
@@ -89,10 +90,11 @@
 					</div>
 					<br/>
 					<div class="flex-c-m">
-						<!-- 네이버 로그인 창으로 이동 -->
-						<a href="${google_url}"><img width="300" src="login/images/GoogleLogin.png" alt="GoogleLogin"/></a>		
+						<!-- 카카오 로그인 창으로 이동 -->
+						<a href="${kakao_url}"><img width="300" src="login/images/KakaoLogin.png" alt="KakaoLogin"/></a>		
 					</div>		
 				</form:form>
+				
 			</div>
 		</div>
 	</div>
