@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -125,7 +126,7 @@
 		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
 		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form id="login" action="myPage_reviseInformation" class="login100-form validate-form" method="GET">
+				<form:form id="login" action="myPage_reviseInformation" class="login100-form validate-form" method="POST">
 					
 
 					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px;">
@@ -149,7 +150,7 @@
 				
 					
 					
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
