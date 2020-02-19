@@ -166,11 +166,20 @@
     <script src="js/sweetalert2.js"></script>
 
     <!-- Icons -->
-    <!-- <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
-    </script> -->
-    
+    </script>
+    <script>
+    Swal.fire({
+		icon: 'error',
+		position: 'center',
+		title: '비밀번호 불일치',
+		text: '비밀번호를 다시 입력해 주세요.',	
+		}).then(function() {
+			window.location = "/ssmall/myPage_reviseInformation";
+		});
+	</script>
 
     
   </body>

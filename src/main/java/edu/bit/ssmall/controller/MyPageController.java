@@ -1,22 +1,26 @@
 package edu.bit.ssmall.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.bit.ssmall.service.MypageService;
-import edu.bit.ssmall.service.ProductService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class MyPageController {
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	MypageService mypageService;
@@ -130,11 +134,11 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation", method = RequestMethod.GET)
-	public String myPage_reviseInformation(Model model) {
+	@RequestMapping(value = "/myPage_reviseInformation",method = RequestMethod.GET )
+	public String myPage_reviseInformation(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
-	 
+		String pw = request.getParameter("m_password"); 
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -142,7 +146,15 @@ public class MyPageController {
 	    
 	    try {
 			int m_number = mypageService.getMnum(name);
+			String m_pw = mypageService.getMpw(name);
 			model.addAttribute("m_number", m_number);
+			model.addAttribute("m_pw", m_pw);
+			
+			 if(passwordEncoder.matches(pw, m_pw)) {
+				 return "myPage_reviseInformation2";
+			 }else {
+				 return "checkPwError";
+			 }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

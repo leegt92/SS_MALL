@@ -18,6 +18,11 @@ public class MypageService {
 		
 		return mypageMapper.getMnum(m_id);
 	}
+	
+	public String getMpw(String m_id) throws Exception{
+		
+		return mypageMapper.getMpw(m_id);
+	}
 
 	
 
