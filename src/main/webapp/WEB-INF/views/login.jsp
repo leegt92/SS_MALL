@@ -70,14 +70,21 @@
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>					
 					
+					<Br>
 					
-				
+					<div style="float: right;">									
+						<span><a href="findId" style="font-weight: bold; display: inline;">아이디찾기</a></span>						
+						<span><a href="findPw" style="font-weight: bold;">비밀번호찾기</a></span>									
+					</div>
+					
+					<br>
 					<br>
 	
-					<div class="flex-c-m">
+					<div class="flex-c-m" >
 						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>				
 						<a href="register1"><button type="button" class="btn btn-secondary">회원가입</button></a>				
 					</div>
+					
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
 							소셜로그인

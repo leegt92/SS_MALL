@@ -115,6 +115,7 @@
 					<input class="input100" type="hidden" value="${memberVO.m_kakao}" name="m_kakao">
 					<input class="input100" type="hidden" value="${memberVO.m_email}" name="m_email">			
 					
+					<span class="login100-form-title p-b-49"> 회원가입 </span>
 					<div class="wrap-input100 validate-input m-b-23">
 						<span class="label-input100">나이</span> 
 						<form:input class="input100" type="text" placeholder="나이 입력해주세요" path="m_age"/>
