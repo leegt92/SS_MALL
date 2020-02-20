@@ -1,5 +1,6 @@
 package edu.bit.ssmall.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -41,5 +42,7 @@ public interface MypageMapper {
 	@Update("update member set m_password = #{m_password} where m_id = #{m_id}")
 	public void updateMpassword(@Param("m_password")String m_password, @Param("m_id")String m_id);
 	
+	@Insert("insert into board (bid,btitle,bcontent,m_number) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number})")
+	public void insertAsk(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
 
 }

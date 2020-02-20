@@ -97,10 +97,14 @@ public class MyPageController {
 	}	
 	
 	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
-	public String myPage_askRequest(Model model) {
+	public String myPage_askRequest(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
-	 
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    System.out.println(bTitle);
+	    System.out.println(bContent);
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -109,6 +113,11 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAsk(bTitle, bContent, m_number);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,14 +128,14 @@ public class MyPageController {
 	}	
 	
 	@RequestMapping(value = "/myPage_askAS", method = RequestMethod.GET)
-	public String myPage_askAS(Model model) {
+	public String myPage_askAS(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
-	 
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
 	    }
+	    
 	    
 	    try {
 			int m_number = mypageService.getMnum(name);

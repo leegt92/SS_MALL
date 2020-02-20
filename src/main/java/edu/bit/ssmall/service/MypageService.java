@@ -61,4 +61,8 @@ public class MypageService {
 	public void updateMpassword(String m_password, String m_id) throws Exception{
 		mypageMapper.updateMpassword(m_password, m_id);
 	}
+	
+	public void insertAsk(String bTitle, String bContent, int m_number ) throws Exception{
+		mypageMapper.insertAsk(bTitle, bContent, m_number);
+	}
 }

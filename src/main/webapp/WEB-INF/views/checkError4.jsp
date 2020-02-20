@@ -144,12 +144,12 @@
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="글 제목을 입력하세요."
 							style="padding-left: 30px;">
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="글 내용을 입력하세요" ></textarea>
 						</div>
 
 						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
@@ -242,24 +242,16 @@
       feather.replace()
     </script>
     <script>
-    	
-	    $("#submitAskRequest").submit(function(event) {
-	    	 	event.preventDefault();
-				Swal.fire({
-				icon: 'success',
-				position: 'center',
-				title: '문의신청 완료',
-				text: '문의신청이 완료되었습니다.',	
-				}).then(function() {
-					var elem = document.getElementById('submitAskRequest');
-					elem.submit();
-				});
-	    });
-    		
-			
-    		
+    Swal.fire({
+		icon: 'error',
+		position: 'center',
+		title: '글제목 또는 글내용 미입력',
+		text: '글제목과 글내용을 모두 입력해주세요.',	
+		}).then(function() {
+			window.location = "/ssmall/myPage_askRequest";
+		});
 	</script>
 
-   
+    
   </body>
 </html>
