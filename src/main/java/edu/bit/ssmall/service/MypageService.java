@@ -50,11 +50,15 @@ public class MypageService {
 		mypageMapper.updateMphonenum(m_phonenum, m_id);
 	}
 
-	public void updateMreceiveToYes(String m_id) {
+	public void updateMreceiveToYes(String m_id) throws Exception{
 		mypageMapper.updateMreceiveToYes(m_id);
 	}
 	
-	public void updateMreceiveToNo(String m_id) {
+	public void updateMreceiveToNo(String m_id) throws Exception{
 		mypageMapper.updateMreceiveToNo(m_id);
+	}
+	
+	public void updateMpassword(String m_password, String m_id) throws Exception{
+		mypageMapper.updateMpassword(m_password, m_id);
 	}
 }

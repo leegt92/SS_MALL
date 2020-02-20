@@ -38,4 +38,8 @@ public interface MypageMapper {
 	@Update("update member set m_receive_email = '비수신' where m_id = #{m_id}")
 	public void updateMreceiveToNo(@Param("m_id")String m_id);
 
+	@Update("update member set m_password = #{m_password} where m_id = #{m_id}")
+	public void updateMpassword(@Param("m_password")String m_password, @Param("m_id")String m_id);
+	
+
 }

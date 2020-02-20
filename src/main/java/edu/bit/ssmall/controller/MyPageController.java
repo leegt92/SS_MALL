@@ -1,6 +1,9 @@
 package edu.bit.ssmall.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,10 +11,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.bit.ssmall.service.MypageService;
+import edu.bit.ssmall.valid.MemberValidator;
+import edu.bit.ssmall.vo.MemberVO;
 
 /**
  * Handles requests for the application home page.
@@ -135,7 +141,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/myPage_reviseInformation", method = {RequestMethod.GET, RequestMethod.POST})
-	public String myPage_reviseInformation(Model model, HttpServletRequest request) {
+	public String myPage_reviseInformation(Model model,HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
 		String pw = request.getParameter("m_password"); 
@@ -180,20 +186,16 @@ public class MyPageController {
 	    String m_adress = request.getParameter("m_adress");
 	    String m_phonenum = request.getParameter("m_phonenum");
 	    String m_receive_email = request.getParameter("m_receive_email");
-	    
 	    if(m_name == "" && m_age == "" && m_adress == "" && m_phonenum == "" && m_password == "" && m_receive_email == null) {
 	    	return "checkPwError3";
 	    }
 	    
-		/*
-		 * if(m_password != m_checkpassword) { return "checkPwError2"; }
-		 */
-	    
-	 
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
 	    }
+	    
+	    
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
@@ -202,6 +204,15 @@ public class MyPageController {
 			String m_email = mypageService.getMemail(name);
 			model.addAttribute("m_email",m_email);
 			
+			if(m_password != "") {
+				if(m_password.equals(m_checkpassword)) {
+					String hashpw = passwordEncoder.encode(m_password); 
+					mypageService.updateMpassword(hashpw, name);
+				}
+				else {
+					return "checkPwError2";
+				}
+			}
 			if(m_name != "") {
 		    	mypageService.updateMname(m_name, name);
 		    }
@@ -251,5 +262,15 @@ public class MyPageController {
 
 		return "myPage_reviseInformation3";
 
+	}
+	
+	@RequestMapping("/pwChange")
+	public String pwChange(HttpServletRequest request,MemberVO memberVO, Errors errors, Model model, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String hashpw = passwordEncoder.encode(memberVO.getM_password());
+		memberVO.setM_password(hashpw); // 암호화 해서 저장한다.
+		
+		return "myPage_reviseInformation2";
 	}
 }

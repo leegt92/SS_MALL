@@ -266,6 +266,7 @@
 	    		var a7 = document.getElementsByName("m_receive_email")[1].checked;
 	    		var a8 = document.getElementById("m_checkpassword").value;
 	    	 	if(a1 != "" || a2 != "" || a3 != "" || a4 != "" || a5 != "" || a6 != false || a7 != false) {
+	    	 		if(a1 == a8) {
 			    	event.preventDefault();
 					Swal.fire({
 					icon: 'success',
@@ -276,6 +277,7 @@
 						var elem = document.getElementById('reviseInformation');
 						elem.submit();
 					});
+	    	 		}
 	    	 	}
 	    });
     		
