@@ -131,15 +131,13 @@
 
 
 
-				<form action="myPage_reviseInformation2" class="container-login100"
+				<form:form action="myPage_reviseInformation2" class="container-login100"
 					method="post" id="reviseInformation">
-					<span class="login100-form-title p-b-49" style="position:fixed;top: 120px;left: 1020px;"	><font size="5em"><b>회원정보 수정</b></font></span>
+					<span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"	><font size="5em"><b>회원정보 수정</b></font></span>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="아이디 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">아이디</font></span> <input class="input100"
-							id="m_id" type="text" name="m_id" placeholder="아이디는 수정이 불가능합니다"
-							maxlength="10" style="width: 545px;"> <span class="focus-input100"
+						<span class="label-input100"><font size="4em" color="black">아이디</font></span> <div><c:out value="${m_id}"/> (아이디는 수정이 불가능합니다.)</div> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
 						<div id="id_check"> </div>
 					</div>
@@ -165,7 +163,7 @@
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이름 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">이름</font></span> <input class="input100"
+						<span class="label-input100"><font size="4em" color="black">이름</font></span> <input id = "m_name" class="input100"
 							type="text" name="m_name" placeholder="수정할 이름을 입력해주세요" maxlength="5" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 						
@@ -173,28 +171,27 @@
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="나이 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">나이</font></span> <input class="input100"
+						<span class="label-input100"><font size="4em" color="black">나이</font></span> <input id="m_age" class="input100"
 							type="text" name="m_age" placeholder="수정할 나이를 입력해주세요" maxlength="2" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이메일 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">이메일</font></span> <input class="input100"
-							type="text" name="m_email" placeholder="이메일은 수정이 불가능합니다." style="width: 545px;"> <span
+						<span class="label-input100"><font size="4em" color="black">이메일</font></span> <div><c:out value="${m_email}"/> (이메일은 수정이 불가능합니다.)</div> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="배송지 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">주소</font></span> <input class="input100"
+						<span class="label-input100"><font size="4em" color="black">주소</font></span> <input id="m_adress" class="input100"
 							type="text" name="m_adress" placeholder="수정할 주소를 입력해주세요" style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="핸드폰번호 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input class="input100"
+						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input id = "m_phonenum" class="input100"
 							type="text" name="m_phonenum" placeholder="수정할 핸드폰번호를 입력해주세요"
 							maxlength="11" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
@@ -202,9 +199,9 @@
 
 					<div class="wrap-input100 validate-input m-b-23">
 						<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> <input type="radio"
-							name="m_receive_email" value="1"><font size="2em" color="black" style="position:fixed;left: 845px;bottom: 220px;">광고성 이메일을 수신하겠습니다.</font> 
+							name="m_receive_email" value="1"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 99px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
 							<input type="radio"
-							name="m_receive_email" value="0" style="position:fixed;top: 790px;"><font size="2em" color="black" style="position:fixed;left: 845px;bottom: 201px;">광고성 이메일을 수신하지 않겠습니다.</font>
+							name="m_receive_email" value="0" style="position:fixed;top: 790px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 119px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
 					</div>
 
 					<div class="flex-c-m">
@@ -222,7 +219,7 @@
     						">
     						
 					</div>
-				</form>
+				</form:form>
 				<form:form action="myPage_reviseInformation3" class="login100-form validate-form" method="POST">
     				<input class="btn btn-secondary" type="submit" value="회원탈퇴" style="
 					 margin-left: 280px;
@@ -260,6 +257,14 @@
     <script>
     	
 	    $("#reviseInformation").submit(function(event) {
+	    		var a1 = document.getElementById("m_password").value;
+	    		var a2 = document.getElementById("m_name").value;
+	    		var a3 = document.getElementById("m_age").value;
+	    		var a4 = document.getElementById("m_adress").value;
+	    		var a5 = document.getElementById("m_phonenum").value;
+	    		var a6 = document.getElementsByName("m_receive_email")[0].checked;
+	    		var a7 = document.getElementsByName("m_receive_email")[1].checked;
+	    	 	if(a1 != "" || a2 != "" || a3 != "" || a4 != "" || a5 != "" || a6 != false || a7 != false) {
 	    	 	event.preventDefault();
 				Swal.fire({
 				icon: 'success',
@@ -270,6 +275,7 @@
 					var elem = document.getElementById('reviseInformation');
 					elem.submit();
 				});
+	    	 	}
 	    });
     		
 			

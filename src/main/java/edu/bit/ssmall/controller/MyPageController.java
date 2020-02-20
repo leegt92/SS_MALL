@@ -147,6 +147,10 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			String m_pw = mypageService.getMpw(name);
+			String m_id = mypageService.getMid(name);
+			String m_email = mypageService.getMemail(name);
+			model.addAttribute("m_email",m_email);
+			model.addAttribute("m_id",m_id);
 			model.addAttribute("m_number", m_number);
 			model.addAttribute("m_pw", m_pw);
 			
@@ -165,9 +169,21 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/myPage_reviseInformation2", method = RequestMethod.POST)
-	public String myPage_reviseInformation2(Model model) {
+	public String myPage_reviseInformation2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
+	    
+	    String m_password = request.getParameter("m_password");
+	    String m_name = request.getParameter("m_name");
+	    String m_age = request.getParameter("m_age");
+	    String m_adress = request.getParameter("m_adress");
+	    String m_phonenum = request.getParameter("m_phonenum");
+	    String m_receive_email = request.getParameter("m_receive_email");
+	    
+	    if(m_name == "" && m_age == "" && m_adress == "" && m_phonenum == "" && m_password == "" && m_receive_email == null) {
+	    	return "checkPwError3";
+	    }
+	    
 	 
 	    String name = "";
 	    if(principal != null) {
@@ -177,6 +193,25 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			String m_id = mypageService.getMid(name);
+			model.addAttribute("m_id",m_id);
+			String m_email = mypageService.getMemail(name);
+			model.addAttribute("m_email",m_email);
+			
+			if(m_name != "") {
+		    	mypageService.updateMname(m_name, name);
+		    }
+			if(m_age != "") {
+				int m_age2 = Integer.parseInt(m_age);
+		    	mypageService.updateMage(m_age2, name);
+		    }
+			if(m_adress != "") {
+		    	mypageService.updateMadress(m_adress, name);
+		    }
+			if(m_phonenum != "") {
+		    	mypageService.updateMphonenum(m_phonenum, name);
+		    }
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
