@@ -155,7 +155,7 @@
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="비밀번호 한번더 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">비밀번호 확인</font></span> 
-						<input id="m_checkpassword" class="input100" id="m_checkpassword"
+						<input class="input100" id="m_checkpassword"
 							type="password" name="m_checkpassword"
 							placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf190;"></span>
@@ -240,47 +240,23 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert2.js"></script>
-    <script src="js/sweetalert1.js"></script>
-    <script src="js/alert.js"></script>
-    
-    
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
-
-    <!-- Graphs -->
-    <
-    
     <script>
-    	
-	    $("#reviseInformation").submit(function(event) {
-	    		var a1 = document.getElementById("m_password").value;
-	    		var a2 = document.getElementById("m_name").value;
-	    		var a3 = document.getElementById("m_age").value;
-	    		var a4 = document.getElementById("m_adress").value;
-	    		var a5 = document.getElementById("m_phonenum").value;
-	    		var a6 = document.getElementsByName("m_receive_email")[0].checked;
-	    		var a7 = document.getElementsByName("m_receive_email")[1].checked;
-	    		var a8 = document.getElementById("m_checkpassword").value;
-	    	 	if(a1 != "" || a2 != "" || a3 != "" || a4 != "" || a5 != "" || a6 != false || a7 != false) {
-			    	event.preventDefault();
-					Swal.fire({
-					icon: 'success',
-					position: 'center',
-					title: '수정완료',
-					text: '수정이 완료되었습니다.',	
-					}).then(function() {
-						var elem = document.getElementById('reviseInformation');
-						elem.submit();
-					});
-	    	 	}
-	    });
-    		
-			
-    		
+    Swal.fire({
+		icon: 'error',
+		position: 'center',
+		title: '비밀번호 확인 불일치',
+		text: '입력하신 비밀번호와 비밀번호 확인이 일치하지 않습니다.',	
+		}).then(function() {
+			window.location = "/ssmall/myPage_reviseInformation";
+		});
 	</script>
+
+    
   </body>
 </html>

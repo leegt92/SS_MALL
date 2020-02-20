@@ -49,4 +49,12 @@ public class MypageService {
 	public void updateMphonenum(String m_phonenum, String m_id) throws Exception{
 		mypageMapper.updateMphonenum(m_phonenum, m_id);
 	}
+
+	public void updateMreceiveToYes(String m_id) {
+		mypageMapper.updateMreceiveToYes(m_id);
+	}
+	
+	public void updateMreceiveToNo(String m_id) {
+		mypageMapper.updateMreceiveToNo(m_id);
+	}
 }
