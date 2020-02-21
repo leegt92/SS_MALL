@@ -244,16 +244,30 @@
     <script>
     	
 	    $("#submitAskRequest").submit(function(event) {
-	    	 	event.preventDefault();
-				Swal.fire({
-				icon: 'success',
-				position: 'center',
-				title: '문의신청 완료',
-				text: '문의신청이 완료되었습니다.',	
-				}).then(function() {
-					var elem = document.getElementById('submitAskRequest');
-					elem.submit();
-				});
+	    		var a1 = document.getElementById("bTitle").value;
+	    		var a2 = document.getElementById("bContent").value;
+	    		if(a1 == "" || a2 == "") {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'error',
+	    				position: 'center',
+	    				title: '글 제목 및 글 내용 미입력',
+	    				text: '글 제목과 글 내용을 모두 입력해 주십시오.',	
+	    			})
+	    		}
+	    		else {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'success',
+	    				position: 'center',
+	    				title: '문의신청 완료',
+	    				text: '문의신청이 완료되었습니다.',	
+	    				}).then(function() {
+	    					var elem = document.getElementById('submitAskRequest');
+	    					elem.submit();
+	    				});
+	    		}
+				
 	    });
     		
 			

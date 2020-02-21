@@ -65,4 +65,8 @@ public class MypageService {
 	public void insertAsk(String bTitle, String bContent, int m_number ) throws Exception{
 		mypageMapper.insertAsk(bTitle, bContent, m_number);
 	}
+
+	public void insertAS(String bTitle, String bContent, int m_number) throws Exception {
+		mypageMapper.insertAS(bTitle, bContent, m_number);	
+	}
 }

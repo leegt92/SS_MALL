@@ -103,8 +103,6 @@ public class MyPageController {
 	    
 	    String bTitle = request.getParameter("bTitle");
 	    String bContent = request.getParameter("bContent");
-	    System.out.println(bTitle);
-	    System.out.println(bContent);
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -131,15 +129,21 @@ public class MyPageController {
 	public String myPage_askAS(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
 	    }
 	    
-	    
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAS(bTitle, bContent, m_number);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

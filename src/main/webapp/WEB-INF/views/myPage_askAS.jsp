@@ -138,21 +138,21 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form id="submitASRequest">
+					<form id="submitASRequest" action="myPage_askAS">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="제품명을 입력하세요"
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="제품명을 입력하세요"
 							style="padding-left: 30px;">
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="제품의 하자사항과 세부 요청사항을 입력하세요"></textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="제품의 하자사항과 세부 요청사항을 입력하세요"></textarea>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							제출
 						</button>
 					</form>
@@ -243,18 +243,32 @@
     </script>
   	<script>
     	
-	    $("#submitASRequest").submit(function(event) {
-	    	 	event.preventDefault();
-				Swal.fire({
+  	$("#submitASRequest").submit(function(event) {
+		var a1 = document.getElementById("bTitle").value;
+		var a2 = document.getElementById("bContent").value;
+		if(a1 == "" || a2 == "") {
+			event.preventDefault();
+			Swal.fire({
+				icon: 'error',
+				position: 'center',
+				title: '제품명 및 세부요청 사항 미입력',
+				text: '제품명과 세부요청 사항을 모두 입력해 주십시오.',	
+			})
+		}
+		else {
+			event.preventDefault();
+			Swal.fire({
 				icon: 'success',
 				position: 'center',
-				title: 'A/S신청 완료',
-				text: 'A/S신청이 완료되었습니다.',	
+				title: 'AS신청 완료',
+				text: 'AS신청이 완료되었습니다.',	
 				}).then(function() {
 					var elem = document.getElementById('submitASRequest');
 					elem.submit();
 				});
-	    });
+		}
+		
+});
     		
 			
     		
