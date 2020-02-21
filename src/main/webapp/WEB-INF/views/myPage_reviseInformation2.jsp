@@ -164,7 +164,7 @@
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이름 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">이름</font></span> <input id = "m_name" class="input100"
-							type="text" name="m_name" placeholder="수정할 이름을 입력해주세요" maxlength="5" style="width: 545px;">
+							type="text" name="m_name" placeholder= "<c:out value="${m_name2}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="5" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 						
 					</div>
@@ -172,7 +172,7 @@
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="나이 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">나이</font></span> <input id="m_age" class="input100"
-							type="text" name="m_age" placeholder="수정할 나이를 입력해주세요" maxlength="2" style="width: 545px;">
+							type="text" name="m_age" placeholder="<c:out value="${m_age3}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="2" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
@@ -185,14 +185,14 @@
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="배송지 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">주소</font></span> <input id="m_adress" class="input100"
-							type="text" name="m_adress" placeholder="수정할 주소를 입력해주세요" style="width: 545px;"> <span
+							type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="핸드폰번호 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input id = "m_phonenum" class="input100"
-							type="text" name="m_phonenum" placeholder="수정할 핸드폰번호를 입력해주세요"
+							type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
 							maxlength="11" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
 					</div>

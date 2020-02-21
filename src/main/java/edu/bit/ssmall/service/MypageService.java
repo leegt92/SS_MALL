@@ -1,15 +1,20 @@
 package edu.bit.ssmall.service;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.LoginMapper;
 import edu.bit.ssmall.mapper.MypageMapper;
+import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 
 @Service
 public class MypageService {
-
+	/*======================Member 관련 SQL문============================================*/
+	
 	@Autowired
 	MypageMapper mypageMapper;
 	
@@ -29,8 +34,28 @@ public class MypageService {
 		return mypageMapper.getMid(m_id);
 	}
 
-	public String getMemail(String m_id) throws Exception{
+	public String getMname(String m_id) throws Exception{
 	
+		return mypageMapper.getMname(m_id);
+	}
+	
+	public int getMage(String m_id) throws Exception{
+		
+		return mypageMapper.getMage(m_id);
+	}
+	
+	public String getMadress(String m_id) throws Exception{
+		
+		return mypageMapper.getMadress(m_id);
+	}
+	
+	public String getMphonenum(String m_id) throws Exception{
+		
+		return mypageMapper.getMphonenum(m_id);
+	}
+	
+	public String getMemail(String m_id) throws Exception{
+		
 		return mypageMapper.getMemail(m_id);
 	}
 	
@@ -68,5 +93,31 @@ public class MypageService {
 
 	public void insertAS(String bTitle, String bContent, int m_number) throws Exception {
 		mypageMapper.insertAS(bTitle, bContent, m_number);	
+	}
+	
+	/*======================Product 관련 SQL문============================================*/
+	public String getPimage(int p_number) throws Exception {
+		return mypageMapper.getPimage(p_number);	
+	}
+	
+	public String getPname(int p_number) throws Exception {
+		return mypageMapper.getPname(p_number);	
+	}
+	
+	public int getPprice(int p_number) throws Exception {
+		return mypageMapper.getPprice(p_number);	
+	}
+	
+	/*======================Buy 관련 SQL문============================================*/
+	public List<Integer> getPnumbers(int m_number) throws Exception {
+		return mypageMapper.getPnumbers(m_number);	
+	}
+	
+	public int getBamount(int p_number) throws Exception {
+		return mypageMapper.getBamount(p_number);	
+	}
+	
+	public Date getBdate(int p_number) throws Exception {
+		return mypageMapper.getBdate(p_number);	
 	}
 }

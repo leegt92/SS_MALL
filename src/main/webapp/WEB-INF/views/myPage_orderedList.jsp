@@ -183,12 +183,12 @@
 					left: 250px;
 					bottom:70px;
 					">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
 						<h4 class="mtext-109 cl2 p-b-30">
 							<font size="5em">회원님의 총 주문금액</font>
 						</h4>
-						<div class="flex-w flex-t p-t-27 p-b-33" style="width:260px;">
-							<div class="size-208">
+						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
+							<div class="size-208" style=" width: 90px;">
 								<span class="mtext-101 cl2">
 									<font size="6em">Total:</font>
 								</span>

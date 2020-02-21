@@ -1,6 +1,9 @@
 package edu.bit.ssmall.controller;
 
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +17,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ssmall.service.MypageService;
 import edu.bit.ssmall.valid.MemberValidator;
+import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 
 /**
@@ -61,10 +66,35 @@ public class MyPageController {
 	    if(principal != null) {
 	        name = auth.getName();
 	    }
-	    
+	    System.out.println("이걸 타는가???");
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			List<Integer> p_numbers = mypageService.getPnumbers(m_number);
+			model.addAttribute("p_numbers",p_numbers);
+			List<String> p_images = new ArrayList<String>();
+			List<String> p_names = new ArrayList<String>();
+			List<Integer> p_prices = new ArrayList<Integer>();
+			List<Date> b_dates = new ArrayList<Date>();
+			List<Integer> b_amounts = new ArrayList<Integer>();
+			for(int i=0; i < p_numbers.size(); i++) {
+				String p_image = mypageService.getPimage(p_numbers.get(i));
+				p_images.add(p_image);
+				String p_name = mypageService.getPname(p_numbers.get(i));
+				p_names.add(p_name);
+				int p_price = mypageService.getPprice(p_numbers.get(i));
+				p_prices.add(p_price);
+				Date b_date = mypageService.getBdate(p_numbers.get(i));
+				b_dates.add(b_date);
+				int b_amount = mypageService.getBamount(p_numbers.get(i));
+				b_amounts.add(b_amount);
+			}
+			model.addAttribute("p_images",p_images);
+			model.addAttribute("p_names",p_names);
+			model.addAttribute("p_prices",p_prices);
+			model.addAttribute("b_dates",b_dates);
+			model.addAttribute("b_amounts",b_amounts);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,6 +202,14 @@ public class MyPageController {
 			model.addAttribute("m_id",m_id);
 			model.addAttribute("m_number", m_number);
 			model.addAttribute("m_pw", m_pw);
+			String m_name2 = mypageService.getMname(name);
+			model.addAttribute("m_name2",m_name2);
+			int m_age3 = mypageService.getMage(name);
+			model.addAttribute("m_age3",m_age3);
+			String m_adress2 = mypageService.getMadress(name);
+			model.addAttribute("m_adress2",m_adress2);
+			String m_phonenum2 = mypageService.getMphonenum(name);
+			model.addAttribute("m_phonenum2",m_phonenum2);
 			
 			 if(passwordEncoder.matches(pw, m_pw)) {
 				 return "myPage_reviseInformation2";
@@ -216,6 +254,14 @@ public class MyPageController {
 			model.addAttribute("m_id",m_id);
 			String m_email = mypageService.getMemail(name);
 			model.addAttribute("m_email",m_email);
+			String m_name2 = mypageService.getMname(name);
+			model.addAttribute("m_name2",m_name2);
+			int m_age3 = mypageService.getMage(name);
+			model.addAttribute("m_age3",m_age3);
+			String m_adress2 = mypageService.getMadress(name);
+			model.addAttribute("m_adress2",m_adress2);
+			String m_phonenum2 = mypageService.getMphonenum(name);
+			model.addAttribute("m_phonenum2",m_phonenum2);
 			
 			if(m_password != "") {
 				if(m_password.equals(m_checkpassword)) {
