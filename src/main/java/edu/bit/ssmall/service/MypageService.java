@@ -113,6 +113,10 @@ public class MypageService {
 		return mypageMapper.getPnumbers(m_number);	
 	}
 	
+	public List<Integer> getOrderedPnumbers(int m_number) throws Exception {
+		return mypageMapper.getOrderedPnumbers(m_number);	
+	}
+	
 	public int getBamount(int p_number) throws Exception {
 		return mypageMapper.getBamount(p_number);	
 	}

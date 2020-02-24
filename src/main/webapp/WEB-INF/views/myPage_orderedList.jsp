@@ -134,6 +134,8 @@
 					width: 1000px;
 					">
 						<div class="wrap-table-shopping-cart">
+						<c:set var="hap" value="0"/>
+						<c:forEach items="${p_numbers}" var="p_number" varStatus="status">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">상품명</th>
@@ -143,33 +145,23 @@
 									<th class="column-5">총구매가격</th>
 									<th class="column-6" style="padding-left:50px">구매일자</th>
 								</tr>
-
+								
+								
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
-											<img src="images/item-cart-04.jpg" alt="IMG">
+											<img src="productimage/<c:out value = "${p_images[status.index]}"/>" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2">Fresh Strawberries</td>
-									<td class="column-3">$ 36.00</td>
-									<td class="column-4">총 1개</td>
-									<td class="column-5">$ 36.00</td>
-									<td class="column-6" style="padding-left:40px">2020-02-07</td>
-								</tr>
-
-								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">$ 16.00</td>
-									<td class="column-4">총 1개</td>
-									<td class="column-5">$ 16.00</td>
-									<td class="column-6" style="padding-left:40px">2020-02-10</td>
+									<td class="column-2"><c:out value = "${p_names[status.index]}"/></td>
+									<td class="column-3"><c:out value = "${p_prices[status.index]}원"/></td>
+									<td class="column-4">총 <c:out value = "${b_amounts[status.index]}"/>개</td>
+									<td class="column-5"><c:out value = "${p_prices[status.index]*b_amounts[status.index]}원"/></td>
+									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
+									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
 								</tr>
 							</table>
+							</c:forEach>
 						</div>
 
 						
@@ -196,7 +188,7 @@
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									<font size="6em">$79.65</font>
+									<font size="6em"><c:out value="${hap}"/>원</font>
 								</span>
 							</div>
 						</div>

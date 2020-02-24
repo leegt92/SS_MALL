@@ -257,6 +257,7 @@
     <script>
     	
 	    $("#reviseInformation").submit(function(event) {
+	    		var replaceNotInt = /[^0-9]/gi;
 	    		var a1 = document.getElementById("m_password").value;
 	    		var a2 = document.getElementById("m_name").value;
 	    		var a3 = document.getElementById("m_age").value;
@@ -266,7 +267,15 @@
 	    		var a7 = document.getElementsByName("m_receive_email")[1].checked;
 	    		var a8 = document.getElementById("m_checkpassword").value;
 	    	 	if(a1 != "" || a2 != "" || a3 != "" || a4 != "" || a5 != "" || a6 != false || a7 != false) {
-	    	 		if(a1 == a8) {
+	    	 		if(a1 != a8) {
+	    	 			event.preventDefault();
+						Swal.fire({
+						icon: 'error',
+						position: 'center',
+						title: '핸드폰번호는 숫자만 입력가능합니다.'',
+						text: '핸드폰번호를 \'-\' 없이 숫자만 입력해주세요.',	
+						});
+	    	 		} 
 			    	event.preventDefault();
 					Swal.fire({
 					icon: 'success',
@@ -277,7 +286,6 @@
 						var elem = document.getElementById('reviseInformation');
 						elem.submit();
 					});
-	    	 		}
 	    	 	}
 	    });
     		

@@ -80,6 +80,9 @@ public interface MypageMapper {
 	@Select("select p_number from buy where m_number = #{m_number}")
 	public List<Integer> getPnumbers (@Param("m_number") int m_number);
 	
+	@Select("select p_number from buy where m_number = #{m_number} and b_done = '1'")
+	public List<Integer> getOrderedPnumbers (@Param("m_number") int m_number);
+	
 	@Select("select b_amount from buy where p_number = #{p_number}")
 	public int getBamount (@Param("p_number") int p_number);
 	
