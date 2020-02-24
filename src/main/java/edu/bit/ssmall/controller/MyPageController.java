@@ -316,7 +316,7 @@ public class MyPageController {
 					mypageService.updateMpassword(hashpw, name);
 				}
 				else {
-					return "checkPwError2";
+					return "myPage_reviseInformation2";
 				}
 			}
 			if(m_name != "") {

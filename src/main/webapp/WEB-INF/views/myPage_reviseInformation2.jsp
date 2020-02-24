@@ -192,7 +192,7 @@
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="핸드폰번호 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input id = "m_phonenum" class="input100"
-							type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
+							type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 '-' 없이 입력하세요)"
 							maxlength="11" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
 					</div>
@@ -242,6 +242,7 @@
     <script src="js/sweetalert2.js"></script>
     <script src="js/sweetalert1.js"></script>
     <script src="js/alert.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     
     
 
@@ -256,8 +257,10 @@
     
     <script>
     	
+    	
 	    $("#reviseInformation").submit(function(event) {
 	    		var replaceNotInt = /[^0-9]/gi;
+	    		var replaceNotFullKorean = /[가-힣]/gi;
 	    		var a1 = document.getElementById("m_password").value;
 	    		var a2 = document.getElementById("m_name").value;
 	    		var a3 = document.getElementById("m_age").value;
@@ -272,20 +275,58 @@
 						Swal.fire({
 						icon: 'error',
 						position: 'center',
-						title: '핸드폰번호는 숫자만 입력가능합니다.'',
-						text: '핸드폰번호를 \'-\' 없이 숫자만 입력해주세요.',	
+						title: '비밀번호 확인 불일치',
+						text: '입력하신 비밀번호와 비밀번호 확인이 일치하지 않습니다.',	
 						});
-	    	 		} 
-			    	event.preventDefault();
-					Swal.fire({
-					icon: 'success',
-					position: 'center',
-					title: '수정완료',
-					text: '수정이 완료되었습니다.',	
-					}).then(function() {
-						var elem = document.getElementById('reviseInformation');
-						elem.submit();
-					});
+	    	 		}
+	    	 		else if(a1 != "" && (a1.length < 8 || a1.length > 12)) {
+	    	 			event.preventDefault();
+						Swal.fire({
+						icon: 'error',
+						position: 'center',
+						title: '비밀번호를 다시 입력해주세요.',
+						text: '비밀번호는 8자리 이상 12자리 이하만 가능합니다.',	
+						});
+	    	 		}
+	    	 		else if(a2 != "" && !a2.match(replaceNotFullKorean)) {
+	    	 			event.preventDefault();
+						Swal.fire({
+						icon: 'error',
+						position: 'center',
+						title: '이름은 한글만 입력가능',
+						text: '이름은 완전한 한글글자만 입력 가능합니다.',	
+						});
+	    	 		}
+	    	 		else if(a3 != "" && a3.match(replaceNotInt)) {
+	    	 			event.preventDefault();
+						Swal.fire({
+						icon: 'error',
+						position: 'center',
+						title: '나이는 숫자만 입력가능',
+						text: '나이는 숫자만 입력 가능합니다.',	
+						});
+	    	 		}
+	    	 		else if(a5 != "" && (a5.match(replaceNotInt) || a5.length != 11)) {
+	    	 			event.preventDefault();
+						Swal.fire({
+						icon: 'error',
+						position: 'center',
+						title: '폰번호는 숫자만 입력가능',
+						text: '폰번호는 \'-\' 없이 숫자 11자리만 입력 가능합니다.',	
+						});
+	    	 		}
+	    	 		else {
+				    	event.preventDefault();
+						Swal.fire({
+						icon: 'success',
+						position: 'center',
+						title: '수정완료',
+						text: '수정이 완료되었습니다.',	
+						}).then(function() {
+							var elem = document.getElementById('reviseInformation');
+							elem.submit();
+						});
+	    	 		}
 	    	 	}
 	    });
     		
