@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -156,9 +156,9 @@
 										</div>
 									</td>
 									<td class="column-2"><c:out value = "${p_names[status.index]}"/></td>
-									<td class="column-3"><c:out value = "${p_prices[status.index]}원"/></td>
+									<td class="column-3"><fmt:formatNumber value="${p_prices[status.index]}" pattern="#,###" />원</td>
 									<td class="column-4">총 <c:out value = "${b_amounts[status.index]}"/>개</td>
-									<td class="column-5"><c:out value = "${p_prices[status.index]*b_amounts[status.index]}원"/></td>
+									<td class="column-5"><fmt:formatNumber value="${p_prices[status.index]*b_amounts[status.index]}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
 									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
 								</tr>
@@ -177,12 +177,12 @@
 					left: 250px;
 					bottom:70px;
 					">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
 						<h4 class="mtext-109 cl2 p-b-30">
 							<font size="5em">회원님의 총 주문금액</font>
 						</h4>
-						<div class="flex-w flex-t p-t-27 p-b-33" style="width:260px;">
-							<div class="size-208">
+						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
+							<div class="size-208" style=" width: 90px;">
 								<span class="mtext-101 cl2">
 									<font size="6em">Total:</font>
 								</span>
@@ -190,7 +190,7 @@
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									<font size="6em"><c:out value="${hap}"/>원</font>
+									<font size="6em"><fmt:formatNumber value="${hap}" pattern="#,###" />원</font>
 								</span>
 							</div>
 						</div>
