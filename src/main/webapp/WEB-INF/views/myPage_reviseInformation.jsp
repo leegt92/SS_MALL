@@ -66,7 +66,12 @@
      
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
+          	<form id="logout" action="logout" method="POST">
+          							Sign out
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+			</form>
+		</a>
         </li>
       </ul>
     </nav>

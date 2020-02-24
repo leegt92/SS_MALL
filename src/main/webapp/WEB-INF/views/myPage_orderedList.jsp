@@ -66,7 +66,12 @@
      
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
+          	<form id="logout" action="logout" method="POST">
+          							Sign out
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+			</form>
+		</a>
         </li>
       </ul>
     </nav>
@@ -136,7 +141,6 @@
 					">
 						<div class="wrap-table-shopping-cart">
 						<c:set var="hap" value="0"/>
-						<c:forEach items="${p_numbers}" var="p_number" varStatus="status">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">상품명</th>
@@ -145,9 +149,8 @@
 									<th class="column-4">구매수량</th>
 									<th class="column-5">총구매가격</th>
 									<th class="column-6" style="padding-left:50px">구매일자</th>
-								</tr>
-								
-								
+								</tr>		
+								<c:forEach items="${p_numbers}" var="p_number" varStatus="status">
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
@@ -161,8 +164,8 @@
 									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
 									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
 								</tr>
+								</c:forEach>
 							</table>
-							</c:forEach>
 						</div>
 
 						
@@ -192,6 +195,7 @@
 									<font size="6em"><fmt:formatNumber value="${hap}" pattern="#,###" />원</font>
 								</span>
 							</div>
+							<c:if test="${hap == 0}"><font size="5em" color="black">최근 주문내역이 없습니다.</font></c:if>
 						</div>
 					</div>
 				</div>

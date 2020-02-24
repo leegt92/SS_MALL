@@ -379,4 +379,26 @@ public class MyPageController {
 		
 		return "myPage_reviseInformation2";
 	}
+	
+	@RequestMapping(value = "/withdrawal.do", method = RequestMethod.GET)
+	public String withdraw(Model model) {
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    Object principal = auth.getPrincipal();
+		 
+		    String name = "";
+		    if(principal != null) {
+		        name = auth.getName();
+		    }
+		    
+		    try {
+				int m_number = mypageService.getMnum(name);
+				model.addAttribute("m_number", m_number);
+				mypageService.withdrawMember(name);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return "home";
+
+	}
 }

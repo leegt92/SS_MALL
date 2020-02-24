@@ -95,6 +95,10 @@ public class MypageService {
 		mypageMapper.insertAS(bTitle, bContent, m_number);	
 	}
 	
+	public void withdrawMember(String m_id) throws Exception {
+		mypageMapper.withdrawMember(m_id);	
+	}
+	
 	/*======================Product 관련 SQL문============================================*/
 	public String getPimage(int p_number) throws Exception {
 		return mypageMapper.getPimage(p_number);	

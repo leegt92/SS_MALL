@@ -3,6 +3,7 @@ package edu.bit.ssmall.mapper;
 import java.sql.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -65,6 +66,9 @@ public interface MypageMapper {
 
 	@Insert("insert into board (bid,btitle,bcontent,m_number,btype) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'AS요청')")
 	public void insertAS(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
+	
+	@Delete("delete from member where m_id = #{m_id}")
+	public void withdrawMember(@Param("m_id")String m_id);
 
 	/*===================================PRODUCT 관련 SQL문들============================================================*/
 	@Select("select p_image from product where p_number = #{p_number}")

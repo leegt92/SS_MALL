@@ -65,7 +65,12 @@
      
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
+          	<form id="logout" action="logout" method="POST">
+          							Sign out
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+			</form>
+		</a>
         </li>
       </ul>
     </nav>
@@ -138,7 +143,8 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form id="withdrawFinal">
+					<form id="withdrawFinal" action = "logout" method="POST">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							회원탈퇴 사유를 작성해주세요(선택사항).
 						</h4>
@@ -149,11 +155,12 @@
 							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="탈퇴 사유를 입력해 주시면 참고하여 보다 나은 상승몰이 되도록 노력하겠습니다." ></textarea>
 						</div>
 
-						<button id="decide_withdraw" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						<button id="decide_withdraw" type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							작성완료 및 최종탈퇴
 						</button>
 					</form>
 				</div>
+				<form id="logout" action="logout"></form>
 
 				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md" style="
 					padding-left: 0px;
@@ -250,6 +257,7 @@
 			text: '탈퇴가 최종적으로 완료되었습니다.',	
 			}).then(function() {
 				var elem = document.getElementById('withdrawFinal');
+				window.location = "/ssmall/withdrawal.do";
 				elem.submit();
 			});
  });
