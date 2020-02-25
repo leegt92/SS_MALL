@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
 import edu.bit.ssmall.vo.BuyVO;
+import edu.bit.ssmall.vo.BoardVO;
 
 public interface MypageMapper {
 	/*===================================MEMBER 관련 SQL문들============================================================*/
@@ -92,4 +93,13 @@ public interface MypageMapper {
 	
 	@Select("select b_date from buy where p_number = #{p_number}")
 	public Date getBdate (@Param("p_number") int p_number);
+	
+	/*===================================BOARD 관련 SQL문들============================================================*/
+	//한 회원이 작성한 모든 1:1문의글들을 가져오는 SQL문
+	@Select("select * from board where m_number = #{m_number} and btype='문의/건의'")
+	public List<BoardVO> getAllAskRequest (@Param("m_number") int m_number);
+	//특정 BID에 답변한 게시판 글을 가져오는 SQL문
+	
+	@Select("select * from board where banswerno = #{bid} and btype='문의/건의_답변'")
+	public BoardVO getAllAskRequestAnswer(@Param("bid") String bid);
 }
