@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 import edu.bit.ssmall.vo.ProductImageVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 
 
@@ -31,6 +32,11 @@ public interface ProductMapper {
 	  
 	  @Select("select * from product p, image i where p.p_number = #{p_number} and i.p_number = p.p_number order by i_type asc")
 	  public List<ProductImageVO> selectProductOne2(String p_number);
+
+	  
+	  //구매위해서 하나 만들었음
+	  @Select("Select * from product where p_number = #{p_number}")
+	  public ProductVO productOne(String p_number);
 	 
 
 }

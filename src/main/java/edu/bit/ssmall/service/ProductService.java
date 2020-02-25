@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import edu.bit.ssmall.mapper.ProductMapper;
 import edu.bit.ssmall.vo.ProductImageVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 
 @Service
@@ -29,6 +30,14 @@ public class ProductService {
 	public List<ProductImageVO> selectProductListAmount() {
 		
 		return productMapper.selectProductListAmount();
+	}
+
+	
+	
+	//구매 하기위해 하나 만들었음
+	public ProductVO productOne(String p_number) {
+		
+		return productMapper.productOne(p_number);
 	}
 
 }

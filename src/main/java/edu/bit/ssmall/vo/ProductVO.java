@@ -66,10 +66,5 @@ public class ProductVO {
 	public void setP_category(String p_category) {
 		this.p_category = p_category;
 	}
-
-	
-	
-	
-
 	
 }

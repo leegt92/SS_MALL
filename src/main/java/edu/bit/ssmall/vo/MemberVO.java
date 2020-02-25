@@ -15,7 +15,7 @@ public class MemberVO {
 	private String m_checkpassword; //비밀번호확인
 	private int m_price; // 지금까지 구매한 총금액
 	private int m_enabled; // 활성화 여부
-	private int m_point;
+	private int m_point; //포인트
 	private String m_naver; //네이버토큰
 	private String m_facebook; //미정
 	private String m_kakao; // 카카오토큰

@@ -57,7 +57,7 @@ public class LoginController {
 		 */
 		 
 
-		return "login";
+		return "Login/login";
 	}
 	
 	@RequestMapping(value="naver/callback", method = { RequestMethod.GET, RequestMethod.POST})
@@ -81,12 +81,12 @@ public class LoginController {
 			PrintWriter out = response.getWriter();	
 			out.println("<script>alert('가입이 되어있지 않습니다. 회원가입창으로 이동합니다.');</script>");			 
 			out.flush();
-			return "naverRegister";		
+			return "Register/naverRegister";		
 		}else {
 			MemberVO member = loginService.naverLogin(memberVO.getM_naver());
 			model.addAttribute("member", member);
 			System.out.println(member);
-			return "naverLogin";
+			return "Login/naverLogin";
 		}
 	}
 	
@@ -136,14 +136,14 @@ public class LoginController {
 			PrintWriter out = response.getWriter();	
 			out.println("<script>alert('가입이 되어있지 않습니다. 회원가입창으로 이동합니다.');</script>");			 
 			out.flush();
-			return "kakaoRegister";		
+			return "Register/kakaoRegister";		
 		}else {
 			MemberVO member = loginService.kakaoLogin(memberVO.getM_kakao());
 			
 			model.addAttribute("member", member);
 			System.out.println(member);
 			
-			return "kakaoLogin";
+			return "Login/kakaoLogin";
 		}
 
 

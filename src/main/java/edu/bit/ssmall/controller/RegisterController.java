@@ -40,7 +40,7 @@ public class RegisterController {
 	@RequestMapping("/register1")
 	public String register1() {
 		System.out.println("이용약관 페이지로 ");
-		return "register1";
+		return "Register/register1";
 	}
 	
 	//약관에서 동의함 체크했는지 확인하고 체크했으면 이메일인증 하는 jsp로 보냄
@@ -53,11 +53,11 @@ public class RegisterController {
 			out.println("<script>alert('약관에 동의하여 주세요');</script>");			 
 			out.flush();
 			
-			return "register1";
+			return "Register/register1";
 		
 		} else {
 
-			return "emailcheck";
+			return "Register/emailcheck";
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class RegisterController {
     		PrintWriter out = response.getWriter();	
     		out.println("<script>alert('이메일이 입력되지 않았습니다.');</script>");
     		out.flush();
-        	return "emailcheck";
+        	return "Register/emailcheck";
         }
         
         String title = "회원가입 인증 이메일 입니다."; // 제목    
@@ -129,7 +129,7 @@ public class RegisterController {
         out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
         out_email.flush();
 		
-		return "emailcheck2";
+		return "Register/emailcheck2";
 	}
 	
 	@RequestMapping(value="/emailcheck.do", method = RequestMethod.POST)
@@ -156,7 +156,7 @@ public class RegisterController {
 	    	 model.addAttribute("m_email",m_email);
 	    	 model.addAttribute("memberVO", new MemberVO());
 	    	
-	    	 return "register2";
+	    	 return "Register/register2";
 
 	     }else{
 	    	 //틀리면 다시 이메일인증을 해야함.
@@ -165,7 +165,7 @@ public class RegisterController {
 	    	 out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
 	    	 out_equals.flush();
 
-	    	 return "emailcheck";
+	    	 return "Register/emailcheck";
 	     }    
 	}
 	
@@ -189,7 +189,7 @@ public class RegisterController {
 			out.flush(); 
 			
 			model.addAttribute("m_email", memberVO.getM_email());
-			return "register2";
+			return "Register/register2";
 		}
 		
 		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
@@ -204,7 +204,7 @@ public class RegisterController {
 			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
 			out.flush();
 			model.addAttribute("m_email", memberVO.getM_email());
-			return "register2";
+			return "Register/register2";
 		}
 		
 		String hashpw = passwordEncoder.encode(memberVO.getM_password());
@@ -217,18 +217,18 @@ public class RegisterController {
 			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
 			out.flush();
 			model.addAttribute("m_email", memberVO.getM_email());
-			return "register2";
+			return "Register/register2";
 		} else if(registerService.register(memberVO) == 2){	
 			errors.rejectValue("m_email", "duplicate", "이미 가입된 이메일입니다.");			
 			out.println("<script>alert('이미 가입된 이메일입니다. 다른 이메일로 가입해주세요!');</script>");			 
 			out.flush();
-			return "register1";
+			return "Register/register1";
 		}
 		 
 		out.println("<script>alert('회원가입이 완료되었습니다!');</script>");			 
 		out.flush();
 		
-		return "login";
+		return "Login/login";
 	}
 	
 	//네이버회원가입 
@@ -250,7 +250,7 @@ public class RegisterController {
 			out.flush(); 
 			
 			model.addAttribute("memberVO", memberVO);
-			return "naverRegister";
+			return "Register/naverRegister";
 		}
 		
 		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
@@ -266,7 +266,7 @@ public class RegisterController {
 			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
 			out.flush();
 			model.addAttribute("memberVO", memberVO);
-			return "naverRegister";
+			return "Register/naverRegister";
 		}
 		
 		String pw = passwordEncoder.encode(memberVO.getM_password());
@@ -277,7 +277,7 @@ public class RegisterController {
 		out.flush();
 		
 		model.addAttribute("member", memberVO);
-		return "naverLogin";
+		return "Login/naverLogin";
 	}
 	
 	//카카오회원가입
@@ -299,7 +299,7 @@ public class RegisterController {
 			out.flush(); 
 			
 			model.addAttribute("memberVO", memberVO);
-			return "kakaoRegister";
+			return "Register/kakaoRegister";
 		}
 		
 		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
@@ -313,7 +313,7 @@ public class RegisterController {
 			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
 			out.flush();
 			model.addAttribute("memberVO", memberVO);
-			return "kakaoRegister";
+			return "Register/kakaoRegister";
 		}
 		
 		String pw = passwordEncoder.encode(memberVO.getM_password());
@@ -324,6 +324,6 @@ public class RegisterController {
 		out.flush();
 		
 		model.addAttribute("member", memberVO);
-		return "kakaoLogin";
+		return "Login/kakaoLogin";
 	}
 }

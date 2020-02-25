@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.bit.ssmall.service.ProductService;
-import edu.bit.ssmall.vo.ProductImageVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 /**
  * Handles requests for the application home page.
@@ -31,10 +31,17 @@ public class ProductController {
 		System.out.println("/productDetail");
 		String p_number = request.getParameter("p_number");
 //		ProductImageVO productImage  = productService.selectProductOne(p_number);
-		model.addAttribute("productDetail", productService.selectProductOne(p_number));//»çÁø¸ŞÀÎ,¼­ºê1,2 Æ÷ÇÔ. Áï °ª 3°³ ¸®½ºÆ®·Î¹Ş¾ÒÀ½
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½1,2 ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Î¹Ş¾ï¿½ï¿½ï¿½
 		model.addAttribute("productAmount", productService.selectProductListAmount());
-		//model.addAttribute("product1", productService.selectProductOne2(p_number));//»çÁø1°³. Áï °ª 1°³ ÀÏ¹İÀ¸·Î ¹ŞÀ½.
-		System.out.println("ÄÁÆ®·Ñ·¯¸®ÅÏ³Ñ¾î°¨");
+		//model.addAttribute("product1", productService.selectProductOne2(p_number));//ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+		System.out.println("ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½Ï³Ñ¾î°¨");
+		
+		
+		
+		//êµ¬ë§¤ìœ„í•´ì„œ ì¶”ê°€í–ˆìŒ
+		ProductVO productVO = productService.productOne(p_number);
+		model.addAttribute("product",productVO);
+		
 		return "productDetail";
 	}
 	

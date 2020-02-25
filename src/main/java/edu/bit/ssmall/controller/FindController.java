@@ -37,7 +37,7 @@ public class FindController {
 	public String findId() {
 		System.out.println("아이디 찾는 페이지로");
 
-		return "findId";
+		return "Find/findId";
 	}
 	
 	@RequestMapping("/findIdEmail")
@@ -51,7 +51,7 @@ public class FindController {
 			PrintWriter out = response.getWriter();	
 			out.println("<script>alert('가입한 정보가 없습니다.');</script>");			 
 			out.flush();
-			return "findId";
+			return "Find/findId";
 		}
 				
 		Random r = new Random();
@@ -108,7 +108,7 @@ public class FindController {
         out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
         out_email.flush();
 		
-		return "findIdEmail";
+		return "Find/findIdEmail";
 	
 	}
 	
@@ -129,7 +129,7 @@ public class FindController {
 	    	String id = findService.getId(m_email);
 	    	model.addAttribute("ID",id);
 	    	
-	    	return "findIdResult";
+	    	return "Find/findIdResult";
 
 	    }
 	    //틀리면 다시 이메일인증을 해야함.
@@ -147,7 +147,7 @@ public class FindController {
 	public String findPw() {
 		System.out.println("비밀번호 찾는 페이지로");
 		
-		return "findPw";
+		return "Find/findPw";
 	}
 	
 	@RequestMapping(value="/findPwEmail", method = RequestMethod.POST)
@@ -167,7 +167,7 @@ public class FindController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('가입한 정보가 없습니다');</script>");
 			out.flush();
-			return "findPw";
+			return "Find/findPw";
 		}
 		
 		Random r = new Random();
@@ -223,7 +223,7 @@ public class FindController {
         out.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
         out.flush();
 		
-		return "findPwEmail";
+		return "Find/findPwEmail";
 	}
 	
 	@RequestMapping(value="/findPwCheck" ,method = RequestMethod.POST)
@@ -244,7 +244,7 @@ public class FindController {
 	    	
 	    	model.addAttribute("memberVO",memberVO);
 	    	
-	    	return "findPwResult";
+	    	return "Find/findPwResult";
 
 	    }
 	    //틀리면 다시 처음으로
@@ -274,7 +274,7 @@ public class FindController {
 			out.println("<script>alert('비밀번호를 다시 확인하여 주세요!');</script>");			 
 			out.flush();
 
-			return "findPwResult";
+			return "Find/findPwResult";
 		}
 		
 		String pw = passwordEncoder.encode(memberVO.getM_password());
