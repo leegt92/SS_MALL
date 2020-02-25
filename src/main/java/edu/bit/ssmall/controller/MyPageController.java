@@ -173,6 +173,93 @@ public class MyPageController {
 
 	}	
 	
+	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)
+	public String myPage_askRequestView(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAsk(bTitle, bContent, m_number);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "myPage_askRequestView";
+
+	}
+	
+	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)
+	public String myPage_askRequestView2(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAsk(bTitle, bContent, m_number);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "myPage_askRequestView2";
+
+	}
+	
+	@RequestMapping(value = "/myPage_askRequestView3", method = RequestMethod.GET)
+	public String myPage_askRequestView3(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAsk(bTitle, bContent, m_number);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "myPage_askRequestView3";
+
+	}
+	
 	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
 	public String myPage_askRequest(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
