@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.LoginMapper;
 import edu.bit.ssmall.mapper.MypageMapper;
+import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
@@ -134,7 +135,39 @@ public class MypageService {
 		return mypageMapper.getAllAskRequest(m_number);	
 	}
 	
+	public List<BoardVO> getAllASRequest(int m_number) throws Exception {
+		return mypageMapper.getAllASRequest(m_number);	
+	}
+	
 	public BoardVO getAllAskRequestAnswer(String bid) throws Exception {
 		return mypageMapper.getAllAskRequestAnswer(bid);	
+	}
+	
+	public BoardVO getAllASRequestAnswer(String bid) throws Exception {
+		return mypageMapper.getAllASRequestAnswer(bid);	
+	}
+	
+	public int selectCountBoard() throws Exception {
+		return mypageMapper.selectCountBoard();	
+	}
+	
+	public int selectAskCountBoard(int m_number) throws Exception {
+		return mypageMapper.selectAskCountBoard(m_number);	
+	}
+	
+	public int selectASCountBoard(int m_number) throws Exception {
+		return mypageMapper.selectASCountBoard(m_number);	
+	}
+	
+	public List<BoardVO> selectBoardListPage(int m_number, Criteria criteria) throws Exception {
+		return mypageMapper.selectBoardListPage(m_number, criteria);	
+	}
+	
+	public List<BoardVO> selectAskBoardListPage(int m_number, int startNum, int endNum) throws Exception {
+		return mypageMapper.selectAskBoardListPage(m_number, startNum, endNum);	
+	}
+	
+	public List<BoardVO> selectASBoardListPage(int m_number, int startNum, int endNum) throws Exception {
+		return mypageMapper.selectASBoardListPage(m_number, startNum, endNum);	
 	}
 }

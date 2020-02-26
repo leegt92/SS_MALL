@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
 import edu.bit.ssmall.vo.BuyVO;
+import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.vo.BoardVO;
 
 public interface MypageMapper {
@@ -100,6 +101,30 @@ public interface MypageMapper {
 	public List<BoardVO> getAllAskRequest (@Param("m_number") int m_number);
 	//특정 BID에 답변한 게시판 글을 가져오는 SQL문
 	
+	@Select("select * from board where m_number = #{m_number} and btype='AS요청'")
+	public List<BoardVO> getAllASRequest (@Param("m_number") int m_number);
+	
 	@Select("select * from board where banswerno = #{bid} and btype='문의/건의_답변'")
 	public BoardVO getAllAskRequestAnswer(@Param("bid") String bid);
+	
+	@Select("select * from board where banswerno = #{bid} and btype='AS요청_답변'")
+	public BoardVO getAllASRequestAnswer(@Param("bid") String bid);
+	
+	@Select("select count(*) from board")
+	public int selectCountBoard();
+	
+	@Select("select count(*) from board where m_number = #{m_number} and btype='문의/건의'")
+	public int selectAskCountBoard(@Param("m_number") int m_number);
+	
+	@Select("select count(*) from board where m_number = #{m_number} and btype='AS요청'")
+	public int selectASCountBoard(@Param("m_number") int m_number);
+	
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} ORDER BY bGroup desc, bStep asc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	public List<BoardVO> selectBoardListPage(@Param("m_number") int m_number, @Param("criteria") Criteria criteria);
+	
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='문의/건의' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	public List<BoardVO> selectAskBoardListPage(@Param("m_number") int m_number, @Param("startNum") int startNum, @Param("endNum") int endNum);
+	
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='AS요청' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	public List<BoardVO> selectASBoardListPage(@Param("m_number") int m_number, @Param("startNum") int startNum, @Param("endNum") int endNum);
 }

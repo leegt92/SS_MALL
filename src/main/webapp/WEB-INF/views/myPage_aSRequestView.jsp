@@ -211,14 +211,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
-                  <b>▶1:1 문의</b>
+                  <b>1:1 문의</b>
                 </a>
               </li>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_aSRequestView">
                   <span data-feather="layers"></span>
-                  <b>A/S 서비스 신청</b>
+                  <b>▶A/S 서비스 신청</b>
                 </a>
               </li>
             </ul>
@@ -228,34 +228,34 @@
     </div>
     
     <div class="accordion" style="position:fixed;left: 400px;width: 1200px;top: 100px;">
-    <font size="6em">나의 1:1문의 내역</font>
+    <font size="6em">나의 A/S 서비스 신청 내역</font>
     <table class="table table-nomargin" style="margin-bottom: 0px;margin-top: 30px;">
            <thead>
            <th style="width:60%; padding-left:12px !important;">제목(작성날짜)</th>
            </thead>
     </table>
     <ul class="accordion1" style="height: 220px;">
-    	<c:forEach items="${askRequestboards}" var="askRequestboards" varStatus="status">
+    	<c:forEach items="${aSRequestboards}" var="aSRequestboards" varStatus="status">
         <li class="accordion2">
             <c:choose>
-            	<c:when test="${askRequestboards.banswered eq '답변완료'}">
-            		<h3 style="font-size:16px; color:green;" class="accordion3"><c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/></h3>
+            	<c:when test="${aSRequestboards.banswered eq '답변완료'}">
+            		<h3 style="font-size:16px; color:green;" class="accordion3"><c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/></h3>
             	</c:when>
             	<c:otherwise>
-            		<h3 style="font-size:16px; color:red;" class="accordion3"><c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/></h3>
+            		<h3 style="font-size:16px; color:red;" class="accordion3"><c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/></h3>
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
-            	<p><b>문의/건의 제목:</b><c:out value = "${askRequestboards.btitle}"/></p>
+              <p><b>문의/건의 제목:</b><c:out value = "${aSRequestboards.btitle}"/></p>
             	<br/>
-            	<p><b>문의/건의 내용:</b><c:out value = "${askRequestboards.bcontent}"/></p>
+            	<p><b>문의/건의 내용:</b><c:out value = "${aSRequestboards.bcontent}"/></p>
             	<br/>
             	=======================================================================================================================
             	<br/>
             	<br/>
-              	<p><b>답변 제목:</b><c:out value = "${askRequestboardsAnswers[status.index].btitle}"/></p>
+              	<p><b>답변 제목:</b><c:out value = "${aSRequestboardsAnswers[status.index].btitle}"/></p>
               	<br/>
-              	<p><b>답변 내용:</b><c:out value = "${askRequestboardsAnswers[status.index].bcontent}"/></p>
+              	<p><b>답변 내용:</b><c:out value = "${aSRequestboardsAnswers[status.index].bcontent}"/></p>
             </div>
         </li>
         </c:forEach>
@@ -271,7 +271,7 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<a href="myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-        <button onclick="window.location.href='/ssmall/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
+        <button onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">A/S서비스 신청하기</font></button>
     </ul>
     
 </div>

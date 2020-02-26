@@ -17,9 +17,11 @@ public class BoardVO {
 	private String btype;
 	private int btotalrepot;
 	private int m_number;
+	private String banswerno;
+	private String banswered;
 	
 	public BoardVO(String bid, String btitle, String bname, Date bdate, int bhit, String bcontent, int bstep,
-			int bindent, int bgroup, int btotallike, String btype, int btotalrepot, int m_number) {
+			int bindent, int bgroup, int btotallike, String btype, int btotalrepot, int m_number, String banswerno, String banswered) {
 		this.bid = bid;
 		this.btitle = btitle;
 		this.bname = bname;
@@ -33,6 +35,8 @@ public class BoardVO {
 		this.btype = btype;
 		this.btotalrepot = btotalrepot;
 		this.m_number = m_number;
+		this.banswerno = banswerno;
+		this.banswered = banswered;
 	}
 
 	public BoardVO() {}
@@ -140,4 +144,20 @@ public class BoardVO {
 	public void setM_number(int m_number) {
 		this.m_number = m_number;
 	}
+	
+	public String getBanswerno() {
+		return banswerno;
+	}
+
+	public void setBanswerno(String banswerno) {
+		this.banswerno = banswerno;
+	}
+
+	public String getBanswered() {
+		return banswered;
+	}
+
+	public void setBanswered(String banswered) {
+		this.banswered = banswered;
+	}	
 }

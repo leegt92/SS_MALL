@@ -108,19 +108,14 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_askRequest">
+                <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
                   <b>1:1 문의</b>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_askAS">
+                <a class="nav-link" href="/ssmall/myPage_aSRequestView">
                   <span data-feather="layers"></span>
                   <b>A/S 서비스 신청</b>
                 </a>
