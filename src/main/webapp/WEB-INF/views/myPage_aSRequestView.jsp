@@ -246,9 +246,9 @@
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
-              <p><b>문의/건의 제목:</b><c:out value = "${aSRequestboards.btitle}"/></p>
+              <p><b>A/S 신청 제품명:</b><c:out value = "${aSRequestboards.btitle}"/></p>
             	<br/>
-            	<p><b>문의/건의 내용:</b><c:out value = "${aSRequestboards.bcontent}"/></p>
+            	<p><b>A/S 신청 내용:</b><c:out value = "${aSRequestboards.bcontent}"/></p>
             	<br/>
             	=======================================================================================================================
             	<br/>

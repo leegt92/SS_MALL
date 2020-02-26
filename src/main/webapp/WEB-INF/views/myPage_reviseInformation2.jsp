@@ -151,7 +151,7 @@
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="비밀번호 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">비밀번호</font></span> 
+						<span class="label-input100"><font size="4em" color="black">비밀번호 (8자리 이상 12자리 이하)</font></span> 
 						<input class="input100" id="m_password"
 							type="password" name="m_password" placeholder="수정할 비밀번호를 입력해주세요"
 							maxlength="20" style="width: 545px;"> <span class="focus-input100"
@@ -168,7 +168,7 @@
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이름 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">이름</font></span> <input id = "m_name" class="input100"
+						<span class="label-input100"><font size="4em" color="black">이름 (완전한 한글만 입력가능)</font></span> <input id = "m_name" class="input100"
 							type="text" name="m_name" placeholder= "<c:out value="${m_name2}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="5" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 						
@@ -176,7 +176,7 @@
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="나이 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">나이</font></span> <input id="m_age" class="input100"
+						<span class="label-input100"><font size="4em" color="black">나이 (숫자만 입력가능)</font></span> <input id="m_age" class="input100"
 							type="text" name="m_age" placeholder="<c:out value="${m_age3}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="2" style="width: 545px;">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
@@ -189,15 +189,15 @@
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="배송지 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">주소</font></span> <input id="m_adress" class="input100"
-							type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 주소검색을 하시고 세부주소는 이어서 직접 입력해주세요)" style="width: 545px;"> <span
+						<span class="label-input100"><font size="4em" color="black">주소 (클릭 후 팝업창 이용, 세부주소는 이어서 직접 입력)</font></span> <input id="m_adress" class="input100"
+							type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="핸드폰번호 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input id = "m_phonenum" class="input100"
-							type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 '-' 없이 입력하세요)"
+						<span class="label-input100"><font size="4em" color="black">핸드폰번호 ('-'없이 11자리만 입력가능)</font></span> <input id = "m_phonenum" class="input100"
+							type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
 							maxlength="11" style="width: 545px;"> <span class="focus-input100"
 							data-symbol="&#xf206;"></span>
 					</div>
