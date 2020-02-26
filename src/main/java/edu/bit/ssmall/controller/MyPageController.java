@@ -52,23 +52,25 @@ public class MyPageController {
 		    try {
 				int m_number = mypageService.getMnum(name);
 				model.addAttribute("m_number", m_number);
-				List<Integer> p_numbers = mypageService.getOrderedPnumbers(m_number);
-				model.addAttribute("p_numbers",p_numbers);
+				int m_point = mypageService.getMpoint(name);
+				model.addAttribute("m_point", m_point);
+				List<Integer> b_numbers = mypageService.getOrderedBnumbers(m_number);
+				model.addAttribute("b_numbers",b_numbers);
 				List<String> p_images = new ArrayList<String>();
 				List<String> p_names = new ArrayList<String>();
 				List<Integer> p_prices = new ArrayList<Integer>();
 				List<Date> b_dates = new ArrayList<Date>();
 				List<Integer> b_amounts = new ArrayList<Integer>();
-				for(int i=0; i < p_numbers.size(); i++) {
-					String p_image = mypageService.getPimage(p_numbers.get(i));
+				for(int i=0; i < b_numbers.size(); i++) {
+					String p_image = mypageService.getPimage(b_numbers.get(i));
 					p_images.add(p_image);
-					String p_name = mypageService.getPname(p_numbers.get(i));
+					String p_name = mypageService.getPname(b_numbers.get(i));
 					p_names.add(p_name);
-					int p_price = mypageService.getPprice(p_numbers.get(i));
+					int p_price = mypageService.getPprice(b_numbers.get(i));
 					p_prices.add(p_price);
-					Date b_date = mypageService.getBdate(p_numbers.get(i));
+					Date b_date = mypageService.getBdate(b_numbers.get(i));
 					b_dates.add(b_date);
-					int b_amount = mypageService.getBamount(p_numbers.get(i));
+					int b_amount = mypageService.getBamount(b_numbers.get(i));
 					b_amounts.add(b_amount);
 				}
 				model.addAttribute("p_images",p_images);
@@ -96,23 +98,25 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
-			List<Integer> p_numbers = mypageService.getPnumbers(m_number);
-			model.addAttribute("p_numbers",p_numbers);
+			int m_point = mypageService.getMpoint(name);
+			model.addAttribute("m_point", m_point);
+			List<Integer> b_numbers = mypageService.getBnumbers(m_number);
+			model.addAttribute("b_numbers",b_numbers);
 			List<String> p_images = new ArrayList<String>();
 			List<String> p_names = new ArrayList<String>();
 			List<Integer> p_prices = new ArrayList<Integer>();
 			List<Date> b_dates = new ArrayList<Date>();
 			List<Integer> b_amounts = new ArrayList<Integer>();
-			for(int i=0; i < p_numbers.size(); i++) {
-				String p_image = mypageService.getPimage(p_numbers.get(i));
+			for(int i=0; i < b_numbers.size(); i++) {
+				String p_image = mypageService.getPimage(b_numbers.get(i));
 				p_images.add(p_image);
-				String p_name = mypageService.getPname(p_numbers.get(i));
+				String p_name = mypageService.getPname(b_numbers.get(i));
 				p_names.add(p_name);
-				int p_price = mypageService.getPprice(p_numbers.get(i));
+				int p_price = mypageService.getPprice(b_numbers.get(i));
 				p_prices.add(p_price);
-				Date b_date = mypageService.getBdate(p_numbers.get(i));
+				Date b_date = mypageService.getBdate(b_numbers.get(i));
 				b_dates.add(b_date);
-				int b_amount = mypageService.getBamount(p_numbers.get(i));
+				int b_amount = mypageService.getBamount(b_numbers.get(i));
 				b_amounts.add(b_amount);
 			}
 			model.addAttribute("p_images",p_images);
@@ -143,23 +147,25 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
-			List<Integer> p_numbers = mypageService.getOrderedPnumbers(m_number);
-			model.addAttribute("p_numbers",p_numbers);
+			int m_point = mypageService.getMpoint(name);
+			model.addAttribute("m_point", m_point);
+			List<Integer> b_numbers = mypageService.getOrderedBnumbers(m_number);
+			model.addAttribute("b_numbers",b_numbers);
 			List<String> p_images = new ArrayList<String>();
 			List<String> p_names = new ArrayList<String>();
 			List<Integer> p_prices = new ArrayList<Integer>();
 			List<Date> b_dates = new ArrayList<Date>();
 			List<Integer> b_amounts = new ArrayList<Integer>();
-			for(int i=0; i < p_numbers.size(); i++) {
-				String p_image = mypageService.getPimage(p_numbers.get(i));
+			for(int i=0; i < b_numbers.size(); i++) {
+				String p_image = mypageService.getPimage(b_numbers.get(i));
 				p_images.add(p_image);
-				String p_name = mypageService.getPname(p_numbers.get(i));
+				String p_name = mypageService.getPname(b_numbers.get(i));
 				p_names.add(p_name);
-				int p_price = mypageService.getPprice(p_numbers.get(i));
+				int p_price = mypageService.getPprice(b_numbers.get(i));
 				p_prices.add(p_price);
-				Date b_date = mypageService.getBdate(p_numbers.get(i));
+				Date b_date = mypageService.getBdate(b_numbers.get(i));
 				b_dates.add(b_date);
-				int b_amount = mypageService.getBamount(p_numbers.get(i));
+				int b_amount = mypageService.getBamount(b_numbers.get(i));
 				b_amounts.add(b_amount);
 			}
 			model.addAttribute("p_images",p_images);

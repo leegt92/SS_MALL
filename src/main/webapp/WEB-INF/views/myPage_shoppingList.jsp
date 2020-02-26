@@ -141,7 +141,7 @@
 									<th class="column-5">총구매가격</th>
 									<th class="column-6" style="padding-left:50px">구매일자</th>
 								</tr>		
-								<c:forEach items="${p_numbers}" var="p_number" varStatus="status">
+								<c:forEach items="${b_numbers}" var="b_number" varStatus="status">
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
@@ -186,7 +186,28 @@
 									<br/>
 								</span>
 							</div>
+							
 							<c:if test="${hap == 0}"><font size="5em" color="black">아직 구매내역이 없습니다.</font></c:if>
+						</div>
+					</div>
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
+						<h4 class="mtext-109 cl2 p-b-30">
+							<font size="5em">회원님의 사용가능 포인트</font>
+						</h4>
+						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
+							<div class="size-208" style=" width: 90px;">
+								<span class="mtext-101 cl2">
+									<font size="6em">Point:</font>
+								</span>
+							</div>
+
+							<div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									<font size="6em"><fmt:formatNumber value="${m_point}" pattern="#,###" />원</font>
+									<br/>
+								</span>
+							</div>
+							
 						</div>
 					</div>
 				</div>

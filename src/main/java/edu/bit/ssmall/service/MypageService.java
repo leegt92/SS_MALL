@@ -61,6 +61,11 @@ public class MypageService {
 		return mypageMapper.getMemail(m_id);
 	}
 	
+	public int getMpoint(String m_id) throws Exception{
+		
+		return mypageMapper.getMpoint(m_id);
+	}
+	
 	public void updateMname(String m_name, String m_id) throws Exception{
 		mypageMapper.updateMname(m_name, m_id);
 	}
@@ -115,12 +120,12 @@ public class MypageService {
 	}
 	
 	/*======================Buy 관련 SQL문============================================*/
-	public List<Integer> getPnumbers(int m_number) throws Exception {
-		return mypageMapper.getPnumbers(m_number);	
+	public List<Integer> getBnumbers(int m_number) throws Exception {
+		return mypageMapper.getBnumbers(m_number);	
 	}
 	
-	public List<Integer> getOrderedPnumbers(int m_number) throws Exception {
-		return mypageMapper.getOrderedPnumbers(m_number);	
+	public List<Integer> getOrderedBnumbers(int m_number) throws Exception {
+		return mypageMapper.getOrderedBnumbers(m_number);	
 	}
 	
 	public int getBamount(int p_number) throws Exception {
