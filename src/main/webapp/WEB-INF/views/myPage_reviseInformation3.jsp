@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -128,38 +127,107 @@
           </div>
         </nav>
 		
-		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
-		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form:form id="login" action="myPage_reviseInformation" class="login100-form validate-form" method="POST">
-					
+	<!-- Content page -->
+	<section class="bg0 p-t-104 p-b-116" style="
+	    margin-left: 0px;
+	    margin-top: 100px;
+	    padding-top: 0px;
+	    padding-left: 0px;
+	    position: fixed;
+	    left: 400px;
+	    ">
+		<div class="container" >
+			<div class="flex-w flex-tr">
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
+				width:1142px; height:527px; style="
+				 width: 1142px;
+   				 height: 527px;
+				">
+					<form id="withdrawFinal" action = "logout" method="POST">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							회원탈퇴 사유를 작성해주세요(선택사항).
+						</h4>
 
-					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px;">
-						<span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 330px;">
-						<font size="5em" style="position:absolute;bottom: 0px;left: 0px;top: 0px;width: 400px;"><b>비밀번호를 다시 입력해 주세요.</b></font></span>
-						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="" maxlength="20" style="
-    position:fiexd;
-    height: 30px;
-    border:1px solid black;
-    margin-top: 30px;
-    " />
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					<br>
-					<div class="flex-c-m" style="position:fixed;top: 550px;left: 975px;">
-						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
 						
-											
-					</div>
-					
 
-				
-					
-					
-				</form:form>
+						<div class="bor8 m-b-30" style=" height: 277px;">
+							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="탈퇴 사유를 입력해 주시면 참고하여 보다 나은 상승몰이 되도록 노력하겠습니다." ></textarea>
+						</div>
+
+						<button id="decide_withdraw" type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							작성완료 및 최종탈퇴
+						</button>
+					</form>
+				</div>
+				<form id="logout" action="logout"></form>
+
+				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md" style="
+					padding-left: 0px;
+					padding-right: 0px;
+					height: 162px;
+					width: 1142px;
+					">
+					<div class="flex-w w-full p-b-42" style="
+					    padding-bottom: 10px;
+					    width: 300px;">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-map-marker"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								주소
+							</span>
+
+							<p class="stext-115 cl6 size-213 p-t-18">
+								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+							</p>
+						</div>
+					</div>
+
+					<div class="flex-w w-full p-b-42" style="
+						    width: 300px;
+						    padding-left: 100px;">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-phone-handset"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								전화번호
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								+1 800 1236879
+							</p>
+						</div>
+					</div>
+
+					<div class="flex-w w-full" style="
+						    padding-bottom: 50px;
+						    padding-left: 100px;
+						">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								이메일주소
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								contact@example.com
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+	
+       
       </div>
     </div>
 
@@ -170,15 +238,29 @@
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/sweetalert2.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <!-- Icons -->
-    <!-- <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
-    </script> -->
-    
+    </script>
 
-    
+
+     <script>
+     $("#withdrawFinal").submit(function(event) {
+ 	 	event.preventDefault();
+			Swal.fire({
+			icon: 'success',
+			position: 'center',
+			title: '탈퇴완료',
+			text: '탈퇴가 최종적으로 완료되었습니다.',	
+			}).then(function() {
+				var elem = document.getElementById('withdrawFinal');
+				window.location = "/ssmall/withdrawal.do";
+				elem.submit();
+			});
+ });
+	</script>
   </body>
 </html>

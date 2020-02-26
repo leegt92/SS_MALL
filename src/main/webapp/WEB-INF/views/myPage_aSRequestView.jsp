@@ -260,16 +260,16 @@
         </li>
         </c:forEach>
         <c:if test="${pageMaker.prev}">
-			<a href="myPage_askRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+			<a href="myPage_aSRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
 	</c:if>
 	
 	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="myPage_askRequestView${pageMaker.makeQuery(idx)}">${idx}</a>
+			<a href="myPage_aSRequestView${pageMaker.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
 	
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+				<a href="myPage_aSRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
         <button onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">A/S서비스 신청하기</font></button>
     </ul>
