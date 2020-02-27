@@ -456,7 +456,7 @@
 
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									<form:form role="form" action="/ssmall/buy" method="post">
+									<form:form role="form" method="post">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
 										<input type="hidden" name="p_number" value="${product.p_number}">
 										
@@ -472,10 +472,10 @@
 										
 									</div>
 									<div>
-										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" style="float: left;">
+										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/addCart';" >
 											장바구니
 										</button>
-										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" >
+										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy';">
 											구입하기
 										</button>										
 									</div>

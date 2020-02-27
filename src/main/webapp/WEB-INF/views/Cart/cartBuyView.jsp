@@ -95,7 +95,7 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">						
+					<div class="left-top-bar">
 						SSMALL with luxury watches and wallets
 					</div>
 
@@ -114,7 +114,7 @@
 
 						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
 							About Us
-						</a>				
+						</a>
 					</div>
 				</div>
 			</div>
@@ -123,7 +123,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="homeview" class="logo">
+					<a href="#" class="logo">
 						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
@@ -147,12 +147,10 @@
 							</li>
 							
 							<li>
-								<a href="masterView">AS</a>
+								<a href="asView">AS</a>
 							</li>
 						</ul>
-					</div>	
-
-					
+					</div>					
 				</nav>
 			</div>	
 		</div>
@@ -162,92 +160,30 @@
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
-			</div>	
-
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
 			</div>
+		
+			
 		</div>
 
-
-		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<li>
-					<div class="left-top-bar">
-						SSMALL with luxury watches and wallets
-					</div>
-				</li>
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
-						</a>
-
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
-							About Us
-						</a>
-					</div>
-				</li>
-			</ul>
-
-			<ul class="main-menu-m">		
-				<li>
-					<a href="homeview">홈</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
-				</li>
-				<li>
-					<a href="productView">상품</a>
-				</li>
-
-				<li>
-					<a href="notice">공지사항</a>
-				</li>
-
-				<li>
-					<a href="companyView">회사소개</a>
-				</li>
-				
-				<li>
-					<a href="asView">AS</a>
-				</li>
-		
-			</ul>
-		</div>
-
-		
 	</header>
 
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
-				메인
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="productView" class="stext-109 cl8 hov-cl1 trans-04">
-				상품
+			<a href="cartView" class="stext-109 cl8 hov-cl1 trans-04">
+				장바구니
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="/ssmall/productDetail?p_number=${buyVO.p_number}" class="stext-109 cl4">
-				${buyVO.p_description} 
-			</a>
+			<span class="stext-109 cl4">
+				구매
+				
+			</span>
 		</div>
 	</div>
 
@@ -272,28 +208,27 @@
 								<th>구매수량</th>
 								<th>구매가격</th>
 							</tr>
-
+							
+							<c:forEach items="${cart}" var="cart">
 							<tr>
 								<td>
-									<img src="productimage/${buyVO.i_name}" alt="IMG" width="100px" height="auto">
+									<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="auto">
 								</td>
 								<td>
-									<a href="/ssmall/productDetail?p_number=${buyVO.p_number}"> ${buyVO.p_description}</a></td>
-								<td>${buyVO.b_amount}</td>
-								<td><fmt:formatNumber value="${buyVO.b_total}"
+									<a href="/ssmall/productDetail?p_number=${cart.p_number}"> ${cart.p_description}</a></td>
+								<td>${cart.c_amount}</td>
+								<td><fmt:formatNumber value="${cart.c_grandtotal}"
 										pattern="###,###,###" />원</td>
 							</tr>
-
+							</c:forEach>
 						</table>
 					</div>
 				</div>
 			</div>
 			<hr>
-			<!-- 수령자 설정 -->
-			<form:form role="form" commandName="payVO" action="buyDo">
-			<input type="hidden" name="p_number" value="${buyVO.p_number}">
-			<input type="hidden" name="b_amount" value="${buyVO.b_amount}">
-			<input type="hidden" name="b_total" value="${buyVO.b_total}">
+			
+			<form:form role="form" commandName="payVO" action="cartPay">
+			
 			
 			<div class="tab-content p-t-43">		
 				<div class="tab-pane fade show active" id="description"

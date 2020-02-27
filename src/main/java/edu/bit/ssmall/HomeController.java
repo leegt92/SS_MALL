@@ -39,4 +39,11 @@ public class HomeController {
 
 	}
 	
+	@RequestMapping(value="asView", method= {RequestMethod.GET, RequestMethod.POST})
+	public String asView(Model model) {
+
+		return "as";
+
+	}
+	
 }

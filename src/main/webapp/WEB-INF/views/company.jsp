@@ -78,11 +78,7 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
-								<!-- <ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul> -->
+								
 							</li>
 
 							<li>
@@ -90,44 +86,18 @@
 							</li>
 							
 							<li>
-								<a href="cartview" >장바구니</a>
-							</li>
-<!-- 
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
-							</li> -->
-							<li>
-								<a href="/">공지사항</a>
+								<a href="notice">공지사항</a>
 							</li>
 
 							<li> <!-- class="active-menu" -->
-								<a href="blogview">회사소개</a>
+								<a href="companyView">회사소개</a>
 							</li>
-
-							<!-- <li>
-								<a href="about.html">About</a>
-							</li>
-
+							
 							<li>
-								<a href="contact.html">Contact</a>
-							</li> -->
+								<a href="asView">AS</a>
+							</li>	
 						</ul>
 					</div>	
-
-				<!-- 	 Icon header --> 
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
-
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
-					</div>
 				</nav>
 			</div>	
 		</div>
@@ -137,21 +107,6 @@
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
-			</div>
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search"></i>
-				</div>
-
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
-
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
 			</div>
 
 			<!-- Button show menu -->
@@ -211,18 +166,17 @@
 				</li>
 				
 				<li>
-					<a href="cartview" >장바구니</a>
-				</li>
-				
-				<li>
-					<a href="">공지사항</a>
+					<a href="notice">공지사항</a>
 				</li>
 				
 
 				<li>
-					<a href="blogview">회사소개</a>
+					<a href="companyView">회사소개</a>
 				</li>
 
+				<li>
+					<a href="asView">AS</a>
+				</li>
 				<!-- <li>
 					<a href="about.html">About</a>
 				</li>

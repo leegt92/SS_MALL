@@ -6,6 +6,7 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,10 @@ public class BuyController {
 		
 		PayVO payVO = new PayVO();//validator 하기위해 담아서 보내줌
 		
-		model.addAttribute("buyVO",buyVO);		
+		HttpSession session = request.getSession();
+		session.setAttribute("buyVO", buyVO);
+		
+		model.addAttribute("buyVO",buyVO);	
 		model.addAttribute("payVO",payVO);
 		return "Buy/buyView"; 
 	}
@@ -99,10 +103,10 @@ public class BuyController {
 		MemberVO memberVO = buyService.memberInfo(m_id); //해당 아이디의 정보를 가져옴
 		
 		model.addAttribute("email", memberVO.getM_email()); //이메일
-		model.addAttribute("p_name", p_name);
-		model.addAttribute("totalprice", b_total);
-		model.addAttribute("amount", b_amount);
-		model.addAttribute("payVO",payVO);
+		model.addAttribute("p_name", p_name); //상품명
+		model.addAttribute("totalprice", b_total); // 상품총가격
+		model.addAttribute("amount", b_amount); // 총갯수
+		model.addAttribute("payVO",payVO); //구매자 정보
 		
 		
 		return "Buy/payment";
@@ -126,13 +130,17 @@ public class BuyController {
 	}
 		
 	@RequestMapping(value = "payFail", method = { RequestMethod.POST, RequestMethod.GET} )
-	public String payFail(Model model) throws Exception {
+	public String payFail(Model model,PayVO payVO, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		System.out.println("payFail()");
+		HttpSession session = request.getSession();
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();	
+		out.println("<script>alert('확인 후 진행하여 주세요');</script>");			 
+		out.flush();
 		
-		
-		
-		return "redirect:/";
+		model.addAttribute("cart",session.getAttribute("cart"));
+		return "Buy/buyView";
 	}
 
 	

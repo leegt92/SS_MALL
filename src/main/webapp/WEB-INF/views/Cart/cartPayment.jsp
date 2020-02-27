@@ -21,7 +21,7 @@
 	            pg : 'kakaopay',
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
-	            name : '${p_name} 결제',
+	            name : '상승몰 장바구니 결제',
 			    amount : '<fmt:formatNumber value="${totalprice}" pattern="###,###,###"/>원',
 			    buyer_email : '${email}',
 			    buyer_name : '${payVO.name}',
@@ -61,13 +61,13 @@
 	                        
 	                alert(msg);
               	
-	                location.href='/ssmall/paySuccess?p_name=${p_name}&e_mail=${email}&b_amount=${amount}&b_totalprice=${totalprice}';
+	                location.href='/ssmall/cartPaySuccess';
 	            } else {
 	                
 	            	msg = '결제에 실패하였습니다.';
-	                msg += '\n에러내용 : ' + rsp.error_msg;
+	                msg += '에러내용 : ' + rsp.error_msg;
 	                //실패시 이동할 페이지
-	                location.href="/ssmall/payFail";
+	                location.href="/ssmall/cartPayFail";
 	                alert(msg);
 	            }
 	        });

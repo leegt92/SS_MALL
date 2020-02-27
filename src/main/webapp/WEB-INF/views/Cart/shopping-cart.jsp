@@ -40,51 +40,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <!--===============================================================================================-->	
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script>
-		function execPostCode() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-					// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-					var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-					var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-	
-					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-						extraRoadAddr += data.bname;
-					}
-					// 건물명이 있고, 공동주택일 경우 추가한다.
-					if (data.buildingName !== '' && data.apartment === 'Y') {
-						extraRoadAddr += (extraRoadAddr !== '' ? ', '
-								+ data.buildingName : data.buildingName);
-					}
-					// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-					if (extraRoadAddr !== '') {
-						extraRoadAddr = ' (' + extraRoadAddr + ')';
-					}
-					// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-					if (fullRoadAddr !== '') {
-						fullRoadAddr += extraRoadAddr;
-					}
-	
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					console.log(data.zonecode);
-					console.log(fullRoadAddr);
-	
-					$("[name=addr1]").val(data.zonecode);
-					$("[name=addr2]").val(fullRoadAddr);
-	
-					/* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
-					document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
-					document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
-				}
-			}).open();
-		}
-	</script>
+
 </head>
 <body class="animsition">
 	
@@ -100,7 +56,7 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
@@ -108,13 +64,14 @@
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
+						<a href="notice" class="flex-c-m trans-04 p-lr-25">
+							Notice
 						</a>
 
 						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
 							About Us
-						</a>				
+						</a>
+					
 					</div>
 				</div>
 			</div>
@@ -129,7 +86,7 @@
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
-						<ul class="main-menu">
+						<ul class="main-menu">						
 							<li>
 								<a href="homeview">홈</a>
 							</li>
@@ -147,8 +104,8 @@
 							</li>
 							
 							<li>
-								<a href="masterView">AS</a>
-							</li>
+								<a href="asView">AS</a>
+							</li>						
 						</ul>
 					</div>	
 
@@ -162,92 +119,32 @@
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
-			</div>	
-
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
 			</div>
+			
 		</div>
 
 
-		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<li>
-					<div class="left-top-bar">
-						SSMALL with luxury watches and wallets
-					</div>
-				</li>
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
-						</a>
-
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
-							About Us
-						</a>
-					</div>
-				</li>
-			</ul>
-
-			<ul class="main-menu-m">		
-				<li>
-					<a href="homeview">홈</a>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
-				</li>
-				<li>
-					<a href="productView">상품</a>
-				</li>
-
-				<li>
-					<a href="notice">공지사항</a>
-				</li>
-
-				<li>
-					<a href="companyView">회사소개</a>
-				</li>
-				
-				<li>
-					<a href="asView">AS</a>
-				</li>
 		
-			</ul>
-		</div>
-
+	
 		
 	</header>
+
+
 
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
-				메인
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="productView" class="stext-109 cl8 hov-cl1 trans-04">
-				상품
+			<a href="cartView" class="stext-109 cl4">
+				장바구니
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="/ssmall/productDetail?p_number=${buyVO.p_number}" class="stext-109 cl4">
-				${buyVO.p_description} 
-			</a>
+	
 		</div>
 	</div>
 
@@ -255,132 +152,72 @@
 	<div class="bor10 m-t-50 p-t-43 p-b-40">
 		<!-- Tab01 -->
 		<div class="tab01">
-				
-
 			<!-- Tab panes -->
 			<div class="tab-content p-t-43">
 				<!-- - -->
 				<div class="tab-pane fade show active" id="description"
 					role="tabpanel">
 					<div class="how-pos2 p-lr-15-md">
-					<h4>구매할 상품</h4>
+					<h4>장바구니</h4>
 					<br>
-						<table class="table table-list-search">
-							<tr>
-								<th></th>
-								<th>상품명</th>
-								<th>구매수량</th>
-								<th>구매가격</th>
-							</tr>
-
-							<tr>
-								<td>
-									<img src="productimage/${buyVO.i_name}" alt="IMG" width="100px" height="auto">
-								</td>
-								<td>
-									<a href="/ssmall/productDetail?p_number=${buyVO.p_number}"> ${buyVO.p_description}</a></td>
-								<td>${buyVO.b_amount}</td>
-								<td><fmt:formatNumber value="${buyVO.b_total}"
-										pattern="###,###,###" />원</td>
-							</tr>
-
-						</table>
+						<c:choose>							
+							<c:when test="${cart[0] == NULL}">
+								<table class="table table-list-search">																					
+								
+									<h3>장바구니에 담긴 상품이 없습니다.</h3>
+								
+								</table>
+									
+							</c:when>
+							<c:otherwise>
+							<form:form role="form" action="cartBuy" method="post" >
+							
+							<table class="table table-list-search">	
+								<tr>
+									<th></th>
+									<th>상품명</th>
+									<th>구매수량</th>
+									<th>구매가격</th>
+									<th></th>
+									<th></th>
+								</tr>
+								<c:set var="totalprice" value="0"></c:set>
+									
+								<c:forEach items="${cart}" var="cart">
+								<tr>
+									<td>
+										<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="100px">
+									</td>
+									<td>
+										<a href="/ssmall/productDetail?p_number=${cart.p_number}" style="color: black; text-decoration: none;">
+										${cart.p_description}</a>
+									</td>
+									<td>${cart.c_amount}</td>
+									<td><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>
+									<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
+									<td><a href="cartDelete?c_id=${cart.c_id}">삭제</a></td>
+									<td><input type="checkbox" name="check" value="${cart.c_id}"></td>
+								</tr>
+								</c:forEach>						
+								<tr>
+									<td colspan="6" align="right">
+									<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
+								</tr>								
+								<tr>										
+									<td colspan="6" align="right">								
+									<button type="submit" class="btn icon-btn btn-success">구매하기</button></td>
+								</tr>
+								</table>
+							<input type="hidden" name="totalprice" value="${totalprice}">
+							</form:form>
+							</c:otherwise>
+						</c:choose>	
 					</div>
 				</div>
 			</div>
 			<hr>
-			<!-- 수령자 설정 -->
-			<form:form role="form" commandName="payVO" action="buyDo">
-			<input type="hidden" name="p_number" value="${buyVO.p_number}">
-			<input type="hidden" name="b_amount" value="${buyVO.b_amount}">
-			<input type="hidden" name="b_total" value="${buyVO.b_total}">
-			
-			<div class="tab-content p-t-43">		
-				<div class="tab-pane fade show active" id="description"
-					role="tabpanel">
-					<div class="how-pos2 p-lr-15-md">
-					<h4>수령자 정보</h4>
-					<br>
-					
-					
-						<div class="wrap-input100 validate-input m-b-23">
-							<table class="table table-list-search">
-								<tr>
-									<td>
-										<span class="label-input100">수령인</span>
-										<form:input class="form-control" style="width: 40%;" 
-											name="name" type="text" placeholder="수령인" path="name"></form:input>
-										<form:errors path="name" cssStyle="color:red;"/> 
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										<span class="label-input100">전화번호</span><br>
-										<form:input class="form-control" style="width: 40%;"
-											name="phonenum" type="text" placeholder="전화번호 -없이 입력해주세요" path="phonenum"></form:input>
-										<form:errors path="phonenum" cssStyle="color:red;"/>
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-									
-										<span class="label-input100">배송지</span><br>
-										<input class="form-control" style="width: 40%; display: inline;"
-											placeholder="우편번호" name="addr1" id="addr1" type="text"
-											readonly="readonly">
-										<button type="button" class="btn btn-default"
-												onclick="execPostCode();">
-											<i class="fa fa-search"></i> 우편번호 찾기
-										</button>								
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										<div class="form-group">
-											<input class="form-control" style="width: 70%;" placeholder="도로명 주소"
-												name="addr2" id="addr2" type="text" readonly="readonly" />
-										</div>
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										<div class="form-group">
-											<input class="form-control" style="width: 70%;" placeholder="상세주소" name="addr3"
-												id="addr3" type="text" />
-										</div>
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										<span class="label-input100">배송메모</span><br>
-										<input class="form-control" style="width: 70%;"
-											name="memo" type="text" placeholder="배송 메모를 입력해주세요">								
-									</td>
-								</tr>
-							</table>
-						</div>			
-					</div>
-				</div>
-				
 			</div>
-			
-			
-			<div class="tab-content p-t-43">
-			
-				<div class="how-pos2 p-lr-15-md">
-		       		<button type="submit" class="btn btn-secondary">구매하기</button>
-		            <button type="reset" class="btn btn-secondary">취소하기</button>
-				</div>				
-			</div>
-			
-			</form:form>		
 		</div>
-	</div>
 
 
 	<!-- Footer -->
@@ -644,6 +481,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script> 
 	<span class="bt-basic" id="map"></span>  
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 </body>
 </html>
