@@ -35,6 +35,7 @@ public interface ProductMapper {
 	  @Select("select * from product p, image i where p.p_number = #{p_number} and i.p_number = p.p_number order by i_type asc")
 	  public List<ProductImageVO> selectProductOne2(String p_number);
 	 
+	
 
 
 }

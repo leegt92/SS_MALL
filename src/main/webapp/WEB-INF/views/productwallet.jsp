@@ -314,7 +314,7 @@
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+					<button type = "button" href="productView" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
 					
@@ -990,7 +990,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			
 		});  */
 
-    
+    	$("#wallet1").trigger("click"); 
 		    
 	
 }); 

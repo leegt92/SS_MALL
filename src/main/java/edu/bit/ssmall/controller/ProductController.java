@@ -22,24 +22,43 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping("/productView")
-
 	public String productview(Model model) {
 
 		model.addAttribute("product", productService.selectProductList());
 		
 		return "product";
 	}
+	
+	@RequestMapping("/productViewWatch")
 
+	public String productview2(Model model) {
+
+		model.addAttribute("product", productService.selectProductList());
+		
+		return "productwatch";
+	}
+	
+	@RequestMapping("/productViewWallet")
+
+	public String productview3(Model model) {
+
+		model.addAttribute("product", productService.selectProductList());
+		
+		return "productwallet";
+	}
+	
+	
 	@RequestMapping("/productDetail")
 	public String product_detail(HttpServletRequest request,Model model) {
 		System.out.println("/productDetail");
 		String p_number = request.getParameter("p_number");
 //		ProductImageVO productImage  = productService.selectProductOne(p_number);
-		model.addAttribute("productDetail", productService.selectProductOne(p_number));//»çÁø¸ÞÀÎ,¼­ºê1,2 Æ÷ÇÔ. Áï °ª 3°³ ¸®½ºÆ®·Î¹Þ¾ÒÀ½
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½1,2 ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Î¹Þ¾ï¿½ï¿½ï¿½
 		model.addAttribute("productAmount", productService.selectProductListAmount());
-		//model.addAttribute("product1", productService.selectProductOne2(p_number));//»çÁø1°³. Áï °ª 1°³ ÀÏ¹ÝÀ¸·Î ¹ÞÀ½.
-		System.out.println("ÄÁÆ®·Ñ·¯¸®ÅÏ³Ñ¾î°¨");
+		//model.addAttribute("product1", productService.selectProductOne2(p_number));//ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+		System.out.println("ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½Ï³Ñ¾î°¨");
 		return "productDetail";
 	}
+	
 	
 }

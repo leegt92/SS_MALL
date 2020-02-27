@@ -71,17 +71,12 @@
 							<li>
 								<a href="homeview">홈</a>
 							</li>
-
 							<li>
 								<a href="productView">상품</a>
 							</li>
+						
 							<li>
-								<a href="cartview" >장바구니</a>
-							</li>
-							
-							
-							<li>
-								<a href="notice">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>
@@ -93,7 +88,7 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11  js-show-cart" >
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -354,9 +349,7 @@
 					<p class="stext-108 cl6 p-t-27">안녕하세요. 남자 명품 시계,지갑을 판매하는
 						상승몰입니다. 저희 쇼핑몰은 여러가지 명품을 취급하여 고객님들께서 많은 종류의 명품과 제품을 볼 수 있도록 하였습니다.
 						다른 쇼핑몰보다 체계화된 AS도 받을 수 있으니 즐거운 쇼핑 되시길 바랍니다.</p>
-				</div>
-				
-				
+				</div>	
 			</div>
 		</div>
 	</aside>
@@ -450,14 +443,15 @@
 
 
 	<!-- Slider -->
-	<section class="section-slide">
-		<div class="wrap-slick1 rs2-slick1">
+	<section  class="section-slide ">
+		<div class="wrap-slick1 rs2-slick1" >
 			<div class="slick1">
 				<div class="item-slick1 bg-overlay1" style="background-image: url(images/main01.PNG);"  data-thumb="images/main01.PNG" data-caption="Watch">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+							
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-202 txt-center cl0 respon2">
+								<span class="ltext-202 txt-center cl0 respon2 " >
 									Watch
 								</span>
 							</div>
@@ -467,42 +461,18 @@
 									Best Watch
 								</h2>
 							</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
-					
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600" >
-								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
+
 								<!-- <button id="watch" type="button"class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">Shop Now</button> -->
-=======
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
->>>>>>> origin/dev_sangseung
-<<<<<<< HEAD
-=======
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
->>>>>>> parent of b212a41... 1
-=======
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
->>>>>>> parent of b212a41... 1
-=======
->>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
+						
+							<div id="watch2" class="layer-slick1 animated visible-false " data-appear="zoomIn" data-delay="1600"  data-filter=".시계">
+								<a href="productViewWatch" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
 									Shop Now
-								</a>
+								</a><!-- href="productView" id=abc&pw=1234 -->
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/main02.PNG);" data-thumb="images/main02.PNG" data-caption="Wallet">
+				 <div class="item-slick1 bg-overlay1" style="background-image: url(images/main02.PNG);" data-thumb="images/main02.PNG" data-caption="Wallet">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -516,41 +486,17 @@
 									Best Wallet
 								</h2>
 							</div>
-								
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
-							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600" data-filter=".지갑">
-								<a href="productView/wallet" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-=======
-							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
->>>>>>> origin/dev_sangseung
-<<<<<<< HEAD
-=======
-							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
->>>>>>> parent of b212a41... 1
-=======
-							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
->>>>>>> parent of b212a41... 1
-=======
->>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
+						
+							<div id="wallet2" class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
+								<a href="productViewWallet" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
 									Shop Now
 								</a>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				
+				</div>	
 			</div>
-
-			<div class="wrap-slick1-dots p-lr-10"></div>
+			 <div class="wrap-slick1-dots p-lr-10"></div> 
 		</div>
 	</section>
 
@@ -564,53 +510,35 @@
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner1.PNG" alt="IMG-BANNER">
 
-						<a href="productView" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
+						<a href="productViewWatch" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Watch
 								</span>
-
-								
-							</div>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-							<div class="block1-txt-child2 p-b-4 trans-05" >
-=======
-						</a>
-							<div class="block1-txt-child2 p-b-4 trans-05">
->>>>>>> origin/dev_sangseung
-<<<<<<< HEAD
-=======
-							<div class="block1-txt-child2 p-b-4 trans-05">
->>>>>>> parent of b212a41... 1
-=======
-							<div class="block1-txt-child2 p-b-4 trans-05">
->>>>>>> parent of b212a41... 1
-=======
->>>>>>> 66e033e42b2da6b6d8b71661b8fea2c37c06da22
-								<div class="block1-link stext-101 cl0 trans-09">
+							</div>	
+				
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
-								</div>
 							</div>
-						
-					</div>
+						</div>
+					</a>
 				</div>
+			</div>
 
 				<div class="col-md-6 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner2.PNG" alt="IMG-BANNER">
 
-						<a href="productView" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".지갑">
+						<a href="productViewWallet" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".지갑">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Wallet
 								</span>
 							</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-txt-child2 p-b-4 trans-05" >
 								<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
 								</div>
@@ -634,13 +562,13 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04" >
 								Watch
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
 						</li>
@@ -662,14 +590,13 @@
 						● 고객센터 : 1234-5678
 					</p>
 					
-					<p class="stext-130 cl7 size-201">
-						● 이메일문의 : abcdefg@abcdefg.com
-					</p>
+					<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
+						 abcdefg@abcdefg.com
+					</a></p>
 					
 					<p class="stext-130 cl7 size-201">
 						● FAQ
 					</p>
-					
 					
 				</div> 
 
@@ -679,30 +606,7 @@
 						Directions
 				 </h4>
 				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-								
-				
-				  <!--  <ul>
-					<li class="p-b-10">
-							 <a href="mapview" class="stext-107 cl7 hov-cl1 trans-04">
-								오시는길
-						     </a> 
-				     </li>
-				   </ul>  -->
-
-					 <!-- <p class="stext-130 cl7 size-201">
-						서울시 서대문구 비트동 비트빌딩 201동 201호
-					</p>  -->
-					
-					
-
-					<h4 class="stext-500 cl0 p-b-30">Directions</h4>
-				 		<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-			
-
-			<h4 class="stext-500 cl0 p-b-30">Directions</h4>
-				 		<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-			
-
+									
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
@@ -932,7 +836,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</div>
 		</div>
-	 --></div>  
+	 </div>  
 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -1016,6 +920,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
+  
+		
+<!--===============================================================================================-->
  <script src="js/main.js"></script>
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
@@ -1051,4 +958,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	
 </body>
+
+<!-- <script type="text/javascript"></script> 
+
+<script>
+ $(document).ready(function(){
+	
+	
+	 $('#watch2').click(function(){
+		/*   var a = document.getElementById('watch1');
+		  a.click('#watch1');   */
+	});	  
+	 
+}); 
+
+ 	 
+</script> -->
+ 
 </html>
