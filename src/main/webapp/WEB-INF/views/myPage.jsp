@@ -47,6 +47,9 @@
 .bg-light {
 	background-color: rgba(149, 204, 210, 0.2)!important;
 }
+ ul li {
+		border-bottom: 1px solid #bebebe;
+    }
 </style>
   </head>
 

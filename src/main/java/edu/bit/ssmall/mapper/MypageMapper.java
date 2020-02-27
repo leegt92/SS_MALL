@@ -66,10 +66,10 @@ public interface MypageMapper {
 	@Update("update member set m_password = #{m_password} where m_id = #{m_id}")
 	public void updateMpassword(@Param("m_password")String m_password, @Param("m_id")String m_id);
 	
-	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'문의/건의',sysdate)")
+	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'문의/건의',sysdate,'답변미완료')")
 	public void insertAsk(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
 
-	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'AS요청',sysdate)")
+	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'AS요청',sysdate,'답변미완료')")
 	public void insertAS(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
 	
 	@Delete("delete from member where m_id = #{m_id}")
