@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
@@ -122,11 +122,7 @@
 			</div>
 			
 		</div>
-
-
-		
 	
-		
 	</header>
 
 
@@ -186,14 +182,13 @@
 								<c:forEach items="${cart}" var="cart">
 								<tr>
 									<td>
-										<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="100px">
-									</td>
-									<td>
-										<a href="/ssmall/productDetail?p_number=${cart.p_number}" style="color: black; text-decoration: none;">
-										${cart.p_description}</a>
-									</td>
+										<a href="/ssmall/productDetail?p_number=${cart.p_number}">
+										<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
+										</a>
+									</td>								
+									<td>${cart.p_description}</td>						
 									<td>${cart.c_amount}</td>
-									<td><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>
+									<td><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>									
 									<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
 									<td><a href="cartDelete?c_id=${cart.c_id}">삭제</a></td>
 									<td><input type="checkbox" name="check" value="${cart.c_id}"></td>

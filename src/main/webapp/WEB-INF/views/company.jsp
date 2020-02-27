@@ -41,26 +41,26 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
+					<div class="left-top-bar">						
+						SSMALL with luxury watches and wallets
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
+						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+							Home
+						</a>
+						
+						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+							My
+						</a>
+						
+						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+							Cart
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a>
+						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
+							About Us
+						</a>					
 					</div>
 				</div>
 			</div>
@@ -89,7 +89,7 @@
 								<a href="notice">공지사항</a>
 							</li>
 
-							<li> <!-- class="active-menu" -->
+							<li> 
 								<a href="companyView">회사소개</a>
 							</li>
 							
@@ -123,27 +123,27 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
+						SSMALL with luxury watches and wallets
 					</div>
 				</li>
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
+						<a href="homeview" class="flex-c-m p-lr-10 trans-04">
+							Home
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
+						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
+							My
 						</a>
 
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
+						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
+							cart
 						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
+						
+						<a href="companyView" class="flex-c-m p-lr-10 trans-04">
+							About Us
+						</a>					
 					</div>
 				</li>
 			</ul>
