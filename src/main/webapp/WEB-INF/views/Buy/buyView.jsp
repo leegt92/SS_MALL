@@ -275,10 +275,11 @@
 
 							<tr>
 								<td>
+									<a href="/ssmall/productDetail?p_number=${buyVO.p_number}"> 
 									<img src="productimage/${buyVO.i_name}" alt="IMG" width="100px" height="auto">
+									</a>
 								</td>
-								<td>
-									<a href="/ssmall/productDetail?p_number=${buyVO.p_number}"> ${buyVO.p_description}</a></td>
+								<td>${buyVO.p_description}</td>
 								<td>${buyVO.b_amount}</td>
 								<td><fmt:formatNumber value="${buyVO.b_total}"
 										pattern="###,###,###" />원</td>
