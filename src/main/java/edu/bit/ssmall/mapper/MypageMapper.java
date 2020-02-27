@@ -68,6 +68,12 @@ public interface MypageMapper {
 	
 	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'문의/건의',sysdate,'답변미완료')")
 	public void insertAsk(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
+	
+	@Update("update board set btitle = #{bTitle}, bcontent = #{bContent} where bid = #{bId}")
+	public void updateAskAS(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("bId") String bId);
+	
+	@Delete("delete from board where bid = #{bId}")
+	public void deleteAskAS(@Param("bId") String bId);
 
 	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'AS요청',sysdate,'답변미완료')")
 	public void insertAS(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
@@ -100,11 +106,11 @@ public interface MypageMapper {
 	
 	/*===================================BOARD 관련 SQL문들============================================================*/
 	//한 회원이 작성한 모든 1:1문의글들을 가져오는 SQL문
-	@Select("select * from board where m_number = #{m_number} and btype='문의/건의'")
+	@Select("select * from board where m_number = #{m_number} and btype='문의/건의' ORDER BY bid desc")
 	public List<BoardVO> getAllAskRequest (@Param("m_number") int m_number);
 	//특정 BID에 답변한 게시판 글을 가져오는 SQL문
 	
-	@Select("select * from board where m_number = #{m_number} and btype='AS요청'")
+	@Select("select * from board where m_number = #{m_number} and btype='AS요청' ORDER BY bid desc")
 	public List<BoardVO> getAllASRequest (@Param("m_number") int m_number);
 	
 	@Select("select * from board where banswerno = #{bid} and btype='문의/건의_답변'")
@@ -125,9 +131,9 @@ public interface MypageMapper {
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} ORDER BY bGroup desc, bStep asc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<BoardVO> selectBoardListPage(@Param("m_number") int m_number, @Param("criteria") Criteria criteria);
 	
-	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='문의/건의' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='문의/건의' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<BoardVO> selectAskBoardListPage(@Param("m_number") int m_number, @Param("startNum") int startNum, @Param("endNum") int endNum);
 	
-	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='AS요청' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='AS요청' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<BoardVO> selectASBoardListPage(@Param("m_number") int m_number, @Param("startNum") int startNum, @Param("endNum") int endNum);
 }

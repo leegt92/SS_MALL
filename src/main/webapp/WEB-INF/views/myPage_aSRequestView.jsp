@@ -239,10 +239,18 @@
         <li class="accordion2">
             <c:choose>
             	<c:when test="${aSRequestboards.banswered eq '답변완료'}">
-            		<h3 style="font-size:16px; color:green;" class="accordion3"><c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/></h3>
+            		<h3 style="font-size:16px; color:green;" class="accordion3">
+            		<c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/>
+            		<button onclick="window.location.href='/ssmall/myPage_askRequest2'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button style="position:fixed;left: 1550px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font></button>
+            		</h3>
             	</c:when>
             	<c:otherwise>
-            		<h3 style="font-size:16px; color:red;" class="accordion3"><c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/></h3>
+            		<h3 style="font-size:16px; color:red;" class="accordion3">
+            		<c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/>
+            		<button onclick="window.location.href='/ssmall/myPage_askRequest2'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button style="position:fixed;left: 1550px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font></button>
+            		</h3>
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">

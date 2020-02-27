@@ -239,10 +239,18 @@
         <li class="accordion2">
             <c:choose>
             	<c:when test="${askRequestboards.banswered eq '답변완료'}">
-            		<h3 style="font-size:16px; color:green;" class="accordion3"><c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/></h3>
+            		<h3 style="font-size:16px; color:green;" class="accordion3">
+            		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
+            		<button onclick="window.location.href='/ssmall/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button id = "bbb"  style="position:fixed;left: 1550px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font></button>
+            		</h3>
             	</c:when>
             	<c:otherwise>
-            		<h3 style="font-size:16px; color:red;" class="accordion3"><c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/></h3>
+            		<h3 style="font-size:16px; color:red;" class="accordion3">
+            		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
+            		<button onclick="window.location.href='/ssmall/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button id = "bbb"  style="position:fixed;left: 1550px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font></button>
+            		</h3>
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
@@ -477,6 +485,26 @@
 
 	});
     		
+    $('#bbb').click(function(event){
+    	event.preventDefault();
+    	Swal.fire({
+    		  title: '삭제확인',
+    		  text: "정말 삭제하시겠습니까?",
+    		  icon: 'warning',
+    		  showCancelButton: true,
+    		  confirmButtonColor: '#3085d6',
+    		  cancelButtonColor: '#d33',
+    		  confirmButtonText: '네 삭제하겠습니다'
+    		}).then((result) => {
+    		  if (result.value) {
+    		    Swal.fire(
+    		      '삭제완료!',
+    		      '삭제가 성공적으로 완료되었습니다.',
+    		      'success'
+    		    )
+    		  }
+    })
+});
 			
     		
 	</script>

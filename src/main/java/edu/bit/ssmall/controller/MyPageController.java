@@ -37,6 +37,8 @@ public class MyPageController {
 	 * ============DB 수정사항============================= 1BUY테이블에 주문배송완료여부(B_DONE) 추가
 	 * 2BUY테이블에 주문수량(B_AMOUNT) 추가 3PRODUCT 테이블에 P_IMAGE(대표사진) 추가 4BANSWERNO
 	 * BOARD테이블에 추가. 추가 어디에 답변했는지에 관한 것. 5BANSWERED(답변완료여부) BOARD테이블에 추가.
+	 * 6MEMBER(M_NUMBER)-BOARD(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가
+		7MEMBER(M_NUMBER)-BUY(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가
 	 */
 	
 	@Autowired
@@ -494,4 +496,65 @@ public class MyPageController {
 			}
 	return "myPage_reviseInformation4";
 	}
+	
+	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET)
+	public String myPage_askRequest2(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.updateAskAS(bTitle, bContent, bId);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "myPage_askRequest2";
+
+	}
+	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	public String delete(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+				mypageService.deleteAskAS(bId);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "myPage_askRequestView";
+
+	}
+	
+	
+	
 }

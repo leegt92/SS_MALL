@@ -97,6 +97,14 @@ public class MypageService {
 	public void insertAsk(String bTitle, String bContent, int m_number ) throws Exception{
 		mypageMapper.insertAsk(bTitle, bContent, m_number);
 	}
+	
+	public void updateAskAS(String bTitle, String bContent, String bId ) throws Exception{
+		mypageMapper.updateAskAS(bTitle, bContent, bId);
+	}
+	
+	public void deleteAskAS(String bId) throws Exception{
+		mypageMapper.deleteAskAS(bId);
+	}
 
 	public void insertAS(String bTitle, String bContent, int m_number) throws Exception {
 		mypageMapper.insertAS(bTitle, bContent, m_number);	
