@@ -475,6 +475,7 @@ public class MyPageController {
 	
 	@RequestMapping(value = "/withdrawal.do", method = RequestMethod.GET)
 	public String withdraw(Model model) {
+		System.out.println("GKGKGKGKGK!!!!!!!!");
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    Object principal = auth.getPrincipal();
 		 
@@ -491,7 +492,6 @@ public class MyPageController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return "home";
-
+	return "myPage_reviseInformation4";
 	}
 }

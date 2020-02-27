@@ -248,15 +248,15 @@
 
 
      <script>
-     $("#withdrawFinal").submit(function(event) {
- 	 	event.preventDefault();
+     $(document).ready(function(event) {
 			Swal.fire({
 			icon: 'success',
 			position: 'center',
-			title: '자동로그아웃',
-			text: '자동로그아웃 이후 탈퇴가 정상처리됩니다.',	
+			title: '탈퇴완료',
+			text: '탈퇴가 최종적으로 완료되었습니다.',	
 			}).then(function() {
-				window.location = "/ssmall/withdrawal.do";
+				var elem = document.getElementById('withdrawFinal');
+				elem.submit();
 			});
  	});
 	</script>
