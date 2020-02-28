@@ -144,20 +144,20 @@
 					<form id="submitAskRequest" action="myPage_askRequest2">
 						<input type="hidden" name="bId" value="${bId}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							문의 및 건의사항을 작성해 주세요.
+							수정할 문의 및 건의사항을 작성해 주세요.
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="수정할 글 제목을 입력하세요."
 							style="padding-left: 30px;">
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="수정할 글 내용을 입력하세요" ></textarea>
 						</div>
 
 						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							제출
+							수정
 						</button>
 					</form>
 				</div>
