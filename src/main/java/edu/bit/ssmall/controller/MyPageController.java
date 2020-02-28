@@ -564,6 +564,37 @@ public class MyPageController {
 
 	}
 	
+	@RequestMapping(value = "/myPage_askAS2", method = RequestMethod.GET)
+	public String myPage_askAS2(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.updateAskAS(bTitle, bContent, bId);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "myPage_askAS2";
+
+	}
+	
 	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
 	public String delete(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
@@ -604,6 +635,50 @@ public class MyPageController {
 		}
 
 	    return "redirect:myPage_askRequestView";
+
+
+	}
+	
+	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)
+	public String delete2(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			int totalCount = mypageService.selectAskCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> askRequestboards = mypageService.selectAskBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("askRequestboards", askRequestboards);
+			List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<askRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+				askRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+			
+				mypageService.deleteAskAS(bId);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    return "redirect:myPage_aSRequestView";
 
 
 	}

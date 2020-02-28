@@ -237,29 +237,6 @@
     <ul class="accordion1" style="height: 220px;">
     	<c:forEach items="${askRequestboards}" var="askRequestboards" varStatus="status">
         <li class="accordion2">
-        <script>
-            		function removeCheck() {Swal.fire({
-      				  title: '정말 삭제하시겠습니까?',
-    				  text: "삭제 되면 복구되지 않습니다.",
-    				  icon: 'warning',
-    				  showCancelButton: true,
-    				  confirmButtonColor: '#3085d6',
-    				  cancelButtonColor: '#d33',
-    				  confirmButtonText: '네 삭제하겠습니다.'
-    				}).then((result) => {
-    				  if (result.value) {
-    				    Swal.fire(
-    				      '삭제완료',
-    				      '삭제가 완료되었습니다.',
-    				      'success'
-    				    ).then(function() {
-    				    	window.location.href='/ssmall/delete.do?bId=' + ${askRequestboards.bid};
-	    				});
-    				  }
-    				})
-    			}
-            			
-        </script>
             <c:choose>
             	<c:when test="${askRequestboards.banswered eq '답변완료'}">
             		<h3 style="font-size:16px; color:green;" class="accordion3">
