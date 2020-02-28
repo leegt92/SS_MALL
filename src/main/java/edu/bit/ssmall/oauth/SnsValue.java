@@ -1,6 +1,5 @@
 package edu.bit.ssmall.oauth;
 
-import com.github.scribejava.apis.GoogleApi20;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 
 public class SnsValue implements SnsUrls {

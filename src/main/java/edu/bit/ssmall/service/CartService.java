@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.CartMapper;
-import edu.bit.ssmall.vo.CartVO;
 import edu.bit.ssmall.vo.CartViewVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductImageVO;
@@ -54,9 +53,9 @@ public class CartService {
 		
 	}
 
-	public ArrayList<CartViewVO> smallCartInfo(String m_id) {
+	public ArrayList<CartViewVO> miniCartInfo(String m_id) {
 		
-		return cartMapper.smallCartInfo(m_id);
+		return cartMapper.miniCartInfo(m_id);
 	}
 	
 }

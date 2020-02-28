@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import edu.bit.ssmall.vo.CartVO;
 import edu.bit.ssmall.vo.CartViewVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductImageVO;
@@ -30,7 +29,7 @@ public interface CartMapper {
 	public CartViewVO cartByCid(@Param("c_id")String c_id);
 	
 	@Select("Select * from cart c ,product p,image i, member m where m.m_number = c.m_number and p.p_number = c.p_number and p.p_number = i.p_number and m.m_id = #{m_id}")
-	public ArrayList<CartViewVO> smallCartInfo(String m_id);
+	public ArrayList<CartViewVO> miniCartInfo(String m_id);
 	
 	@Delete("Delete from cart where c_id = #{c_id}")
 	public void cartDelete(@Param("c_id")String c_id);

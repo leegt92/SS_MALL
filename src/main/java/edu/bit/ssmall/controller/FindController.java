@@ -21,6 +21,7 @@ import edu.bit.ssmall.service.FindService;
 import edu.bit.ssmall.valid.PwUpdateValidator;
 import edu.bit.ssmall.vo.MemberVO;
 
+//아이디 비밀번호 찾기 수행할 컨트롤러
 @Controller
 public class FindController {
 	
@@ -33,6 +34,7 @@ public class FindController {
 	@Autowired
 	FindService findService;
 	
+	//아이디찾기
 	@RequestMapping("/findId")
 	public String findId() {
 		System.out.println("아이디 찾는 페이지로");
@@ -40,11 +42,12 @@ public class FindController {
 		return "Find/findId";
 	}
 	
+	//가입한 이메일 입력받음
 	@RequestMapping("/findIdEmail")
 	public String findIdEmail(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String email = request.getParameter("m_email");
-		int result = findService.emailCheck(email);
+		int result = findService.emailCheck(email); //가입한 이메일 count하는 함수
 		
 		if(result == 0) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -53,7 +56,7 @@ public class FindController {
 			out.flush();
 			return "Find/findId";
 		}
-				
+		//있다면 이메일 인증 시킨다.		
 		Random r = new Random();
         int code = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
         
@@ -87,9 +90,9 @@ public class FindController {
             MimeMessageHelper messageHelper = new MimeMessageHelper(message,
                     true, "UTF-8");
 
-           // messageHelper.setFrom(setfrom);// 보내는사람 생략하면 정상작동을 안함
-            messageHelper.setFrom(setfrom, "상승몰");
-            messageHelper.setTo(tomail); // 받는사람 이메일
+         
+            messageHelper.setFrom(setfrom, "상승몰"); //보내는사람 생략하면 정상작동을 안함 , 상승몰로 이름지정
+            messageHelper.setTo(tomail); // 아이디 찾기한 이메일
             messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
             messageHelper.setText(content); // 메일 내용
             
@@ -112,6 +115,7 @@ public class FindController {
 	
 	}
 	
+	//인증코드 확인하기
 	@RequestMapping("/findIdCheck")
 	public String findIdCheck(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("인증코드 확인절차");
@@ -142,7 +146,8 @@ public class FindController {
 	    return "redirect:/findId";
 	      
 	}
-
+	
+	//비밀번호 찾기
 	@RequestMapping("/findPw")
 	public String findPw() {
 		System.out.println("비밀번호 찾는 페이지로");
@@ -150,6 +155,8 @@ public class FindController {
 		return "Find/findPw";
 	}
 	
+	
+	//가입한 이름,아이디,이메일 입력받음.
 	@RequestMapping(value="/findPwEmail", method = RequestMethod.POST)
 	public String findPwEmail(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("가입된정보 확인하기");
@@ -160,7 +167,7 @@ public class FindController {
 		
 		System.out.println(id+"/"+name+"/"+email);
 		
-		int result = findService.IdCheck(id,name,email);
+		int result = findService.IdCheck(id,name,email); //해당 정보가 가입된적이 있는정보인지 확인하는 함수
 		
 		if(result==0) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -169,11 +176,11 @@ public class FindController {
 			out.flush();
 			return "Find/findPw";
 		}
-		
+		//있으면 비밀번호 찾는 이메일인증 
 		Random r = new Random();
         int code = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
         
-        String setfrom = "96jinhyemin@naver.com"; //보내는사람 임일
+        String setfrom = "96jinhyemin@naver.com"; //보내는사람 이메일
         String tomail = email; // 받는 사람 이메일
   
         String title = "비밀번호찾기 인증번호 입니다."; // 제목    
@@ -203,8 +210,8 @@ public class FindController {
             MimeMessageHelper messageHelper = new MimeMessageHelper(message,
                     true, "UTF-8");
 
-           // messageHelper.setFrom(setfrom);// 보내는사람 생략하면 정상작동을 안함
-            messageHelper.setFrom(setfrom, "상승몰");
+         
+            messageHelper.setFrom(setfrom, "상승몰");// 보내는사람 생략하면 정상작동을 안함 상승몰로 이름지정
             messageHelper.setTo(tomail); // 받는사람 이메일
             messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
             messageHelper.setText(content); // 메일 내용
@@ -226,6 +233,7 @@ public class FindController {
 		return "Find/findPwEmail";
 	}
 	
+	//인증코드 확인
 	@RequestMapping(value="/findPwCheck" ,method = RequestMethod.POST)
 	public String findPwCheck(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("인증코드 확인절차");
@@ -259,6 +267,7 @@ public class FindController {
 	      
 	}
 	
+	//입력한 비밀번호를 유효성검사하고 암호화해서 업데이트
 	@RequestMapping(value ="/pwUpdate",method = RequestMethod.POST)
 	public String pwUpdate(Model model, MemberVO memberVO, Errors errors, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("비밀번호 업데이트");
