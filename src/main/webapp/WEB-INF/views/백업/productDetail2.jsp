@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +96,9 @@
         }
 
 </style>
+
 </head>
+
 <body class="animsition">
 	<!-- Header -->
 	<header class="header-v4">
@@ -561,72 +564,7 @@
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
-										<!-- Review -->
-										<%-- 
-										
-											<div class="flex-w flex-t p-b-68">
-												<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-													<img src="images/avatar-01.jpg" alt="AVATAR">
-												</div>
-
-												<div class="size-207">
-													<div class="flex-w flex-sb-m p-b-17">
-														<span class="mtext-107 cl2 p-r-20">
-															<tr>
-																<th>번호 : ${productReply.bid}</th>
-																<br />
-																<th>제목 : ${productReply.btitle}</th>
-																<br />
-																<td><fmt:formatDate value="${productReply.bdate}"
-																		pattern="yyyy-MM-dd" /></td>
-															</tr> <br />																														
-														</span> <span class="fs-18 cl11"> <i
-															class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
-															<i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
-															<i class="zmdi zmdi-star-half"></i>
-														</span>
-													</div>
-
-													<p class="stext-102 cl6">
-														Quod autem in homine praestantissimum atque optimum est,
-														id deseruit. Apud ceteros autem philosophos <br /> 더미.
-														게시판이 아니라 걍 모양세만 낸거임
-													</p>
-												</div>
-											</div> --%>
-										
-
-										<!-- <div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="images/avatar-01.jpg" alt="AVATAR">
-											</div>
-
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande<br/>
-														더미. 게시판이 아니라 걍 모양세만 낸거임
-													</span>
-
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
-												</div>
-
-												<p class="stext-102 cl6">
-													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-													<br/>
-													더미. 게시판이 아니라 걍 모양세만 낸거임
-												</p>
-											</div>
-										</div> -->
-
-										<!-- Add review -->
-										
+																			
 <!-- ----------------------------------------------------구매감상 게시판----------------------------------------------------------------- -->
 
 												<!-- 게시글 작성 -->
@@ -648,15 +586,20 @@
 													</form>																									
 												</div>									
 											</div>
+											
+											
+											
 															<!-- 댓글 출력  -->
-										<c:forEach items="${productReply}" var="productReply" varStatus="status" >
+									<div class="reply_ajax" id="reply_ajax" >
+									<!-- 동기화식 댓글출력을 주석화 -->
+										<%-- <c:forEach items="${productReply}" var="productReply" varStatus="status" >
 											<div class="postRight">
 												<!-- postContents-->
 												<div class="postContents container photo_est_cont">
 													<div class="profile">
 														<p>
 															<span class="gallery_lv">작성자 : ${productReply.m_id},${status.count}</span> 
-															<%-- <a href="delete?p_number=${productReply.p_number}">게시물 삭제</a> --%>
+															<a href="delete?p_number=${productReply.p_number}">게시물 삭제</a>
 															<span class="date"> 작성날짜 : ${productReply.bdate}</span> 														
 														</p>											
 													</div>
@@ -724,7 +667,8 @@
 												</div>
 												<!--//postContents-->													
 											</div>
-											</c:forEach>
+											</c:forEach> --%>
+										</div>
 											
 											<!-- 댓글수정 버튼을 누르면 열리는 창 -->
 											<div id="wrap">
@@ -744,7 +688,35 @@
 											</div>
 
 										<script>
-											//수정
+										
+										$(function(){
+											$(document).on("click","#deleteButton",function(){
+												alert("!");
+												console.log("!아래");												
+												var form = $('#form_' + bid);
+												form.attr("action",
+														"/ssmall/deleteReply");
+												form.attr("method", "get");
+												form.submit();
+												console.log("삭제아래");
+											})
+										})
+										
+										$(function(){
+											$(document).on("click","#test",function(){
+												alert($(this).attr("value"));
+												console.log("!아래");												
+												var form = $('#form_' + $(this).attr("value"));
+												form.attr("action",
+														"/ssmall/deleteReply");
+												form.attr("method", "get");
+												form.submit();
+												console.log("삭제아래");
+											})
+										})
+
+										
+											/* //수정
 											function modifyBoard(bid) {
 												var form = $('#form_' + bid);
 												form.attr("action",
@@ -753,24 +725,33 @@
 												form.submit();
 											}
 
-											//삭제
-											function deleteBoard(bid) {
+											//삭제											
+	
+											/* function deleteBoard(bid){
 												var form = $('#form_' + bid);
 												form.attr("action",
 														"/ssmall/deleteReply");
 												form.attr("method", "get");
 												form.submit();
-											}
+											} 
+											
 											function cmUpdateOpen(bid){
 									            window.name = "parentForm";
 									            window.open("CommentUpdateForm.co?num="+bid,
 									                        "updateForm", "width=570, height=350, resizable = no, scrollbars = no");
 									        }
 											
+											$(function(){
+											$("#check").on("click",function(){
+												alert("이벤트체크");
+											});
+											
+											});
+											
 											var win = window.open("", "PopupWin", "width=500,height=600");
 
 											win.document.write("<p>새창에 표시될 내용 입니다.</p>");
-
+ 											*/
 											
 										</script>
 
@@ -1310,6 +1291,119 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+	<script>	
+	    $(document).ready(function() {   	
+	    	 $.ajax({
+	    		 url : "product_replyAjax2?p_number=${productNum.p_number}",
+	    		/* 삭제버튼이 고장남 ajax를 사용했는데도 새 글을 쓰면 새로고침이 됨.*/
+	    		type:'post',
+	    		 dataType :"json",
+	    		 success : function(data) {
+	    			 console.log(data);
+	    			 /* $.each(data, function(key, value){ */
+	    				 /* console.log('key:'+ key + ', name:' + value.p_number + ',age:' + value.p_name); */
+	    				 console.log('product_replyAjax확인');	
+	    				 
+	    				 var tag="";
+	    				 
+	    				 tag = tag+ "<c:forEach items='${productReply}' var='productReply' varStatus='status' >";
+	    				 tag = tag+ "<div class='postRight'>";
+	    				 tag = tag+ "<div class='postContents container photo_est_cont'>";
+	    				 tag = tag+ "<div class='profile'>";
+	    				 tag = tag+ "<p>";
+	    				 tag = tag+ "<span class='gallery_lv'>"+"작성자 : "+'${productReply.m_id}'+'${status.count}'+"</span>";
+	    				 /* tag = tag+ "<a href='delete?p_number=${productReply.p_number}'>"+"게시물 삭제"+"</a>"; */
+	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+'${productReply.bdate}'+"</span>"	;												
+	    				 tag = tag+ "</p>";											
+	    				 tag = tag+ "</div>";
+
+	    				 tag = tag+ "<div class='pContent'>";
+										
+	    				 tag = tag+ "<div class='summary' style='cursor: pointer;'>";
+	    				 tag = tag+ "<div class='cArea'>";
+	    				 tag = tag+ "<div class='pContent_text'>";
+	    				 tag = tag+ "<h3><div class='tit'>"+'${productReply.btitle}'+"</div></h3><br/>";
+	    				 tag = tag+ "<span class='content-review'>"+'${productReply.bcontent}'+"</span>";
+	    				 tag = tag+ "</div>";
+	    				 tag = tag+ "<div class='pContent_Img img3 photoReview'>";
+	    				 tag = tag+ "<img class='musinsa-gallery-images' src='//image.msscdn.net/data/estimate/1199146_0/gallery_5e439a2f82e05.jpg.list' alt='BRENSON [패키지] Errday'>";
+														
+														
+														tag = tag+ "</div>";
+														tag = tag+ "<div class='clear'></div>";
+														tag = tag+ "</div>";
+														tag = tag+ "</div>";
+
+										tag = tag+ "<div class='detail' style='display: none;'></div>";
+
+										tag = tag+ "<form role='form' method='post' autocomplete='off' id='form_${productReply.bid }'>";
+											
+											tag = tag+ "<input type='hidden' value='${productReply.p_number}'name='p_number'>"; 
+												
+												tag = tag + "<input type='hidden' value='${productReply.bid}' name='bid'>";
+												tag = tag + "<input type='hidden' value='${status.count}' name='status_count'>";
+												
+												
+												tag = tag + "<p>";
+												/* 이 아래부분 수정,삭제 입니다. 만들면서 이것저것 시도하느라 코드가 엉망인점 너그럽게 봐주시면 감사하겠습니다.. */
+												tag = tag + "<button onclick='modifyBoard('${productReply.bid}')'>"+"수정"+"</button><br/>";												
+												/* tag = tag + "<button onclick='deleteBoard('${productReply.bid}')'>"+"삭제"+"</button><br/>"; */
+												tag = tag + "<input type = 'button' id='deleteButton' value='삭제2'>";
+												tag = tag + "<button id = test name = 'test' value='${productReply.bid}'>"+"삭제3"+"</button>";
+												tag = tag + "<button id = 'check'>"+"버튼1"+"</button><br/>";
+												tag = tag + "<a href='#' onclick='cmUpdateOpen(${productReply.bid})'>"+"[수정]"+"</a><br>";
+												
+												tag = tag + "</p>";
+												tag = tag + "</form>";
+								
+												tag = tag + "</div>";
+												tag = tag + "<div class='clear20'></div>";
+									<!--comment-->
+									tag = tag+ "<div class='comments-list'>";
+									tag = tag+ "<a name='#comment_8243670'></a>";
+									tag = tag+ "<div class='comments comments-input' c_idx='8243670' est_type='photo' is_open=''>";
+											
+									tag = tag+"<div class='comment_store cFormTriger'>";
+									tag = tag+"<div class='comment_area'></div>";
+									tag = tag+"<span class='comment_area_btn plain-btn btn active'>";+"댓글작성";
+									tag = tag+"</span>";
+									tag = tag+"</div>";
+									tag = tag+"<tr class='qna_reply_area qa_c3' style='display:none;'>";
+											<!--댓글작성-->
+											tag = tag+"<div class='cFormBox groupType-cForm cFormInput'></div>";
+											<!--//댓글작성-->
+											<!--댓글-->
+											tag = tag+"<div class='comment-post comment_box' style='border: 0px' id='div_8243670' c_idx='8243670' c_type='goods_estimate'>";
+												
+											tag = tag+"</div>";
+											<!--댓글-->
+											tag = tag+"</tr>";
+											tag = tag+"</div>";														
+											tag = tag+"</div>";
+									<!--//comment-->
+									tag = tag+"</div>";
+								<!--//postContents-->													
+								tag = tag+"</div>";
+								tag = tag+"</c:forEach>";
+
+	    				 $("#reply_ajax").append(tag);//이 id로 포문돌린걸 넣어라.
+	    				 
+	    			 /* }); */
+	    			 
+	    		 },
+	    		 error : function(request, status, error) {
+                     console.log(request.responseText);
+                     console.log(error);
+                     console.log(this.url);
+                 }
+	    		 
+	    	 });
+	    
+	    });
+	    
+	   </script>
+
 
 </body>
 </html>
