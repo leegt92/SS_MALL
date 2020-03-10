@@ -38,7 +38,7 @@ public class MyPageController {
 	 * 2BUY테이블에 주문수량(B_AMOUNT) 추가 3PRODUCT 테이블에 P_IMAGE(대표사진) 추가 4BANSWERNO
 	 * BOARD테이블에 추가. 추가 어디에 답변했는지에 관한 것. 5BANSWERED(답변완료여부) BOARD테이블에 추가.
 	 * 6MEMBER(M_NUMBER)-BOARD(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가
-		7MEMBER(M_NUMBER)-BUY(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가 
+		7MEMBER(M_NUMBER)-BUY(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가
 	 */
 	
 	@Autowired
