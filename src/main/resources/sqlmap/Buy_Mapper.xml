@@ -5,10 +5,11 @@
 
 <mapper namespace="edu.bit.ssmall.mapper.BuyMapper">
 			
-	<insert id="buy" parameterType="String">
+	<insert id="buy">
 		<![CDATA[ 
-        Insert into buy(b_number, m_number, p_number, b_amount, b_status, b_totalprice) 
-        values(buy_seq.nextval, #{m_number}, #{p_number},#{b_amount},'결제완료',#{b_totalprice})
+        Insert into buy(b_number, m_number, p_number, b_amount, b_status, b_total, b_kakao_tid, b_memo, b_name, b_phonenum, b_addr) 
+        values(buy_seq.nextval, #{m_number}, #{p_number}, #{amount}, '결제완료', #{totalprice}, #{b_kakao_tid},
+        #{b_memo}, #{b_name}, #{b_phonenum}, #{b_addr})
 		]]>
 	</insert>		
 	

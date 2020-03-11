@@ -245,8 +245,8 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="/ssmall/productDetail?p_number=${buyVO.p_number}" class="stext-109 cl4">
-				${buyVO.p_description} 
+			<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}" class="stext-109 cl4">
+				${productImageVO.p_description} 
 			</a>
 		</div>
 	</div>
@@ -275,13 +275,13 @@
 
 							<tr>
 								<td>
-									<a href="/ssmall/productDetail?p_number=${buyVO.p_number}"> 
-									<img src="productimage/${buyVO.i_name}" alt="IMG" width="100px" height="auto">
+									<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}"> 
+									<img src="productimage/${productImageVO.i_name}" alt="IMG" width="100px" height="auto">
 									</a>
 								</td>
-								<td>${buyVO.p_description}</td>
-								<td>${buyVO.b_amount}</td>
-								<td><fmt:formatNumber value="${buyVO.b_total}"
+								<td>${productImageVO.p_description}</td>
+								<td>${amount}</td>
+								<td><fmt:formatNumber value="${totalprice}"
 										pattern="###,###,###" />원</td>
 							</tr>
 
@@ -291,19 +291,13 @@
 			</div>
 			<hr>
 			<!-- 수령자 설정 -->
-			<form:form role="form" commandName="payVO" action="buyDo">
-			<input type="hidden" name="p_number" value="${buyVO.p_number}">
-			<input type="hidden" name="b_amount" value="${buyVO.b_amount}">
-			<input type="hidden" name="b_total" value="${buyVO.b_total}">
-			
+			<form:form role="form" commandName="payVO" action="buyDo">	
 			<div class="tab-content p-t-43">		
 				<div class="tab-pane fade show active" id="description"
 					role="tabpanel">
 					<div class="how-pos2 p-lr-15-md">
 					<h4>수령자 정보</h4>
-					<br>
-					
-					
+					<br>		
 						<div class="wrap-input100 validate-input m-b-23">
 							<table class="table table-list-search">
 								<tr>

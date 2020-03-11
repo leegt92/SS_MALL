@@ -209,7 +209,7 @@
 								<th>구매가격</th>
 							</tr>
 							
-							<c:forEach items="${cart}" var="cart">
+							<c:forEach items="${cartview}" var="cart">
 							<tr>
 								<td>
 									<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="auto">

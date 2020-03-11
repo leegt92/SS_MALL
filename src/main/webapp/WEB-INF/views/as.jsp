@@ -230,14 +230,14 @@
 						<div class="p-b-63">
 							<h4 style="font-weight: bold;">비트시계 </h4>
 							<br><br>							
-							<p>안녕하세요. 대한민국 시계 명장  xxx 입니다.</p>
+							<p>안녕하세요. 대한민국 시계 명장  김 비트 입니다.</p>
 							<p>1972년부터 명품시계 수리 전문점을 운영하면서 수많은 명품시계의 문제점을 해결하여 기술력을 높였고</p>
 							<p>이 기술력을 바탕으로 새로운 수리법을 개발하였습니다. 또한 명품시계 수리에 필요한 공구를 개발하고 또한 공로를 인정받아</p>
 							<p> 국가로부터 1997년 기능인 최고의 명예인 명장 칭호를 시계부문 최초로 부여 받았습니다. 이후 교수로 재직하여 후진양성에 노력 하였습니다.</p>
 							<p>많은 후진들이 ROLEX, CARTIER를 비롯한 유수의 스위스 시계업체에서 기술자로 재직 중에 있습니다.</p>
 							<p>끝없는 기술 발전과 최고의 만족을 드리겠습니다.</p>
 	   						<br>							
-	   						<p>Hello. Korea's watch master xxx.</p>
+	   						<p>Hello. Korea's watch master Kim Bit.</p>
 							<p>Since 1972, we have operated a luxury watch repair shop to solve the problems of many luxury watches and to improve our technical skills and develop new repair methods based on this technology.</p>
 							<p>In addition, in 1997, the company was awarded the title of the highest honored master of the world for the watch category</p>
 							<p>which was recognized for its contribution to the development of the watch repair industry by developing tools for repairing luxury watches.</p>
@@ -264,12 +264,12 @@
 							<hr>
 							<h4 style="font-weight: bold;">캠프시계 </h4>
 							<br><br>							
-							<p>안녕하세요. 대한민국 시계 명장  xxx 입니다.</p>
+							<p>안녕하세요. 대한민국 시계 명장  이 캠프 입니다.</p>
 							<p>50년 전 도제로 시계수리업계에 입문하여 시계수리 1급 기능사을 취득하였으며 국내 최초 미국 공인고급시계사 자격을 취득하였습니다.</p>
 	   						<p>기능검정 출제 및 기능경기 심사의원과 전국 기능경기 심사위원장을 역임하여 이론과 실기가 완벽하게 준비 되어있습니다.</p>
 	   						<p>시계를 수리하고자 하신다면 시계수리 명장으로써 고객님의 시계를 성실히 수리하여 드릴 것을 약속드립니다.</p>
 	   						<br>							
-	   						<p>Hello. This is Korea's watch master xxx.</p>
+	   						<p>Hello. This is Korea's watch master Lee Camp.</p>
 							<p>Fifty years ago, he entered the watch repair industry as an apprentice and acquired the first-class technician in watch repair.</p>
 							<p>Skilled questions and functional competition judges and chairman of national skill competition judges are perfectly prepared for theory and practical skills.</p>
 							<p>If you would like to have your watch repaired, we promise to repair your watch in good faith as a watchmaker.</p>

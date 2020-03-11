@@ -27,9 +27,8 @@ public class KakaoAPI {
 	private final static String K_REDIRECT_URI = "http://localhost:8282/ssmall/kakao/callback";
 
 	public static String getAuthorizationUrl(HttpSession session) {
-		//카카오로그인창을 띄우게하는 url인데 
-		//방식은 https://kauth.kakao.com/oauth/authorize?client_id=자신의클라이언트아이디
-		//&redirect_uri=자신의콜백url&responset_type=code 이렇게 된다. (지정되있음)
+		//엑세스 토큰 획득
+		
 		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?"
 				+"client_id=" + K_CLIENT_ID + "&redirect_uri="
 				+K_REDIRECT_URI+"&response_type=code";

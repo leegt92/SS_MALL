@@ -57,5 +57,10 @@ public class CartService {
 		
 		return cartMapper.miniCartInfo(m_id);
 	}
+
+	public String getP_name(int p_number) {
+		// TODO Auto-generated method stub
+		return cartMapper.getP_name(p_number);
+	}
 	
 }

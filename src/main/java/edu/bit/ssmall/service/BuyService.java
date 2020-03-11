@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.BuyMapper;
-import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+import edu.bit.ssmall.vo.ProductImageVO;
 
 @Service
 public class BuyService {
@@ -13,28 +13,24 @@ public class BuyService {
 	@Autowired
 	BuyMapper buyMapper;
 	
-	public BuyVO productinfo(String p_number) {
+	public ProductImageVO productinfo(String p_number) {
 		
 		return buyMapper.productinfo(p_number);
 	}
 
+	public void buy(String m_number, String p_number, String amount, String totalprice, String b_kakao_tid, String b_memo,
+			String b_name, String b_phonenum, String b_addr) {
+		//구매 
+		buyMapper.buy(m_number, p_number, amount, totalprice, b_kakao_tid, b_memo, b_name, b_phonenum, b_addr);
+		
+		//재고 및 판매량 업데이트		
+		buyMapper.updateProduct(p_number,amount);
+		
+	}
+
 	public MemberVO memberInfo(String m_id) {
-		return buyMapper.memberInfo(m_id);	
-	}
-
-	public String productName(String p_number) {
 		
-		return buyMapper.productName(p_number);
-	}
-
-	public void buyOne(String p_name, String e_mail, String b_amount, String b_totalprice) {
-		String p_number = buyMapper.productNum(p_name);
-		String m_number = buyMapper.memberNum(e_mail);
-		System.out.println(b_amount);
-		System.out.println(b_totalprice);
-		
-		buyMapper.buy(p_number,m_number,b_amount,b_totalprice);
-		
+		return buyMapper.memberInfo(m_id);
 	}
 
 }

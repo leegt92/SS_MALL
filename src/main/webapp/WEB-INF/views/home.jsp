@@ -51,7 +51,10 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
 <script type="text/javascript">
+
 	function numberFormat(inputNumber) {
 	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -110,19 +113,43 @@
 			}
 		})
 	})
-	
-	
-
 </script>
 
-
-
-
-</head>
-
-
-<body class="animsition">
+<c:choose>
+	<c:when test="${error eq 'error'}">
+		<script>
+			alert('${msg}');
+		</script>
+		<% 
+			session.removeAttribute("error");
+			session.removeAttribute("msg");
+		%>
+	</c:when>
 	
+	<c:when test="${success eq 'success'}">
+		<script>
+			alert('결제가 완료되었습니다.');
+		</script>
+		<% session.removeAttribute("success"); %>
+	</c:when>
+	
+	<c:when test="${cancel eq 'cancel'}">
+		<script>
+			alert('결제가 취소되었습니다.');
+		</script>
+		<% session.removeAttribute("cancel"); %>
+	</c:when>
+	
+	<c:when test="${fail eq 'fail'}" >
+		<script>
+			alert('결제를 실패하였습니다..');
+		</script>
+		<% session.removeAttribute("fail"); %>
+	</c:when>
+
+</c:choose>
+</head>
+<body class="animsition">
 	<!-- Header -->
 	<header class="header-v3">
 		<!-- Header desktop -->
