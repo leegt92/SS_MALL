@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -94,7 +94,7 @@
 							</li>
 						
 							<li>
-								<a href="notice">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>
@@ -596,7 +596,7 @@
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg-2 p-b-50">
 					<h4 class="stext-500 cl0 p-b-30">
 						Category
 					</h4>
@@ -623,67 +623,61 @@
 						Help
 					</h4>
 
-					<p class="stext-130 cl7 size-201">
-						● 대표 전화번호: 02-1234-5678
-					</p>
-					
-					<p class="stext-130 cl7 size-201">
-						● 고객센터 : 1234-5678
-					</p>
-					
-					<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
-						 abcdefg@abcdefg.com
-					</a></p>
-					
-					<p class="stext-130 cl7 size-201">
-						● FAQ
-					</p>
+
+						<p class="stext-130 cl7 size-201">
+							● 대표 전화번호: 02-1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">
+							● 고객센터 : 1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
+						 	abcdefg@abcdefg.com
+						</a></p>
+						<p class="stext-130 cl7 size-201">
+							● FAQ
+						</p>
 					
 					
 				</div> 
 
-				<div class="col-sm-3 col-lg-50 p-b-40" >
-
+				<div class="col-sm-2 col-lg-50 p-b-40" >
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
-				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+						
 					
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
+			</div>
+				
+				<div class="col-sm-2 col-lg-40 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						SNS Page
+				 	</h4>
+				 		
+					<div class="p-t-10">			
+						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<i class="fa fa-facebook"></i>
+									</a>
+					
+						
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-instagram"></i>
+							</a>
+					
+					
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 				
 				  <div class="col-sm-6 col-lg-3 p-b-50">
 				  	<img src="images/icons/mainlogo.png" width="500">
-					<!-- <h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
-
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form> -->
 				</div>  
 			</div>
+			
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">

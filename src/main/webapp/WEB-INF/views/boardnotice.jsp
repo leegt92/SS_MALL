@@ -9,7 +9,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -36,6 +36,7 @@
 	#notice{
 		width:1000px;
 		margin: 0 auto;
+		
 	}
 	#notice h1{
 	 text-align:center;
@@ -91,7 +92,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="homeview" class="logo">
 						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
@@ -112,11 +113,11 @@
 							</li>
 			
 							<li>
-								<a href="/">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 
 							<li> <!-- class="active-menu" -->
-								<a href="blogview">회사소개</a>
+								<a href="companyView">회사소개</a>
 							</li>
 		
 						</ul>
@@ -221,12 +222,12 @@
 				
 				
 				<li>
-					<a href="">공지사항</a>
+					<a href="boardnoticeView">공지사항</a>
 				</li>
 				
 
 				<li>
-					<a href="blogview">회사소개</a>
+					<a href="companyView">회사소개</a>
 				</li>
 
 				<!-- <li>
@@ -257,7 +258,7 @@
 	
 	
 		<div id="notice">
-		 	<h1 class="m-5" >공지사항</h1>
+		 	<h1 class="m-5">공지사항</h1>
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -283,10 +284,29 @@
 				</tbody>
 				<!-- <tr>
 					<td colspan="5"> <a href="write_view">글작성</a> </td>
-				</tr> -->
-				
+				</tr> -->	
 			</table>
-			<ul id="button" class="pagination m-5 flex-c-m" >
+			<ul class="pagination m-5 flex-c-m" >
+				
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="boardnoticeView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="boardnoticeView${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+			</ul>
+			
+					
+			 <!-- <ul id="button" class="pagination m-5 flex-c-m" >
 			  <li class="page-item"><a class="page-link" href="#">이전</a></li>
 			  <li class="page-item"><a class="page-link" href="#">1</a></li>
 			  <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -294,21 +314,15 @@
 			  <li class="page-item"><a class="page-link" href="#">4</a></li>
 			  <li class="page-item"><a class="page-link" href="#">5</a></li>
 			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-			</ul>
+			</ul>  -->
 		</div>
-
-	
-							
-								
-
-
 
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg-2 p-b-50">
 					<h4 class="stext-500 cl0 p-b-30">
 						Category
 					</h4>
@@ -352,24 +366,36 @@
 					
 				</div> 
 
-				<div class="col-sm-3 col-lg-50 p-b-40" >
+				<div class="col-sm-2 col-lg-50 p-b-40" >
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
 				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-								
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
+						
+					
+			</div>
+				
+				<div class="col-sm-2 col-lg-40 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						SNS Page
+				 	</h4>
+				 		
+					<div class="p-t-10">			
+						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<i class="fa fa-facebook"></i>
+									</a>
+					
+						
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-instagram"></i>
+							</a>
+					
+					
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 				
@@ -377,6 +403,7 @@
 				  	<img src="images/icons/mainlogo.png" width="500">
 				</div>  
 			</div>
+			
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
@@ -499,6 +526,10 @@ $(document).ready(function() {
 			})
 		});
 	</script>
+<!--===============================================================================================-->	
+	<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<script>

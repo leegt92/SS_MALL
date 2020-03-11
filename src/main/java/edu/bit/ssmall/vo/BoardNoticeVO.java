@@ -3,7 +3,7 @@ package edu.bit.ssmall.vo;
 
 import java.sql.Timestamp;
 
-public class BoardVO {
+public class BoardNoticeVO {
 	
 	 private String bId; 	 // 공지사항 아이디
 	 private String bTitle;	 // 공지사항 타이틀
@@ -21,11 +21,11 @@ public class BoardVO {
 	 private int m_number; 	 // 공지사항 회원번호
 	 private int p_number; 	 // 공지사항 상품번호
 	 
-	 public BoardVO() {}
+	 public BoardNoticeVO() {}
 	 
 	 
 
-	public BoardVO(String bId, String bTitle, String bName, Timestamp bDate, int bHit, String bContent, int bStep,
+	public BoardNoticeVO(String bId, String bTitle, String bName, Timestamp bDate, int bHit, String bContent, int bStep,
 			int bIndent, int bGroup, int bTotalLike, String bType, int bTotalrepot, int m_number, int p_number) {
 		
 		this.bId = bId;

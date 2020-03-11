@@ -9,7 +9,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -47,11 +47,7 @@
 	
 	 
 	}
-	
-	
-	 
-
-        
+       
 </style>
 </head>
 <body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
@@ -91,7 +87,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="homeview" class="logo">
 						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
@@ -295,18 +291,15 @@
 						<th> 이름 </th>
 						<td> <input type="text" name="bName" value="${content_view.bName}"></td>
 					</tr>--%>
-					<tr>
-						<th></th>
-						
-					</tr>
+					
 					 <tr >
 					 	
-						<th colspan="2">제목 </th>
+						<th >제목 </th>
 						<td>${content_view.bTitle}</td>
 					</tr>  
 					  <tr>
 					    
-						 <th colspan="2">내용</th> 
+						 <th >내용</th> 
 						<td>${content_view.bContent}</td>
 						
 					</tr> 
@@ -330,7 +323,7 @@
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg-2 p-b-50">
 					<h4 class="stext-500 cl0 p-b-30">
 						Category
 					</h4>
@@ -374,24 +367,36 @@
 					
 				</div> 
 
-				<div class="col-sm-3 col-lg-50 p-b-40" >
+				<div class="col-sm-2 col-lg-50 p-b-40" >
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
 				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-								
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
+						
+					
+			</div>
+				
+				<div class="col-sm-2 col-lg-40 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						SNS Page
+				 	</h4>
+				 		
+					<div class="p-t-10">			
+						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<i class="fa fa-facebook"></i>
+									</a>
+					
+						
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-instagram"></i>
+							</a>
+					
+					
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 				
@@ -399,6 +404,7 @@
 				  	<img src="images/icons/mainlogo.png" width="500">
 				</div>  
 			</div>
+			
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
@@ -432,7 +438,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</footer>
-	
 		
 
 

@@ -19,18 +19,15 @@ public class HomeController {
 
 	}	
 	
-	@RequestMapping(value = "/homeview", method = RequestMethod.GET)
-	public String home2(Model model) {
-
-		return "home";
-
-
-	}
-
+	 @RequestMapping(value = "/homeview", method = RequestMethod.GET) 
+	 public String home2(Model model) {
+	 
+	  return "home";
+	 
+	 
+	 }
 	
 
-
-	
 	@RequestMapping(value = "/AccessDenine", method = RequestMethod.GET)
 	public String AccessDenine(Model model) {
 
