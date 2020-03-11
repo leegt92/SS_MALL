@@ -54,9 +54,8 @@
   </head>
 
   <body>
-
   
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -82,7 +81,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style="width:320px;top: 23px;">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -239,41 +238,6 @@
       feather.replace()
     </script>
 
-<<<<<<< HEAD
-    
-=======
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
-   
->>>>>>> origin/dev_hyemin
+  
   </body>
 </html>

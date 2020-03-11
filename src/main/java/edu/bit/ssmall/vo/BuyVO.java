@@ -3,20 +3,20 @@ package edu.bit.ssmall.vo;
 import java.sql.Date;
 
 public class BuyVO {
-	
+
 	private int b_number; //구매번호
 	private int m_number; //회원번호
 	private int p_number; //상품번호
 	private Date b_date; //구매일자	
 	private int b_amount; //구매수량
-	private String b_status; //구매수량
+	private String b_status; //상태
 	private int b_total; // 구매총가격
 	private String b_kakao_tid; //카카오페이 결제고유번호
 	private String b_memo; //배송메시지
 	private String b_name; //수령인
 	private String b_phonenum;//수령인 전화번호
 	private String b_addr;//수령받을 주소
-	
+	private String b_done;
 	public int getB_number() {
 		return b_number;
 	}
@@ -89,13 +89,19 @@ public class BuyVO {
 	public void setB_addr(String b_addr) {
 		this.b_addr = b_addr;
 	}
+	public String getB_done() {
+		return b_done;
+	}
+	public void setB_done(String b_done) {
+		this.b_done = b_done;
+	}
+	
 	@Override
 	public String toString() {
 		return "BuyVO [b_number=" + b_number + ", m_number=" + m_number + ", p_number=" + p_number + ", b_date="
 				+ b_date + ", b_amount=" + b_amount + ", b_status=" + b_status + ", b_total=" + b_total
 				+ ", b_kakao_tid=" + b_kakao_tid + ", b_memo=" + b_memo + ", b_name=" + b_name + ", b_phonenum="
-				+ b_phonenum + ", b_addr=" + b_addr + "]";
+				+ b_phonenum + ", b_addr=" + b_addr + ", b_done=" + b_done + "]";
 	}
-	
-	
+
 }

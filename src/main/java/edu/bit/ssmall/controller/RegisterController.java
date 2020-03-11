@@ -168,7 +168,7 @@ public class RegisterController {
 	     }    
 	}
 	
-	//회원가입 시작
+
 	@RequestMapping("/register.do")
 	public String registerDo(HttpServletRequest request,MemberVO memberVO, Errors errors, Model model, HttpServletResponse response) throws Exception{
 		System.out.println("회원가입시작");

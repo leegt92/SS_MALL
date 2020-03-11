@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -54,9 +53,8 @@
   </head>
 
   <body>
-
   
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -82,7 +80,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style="width:320px;top: 23px;">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -101,7 +99,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_orderedList">
                   <span data-feather="shopping-cart"></span>
-                  <b>▶나의 주문 내역</b>
+                  <b>나의 주문 내역</b>
                 </a>
               </li>
               <li class="nav-item">
@@ -113,7 +111,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
-                  <b>1:1 문의</b>
+                  <b>▶1:1 문의</b>
                 </a>
               </li>
               </li>
@@ -127,100 +125,107 @@
           </div>
         </nav>
 		
-		<!-- Shoping Cart -->
-	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
-				bottom: 70px;
-				right: 50px;
+	<!-- Content page -->
+	<section class="bg0 p-t-104 p-b-116" style="
+	    margin-left: 0px;
+	    margin-top: 100px;
+	    padding-top: 0px;
+	    padding-left: 0px;
+	    position: fixed;
+	    left: 400px;
+	    ">
+		<div class="container" >
+			<div class="flex-w flex-tr">
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
+				width:1142px; height:527px; style="
+				 width: 1142px;
+   				 height: 527px;
 				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
-					width: 1000px;
-					">
-						<div class="wrap-table-shopping-cart">
-						<c:set var="hap" value="0"/>
-							<table class="table-shopping-cart">
-								<tr class="table_head">
-									<th class="column-1">상품명</th>
-									<th class="column-2"></th>
-									<th class="column-3">상품가격</th>
-									<th class="column-4">구매수량</th>
-									<th class="column-5">총구매가격</th>
-									<th class="column-6" style="padding-left:50px">구매일자</th>
-								</tr>		
-								<c:forEach items="${b_numbers}" var="b_number" varStatus="status">
-								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="productimage/<c:out value = "${p_images[status.index]}"/>" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2"><c:out value = "${p_names[status.index]}"/></td>
-									<td class="column-3"><fmt:formatNumber value="${p_prices[status.index]}" pattern="#,###" />원</td>
-									<td class="column-4">총 <c:out value = "${b_amounts[status.index]}"/>개</td>
-									<td class="column-5"><fmt:formatNumber value="${p_prices[status.index]*b_amounts[status.index]}" pattern="#,###" />원</td>
-									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
-									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
-								</tr>
-								</c:forEach>
-							</table>
+					<form id="submitAskRequest" action="myPage_askRequest">
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							문의 및 건의사항을 작성해 주세요.
+						</h4>
+
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."
+							style="padding-left: 30px;">
 						</div>
 
-						
-					</div>
+						<div class="bor8 m-b-30">
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
+						</div>
+
+						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							제출
+						</button>
+					</form>
 				</div>
 
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style =
-					"height: 900px;
-					width: 130px;
-					padding-left: 15px;
-					left: 250px;
-					bottom:70px;
+				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md" style="
+					padding-left: 0px;
+					padding-right: 0px;
+					height: 162px;
+					width: 1142px;
 					">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
-						<h4 class="mtext-109 cl2 p-b-30">
-							<font size="5em">회원님의 총 주문금액</font>
-						</h4>
-						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
-							<div class="size-208" style=" width: 90px;">
-								<span class="mtext-101 cl2">
-									<font size="6em">Total:</font>
-								</span>
-							</div>
+					<div class="flex-w w-full p-b-42" style="
+					    padding-bottom: 10px;
+					    width: 300px;">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-map-marker"></span>
+						</span>
 
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									<font size="6em"><fmt:formatNumber value="${hap}" pattern="#,###" />원</font>
-								</span>
-							</div>
-							<c:if test="${hap == 0}"><font size="5em" color="black">최근 주문내역이 없습니다.</font></c:if>
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								주소
+							</span>
+
+							<p class="stext-115 cl6 size-213 p-t-18">
+								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+							</p>
 						</div>
 					</div>
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
-						<h4 class="mtext-109 cl2 p-b-30">
-							<font size="5em">회원님의 사용가능 포인트</font>
-						</h4>
-						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
-							<div class="size-208" style=" width: 90px;">
-								<span class="mtext-101 cl2">
-									<font size="6em">Point:</font>
-								</span>
-							</div>
 
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									<font size="6em"><fmt:formatNumber value="${m_point}" pattern="#,###" />원</font>
-									<br/>
-								</span>
-							</div>
-							
+					<div class="flex-w w-full p-b-42" style="
+						    width: 300px;
+						    padding-left: 100px;">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-phone-handset"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								전화번호
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								+1 800 1236879
+							</p>
+						</div>
+					</div>
+
+					<div class="flex-w w-full" style="
+						    padding-bottom: 50px;
+						    padding-left: 100px;
+						">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								이메일주소
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								contact@example.com
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</section>
+	
        
       </div>
     </div>
@@ -232,48 +237,46 @@
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
-
-<<<<<<< HEAD
-    
-=======
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
+    	
+	    $("#submitAskRequest").submit(function(event) {
+	    		var a1 = document.getElementById("bTitle").value;
+	    		var a2 = document.getElementById("bContent").value;
+	    		if(a1 == "" || a2 == "") {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'error',
+	    				position: 'center',
+	    				title: '글 제목 및 글 내용 미입력',
+	    				text: '글 제목과 글 내용을 모두 입력해 주십시오.',	
+	    			})
+	    		}
+	    		else {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'success',
+	    				position: 'center',
+	    				title: '문의신청 완료',
+	    				text: '문의신청이 완료되었습니다.',	
+	    				}).then(function() {
+	    					var elem = document.getElementById('submitAskRequest');
+	    					elem.submit();
+	    				});
+	    		}
+				
+	    });
+    		
+			
+    		
+	</script>
+
    
->>>>>>> origin/dev_hyemin
   </body>
 </html>

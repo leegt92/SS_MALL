@@ -8,8 +8,11 @@ import edu.bit.ssmall.vo.ProductVO;
 
 
 
+
+
 public interface ProductMapper {
 	
+
 
 	@Select("select * from product p , image i where p.p_number = i.p_number and i.i_type = '1' order by p_name desc")
 	public List<ProductImageVO> selectProductList();
@@ -38,5 +41,6 @@ public interface ProductMapper {
 	  @Select("Select * from product where p_number = #{p_number}")
 	  public ProductVO productOne(String p_number);
 	 
+
 
 }

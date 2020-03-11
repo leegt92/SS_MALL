@@ -1,5 +1,6 @@
 package edu.bit.ssmall.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.ProductVO;
+
 
 /**
  * Handles requests for the application home page.
@@ -20,12 +22,14 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping("/productView")
+
 	public String productview(Model model) {
 
 		model.addAttribute("product", productService.selectProductList());
 		
 		return "product";
 	}
+
 	@RequestMapping("/productDetail")
 	public String product_detail(HttpServletRequest request,Model model) {
 		System.out.println("/productDetail");

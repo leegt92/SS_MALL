@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -47,16 +46,12 @@
 .bg-light {
 	background-color: rgba(149, 204, 210, 0.2)!important;
 }
- ul li {
-		border-bottom: 1px solid #bebebe;
-    }
 </style>
   </head>
 
   <body>
-
   
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -70,19 +65,14 @@
      
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
-          	<form id="logout" action="logout" method="POST">
-          							Sign out
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
-			</form>
-		</a>
+          <a class="nav-link" href="#">Sign out</a>
         </li>
       </ul>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style="width:320px;top: 23px;">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -95,13 +85,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
-                  <b>회원 정보 수정</b>
+                  <b>▶회원 정보 수정</b>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_orderedList">
                   <span data-feather="shopping-cart"></span>
-                  <b>▶나의 주문 내역</b>
+                  <b>나의 주문 내역</b>
                 </a>
               </li>
               <li class="nav-item">
@@ -111,14 +101,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_askRequestView">
+                <a class="nav-link" href="/ssmall/myPage_askRequest">
                   <span data-feather="users"></span>
                   <b>1:1 문의</b>
                 </a>
               </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Reports
+                </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_aSRequestView">
+                <a class="nav-link" href="/ssmall/myPage_askAS">
                   <span data-feather="layers"></span>
                   <b>A/S 서비스 신청</b>
                 </a>
@@ -127,101 +122,37 @@
           </div>
         </nav>
 		
-		<!-- Shoping Cart -->
-	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
-				bottom: 70px;
-				right: 50px;
-				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
-					width: 1000px;
-					">
-						<div class="wrap-table-shopping-cart">
-						<c:set var="hap" value="0"/>
-							<table class="table-shopping-cart">
-								<tr class="table_head">
-									<th class="column-1">상품명</th>
-									<th class="column-2"></th>
-									<th class="column-3">상품가격</th>
-									<th class="column-4">구매수량</th>
-									<th class="column-5">총구매가격</th>
-									<th class="column-6" style="padding-left:50px">구매일자</th>
-								</tr>		
-								<c:forEach items="${b_numbers}" var="b_number" varStatus="status">
-								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="productimage/<c:out value = "${p_images[status.index]}"/>" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2"><c:out value = "${p_names[status.index]}"/></td>
-									<td class="column-3"><fmt:formatNumber value="${p_prices[status.index]}" pattern="#,###" />원</td>
-									<td class="column-4">총 <c:out value = "${b_amounts[status.index]}"/>개</td>
-									<td class="column-5"><fmt:formatNumber value="${p_prices[status.index]*b_amounts[status.index]}" pattern="#,###" />원</td>
-									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
-									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
-								</tr>
-								</c:forEach>
-							</table>
-						</div>
+		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
+		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form id="login" action="myPage_reviseInformation" class="login100-form validate-form" method="GET">
+					
 
+					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px;">
+						<span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 330px;"><font size="5em"><b>비밀번호를 다시 입력해 주세요.</b></font></span>
+						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="" maxlength="20" style="
+    position:fiexd;
+    height: 30px;
+    border:1px solid black;
+    margin-top: 30px;
+    " />
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					<br>
+					<div class="flex-c-m" style="position:fixed;top: 550px;left: 975px;">
+						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
 						
+											
 					</div>
-				</div>
+					
 
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style =
-					"height: 900px;
-					width: 130px;
-					padding-left: 15px;
-					left: 250px;
-					bottom:70px;
-					">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
-						<h4 class="mtext-109 cl2 p-b-30">
-							<font size="5em">회원님의 총 주문금액</font>
-						</h4>
-						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
-							<div class="size-208" style=" width: 90px;">
-								<span class="mtext-101 cl2">
-									<font size="6em">Total:</font>
-								</span>
-							</div>
-
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									<font size="6em"><fmt:formatNumber value="${hap}" pattern="#,###" />원</font>
-								</span>
-							</div>
-							<c:if test="${hap == 0}"><font size="5em" color="black">최근 주문내역이 없습니다.</font></c:if>
-						</div>
-					</div>
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
-						<h4 class="mtext-109 cl2 p-b-30">
-							<font size="5em">회원님의 사용가능 포인트</font>
-						</h4>
-						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
-							<div class="size-208" style=" width: 90px;">
-								<span class="mtext-101 cl2">
-									<font size="6em">Point:</font>
-								</span>
-							</div>
-
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									<font size="6em"><fmt:formatNumber value="${m_point}" pattern="#,###" />원</font>
-									<br/>
-								</span>
-							</div>
-							
-						</div>
-					</div>
-				</div>
+				
+					
+					
+				</form>
 			</div>
 		</div>
-	</form>
-       
+	</div>
       </div>
     </div>
 
@@ -232,48 +163,24 @@
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
-
-<<<<<<< HEAD
-    
-=======
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
-   
->>>>>>> origin/dev_hyemin
+    Swal.fire({
+		icon: 'error',
+		position: 'center',
+		title: '비밀번호 불일치',
+		text: '비밀번호를 다시 입력해 주세요.',	
+		}).then(function() {
+			window.location = "/ssmall/myPage_reviseInformation";
+		});
+	</script>
+
+    
   </body>
 </html>

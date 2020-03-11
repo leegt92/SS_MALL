@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -54,7 +55,6 @@
   </head>
 
   <body>
-
   
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
@@ -82,7 +82,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style="width:320px;top: 23px;">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -101,13 +101,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_orderedList">
                   <span data-feather="shopping-cart"></span>
-                  <b>▶나의 주문 내역</b>
+                  <b>나의 주문 내역</b>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_shoppingList">
                   <span data-feather="shopping-cart"></span>
-                  <b>나의 구매 내역</b>
+                  <b>▶나의 구매 내역</b>
                 </a>
               </li>
               <li class="nav-item">
@@ -131,13 +131,8 @@
 	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
-				bottom: 70px;
-				right: 50px;
-				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
-					width: 1000px;
-					">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style=" bottom: 70px; right: 50px;">
+					<div class="m-l-25 m-r--38 m-lr-0-xl" style=" width: 1000px;">
 						<div class="wrap-table-shopping-cart">
 						<c:set var="hap" value="0"/>
 							<table class="table-shopping-cart">
@@ -166,10 +161,9 @@
 								</c:forEach>
 							</table>
 						</div>
-
-						
 					</div>
 				</div>
+				
 
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style =
 					"height: 900px;
@@ -180,7 +174,7 @@
 					">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
 						<h4 class="mtext-109 cl2 p-b-30">
-							<font size="5em">회원님의 총 주문금액</font>
+							<font size="5em">회원님의 누적 구매금액</font>
 						</h4>
 						<div class="flex-w flex-t p-t-27 p-b-33" style="width: 330px;">
 							<div class="size-208" style=" width: 90px;">
@@ -192,9 +186,11 @@
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
 									<font size="6em"><fmt:formatNumber value="${hap}" pattern="#,###" />원</font>
+									<br/>
 								</span>
 							</div>
-							<c:if test="${hap == 0}"><font size="5em" color="black">최근 주문내역이 없습니다.</font></c:if>
+							
+							<c:if test="${hap == 0}"><font size="5em" color="black">아직 구매내역이 없습니다.</font></c:if>
 						</div>
 					</div>
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
@@ -238,42 +234,6 @@
     <script>
       feather.replace()
     </script>
-
-<<<<<<< HEAD
     
-=======
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
-   
->>>>>>> origin/dev_hyemin
   </body>
 </html>
