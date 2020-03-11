@@ -207,20 +207,27 @@
 								<th>상품명</th>
 								<th>구매수량</th>
 								<th>구매가격</th>
+								
 							</tr>
-							
-							<c:forEach items="${cartview}" var="cart">
+							<c:set var="totalprice" value="0"></c:set>
+							<c:forEach items="${cart}" var="cart">
 							<tr>
 								<td>
-									<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="auto">
+									<a href="/ssmall/productDetail?p_number=${cart.p_number}">
+										<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
+									</a>	
 								</td>
-								<td>
-									<a href="/ssmall/productDetail?p_number=${cart.p_number}"> ${cart.p_description}</a></td>
+								<td>${cart.p_description}</td>
 								<td>${cart.c_amount}</td>
 								<td><fmt:formatNumber value="${cart.c_grandtotal}"
 										pattern="###,###,###" />원</td>
+								<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
 							</tr>
 							</c:forEach>
+							<tr>
+								<td colspan="4" align="right">
+								<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
+							</tr>	
 						</table>
 					</div>
 				</div>
