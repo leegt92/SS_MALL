@@ -121,7 +121,7 @@
                   <b>1:1 문의</b>
                 </a>
               </li>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_aSRequestView">
                   <span data-feather="layers"></span>
