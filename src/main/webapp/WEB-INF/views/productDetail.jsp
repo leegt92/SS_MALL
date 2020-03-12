@@ -607,13 +607,11 @@
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="images/avatar-01.jpg" alt="AVATAR">
-											</div>
-
+												<img src="/ssmall/productimage/watch9.PNG" alt="AVATAR">																						
 											<div class="size-207">
 												<div class="flex-w flex-sb-m p-b-17">
 													<span class="mtext-107 cl2 p-r-20">
-														Ariana Grande<br/>
+														시계<br/>
 														더미. 게시판이 아니라 걍 모양세만 낸거임
 													</span>
 

@@ -66,6 +66,16 @@ public class MypageService {
 		return mypageMapper.getMpoint(m_id);
 	}
 	
+	public String getMnaver(String m_id) throws Exception{
+		
+		return mypageMapper.getMnaver(m_id);
+	}
+
+	public String getMkakao(String m_id) throws Exception{
+	
+		return mypageMapper.getMkakao(m_id);
+	}
+	
 	public void updateMname(String m_name, String m_id) throws Exception{
 		mypageMapper.updateMname(m_name, m_id);
 	}

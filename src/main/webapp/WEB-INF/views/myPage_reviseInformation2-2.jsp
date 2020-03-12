@@ -128,13 +128,13 @@
 		
 		<div class="limiter" style="position:fixed;left: 770px;width: 330px;top: 100px;">
 		<div class="container-login100"
-			style="background-color: #bebebe;border:3px solid black;width: 660px;height: 806px;">
+			style="background-color: #bebebe;border:3px solid black;width: 660px;height: 686px;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				
 
 
 
-				<form:form action="myPage_reviseInformation2" class="container-login100"
+				<form:form action="myPage_reviseInformation2_2" class="container-login100"
 					method="post" id="reviseInformation">
 					<span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"	><font size="5em"><b>회원정보 수정</b></font></span>
 
@@ -147,27 +147,23 @@
 
 
 
-					<div class="wrap-input100 validate-input m-b-23"
+					<!-- <div class="wrap-input100 validate-input m-b-23"
 						data-validate="비밀번호 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">비밀번호 (8자리 이상 12자리 이하)</font></span> 
-						<input class="input100" id="m_password"
-							type="password" name="m_password" placeholder="수정할 비밀번호를 입력해주세요"
-							maxlength="20" style="width: 545px;"> <span class="focus-input100"
+						<span class="label-input100"><font size="4em" color="black">비밀번호</font></span> 
+						<span class="focus-input100"
 							data-symbol="&#xf190;"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="비밀번호 한번더 입력해주세요">
 						<span class="label-input100"><font size="4em" color="black">비밀번호 확인</font></span> 
-						<input id="m_checkpassword" class="input100" id="m_checkpassword"
-							type="password" name="m_checkpassword"
-							placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="width: 545px;"> <span
+						<span
 							class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
+					</div> -->
 
 					<div class="wrap-input100 validate-input m-b-23"
 						data-validate="이름 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">이름 (완전한 한글만 입력가능)</font></span> <input id = "m_name" class="input100"
-							type="text" name="m_name" placeholder= "<c:out value="${m_name2}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="5" style="width: 545px;">
+						<span class="label-input100"><font size="4em" color="black">이름</font></span> 
+						<div><c:out value="${m_name2}"/></div>
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 						
 					</div>
@@ -202,13 +198,13 @@
 
 					<div class="wrap-input100 validate-input m-b-23">
 						<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> <input type="radio"
-							name="m_receive_email" value="1"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 99px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
+							name="m_receive_email" value="1" style="position:fixed;top: 645px;" ><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 143px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
 							<input type="radio"
-							name="m_receive_email" value="0" style="position:fixed;top: 790px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 119px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
+							name="m_receive_email" value="0" style="position:fixed;top: 627px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 125px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
 					</div>
 
 					<div class="flex-c-m">
-						<button id="revise_submit" class="btn btn-secondary" style="position:fixed;top: 830px;left: 1010px;">수정완료</button>
+						<button id="revise_submit" class="btn btn-secondary" style="position:fixed;top: 673px;left: 1010px;">수정완료</button>
 						<button id="withdraw_submit" class="btn btn-secondary" style="
     						position:fixed;
     						margin-left: 10px;
@@ -216,7 +212,7 @@
     						padding-bottom: 0px;
     						padding-top: 0px;
     						padding-right: 0px;
-    						top: 830px;
+    						top: 673px;
     						left: 1090px;
     						height: 35px;
     						">
@@ -304,43 +300,13 @@
 	    $("#reviseInformation").submit(function(event) {
 	    		var replaceNotInt = /[^0-9]/gi;
 	    		var replaceNotFullKorean = /[^가-힣]/gi;
-	    		var a1 = document.getElementById("m_password").value;
-	    		var a2 = document.getElementById("m_name").value;
 	    		var a3 = document.getElementById("m_age").value;
 	    		var a4 = document.getElementById("m_adress").value;
 	    		var a5 = document.getElementById("m_phonenum").value;
 	    		var a6 = document.getElementsByName("m_receive_email")[0].checked;
 	    		var a7 = document.getElementsByName("m_receive_email")[1].checked;
-	    		var a8 = document.getElementById("m_checkpassword").value;
-	    	 	if(a1 != "" || a2 != "" || a3 != "" || a4 != "" || a5 != "" || a6 != false || a7 != false) {
-	    	 		if(a1 != a8) {
-	    	 			event.preventDefault();
-						Swal.fire({
-						icon: 'error',
-						position: 'center',
-						title: '비밀번호 확인 불일치',
-						text: '입력하신 비밀번호와 비밀번호 확인이 일치하지 않습니다.',	
-						});
-	    	 		}
-	    	 		else if(a1 != "" && (a1.length < 8 || a1.length > 12)) {
-	    	 			event.preventDefault();
-						Swal.fire({
-						icon: 'error',
-						position: 'center',
-						title: '비밀번호를 다시 입력해주세요.',
-						text: '비밀번호는 8자리 이상 12자리 이하만 가능합니다.',	
-						});
-	    	 		}
-	    	 		else if(a2 != "" && a2.match(replaceNotFullKorean)) {
-	    	 			event.preventDefault();
-						Swal.fire({
-						icon: 'error',
-						position: 'center',
-						title: '이름은 한글만 입력가능',
-						text: '이름은 완전한 한글글자만 입력 가능합니다.',	
-						});
-	    	 		}
-	    	 		else if(a3 != "" && a3.match(replaceNotInt)) {
+	    	 	if(a3 != "" || a4 != "" || a5 != "" || a6 != false || a7 != false) {
+	    	 		if(a3 != "" && a3.match(replaceNotInt)) {
 	    	 			event.preventDefault();
 						Swal.fire({
 						icon: 'error',

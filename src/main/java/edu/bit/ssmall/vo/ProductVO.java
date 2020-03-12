@@ -11,7 +11,18 @@ public class ProductVO {
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
+	private String p_image;
 	
+	
+	
+	public String getP_image() {
+		return p_image;
+	}
+
+	public void setP_image(String p_image) {
+		this.p_image = p_image;
+	}
+
 	public ProductVO(int p_number, String p_name, int p_price, String p_brand, int p_stock, String p_description,
 			String p_released_date, int p_amount, String p_category) {
 		this.p_number = p_number;

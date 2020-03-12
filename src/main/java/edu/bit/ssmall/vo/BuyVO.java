@@ -17,6 +17,7 @@ public class BuyVO {
 	private String b_phonenum;//수령인 전화번호
 	private String b_addr;//수령받을 주소
 	private String b_done;
+	
 	public int getB_number() {
 		return b_number;
 	}

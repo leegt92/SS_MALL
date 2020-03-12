@@ -62,7 +62,7 @@
  	"></a>
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartview" style="color:white">장바구니</a>
+      <a href="/ssmall/cartView" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
@@ -147,22 +147,28 @@
 									<th class="column-4">구매수량</th>
 									<th class="column-5">총구매가격</th>
 									<th class="column-6" style="padding-left:50px">구매일자</th>
-								</tr>		
+									<th></th>
+								</tr>
+								
 								<c:forEach items="${b_numbers}" var="b_number" varStatus="status">
+								
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
 											<img src="productimage/<c:out value = "${p_images[status.index]}"/>" alt="IMG">
 										</div>
 									</td>
+									
 									<td class="column-2"><c:out value = "${p_names[status.index]}"/></td>
 									<td class="column-3"><fmt:formatNumber value="${p_prices[status.index]}" pattern="#,###" />원</td>
 									<td class="column-4">총 <c:out value = "${b_amounts[status.index]}"/>개</td>
 									<td class="column-5"><fmt:formatNumber value="${p_prices[status.index]*b_amounts[status.index]}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
-									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
+									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>																					
+									<td><button type="button" onclick="window.location.href='/ssmall/refund?p_name=${p_names[status.index]}">취소</button></td>							
 								</tr>
 								</c:forEach>
+								
 							</table>
 						</div>
 

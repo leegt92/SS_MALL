@@ -45,6 +45,12 @@ public interface MypageMapper {
 	@Select("select m_point from member where m_id = #{m_id}")
 	public int getMpoint(@Param("m_id")String m_id);
 	
+	@Select("select m_naver from member where m_id = #{m_id}")
+	public String getMnaver(@Param("m_id")String m_id);
+	
+	@Select("select m_kakao from member where m_id = #{m_id}")
+	public String getMkakao(@Param("m_id")String m_id);
+	
 	@Update("update member set m_name = #{m_name} where m_id = #{m_id}")
 	public void updateMname(@Param("m_name")String m_name, @Param("m_id")String m_id);
 	
@@ -95,7 +101,7 @@ public interface MypageMapper {
 	@Select("select b_number from buy where m_number = #{m_number} order by b_number desc")
 	public List<Integer> getBnumbers (@Param("m_number") int m_number);
 	
-	@Select("select b_number from buy where m_number = #{m_number} and b_done = '1'")
+	@Select("select b_number from buy where m_number = #{m_number} and b_status = '결제완료'")
 	public List<Integer> getOrderedBnumbers (@Param("m_number") int m_number);
 	
 	@Select("select b_amount from buy where b_number = #{b_number}")

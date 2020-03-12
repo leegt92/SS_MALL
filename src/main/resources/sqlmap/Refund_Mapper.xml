@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.bit.ssmall.mapper.RefundMapper">
+			
+	<insert id="addRefund">
+		<![CDATA[ 
+        Insert into refund(r_number, m_number, p_number, r_amount, r_price, r_status) 
+        values(refund_seq.nextval, #{m_number}, #{p_number}, #{r_amount}, #{r_price}, '환불완료')
+		]]>
+	</insert>		
+	
+	
+	
+</mapper>
