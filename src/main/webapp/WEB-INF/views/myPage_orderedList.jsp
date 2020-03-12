@@ -49,7 +49,71 @@
 }
  ul li {
 		border-bottom: 1px solid #bebebe;
-    }
+}
+.table-shopping-cart2 {
+ 	border-collapse: collapse;
+  	width: 100%;
+  	min-width: 680px;
+}
+.table-shopping-cart2 tr {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.table-shopping-cart2 .column-1 {
+  width: 50px;
+  padding-left: 50px;
+}
+
+.table-shopping-cart2 .column-2 {
+  width: 130px;
+  font-size: 15px;
+}
+
+.table-shopping-cart2 .column-3 {
+  width: 110px;
+  font-size: 16px;
+}
+
+.table-shopping-cart2 .column-4 {
+  width: 100px;
+  text-align: right;
+}
+
+.table-shopping-cart2 .column-5 {
+  width: 200px;
+  padding-right: 50px;
+  text-align: right;
+  font-size: 16px;
+}
+
+.table-shopping-cart2 .table_row {
+  height: 185px;
+}
+
+.table-shopping-cart2 .table_row td {
+  padding-bottom: 20px;
+}
+
+.table-shopping-cart2 .table_row td.column-1 {
+  padding-bottom: 30px;
+}
+
+.table-shopping-cart2 .table_head th {
+  font-family: Poppins-Bold;
+  font-size: 13px;
+  color: #555;
+  text-transform: uppercase;
+  line-height: 1.6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.table-shopping-cart2 td {
+  font-family: Poppins-Regular;
+  color: #555;
+  line-height: 1.6;
+}
 </style>
   </head>
 
@@ -139,14 +203,15 @@
 					">
 						<div class="wrap-table-shopping-cart">
 						<c:set var="hap" value="0"/>
-							<table class="table-shopping-cart">
+							<table class="table-shopping-cart2">
 								<tr class="table_head">
 									<th class="column-1">상품명</th>
 									<th class="column-2"></th>
 									<th class="column-3">상품가격</th>
 									<th class="column-4">구매수량</th>
 									<th class="column-5">총구매가격</th>
-									<th class="column-6" style="padding-left:50px">구매일자</th>
+									<th class="column-6" style="padding-left:30px">구매일자</th>
+									<th class="column-7">주문취소</th>
 								</tr>		
 								<c:forEach items="${p_b_vos}" var="p_b_vo">
 								<tr class="table_row">
@@ -160,7 +225,8 @@
 									<td class="column-4">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
 									<td class="column-5"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
-									<td class="column-6" style="padding-left:40px"><c:out value = "${p_b_vo.b_date}"/></td>
+									<td class="column-6" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
+									<td class="column-7" onclick="location.href='http://www.naver.com'" style="padding-left:10px; cursor:pointer;">클릭</td>
 								</tr>
 								</c:forEach>
 							</table>
