@@ -144,19 +144,19 @@
 									<th class="column-5">총구매가격</th>
 									<th class="column-6" style="padding-left:50px">구매일자</th>
 								</tr>		
-								<c:forEach items="${b_numbers}" var="b_number" varStatus="status">
+								<c:forEach items="${p_b_vos}" var="p_b_vo">
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
-											<img src="productimage/<c:out value = "${p_images[status.index]}"/>" alt="IMG">
+											<img src="productimage/<c:out value = "${p_b_vo.p_image}"/>" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2"><c:out value = "${p_names[status.index]}"/></td>
-									<td class="column-3"><fmt:formatNumber value="${p_prices[status.index]}" pattern="#,###" />원</td>
-									<td class="column-4">총 <c:out value = "${b_amounts[status.index]}"/>개</td>
-									<td class="column-5"><fmt:formatNumber value="${p_prices[status.index]*b_amounts[status.index]}" pattern="#,###" />원</td>
-									<c:set var="hap" value="${hap+p_prices[status.index]*b_amounts[status.index]}"/>
-									<td class="column-6" style="padding-left:40px"><c:out value = "${b_dates[status.index]}"/></td>
+									<td class="column-2"><c:out value = "${p_b_vo.p_name}"/></td>
+									<td class="column-3"><fmt:formatNumber value="${p_b_vo.p_price}" pattern="#,###" />원</td>
+									<td class="column-4">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
+									<td class="column-5"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
+									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
+									<td class="column-6" style="padding-left:40px"><c:out value = "${p_b_vo.b_date}"/></td>
 								</tr>
 								</c:forEach>
 							</table>

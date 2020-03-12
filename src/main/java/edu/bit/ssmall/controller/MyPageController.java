@@ -26,6 +26,7 @@ import edu.bit.ssmall.valid.MemberValidator;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+import edu.bit.ssmall.vo.Product_BuyVO;
 
 /**
  * Handles requests for the application home page.
@@ -49,47 +50,26 @@ public class MyPageController {
 	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPage(Model model) {
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		    Object principal = auth.getPrincipal();
-		 
-		    String name = "";
-		    if(principal != null) {
-		        name = auth.getName();
-		    }
-		    
-		    try {
-				int m_number = mypageService.getMnum(name);
-				model.addAttribute("m_number", m_number);
-				int m_point = mypageService.getMpoint(name);
-				model.addAttribute("m_point", m_point);
-				List<Integer> b_numbers = mypageService.getOrderedBnumbers(m_number);
-				model.addAttribute("b_numbers",b_numbers);
-				List<String> p_images = new ArrayList<String>();
-				List<String> p_names = new ArrayList<String>();
-				List<Integer> p_prices = new ArrayList<Integer>();
-				List<Date> b_dates = new ArrayList<Date>();
-				List<Integer> b_amounts = new ArrayList<Integer>();
-				for(int i=0; i < b_numbers.size(); i++) {
-					String p_image = mypageService.getPimage(b_numbers.get(i));
-					p_images.add(p_image);
-					String p_name = mypageService.getPname(b_numbers.get(i));
-					p_names.add(p_name);
-					int p_price = mypageService.getPprice(b_numbers.get(i));
-					p_prices.add(p_price);
-					Date b_date = mypageService.getBdate(b_numbers.get(i));
-					b_dates.add(b_date);
-					int b_amount = mypageService.getBamount(b_numbers.get(i));
-					b_amounts.add(b_amount);
-				}
-				model.addAttribute("p_images",p_images);
-				model.addAttribute("p_names",p_names);
-				model.addAttribute("p_prices",p_prices);
-				model.addAttribute("b_dates",b_dates);
-				model.addAttribute("b_amounts",b_amounts);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	 
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			int m_point = mypageService.getMpoint(name);
+			model.addAttribute("m_point", m_point);
+			List<Product_BuyVO> p_b_vos = mypageService.getP_BVO(m_number);
+			model.addAttribute("p_b_vos",p_b_vos);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "myPage";
 
 	}	
@@ -108,30 +88,9 @@ public class MyPageController {
 			model.addAttribute("m_number", m_number);
 			int m_point = mypageService.getMpoint(name);
 			model.addAttribute("m_point", m_point);
-			List<Integer> b_numbers = mypageService.getBnumbers(m_number);
-			model.addAttribute("b_numbers",b_numbers);
-			List<String> p_images = new ArrayList<String>();
-			List<String> p_names = new ArrayList<String>();
-			List<Integer> p_prices = new ArrayList<Integer>();
-			List<Date> b_dates = new ArrayList<Date>();
-			List<Integer> b_amounts = new ArrayList<Integer>();
-			for(int i=0; i < b_numbers.size(); i++) {
-				String p_image = mypageService.getPimage(b_numbers.get(i));
-				p_images.add(p_image);
-				String p_name = mypageService.getPname(b_numbers.get(i));
-				p_names.add(p_name);
-				int p_price = mypageService.getPprice(b_numbers.get(i));
-				p_prices.add(p_price);
-				Date b_date = mypageService.getBdate(b_numbers.get(i));
-				b_dates.add(b_date);
-				int b_amount = mypageService.getBamount(b_numbers.get(i));
-				b_amounts.add(b_amount);
-			}
-			model.addAttribute("p_images",p_images);
-			model.addAttribute("p_names",p_names);
-			model.addAttribute("p_prices",p_prices);
-			model.addAttribute("b_dates",b_dates);
-			model.addAttribute("b_amounts",b_amounts);
+			List<Product_BuyVO> p_b_vos = mypageService.getP_BVO(m_number);
+			model.addAttribute("p_b_vos",p_b_vos);
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -157,30 +116,9 @@ public class MyPageController {
 			model.addAttribute("m_number", m_number);
 			int m_point = mypageService.getMpoint(name);
 			model.addAttribute("m_point", m_point);
-			List<Integer> b_numbers = mypageService.getOrderedBnumbers(m_number);
-			model.addAttribute("b_numbers",b_numbers);
-			List<String> p_images = new ArrayList<String>();
-			List<String> p_names = new ArrayList<String>();
-			List<Integer> p_prices = new ArrayList<Integer>();
-			List<Date> b_dates = new ArrayList<Date>();
-			List<Integer> b_amounts = new ArrayList<Integer>();
-			for(int i=0; i < b_numbers.size(); i++) {
-				String p_image = mypageService.getPimage(b_numbers.get(i));
-				p_images.add(p_image);
-				String p_name = mypageService.getPname(b_numbers.get(i));
-				p_names.add(p_name);
-				int p_price = mypageService.getPprice(b_numbers.get(i));
-				p_prices.add(p_price);
-				Date b_date = mypageService.getBdate(b_numbers.get(i));
-				b_dates.add(b_date);
-				int b_amount = mypageService.getBamount(b_numbers.get(i));
-				b_amounts.add(b_amount);
-			}
-			model.addAttribute("p_images",p_images);
-			model.addAttribute("p_names",p_names);
-			model.addAttribute("p_prices",p_prices);
-			model.addAttribute("b_dates",b_dates);
-			model.addAttribute("b_amounts",b_amounts);
+			List<Product_BuyVO> p_b_vos = mypageService.getOrderedP_BVO(m_number);
+			model.addAttribute("p_b_vos",p_b_vos);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
