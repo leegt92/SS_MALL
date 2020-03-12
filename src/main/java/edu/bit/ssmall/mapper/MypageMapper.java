@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
+import edu.bit.ssmall.vo.Product_BuyVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.vo.BoardVO;
@@ -109,6 +110,13 @@ public interface MypageMapper {
 	
 	@Select("select b_date from buy where b_number = #{b_number}")
 	public Date getBdate (@Param("b_number") int b_number);
+	
+	/*===================================PRODUCT_BUY 관련 SQL문들============================================================*/
+	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} order by b_number desc")
+	public List<Product_BuyVO> getP_BVO (@Param("m_number") int m_number);
+	
+	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_done = '1' order by b_number desc")
+	public List<Product_BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
 	
 	/*===================================BOARD 관련 SQL문들============================================================*/
 	//한 회원이 작성한 모든 1:1문의글들을 가져오는 SQL문

@@ -516,7 +516,7 @@
 	                    /* console.error('slideUp', $elem.text(), 'height', height, 'timerId', elem.__timerId__); */
 	                    cb($elem);
 	                }
-	                else{
+	                else{	
 	                    // 가감된 height 값을 할당한다.
 	                    $elem.height(height);
 	                }

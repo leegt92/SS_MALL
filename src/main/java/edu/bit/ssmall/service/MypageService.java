@@ -12,6 +12,7 @@ import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+import edu.bit.ssmall.vo.Product_BuyVO;
 
 @Service
 public class MypageService {
@@ -152,6 +153,14 @@ public class MypageService {
 	
 	public Date getBdate(int p_number) throws Exception {
 		return mypageMapper.getBdate(p_number);	
+	}
+	/*======================Product_Buy 관련 SQL문============================================*/
+	public List<Product_BuyVO> getP_BVO(int m_number) throws Exception {
+		return mypageMapper.getP_BVO(m_number);	
+	}
+	
+	public List<Product_BuyVO> getOrderedP_BVO(int m_number) throws Exception {
+		return mypageMapper.getOrderedP_BVO(m_number);	
 	}
 	/*======================Board 관련 SQL문============================================*/
 	public List<BoardVO> getAllAskRequest(int m_number) throws Exception {
