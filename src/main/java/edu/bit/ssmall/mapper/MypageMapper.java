@@ -102,7 +102,7 @@ public interface MypageMapper {
 	@Select("select b_number from buy where m_number = #{m_number} order by b_number desc")
 	public List<Integer> getBnumbers (@Param("m_number") int m_number);
 	
-	@Select("select b_number from buy where m_number = #{m_number} and b_status = '결제완료'")
+	@Select("select b_number from buy where m_number = #{m_number} and b_status = '배송완료'")
 	public List<Integer> getOrderedBnumbers (@Param("m_number") int m_number);
 	
 	@Select("select b_amount from buy where b_number = #{b_number}")
@@ -112,10 +112,10 @@ public interface MypageMapper {
 	public Date getBdate (@Param("b_number") int b_number);
 	
 	/*===================================PRODUCT_BUY 관련 SQL문들============================================================*/
-	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} order by b_number desc")
+	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '배송완료' order by b_number desc")
 	public List<Product_BuyVO> getP_BVO (@Param("m_number") int m_number);
 	
-	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_done = '1' order by b_number desc")
+	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '결제완료' order by b_number desc")
 	public List<Product_BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
 	
 	/*===================================BOARD 관련 SQL문들============================================================*/

@@ -25,6 +25,7 @@ public class KakaoPayCancelVO {
 	private ExtrasVO extras; //실패정보
 	private String code; //에러코드
 	private String msg; //에러메시지
+	
 	public String getAid() {
 		return aid;
 	}

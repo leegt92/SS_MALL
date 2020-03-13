@@ -57,7 +57,7 @@ public class KakaoPay {
         params.add("item_name", p_name);	//구매할 상품명
         params.add("quantity", amount); //구매할 수량
         params.add("total_amount", totalprice); //구매할 총가격
-        params.add("tax_free_amount", "100"); //상품 비과세 금액
+        params.add("tax_free_amount", "0"); //상품 비과세 금액
         params.add("approval_url", "http://localhost:8282/ssmall/kakaoPaySuccess"); //결제 성공시 url
         params.add("cancel_url", "http://localhost:8282/ssmall/kakaoPayCancel"); //결제 취소시 url
         params.add("fail_url", "http://localhost:8282/ssmall/kakaoPaySuccessFail"); //결제 실패시 url
@@ -68,7 +68,8 @@ public class KakaoPay {
         restTemplate.setErrorHandler(new RestTemplateErrorHandler()); //400페이지 에러 안뜨게 할수있음 
         
 		kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST +"/v1/payment/ready"), body, KakaoPayReadyVO.class); 
-		//https://kapi.kakao.com/v1/payment/ready에 위에입력한거를 넣고 response는KakaoPayReadyVO.class로 받겠다. System.out.println("" + kakaoPayReadyVO);
+		//https://kapi.kakao.com/v1/payment/ready에 위에입력한거를 넣고 response는KakaoPayReadyVO.class로 받겠다.
+
 		System.out.println(kakaoPayReadyVO);
 		
 		if(kakaoPayReadyVO.getNext_redirect_pc_url() == null) {		
@@ -161,7 +162,7 @@ public class KakaoPay {
         params.add("cid", "TC0ONETIME");
         params.add("tid", tid); //결제고유번호
         params.add("cancel_amount", amount);
-        params.add("cancel_tax_free_amount", "100");
+        params.add("cancel_tax_free_amount", "0");
 
         
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
@@ -174,7 +175,7 @@ public class KakaoPay {
         System.out.println("" + kakaoPayCancelVO);
          
         if(kakaoPayCancelVO.getCode() != null) {
-        	ExtrasVO msg = kakaoPayApprovalVO.getExtras();
+        	ExtrasVO msg = kakaoPayCancelVO.getExtras();
 			System.out.println(msg);
 			HttpSession session = request.getSession();
 			session.setAttribute("error", "error");

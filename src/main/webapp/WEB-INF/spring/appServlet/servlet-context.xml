@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -54,7 +56,22 @@
 	    <beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
 	
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<beans:property name="dataSource" ref="dataSource" /> 
+	</beans:bean>
 
-
-
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="transactionTest" rollback-for="Exception" />
+		</tx:attributes>    
+	</tx:advice> -->
+	
+	<!-- Transaction을 위한 AOP 설정 -->
+	<!-- <aop:config>
+		<aop:pointcut id="servicePublicMethod" expression="execution(* edu..service.*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePublicMethod" />
+	</aop:config>   -->
+	 
 </beans:beans>

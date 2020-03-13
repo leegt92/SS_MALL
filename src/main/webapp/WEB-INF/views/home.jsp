@@ -328,7 +328,7 @@
 						</li>
 						
 						<li class="p-b-13">
-						<a href="myPage" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">마이페이지 </p>
 						</a>
 						</li>

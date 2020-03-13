@@ -127,9 +127,9 @@
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
       <a href="/ssmall/cartView" style="color:white">장바구니</a>
-      <a href="blog.html" style="color:white">Blog</a>
-      <a href="about.html" style="color:white">About</a>
-      <a href="contact.html" style="color:white">Contact</a>
+      <a href="/ssmall/notice" style="color:white">공지사항</a>
+      <a href="/ssmall/companyView" style="color:white">회사소개</a>
+      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -153,8 +153,8 @@
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
                   Dashboard <span class="sr-only">(current)</span>
-                </a> -->
-              </li>
+                </a> 
+              </li>-->
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
@@ -173,12 +173,17 @@
                   <b>나의 구매 내역</b>
                 </a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="/ssmall/myPage_refundList">
+                  <span data-feather="shopping-cart"></span>
+                  <b>나의 환불 내역</b>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
                   <b>1:1 문의</b>
                 </a>
-              </li>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_aSRequestView">
@@ -227,7 +232,7 @@
 									<td class="column-5"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
 									<td class="column-6" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
-									<td class="column-7" onclick="location.href='/ssmall/refund?p_name=${p_b_vo.p_name}'" style="padding-left:10px; cursor:pointer;">클릭</td>
+									<td class="column-7" onclick="location.href='/ssmall/refund?b_number=${p_b_vo.b_number}'" style="padding-left:10px; cursor:pointer;">클릭</td>
 								</tr>
 								</c:forEach>
 								
