@@ -572,7 +572,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:myPage_askRequestView";
+	    return "forward:myPage_askRequestView";
 
 
 	}
