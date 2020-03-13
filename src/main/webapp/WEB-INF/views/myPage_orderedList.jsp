@@ -210,7 +210,7 @@
 						<c:set var="hap" value="0"/>
 							<table class="table-shopping-cart2">
 								<tr class="table_head">
-									<th class="column-1">상품명</th>
+									<th class="column-1" style="width: 89px;">상품명</th>
 									<th class="column-2"></th>
 									<th class="column-3">상품가격</th>
 									<th class="column-4">구매수량</th>
