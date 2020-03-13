@@ -232,7 +232,7 @@
 									<td class="column-5"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
 									<td class="column-6" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
-									<td class="column-7" onclick="location.href='/ssmall/refund?b_number=${p_b_vo.b_number}'" style="padding-left:10px; cursor:pointer;">클릭</td>
+									<td class="column-7" onclick="location.href='/ssmall/refund?b_number=${p_b_vo.b_number}'" style="padding-left:10px; cursor:pointer;">취소</td>
 								</tr>
 								</c:forEach>
 								

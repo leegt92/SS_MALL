@@ -43,6 +43,19 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
+<c:choose>
+	<c:when test="${success eq 'success'}">
+		<script>
+			alert('주문 취소가 완료되었습니다.');
+		</script>
+		<% 
+			session.removeAttribute("success");
+			
+		%>
+	</c:when>
+</c:choose>
+
 <style>
 .bg-light {
 	background-color: rgba(149, 204, 210, 0.2)!important;

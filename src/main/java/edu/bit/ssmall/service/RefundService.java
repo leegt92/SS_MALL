@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,8 @@ public class RefundService {
 		refundMapper.addRefund(m_number,p_number,b_amount,b_total);
 		refundMapper.removeBuy(m_number,b_number);
 		refundMapper.productRefund(p_number, b_amount);
+		HttpSession session = request.getSession();
+		session.setAttribute("success", "success");
 		return "myPage_refundList";
 	}
 
