@@ -18,7 +18,6 @@ import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 @Service
-@Transactional
 public class RefundService {
 	@Autowired
 	KakaoPay kakaoPay;
