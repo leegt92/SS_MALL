@@ -270,7 +270,14 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-
+		
+		<!-- 웹소켓 (채팅) -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${org.springframework-version}</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

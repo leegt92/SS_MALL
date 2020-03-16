@@ -238,7 +238,7 @@
            <thead>
            <th style="width:60%; padding-left:12px !important;">제목(작성날짜)</th>
            </thead>
-    </table>
+    </table> 
     <ul class="accordion1" style="height: 220px;">
     	<c:forEach items="${aSRequestboards}" var="aSRequestboards" varStatus="status">
         <li class="accordion2">

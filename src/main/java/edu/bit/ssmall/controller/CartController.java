@@ -62,7 +62,7 @@ public class CartController {
 		ArrayList<CartViewVO> cart = cartService.cartInfo(memberVO.getM_number()); //회원번호를 이용해서 카트에 담긴 정보를 담음
 		System.out.println(cart);
 		
-		model.addAttribute("cart", cart); //카트리스트에 정보를 넘겨서 보여지게함 foreach문 써서
+		model.addAttribute("cartList", cart); //카트리스트에 정보를 넘겨서 보여지게함 foreach문 써서
 		
 		return "Cart/shopping-cart";				
 	}
@@ -79,7 +79,7 @@ public class CartController {
 		System.out.println(cart);		
 		
 	
-		model.addAttribute("cart", cart); //카트에 담긴 모든물건들을 세션처리
+		model.addAttribute("cartList", cart); //카트에 담긴 모든물건들을 세션처리
 
 		return "Cart/shopping-cart";				
 	}
@@ -94,13 +94,10 @@ public class CartController {
 		String[] check = request.getParameterValues("check"); //구매할 상품 체크한 수 받아옴. value는 체크한 카트아이디임
 	
 		if(check == null) {
-			//체크한게 없으면 다시 장바구니로
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();	
-			out.println("<script>alert('선택한 상품이 없습니다.');</script>");			 
-			out.flush();
+			//체크한게 없으면 다시 장바구니로			
+			session.setAttribute("checkNull", "checkNull");
 
-			return "Cart/shopping-cart";
+			return "redirect:/cartView";
 		}
 		
 		int amount = 0; //구매하려는 총갯수

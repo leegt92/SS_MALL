@@ -157,7 +157,8 @@
 					<h4>장바구니</h4>
 					<br>
 						<c:choose>							
-							<c:when test="${cart[0] == NULL}">
+				
+							<c:when test="${cartList[0] == NULL}">
 								<table class="table table-list-search">																					
 								
 									<h3>장바구니에 담긴 상품이 없습니다.</h3>
@@ -179,7 +180,7 @@
 								</tr>
 								<c:set var="totalprice" value="0"></c:set>
 									
-								<c:forEach items="${cart}" var="cart">
+								<c:forEach items="${cartList}" var="cart">
 								<tr>
 									<td>
 										<a href="/ssmall/productDetail?p_number=${cart.p_number}">
@@ -358,8 +359,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</footer>
-
-
+	
+	<c:choose>
+		<c:when test="${checkNull eq 'checkNull'}"> 
+			<script>
+				alert("선택한 상품이 없습니다.");
+			</script>
+			<% session.removeAttribute("checkNull"); %>
+		</c:when>
+	</c:choose>
+	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

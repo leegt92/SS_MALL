@@ -31,6 +31,8 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
+
 </head>
 <body class="animsition">
 	
@@ -252,12 +254,17 @@
 							<p>평일 : 오전 11시 ~ 오후 8시</p>
 							<p>주말 : 오후 12시 ~ 오후 6시	</p>
 							<br>
+							<div id="map_seocho" style="width:100%;height:350px;"></div>		
+							<br>
 							<p style="font-weight: bold;">비트시계 강남점</p>
 							<br>
 							<p>서울시 강남구 테헤란로 5길 11 YOO빌딩 2층</p>
 							<p>대표전화 : 02-5555-7777</p>
 							<p>평일 : 오전 10시 ~ 오후 6시</p>
-							<p>주말 : 오전 10시 ~ 오후 6시</p>							
+							<p>주말 : 오전 10시 ~ 오후 6시</p>
+							<br>	
+							<div id="map_gangnam" style="width:100%;height:350px;"></div>
+														
 						</div>
 						
 						<div class="p-b-63">
@@ -280,7 +287,8 @@
 							<p>대표전화 : 02-123-7892</p>
 							<p>평일 : 오전 10시 30분 ~ 오후 6시</p>
 							<p>주말 : 오전 10시 30분 ~ 오후 5시</p>
-							
+							<br>
+							<div id="map_sinchon" style="width:100%;height:350px;"></div>							
 						</div>
 					
 						<div class="p-b-63">
@@ -304,6 +312,7 @@
 							<p>대표전화 : 02-4567-8912</p>
 							<p>평일 : 오전 10시 30분 ~ 오후 6시</p>
 							<p>주말 : 오전 10시 30분 ~ 오후 5시</p>
+							<div id="map_jonglo" style="width:100%;height:350px;"></div>
 						</div>									
 					</div>
 				</div>
@@ -369,7 +378,7 @@
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
-				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
 								
 				
 				  <!--  <ul>
@@ -650,16 +659,270 @@ Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 	<script>
-		$('#map1').click(function(){
-			var container = document.getElementById('map');
+		var mapContainer = document.getElementById('map_gangnam'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(37.499668, 127.029247), // 지도의 중심좌표
+
+			level : 3
+		// 지도의 확대 레벨
+
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 마커가 표시될 위치입니다 
+
+		var markerPosition = new kakao.maps.LatLng(37.499668, 127.029247);
+
+		// 마커를 생성합니다
+
+		var marker = new kakao.maps.Marker({
+
+			position : markerPosition
+
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+
+		marker.setMap(map);
+
+		var iwContent = '<div style="padding:5px;">비트시계 강남점 <br><a href="https://map.kakao.com/link/map/비트시계 강남점,37.499668, 127.029247" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/비트시계 강남점,37.499668, 127.029247" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+		iwPosition = new kakao.maps.LatLng(37.499668, 127.029247); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+
+		var infowindow = new kakao.maps.InfoWindow({
+
+			position : iwPosition,
+
+			content : iwContent
+
+		});
+
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+
+		infowindow.open(map, marker);
+
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+
+		var zoomControl = new kakao.maps.ZoomControl();
+
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	</script>
+
+	<script>
+		var mapContainer = document.getElementById('map_sinchon'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(37.552475, 126.937825), // 지도의 중심좌표
+
+			level : 3
+		// 지도의 확대 레벨
+
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 마커가 표시될 위치입니다 
+
+		var markerPosition = new kakao.maps.LatLng(37.552475, 126.937825);
+
+		// 마커를 생성합니다
+
+		var marker = new kakao.maps.Marker({
+
+			position : markerPosition
+
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+
+		marker.setMap(map);
+
+		var iwContent = '<div style="padding:5px;">캠프시계 신촌점 <br><a href="https://map.kakao.com/link/map/캠프시계 신촌점,37.552475,126.937825" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/캠프시계 신촌점,37.552475,126.937825" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+		iwPosition = new kakao.maps.LatLng(37.552475, 126.937825); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+
+		var infowindow = new kakao.maps.InfoWindow({
+
+			position : iwPosition,
+
+			content : iwContent
+
+		});
+
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+
+		infowindow.open(map, marker);
+
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+
+		var zoomControl = new kakao.maps.ZoomControl();
+
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	</script>
+
+	<script>
+		var mapContainer = document.getElementById('map_jonglo'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(37.570803, 126.985252), // 지도의 중심좌표
+
+			level : 3
+		// 지도의 확대 레벨
+
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 마커가 표시될 위치입니다 
+
+		var markerPosition = new kakao.maps.LatLng(37.570803, 126.985252);
+
+		// 마커를 생성합니다
+
+		var marker = new kakao.maps.Marker({
+
+			position : markerPosition
+
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+
+		marker.setMap(map);
+
+		var iwContent = '<div style="padding:5px;">명품수선 <br><a href="https://map.kakao.com/link/map/명품수선,37.570803, 126.985252" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/명품수선,37.570803, 126.985252" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+		iwPosition = new kakao.maps.LatLng(37.570803, 126.985252); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+
+		var infowindow = new kakao.maps.InfoWindow({
+
+			position : iwPosition,
+
+			content : iwContent
+
+		});
+
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+
+		infowindow.open(map, marker);
+
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+
+		var zoomControl = new kakao.maps.ZoomControl();
+
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	</script>
+	
+	<script>
+		var mapContainer = document.getElementById('map_seocho'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(37.502786, 127.024457), // 지도의 중심좌표
+
+			level : 3
+		// 지도의 확대 레벨
+
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 마커가 표시될 위치입니다 
+
+		var markerPosition = new kakao.maps.LatLng(37.502786, 127.024457);
+
+		// 마커를 생성합니다
+
+		var marker = new kakao.maps.Marker({
+
+			position : markerPosition
+
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+
+		marker.setMap(map);
+
+		var iwContent = '<div style="padding:5px;">비트시계 서초점 <br><a href="https://map.kakao.com/link/map/비트시계 서초점,37.502786, 127.024457" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/캠프시계 신촌점,37.502786, 127.024457" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+		iwPosition = new kakao.maps.LatLng(37.502786, 127.024457); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+
+		var infowindow = new kakao.maps.InfoWindow({
+
+			position : iwPosition,
+
+			content : iwContent
+
+		});
+
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+
+		infowindow.open(map, marker);
+
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+
+		// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+
+		var zoomControl = new kakao.maps.ZoomControl();
+
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	</script>
+	
+	
+	<script>
+		$('#map').click(function(){
+
 			 var options = {
 				center: new kakao.maps.LatLng(37.552475, 126.937825),
 				level: 3
 			}; 
-			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+			 window.open("https://map.kakao.com/link/to/상승몰,37.552475, 126.937825");
 
 		});
 	</script> 
+
 	<span class="bt-basic" id="map"></span>  
 <!--===============================================================================================-->
 </body>

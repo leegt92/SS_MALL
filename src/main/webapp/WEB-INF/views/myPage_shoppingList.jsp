@@ -143,26 +143,26 @@
 						<c:set var="hap" value="0"/>
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">상품명</th>
-									<th class="column-2"></th>
-									<th class="column-3">상품가격</th>
-									<th class="column-4">구매수량</th>
-									<th class="column-5">총구매가격</th>
-									<th class="column-6" style="padding-left:50px">구매일자</th>
+									<th style="text-align: center;"></th>
+									<th style="text-align: center;">상품명</th>
+									<th style="text-align: center;">상품가격</th>
+									<th style="text-align: center;">구매수량</th>
+									<th style="text-align: center;">총구매가격</th>
+									<th style="text-align: center;">구매일자</th>
 								</tr>		
 								<c:forEach items="${p_b_vos}" var="p_b_vo">
 								<tr class="table_row">
 									<td class="column-1">
-										<div class="how-itemcart1">
+										<div class="how-itemcart1" onclick="location.href='/ssmall/productDetail?p_number=${p_b_vo.p_number}'">
 											<img src="productimage/<c:out value = "${p_b_vo.p_image}"/>" alt="IMG">
 										</div>
 									</td>
-									<td class="column-2"><c:out value = "${p_b_vo.p_name}"/></td>
-									<td class="column-3"><fmt:formatNumber value="${p_b_vo.p_price}" pattern="#,###" />원</td>
-									<td class="column-4">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
-									<td class="column-5"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
+									<td style="text-align: center;"><c:out value = "${p_b_vo.p_name}"/></td>
+									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.p_price}" pattern="#,###" />원</td>
+									<td style="text-align: center;">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
+									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
-									<td class="column-6" style="padding-left:40px"><c:out value = "${p_b_vo.b_date}"/></td>
+									<td style="text-align: center;"><c:out value = "${p_b_vo.b_date}"/></td>
 								</tr>
 								</c:forEach>
 							</table>

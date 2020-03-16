@@ -4,7 +4,9 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
@@ -56,10 +58,18 @@
 	    <beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
 	
-	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+	<!-- <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<beans:property name="dataSource" ref="dataSource" /> 
 	</beans:bean>
-
+	
+	<beans:bean id="echoHandler" class="edu.bit.ssmall.chat.EchoHandler"/>
+	<websocket:handlers>	
+	    <websocket:mapping handler="echoHandler" path="/echo" />	
+	    <websocket:sockjs />	
+	</websocket:handlers> -->
+	
+	
+	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
