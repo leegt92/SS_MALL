@@ -69,7 +69,7 @@ public class MyPageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "myPage";
+		return "MyPage/myPage";
 
 	}	
 	
@@ -96,7 +96,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_shoppingList";
+		return "MyPage/myPage_shoppingList";
 
 	}	
 	
@@ -123,7 +123,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_orderedList";
+		return "MyPage/myPage_orderedList";
 
 	}	
 	
@@ -161,7 +161,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_askRequestView";
+		return "MyPage/myPage_askRequestView";
 
 	}
 	
@@ -199,7 +199,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_askRequestView2";
+		return "MyPage/myPage_askRequestView2";
 
 	}
 	
@@ -237,7 +237,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_aSRequestView";
+		return "MyPage/myPage_aSRequestView";
 
 	}
 	
@@ -266,7 +266,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_askRequest";
+		return "MyPage/myPage_askRequest";
 
 	}	
 	
@@ -294,7 +294,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_askAS";
+		return "MyPage/myPage_askAS";
 
 	}
 	
@@ -342,7 +342,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_reviseInformation";
+		return "MyPage/myPage_reviseInformation";
 
 	}
 	
@@ -418,7 +418,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_reviseInformation2";
+		return "MyPage/myPage_reviseInformation2";
 
 	}
 	
@@ -501,7 +501,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_reviseInformation3";
+		return "MyPage/myPage_reviseInformation3";
 
 	}
 	
@@ -512,7 +512,7 @@ public class MyPageController {
 		String hashpw = passwordEncoder.encode(memberVO.getM_password());
 		memberVO.setM_password(hashpw); // 암호화 해서 저장한다.
 		
-		return "myPage_reviseInformation2";
+		return "MyPage/myPage_reviseInformation2";
 	}
 	
 	@RequestMapping(value = "/withdrawal.do", method = RequestMethod.GET)
@@ -534,7 +534,7 @@ public class MyPageController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	return "myPage_reviseInformation4";
+	return "MyPage/myPage_reviseInformation4";
 	}
 	
 	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET)
@@ -564,7 +564,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_askRequest2";
+		return "MyPage/myPage_askRequest2";
 
 	}
 	
@@ -595,7 +595,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_askAS2";
+		return "MyPage/myPage_askAS2";
 
 	}
 	
@@ -638,7 +638,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "forward:myPage_askRequestView";
+	    return "redirect:MyPage/myPage_askRequestView";
 
 
 	}
@@ -682,7 +682,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:myPage_aSRequestView";
+	    return "redirect:MyPage/myPage_aSRequestView";
 
 
 	}
