@@ -350,17 +350,17 @@
 	</div>
 </section>
 
-<section class="color2"><!-- bg0 p-t-62 p-b-60 -->
+ <section class="color2">
 	<div id="companylocation">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-lg-9 m-5 ">
 					<div class="p-r-45 p-r-0-lg">
-						<!-- item blog -->
+						
 						
 						<div class="p-b-63">
 							<p  class="hov-img0 how-pos5-parent">
-								<!-- <img src="images/blog-05.jpg" alt="IMG-BLOG"> -->
+								
 								<div id="map" style="width:100%;height:350px;"></div>
 									
 									<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
@@ -409,7 +409,7 @@
 									</script>
 								<hr width="960" color="gray"></hr>
 
-							<!-- 	<div class="flex-col-c-m size-123 bg9 how-pos5">
+								<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
 										18
 									</span>
@@ -417,16 +417,16 @@
 									<span class="stext-109 cl3 txt-center">
 										Jan 2018
 									</span>
-								</div> -->
+								</div>
 							</p>
 
 							<div class="p-t-32">
-								<!-- <h4 class="p-b-15"> -->
+								<h4 class="p-b-15">
 									<p  class="ltext-108 cl2  trans-04">
 										오시는길
 									</p>
 									<hr width="100" color="gray"></hr>
-								<!-- </h4> -->
+								</h4>
 
 								<p class="stext-117 cl6">
 									서울 마포구 백범로 23 구프라자 3층
@@ -443,7 +443,8 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> 
+
 
 	<section class="color3"><!-- bg0 p-t-62 p-b-60 -->
 		<div class="container">
@@ -905,6 +906,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script> 
 	<span class="bt-basic" id="map"></span> 
+	
+<!--===============================================================================================-->
+	
 <!--===============================================================================================-->
 <script>
 $(document).ready(function() {

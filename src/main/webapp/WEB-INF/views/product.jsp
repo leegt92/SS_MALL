@@ -990,16 +990,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 <script>
  $(document).ready(function(){
-	
-		/*  get('/productView/:id/:pw', function(req, res) {
-		  location.href="http://localhost:8282/ssmall/productView?id=abc&pw=1234";
-		  res.send(watch1[req.params.id]+','+watch1[req.params.id]);  
-		  $("#watch1").trigger("click");
+	 
+ 
+	 $('#watch2').click(function(){
 			
-		});  */
-
-    
-		    
+			$('#watch1').trigger("click");	
+			
+		});  	
+	/*  get('/productView/:id/:pw', function(req, res) {
+		  location.href="http://localhost:8282/ssmall/productView?id=abc&pw=1234";
+		  res.send(watch1[req.params.id]+','+watch1[req.params.id]);  */
 	
 }); 
  

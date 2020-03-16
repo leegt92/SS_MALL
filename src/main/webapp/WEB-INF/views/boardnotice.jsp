@@ -262,7 +262,7 @@
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
-						<th>번호</th>
+						<th>번호</th> 
 						<th>아이디</th>
 						<th>제목</th>
 						<th>날짜</th>
