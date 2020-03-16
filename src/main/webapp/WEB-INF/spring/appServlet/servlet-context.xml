@@ -23,12 +23,9 @@
 	<resources mapping="/images/**" location="/resources/images/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/productimage/**" location="/resources/productimage/" />
-
-	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/login/**" location="/resources/login/" />
-	
-	<!-- <resources mapping="/**" location="/resources/" /> -->
-
+	<resources mapping="/vendor/**" location="/resources/vendor/" /> 
+	<!--<resources mapping="/**" location="/resources/" /> -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -46,6 +43,7 @@
 	<beans:bean id="naverClientSecret" class="java.lang.String">
 	    <beans:constructor-arg value="045Ev3gTPS" />
 	</beans:bean>
+
 	
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
 	    <beans:constructor-arg value="http://localhost:8282/ssmall/naver/callback" />
@@ -57,19 +55,19 @@
 	    <beans:constructor-arg ref="naverClientSecret" />
 	    <beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
-	
-	<!-- <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
-		<beans:property name="dataSource" ref="dataSource" /> 
+
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
+
 	
-	<beans:bean id="echoHandler" class="edu.bit.ssmall.chat.EchoHandler"/>
+	<!-- <beans:bean id="echoHandler" class="edu.bit.ssmall.chat.EchoHandler"/>
 	<websocket:handlers>	
 	    <websocket:mapping handler="echoHandler" path="/echo" />	
 	    <websocket:sockjs />	
-	</websocket:handlers> -->
+	</websocket:handlers>  -->
 	
-	
-	
+
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -83,5 +81,6 @@
 		<aop:pointcut id="servicePublicMethod" expression="execution(* edu..service.*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePublicMethod" />
 	</aop:config>   -->
-	 
+
+
 </beans:beans>

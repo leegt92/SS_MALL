@@ -49,27 +49,26 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">						
-						SSMALL with luxury watches and wallets
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
 						</a>
 
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
-							About Us
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							My Account
 						</a>
-					
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							USD
+						</a>
 					</div>
 				</div>
 			</div>
@@ -86,6 +85,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
+									<li>
 								<a href="homeview">홈</a>
 							</li>
 
@@ -99,9 +99,6 @@
 							<li>
 								<a href="companyView">회사소개</a>
 							</li>
-							<li>
-								<a href="asView">AS</a>
-							</li>	
 						</ul>
 					</div>	
 
@@ -159,35 +156,34 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						SSMALL with luxury watches and wallets
+						Free shipping for standard order over $100
 					</div>
 				</li>
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m p-lr-10 trans-04">
-							Home
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
 						</a>
 
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
-							My
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
 						</a>
 
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
-							cart
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							EN
 						</a>
-						
-						<a href="companyView" class="flex-c-m p-lr-10 trans-04">
-							About Us
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							USD
 						</a>
-					
 					</div>
 				</li>
 			</ul>
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="homeview">홈</a>
+					<<a href="homeview">홈</a>
 					<!-- <ul class="sub-menu-m">
 						<li><a href="index.html">Homepage 1</a></li>
 						<li><a href="home-02.html">Homepage 2</a></li>
@@ -202,13 +198,10 @@
 					<a href="productView">상품</a>
 				</li>
 				<li>
-					<a href="boardnoticeView">공지사항</a>
+					<a href="notice">공지사항</a>
 				</li>
 				<li>
-					<a href="companyView">회사소개</a>
-				</li>
-				<li>
-					<a href="asView">AS</a>
+					<a href="blogview">회사소개</a>
 				</li>
 			</ul>
 		</div>
@@ -229,20 +222,6 @@
 			</div>
 		</div>
 	</header>
-	
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
-				홈
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-				상품
-			</span>
-		</div>
-	</div>
 
 	<!-- Cart -->
 	<div class="wrap-header-cart js-panel-cart">
@@ -335,8 +314,7 @@
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-				
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+					<button type = "button" href="productView" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
 					
@@ -346,7 +324,7 @@
 					</button> 
 				
 		 		
-					<button id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".시계">
+					<button  id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".시계">
 						Watch
 					</button>
 				
@@ -734,6 +712,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 
+
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -997,16 +976,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 <script>
  $(document).ready(function(){
-	 
- 
-	 $('#watch2').click(function(){
-			
-			$('#watch1').trigger("click");	
-			
-		});  	
-	/*  get('/productView/:id/:pw', function(req, res) {
+	
+		/*  get('/productView/:id/:pw', function(req, res) {
 		  location.href="http://localhost:8282/ssmall/productView?id=abc&pw=1234";
-		  res.send(watch1[req.params.id]+','+watch1[req.params.id]);  */
+		  res.send(watch1[req.params.id]+','+watch1[req.params.id]);  
+		  $("#watch1").trigger("click");
+			
+		});  */
+
+    	$("#wallet1").trigger("click"); 
+		    
 	
 }); 
  

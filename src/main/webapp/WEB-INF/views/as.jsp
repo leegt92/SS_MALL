@@ -48,7 +48,7 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
@@ -89,7 +89,7 @@
 							</li>
 							
 							<li>
-								<a href="notice">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 
 							<li>
@@ -126,40 +126,12 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<li>
-					<div class="left-top-bar">
-						SSMALL with luxury watches and wallets
-					</div>
-				</li>
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m p-lr-10 trans-04">
-							Home
-						</a>
-
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
-							My
-						</a>
-
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
-							cart
-						</a>
-						
-						<a href="companyView" class="flex-c-m p-lr-10 trans-04">
-							About Us
-						</a>
-					
-					</div>
-				</li>
-			</ul>
 
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
 					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
+						<i class="fa fa-angle-right" aria-hidden="false"></i>
 					</span>
 				</li>
 				<li>
@@ -167,7 +139,7 @@
 				</li>
 
 				<li>
-					<a href="notice">공지사항</a>
+					<a href="boardnoticeView">공지사항</a>
 				</li>
 
 				<li>

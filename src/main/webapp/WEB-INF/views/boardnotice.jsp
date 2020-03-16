@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>상승몰</title>
+	<title>SS_MALL</title>
 	<meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -27,22 +26,36 @@
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<!--===============================================================================================-->	
+<style>
+	#notice{
+		width:1000px;
+		margin: 0 auto;
+		
+	}
+	#notice h1{
+	 text-align:center;
+	 color:black;
+	 letter-spacing:10px;
+	
+	 
+	}
+	#color{
+		background-color: black;
+		color:white;
+	}
+	
+	 
 
+        
+</style>
 </head>
-<body class="animsition">
+<body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -64,8 +77,8 @@
 							My
 						</a>
 						
-						<a href="boardnoticeView" class="flex-c-m trans-04 p-lr-25">
-							notice
+						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+							Cart
 						</a>
 
 						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
@@ -86,30 +99,30 @@
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
-						<ul class="main-menu">						
+						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
+							
 							</li>
 
 							<li>
 								<a href="productView">상품</a>
 							</li>
-													
+			
 							<li>
 								<a href="boardnoticeView">공지사항</a>
 							</li>
-							
-							<li>
+
+							<li> <!-- class="active-menu" -->
 								<a href="companyView">회사소개</a>
 							</li>
 							
 							<li>
 								<a href="asView">AS</a>
-							</li>						
+							</li>	
 						</ul>
 					</div>	
-
-					
+			
 				</nav>
 			</div>	
 		</div>
@@ -120,13 +133,51 @@
 			<div class="logo-mobile">
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
 			</div>
-			
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
 		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			
+			<ul class="main-menu-m">
+				<li>
+					<a href="homeview">홈</a>
+
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
+
+				<li>
+					<a href="productView">상품</a>
+				</li>
+				
+				
+				
+				<li>
+					<a href="boardnoticeView">공지사항</a>
+				</li>
+				
+
+				<li>
+					<a href="companyView">회사소개</a>
+				</li>
+				
+				<li>
+					<a href="asView">AS</a>
+				</li>
+			
+			</ul>
+		</div>
+
 	
-	</header>
-
-
-
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -135,84 +186,72 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="cartView" class="stext-109 cl4">
-				장바구니
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-	
+			<span class="stext-109 cl4">
+				공지사항
+			</span>
 		</div>
 	</div>
 
-
-	<div class="bor10 m-t-50 p-t-43 p-b-40">
-		<!-- Tab01 -->
-		<div class="tab01">
-			<!-- Tab panes -->
-			<div class="tab-content p-t-43">
-				<!-- - -->
-				<div class="tab-pane fade show active" id="description"
-					role="tabpanel">
-					<div class="how-pos2 p-lr-15-md">
-					<h4>장바구니</h4>
-					<br>
-						<c:choose>							
+	
+	
+		<div id="notice">
+		 	<h1 class="m-5">공지사항</h1>
+			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
+			 	<thead id="color">
+					<tr>
+						<th>번호</th> 
+						<th>아이디</th>
+						<th>제목</th>
+						<th>날짜</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${list}" var="dto">
+					<tr>
+						<td>${dto.bId}</td>
+						<td>${dto.bName}</td>
+						<td>
+							<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
+							<a href="content_view?bId=${dto.bId}">${dto.bTitle}</a></td>
+						<td>${dto.bDate}</td>
+						<td>${dto.bHit}</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+				<!-- <tr>
+					<td colspan="5"> <a href="write_view">글작성</a> </td>
+				</tr> -->	
+			</table>
+			<ul class="pagination m-5 flex-c-m" >
 				
-							<c:when test="${cartList[0] == NULL}">
-								<table class="table table-list-search">																					
-								
-									<h3>장바구니에 담긴 상품이 없습니다.</h3>
-								
-								</table>
-									
-							</c:when>
-							<c:otherwise>
-							<form:form role="form" action="cartBuy" method="post" >
-							
-							<table class="table table-list-search">	
-								<tr>
-									<th></th>
-									<th>상품명</th>
-									<th>구매수량</th>
-									<th>구매가격</th>
-									<th></th>
-									<th></th>
-								</tr>
-								<c:set var="totalprice" value="0"></c:set>
-									
-								<c:forEach items="${cartList}" var="cart">
-								<tr>
-									<td>
-										<a href="/ssmall/productDetail?p_number=${cart.p_number}">
-										<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
-										</a>
-									</td>								
-									<td>${cart.p_description}</td>						
-									<td>${cart.c_amount}</td>
-									<td><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>									
-									<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
-									<td><a href="cartDelete?c_id=${cart.c_id}">삭제</a></td>
-									<td><input type="checkbox" name="check" value="${cart.c_id}"></td>
-								</tr>
-								</c:forEach>						
-								<tr>
-									<td colspan="6" align="right">
-									<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
-								</tr>								
-								<tr>										
-									<td colspan="6" align="right">								
-									<button type="submit" class="btn icon-btn btn-success">구매하기</button></td>
-								</tr>
-								</table>
-							<input type="hidden" name="totalprice" value="${totalprice}">
-							</form:form>
-							</c:otherwise>
-						</c:choose>	
-					</div>
-				</div>
-			</div>
-			<hr>
-			</div>
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="boardnoticeView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="boardnoticeView${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+			</ul>
+			
+					
+			 <!-- <ul id="button" class="pagination m-5 flex-c-m" >
+			  <li class="page-item"><a class="page-link" href="#">이전</a></li>
+			  <li class="page-item"><a class="page-link" href="#">1</a></li>
+			  <li class="page-item"><a class="page-link" href="#">2</a></li>
+			  <li class="page-item"><a class="page-link" href="#">3</a></li>
+			  <li class="page-item"><a class="page-link" href="#">4</a></li>
+			  <li class="page-item"><a class="page-link" href="#">5</a></li>
+			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
+			</ul>  -->
 		</div>
 
 
@@ -220,20 +259,20 @@
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg-2 p-b-50">
 					<h4 class="stext-500 cl0 p-b-30">
 						Category
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
 								Watch
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
 						</li>
@@ -247,13 +286,6 @@
 						Help
 					</h4>
 
-					
-						<!-- <li class="p-b-10">
-							 <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a> 
-						</li> -->
-
 
 						<p class="stext-130 cl7 size-201">
 							● 대표 전화번호: 02-1234-5678
@@ -261,9 +293,9 @@
 						<p class="stext-130 cl7 size-201">
 							● 고객센터 : 1234-5678
 						</p>
-						<p class="stext-130 cl7 size-201">
-							● 이메일문의 : abcdefg@abcdefg.com
-						</p>
+						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
+						 	abcdefg@abcdefg.com
+						</a></p>
 						<p class="stext-130 cl7 size-201">
 							● FAQ
 						</p>
@@ -271,61 +303,44 @@
 					
 				</div> 
 
-				<div class="col-sm-3 col-lg-50 p-b-40" >
+				<div class="col-sm-2 col-lg-50 p-b-40" >
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
-				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-								
+				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+						
+					
+			</div>
 				
-				  <!--  <ul>
-					<li class="p-b-10">
-							 <a href="mapview" class="stext-107 cl7 hov-cl1 trans-04">
-								오시는길
-						     </a> 
-				     </li>
-				   </ul>  -->
-
-					 <!-- <p class="stext-130 cl7 size-201">
-						서울시 서대문구 비트동 비트빌딩 201동 201호
-					</p>  -->
+				<div class="col-sm-2 col-lg-40 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						SNS Page
+				 	</h4>
+				 		
+					<div class="p-t-10">			
+						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<i class="fa fa-facebook"></i>
+									</a>
+					
+						
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-instagram"></i>
+							</a>
 					
 					
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 				
 				  <div class="col-sm-6 col-lg-3 p-b-50">
 				  	<img src="images/icons/mainlogo.png" width="500">
-					<!-- <h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
-
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form> -->
 				</div>  
 			</div>
+			
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
@@ -360,15 +375,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	
-	<c:choose>
-		<c:when test="${checkNull eq 'checkNull'}"> 
-			<script>
-				alert("선택한 상품이 없습니다.");
-			</script>
-			<% session.removeAttribute("checkNull"); %>
-		</c:when>
-	</c:choose>
-	
+		
+
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -387,71 +404,49 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/slick/slick.min.js"></script>
-	<script src="js/slick-custom.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/parallax100/parallax100.js"></script>
-	<script>
-        $('.parallax100').parallax100();
-	</script>
-<!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
-		});
-	</script>
 <!--===============================================================================================-->
-	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+<script src="js/main.js"></script>
+	 	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
-			e.preventDefault();
+		$('#map1').click(function(){
+			var container = document.getElementById('map1');
+			 var options = {
+				center: new kakao.maps.LatLng(37.552475, 126.937825),
+				level: 3
+			}; 
+			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+
 		});
+	</script> 
+	<span class="bt-basic" id="map"></span> 
+<!--===============================================================================================-->
+<script>
+$(document).ready(function() {
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#floatMenu").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
 
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+		/* 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 */
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 300);
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
+	}).scroll();
+});
+</script>
+<!--===============================================================================================-->
 	
-	</script>
-<!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
@@ -468,23 +463,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
+<!--===============================================================================================-->	
+	<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	 <script src="js/main.js"></script>
-	 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 	<script>
-		$('#map').click(function(){
-			var container = document.getElementById('map');
-			 var options = {
-				center: new kakao.maps.LatLng(37.552475, 126.937825),
-				level: 3
-			}; 
-			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+	function scroll_follow( id )
+		{
+		  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
+		  { 
+		      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+		      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
+		   });
+		}
+		 scroll_follow( "#scroll" );
+ </script>
+	
 
-		});
-	</script> 
-	<span class="bt-basic" id="map"></span>  
-<!--===============================================================================================-->
 </body>
 </html>

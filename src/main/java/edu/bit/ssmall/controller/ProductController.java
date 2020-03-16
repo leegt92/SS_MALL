@@ -1,19 +1,14 @@
 package edu.bit.ssmall.controller;
 
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ssmall.service.ProductService;
-import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.ProductVO;
 
 
@@ -27,14 +22,32 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping("/productView")
-
 	public String productview(Model model) {
 
 		model.addAttribute("product", productService.selectProductList());
 		
 		return "product";
 	}
+	
+	@RequestMapping("/productViewWatch")
 
+	public String productview2(Model model) {
+
+		model.addAttribute("product", productService.selectProductList());
+		
+		return "productwatch";
+	}
+	
+	@RequestMapping("/productViewWallet")
+
+	public String productview3(Model model) {
+
+		model.addAttribute("product", productService.selectProductList());
+		
+		return "productwallet";
+	}
+	
+	
 	@RequestMapping("/productDetail")
 	public String product_detail(HttpServletRequest request,Model model) {
 		System.out.println("/productDetail");
@@ -44,17 +57,13 @@ public class ProductController {
 		model.addAttribute("productAmount", productService.selectProductListAmount());
 		//model.addAttribute("product1", productService.selectProductOne2(p_number));//����1��. �� �� 1�� �Ϲ����� ����.
 		System.out.println("��Ʈ�ѷ����ϳѾ");
-		
-		
+
 		
 		//구매위해서 추가했음
 		ProductVO productVO = productService.productOne(p_number);
 		model.addAttribute("product",productVO);
-		
+
 		return "productDetail";
 	}
-	
-	
-	
-	
+
 }

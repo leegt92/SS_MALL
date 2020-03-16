@@ -41,6 +41,7 @@ public interface ProductMapper {
 	  @Select("Select * from product where p_number = #{p_number}")
 	  public ProductVO productOne(String p_number);
 	 
+	
 
 
 }

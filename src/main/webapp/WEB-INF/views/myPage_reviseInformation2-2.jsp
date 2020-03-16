@@ -63,7 +63,7 @@
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
       <a href="/ssmall/cartView" style="color:white">장바구니</a>
-      <a href="/ssmall/notice" style="color:white">공지사항</a>
+      <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      

@@ -139,7 +139,7 @@
 							</li>
 													
 							<li>
-								<a href="notice">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 							
 							<li>
@@ -215,7 +215,7 @@
 				</li>
 
 				<li>
-					<a href="notice">공지사항</a>
+					<a href="boardnoticeView">공지사항</a>
 				</li>
 
 				<li>
