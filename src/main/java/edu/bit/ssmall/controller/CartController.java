@@ -89,10 +89,10 @@ public class CartController {
 	public String cartBuy(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("cartBuy() 장바구니에서 체크해서 구매하기!");
 		HttpSession session = request.getSession();		
-		
-		String totalprice = request.getParameter("totalprice"); //카트 내에 총가격 받아옴
-		String[] check = request.getParameterValues("check"); //구매할 상품 체크한 수 받아옴. value는 체크한 카트아이디임
 	
+		String[] check = request.getParameterValues("check"); //구매할 상품 체크한 수 받아옴. value는 체크한 카트아이디임
+		
+		
 		if(check == null) {
 			//체크한게 없으면 다시 장바구니로			
 			session.setAttribute("checkNull", "checkNull");
@@ -101,7 +101,7 @@ public class CartController {
 		}
 		
 		int amount = 0; //구매하려는 총갯수
-		
+		int totalprice = 0; 
 		//구매하려고 체크한거를 뽑아온다 arr[0]째의 cart테이블에서 정보를 뺴온다.
 		//구매할 상품 사진 이름 구매수량 구매가격을 cartBuyView에 전달
 		ArrayList<CartViewVO> cart = new ArrayList<CartViewVO>();
@@ -109,11 +109,12 @@ public class CartController {
 		for (int i = 0; i < check.length; i++) {
 			CartViewVO item = cartService.cartByCid(check[i]); //체크한 카트아이디를 이용해서 정보뽑아냄 
 			amount = amount + 1; // 계속 돌면서 체크된 수 만큼 갯수가 늘게함
+			totalprice = totalprice + item.getC_grandtotal();
 			cart.add(item); // 계속 돌면서 ArrayList에 담음
-		
+			System.out.println(item);
 		}
 		PayVO payVO = new PayVO();
-	
+		System.out.println(totalprice);
 		
 		session.setAttribute("cart", cart); // 구매하려는 상품들을 세션으로 저장
 		session.setAttribute("amount", amount); //구매하려는 상품갯수을 세션으로 저장
@@ -165,6 +166,8 @@ public class CartController {
 		String adress = "(" + addr1 + ") " + addr2 + " " + addr3;		
 		String totalprice = String.valueOf(session.getAttribute("totalprice")); 
 		String amount =  String.valueOf(session.getAttribute("amount"));
+		System.out.println(totalprice);
+		System.out.println(amount);
 		
 		payVO.setAddr(adress);
 		payVO.setTotalPrice(Integer.parseInt(totalprice));

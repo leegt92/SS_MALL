@@ -65,6 +65,6 @@ public class RefundController {
 		model.addAttribute("refund", refundVO);
 		
 		
-		return "myPage_refundList";
+		return "MyPage/myPage_refundList";
 	}
 }

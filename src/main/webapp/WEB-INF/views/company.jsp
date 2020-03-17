@@ -31,6 +31,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
 	#box {
 	       
@@ -127,7 +128,7 @@
 								<a href="boardnoticeView">공지사항</a>
 							</li>
 
-							<li> 
+							<li class="active-menu"> 
 								<a href="companyView">회사소개</a>
 							</li>
 							
@@ -158,42 +159,11 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="topbar-mobile">
-				<li>
-					<div class="left-top-bar">
-						SSMALL with luxury watches and wallets
-					</div>
-				</li>
-
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m p-lr-10 trans-04">
-							Home
-						</a>
-
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
-							My
-						</a>
-
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
-							cart
-						</a>
-						
-						<a href="companyView" class="flex-c-m p-lr-10 trans-04">
-							About Us
-						</a>					
-					</div>
-				</li>
-			</ul>
-
+			
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
-					<ul class="sub-menu-m">
-						<!-- <li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li> -->
-					</ul>
+				
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -218,22 +188,21 @@
 				
 			</ul>
 		</div>
-
-		<!-- <!-- Modal Search 
+		<!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="images/icons/icon-close2.png" alt="CLOSE">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide modal-search">
+					<img alt="CLOSE" src="images/icons/icon-close2.png"/>
 				</button>
-
-				<form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
+				<form class="wrap-search-header flex-w p-1-15">
+					<button class="flex c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
 			</div>
-		</div> -->
+
+		</div>
 	</header> 
 
 	
@@ -824,16 +793,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 		
-
-
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -854,6 +819,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
 <script src="js/main.js"></script>
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
@@ -869,9 +851,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script> 
 	<span class="bt-basic" id="map"></span> 
-	
-<!--===============================================================================================-->
-	
 <!--===============================================================================================-->
 <script>
 $(document).ready(function() {
@@ -897,6 +876,8 @@ $(document).ready(function() {
 });
 </script>
 <!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
 	
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -915,7 +896,6 @@ $(document).ready(function() {
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
 	<script>
 	function scroll_follow( id )
 		{
