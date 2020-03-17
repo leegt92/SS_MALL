@@ -216,7 +216,7 @@
 									<th style="text-align: center;">구매수량</th>
 									<th style="text-align: center;">총구매가격</th>
 									<th style="text-align: center;">구매일자</th>
-									<th style="text-align: center;">주문취소</th>
+									<th >주문취소</th>
 								</tr>		
 								<c:forEach items="${p_b_vos}" var="p_b_vo">
 
@@ -232,7 +232,7 @@
 									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
 									<td style="text-align: center;" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
-									<td style="text-align: center;" onclick="location.href='/ssmall/refund?b_number=${p_b_vo.b_number}'" style="padding-left:10px; cursor:pointer;">취소</td>
+									<td style="padding-left : 10px; cursor:pointer;" onclick="location.href = '/ssmall/refund?b_number=${p_b_vo.b_number}'">취소</td>
 								</tr>
 								</c:forEach>
 								

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
- 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -592,23 +592,32 @@
 
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-										<div
-											class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+									<form:form role="form" method="post">
+									<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+										<input type="hidden" name="p_number" value="${productNum.p_number}">
+										
+										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
+										
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="1">
 
-										<input class="mtext-104 cl3 txt-center num-product"
-											type="number" name="num-product" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
+										</div>							
+										
 									</div>
 
-									<button
-										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Add to cart</button>
+									<div>
+										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/addCart';" >
+											장바구니
+										</button>
+										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy';">
+											구입하기
+										</button>										
+									</div>
+									</form:form>
 								</div>
 							</div>
 						</div>

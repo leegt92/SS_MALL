@@ -31,7 +31,7 @@ public class RefundController {
 	//환불하기
 	@RequestMapping(value="refund", method= {RequestMethod.GET,RequestMethod.POST})
 	public String refund(HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
-		
+		System.out.println("refund 시작");
 		String b_number = request.getParameter("b_number"); //환불하려는 구매번호
 		
 		System.out.println("b_number : "+b_number);
