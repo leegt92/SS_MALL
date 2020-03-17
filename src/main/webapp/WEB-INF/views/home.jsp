@@ -464,8 +464,8 @@
 
 								<!-- <button id="watch" type="button"class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">Shop Now</button> -->
 						
-							<div  class="layer-slick1 animated visible-false " data-appear="zoomIn" data-delay="1600"  data-filter=".시계">
-								<a id="watch2" href="productViewWatch" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
+							<div  id="watch2" sclass="layer-slick1 animated visible-false " data-appear="zoomIn" data-delay="1600"  data-filter=".시계">
+								<a  href="productViewWatch" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
 									Shop Now
 								</a><!-- href="productView" id=abc&pw=1234 -->
 							</div>
@@ -957,14 +957,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script type="text/javascript"></script> 
 
 <script>
-$(document).ready(function() {
-	/* 
-	$('#watch2').on('click',function(){
+/* $(document).ready(function() {
+	
+	$('a[href="productView#watch1"]').click(function(){
 		
 		$('#watch1').trigger("click");	
 		
-	});  	 */
-});	 
+	});  	
+});	  */
 
 	/*  $('#watch2').click(function(){
 		  var a = document.getElementById('watch1');
