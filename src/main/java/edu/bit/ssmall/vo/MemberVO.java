@@ -2,31 +2,83 @@ package edu.bit.ssmall.vo;
 
 public class MemberVO {
 
-	private int m_number;
+	private int m_number; //회원번호
 	private String m_name; //이름
 	private int m_age; //나이
 	private String m_email; //이메일
 	private String m_adress; //주소
 	private String m_phonenum; //핸드폰번호
-	private int m_receive_email;
-	private String m_authority;
-	private String m_id;
-	private String m_password;
-	private String m_checkpassword;
-	private int m_price;
-	private int m_enabled;
+	private String m_receive_email; //이메일 수신여부
+	private String m_authority; // 권한
+	private String m_id; //아이디
+	private String m_password; //비밀번호
+	private String m_checkpassword; //비밀번호확인
+	private int m_price; // 지금까지 구매한 총금액
+	private int m_enabled; // 활성화 여부
+	private int m_point; //포인트
+	private String m_naver; //네이버토큰
+	private String m_kakao; // 카카오토큰
 	
+	
+
+
+	@Override
+	public String toString() {
+		return "MemberVO [m_number=" + m_number + ", m_name=" + m_name + ", m_age=" + m_age + ", m_email=" + m_email
+				+ ", m_adress=" + m_adress + ", m_phonenum=" + m_phonenum + ", m_receive_email=" + m_receive_email
+				+ ", m_authority=" + m_authority + ", m_id=" + m_id + ", m_password=" + m_password
+				+ ", m_checkpassword=" + m_checkpassword + ", m_price=" + m_price + ", m_enabled=" + m_enabled
+				+ ", m_point=" + m_point + ", m_naver=" + m_naver + ", m_kakao=" + m_kakao + "]";
+	}
+
+
 	public boolean isEqualsPassword() {
 		return m_password.equals(m_checkpassword);
 	}
+
+	
+	public int getM_point() {
+		return m_point;
+	}
+
+
+	public void setM_point(int m_point) {
+		this.m_point = m_point;
+	}
+
+
+	public String getM_naver() {
+		return m_naver;
+	}
+
+	public void setM_naver(String m_naver) {
+		this.m_naver = m_naver;
+	}
+
+	
+	public String getM_kakao() {
+		return m_kakao;
+	}
+
+	public void setM_kakao(String m_kakao) {
+		this.m_kakao = m_kakao;
+	}
+
 	public String getM_checkpassword() {
 		return m_checkpassword;
 	}
+
 	public void setM_checkpassword(String m_checkpassword) {
 		this.m_checkpassword = m_checkpassword;
 	}
+
 	
-	
+	public String getM_receive_email() {
+		return m_receive_email;
+	}
+	public void setM_receive_email(String m_receive_email) {
+		this.m_receive_email = m_receive_email;
+	}
 	
 	public int getM_number() {
 		return m_number;
@@ -64,12 +116,7 @@ public class MemberVO {
 	public void setM_phonenum(String m_phonenum) {
 		this.m_phonenum = m_phonenum;
 	}
-	public int getM_receive_email() {
-		return m_receive_email;
-	}
-	public void setM_receive_email(int m_receive_email) {
-		this.m_receive_email = m_receive_email;
-	}
+	
 	public String getM_authority() {
 		return m_authority;
 	}

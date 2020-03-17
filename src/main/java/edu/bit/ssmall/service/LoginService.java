@@ -13,10 +13,28 @@ public class LoginService {
 	LoginMapper loginMapper;
 	
 	
-	public MemberVO login(String m_id, String m_password) {
+	public MemberVO naverLogin(String m_naver) throws Exception{
 		
-		return loginMapper.login(m_id, m_password);
+		return loginMapper.naverLogin(m_naver);
 	}
+	
+	public MemberVO kakaoLogin(String m_kakao) throws Exception{
+		
+		return loginMapper.kakaoLogin(m_kakao);
+	}
+
+
+	public int naverCheck(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return loginMapper.naverCheck(memberVO);
+	}
+
+	public int kakaoCheck(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return loginMapper.kakaoCheck(memberVO);
+	}
+
+	
 
 
 	
