@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.BoardVO;
@@ -44,7 +46,21 @@ public class ProductController {
 		 
 		return "productDetail";
 	}
-	@RequestMapping("/product_Write_reply")
+	@ResponseBody
+	@RequestMapping(value = "/product_Write_reply", method =RequestMethod.POST)
+	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
+		System.out.println("/product_Write_replyAjax");
+		String p_number = request.getParameter("p_number");
+		System.out.println("Ajax프로덕트라이트리플레이:51");
+		System.out.println(request.getParameter("p_number"));
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));	
+		System.out.println("Ajax프로덕트라이트리플레이:53");
+		productService.productReplyWrite(productReplyVO);
+		System.out.println("Ajax프로덕트라이트리플레이:55");
+		
+	}
+	
+	/*@RequestMapping("/product_Write_reply") 구매소감 ajax를 위해 임시 주석화
 	public String product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
 		System.out.println("/product_Write_reply");
 		String p_number = request.getParameter("p_number");//null임 왜지?? System.out.println(request.getParameter("p_number"))로 확인함;
@@ -55,10 +71,24 @@ public class ProductController {
 		productService.productReplyWrite(productReplyVO);
 		System.out.println("프로덕트라이트리플레이:55");
 		return "forward:/productDetail2";
+	}*/
+	@ResponseBody
+	@RequestMapping("/deleteReply")
+	public void deleteReply(BoardVO boardVO, Model model,HttpServletRequest request) {
+		System.out.println("/deleteReply시작");
+		//String p_number = request.getParameter("p_number");	
+		//model.addAttribute("productDetail", productService.selectProductOne(p_number));	
+		System.out.println("bid위");
+		//String bid = request.getParameter("bid");
+		//model.addAttribute("boardNum", productService.boardOne(bid));
+		productService.replyDelete(boardVO);
+		System.out.println("/deleteReply끝");
+		//bid가 들어가지 않음. jsp에서 안넘어옴. 직접 bid값 주면 삭제되는거 확인. 그러나 페이지는 다시 돌아가지 못했음.
+		//이 메소드 다시 확인
 	}
 	
-	@RequestMapping("/deleteReply")
-	public String deleteReply(BoardVO boardVO, Model model,HttpServletRequest request) {
+	/* 삭제 ajax써보기위해 주석처리
+	 * public String deleteReply(BoardVO boardVO, Model model,HttpServletRequest request) {
 		System.out.println("/deleteReply시작");
 		//String p_number = request.getParameter("p_number");	
 		//model.addAttribute("productDetail", productService.selectProductOne(p_number));	
@@ -70,7 +100,8 @@ public class ProductController {
 		return "forward:/productDetail2";
 		//bid가 들어가지 않음. jsp에서 안넘어옴. 직접 bid값 주면 삭제되는거 확인. 그러나 페이지는 다시 돌아가지 못했음.
 		//이 메소드 다시 확인
-	}
+	}*/
+	
 	@RequestMapping("/modifyReply")
 	public String modifyReply(BoardVO boardVO, Model model) {
 		System.out.println("modifyReply시작");

@@ -53,9 +53,9 @@ public class ProductRestController {
 	public List<ProductReplyVO> product_replyAjax2(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
 		System.out.println("product_replyAjax2시작");
 		String p_number = request.getParameter("p_number");
-		//model.addAttribute("productDetail", productService.selectProductOne(p_number));
-		//model.addAttribute("productReply", productService.productReply(p_number));
-		//model.addAttribute("productNum", productService.productOne(p_number));
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));
+		model.addAttribute("productReply", productService.productReply(p_number));
+		model.addAttribute("productNum", productService.productOne(p_number));
 		System.out.println("product_replyAjax2끝");
 		
 		
@@ -78,13 +78,8 @@ public class ProductRestController {
 		
 		return "productDetail2";
 	}
-	@RequestMapping("/Child")
-	public String Child(HttpServletRequest request,Model model) {
-		
-		model.addAttribute("product", productService.selectProductList());
-		
-		return "Child";
-	}
+
+	@ResponseBody
 	@RequestMapping("/modifyReply2")
 	public void modifyReply2(BoardVO boardVO,Model model,HttpServletRequest request) {
 		System.out.println("modifyReply2 타는지확인");
@@ -98,6 +93,21 @@ public class ProductRestController {
 		
 		productService.updateBoard(btitle,bcontent,bid);
 		
-
 	}
+	
+	/*@RequestMapping("/modifyReply2") 수정 ajax를 위해
+	public String modifyReply2(BoardVO boardVO,Model model,HttpServletRequest request) {
+		System.out.println("modifyReply2 타는지확인");
+		String btitle = request.getParameter("btitle");
+		String bcontent = request.getParameter("bcontent");
+		String bid = request.getParameter("bid");
+		
+		System.out.println(btitle);
+		System.out.println(bcontent);
+		System.out.println(bid);
+		
+		productService.updateBoard(btitle,bcontent,bid);
+		
+		return "forward:productDetail2";		
+	}*/
 }

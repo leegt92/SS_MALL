@@ -66,7 +66,13 @@
 			<version>0.2.7</version>
 		</dependency>
 		
-		<!--JSON-->
+		<!--JSON 연습-->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.6</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
