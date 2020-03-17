@@ -20,6 +20,7 @@ import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 @Controller
+@RequestMapping("refund")
 public class RefundController {
 	
 	@Autowired
@@ -51,20 +52,23 @@ public class RefundController {
 		//취소가 되면 db작업 환불테이블 추가 구매테이블 삭제 상품 재고증가  판매량 감소
 		String result = refundService.addRefund(tid,buyVO.getM_number(),buyVO.getP_number(),buyVO.getB_number(),buyVO.getB_amount(), buyVO.getB_total(), request);
 		
-		return "redirect:"+result;
+		return "redirect:/"+result;
 	}
 
-	@RequestMapping(value="myPage_refundList", method= {RequestMethod.GET,RequestMethod.POST})
-	public String myPage_refundList(HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
-		String m_id = principal.getName();
-		
-		ArrayList<RefundVO> refundVO = refundService.refundInfo(m_id);
-		System.out.println(refundVO);
-		
-	
-		model.addAttribute("refund", refundVO);
-		
-		
-		return "MyPage/myPage_refundList";
-	}
+	/*
+	 * @RequestMapping(value="myPage_refundList", method=
+	 * {RequestMethod.GET,RequestMethod.POST}) public String
+	 * myPage_refundList(HttpServletRequest request, HttpServletResponse response,
+	 * Principal principal, Model model) throws Exception{ String m_id =
+	 * principal.getName();
+	 * 
+	 * ArrayList<RefundVO> refundVO = refundService.refundInfo(m_id);
+	 * System.out.println(refundVO);
+	 * 
+	 * 
+	 * model.addAttribute("refund", refundVO);
+	 * 
+	 * 
+	 * return "MyPage/myPage_refundList"; }
+	 */
 }

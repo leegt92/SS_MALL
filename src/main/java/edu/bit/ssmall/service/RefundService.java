@@ -45,7 +45,7 @@ public class RefundService {
 		refundMapper.productRefund(p_number, b_amount);
 		HttpSession session = request.getSession();
 		session.setAttribute("success", "success");
-		return "myPage_refundList";
+		return "mypage/myPage_refundList";
 	}
 
 	//환불내역 확인

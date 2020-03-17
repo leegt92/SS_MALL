@@ -29,6 +29,7 @@ import edu.bit.ssmall.vo.ProductImageVO;
 
 //구매관련 컨트롤러
 @Controller
+@RequestMapping("buy")
 public class BuyController {
 	
 	@Autowired
