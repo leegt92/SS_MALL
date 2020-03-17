@@ -141,7 +141,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form id="submitAskRequest" action="myPage_askRequest">
+					<form id="submitAskRequest" action="myPage_askRequest_back">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							문의 및 건의사항을 작성해 주세요.
 						</h4>

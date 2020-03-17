@@ -141,7 +141,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form id="submitASRequest" action="myPage_askAS">
+					<form id="submitASRequest" action="myPage_askAS_back">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요
 						</h4>
