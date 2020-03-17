@@ -266,7 +266,8 @@ CREATE TABLE Refund (
 	p_number NUMBER, /* 상품번호 */
 	r_price NUMBER, /* 환불금액 */
 	r_date DATE, /* 환불일자 */
-	r_status VARCHAR2(20) /* 환불상태 */
+	r_status VARCHAR2(20), /* 환불상태 */
+	r_amount NUMBER /* 환불수량 */
 );
 
 COMMENT ON TABLE Refund IS '환불';
@@ -282,6 +283,8 @@ COMMENT ON COLUMN Refund.r_price IS '환불금액';
 COMMENT ON COLUMN Refund.r_date IS '환불일자';
 
 COMMENT ON COLUMN Refund.r_status IS '환불상태';
+
+COMMENT ON COLUMN Refund.r_amount IS '환불수량';
 
 CREATE UNIQUE INDEX PK_Refund
 	ON Refund (
@@ -462,7 +465,7 @@ insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_rel
 values(product_seq.nextval, '까레라 메탈', 2700000,'태그호이어',100,'태그호이어 까레라 메탈','2016/5/18',0,'시계','watch8.PNG');
 
 insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_released_date,p_amount,p_category,p_image)
-values(product_seq.nextval, '컴플리케이션', 190000000,'파텍필립',100,'파텍필립 컴플리케이션','2016/5/17',0,'시계','watch9.PNG');
+values(product_seq.nextval, '컴플리케이션', 800000,'파텍필립',100,'파텍필립 컴플리케이션','2016/5/17',0,'시계','watch9.PNG');
 
 insert into product(p_number, p_name,p_price,p_brand,p_stock,p_description,p_released_date,p_amount,p_category,p_image)
 values(product_seq.nextval, '노틸러스', 90000000,'파텍필립',100,'파텍필립 노틸러스','2016/5/17',0,'시계','watch10.PNG');
