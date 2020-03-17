@@ -329,13 +329,13 @@ public class MyPageController {
 			model.addAttribute("m_phonenum2",m_phonenum2);
 			
 			 if(m_naver != null || m_kakao != null) {
-				 return "myPage_reviseInformation2-2";
+				 return "MyPage/myPage_reviseInformation2-2";
 			 }
 			 
 			 if(passwordEncoder.matches(pw, m_pw)) {
-				 return "myPage_reviseInformation2";
+				 return "MyPage/myPage_reviseInformation2";
 			 }else {
-				 return "checkPwError";
+				 return "MyPage/checkPwError";
 			 }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -390,7 +390,7 @@ public class MyPageController {
 					mypageService.updateMpassword(hashpw, name);
 				}
 				else {
-					return "myPage_reviseInformation2";
+					return "MyPage/myPage_reviseInformation2";
 				}
 			}
 			if(m_name != "") {
@@ -432,7 +432,7 @@ public class MyPageController {
 	    String m_phonenum = request.getParameter("m_phonenum");
 	    String m_receive_email = request.getParameter("m_receive_email");
 	    if(m_age == "" && m_adress == "" && m_phonenum == ""  && m_receive_email == null) {
-	    	return "checkPwError3_2";
+	    	return "MyPage/checkPwError3_2";
 	    }
 	    
 	    String name = "";
@@ -479,7 +479,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "myPage_reviseInformation2-2";
+		return "MyPage/myPage_reviseInformation2-2";
 
 	}
 	
@@ -638,7 +638,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:MyPage/myPage_askRequestView";
+	    return "redirect:/myPage_askRequestView";
 
 
 	}
@@ -682,7 +682,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:MyPage/myPage_aSRequestView";
+	    return "redirect:/myPage_aSRequestView";
 
 
 	}
