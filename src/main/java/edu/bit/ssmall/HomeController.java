@@ -1,6 +1,5 @@
 package edu.bit.ssmall;
 
-import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;

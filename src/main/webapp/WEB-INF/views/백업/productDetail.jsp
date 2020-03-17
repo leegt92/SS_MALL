@@ -2,14 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <title>Product Detail</title>
-<!-- <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script> -->
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -54,7 +51,7 @@
 <!--===============================================================================================-->
 
 <style type="text/css">
-/* 
+
 .postRight{
 		font-family: 'Verdana', "gulim", "굴림";
 		font-size: 12px;
@@ -96,157 +93,9 @@
         #ReplyModifyForm{
             text-align :center;
         }
- */
-        #wrap {
-            width: 700px;
-            margin: 0 auto 0 auto;
-        }
-        
-        #comment{
-            text-align :left;
-        }
-        
-        #listGuestForm{
-            text-align :center;
-            overflow:scroll; 
-            overflow-x:hidden; 
-            height:220px;
-        }
-        
-        #writeGuestForm, #pageForm{
-            text-align :center;
-        }
-        
-        .modal {
-        text-align: center;
-		}
- 
-		@media screen and (min-width: 768px) { 
-		        .modal:before {
-		                display: inline-block;
-		                vertical-align: middle;
-		                content: " ";
-		                height: 100%;
-		        }
-		}
- 
-		.modal-dialog {
-		        display: inline-block;
-		        text-align: left;
-		        vertical-align: middle;
-		}
-        
+
 </style>
-
-<script>
-	    	    	
-	    function replyList(){
-	    	console.log("replyList타는지 확인2");
-	    	console.log("${productNum.p_number}")
-	    	 $.ajax({
-	    		 url : '/ssmall/product_replyAjax2',
-	    		 type :'get',
-	    		 dataType :'json',
-	    		 data :{
-	    			 p_number: ${productNum.p_number}
-	    	 	 },
-	    	 	
-	    		 success : function(data) {
-	    			 var tag="";
-	    			 console.log(data);
-	    			 $.each(data, function(key, data){
-	    				 console.log('1product_replyAjax확인');	
-	    				 	    				 	    				 
-	    				 tag = tag+ "<div class='postRight'>";
-	    				 tag = tag+ "<div class='postContents container photo_est_cont'>";
-	    				 tag = tag+ "<div class='profile'>";
-	    				 tag = tag+ "<p>";
-	    				 tag = tag+ "<span class='gallery_lv'>"+"작성자 : "+data.m_id+"</span>";
-	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+data.bdate+"</span>"	;												
-	    				 tag = tag+ "</p>";											
-	    				 tag = tag+ "</div>";
-
-	    				 tag = tag+ "<div class='pContent'>";
-										
-	    				 tag = tag+ "<div class='summary' style='cursor: pointer;'>";
-	    				 tag = tag+ "<div class='cArea'>";
-	    				 tag = tag+ "<div class='pContent_text'>";
-	    				 tag = tag+ "<h3><div class='tit'>"+data.btitle+"</div></h3><br/>";
-	    				 tag = tag+ "<span class='content-review'>"+data.bcontent+"</span>";
-	    				 tag = tag+ "</div>";
-	    				 tag = tag+ "<div class='pContent_Img img3 photoReview'>";
-	    				 tag = tag+ "<img class='musinsa-gallery-images' src='//image.msscdn.net/data/estimate/1199146_0/gallery_5e439a2f82e05.jpg.list' alt='BRENSON [패키지] Errday'>";
-														
-														
-						 tag = tag+ "</div>";
-						 tag = tag+ "<div class='clear'></div>";
-						 tag = tag+ "</div>";
-						 tag = tag+ "</div>";
-
-						tag = tag+ "<div class='detail' style='display: none;'></div>";
-
-						tag = tag+ "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
-															console.log(data.bid);
-						tag = tag+ "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>"; 
-												
-						tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
-						tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
-						tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
-						tag = tag + "<button type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제"+"</button><br/>";
-						tag = tag + "<button type = 'button' id = popbutton name = 'popbutton' value='"+data.bid+"'>"+"수정"+"</button>";
-																														
-						tag = tag + "</p>";
-						tag = tag + "</form>";								
-						tag = tag + "</div>";
-						tag = tag + "<div class='clear20'></div>";
-						<!--comment-->
-						tag = tag+ "<div class='comments-list'>";
-						tag = tag+ "<a name='#comment_8243670'></a>";
-						tag = tag+ "<div class='comments comments-input' c_idx='8243670' est_type='photo' is_open=''>";
-											
-						tag = tag+"<div class='comment_store cFormTriger'>";
-						tag = tag+"<div class='comment_area'></div>";
-						tag = tag+"<span class='comment_area_btn plain-btn btn active'>";+"댓글작성";
-						tag = tag+"</span>";
-						tag = tag+"</div>";
-						tag = tag+"<tr class='qna_reply_area qa_c3' style='display:none;'>";
-						<!--댓글작성-->
-						tag = tag+"<div class='cFormBox groupType-cForm cFormInput'></div>";
-						<!--//댓글작성-->
-						<!--댓글-->
-						tag = tag+"<div class='comment-post comment_box' style='border: 0px' id='div_8243670' c_idx='8243670' c_type='goods_estimate'>";
-												
-						tag = tag+"</div>";
-						<!--댓글-->
-						tag = tag+"</tr>";
-						tag = tag+"</div>";														
-						tag = tag+"</div>";
-						<!--//comment-->
-						tag = tag+"</div>";
-						<!--//postContents-->													
-						tag = tag+"</div>";
-	    				 
-	    			 });
-	    			 $("section.reply_ajax ol").html(tag);
-    				 console.log("html탐");
-	    			 
-	    		 },
-	    		 error : function(request, status, error) {
-                     console.log(request.responseText);
-                     console.log(error);
-                     console.log(this.url);
-                 }	    		 	    		 
-	    		 
-	    	 });
-	    	 alert("replyList탐");
-	    	 console.log('1532번');
-
-	    	}
-
-	   </script>
-
 </head>
-
 <body class="animsition">
 	<!-- Header -->
 	<header class="header-v4">
@@ -353,6 +202,7 @@
 				</span>
 			</div>
 		</div>
+
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
@@ -491,7 +341,10 @@
 			<a href="/ssmall/" class="stext-109 cl8 hov-cl1 trans-04"> Main <i
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a> <a href="productView" class="stext-109 cl8 hov-cl1 trans-04"> 상품
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+				<%-- <c:forEach items="${productDetail}" var="productDetail" begin="0" end="0">
+				${productDetail.p_category}
+				</c:forEach> --%> <%-- ${product1.p_name} --%> <i
+				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a> <span class="stext-109 cl4">
 			<c:forEach items="${productDetail}" var="productDetail" begin="0" end="0">					
 				${productDetail.p_name}
@@ -501,7 +354,9 @@
 		</div>
 	</div>
 
+
 	<!-- Product Detail -->
+
 
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
@@ -512,6 +367,7 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
 
 							<div class="slick3 gallery-lb">
 								<c:forEach items="${productDetail}" var="productDetail">
@@ -534,6 +390,8 @@
 						</div>
 					</div>
 				</div>
+
+
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
@@ -613,6 +471,8 @@
 							</div>
 						</div>
 
+
+						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#"
@@ -643,8 +503,6 @@
 				<div class="tab01">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
-						
-							
 						<li class="nav-item p-b-10"><a class="nav-link active"
 							data-toggle="tab" href="#description" role="tab">Description
 								상품설명 설명</a></li>
@@ -652,9 +510,9 @@
 						<li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#information" role="tab">Additional
 								information상세정보. 크기 길이 등</a></li>
+
 						<li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#reviews" role="tab">Reviews</a></li>
-
 					</ul>
 
 					<!-- Tab panes -->
@@ -698,98 +556,107 @@
 							</div>
 						</div>
 
+						<!-- - -->
 						<div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
-																			
+										<!-- Review -->
+										<%-- 
+										
+											<div class="flex-w flex-t p-b-68">
+												<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+													<img src="images/avatar-01.jpg" alt="AVATAR">
+												</div>
+
+												<div class="size-207">
+													<div class="flex-w flex-sb-m p-b-17">
+														<span class="mtext-107 cl2 p-r-20">
+															<tr>
+																<th>번호 : ${productReply.bid}</th>
+																<br />
+																<th>제목 : ${productReply.btitle}</th>
+																<br />
+																<td><fmt:formatDate value="${productReply.bdate}"
+																		pattern="yyyy-MM-dd" /></td>
+															</tr> <br />																														
+														</span> <span class="fs-18 cl11"> <i
+															class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
+															<i class="zmdi zmdi-star"></i> <i class="zmdi zmdi-star"></i>
+															<i class="zmdi zmdi-star-half"></i>
+														</span>
+													</div>
+
+													<p class="stext-102 cl6">
+														Quod autem in homine praestantissimum atque optimum est,
+														id deseruit. Apud ceteros autem philosophos <br /> 더미.
+														게시판이 아니라 걍 모양세만 낸거임
+													</p>
+												</div>
+											</div> --%>
+										
+
+										<!-- <div class="flex-w flex-t p-b-68">
+											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+												<img src="images/avatar-01.jpg" alt="AVATAR">
+											</div>
+
+											<div class="size-207">
+												<div class="flex-w flex-sb-m p-b-17">
+													<span class="mtext-107 cl2 p-r-20">
+														Ariana Grande<br/>
+														더미. 게시판이 아니라 걍 모양세만 낸거임
+													</span>
+
+													<span class="fs-18 cl11">
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star"></i>
+														<i class="zmdi zmdi-star-half"></i>
+													</span>
+												</div>
+
+												<p class="stext-102 cl6">
+													Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+													<br/>
+													더미. 게시판이 아니라 걍 모양세만 낸거임
+												</p>
+											</div>
+										</div> -->
+
+										<!-- Add review -->
+										
 <!-- ----------------------------------------------------구매감상 게시판----------------------------------------------------------------- -->
-																												
+
+												<!-- 게시글 작성 -->
 										<div class="container">
-											<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button>
-																																																																																			
+											<button type="button" class="btn btn-info"
+												data-toggle="collapse" data-target="#demo">구매후기 작성												
+											</button>																																																
 												<div id="demo" class="collapse in" style="border: 1px solid;">																																																	
-													<form id="form" name="form" role="form" method="post" autocomplete="off">
-														<input type="hidden" id="p_number" value="${productNum.p_number}"name="p_number">																													
-														<input type="hidden" id="m_number" value="40" name="m_number"><!-- 미구현.테스트 -->
-														<input type="hidden" id="m_id" value="hyemin311" name="m_id" /><!-- 미구현.테스트 -->
+													<form action="product_Write_reply" method="post">
+														<input type="hidden" value="${productNum.p_number}"name="p_number">																													
+														<input type="hidden" value="1" name="m_number"><!-- 미구현.테스트 -->
+														<input type="hidden" value="m_id" name="m_id" /><!-- 미구현.테스트 -->
 														<label>제목</label>
-														<input type="text" class="btitleCollapse" id="btitle" name="btitle" style="border: 1px solid;" /><br />
+														<input type="text" name="btitle" style="border: 1px solid;" /><br />
 														<!-- <label>작성자</label> <input type="text" name="m_id" style=" border:1px solid;" /><br /> -->
 														<label>내용</label>
-														<textarea cols="50" rows="5" class="bcontentCollapse" id="bcontent" name="bcontent" style="border: 1px solid;"></textarea><br/>
-														<button type="button" id="reply_btn" data-toggle="collapse" data-target="#demo" style="border: 1px solid;">작성</button>	
-														
-														<script>
-
-															$("#reply_btn").click(function(){
-																console.log("구매소감Ajax");
-																var formObj = $("#demo form[role='form']");
-																console.log("구매소감Ajax1");
-																var p_number = $("#p_number").val();
-																console.log("구매소감Ajax2");
-																var m_number = $("#m_number").val();
-																console.log("구매소감Ajax3");
-																var m_id = $("#m_id").val();
-																console.log("구매소감Ajax4");
-																var bcontent = $("#bcontent").val();
-																console.log("구매소감Ajax5");
-																var btitle = $("#btitle").val();
-																
-																console.log("구매소감Ajax data위");
-																var data = {
-																		p_number : p_number,
-																		m_number : m_number,
-																		m_id : m_id,
-																		bcontent : bcontent,
-																		btitle : btitle
-																		};
-																console.log("구매소감Ajax $.ajax 위");
-																
-																$.ajax({
-																	url : '/ssmall/product_Write_reply',																	
-																	method : 'get',
-																	data : data,
-																	error:function(request,status,error){
-																	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-														            },																	
-																	success : function(){
-																		console.log("구매소감Ajax $.ajax 위2");	
-																		/* 글목록 함수입니다 */
-																			replyList();
-																		
-																			$(".btitleCollapse").val("");
-																			$(".bcontentCollapse").val("");
-																		console.log("success밑에");
-
-																	}																	
-																});
-																
-															});
-														</script>												
-														
+														<textarea cols="50" rows="5" name="bcontent" style="border: 1px solid;"></textarea><br/>
+														<button type="submit" style="border: 1px solid;">작성</button>													
 													</form>																									
 												</div>									
-											</div>																																											
+											</div>
 															<!-- 댓글 출력  -->
-									<section class="reply_ajax">
-										<ol>
-										
-										</ol>									
-									</section>
-									<!-- <div class="reply_ajax" id="reply_ajax" > -->
-
-									<!-- <button class='btn btn-default' id='popbutton'>모달출력버튼</button>
-									<button id = popbutton name = 'popbutton' value=329>모달출력버튼3</button> -->
-									<!-- 동기화식 댓글출력을 주석화 -->
-										<%-- <c:forEach items="${productReply}" var="productReply" varStatus="status" >
+										<c:forEach items="${productReply}" var="productReply" varStatus="status" >
 											<div class="postRight">
 												<!-- postContents-->
 												<div class="postContents container photo_est_cont">
 													<div class="profile">
 														<p>
 															<span class="gallery_lv">작성자 : ${productReply.m_id},${status.count}</span> 
-															<a href="delete?p_number=${productReply.p_number}">게시물 삭제</a>
+															<%-- <a href="delete?p_number=${productReply.p_number}">게시물 삭제</a> --%>
 															<span class="date"> 작성날짜 : ${productReply.bdate}</span> 														
 														</p>											
 													</div>
@@ -857,13 +724,7 @@
 												</div>
 												<!--//postContents-->													
 											</div>
-											</c:forEach> --%>
-										<!-- </div> -->
-										
-										<script>
-										replyList();
-										console.log("945replyList();")										
-										</script>
+											</c:forEach>
 											
 											<!-- 댓글수정 버튼을 누르면 열리는 창 -->
 											<div id="wrap">
@@ -875,14 +736,43 @@
 													<form name="replyInfo" target="parentForm">
 														<textarea rows="7" cols="70" name="comment_content"></textarea>
 														<br>
-														<br> <input type="button" value="등록" onclick="checkValue()"> 
+														<br> <input type="button" value="등록"onclick="checkValue()"> 
 															<input type="button" value="창닫기" onclick="window.close()">
 															
 													</form>
 												</div>
 											</div>
 
-										
+										<script>
+											//수정
+											function modifyBoard(bid) {
+												var form = $('#form_' + bid);
+												form.attr("action",
+														"/ssmall/modifyReply");
+												form.attr("method", "get");
+												form.submit();
+											}
+
+											//삭제
+											function deleteBoard(bid) {
+												var form = $('#form_' + bid);
+												form.attr("action",
+														"/ssmall/deleteReply");
+												form.attr("method", "get");
+												form.submit();
+											}
+											function cmUpdateOpen(bid){
+									            window.name = "parentForm";
+									            window.open("CommentUpdateForm.co?num="+bid,
+									                        "updateForm", "width=570, height=350, resizable = no, scrollbars = no");
+									        }
+											
+											var win = window.open("", "PopupWin", "width=500,height=600");
+
+											win.document.write("<p>새창에 표시될 내용 입니다.</p>");
+
+											
+										</script>
 
 										<%-- <form role = "form" method="post" autocomplete="off">
 														<p>
@@ -1036,6 +926,7 @@
 		</div>
 	</section>
 
+
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
@@ -1143,6 +1034,7 @@
 			</div>
 		</div>
 	</footer>
+
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
@@ -1311,9 +1203,9 @@
 			</div>
 		</div>
 	</div>
-		
+
 	<!--===============================================================================================-->
-	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
@@ -1418,177 +1310,6 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
-	
-	   
-	   <!-- 모달 -->
-	<div class="modal fade" id="layerpop">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- header -->
-				<div class="modal-header">
-					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<!-- header title -->
-					<h4 class="modal-title">Header</h4>
-				</div>
-				<!-- body -->
-				<div class="modal-body">
-					<form id="modalForm" name="modalForm" action="modifyReply2" method="post">
-						<input id="bid" type="text" name="bid">
-						<input id="p_number" type="text" name="p_number" value="${productNum.p_number}">
-						<input type="text"name="btitle" id="btitle" size="50" style=""><br>
-						<textarea name="bcontent" rows="10" cols="50"></textarea>
-						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
-					</form>
-				</div>
-				<!-- Footer -->
-				<div class="modal-footer">
-					Footer
-					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-								<script>
-								
-									$(function(){
-										$(document).on("click","#modalSubmit",function(){
-											alert("확인");
-											var queryString = $("form[name=modalForm]").serialize();
-											
-											$.ajax({
-												method:"get",
-												url:"/ssmall/modifyReply2",
-												data:queryString,
-												error:function(xhr,status,error){
-													alert(error);
-												},
-												success:function(){
-													replyList();
-												},
-											});												
-											})
-										})
-
-										/* $(function(){
-											$(document).on("click","#modifyBoard",function(){ */
-												/* alert($(this).attr("value"));
-												console.log("수정위"); */												
-												/* var form = $('#form_' + $(this).attr("value"));
-												//var form = $("form[role='form']");
-												form.attr("action",
-														"/ssmall/Child");
-												form.attr("method","get");												
-												form.submit(); */											
-												/* var form = $("form[role='form']"); */
-												/* window.name = "parentForm";												
-												openWin = window.open("Child",
-									                    "childForm", "width=570, height=350, resizable = no, scrollbars = no"); */
-												/* $(opener.document).find("childBid").val($(this).attr("value"));
-												openWin.document.getElementById("childBid").value = $(this).attr("value"); */
-												/* console.log("modifyBoard탐"); */																								
-												//$("#modifyBoard").submit();											
-											/* })
-										}) */
-																																																	
-										/* $(function(){
-											$(document).on("click","#deleteBoard",function(){
-												alert($(this).attr("value"));
-												console.log("!아래");												
-												var form = $('#form_' + $(this).attr("value"));
-												form.attr("action",
-														"/ssmall/deleteReply");
-												form.attr("method", "get");
-												form.submit();
-												console.log("삭제아래");	
-												alert($(this).attr("value"));
-											})
-										}) */
-										
-										$(document).on("click", "#deleteBoard", function(){
-											  alert($(this).attr("value"));
-											  var data = {bid : $(this).attr("value")};
-											   
-											  $.ajax({
-											   url : "/ssmall/deleteReply",
-											   type : "get",
-											   data : data,
-											   success : function(){
-												 console.log("삭제1");
-											     replyList();
-											     console.log("삭제2");
-											   }
-											  });
-											 });
-										
-											$(function(){
-											    $(document).on("click","#popbutton",function(){
-											    	
-											    	console.log("모달스크립트");
-											    	alert($(this).attr("value"));
-											        $('div.modal').modal();
-											        
-											        var bid = $(this).attr("value");
-											    	$('#bid').val(bid);
-											    	alert(bid);											    
-											    	/* var p_number = ${productNum.p_number};
-											    	$('#p_number').val(p_number);
-											    	alert(p_number); */
-											    	
-											    })
-											})
-											
-											/* $(function(){
-											    $(document).on("click","#modalSubmit",function(seq){
-											    	console.log("offset 타나?111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-											        var offset = $("#offset" + seq).offset();
-											        $('html, body').animate({scrollTop : offset.top}, 1);
-											    })
-											}) */
-										
-											/* //수정
-											function modifyBoard(bid) {
-												var form = $('#form_' + bid);
-												form.attr("action",
-														"/ssmall/modifyReply");
-												form.attr("method", "get");
-												form.submit();
-											}
-
-											//삭제											
-	
-											/* function deleteBoard(bid){
-												var form = $('#form_' + bid);
-												form.attr("action",
-														"/ssmall/deleteReply");
-												form.attr("method", "get");
-												form.submit();
-											} 
-											
-											function cmUpdateOpen(bid){
-									            window.name = "parentForm";
-									            window.open("CommentUpdateForm.co?num="+bid,
-									                        "updateForm", "width=570, height=350, resizable = no, scrollbars = no");
-									        }
-											
-											$(function(){
-											$("#check").on("click",function(){
-												alert("이벤트체크");
-											});
-											
-											});
-											
-											var win = window.open("", "PopupWin", "width=500,height=600");
-
-											win.document.write("<p>새창에 표시될 내용 입니다.</p>");
- 											*/
-											
-										</script>
 
 </body>
 </html>

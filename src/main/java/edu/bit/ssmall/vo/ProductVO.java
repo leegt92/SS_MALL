@@ -94,4 +94,13 @@ public class ProductVO {
 		this.p_category = p_category;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductVO [p_number=" + p_number + ", p_name=" + p_name + ", p_price=" + p_price + ", p_brand="
+				+ p_brand + ", p_stock=" + p_stock + ", p_description=" + p_description + ", p_released_date="
+				+ p_released_date + ", p_amount=" + p_amount + ", p_category=" + p_category + ", p_image=" + p_image
+				+ "]";
+	}
+	
+	
 }
