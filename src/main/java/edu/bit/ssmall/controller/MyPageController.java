@@ -419,9 +419,9 @@ public class MyPageController {
 			model.addAttribute("m_phonenum2",m_phonenum2);
 			
 			 if(passwordEncoder.matches(pw, m_pw)) {
-				 return "myPage_reviseInformation2";
+				 return "MyPage/myPage_reviseInformation2";
 			 }else {
-				 return "checkPwError";
+				 return "MyPage/checkPwError";
 			 }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -445,7 +445,7 @@ public class MyPageController {
 	    String m_phonenum = request.getParameter("m_phonenum");
 	    String m_receive_email = request.getParameter("m_receive_email");
 	    if(m_name == "" && m_age == "" && m_adress == "" && m_phonenum == "" && m_password == "" && m_receive_email == null) {
-	    	return "checkPwError3";
+	    	return "MyPage/checkPwError3";
 	    }
 	    
 	    String name = "";
@@ -476,7 +476,7 @@ public class MyPageController {
 					mypageService.updateMpassword(hashpw, name);
 				}
 				else {
-					return "myPage_reviseInformation2";
+					return "MyPage/myPage_reviseInformation2";
 				}
 			}
 			if(m_name != "") {

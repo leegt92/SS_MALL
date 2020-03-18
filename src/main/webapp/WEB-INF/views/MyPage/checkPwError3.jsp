@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,7 +12,7 @@
     <link rel="icon" href="favicon.ico">
 
     <title>상승몰</title>
-
+    
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -63,7 +64,7 @@
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">Sign out</a>
         </li>
@@ -72,7 +73,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -85,7 +86,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
-                  <b>회원 정보 수정</b>
+                  <b>▶회원 정보 수정</b>
                 </a>
               </li>
               <li class="nav-item">
@@ -103,7 +104,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequest">
                   <span data-feather="users"></span>
-                  <b>▶1:1 문의</b>
+                  <b>1:1 문의</b>
                 </a>
               </li>
               <!-- <li class="nav-item">
@@ -122,108 +123,112 @@
           </div>
         </nav>
 		
-	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116" style="
-	    margin-left: 0px;
-	    margin-top: 100px;
-	    padding-top: 0px;
-	    padding-left: 0px;
-	    position: fixed;
-	    left: 400px;
-	    ">
-		<div class="container" >
-			<div class="flex-w flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
-				width:1142px; height:527px; style="
-				 width: 1142px;
-   				 height: 527px;
-				">
-					<form id="submitAskRequest" action="myPage_askRequest">
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							문의 및 건의사항을 작성해 주세요.
-						</h4>
+		<div class="limiter" style="position:fixed;left: 770px;width: 330px;top: 100px;">
+		<div class="container-login100"
+			style="background-color: #bebebe;border:3px solid black;width: 660px;height: 806px;">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				
 
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="글 제목을 입력하세요."
-							style="padding-left: 30px;">
-						</div>
 
-						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="글 내용을 입력하세요" ></textarea>
-						</div>
 
-						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							제출
-						</button>
-					</form>
-				</div>
+				<form:form action="myPage_reviseInformation2" class="container-login100"
+					method="post" id="reviseInformation">
+					<span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"	><font size="5em"><b>회원정보 수정</b></font></span>
 
-				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md" style="
-					padding-left: 0px;
-					padding-right: 0px;
-					height: 162px;
-					width: 1142px;
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="아이디 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">아이디</font></span> <div><c:out value="${m_id}"/> (아이디는 수정이 불가능합니다.)</div> <span class="focus-input100"
+							data-symbol="&#xf206;"></span>
+						<div id="id_check"> </div>
+					</div>
+
+
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="비밀번호 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">비밀번호</font></span> 
+						<input class="input100" id="m_password"
+							type="password" name="m_password" placeholder="수정할 비밀번호를 입력해주세요"
+							maxlength="20" style="width: 545px;"> <span class="focus-input100"
+							data-symbol="&#xf190;"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="비밀번호 한번더 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">비밀번호 확인</font></span> 
+						<input class="input100" id="m_checkpassword"
+							type="password" name="m_checkpassword"
+							placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="width: 545px;"> <span
+							class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="이름 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">이름</font></span> <input id = "m_name" class="input100"
+							type="text" name="m_name" placeholder="수정할 이름을 입력해주세요" maxlength="5" style="width: 545px;">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+						
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="나이 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">나이</font></span> <input id="m_age" class="input100"
+							type="text" name="m_age" placeholder="수정할 나이를 입력해주세요" maxlength="2" style="width: 545px;">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="이메일 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">이메일</font></span> <div><c:out value="${m_email}"/> (이메일은 수정이 불가능합니다.)</div> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="배송지 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">주소</font></span> <input id="m_adress" class="input100"
+							type="text" name="m_adress" placeholder="수정할 주소를 입력해주세요" style="width: 545px;"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="핸드폰번호 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span> <input id = "m_phonenum" class="input100"
+							type="text" name="m_phonenum" placeholder="수정할 핸드폰번호를 입력해주세요"
+							maxlength="11" style="width: 545px;"> <span class="focus-input100"
+							data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> <input type="radio"
+							name="m_receive_email" value="1"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 99px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
+							<input type="radio"
+							name="m_receive_email" value="0" style="position:fixed;top: 790px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 119px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
+					</div>
+
+					<div class="flex-c-m">
+						<button id="revise_submit" class="btn btn-secondary" style="position:fixed;top: 830px;left: 1010px;">수정완료</button>
+						<button id="withdraw_submit" class="btn btn-secondary" style="
+    						position:fixed;
+    						margin-left: 10px;
+    						padding-left: 0px;
+    						padding-bottom: 0px;
+    						padding-top: 0px;
+    						padding-right: 0px;
+    						top: 830px;
+    						left: 1090px;
+    						height: 35px;
+    						">
+    						
+					</div>
+				</form:form>
+				<form:form action="myPage_reviseInformation3" class="login100-form validate-form" method="POST">
+    				<input class="btn btn-secondary" type="submit" value="회원탈퇴" style="
+					 margin-left: 280px;
+				  	 margin-top: 23px;
 					">
-					<div class="flex-w w-full p-b-42" style="
-					    padding-bottom: 10px;
-					    width: 300px;">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-map-marker"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								주소
-							</span>
-
-							<p class="stext-115 cl6 size-213 p-t-18">
-								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
-							</p>
-						</div>
-					</div>
-
-					<div class="flex-w w-full p-b-42" style="
-						    width: 300px;
-						    padding-left: 100px;">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-phone-handset"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								전화번호
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								+1 800 1236879
-							</p>
-						</div>
-					</div>
-
-					<div class="flex-w w-full" style="
-						    padding-bottom: 50px;
-						    padding-left: 100px;
-						">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								이메일주소
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
-							</p>
-						</div>
-					</div>
-				</div>
+    			</form:form>
 			</div>
 		</div>
-	</section>
-	
-       
+	</div>
       </div>
     </div>
 
@@ -245,10 +250,10 @@
     Swal.fire({
 		icon: 'error',
 		position: 'center',
-		title: '글제목 또는 글내용 미입력',
-		text: '글제목과 글내용을 모두 입력해주세요.',	
+		title: '수정사항 미입력',
+		text: '수정할 사항을 입력해 주세요.',	
 		}).then(function() {
-			window.location = "/ssmall/myPage_askRequest";
+			window.location = "/ssmall/myPage_reviseInformation";
 		});
 	</script>
 
