@@ -24,7 +24,7 @@
 
 <link rel="stylesheet" href="/ssmall/css/adll.min.css">
 
-<link rel="stylesheet" href="/ssmall/bootstrap.css">
+<link rel="stylesheet" href="/ssmall/css/bootstrap.css">
 
 <link rel="stylesheet" href="/ssmall/css/icheck-bootstrap.min.css">
 

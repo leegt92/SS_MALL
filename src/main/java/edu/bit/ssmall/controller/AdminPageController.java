@@ -2,6 +2,8 @@ package edu.bit.ssmall.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.AdminService;
+import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
 
 @Controller
@@ -18,7 +21,7 @@ import edu.bit.ssmall.vo.ProductVO;
 public class AdminPageController {
 	
 	@Autowired
-	AdminService adminSerivce;
+	AdminService adminService;
 	
 	//관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
 	@RequestMapping(value = "adminpage", method ={RequestMethod.GET,RequestMethod.POST})
@@ -32,13 +35,48 @@ public class AdminPageController {
 	
 	//회원관리 누르면 시작
 	@RequestMapping(value = "memberList",method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberList(Model model) {
+	public String memberList(Criteria criteria, Model model) {
 		System.out.println("memberList 시작");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		System.out.println("현재페이지 : "+criteria.getPage());
+		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+
+		int startNum = criteria.getStartNum();
+		int endNum = criteria.getEndNum();
+
+		int totalCount = adminService.countMember();
+		System.out.println("회원 조회 : " + totalCount);
+		
+		pageMaker.setTotalCount(totalCount);
+		
+		List<MemberVO> member = adminService.memberList(startNum, endNum);
+		System.out.println(member);
+
+		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("member", member);
 		
 		return "Admin/admin_memberList";
 
 	}	
-
+	
+	//선택한 회원 정보
+	@RequestMapping(value = "memberInfo",method = {RequestMethod.GET,RequestMethod.POST})
+	public String memberInfo(Criteria criteria, Model model, HttpServletRequest request) {
+		System.out.println("memberInfo 시작");			
+		String m_number = request.getParameter("m_number");
+	
+		model.addAttribute("member",adminService.memberInfo(m_number));
+		model.addAttribute("buyList", adminService.buyList(m_number));
+		model.addAttribute("refundList", adminService.refundList(m_number));
+		model.addAttribute("requestList", adminService.requestList(m_number));
+		model.addAttribute("asList", adminService.asList(m_number));
+		
+		return "Admin/admin_memberInfo";
+	}	
+		
 	//상품 목록 누르면 시작
 	@RequestMapping(value = "productList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String productList(Criteria criteria, Model model) {
@@ -53,12 +91,12 @@ public class AdminPageController {
 		int startNum = criteria.getStartNum();
 		int endNum = criteria.getEndNum();
 
-		int totalCount = adminSerivce.countProduct();
-		System.out.println("환불내역 조회 : " + totalCount + "회");
+		int totalCount = adminService.countProduct();
+		System.out.println("상품 수 : " + totalCount);
 		
 		pageMaker.setTotalCount(totalCount);
 		
-		List<ProductVO> list = adminSerivce.productList(startNum, endNum);
+		List<ProductVO> list = adminService.productList(startNum, endNum);
 		System.out.println(list);
 
 		model.addAttribute("pageMaker",pageMaker);

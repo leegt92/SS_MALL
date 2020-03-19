@@ -12,19 +12,8 @@ public class RefundVO {
 	private String r_status; //환불상태
 	private String p_image; // 상품사진
 	private String p_name; // 상품명
+	private String p_brand; // 상품브랜드
 	
-	public String getP_name() {
-		return p_name;
-	}
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
-	}
-	public String getP_image() {
-		return p_image;
-	}
-	public void setP_image(String p_image) {
-		this.p_image = p_image;
-	}
 	public int getR_number() {
 		return r_number;
 	}
@@ -67,13 +56,30 @@ public class RefundVO {
 	public void setR_status(String r_status) {
 		this.r_status = r_status;
 	}
+	public String getP_image() {
+		return p_image;
+	}
+	public void setP_image(String p_image) {
+		this.p_image = p_image;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getP_brand() {
+		return p_brand;
+	}
+	public void setP_brand(String p_brand) {
+		this.p_brand = p_brand;
+	}
 	@Override
 	public String toString() {
 		return "RefundVO [r_number=" + r_number + ", m_number=" + m_number + ", p_number=" + p_number + ", r_amount="
 				+ r_amount + ", r_price=" + r_price + ", r_date=" + r_date + ", r_status=" + r_status + ", p_image="
-				+ p_image + ", p_name=" + p_name + "]";
+				+ p_image + ", p_name=" + p_name + ", p_brand=" + p_brand + "]";
 	}
-	
-	
+
 	
 }

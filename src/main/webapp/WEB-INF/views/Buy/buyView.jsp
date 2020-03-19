@@ -220,7 +220,7 @@
 			</a>
 
 			<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}" class="stext-109 cl4">
-				${productImageVO.p_description} 
+				${productImageVO.p_brand} ${productImageVO.p_name} 
 			</a>
 		</div>
 	</div>
@@ -253,7 +253,7 @@
 									<img src="/ssmall/productimage/${productImageVO.i_name}" alt="IMG" width="100px" height="auto">
 									</a>
 								</td>
-								<td style="text-align: center; vertical-align: middle;">${productImageVO.p_description}</td>
+								<td style="text-align: center; vertical-align: middle;">${productImageVO.p_brand} ${productImageVO.p_name}</td>
 								<td style="text-align: center; vertical-align: middle;">${amount}</td>
 								<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${totalprice}"
 										pattern="###,###,###" />원</td>

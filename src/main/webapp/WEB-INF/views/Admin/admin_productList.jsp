@@ -112,7 +112,9 @@
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
-			<a href="/ssmall/admin/adminpage"><h3 class="brand-text font-weight-light" style="color:white; display: inline;">상승몰 관리자</h3></a>
+			<a href="/ssmall/admin/adminpage">
+				<h3 class="brand-text font-weight-light" style="color:white; display: inline;">상승몰 관리자</h3>
+			</a>
 			
 			
 
@@ -219,7 +221,7 @@
 													<tr>
 														<td style="text-align: center;">
 															<a href="/ssmall/productDetail?p_number=${list.p_number}">
-																<img src="/ssmall/productimage/${list.p_image}" alt="IMG" width="100px" height="100px">
+																<img src="/ssmall/productimage/${list.p_image}" alt="IMG" width="100px" height="auto">
 															</a>
 														</td>
 														<td style="text-align: center; vertical-align: middle;">${list.p_name}</td>

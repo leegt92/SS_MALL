@@ -22,4 +22,6 @@ public interface PageMapper {
 			+ "where r.m_number = m.m_number and r.p_number = p.p_number and r.m_number = 1 ORDER BY r.r_date desc) A) B,product P "
 			+ "where B.P_NUMBER = P.P_NUMBER and RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<RefundVO> refundListPage(@Param("m_number")int m_number, @Param("startNum")int startNum, @Param("endNum")int endNum);
+	
+	
 }

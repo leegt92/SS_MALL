@@ -16,8 +16,10 @@ public class BuyVO {
 	private String b_name; //수령인
 	private String b_phonenum;//수령인 전화번호
 	private String b_addr;//수령받을 주소
-	private String b_done;
-	
+	private String p_price;//상품가격
+	private String p_image;//상품이미지
+	private String p_brand; //브랜드
+	private String p_name; //상품명
 	public int getB_number() {
 		return b_number;
 	}
@@ -90,19 +92,39 @@ public class BuyVO {
 	public void setB_addr(String b_addr) {
 		this.b_addr = b_addr;
 	}
-	public String getB_done() {
-		return b_done;
+	public String getP_price() {
+		return p_price;
 	}
-	public void setB_done(String b_done) {
-		this.b_done = b_done;
+	public void setP_price(String p_price) {
+		this.p_price = p_price;
 	}
-	
+	public String getP_image() {
+		return p_image;
+	}
+	public void setP_image(String p_image) {
+		this.p_image = p_image;
+	}
+	public String getP_brand() {
+		return p_brand;
+	}
+	public void setP_brand(String p_brand) {
+		this.p_brand = p_brand;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 	@Override
 	public String toString() {
 		return "BuyVO [b_number=" + b_number + ", m_number=" + m_number + ", p_number=" + p_number + ", b_date="
 				+ b_date + ", b_amount=" + b_amount + ", b_status=" + b_status + ", b_total=" + b_total
 				+ ", b_kakao_tid=" + b_kakao_tid + ", b_memo=" + b_memo + ", b_name=" + b_name + ", b_phonenum="
-				+ b_phonenum + ", b_addr=" + b_addr + ", b_done=" + b_done + "]";
+				+ b_phonenum + ", b_addr=" + b_addr + ", p_price=" + p_price + ", p_image=" + p_image + ", p_brand="
+				+ p_brand + ", p_name=" + p_name + "]";
 	}
-
+	
+	
+	
 }
