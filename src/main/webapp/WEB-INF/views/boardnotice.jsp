@@ -50,13 +50,12 @@
 		color:white;
 	}
 	
-	
 	 
 
         
 </style>
 </head>
-<body class="animsition" ><!-- class="animsition" -->
+<body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -89,7 +88,7 @@
 					</div>
 				</div>
 			</div>
-</header>
+
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 					
@@ -160,6 +159,8 @@
 					<a href="productView">상품</a>
 				</li>
 				
+				
+				
 				<li>
 					<a href="boardnoticeView">공지사항</a>
 				</li>
@@ -168,12 +169,23 @@
 				<li>
 					<a href="companyView">회사소개</a>
 				</li>
+<<<<<<< HEAD
 				
 				<li>
 					<a href="asView">AS</a>
 				</li>
 			
 
+=======
+
+				<!-- <li>
+					<a href="about.html">About</a>
+				</li>
+
+				<li>
+					<a href="contact.html">Contact</a>
+				</li> -->
+>>>>>>> parent of 761806e... 커밋
 			</ul>
 		</div>
 		<!-- Modal Search -->
@@ -209,11 +221,15 @@
 	
 	
 		<div id="notice">
+<<<<<<< HEAD
 
 		 
 		 	<div class="table-responsive">
 
 		 	<h1 class="m-5">공지사항</h1><div class=”table-responsive“>
+=======
+		 	<h1 class="m-5">공지사항</h1>
+>>>>>>> parent of 761806e... 커밋
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -271,10 +287,13 @@
 			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
 			</ul>  -->
 		</div>
+<<<<<<< HEAD
 
 	
 
 		</div>
+=======
+>>>>>>> parent of 761806e... 커밋
 
 
 
@@ -446,8 +465,34 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script> 
 	<span class="bt-basic" id="map"></span> 
 <!--===============================================================================================-->
+<script>
+$(document).ready(function() {
 
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#floatMenu").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+		/* 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 */
+
+<<<<<<< HEAD
+
+=======
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 300);
+
+	}).scroll();
+});
+</script>
+<!--===============================================================================================-->
+>>>>>>> parent of 761806e... 커밋
 	
 
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -466,8 +511,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
+<<<<<<< HEAD
 
 <!--===============================================================================================-->
+=======
+<!--===============================================================================================-->	
+	<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script>
+	function scroll_follow( id )
+		{
+		  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
+		  { 
+		      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+		      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
+		   });
+		}
+		 scroll_follow( "#scroll" );
+ </script>
+>>>>>>> parent of 761806e... 커밋
 	
 
 <!--===============================================================================================-->
