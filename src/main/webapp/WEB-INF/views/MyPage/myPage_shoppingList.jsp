@@ -51,6 +51,10 @@
  ul li {
 		border-bottom: 1px solid #bebebe;
     }
+html {
+    overflow-y: hidden;
+}
+
 </style>
   </head>
 
@@ -128,6 +132,7 @@
         </nav>
 		
 		<!-- Shoping Cart -->
+		<DIV style="overflow:scroll;height:100vh;">
 	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
 		<div class="container">
 			<div class="row">
@@ -217,7 +222,7 @@
 			</div>
 		</div>
 	</form>
-       
+       </DIV>
       </div>
     </div>
 

@@ -256,10 +256,11 @@ public class MyPageController {
 	    
 	    try {
 			int m_number = mypageService.getMnum(name);
-			model.addAttribute("m_number", m_number);
-			
+			model.addAttribute("m_number", m_number); 
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAsk(bTitle, bContent, m_number);
+				mypageService.insertAsk(bName, bTitle, bContent, m_number);
 			}
 			
 		} catch (Exception e) {
@@ -289,9 +290,11 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAsk(bTitle, bContent, m_number);
+				mypageService.insertAsk(bName, bTitle, bContent, m_number);
 			}
 			int totalCount = mypageService.selectAskCountBoard(m_number);
 			pageMaker.setTotalCount(totalCount);
@@ -331,9 +334,11 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAS(bTitle, bContent, m_number);
+				mypageService.insertAS(bName, bTitle, bContent, m_number);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -362,9 +367,11 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAS(bTitle, bContent, m_number);
+				mypageService.insertAS(bName, bTitle, bContent, m_number);
 			}
 			int totalCount = mypageService.selectASCountBoard(m_number);
 			pageMaker.setTotalCount(totalCount);
