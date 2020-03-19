@@ -161,11 +161,10 @@
 			 <ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-<<<<<<< HEAD
+
 						SSMALL with luxury watches and wallets
-=======
 					 Free shipping for standard order over $100
->>>>>>> dev_chajin
+
 					</div>
 				</li>
 

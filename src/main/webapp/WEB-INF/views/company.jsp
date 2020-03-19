@@ -117,10 +117,7 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
-<<<<<<< HEAD
-								
-=======
->>>>>>> dev_chajin
+
 							</li>
 
 							<li>
@@ -166,13 +163,13 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
-<<<<<<< HEAD
+
 				
-=======
+
 					<ul class="sub-menu-m">
 					
 					</ul>
->>>>>>> dev_chajin
+
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -188,7 +185,7 @@
 				</li>
 
 				<li>
-<<<<<<< HEAD
+
 					<a href="companyView">회사소개</a>				
 				</li>
 
@@ -198,14 +195,9 @@
 				
 			</ul>
 		</div>
-=======
-					<a href="companyView">회사소개</a>
-				</li>
 
-			</ul>
-		</div>
+		
 
->>>>>>> dev_chajin
 		<!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
@@ -219,12 +211,11 @@
 					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
 			</div>
-<<<<<<< HEAD
+
 
 		</div>
-=======
-		</div> 
->>>>>>> dev_chajin
+
+	 
 	</header> 
 
 	
@@ -891,23 +882,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-<<<<<<< HEAD
-	<script>
-	function scroll_follow( id )
-=======
-	
-<script>
-	/* function scroll_follow( id )
->>>>>>> dev_chajin
-		{
-		  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
-		  { 
-		      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-		      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
-		   });
-		}
-		 scroll_follow( "#scroll" ); */
- </script>
+
 	
 
 </body>
