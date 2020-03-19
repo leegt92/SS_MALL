@@ -173,7 +173,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>상품 목록</h1>
+							<h1>구매 내역</h1>
 						</div>
 											
 					</div>					
@@ -193,68 +193,34 @@
 									
 									<div class="table-responsive mailbox-messages">
 										<c:choose>
-											<c:when test="${search[0] != NULL }">
+
+											<c:when test="${buyInfo[0] == NULL}">												
 												<table class="table table-list-search">
-													<tr>
-														<th></th>
-														<th style="text-align: center;">상품 명</th>
-														<th style="text-align: center;">상품 브랜드</th>
-														<th style="text-align: center;">상품 가격</th>
-														<th style="text-align: center;">상품 재고</th>
-														<th style="text-align: center;">상품 판매량</th>
-														<th style="text-align: center;">상품 종류</th>
-													</tr>										
-													<c:forEach items="${search}" var="search">
-													<tr>
-														<td style="text-align: center;">
-															<a href="/ssmall/productDetail?p_number=${search.p_number}">
-																<img src="/ssmall/productimage/${search.p_image}" alt="IMG" width="100px" height="100px">
-															</a>
-														</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_brand}</td>						
-														<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${search.p_price}" pattern="###,###,###" />원</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_stock}</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_amount}</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_category}</td>										
-													</tr>
-													</c:forEach>													
+													<h3>내역이 없습니다.</h3>
 												</table>
-											</c:when>
-										
-											<c:when test="${list[0] == NULL}">
-												<script>
-														alert("상품이 없습니다. 상품을 추가해주세요");
-												</script>
-												<table class="table table-list-search">
-													<h3>상품이 없습니다.</h3>
-												</table>
-	
 											</c:when>
 											<c:otherwise>
 												<table class="table table-list-search">
 													<tr>
 														<th></th>
-														<th style="text-align: center;">상품 명</th>
-														<th style="text-align: center;">상품 브랜드</th>
-														<th style="text-align: center;">상품 가격</th>
-														<th style="text-align: center;">상품 재고</th>
-														<th style="text-align: center;">상품 판매량</th>
-														<th style="text-align: center;">상품 종류</th>
+														<th style="text-align: center;">상품 명</th>													
+														<th style="text-align: center;">구매 수량</th>
+														<th style="text-align: center;">구매 가격</th>
+														<th style="text-align: center;">구매 일자</th>
+														<th style="text-align: center;">구매 상태</th>
 													</tr>										
-													<c:forEach items="${list}" var="list">
+													<c:forEach items="${buyInfo}" var="buyInfo">
 													<tr>
 														<td style="text-align: center;">
-															<a href="/ssmall/productDetail?p_number=${list.p_number}">
-																<img src="/ssmall/productimage/${list.p_image}" alt="IMG" width="100px" height="100px">
+															<a href="/ssmall/productDetail?p_number=${buyInfo.p_number}">
+																<img src="/ssmall/productimage/${buyInfo.p_image}" alt="IMG" width="100px" height="100px">
 															</a>
 														</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_brand}</td>						
-														<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${list.p_price}" pattern="###,###,###" />원</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_stock}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_amount}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_category}</td>										
+														<td style="text-align: center; vertical-align: middle;">${buyInfo.p_brand} ${buyInfo.p_name}</td>
+														<td style="text-align: center; vertical-align: middle;">${buyInfo.b_amount}</td>						
+														<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${buyInfo.b_total}" pattern="###,###,###" />원</td>
+														<td style="text-align: center; vertical-align: middle;">${buyInfo.b_date}</td>							
+														<td style="text-align: center; vertical-align: middle;">${buyInfo.b_status}</td>										
 													</tr>
 													</c:forEach>													
 												</table>
@@ -262,17 +228,17 @@
 												<nav aria-label="Page navigation example">
 													<ul class="pagination m-5 flex-c-m">				
 														<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
-															<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/admin/productList${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+															<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/admin/buyInfo${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
 															<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
 														</c:if>
 														<!-- var="idx"하게되면 1씩증가  -->								
 														<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 															<c:out value="${pageMaker.cri.page == idx?'':''}" />
-															<li class="page-item"><a class="page-link" href="/ssmall/admin/productList${pageMaker.makeQuery(idx)}">${idx}</a></li>
+															<li class="page-item"><a class="page-link" href="/ssmall/admin/buyInfo${pageMaker.makeQuery(idx)}">${idx}</a></li>
 														</c:forEach>
 								
 														<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-																<li class="page-item"><a class="page-link" href="/ssmall/admin/productList${pageMaker.makeQuery(pageMaker.endPage +1) }">»</a></li>
+																<li class="page-item"><a class="page-link" href="/ssmall/admin/buyInfo${pageMaker.makeQuery(pageMaker.endPage +1) }">»</a></li>
 														</c:if>
 														
 													</ul>

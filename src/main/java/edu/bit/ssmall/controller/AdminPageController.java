@@ -57,7 +57,7 @@ public class AdminPageController {
 
 		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("member", member);
-		
+		model.addAttribute("admin", adminService.adminList());
 		return "Admin/admin_memberList";
 
 	}	
@@ -133,8 +133,57 @@ public class AdminPageController {
 		return "Admin/admin_asList";
 	}
 
+	//회원 검색
+	@RequestMapping(value = "memberSearch", method = {RequestMethod.GET,RequestMethod.POST})
+	public String memberSearch(Model model, HttpServletRequest request) {
+		System.out.println("memberSearch 시작");
+		System.out.println(request.getParameter("search"));
+		String search = request.getParameter("search");
+		if(search.equals("")) {
+			return "redirect:/admin/memberList";
+		}
+		
+		model.addAttribute("search", adminService.memberSearch(search));
+		return "Admin/admin_memberList";
+	}
 	
+	//상품 검색 이름이나 브랜드
+	@RequestMapping(value = "productSearch", method = {RequestMethod.GET,RequestMethod.POST})
+	public String productSearch(Model model, HttpServletRequest request) {
+		System.out.println("productSearch 시작");
+		System.out.println(request.getParameter("search"));
+		String search = request.getParameter("search");
+		if(search.equals("")) {
+			return "redirect:/admin/productList";
+		}
+		model.addAttribute("search", adminService.productSearch(search));
+		return "Admin/admin_productList";
+	}
 	
+	@RequestMapping(value = "buyInfo", method = {RequestMethod.GET,RequestMethod.POST})
+	public String buyInfo(Model model,Criteria criteria, HttpServletRequest request) {
+		System.out.println("buyInfo 시작");
 	
-	
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		System.out.println("현재페이지 : "+criteria.getPage());
+		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+
+		int startNum = criteria.getStartNum();
+		int endNum = criteria.getEndNum();
+		String m_number = request.getParameter("m_number");
+		
+		int totalCount = adminService.countBuy(m_number);
+		System.out.println("구매내역 : " + totalCount);
+		
+		pageMaker.setTotalCount(totalCount);
+		
+		
+		
+		model.addAttribute("buyInfo", adminService.buyInfo(m_number, startNum, endNum));
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "Admin/admin_productList_buyList";
+	}
 }

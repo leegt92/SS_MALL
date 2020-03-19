@@ -27,6 +27,11 @@ public class AdminService {
 		return adminMapper.countProduct();
 	}
 	
+	public int countBuy(String m_number) {
+		
+		return adminMapper.countBuy(m_number);
+	}
+	
 	public ArrayList<ProductVO> productList(int startNum , int endNum) {
 		System.out.println("상품 전체리스트");
 		return adminMapper.productList(startNum,endNum);
@@ -65,6 +70,23 @@ public class AdminService {
 		System.out.println("해당회원 환불내역");
 		
 		return adminMapper.asList(m_number);
+	}
+	public ArrayList<MemberVO> adminList() {
+		// TODO Auto-generated method stub
+		return adminMapper.adminList();
+	}
+	public ArrayList<MemberVO> memberSearch(String search) {
+		
+		return adminMapper.memberSearch(search);
+	}
+	public ArrayList<ProductVO> productSearch(String search) {
+		// TODO Auto-generated method stub
+		return adminMapper.productSearch(search);
+	}
+	public ArrayList<BuyVO> buyInfo(String m_number, int startNum , int endNum) {
+		
+		
+		return adminMapper.buyInfo(m_number,startNum, endNum);
 	}
 
 }

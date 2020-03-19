@@ -30,7 +30,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">	
 <!--===============================================================================================-->
@@ -89,9 +90,9 @@
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- SEARCH FORM -->
-			<form class="form-inline ml-3">
+			<form class="form-inline ml-3" action="/ssmall/admin/memberSearch">
 				<div class="input-group input-group-sm">
-					<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+					<input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
 					<div class="input-group-append">
 						<button class="btn btn-navbar" type="submit">
 							<i class="fas fa-search"></i>
@@ -282,7 +283,7 @@
 													<tr>													
 														<td style="text-align: center;">
 															<a href="/ssmall/productDetail?p_number=${buyList.p_number}">
-																<img src="/ssmall/productimage/${buyList.p_image}" alt="IMG" width="100px" height="auto">
+																<img src="/ssmall/productimage/${buyList.p_image}" alt="IMG" width="100px" height="100px">
 															</a>
 														</td>
 														<td style="text-align: center; vertical-align: middle;">${buyList.p_brand} ${buyList.p_name}</td>
@@ -343,7 +344,7 @@
 													<tr>													
 														<td style="text-align: center;">
 															<a href="/ssmall/productDetail?p_number=${refundList.p_number}">
-																<img src="/ssmall/productimage/${refundList.p_image}" alt="IMG" width="100px" height="auto">
+																<img src="/ssmall/productimage/${refundList.p_image}" alt="IMG" width="100px" height="100px">
 															</a>
 														</td>
 														<td style="text-align: center; vertical-align: middle;">${refundList.p_brand} ${refundList.p_name}</td>
@@ -420,7 +421,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div>
-							<a href="/ssmall/admin/requestInfo?m_number=${member.m_number}" style="color: black;"><h1>AS문의 정보</h1></a>
+							<a href="/ssmall/admin/asInfo?m_number=${member.m_number}" style="color: black;"><h1>AS문의 정보</h1></a>
 						</div>
 					</div>					
 				</div>			

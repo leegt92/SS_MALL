@@ -41,6 +41,13 @@ public class RefundService {
 			return "/";
 		}
 		refundMapper.addRefund(m_number,p_number,b_amount,b_total);
+		
+		int point = (int) Math.floor(b_total * 0.01);
+		if(point > 50000) {
+			point = 50000;
+		}
+		System.out.println("포인트회수 : "+ point);		
+		refundMapper.minusPoint(m_number, point);
 		refundMapper.removeBuy(m_number,b_number);
 		refundMapper.productRefund(p_number, b_amount);
 		HttpSession session = request.getSession();

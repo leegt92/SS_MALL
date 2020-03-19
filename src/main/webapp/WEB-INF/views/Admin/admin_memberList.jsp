@@ -30,7 +30,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">	
 <!--===============================================================================================-->
@@ -89,9 +90,9 @@
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- SEARCH FORM -->
-			<form class="form-inline ml-3">
+			<form class="form-inline ml-3" action="/ssmall/admin/memberSearch">
 				<div class="input-group input-group-sm">
-					<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+					<input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
 					<div class="input-group-append">
 						<button class="btn btn-navbar" type="submit">
 							<i class="fas fa-search"></i>
@@ -188,10 +189,40 @@
 									
 									<div class="table-responsive mailbox-messages">
 										<c:choose>
+											<c:when test="${search[0] != NULL }">
+												<table class="table table-list-search">
+													<tr>
+														<th style="text-align: center;">등급</th>
+														<th style="text-align: center;">아이디</th>
+														<th style="text-align: center;">이름</th>
+														<th style="text-align: center;">나이</th>
+														<th style="text-align: center;">이메일</th>
+														<th style="text-align: center;">주소</th>
+														<th style="text-align: center;">핸드폰</th>
+														<th style="text-align: center;">포인트</th>														
+													</tr>										
+													<c:forEach items="${search}" var="search">
+													<tr>
+														<td style="text-align: center; vertical-align: middle;">${search.m_authority}</td>
+														<td style="text-align: center; vertical-align: middle;">
+														<a href="/ssmall/admin/memberInfo?m_number=${search.m_number}" style="text-decoration: none;">${search.m_id}</a>
+														</td>
+														<td style="text-align: center; vertical-align: middle;">${search.m_name}</td>						
+														<td style="text-align: center; vertical-align: middle;">${search.m_age}</td>
+														<td style="text-align: center; vertical-align: middle;">${search.m_email}</td>
+														<td style="text-align: center; vertical-align: middle;">${search.m_adress}</td>
+														<td style="text-align: center; vertical-align: middle;">${search.m_phonenum}</td>
+														<td style="text-align: center; vertical-align: middle;">${search.m_point}</td>										
+													</tr>
+													</c:forEach>													
+												</table>
+											</c:when>
+										
 											<c:when test="${member[0] == NULL}">
 												<script>
 														alert("가입한 회원이 없습니다.");
 												</script>
+												
 												<table class="table table-list-search">
 													<h3>가입한 회원이 없습니다.</h3>
 												</table>
@@ -228,17 +259,17 @@
 												<nav aria-label="Page navigation example">
 													<ul class="pagination m-5 flex-c-m">				
 														<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
-															<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/admin/productList${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+															<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/admin/memberList${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
 															<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
 														</c:if>
 														<!-- var="idx"하게되면 1씩증가  -->								
 														<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 															<c:out value="${pageMaker.cri.page == idx?'':''}" />
-															<li class="page-item"><a class="page-link" href="/ssmall/admin/productList${pageMaker.makeQuery(idx)}">${idx}</a></li>
+															<li class="page-item"><a class="page-link" href="/ssmall/admin/memberList${pageMaker.makeQuery(idx)}">${idx}</a></li>
 														</c:forEach>
 								
 														<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-																<li class="page-item"><a class="page-link" href="/ssmall/admin/productList${pageMaker.makeQuery(pageMaker.endPage +1) }">»</a></li>
+																<li class="page-item"><a class="page-link" href="/ssmall/admin/memberList${pageMaker.makeQuery(pageMaker.endPage +1) }">»</a></li>
 														</c:if>
 														
 													</ul>
@@ -254,16 +285,74 @@
 						</div>						
 					</div>				
 				</div>				
-			</section>	
-			<footer class="main-footer">
-				<strong>Copyright &copy; 2014-2019 <a
-					href="http://adminlte.io">AdminLTE.io</a>.
-				</strong> All rights reserved.
-				<div class="float-right d-none d-sm-inline-block">
-					<b>Version</b> 3.0.2
-				</div>
-			</footer>
-		</div>
+			</section>
+			<c:choose>
+				<c:when test="${admin[0] == NULL}">
+				
+				</c:when>
+				<c:otherwise>
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<div class="container-fluid">
+							<div class="row mb-2">
+								<div class="col-sm-6">
+									<h1>관리자 목록</h1>
+								</div>
+													
+							</div>					
+						</div>			
+					</section>
+			
+					<!-- Main content -->
+					<section class="content style=">
+						<div class="row">
+							<!-- /.col -->
+							<div class="col-md-12">
+								<div class="card card-primary card-outline">							
+									<div class="card-body p-0">
+										<div class="mailbox-controls">							
+											<div class="table-responsive mailbox-messages">
+												<table class="table table-list-search">
+													<tr>
+														<th style="text-align: center;">등급</th>
+														<th style="text-align: center;">아이디</th>
+														<th style="text-align: center;">이름</th>
+														<th style="text-align: center;">나이</th>
+														<th style="text-align: center;">이메일</th>
+														<th style="text-align: center;">주소</th>
+														<th style="text-align: center;">핸드폰</th>													
+													</tr>										
+													<c:forEach items="${admin}" var="admin">
+													<tr>
+														<td style="text-align: center; vertical-align: middle;">${admin.m_authority}</td>											
+														<td style="text-align: center; vertical-align: middle;">${admin.m_id}</td>						
+														<td style="text-align: center; vertical-align: middle;">${admin.m_name}</td>
+														<td style="text-align: center; vertical-align: middle;">${admin.m_age}</td>
+														<td style="text-align: center; vertical-align: middle;">${admin.m_email}</td>
+														<td style="text-align: center; vertical-align: middle;">${admin.m_adress}</td>
+														<td style="text-align: center; vertical-align: middle;">${admin.m_phonenum}</td>										
+													</tr>
+													</c:forEach>													
+												</table>						
+											</div>
+										</div>								
+									</div>						
+								</div>						
+							</div>				
+						</div>				
+					</section>
+				</c:otherwise>
+			</c:choose>
+		</div>	
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2014-2019 
+				<a href="http://adminlte.io">AdminLTE.io</a>
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.0.2
+			</div>
+		</footer>
+		
 	</div>
 </body>
 
