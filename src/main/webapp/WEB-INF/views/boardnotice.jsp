@@ -168,14 +168,12 @@
 				<li>
 					<a href="companyView">회사소개</a>
 				</li>
-<<<<<<< HEAD
 				
 				<li>
 					<a href="asView">AS</a>
 				</li>
 			
-=======
->>>>>>> dev_chajin
+
 			</ul>
 		</div>
 		<!-- Modal Search -->
@@ -211,12 +209,11 @@
 	
 	
 		<div id="notice">
-<<<<<<< HEAD
-		 	<h1 class="m-5">공지사항</h1>
+
+		 
 		 	<div class="table-responsive">
-=======
+
 		 	<h1 class="m-5">공지사항</h1><div class=”table-responsive“>
->>>>>>> dev_chajin
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -432,8 +429,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-<<<<<<< HEAD
-=======
+
 <script src="js/main.js"></script>
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
@@ -451,7 +447,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<span class="bt-basic" id="map"></span> 
 <!--===============================================================================================-->
 
-<!--===============================================================================================-->
+
 	
 
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -472,22 +468,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
- 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
-	<script>
-		$('#map1').click(function(){
-			var container = document.getElementById('map1');
-			 var options = {
-				center: new kakao.maps.LatLng(37.552475, 126.937825),
-				level: 3
-			}; 
-			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
-	</script>
-<!--===============================================================================================-->
+	
 
-<!--===============================================================================================-->
-	<span class="bt-basic" id="map"></span> 
 <!--===============================================================================================-->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
