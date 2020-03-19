@@ -1,5 +1,7 @@
 package edu.bit.ssmall.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.ProductReplyVO;
-import edu.bit.ssmall.vo.ProductVO;
 
 /**
  * Handles requests for the application home page.
@@ -78,8 +79,9 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "product_Write_reply", method = {RequestMethod.POST, RequestMethod.GET})
-	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
+	public void product_Write_reply(ProductReplyVO productReplyVO, Principal principal,HttpServletRequest request,Model model) {
 		System.out.println("/product_Write_replyAjax");
+		
 		
 		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 확인 "+ p_number);

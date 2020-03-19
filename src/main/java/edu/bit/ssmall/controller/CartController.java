@@ -28,6 +28,7 @@ import edu.bit.ssmall.vo.ProductImageVO;
 
 //장바구니 관련 컨트롤러
 @Controller
+@RequestMapping("cart")
 public class CartController {
 	
 	@Autowired
@@ -97,7 +98,7 @@ public class CartController {
 			//체크한게 없으면 다시 장바구니로			
 			session.setAttribute("checkNull", "checkNull");
 
-			return "redirect:/cartView";
+			return "redirect:/cart/cartView";
 		}
 		
 		int amount = 0; //구매하려는 총갯수
@@ -134,7 +135,7 @@ public class CartController {
 		System.out.println("c_id");
 		cartService.cartDelete(c_id); //해당 cid로 삭제
 		
-		return"redirect:/cartView";
+		return"redirect:/cart/cartView";
 	}
 	
 	//장바구니에서 구매하기 누르고 나오는 창에서 주문정보값 받는곳
@@ -206,10 +207,6 @@ public class CartController {
 	
 	
 	//홈페이지에서 햄버거 옆에 카트눌렀을때 나오기위해 제이슨으로 보내서 ajax할거임
-	@ResponseBody
-	@RequestMapping("/miniCart")
-	public ArrayList<CartViewVO> miniCart(Principal principal){
-		return cartService.miniCartInfo(principal.getName());
-	}
+	
 	
 }

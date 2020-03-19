@@ -4,28 +4,27 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
-	private Criteria cri; // page, perPageNum �� ������ ����
+	private Criteria cri; 
 	 
-    private int totalCount; // ��ü �Խñ� ��
+    private int totalCount; 
 
-    //[11][12][13].......[20] : ���� �������� 13�� �� startPage�� 11, endPage�� 20
-    private int startPage; // �Խñ� ��ȣ�� ���� (��������)�������� ���� ��ȣ
-    private int endPage; // �Խñ� ��ȣ�� ���� (��������)�������� ������ ��ȣ
+    private int startPage; 
+    private int endPage; 
     
-    private boolean prev; // ���� ��ư�� ���� �� �ִ� ���/���� ��� �з��� ����
+    private boolean prev;
     private boolean next;
  
-    private int displayPageNum = 5; // ȭ�� �ϴܿ� �������� �������� ����
+    private int displayPageNum = 10; 
     private int tempEndPage;
  
-    ///////////////////////////////////////////////////////////////////////////////////////////////
+   
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
  
-        calcData(); // ��ü �ʵ� ������ ���� : ��ü �Խñ� ���� setter�� ȣ��� �� ��ü ���õǵ��� ��
+        calcData();
     }
  
-    private void calcData() { // ��ü �ʵ� ���� ������ ����ϴ� �޼���
+    private void calcData() { 
  
         endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
  
@@ -38,7 +37,7 @@ public class PageMaker {
             endPage = tempEndPage;
         }
  
-        prev = startPage == 1 ? false : true; // 1�������� ���� ���� �� ���� false
+        prev = startPage == 1 ? false : true; 
         next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
  
     }
