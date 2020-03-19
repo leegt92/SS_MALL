@@ -205,7 +205,7 @@
 						</div>
 						
 						<div class="p-b-63">
-							<h4 style="font-weight: bold;">장인소개 </h4>
+							<h4 style="font-weight: bold; color:black;" >장인소개 </h4>
 							<br><br>						
 							<p>남성 명품 전문 쇼핑몰 상승몰(SSMALL)입니다. 상승몰(SSMALL)은 고객님이 완벽하게 AS를 받으실 수 있는 시스템을 구축하였습니다.</p>
 							<p>뛰어난 실력을 가진 대한민국 명장님들과 협약이 되어 고객님이 빠르고 안전하게 AS를 받으실 수 있도록 최선을 다하겠습니다.</p>
@@ -216,7 +216,7 @@
 						</div>
 
 						<div class="p-b-63">
-							<h4 style="font-weight: bold;">비트시계 </h4>
+							<h4 style="font-weight: bold; color:black;">비트시계 </h4>
 							<br><br>							
 							<p>안녕하세요. 대한민국 시계 명장  김 비트 입니다.</p>
 							<p>1972년부터 명품시계 수리 전문점을 운영하면서 수많은 명품시계의 문제점을 해결하여 기술력을 높였고</p>
@@ -233,7 +233,7 @@
 							<p>Many backwards are technicians at leading Swiss watchmakers including ROLEX and CARTIER.</p>
 							<p>We will be happy with the endless technological development and the best satisfaction.</p>
 							<br><br>
-							<p style="font-weight: bold;">비트시계 서초점</p>
+							<p style="font-weight: bold; color:black;">비트시계 서초점</p>
 							<br>
 							<p>서울시 서초구 강남대로459 백암빌딩 (구관건물)</p>
 							<p>대표전화 : 02-4567-1111</p>
@@ -242,7 +242,7 @@
 							<br>
 							<div id="map_seocho" style="width:100%;height:350px;"></div>		
 							<br>
-							<p style="font-weight: bold;">비트시계 강남점</p>
+							<p style="font-weight: bold; color:black;">비트시계 강남점</p>
 							<br>
 							<p>서울시 강남구 테헤란로 5길 11 YOO빌딩 2층</p>
 							<p>대표전화 : 02-5555-7777</p>
@@ -255,7 +255,7 @@
 						
 						<div class="p-b-63">
 							<hr>
-							<h4 style="font-weight: bold;">캠프시계 </h4>
+							<h4 style="font-weight: bold; color:black;">캠프시계 </h4>
 							<br><br>							
 							<p>안녕하세요. 대한민국 시계 명장  이 캠프 입니다.</p>
 							<p>50년 전 도제로 시계수리업계에 입문하여 시계수리 1급 기능사을 취득하였으며 국내 최초 미국 공인고급시계사 자격을 취득하였습니다.</p>
@@ -267,7 +267,7 @@
 							<p>Skilled questions and functional competition judges and chairman of national skill competition judges are perfectly prepared for theory and practical skills.</p>
 							<p>If you would like to have your watch repaired, we promise to repair your watch in good faith as a watchmaker.</p>
 							<br><br>
-							<p style="font-weight: bold;">캠프시계 신촌점</p>
+							<p style="font-weight: bold; color:black;">캠프시계 신촌점</p>
 							<br>
 							<p>서울시 마포구 백범로 23 구프라자 3층</p>
 							<p>대표전화 : 02-123-7892</p>
@@ -279,7 +279,7 @@
 					
 						<div class="p-b-63">
 							<hr>
-							<h4 style="font-weight: bold;">명품수선 </h4>
+							<h4 style="font-weight: bold; color:black;">명품수선 </h4>
 							<br><br>							
 							<p>안녕하세요 명품수선 입니다.</p>
 							<p>1978년 창업이래 명품수선이 명품수선 서비스를 시작한지도 40년의 시간이 흘렀습니다.</p>
@@ -292,7 +292,7 @@
 							<p>I sincerely thank you for all your support and love for our customers.</p>
 							<p>We will do our best to be a masterpiece of luxury repair that develops further with the help of artisans.</p>
 							<br> <br>
-							<p style="font-weight: bold;">명품수선 종로점</p>
+							<p style="font-weight: bold; color:black;">명품수선 종로점</p>
 							<br>
 							<p>서울시 종로구 종로 69 YMCA빌딩 7층</p>
 							<p>대표전화 : 02-4567-8912</p>

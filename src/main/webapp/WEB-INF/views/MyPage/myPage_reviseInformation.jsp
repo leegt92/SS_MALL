@@ -131,8 +131,8 @@
           </div>
         </nav>
 		
-		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
-		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
+		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px; ">
+		<div class="container-login100" style="background-color:#f8f8f8;height: 400px; border:3px solid black;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form:form id="login" action="myPage_reviseInformation" class="login100-form validate-form" method="POST">
 					
@@ -144,21 +144,18 @@
     position:fiexd;
     height: 30px;
     border:1px solid black;
+ 	
     margin-top: 30px;
+    
     " />
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<br>
 					<div class="flex-c-m" style="position:fixed;top: 550px;left: 975px;">
-						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
+						<input id="submit" class="btn btn-primary" type="submit" value="로그인"><pre> </pre>
 						
 											
 					</div>
-					
-
-				
-					
-					
 				</form:form>
 			</div>
 		</div>

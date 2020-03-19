@@ -210,6 +210,7 @@
 	
 		<div id="notice">
 		 	<h1 class="m-5">공지사항</h1>
+		 	<div class="table-responsive">
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -237,8 +238,8 @@
 					<td colspan="5"> <a href="write_view">글작성</a> </td>
 				</tr> -->	
 			</table>
+		</div>
 			<ul class="pagination m-5 flex-c-m" >
-				
 					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
 						<li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
 						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->

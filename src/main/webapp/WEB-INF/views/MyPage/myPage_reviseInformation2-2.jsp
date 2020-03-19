@@ -44,12 +44,46 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <style>
+table{
+	min-width:500px;
+}
+
 .bg-light {
 	background-color: rgba(149, 204, 210, 0.2)!important;
 }
  ul li {
 		border-bottom: 1px solid #bebebe;
     }
+    
+    
+ table#tabletype {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table#tabletype th {
+ 
+    width: 200px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #efefef;
+}
+table#tabletype td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    
+}
+#name{
+	color:black;
+}
+
 </style>
   </head>
 
@@ -131,105 +165,157 @@
           </div>
         </nav>
 		
-		<div class="limiter" style="position:fixed;left: 770px;width: 330px;top: 100px;">
-		<div class="container-login100"
-			style="background-color: #bebebe;border:3px solid black;width: 660px;height: 686px;">
+		<div class="limiter" style="position:fixed;left:550px;top: 100px;">
+		<div class="container-login100"><!-- style="background-color: #f8f8f8;width: 660px;height: 686px;" -->
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				
-
-
-
 				<form:form action="myPage_reviseInformation2_2" class="container-login100"
 					method="post" id="reviseInformation">
-					<span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"	><font size="5em"><b>회원정보 수정</b></font></span>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="아이디 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">아이디</font></span> <div><c:out value="${m_id}"/> (아이디는 수정이 불가능합니다.)</div> <span class="focus-input100"
-							data-symbol="&#xf206;"></span>
-						<div id="id_check"> </div>
-					</div>
-
-
-
-					<!-- <div class="wrap-input100 validate-input m-b-23"
-						data-validate="비밀번호 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">비밀번호</font></span> 
-						<span class="focus-input100"
-							data-symbol="&#xf190;"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="비밀번호 한번더 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">비밀번호 확인</font></span> 
-						<span
-							class="focus-input100" data-symbol="&#xf190;"></span>
-					</div> -->
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="이름 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">이름</font></span> 
-						<div><c:out value="${m_name2}"/></div>
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					<!-- <span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"	><font size="5em"><b>회원정보 수정</b></font></span> -->
+			          <h1 id="name">회원 정보 수정</h1>
+			  
+			      <table id="tabletype"class="table table-list-search">
+			             <tr>
+			              	<th >
+								<div class="wrap-input100 validate-input m-b-23"
+									data-validate="아이디 입력해주세요">
+							
+							
+								<span class="label-input100"><font size="4em" color="black">아이디</font></span></div> 
+							</th>
+							<td>
+								<div><font color="black"><c:out value="${m_id}"/> </font></div>
+								<span class="focus-input100"data-symbol="&#xf206;"></span>
+								<p>(아이디는 수정이 불가합니다.)</p>
+								<div id="id_check"></div>
+							</td>
+							
+								
+							
+							
+						</tr>
 						
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="나이 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">나이 (숫자만 입력가능)</font></span> <input id="m_age" class="input100"
-							type="text" name="m_age" placeholder="<c:out value="${m_age3}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="2" style="width: 545px;">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="이메일 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">이메일</font></span> <div><c:out value="${m_email}"/> (이메일은 수정이 불가능합니다.)</div> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="배송지 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">주소 (클릭 후 팝업창 이용, 세부주소는 이어서 직접 입력)</font></span> <input id="m_adress" class="input100"
-							type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="핸드폰번호 입력해주세요">
-						<span class="label-input100"><font size="4em" color="black">핸드폰번호 ('-'없이 11자리만 입력가능)</font></span> <input id = "m_phonenum" class="input100"
-							type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
-							maxlength="11" style="width: 545px;"> <span class="focus-input100"
-							data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-23">
-						<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> <input type="radio"
-							name="m_receive_email" value="1" style="position:fixed;top: 645px;" ><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 143px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
-							<input type="radio"
-							name="m_receive_email" value="0" style="position:fixed;top: 627px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 125px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
-					</div>
-
+					<tr>
+						<th>
+							<div class="wrap-input100 validate-input m-b-23"
+								data-validate="이름 입력해주세요">
+								<span class="label-input100"><font size="4em" color="black">이름</font></span></div>
+						</th>
+						<td>
+							<div><font color="black"><c:out value="${m_name2}"/></font></div>
+							<span class="focus-input100" data-symbol="&#xf206;"></span>
+							<p>(이름은 수정이 불가합니다.)</p>
+						</td>
+					
+					</tr>
+				
+			
+				
+				<tr>
+					<th>
+						<div class="wrap-input100 validate-input m-b-23"
+							data-validate="나이 입력해주세요">
+						<span class="label-input100"><font size="4em" color="black">나이</font></span></div>
+					</th>
+					<td>
+						<div class="form-control" >
+							<input id="m_age" class="input100" type="text" name="m_age" placeholder="<c:out value="${m_age3}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="2" style="width: 545px;">
+						
+							<span class="focus-input100" data-symbol="&#xf206;"></span>
+						</div>
+						
+					</td>
+				</tr>
+			
+				<tr>
+					<th>
+						<div class="wrap-input100 validate-input m-b-23"
+							data-validate="이메일 입력해주세요">
+	
+							<span class="label-input100"><font size="4em" color="black">이메일</font></span></div>
+					</th>
+					<td>
+							 <div ><font color="black"><c:out value="${m_email}"/> </font></div> <span
+								class="focus-input100" data-symbol="&#xf206;"></span>
+								<p>(이메일은 수정이 불가능합니다.)</p>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div class="wrap-input100 validate-input m-b-23"
+							data-validate="배송지 입력해주세요">
+					
+							<span class="label-input100"><font size="4em" color="black">주소 수정</font></span>
+						</div>
+					</th>
+					<td> 
+						<div class="form-control" >
+							<input id="m_adress" class="input100"
+								type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
+								class="focus-input100" data-symbol="&#xf206;"></span>
+						<!-- </div> -->
+						</div>
+					</td>
+				</tr>
+			
+				<tr>
+					<th>	
+						<div class="wrap-input100 validate-input m-b-23"
+							data-validate="핸드폰번호 입력해주세요">
+					
+							<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span>
+						</div>
+					</th>
+					<td> 
+						<div class="form-control">
+							<input id = "m_phonenum" class="input100"
+								type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
+								maxlength="11" style="width: 545px;"> <span class="focus-input100"
+								data-symbol="&#xf206;"></span>
+						</div>
+					</td>
+					<!-- 	</div>-->
+				</tr>
+				<tr>
+			 		<th>
+						<div class="wrap-input100 validate-input m-b-23">
+					
+							<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> 
+						</div>
+					</th>
+					<td>
+							<input type="radio"name="m_receive_email" value="1" style="position:fixed;top: 680px;" >
+							<font size="2em" color="black" style="position:absolute;left:300px;bottom: 193px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
+							<input type="radio"name="m_receive_email" value="0" style="position:fixed;top: 705px;"><font size="2em" color="black" style="position:absolute;left: 300px;bottom: 166px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
+					</td>
+					<!-- </div> -->
+				</tr>
+			</table>
+	
 					<div class="flex-c-m">
-						<button id="revise_submit" class="btn btn-secondary" style="position:fixed;top: 673px;left: 1010px;">수정완료</button>
-						<button id="withdraw_submit" class="btn btn-secondary" style="
+						<button id="revise_submit" class="btn btn-info" style="position:fixed;top: 800px;left: 900px;">수정완료</button>
+						<button id="withdraw_submit" class="btn btn-dark" style="
     						position:fixed;
     						margin-left: 10px;
     						padding-left: 0px;
     						padding-bottom: 0px;
     						padding-top: 0px;
     						padding-right: 0px;
-    						top: 673px;
-    						left: 1090px;
+    						top: 800px;
+    						left: 990px;
     						height: 35px;
     						">
     						
 					</div>
 				</form:form>
+				
 				<form:form action="myPage_reviseInformation3" class="login100-form validate-form" method="POST">
-    				<input class="btn btn-secondary" type="submit" value="회원탈퇴" style="
-					 margin-left: 280px;
-				  	 margin-top: 23px;
+    				<input class="btn btn-danger" type="submit" value="회원탈퇴" style="
+    				
+					 margin-left: 410px;
+				  	 margin-top: 40px;
 					">
     			</form:form>
+    	
 			</div>
 		</div>
 	</div>
