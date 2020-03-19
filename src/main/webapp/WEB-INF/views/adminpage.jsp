@@ -15,21 +15,21 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     
   
-  <link rel="stylesheet" href="css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
   
-  <link rel="stylesheet" href="css/sidemenu.css">
+  <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
   
-  <link rel="stylesheet" href="css/adll.min.css">
+  <link rel="stylesheet" href="/ssmall/css/adll.min.css">
   
-  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="/ssmall/css/bootstrap.css">
   
-  <link rel="stylesheet" href="css/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="/ssmall/css/icheck-bootstrap.min.css">
   
-  <link rel="stylesheet" href="css/fontawesome.min.css">
+  <link rel="stylesheet" href="/ssmall/css/fontawesome.min.css">
   
-  <link rel="stylesheet" href="css/adminpage.css">
+  <link rel="stylesheet" href="/ssmall/css/adminpage.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="css/adminlte.min.css">
+  <link rel="stylesheet" href="/ssmall/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
  <link rel="stylesheet" href="href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
   
@@ -104,21 +104,14 @@ vertical-align: middle;
   <aside class="main-sidebar sidebar-dark-primary">
     <!-- Brand Logo -->
     <a href="adminpage" class="brand-link">
-      <img src="images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle"
+      <img src="/ssmall/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle"
            style="opacity: .8">
       <span class="brand-text font-weight-light">상승몰 관리자</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="images/logo.png" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">상승몰</a>
-        </div>
-      </div>
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"

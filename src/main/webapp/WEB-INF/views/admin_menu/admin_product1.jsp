@@ -16,14 +16,14 @@
   <!-- IonIcons -->
   
   
-  <link rel="stylesheet" href="css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
   
-  <link rel="stylesheet" href="css/sidemenu.css">
+  <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
   
-  <link rel="stylesheet" href="css/adminpage.css">
+  <link rel="stylesheet" href="/ssmall/css/adminpage.css">
   
   <!-- Theme style -->
-  <link rel="stylesheet" href="css/adminlte.min.css">
+  <link rel="stylesheet" href="/ssmall/css/adminlte.min.css">
   
   
   <!-- Google Font: Source Sans Pro -->
@@ -221,7 +221,7 @@ to get the desired effect
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="adminpage" class="brand-link">
-      <img src="images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="/ssmall/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">상승몰 관리자</span>
     </a>
@@ -229,15 +229,6 @@ to get the desired effect
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.bit.ssmall.service.ProductService;
 
+@RequestMapping("admin")
 @Controller
 public class AdminPageController {
 	
