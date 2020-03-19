@@ -51,7 +51,7 @@
      } 
      #floating { 
      	 
-		 position: fixed; 
+	     position: fixed; 
 	     right: 50%; 
 	     top: 180px; 
 	     margin-right: -690px; 
@@ -70,7 +70,7 @@
         
 </style>
 </head>
-<body class="animsition" ><!-- class="animsition" -->
+<body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -107,7 +107,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="homeview" class="logo">
+					<a href="#" class="logo">
 						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
@@ -116,6 +116,7 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
+
 							</li>
 
 							<li>
@@ -215,9 +216,13 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
-					<ul class="sub-menu-m">
+
+
 					
-					</ul>
+
+
+
+
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -235,11 +240,23 @@
 				
 
 				<li>
+
 					<a href="companyView">회사소개</a>
 				</li>
 
+
+				<li>
+					<a href="asView">AS</a>
+				</li>
+				
 			</ul>
 		</div>
+
+		
+
+
+
+
 
 		<!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
@@ -256,6 +273,7 @@
 				</form>
 			</div>
 		</div> 
+
 	</header> 
 
 	
@@ -272,6 +290,8 @@
 			</span>
 		</div>
 	</div>
+
+
 
 
 	<!-- Content page -->
@@ -301,6 +321,30 @@
 									남성 명품 전문 쇼핑몰 상승몰입니다. 저희 회사는 보다 편리하게 구매를 할 수 있게끔 홈페이지를 꾸며 놓았습니다.
 									또한 체계화된 AS로 고객분들의 편리함에 최선을 다하도록 하였습니다. 
 								</p>
+
+								<!-- <div class="flex-w flex-sb-m p-t-18">
+									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+										<span>
+											<span class="cl4">By</span> Admin  
+											<span class="cl12 m-l-4 m-r-6">|</span>
+										</span>
+
+										<span>
+											StreetStyle, Fashion, Couple  
+											<span class="cl12 m-l-4 m-r-6">|</span>
+										</span>
+
+										<span>
+											8 Comments
+										</span>
+									</span>
+
+									<a href="blogview2" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+										Continue Reading
+
+										<i class="fa fa-long-arrow-right m-l-9"></i>
+									</a>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -364,7 +408,7 @@
 
 											// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 											var zoomControl = new kakao.maps.ZoomControl();
-											map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+											map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);s
 											
 									</script>
 								<hr width="960" color="gray"></hr>
@@ -665,9 +709,9 @@
 		</div>
 	</section>
 			
-		<div class="col-md-4 col-lg-3 p-b-80">
-			<div class="side-menu">
-				<div class="p-t-55">
+				<div class="col-md-4 col-lg-3 p-b-80">
+					<div class="side-menu">
+						<div class="p-t-55">
 					 <div id="floating">
 							<h4 class="mtext-100 cl2 p-b-33">
 								Categories
@@ -694,9 +738,11 @@
 							</ul>	
 						 </div>
 					</div>
-				</div>		
+				</div>
+						
 			</div>
-	
+		</div>
+	</div>
 
 
 	<!-- Footer -->
@@ -869,7 +915,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 <!--===============================================================================================-->
 <script>
- $(document).ready(function() {
+$(document).ready(function() {
 
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 	var floatPosition = parseInt($("#floatMenu").css('top'));
@@ -882,14 +928,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 		/* 애니메이션 없이 바로 따라감
 		 $("#floatMenu").css('top', newPosition);
-		*/
+		 */
 
 		$("#floatMenu").stop().animate({
 			"top" : newPosition
 		}, 300);
 
 	}).scroll();
-}); 
+});
 </script>
 <!--===============================================================================================-->
 	
@@ -910,18 +956,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-	
-<script>
-	/* function scroll_follow( id )
-		{
-		  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
-		  { 
-		      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-		      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
-		   });
-		}
-		 scroll_follow( "#scroll" ); */
- </script>
+
 	
 
 </body>
