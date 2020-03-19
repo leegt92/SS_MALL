@@ -255,10 +255,11 @@ public class MyPageController {
 	    
 	    try {
 			int m_number = mypageService.getMnum(name);
-			model.addAttribute("m_number", m_number);
-			
+			model.addAttribute("m_number", m_number); 
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAsk(bTitle, bContent, m_number);
+				mypageService.insertAsk(bName, bTitle, bContent, m_number);
 			}
 			
 		} catch (Exception e) {
@@ -269,6 +270,53 @@ public class MyPageController {
 		return "MyPage/myPage_askRequest";
 
 	}	
+	
+	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)
+	public String myPage_askRequest_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAsk(bName, bTitle, bContent, m_number);
+			}
+			int totalCount = mypageService.selectAskCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> askRequestboards = mypageService.selectAskBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("askRequestboards", askRequestboards);
+			List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<askRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+				askRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_askRequestView";
+
+	}
 	
 	@RequestMapping(value = "/myPage_askAS", method = RequestMethod.GET)
 	public String myPage_askAS(Model model, HttpServletRequest request) {
@@ -285,9 +333,11 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAS(bTitle, bContent, m_number);
+				mypageService.insertAS(bName, bTitle, bContent, m_number);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -297,6 +347,54 @@ public class MyPageController {
 		return "MyPage/myPage_askAS";
 
 	}
+	
+	@RequestMapping(value = "/myPage_askAS_back", method = RequestMethod.GET)
+	public String myPage_askAS_back(Model model, Criteria criteria, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAS(bName, bTitle, bContent, m_number);
+			}
+			int totalCount = mypageService.selectASCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> aSRequestboards = mypageService.selectASBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("aSRequestboards", aSRequestboards);
+			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<aSRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllASRequestAnswer(aSRequestboards.get(i).getBid());
+				aSRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("aSRequestboardsAnswers", aSRequestboardsAnswers);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_aSRequestView";
+
+	}
+	
+	
 	
 	@RequestMapping(value = "/myPage_reviseInformation", method = {RequestMethod.GET, RequestMethod.POST})
 	public String myPage_reviseInformation(Model model,HttpServletRequest request) {
@@ -359,7 +457,7 @@ public class MyPageController {
 	    String m_phonenum = request.getParameter("m_phonenum");
 	    String m_receive_email = request.getParameter("m_receive_email");
 	    if(m_name == "" && m_age == "" && m_adress == "" && m_phonenum == "" && m_password == "" && m_receive_email == null) {
-	    	return "checkPwError3";
+	    	return "MyPage/checkPwError3";
 	    }
 	    
 	    String name = "";
@@ -568,6 +666,53 @@ public class MyPageController {
 
 	}
 	
+	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)
+	public String myPage_askRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	   
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.updateAskAS(bTitle, bContent, bId);
+			}
+			int totalCount = mypageService.selectAskCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> askRequestboards = mypageService.selectAskBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("askRequestboards", askRequestboards);
+			List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<askRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+				askRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_askRequestView";
+
+	}
+	
 	@RequestMapping(value = "/myPage_askAS2", method = RequestMethod.GET)
 	public String myPage_askAS2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -596,6 +741,53 @@ public class MyPageController {
 		}
 
 		return "MyPage/myPage_askAS2";
+
+	}
+	
+	@RequestMapping(value = "/myPage_aSRequest2_back", method = RequestMethod.GET)
+	public String myPage_aSRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	   
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.updateAskAS(bTitle, bContent, bId);
+			}
+			int totalCount = mypageService.selectASCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> aSRequestboards = mypageService.selectASBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("aSRequestboards", aSRequestboards);
+			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<aSRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllASRequestAnswer(aSRequestboards.get(i).getBid());
+				aSRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("aSRequestboardsAnswers", aSRequestboardsAnswers);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_aSRequestView";
 
 	}
 	
