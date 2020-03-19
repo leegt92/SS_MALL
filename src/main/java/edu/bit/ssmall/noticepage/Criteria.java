@@ -2,16 +2,16 @@ package edu.bit.ssmall.noticepage;
 
 public class Criteria {
 	
-	private int page;
-	private int perPageNum;
-	private int startNum;
-	private int endNum;
+	private int page; //보여줄 페이지
+	private int perPageNum; //페이지당 보여줄 페이지수
+	private int startNum; //시작번호
+	private int endNum; //끝번호
 	
 	public Criteria() { 
 		this.page = 1;
 	    this.perPageNum = 10; 
 	}
-	
+
 	public int getStartNum() {
 	    	
 		if(page == 1)
@@ -19,7 +19,7 @@ public class Criteria {
 	    else{
 	    	startNum = getEndNum() - perPageNum +1 ;
 	    	}
-	    System.out.println("���۹�ȣ" + startNum);
+	    System.out.println("시작번호" + startNum);
 		return startNum;
 	}
 
@@ -30,7 +30,7 @@ public class Criteria {
 	public int getEndNum() {
 		endNum  =  page * getPerPageNum();
 		//endNum  = getStartNum() + getPerPageNum();		
-		System.out.println("�����ȣ" + endNum);
+		System.out.println("엔드번호" + endNum);
 		return endNum;
 	}
 
@@ -38,10 +38,13 @@ public class Criteria {
 		this.endNum = endNum;
 	}    
 	    
-	
+	//limit 구문에서 시작부분에 필요한 값을 반환(mybatis에서 사용)
 	public int getPageStart(){
 		return (this.page -1) * this.perPageNum;
-		
+		// RowBounds 의 매개변수의 값을 설정하는 메소드
+		// RouwBounds 의 start index는 0부터 시작하므로
+		// 1페이지 : 1-1 * 10 = 0 ->>
+		// 2페이지 : 2-1 * 10 = 10 ->>
 	}
 	         
 	// getter setter
@@ -50,12 +53,13 @@ public class Criteria {
 	}
 	public void setPage(int page) {
 		if ( page <= 0 ){
-	    
+			// 페이지는 1페이지부터임으로 0보다 작거나 같은값일 경우 무조건 첫번째 페이지로 설정되도록 해준다.
 			this.page = 1;
 	    }else{
 	         this.page = page;
 	    }
 	}
+	
 	public int getPerPageNum() {
 	         
 		return perPageNum;
@@ -69,10 +73,10 @@ public class Criteria {
 	    }
 	}
 	 
-	    @Override
-	    public String toString() {
-	        return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
-	    }
+	@Override
+	public String toString() {
+	   return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
+	}
 	
 	
 

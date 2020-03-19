@@ -203,9 +203,9 @@
 							<table class="table table-list-search">	
 								<tr>
 									<th></th>
-									<th>상품명</th>
-									<th>구매수량</th>
-									<th>구매가격</th>
+									<th style="text-align: center; vertical-align: middle;">상품명</th>
+									<th style="text-align: center; vertical-align: middle;">구매수량</th>
+									<th style="text-align: center; vertical-align: middle;">구매가격</th>
 									<th></th>
 									<th></th>
 								</tr>
@@ -213,17 +213,17 @@
 									
 								<c:forEach items="${cartList}" var="cart">
 								<tr>
-									<td>
+									<td style="text-align: center; vertical-align: middle;">
 										<a href="/ssmall/productDetail?p_number=${cart.p_number}">
 										<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
 										</a>
 									</td>								
-									<td>${cart.p_description}</td>						
-									<td>${cart.c_amount}</td>
-									<td><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>									
+									<td style="text-align: center; vertical-align: middle;">${cart.p_description}</td>						
+									<td style="text-align: center; vertical-align: middle;">${cart.c_amount}</td>
+									<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>									
 									<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
-									<td><a href="/ssmall/cart/cartDelete?c_id=${cart.c_id}">삭제</a></td>
-									<td><input type="checkbox" name="check" value="${cart.c_id}"></td>
+									<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/cart/cartDelete?c_id=${cart.c_id}">삭제</a></td>
+									<td style="text-align: center; vertical-align: middle;"><input type="checkbox" name="check" value="${cart.c_id}"></td>
 								</tr>
 								</c:forEach>						
 								<tr>

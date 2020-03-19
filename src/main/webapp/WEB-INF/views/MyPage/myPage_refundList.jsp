@@ -249,20 +249,30 @@
 								</tr>
 								</c:forEach>
 								
-							</table>
+							</table>		
 						</div>
-
-						
+				
+						<nav aria-label="Page navigation example">
+							<ul class="pagination m-5 flex-c-m" >				
+								<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+									<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/mypage/myPage_refundList${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+									<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+								</c:if>
+								<!-- var="idx"하게되면 1씩증가  -->								
+								<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+									<c:out value="${pageMaker.cri.page == idx?'':''}" />
+									<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_refundList${pageMaker.makeQuery(idx)}">${idx}</a></li>
+								</c:forEach>
+		
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_refundList${pageMaker.makeQuery(pageMaker.endPage +1) }">»</a></li>
+								</c:if>
+							</ul>
+						</nav>					
 					</div>
 				</div>
 
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style =
-					"height: 900px;
-					width: 130px;
-					padding-left: 15px;
-					left: 250px;
-					bottom:70px;
-					">
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style ="height: 900px; width: 130px; padding-left: 15px; left: 250px; bottom:70px;">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="width: 390px;">
 						<h4 class="mtext-109 cl2 p-b-30">
 							<font size="5em">회원님의 총 환불금액</font>
@@ -281,8 +291,7 @@
 							</div>
 							<c:if test="${hap == 0}"><font size="5em" color="black">최근 주문내역이 없습니다.</font></c:if>
 						</div>
-					</div>
-					
+					</div>					
 				</div>
 			</div>
 		</div>

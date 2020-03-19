@@ -1009,44 +1009,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	
 </body>
-
-<script type="text/javascript"></script> 
-
-<script>
-$(document).ready(function() {
-	/* 
-	$('#watch2').on('click',function(){
-		
-		$('#watch1').trigger("click");	
-		
-	});  	 */
-});	 
-
-	/*  $('#watch2').click(function(){
-		  var a = document.getElementById('watch1');
-		  a.click('#watch1'); 
-	});	  
-	  */
-	  /*  $('#watch2','#watch1').click(function() {
-		var $this=$(this);
-		
-		if($this.hasId('watch2')){
-			$(location).attr('href','productView');
-			$("#watch1").trigger("click");	
-		}
-		
-		else{
-			
-		}
-	});  */
-	/*  $(document).on("click","#watch2", function(){
-		 
-	
-		 $("#watch1").trigger("click");
-	 }); */
-
-
- 	 
-</script> 
  
 </html>

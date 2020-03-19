@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.bit.ssmall.kakaopay.KakaoPay;
 import edu.bit.ssmall.kakaopay.KakaoPayCancelVO;
+import edu.bit.ssmall.noticepage.Criteria;
+import edu.bit.ssmall.noticepage.PageMaker;
 import edu.bit.ssmall.service.RefundService;
+import edu.bit.ssmall.vo.BoardNoticeVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
 
@@ -54,21 +57,8 @@ public class RefundController {
 		
 		return "redirect:/"+result;
 	}
+	
 
-	/*
-	 * @RequestMapping(value="myPage_refundList", method=
-	 * {RequestMethod.GET,RequestMethod.POST}) public String
-	 * myPage_refundList(HttpServletRequest request, HttpServletResponse response,
-	 * Principal principal, Model model) throws Exception{ String m_id =
-	 * principal.getName();
-	 * 
-	 * ArrayList<RefundVO> refundVO = refundService.refundInfo(m_id);
-	 * System.out.println(refundVO);
-	 * 
-	 * 
-	 * model.addAttribute("refund", refundVO);
-	 * 
-	 * 
-	 * return "MyPage/myPage_refundList"; }
-	 */
+
+	
 }

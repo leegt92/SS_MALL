@@ -242,20 +242,20 @@
 						<table class="table table-list-search">
 							<tr>
 								<th></th>
-								<th>상품명</th>
-								<th>구매수량</th>
-								<th>구매가격</th>
+								<th style="text-align: center; vertical-align: middle;">상품명</th>
+								<th style="text-align: center; vertical-align: middle;">구매수량</th>
+								<th style="text-align: center; vertical-align: middle;">구매가격</th>
 							</tr>
 
 							<tr>
-								<td>
+								<td style="text-align: center; vertical-align: middle;">
 									<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}"> 
 									<img src="/ssmall/productimage/${productImageVO.i_name}" alt="IMG" width="100px" height="auto">
 									</a>
 								</td>
-								<td>${productImageVO.p_description}</td>
-								<td>${amount}</td>
-								<td><fmt:formatNumber value="${totalprice}"
+								<td style="text-align: center; vertical-align: middle;">${productImageVO.p_description}</td>
+								<td style="text-align: center; vertical-align: middle;">${amount}</td>
+								<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${totalprice}"
 										pattern="###,###,###" />원</td>
 							</tr>
 

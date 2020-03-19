@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.MypageService;
+import edu.bit.ssmall.service.PageService;
 import edu.bit.ssmall.service.RefundService;
+import edu.bit.ssmall.vo.BoardNoticeVO;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.Product_BuyVO;
@@ -52,6 +54,9 @@ public class MyPageController {
 	
 	@Autowired
 	RefundService refundService;
+	
+	@Autowired
+	PageService pageService;
 	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPage(Model model) {
@@ -694,14 +699,32 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="myPage_refundList", method= {RequestMethod.GET,RequestMethod.POST})
-	public String myPage_refundList(HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
+	public String myPage_refundList(Criteria criteria, HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
 		String m_id = principal.getName();
 		
-		ArrayList<RefundVO> refundVO = refundService.refundInfo(m_id);
-		System.out.println(refundVO);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
 		
-	
-		model.addAttribute("refund", refundVO);
+		System.out.println("현재페이지 : "+criteria.getPage());
+		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+
+		int startNum = criteria.getStartNum();
+		int endNum = criteria.getEndNum();
+
+		int totalCount = pageService.countRefundList(m_id);
+		System.out.println("환불내역 조회 : " + totalCount + "회");
+		
+		pageMaker.setTotalCount(totalCount);
+		
+		List<RefundVO> refundList = pageService.refundListPage(m_id, startNum, endNum);
+		System.out.println(refundList);
+		
+		//ArrayList<RefundVO> refundVO = refundService.refundInfo(m_id);
+		
+			
+		//model.addAttribute("list", refundList);
+		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("refund", refundList);
 		
 		
 		return "MyPage/myPage_refundList";
