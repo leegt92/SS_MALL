@@ -66,7 +66,7 @@
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="/ssmall/logout" method="POST">
@@ -80,7 +80,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -147,7 +147,8 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form id="submitASRequest" action="/ssmall/mypage/myPage_askAS">
+					<form id="submitASRequest" action="/ssmall/mypage/myPage_askAS_back">
+
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요
 						</h4>

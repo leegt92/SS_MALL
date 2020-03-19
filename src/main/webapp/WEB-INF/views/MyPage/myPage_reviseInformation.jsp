@@ -38,6 +38,15 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
+
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
@@ -50,6 +59,7 @@
  ul li {
 		border-bottom: 1px solid #bebebe;
     }
+.navbar{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:.5rem 1rem}
 </style>
   </head>
 
@@ -67,7 +77,7 @@
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="/ssmall/logout" method="POST">
@@ -81,7 +91,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -130,8 +140,11 @@
             </ul>
           </div>
         </nav>
-		
-		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
+      </div>
+    </div>
+    
+<div style="overflow:hidden; position:fixed;width: 1600px;height: 940px;left: 320px;"> 
+    <div  class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
 		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form:form id="login" action="/ssmall/mypage/myPage_reviseInformation" class="login100-form validate-form" method="POST">
@@ -163,8 +176,7 @@
 			</div>
 		</div>
 	</div>
-      </div>
-    </div>
+	</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

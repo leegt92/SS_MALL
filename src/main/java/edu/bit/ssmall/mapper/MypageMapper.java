@@ -73,8 +73,8 @@ public interface MypageMapper {
 	@Update("update member set m_password = #{m_password} where m_id = #{m_id}")
 	public void updateMpassword(@Param("m_password")String m_password, @Param("m_id")String m_id);
 	
-	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'문의/건의',sysdate,'답변미완료')")
-	public void insertAsk(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
+	@Insert("insert into board (bid,bname,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bName},#{bTitle},#{bContent},#{m_number},'문의/건의',sysdate,'답변미완료')")
+	public void insertAsk(@Param("bName")String bName, @Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
 	
 	@Update("update board set btitle = #{bTitle}, bcontent = #{bContent} where bid = #{bId}")
 	public void updateAskAS(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("bId") String bId);
@@ -82,8 +82,8 @@ public interface MypageMapper {
 	@Delete("delete from board where bid = #{bId}")
 	public void deleteAskAS(@Param("bId") String bId);
 
-	@Insert("insert into board (bid,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bTitle},#{bContent},#{m_number},'AS요청',sysdate,'답변미완료')")
-	public void insertAS(@Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
+	@Insert("insert into board (bid,bname,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bName},#{bTitle},#{bContent},#{m_number},'AS요청',sysdate,'답변미완료')")
+	public void insertAS(@Param("bName")String bName, @Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
 	
 	@Delete("delete from member where m_id = #{m_id}")
 	public void withdrawMember(@Param("m_id")String m_id);
@@ -150,4 +150,5 @@ public interface MypageMapper {
 	
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where m_number = #{m_number} and btype='AS요청' ORDER BY bId desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<BoardVO> selectASBoardListPage(@Param("m_number") int m_number, @Param("startNum") int startNum, @Param("endNum") int endNum);
+	
 }

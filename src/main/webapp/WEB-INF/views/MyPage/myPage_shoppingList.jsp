@@ -51,6 +51,10 @@
  ul li {
 		border-bottom: 1px solid #bebebe;
     }
+html {
+    overflow-y: hidden;
+}
+
 </style>
   </head>
 
@@ -68,7 +72,7 @@
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="/ssmall/logout" method="POST">
@@ -82,7 +86,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -134,6 +138,7 @@
         </nav>
 		
 		<!-- Shoping Cart -->
+		<DIV style="overflow:scroll;height:100vh;">
 	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
 		<div class="container">
 			<div class="row">
@@ -223,7 +228,7 @@
 			</div>
 		</div>
 	</form>
-       
+       </DIV>
       </div>
     </div>
 
