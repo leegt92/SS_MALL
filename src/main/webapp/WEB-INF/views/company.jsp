@@ -117,15 +117,7 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
-<<<<<<< HEAD
 
-=======
-								<!-- <ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul> -->
->>>>>>> parent of 761806e... 커밋
 							</li>
 
 							<li>
@@ -199,7 +191,7 @@
 					<a href="companyView">회사소개</a>				
 				</li>
 
-<<<<<<< HEAD
+
 				<li>
 					<a href="asView">AS</a>
 				</li>
@@ -209,41 +201,10 @@
 
 		
 
-		<!-- Modal Search -->
-=======
-				<!-- <li>
-					<a href="about.html">About</a>
-				</li>
-
-				<li>
-					<a href="contact.html">Contact</a>
-				</li> -->
-			</ul>
-		</div>
-
-		<!-- <!-- Modal Search 
->>>>>>> parent of 761806e... 커밋
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide modal-search">
-					<img alt="CLOSE" src="images/icons/icon-close2.png"/>
-				</button>
-				<form class="wrap-search-header flex-w p-1-15">
-					<button class="flex c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form>
-			</div>
-<<<<<<< HEAD
 
 
-		</div>
 
-	 
-=======
-		</div> -->
->>>>>>> parent of 761806e... 커밋
+
 	</header> 
 
 	
@@ -938,22 +899,7 @@ $(document).ready(function() {
 		});
 	</script>
 <!--===============================================================================================-->
-<<<<<<< HEAD
 
-=======
-	<script src="js/main.js"></script>
-	<script>
-	function scroll_follow( id )
-		{
-		  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
-		  { 
-		      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-		      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
-		   });
-		}
-		 scroll_follow( "#scroll" );
- </script>
->>>>>>> parent of 761806e... 커밋
 	
 
 </body>
