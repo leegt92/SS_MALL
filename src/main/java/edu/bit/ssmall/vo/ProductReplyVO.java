@@ -13,7 +13,6 @@ public class ProductReplyVO {
 	private int bstep;
 	private int bident;
 	private int bgroup;
-	private int btotallike;
 	private String btype;
 	private int BTOTALREPOT;
 	private int m_number;
@@ -73,12 +72,6 @@ public class ProductReplyVO {
 	}
 	public void setBgroup(int bgroup) {
 		this.bgroup = bgroup;
-	}
-	public int getBtotallike() {
-		return btotallike;
-	}
-	public void setBtotallike(int btotallike) {
-		this.btotallike = btotallike;
 	}
 	public String getBtype() {
 		return btype;

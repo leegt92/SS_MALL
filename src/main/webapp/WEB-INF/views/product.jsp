@@ -589,7 +589,7 @@
 									${product.p_name}
 								</a> --%>
 								
-								<a href="productDetail2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
+								<a href="productDetail?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
 									<!-- productDetail2 -->${product.p_name}
 								</a>
 								

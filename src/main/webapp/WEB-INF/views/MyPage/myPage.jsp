@@ -270,7 +270,5 @@
         }
       });
     </script>
-   
->>>>>>> origin/dev_hyemin
   </body>
 </html>

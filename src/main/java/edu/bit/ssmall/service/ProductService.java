@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.ProductMapper;
 import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductImageVO;
 import edu.bit.ssmall.vo.ProductReplyVO;
 import edu.bit.ssmall.vo.ProductVO;
@@ -60,6 +61,11 @@ public class ProductService {
 	public ProductVO productOne(String p_number) {
 			
 		return productMapper.productOne(p_number);
+	}
+
+	public int principalGetMid(String m_id) {
+		
+		return productMapper.principalGetMid(m_id);
 	}
 
 }

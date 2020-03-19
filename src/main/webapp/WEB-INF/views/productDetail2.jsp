@@ -3,8 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <head>
 
 <title>Product Detail</title>
@@ -187,11 +199,14 @@
 
 						tag = tag+ "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
 															console.log(data.bid);
-						tag = tag+ "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>"; 
+						tag = tag+ "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>";
+						tag = tag+ "<input type='text' id = 'm_number' name='m_number' value='"+data.m_number+"'>";
+						tag = tag+ "<input type='text' id = 'm_id' name='m_id' value='"+data.m_id+"'>";
 												
 						tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
 						tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
 						tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
+						
 						tag = tag + "<button type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제"+"</button><br/>";
 						tag = tag + "<button type = 'button' id = popbutton name = 'popbutton' value='"+data.bid+"'>"+"수정"+"</button>";
 																														
@@ -715,13 +730,25 @@
 <!-- ----------------------------------------------------구매감상 게시판----------------------------------------------------------------- -->
 																												
 										<div class="container">
-											<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button>
+											<sec:authorize access="isAnonymous()">												
+												<p style="font-weight: bold; font-size: 1.5em;">isAnonymous</p>
+												<button type="button" id="btn_collapse_notLogin"class="btn btn-info">구매후기 작성(비로그인)</button>
+											</sec:authorize>
+															
+											<sec:authorize access="hasRole('USER')">												
+												<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
+												<p>principal_m_id:"${principal_m_id}"</p>
+												<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성(로그인)</button>
+											</sec:authorize>
+																																	
+											<!-- <button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button> -->
 																																																																																			
 												<div id="demo" class="collapse in" style="border: 1px solid;">																																																	
 													<form id="form" name="form" role="form" method="post" autocomplete="off">
 														<input type="hidden" id="p_number" value="${productNum.p_number}"name="p_number">																													
-														<input type="hidden" id="m_number" value="40" name="m_number"><!-- 미구현.테스트 -->
-														<input type="hidden" id="m_id" value="hyemin311" name="m_id" /><!-- 미구현.테스트 -->
+														<input type="text" id="m_number" value="${principal_m_number}" name="m_number"><!-- 미구현.테스트 -->
+														<!-- m_number의 value에 로그인한 사람의 m_number를 가져오면 됨. -->
+														<input type="text" id="m_id" value="${principal_m_id}" name="m_id" /><!-- 미구현.테스트 -->
 														<label>제목</label>
 														<input type="text" class="btitleCollapse" id="btitle" name="btitle" style="border: 1px solid;" /><br />
 														<!-- <label>작성자</label> <input type="text" name="m_id" style=" border:1px solid;" /><br /> -->
@@ -730,6 +757,10 @@
 														<button type="button" id="reply_btn" data-toggle="collapse" data-target="#demo" style="border: 1px solid;">작성</button>	
 														
 														<script>
+															$("#btn_collapse_notLogin").click(function(){
+																console.log("btn_collapse_notLogin 버튼이벤트 탐");
+																alert("로그인 후 이용 가능합니다");
+															})
 
 															$("#reply_btn").click(function(){
 																console.log("구매소감Ajax");
@@ -744,16 +775,19 @@
 																var bcontent = $("#bcontent").val();
 																console.log("구매소감Ajax5");
 																var btitle = $("#btitle").val();
-																
+																console.log("m_number넘김");
+																var m_number = $("#m_number").val();
 																console.log("구매소감Ajax data위");
 																var data = {
 																		p_number : p_number,
 																		m_number : m_number,
 																		m_id : m_id,
 																		bcontent : bcontent,
-																		btitle : btitle
+																		btitle : btitle,
+																		m_number : m_number
 																		};
 																console.log("구매소감Ajax $.ajax 위");
+																
 																
 																$.ajax({
 																	url : '/ssmall/product_Write_reply',																	
