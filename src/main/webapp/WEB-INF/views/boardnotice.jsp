@@ -50,12 +50,13 @@
 		color:white;
 	}
 	
+	
 	 
 
         
 </style>
 </head>
-<body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
+<body class="animsition" ><!-- class="animsition" -->
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -88,7 +89,7 @@
 					</div>
 				</div>
 			</div>
-
+</header>
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 					
@@ -159,8 +160,6 @@
 					<a href="productView">상품</a>
 				</li>
 				
-				
-				
 				<li>
 					<a href="boardnoticeView">공지사항</a>
 				</li>
@@ -169,11 +168,14 @@
 				<li>
 					<a href="companyView">회사소개</a>
 				</li>
+<<<<<<< HEAD
 				
 				<li>
 					<a href="asView">AS</a>
 				</li>
 			
+=======
+>>>>>>> dev_chajin
 			</ul>
 		</div>
 		<!-- Modal Search -->
@@ -209,8 +211,12 @@
 	
 	
 		<div id="notice">
+<<<<<<< HEAD
 		 	<h1 class="m-5">공지사항</h1>
 		 	<div class="table-responsive">
+=======
+		 	<h1 class="m-5">공지사항</h1><div class=”table-responsive“>
+>>>>>>> dev_chajin
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -268,7 +274,12 @@
 			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
 			</ul>  -->
 		</div>
+<<<<<<< HEAD
 	
+=======
+		</div>
+
+>>>>>>> dev_chajin
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -421,6 +432,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
+<<<<<<< HEAD
+=======
+<script src="js/main.js"></script>
+	 	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
+	<script>
+		$('#map1').click(function(){
+			var container = document.getElementById('map1');
+			 var options = {
+				center: new kakao.maps.LatLng(37.552475, 126.937825),
+				level: 3
+			}; 
+			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+
+		});
+	</script> 
+	<span class="bt-basic" id="map"></span> 
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+	
+>>>>>>> dev_chajin
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
@@ -437,6 +470,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
+<<<<<<< HEAD
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
  	
@@ -449,6 +483,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				level: 3
 			}; 
 			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+=======
+<!--===============================================================================================-->	
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
+<!--===============================================================================================-->
+	
+	
+>>>>>>> dev_chajin
 
 		});
 	</script> 

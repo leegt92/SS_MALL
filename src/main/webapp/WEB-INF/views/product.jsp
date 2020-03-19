@@ -115,9 +115,9 @@
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						 <a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+						</a> 
 					</div>
 				</nav>
 			</div>	
@@ -131,19 +131,21 @@
 			</div>
 
 			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+		<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+			<div class="flex-c-m h-full p-r-5">
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+				<!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
 				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
 					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
+				</a>  -->
 			</div>
+		</div>
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -156,10 +158,14 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			<ul class="topbar-mobile">
+			 <ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
+<<<<<<< HEAD
 						SSMALL with luxury watches and wallets
+=======
+					 Free shipping for standard order over $100
+>>>>>>> dev_chajin
 					</div>
 				</li>
 
@@ -183,7 +189,7 @@
 					
 					</div>
 				</li>
-			</ul>
+			</ul> 
 
 			<ul class="main-menu-m">
 				<li>
