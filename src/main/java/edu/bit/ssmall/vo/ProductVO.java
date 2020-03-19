@@ -11,33 +11,8 @@ public class ProductVO {
 	private String p_released_date;
 	private int p_amount;
 	private String p_category;
-	private String p_image;
-	
-	
-	
-	public String getP_image() {
-		return p_image;
-	}
 
-	public void setP_image(String p_image) {
-		this.p_image = p_image;
-	}
 
-	public ProductVO(int p_number, String p_name, int p_price, String p_brand, int p_stock, String p_description,
-			String p_released_date, int p_amount, String p_category) {
-		this.p_number = p_number;
-		this.p_name = p_name;
-		this.p_price = p_price;
-		this.p_brand = p_brand;
-		this.p_stock = p_stock;
-		this.p_description = p_description;
-		this.p_released_date = p_released_date;
-		this.p_amount = p_amount;
-		this.p_category = p_category;
-	}
-	
-	public ProductVO() {}
-	
 	public int getP_number() {
 		return p_number;
 	}
@@ -94,13 +69,5 @@ public class ProductVO {
 		this.p_category = p_category;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductVO [p_number=" + p_number + ", p_name=" + p_name + ", p_price=" + p_price + ", p_brand="
-				+ p_brand + ", p_stock=" + p_stock + ", p_description=" + p_description + ", p_released_date="
-				+ p_released_date + ", p_amount=" + p_amount + ", p_category=" + p_category + ", p_image=" + p_image
-				+ "]";
-	}
-	
-	
+
 }

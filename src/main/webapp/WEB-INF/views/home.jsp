@@ -50,106 +50,9 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-
-<script type="text/javascript">
-
-	function numberFormat(inputNumber) {
-	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-	
-	
-	$(function(){
-		$.ajax({
-			url : '/ssmall/miniCart',
-			dataType : 'json',
-			success : function(data){
-				console.log(data);
-				var totalprice = 0;			
-				var itemcount = 0;
-				
-				$.each(data, function(key, value){
-					totalprice = totalprice + value.c_grandtotal;
-					itemcount += 1;
-					var tag = "";
-					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
-					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
-					tag = tag + "<div class='header-cart-item-img'>";
-					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
-					tag = tag + "</div>";
-					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
-					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
-					tag = tag + value.p_description + " x " + value.c_amount;
-					tag = tag + "</a>";
-					tag = tag + "<span class='header-cart-item-info'>";
-					tag = tag + numberFormat(value.c_grandtotal)+"원";
-					tag = tag + "</span></div></li>";
-					
-					
-				
-					$("#miniCart").append(tag);
-					
-				})
-				
-				var tag2 = "";
-				tag2 = tag2 + "<div class='header-cart-total w-full p-tb-40'>"
-				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
-				tag2 = tag2 + "</div>"
-				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
-				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
-				tag2 = tag2 + "View Cart </a></div>";
-				
-				$("#total").append(tag2);
-				
-				$(document).ready(function () {
-
-					$('#count').attr('data-notify', itemcount);
-
-			    });
-				
-				
-				
-			}
-		})
-	})
-</script>
-
-<c:choose>
-	<c:when test="${error eq 'error'}">
-		<script>
-			alert('${msg}');
-		</script>
-		<% 
-			session.removeAttribute("error");
-			session.removeAttribute("msg");
-		%>
-	</c:when>
-	
-	<c:when test="${success eq 'success'}">
-		<script>
-			alert('결제가 완료되었습니다.');
-		</script>
-		<% session.removeAttribute("success"); %>
-	</c:when>
-	
-	<c:when test="${cancel eq 'cancel'}">
-		<script>
-			alert('결제가 취소되었습니다.');
-		</script>
-		<% session.removeAttribute("cancel"); %>
-	</c:when>
-	
-	<c:when test="${fail eq 'fail'}" >
-		<script>
-			alert('결제를 실패하였습니다..');
-		</script>
-		<% session.removeAttribute("fail"); %>
-	</c:when>
-
-</c:choose>
 </head>
 <body class="animsition">
+	
 	<!-- Header -->
 	<header class="header-v3">
 		<!-- Header desktop -->
@@ -171,16 +74,12 @@
 							<li>
 								<a href="productView">상품</a>
 							</li>
-							
+						
 							<li>
 								<a href="boardnoticeView">공지사항</a>
 							</li>
-							
 							<li>
-								<a href="companyView">회사소개</a>						
-							
-							<li>
-								<a href="asView">AS</a>
+								<a href="companyView">회사소개</a>
 							</li>
 							
 						</ul>
@@ -189,8 +88,7 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
-							<div id="count" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" >
-
+							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11  js-show-cart" >
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -212,7 +110,14 @@
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO" ></a>
 			</div>
 
-			
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
+				<div class="flex-c-m h-full p-r-5">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+						<i class="zmdi zmdi-shopping-cart"></i>
+					</div>
+				</div>
+			</div>
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -227,7 +132,12 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="homeview">홈</a>					
+					<a href="homeview">홈</a>
+					<!-- <ul class="sub-menu-m">
+						<li><a href="index.html">Homepage 1</a></li>
+						<li><a href="home-02.html">Homepage 2</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li>
+					</ul> -->
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -236,17 +146,11 @@
 				<li>
 					<a href="productView">상품</a>
 				</li>
-				
 				<li>
-					<a href="boardnoticeView">공지사항</a>
+					<a href="notice">공지사항</a>
 				</li>
-				
 				<li>
-					<a href="companyView">회사소개</a>
-				</li>
-				
-				<li>
-					<a href="asView">AS</a>
+					<a href="blogview">회사소개</a>
 				</li>
 
 			</ul>
@@ -308,7 +212,7 @@
 						</li>
 			
 						<li class="p-b-13">
-							<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+							<a href="admin" class="stext-102 cl2 hov-cl1 trans-04">
 								<p style="font-weight: bold; font-size: 1.5em;">관리자페이지 </p>
 							</a>
 						</li>
@@ -327,13 +231,13 @@
 						</li>
 						
 						<li class="p-b-13">
-						<a href="myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="myPage" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">마이페이지 </p>
 						</a>
 						</li>
 						
 						<li class="p-b-13">
-						<a href="cartView" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="cart" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">장바구니 </p>
 						</a>
 						</li>
@@ -346,7 +250,7 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="boardnoticeView" class="stext-102 cl2 hov-cl1 trans-04"> 
+						<a href="notice" class="stext-102 cl2 hov-cl1 trans-04"> 
 							<p style="font-weight: bold; font-size: 1.5em;">공지사항</p>
 						</a>
 					</li>
@@ -356,13 +260,7 @@
 							<p style="font-weight: bold; font-size: 1.5em;">회사소개</p>
 						</a>
 					</li>
-					
-					<li class="p-b-13">
-						<a href="asView" class="stext-102 cl2 hov-cl1 trans-04">
-							<p style="font-weight: bold; font-size: 1.5em;">AS</p>
-						</a>
-					</li>
-					
+
 				</ul>
 				</div>
 
@@ -473,13 +371,71 @@
 			</div>
 			
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul id="miniCart" class='header-cart-wrapitem w-full'>
-				
+				<ul class="header-cart-wrapitem w-full">
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="images/item-cart-01.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								White Shirt Pleat
+							</a>
+
+							<span class="header-cart-item-info">
+								1 x $19.00
+							</span>
+						</div>
+					</li>
+
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="images/item-cart-02.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								Converse All Star
+							</a>
+
+							<span class="header-cart-item-info">
+								1 x $39.00
+							</span>
+						</div>
+					</li>
+
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="images/item-cart-03.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								Nixon Porter Leather
+							</a>
+
+							<span class="header-cart-item-info">
+								1 x $17.00
+							</span>
+						</div>
+					</li>
 				</ul>
-				<div id="total" class="w-full">
-					
-				</div>
 				
+				<div class="w-full">
+					<div class="header-cart-total w-full p-tb-40">
+						Total: $75.00
+					</div>
+
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							View Cart
+						</a>
+
+						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							Check Out
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -555,19 +511,17 @@
 						<img src="images/banner1.PNG" alt="IMG-BANNER">
 
 						<a href="productViewWatch" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
-						<div class="block1-txt-child1 flex-col-l">
-							<span class="block1-name ltext-102 trans-04 p-b-8">
-								Watch
-							</span>								
-						</div>						
-							
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Watch
+								</span> <!-- href="productView#watch1" -->
+							</div>	
 				
 						<div class="block1-txt-child2 p-b-4 trans-05">
 							<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
 							</div>
 						</div>
-						
 					</a>
 				</div>
 			</div>

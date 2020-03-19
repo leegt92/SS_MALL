@@ -65,27 +65,26 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">						
-						SSMALL with luxury watches and wallets
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
 						</a>
 
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
-							About Us
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							My Account
 						</a>
-					
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							USD
+						</a>
 					</div>
 				</div>
 			</div>
@@ -103,7 +102,11 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
-							
+								<!-- <ul class="sub-menu">
+									<li><a href="index.html">Homepage 1</a></li>
+									<li><a href="home-02.html">Homepage 2</a></li>
+									<li><a href="home-03.html">Homepage 3</a></li>
+								</ul> -->
 							</li>
 
 							<li>
@@ -117,13 +120,24 @@
 							<li> <!-- class="active-menu" -->
 								<a href="companyView">회사소개</a>
 							</li>
-							
-							<li>
-								<a href="asView">AS</a>
-							</li>	
+		
 						</ul>
 					</div>	
-			
+
+				<!-- 	 Icon header --> 
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+
+						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
 				</nav>
 			</div>	
 		</div>
@@ -133,6 +147,21 @@
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
 			</div>
 
 			<!-- Button show menu -->
@@ -146,11 +175,42 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							USD
+						</a>
+					</div>
+				</li>
+			</ul>
+
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
-
+					<ul class="sub-menu-m">
+						<!-- <li><a href="index.html">Homepage 1</a></li>
+						<li><a href="home-02.html">Homepage 2</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li> -->
+					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -168,32 +228,10 @@
 				<li>
 					<a href="companyView">회사소개</a>
 				</li>
-<<<<<<< HEAD
-				
-				<li>
-					<a href="asView">AS</a>
-				</li>
-			
-=======
->>>>>>> dev_chajin
 			</ul>
 		</div>
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="images/icons/icon-close2.png" alt="CLOSE">
-				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form>
-			</div>
-		</div>
-	</header>
+	
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -211,12 +249,7 @@
 	
 	
 		<div id="notice">
-<<<<<<< HEAD
-		 	<h1 class="m-5">공지사항</h1>
-		 	<div class="table-responsive">
-=======
 		 	<h1 class="m-5">공지사항</h1><div class=”table-responsive“>
->>>>>>> dev_chajin
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -244,8 +277,8 @@
 					<td colspan="5"> <a href="write_view">글작성</a> </td>
 				</tr> -->	
 			</table>
-		</div>
 			<ul class="pagination m-5 flex-c-m" >
+				
 					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
 						<li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
 						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
@@ -274,12 +307,8 @@
 			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
 			</ul>  -->
 		</div>
-<<<<<<< HEAD
-	
-=======
 		</div>
 
->>>>>>> dev_chajin
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -411,7 +440,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-	
+
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -432,8 +461,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-<<<<<<< HEAD
-=======
 <script src="js/main.js"></script>
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
@@ -453,7 +480,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!--===============================================================================================-->
 	
->>>>>>> dev_chajin
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
@@ -470,20 +496,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
-<<<<<<< HEAD
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
- 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
-	<script>
-		$('#map1').click(function(){
-			var container = document.getElementById('map1');
-			 var options = {
-				center: new kakao.maps.LatLng(37.552475, 126.937825),
-				level: 3
-			}; 
-			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
-=======
 <!--===============================================================================================-->	
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" 
@@ -491,14 +503,6 @@ src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
 <!--===============================================================================================-->
 	
 	
->>>>>>> dev_chajin
 
-		});
-	</script> 
-	<span class="bt-basic" id="map"></span> 
-<!--===============================================================================================-->
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
-<!--===============================================================================================-->
 </body>
 </html>

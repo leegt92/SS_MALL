@@ -1,5 +1,6 @@
 package edu.bit.ssmall.oauth;
 
+import com.github.scribejava.apis.GoogleApi20;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 
 public class SnsValue implements SnsUrls {
@@ -9,7 +10,21 @@ public class SnsValue implements SnsUrls {
 	private String redirectUrl;
 	private DefaultApi20 api20Instance;
 	private String profileUrls;
-
+	private boolean isNaver;
+	private boolean isGoogle;
+	
+	public boolean isNaver() {
+		return isNaver;
+	}
+	public void setNaver(boolean isNaver) {
+		this.isNaver = isNaver;
+	}
+	public boolean isGoogle() {
+		return isGoogle;
+	}
+	public void setGoogle(boolean isGoogle) {
+		this.isGoogle = isGoogle;
+	}
 	public String getProfileUrls() {
 		return profileUrls;
 	}
@@ -53,10 +68,18 @@ public class SnsValue implements SnsUrls {
 		this.clientId = clientId;
 		this.clientSecret = clientSecret;
 		this.redirectUrl = redirectUrl;
-		this.api20Instance = NaverAPI20.instance();
-		this.profileUrls = NAVER_PROFILE_URL;
 		
-	
+		this.isNaver = this.service.equals("naver");
+		this.isGoogle = this.service.equals("google");
+		
+		if(isNaver) {
+			this.api20Instance = NaverAPI20.instance();
+			this.profileUrls = NAVER_PROFILE_URL;
+		
+		}else if(isGoogle) {
+			this.api20Instance = GoogleApi20.instance();
+			this.profileUrls = GOOGLE_PROFILE_URL;
+		}
 	}
 	
 	

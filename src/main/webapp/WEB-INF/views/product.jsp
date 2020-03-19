@@ -49,27 +49,26 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">						
-						SSMALL with luxury watches and wallets
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
 						</a>
 
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
-							About Us
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							My Account
 						</a>
-					
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							USD
+						</a>
 					</div>
 				</div>
 			</div>
@@ -86,6 +85,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
+									<li>
 								<a href="homeview">홈</a>
 							</li>
 
@@ -99,9 +99,6 @@
 							<li>
 								<a href="companyView">회사소개</a>
 							</li>
-							<li>
-								<a href="asView">AS</a>
-							</li>	
 						</ul>
 					</div>	
 
@@ -161,32 +158,27 @@
 			 <ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-<<<<<<< HEAD
-						SSMALL with luxury watches and wallets
-=======
 					 Free shipping for standard order over $100
->>>>>>> dev_chajin
 					</div>
 				</li>
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m p-lr-10 trans-04">
-							Home
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
 						</a>
 
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
-							My
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
 						</a>
 
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
-							cart
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							EN
 						</a>
-						
-						<a href="companyView" class="flex-c-m p-lr-10 trans-04">
-							About Us
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							USD
 						</a>
-					
 					</div>
 				</li>
 			</ul> 
@@ -212,9 +204,6 @@
 				</li>
 				<li>
 					<a href="companyView">회사소개</a>
-				</li>
-				<li>
-					<a href="asView">AS</a>
 				</li>
 			</ul>
 		</div>
@@ -379,10 +368,8 @@
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
 						</button>
-						<p>373번째줄 search 구분</p>
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search_product" placeholder="Search">
-						<input type="submit" value="검색" width = "300"/>
-						
+
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
 					</div>	
 				</div>
 
@@ -591,18 +578,9 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 							<%-- <div style="display:none">"${product.p_number}"</div> --%>
-								<%-- <a href="productDetail?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
+								<a href="productDetail?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
 									${product.p_name}
-								</a> --%>
-								
-								<a href="productDetail2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									<!-- productDetail2 -->${product.p_name}
 								</a>
-								
-								<a href="product_replyAjax2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									ajax 확인
-								</a>
-								
 								<span class="stext-105 cl3">
 									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
 								</span>
@@ -767,9 +745,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
 					<img src="images/icons/icon-close.png" alt="CLOSE">
 				</button>
-				
-				<%-- <c:if test="${p_number eq product?p_number=${product.p_number}"> --%>
-				<c:forEach items="${product}" var="product">
+
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -778,31 +754,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -815,15 +791,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								${product.p_name}
+								Lightweight Jacket
 							</h4>
 
 							<span class="mtext-106 cl2">
-								<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
+								$58.79
 							</span>
 
 							<p class="stext-102 cl3 p-t-23">
-								${product.p_description}
+								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
 							</p>
 							
 							
@@ -910,8 +886,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</div>
 					</div>
 				</div>
-				</c:forEach>
-				<%-- </c:if> --%>
 			</div>
 		</div>
 	 </div>  

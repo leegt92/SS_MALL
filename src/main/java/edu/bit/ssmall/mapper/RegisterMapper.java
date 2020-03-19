@@ -13,8 +13,4 @@ public interface RegisterMapper {
 	public int idChk(@Param("memberVO")MemberVO memberVO);
 
 	public int emailChk(@Param("memberVO")MemberVO memberVO); 
-	
-	public void naverRegister(@Param("memberVO")MemberVO memberVO);
-
-	public void kakaoRegister(@Param("memberVO")MemberVO memberVO);
 }

@@ -59,27 +59,26 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">						
-						SSMALL with luxury watches and wallets
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
 						</a>
 
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
-							About Us
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							My Account
 						</a>
-					
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							USD
+						</a>
 					</div>
 				</div>
 			</div>
@@ -96,7 +95,12 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="homeview">홈</a>								
+								<a href="homeview">홈</a>
+								<!-- <ul class="sub-menu">
+									<li><a href="index.html">Homepage 1</a></li>
+									<li><a href="home-02.html">Homepage 2</a></li>
+									<li><a href="home-03.html">Homepage 3</a></li>
+								</ul> -->
 							</li>
 
 							<li>
@@ -104,19 +108,30 @@
 							</li>
 			
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="/">공지사항</a>
 							</li>
 
-							<li>
-								<a href="companyView">회사소개</a>
+							<li> <!-- class="active-menu" -->
+								<a href="blogview">회사소개</a>
 							</li>
-							
-							<li>
-								<a href="asView">AS</a>
-							</li>	
 		
 						</ul>
-					</div>				
+					</div>	
+
+				<!-- 	 Icon header --> 
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+
+						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
 				</nav>
 			</div>	
 		</div>
@@ -126,6 +141,21 @@
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
 			</div>
 
 			<!-- Button show menu -->
@@ -139,10 +169,42 @@
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
-			
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							USD
+						</a>
+					</div>
+				</li>
+			</ul>
+
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
+					<ul class="sub-menu-m">
+						<!-- <li><a href="index.html">Homepage 1</a></li>
+						<li><a href="home-02.html">Homepage 2</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li> -->
+					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -155,17 +217,21 @@
 				
 				
 				<li>
-					<a href="boardnoticeView">공지사항</a>
+					<a href="">공지사항</a>
 				</li>
 				
 
 				<li>
-					<a href="companyView">회사소개</a>
+					<a href="blogview">회사소개</a>
+				</li>
+
+				<!-- <li>
+					<a href="about.html">About</a>
 				</li>
 
 				<li>
-					<a href="asView">AS</a>
-				</li>
+					<a href="contact.html">Contact</a>
+				</li> -->
 			</ul>
 		</div>
 
@@ -230,8 +296,7 @@
 					 	
 						<th >제목 </th>
 						<td>${content_view.bTitle}</td>
-					</tr> 
-					 
+					</tr>  
 					  <tr>
 					    
 						 <th >내용</th> 

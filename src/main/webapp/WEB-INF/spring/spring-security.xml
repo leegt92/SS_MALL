@@ -15,15 +15,12 @@
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
         <intercept-url pattern="/mypage/**" access="hasRole('USER')" />
         <intercept-url pattern="/login/**" access="isAnonymous()" />
-        <intercept-url pattern="/buy/**" access="hasRole('USER')" />     
-        <intercept-url pattern="/addCart/**" access="hasRole('USER')" />
-        <intercept-url pattern="/cartview/**" access="hasRole('USER')" />      
         <intercept-url pattern="/**" access="permitAll" />
         <intercept-url pattern="/resources/**" access="permitAll" /> 
    
         <!-- 
-        	순서도 중요하다 
-        	위에서부터 실행되기때문에 위에서 admin이나 user를 주고 마지막에 나머지 는 permitAll 주는식으로 해야함     	
+        	순서도 중요하다 <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" /> 을 먼저하면 밑에꺼는 상반되므로 타지않는다.
+        	루트이하의 모든폴더에게 user 랑 admin만 주었는데 밑에는 전체를 주려고하니까 에러발생
          -->
         
         <!-- 
@@ -31,7 +28,7 @@
         	
         	login-page="/login/loginForm" 
         	->로그인 인증을 처리할 주소는 /login/loginForm 이다.
-       	
+        	
         	default-target-url="/"
         	->로그인이 완료되면 이동할 주소, 루트로 이동
         	
@@ -54,12 +51,12 @@
          <logout logout-url="/logout"
                 logout-success-url="/" /> 
                 
-        <access-denied-handler error-page="/AccessDenine" /> 
+        <access-denied-handler error-page="/AccessDenine" />
         
         <session-management>
         	<!-- 동일 ID의 세션 최대수가 한 개, 그 이상일 경우는 기존 세션 무효화 -->
         	<concurrency-control max-sessions="1" expired-url="/"/>
-	    </session-management>	
+	    </session-management>
     
     </http>    
     
@@ -85,16 +82,17 @@
       <authentication-manager>
       	
         <authentication-provider>
-        	<password-encoder hash="bcrypt" /> <!-- 비밀번호 암호화된거 비교하는것-->
+        	<password-encoder hash="bcrypt" />
 	        <jdbc-user-service 
 	            data-source-ref="dataSource"
 	            role-prefix=""    
-				users-by-username-query="select m_id, m_password , m_enabled  from member where m_id = ?"
+				users-by-username-query="select m_id, m_password ,m_enabled  from member where m_id = ?"
 	  			authorities-by-username-query="select m_id,case when m_authority ='관리자' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from member where m_id = ?"            
 	        />
 	    </authentication-provider>
     </authentication-manager> 
-
+    
+    
 <!--<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"/>

@@ -2,6 +2,9 @@ package edu.bit.ssmall.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import edu.bit.ssmall.exception.AlreadyExistingEmailException;
+import edu.bit.ssmall.exception.AlreadyExistingIdException;
 import edu.bit.ssmall.mapper.RegisterMapper;
 import edu.bit.ssmall.vo.MemberVO;
 
@@ -29,22 +32,21 @@ public class RegisterService {
         return 0;
     }
 	
-	public int check(String addr1,String addr2,String addr3){
+	public String check(String addr1,String addr2,String addr3){
+
+		String address1 = addr1; 
+		String address2 = addr2; 
+		String address3 = addr3; 
 		
 		if(addr1.trim().isEmpty() || addr2.trim().isEmpty() || addr3.trim().isEmpty()) {
 			
 			System.out.println("주소 널값!!");
-			return 1;
+			return null;
 		}
+		
+		String M_adress = "(" + addr1 + ") " + addr2 + " " + addr3;
+		
+		return M_adress;
+	}
 
-		return 0;
-	}
-	
-	public void naverRegister(MemberVO memberVO) throws Exception {
-		registerMapper.naverRegister(memberVO);
-	}
-	
-	public void kakaoRegister(MemberVO memberVO) throws Exception {
-		registerMapper.kakaoRegister(memberVO);
-	}
 }
