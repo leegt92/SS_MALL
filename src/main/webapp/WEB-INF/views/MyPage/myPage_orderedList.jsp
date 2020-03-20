@@ -50,6 +50,10 @@
  ul li {
 		border-bottom: 1px solid #bebebe;
 }
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 .table-shopping-cart2 {
  	border-collapse: collapse;
   	width: 100%;
@@ -119,7 +123,7 @@
 
   <body>
   
-     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0" style="right: 16px;">
       <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -131,7 +135,7 @@
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
      
-      <ul class="navbar-nav px-3 d-none d-sm-block">
+      <ul class="navbar-nav px-2 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="logout" method="POST">
@@ -192,8 +196,8 @@
         
         <!-- Shoping Cart -->
         <!-- <iframe src="/ssmall" style="position:fixed;width: 1600px;height: 940px;left: 320px;"></iframe> -->
-        
-        <form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20" >
+        <DIV style="overflow:scroll;width:100vw;height:100vh;margin-left: 320px;">
+        <form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20" style="padding-left: 0px;margin-left: 110px;padding-right: 300px;margin-right: 26px;margin-top: 80px;height: 1192px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
@@ -288,6 +292,7 @@
 			</div>
 		</div>
 	</form>
+	</DIV>
 	</div>
       </div>
     
