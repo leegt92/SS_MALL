@@ -80,21 +80,7 @@ table#tabletype td {
 #name{
 	color:black;
 }
-@media screen and (max-width: 600px) {
-  table {
-    border: 0;
-    table-layout: fixed;
-  }
-   table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+
 </style>
   </head>
 
@@ -206,7 +192,7 @@ table#tabletype td {
 								data-validate="이름 입력해주세요">
 								<span class="label-input100"><font size="4em" color="black">이름</font></span></div>
 						</th>
-						<td data-label="Acount">
+						<td >
 							<div><font color="black"><c:out value="${m_name2}"/></font></div>
 							<span class="focus-input100" data-symbol="&#xf206;"></span>
 							<p>(이름은 수정이 불가합니다.)</p>
@@ -237,7 +223,7 @@ table#tabletype td {
 	
 							<span class="label-input100"><font size="4em" color="black">이메일</font></span></div>
 					</th>
-					<td data-label="Acount">
+					<td >
 							 <div ><font color="black"><c:out value="${m_email}"/> </font></div> <span
 								class="focus-input100" data-symbol="&#xf206;"></span>
 								<p>(이메일은 수정이 불가능합니다.)</p>
@@ -251,7 +237,7 @@ table#tabletype td {
 							<span class="label-input100"><font size="4em" color="black">주소 수정</font></span>
 						</div>
 					</th>
-					<td data-label="Acount"> 
+					<td > 
 						<div class="form-control" >
 							<input id="m_adress" class="input100"
 								type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
@@ -269,7 +255,7 @@ table#tabletype td {
 							<span class="label-input100"><font size="4em" color="black">핸드폰번호</font></span>
 						</div>
 					</th>
-					<td data-label="Acount"> 
+					<td > 
 						<div class="form-control">
 							<input id = "m_phonenum" class="input100"
 								type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
@@ -286,7 +272,7 @@ table#tabletype td {
 							<span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> 
 						</div>
 					</th>
-					<td data-label="Acount">
+					<td >
 							<input type="radio"name="m_receive_email" value="1" style="position:fixed;top: 680px;" >
 							<font size="2em" color="black" style="position:absolute;left:300px;bottom: 193px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
 							<input type="radio"name="m_receive_email" value="0" style="position:fixed;top: 705px;"><font size="2em" color="black" style="position:absolute;left: 300px;bottom: 166px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
@@ -347,7 +333,7 @@ table#tabletype td {
     </script>
 
     <!-- Graphs -->
-    <
+ 
     
     <script>
     	$("#m_adress").click(function execPostCode() {
@@ -466,83 +452,6 @@ table#tabletype td {
         $('.parallax100').parallax100();
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
-		});
-	</script>
-	<!--===============================================================================================-->
-	
-
-	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	
-	</script>
-<!--===============================================================================================-->
-
-
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
-	
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-		
+			
   </body>
 </html>

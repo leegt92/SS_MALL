@@ -64,11 +64,11 @@
  ul li {
 		border-bottom: 1px solid #bebebe;
 }
-.table-shopping-cart2 {
+/* .table-shopping-cart2 {
  	border-collapse: collapse;
   	width: 100%;
   	min-width: 680px;
-}
+} */
 .table-shopping-cart2 tr {
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
@@ -128,6 +128,109 @@
   color: #555;
   line-height: 1.6;
 }
+
+
+
+.table1{
+	width:130%;
+}
+
+
+
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse; /* 표(table)의 테두리와 셀(td)의 테두리 사이의 간격을 없앱니다. 겹치는 부분은 한 줄로 나타냅니다.  */
+  margin: 0; /* 보드 바깥쪽 여백 */
+  padding: 0;/* 보드 안쪽여백  */
+  width: 100%; /* 부모요소 크기의 기준으로 퍼센트를 준다  */
+  table-layout: fixed;/* 어떤 상황에서도 테이블의 크기를 고정시킬때 사용함 */
+  line-height: 1.25;/* 줄높이를 정한다.  */
+  
+}
+
+/* table tr {
+
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+ 
+}
+ */
+@media screen and (max-width: 680px) { 
+/* 미디어 쿼리는 선택사항인 미디어 유형과, 자유로운수의 미디어 특성표현식
+      연산자를 통해 다양한 방법으로 서로 결합 
+   all연산자:모든 장치에 적합하다
+   and연산자:여러 미디어특징들을 하나로 결합한다
+   print:인쇄 결과물 및 출력 미리보기 화면에 표시 중인 문서
+   speech:음성 합성장치 대상. 
+     여기서 사용한것은 화면이 줄었을때를 기준으로 사용한것 */
+  table {
+    border: 0;
+ }
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);/* 요소의 특정 부분만 보여지게함,rect가 받는 인자는 마스킹되는 영역을 정의하는 것으로 (top, right, bottom, left)로 정의된다.  */
+    height: 1px;
+    margin: -1px;/*마진에서 마이너스(-) 요소위에 다른 요소를 겹치게한다  */
+    overflow: hidden;
+    padding: 0;
+    position: absolute;/* static속성을 가지지 않은 부모를 위주로 움직임 아무것도없을때는 가장 오른쪽에붙음 */
+    width: 1px;
+  }
+  
+  table tr {
+  	font-size: 1.2em;
+    border-bottom: 3px solid #ddd; 
+    display: block;
+  
+  }
+  
+  table td {
+  	border-bottom: 1px solid #ddd; 
+    display: block;
+    font-size: 0.8em;
+    text-align: left;
+    
+  }
+  
+  table td::before {/* ::before:가상선택자 요소의 시작부분에 콘텐트를 추가시킴
+  					  	*중요* : 가상 선택자는 반드시 content와 같이 써줘야한다. */
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    
+    /* 콘텐트 속성은 css 내용을 생성하는 역할을 한다.  */
+    /* attr: 선택자의 속성을 생성한다. */
+    /* data-laber="이름" 주게되면 화면상에 그이름이 나오게된다  */
+    content: attr(data-label);
+  	float: left;/*css정렬속성 이미지나 텍스트를 정렬 할 때 사용함  */
+    font-weight: bold;
+    
+  }
+  
+   table td:last-child {
+    border-bottom: 0;
+  } 
+}
+ 
+
+
+
+
+	
+
 </style>
   </head>
 
@@ -145,7 +248,7 @@
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="logout" method="POST">
@@ -159,16 +262,10 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
-              <!-- <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a> 
-              </li>-->
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
@@ -214,40 +311,49 @@
 		<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
-				bottom: 70px;
-				right: 50px;
-				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
-					width: 1000px;
-					">
-						<div class="wrap-table-shopping-cart">
-						<c:set var="hap" value="0"/>
-							<table class="table-shopping-cart2">
-								<tr class="table_head">
-									<th style="text-align: center;"></th>
-									<th style="text-align: center;">상품명</th>
-									<th style="text-align: center;">수량</th>
-									<th style="text-align: center;">가격</th>
-									<th style="text-align: center;">환불일자</th>
-									<th style="text-align: center;">환불상태</th>
-								</tr>		
-								<c:forEach items="${refund}"  var="refund">
-								<c:set var="hap" value="${hap+refund.r_price}"/>
-								<tr class="table_row">
-								
-									<td class="column-1" onclick="location.href='/ssmall/productDetail?p_number=${refund.p_number}'">
-										<div class="how-itemcart1">										
-											<img src="productimage/${refund.p_image}" alt="IMG">							
-										</div>
-									</td>
-									<td style="text-align: center;">${refund.p_name}</td>
-									<td style="text-align: center;">${refund.r_amount}개</td>				
-									<td style="text-align: center;"><fmt:formatNumber value="${refund.r_price}" pattern="###,###,###" />원</td>								
-									<td style="text-align: center;">${refund.r_date}</td>								
-									<td style="text-align: center;">${refund.r_status}</td>	
-								</tr>
-								</c:forEach>
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="bottom: 70px; left:50px;">
+					<div class="m-l-25 m-r--38 m-lr-0-xl" >
+						<div class="table1"class="wrap-table-shopping-cart"  >
+						  <c:set var="hap" value="0"/>
+							<table class="table-shopping-cart2" >
+							<%--  <colgroup> 
+									<col width="20%"/>
+									<col width="20%"/>
+									<col width="20%"/>
+									<col width="20%"/>
+									<col width="20%"/>
+									<col width="20%"/>  
+								</colgroup>   --%>
+								<thead>
+									<tr class="table_head">
+										<th scope="col" style="text-align: center;"></th>
+										<th scope="col" style="text-align: center;">상품명</th>
+										<th scope="col" style="text-align: center;">수량</th>
+										<th scope="col" style="text-align: center;">가격</th>
+										<th scope="col" style="text-align: center;">환불일자</th>
+										<th scope="col" style="text-align: center;">환불상태</th>
+									</tr>	
+								</thead>	
+								<tbody>
+									<c:forEach items="${refund}"  var="refund">
+									<c:set var="hap" value="${hap+refund.r_price}"/>
+									
+										<tr >
+										
+											<td data-label=""  onclick="location.href='/ssmall/productDetail?p_number=${refund.p_number}'">
+												<div class="how-itemcart1">										
+													<img src="productimage/${refund.p_image}" alt="IMG">							
+												</div>
+											</td>
+											<td data-label="상품명"style="text-align: center;">${refund.p_name}</td>
+											<td data-label="수량"style="text-align: center;">${refund.r_amount}개</td>				
+											<td data-label="가격"style="text-align: center;"><fmt:formatNumber value="${refund.r_price}" pattern="###,###,###" />원</td>								
+											<td data-label="환불일자"style="text-align: center;">${refund.r_date}</td>								
+											<td data-label="환불상태"style="text-align: center;">${refund.r_status}</td>	
+										</tr>
+									
+									</c:forEach>
+								</tbody>
 								
 							</table>
 						</div>

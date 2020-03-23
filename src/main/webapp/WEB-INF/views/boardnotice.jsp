@@ -230,7 +230,7 @@
 				<tbody>
 					<c:forEach items="${list}" var="dto">
 					<tr>
-						<td>${dto.bId}</td>
+						<td>공지사항</td>
 						<td>${dto.bName}</td>
 						<td>
 							<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
