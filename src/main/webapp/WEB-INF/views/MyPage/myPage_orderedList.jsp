@@ -200,11 +200,11 @@ html {
         <form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20" style="padding-left: 0px;margin-left: 110px;padding-right: 300px;margin-right: 26px;margin-top: 80px;height: 1192px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="z-index:1;
 				bottom: 70px;
 				right: 50px;
 				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
+					<div class="m-l-25 m-r--38 m-lr-0-xl" style="background-color:white;
 					width: 1000px;
 					">
 						<div class="wrap-table-shopping-cart">
