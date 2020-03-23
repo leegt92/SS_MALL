@@ -1,5 +1,6 @@
 package edu.bit.ssmall.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.AdminService;
+import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
+import edu.bit.ssmall.vo.RefundVO;
 
 @Controller
 @RequestMapping("admin")
@@ -58,6 +61,7 @@ public class AdminPageController {
 		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("member", member);
 		model.addAttribute("admin", adminService.adminList());
+		
 		return "Admin/admin_memberList";
 
 	}	
@@ -159,7 +163,7 @@ public class AdminPageController {
 		model.addAttribute("search", adminService.productSearch(search));
 		return "Admin/admin_productList";
 	}
-	
+
 	@RequestMapping(value = "buyInfo", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyInfo(Model model,Criteria criteria, HttpServletRequest request) {
 		System.out.println("buyInfo 시작");
@@ -178,12 +182,62 @@ public class AdminPageController {
 		System.out.println("구매내역 : " + totalCount);
 		
 		pageMaker.setTotalCount(totalCount);
-		
-		
-		
+		int totalPrice = 0;
+		ArrayList<BuyVO> list = adminService.buyList(m_number);
+		for (int i = 0; i < list.size(); i++) {
+			totalPrice += list.get(i).getB_total();
+		}
+	
+		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("buyInfo", adminService.buyInfo(m_number, startNum, endNum));
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "Admin/admin_productList_buyList";
+		return "Admin/admin_memberBuyList";
 	}
+	
+	@RequestMapping(value = "refundInfo", method = {RequestMethod.GET,RequestMethod.POST})
+	public String refundInfo(Model model,Criteria criteria, HttpServletRequest request) {
+		System.out.println("buyInfo 시작");
+	
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		System.out.println("현재페이지 : "+criteria.getPage());
+		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+
+		int startNum = criteria.getStartNum();
+		int endNum = criteria.getEndNum();
+		String m_number = request.getParameter("m_number");
+		
+		int totalCount = adminService.countRefund(m_number);
+		System.out.println("환불내역 : " + totalCount);
+		
+		pageMaker.setTotalCount(totalCount);
+		
+		int totalPrice = 0;
+		ArrayList<RefundVO> list = adminService.refundList(m_number);
+		for (int i = 0; i < list.size(); i++) {
+			totalPrice += list.get(i).getR_price();
+		}
+	
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("refundInfo", adminService.refundInfo(m_number, startNum, endNum));
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "Admin/admin_memberRefundList";
+	}
+	
+	@RequestMapping(value = "updateAutoritiy", method = {RequestMethod.GET,RequestMethod.POST})
+	public String updateAutoritiy(Model model,Criteria criteria, HttpServletRequest request) {
+		String m_number = request.getParameter("m_number");
+		String m_authority = request.getParameter("m_authority");
+		
+		adminService.updateAuthority(m_number, m_authority);
+		
+		return "redirect:/admin/memberInfo?m_number="+m_number;
+	}
+	
+	
+	
+	
 }

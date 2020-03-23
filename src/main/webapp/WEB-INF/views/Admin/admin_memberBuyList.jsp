@@ -86,25 +86,10 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-	<div class="wrapper">
-		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-			<!-- Left navbar links -->
+	<div class="wrapper">	
 
-			<!-- SEARCH FORM -->
-			<form class="form-inline ml-3" action="/ssmall/admin/productSearch">
-				<div class="input-group input-group-sm">
-					<input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-navbar" type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -192,8 +177,7 @@
 									
 									
 									<div class="table-responsive mailbox-messages">
-										<c:choose>
-
+										<c:choose>									
 											<c:when test="${buyInfo[0] == NULL}">												
 												<table class="table table-list-search">
 													<h3>내역이 없습니다.</h3>
@@ -247,14 +231,18 @@
 																														
 											</c:otherwise>
 																				
-										</c:choose>											
+										</c:choose>
+										<div style="float:right;">
+											<h3>Total : <fmt:formatNumber value="${totalPrice}" pattern="###,###,###" />원</h3> 											
+										</div>
 									</div>
 								</div>								
 							</div>						
 						</div>						
 					</div>				
 				</div>				
-			</section>	
+			</section>
+	
 		</div>
 		<footer class="main-footer">
 			<strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io.</a>

@@ -34,6 +34,10 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">	
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 
 <style>
@@ -83,23 +87,21 @@
 
 
 
+<script>
+	$(document).ready(function(){
+	  $("#myBtn").click(function(){
+	    $("#myModal").modal();
+	  });
+	});
+</script>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-			<!-- SEARCH FORM -->
-			<form class="form-inline ml-3" action="/ssmall/admin/memberSearch">
-				<div class="input-group input-group-sm">
-					<input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-navbar" type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
+			<h4>${member.m_name}님</h4>
 		</nav>
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed;">
@@ -200,7 +202,8 @@
 											</tr>										
 											
 											<tr>
-												<td style="text-align: center; vertical-align: middle;">${member.m_authority}</td>
+												<td style="text-align: center; vertical-align: middle;" >
+												<button type="button" class="btn btn-link" id="myBtn" style="text-decoration: none; color: black;">${member.m_authority}</button></td>
 												<td style="text-align: center; vertical-align: middle;">${member.m_id}</td>
 												<td style="text-align: center; vertical-align: middle;">${member.m_name}</td>						
 												<td style="text-align: center; vertical-align: middle;">${member.m_age}</td>
@@ -234,7 +237,47 @@
 												</c:choose>
 																				
 											</tr>																								
-										</table>																														
+										</table>
+										<!-- The Modal -->
+										<div class="modal fade" id="myModal">
+											<div class="modal-dialog">
+												<div class="modal-content">
+									
+													<!-- Modal Header -->
+													<div class="modal-header">
+														<h4 class="modal-title">등급 수정</h4>
+														<button type="button" class="close" data-dismiss="modal">×</button>
+													</div>
+									
+													<!-- Modal body -->
+													<form action="/ssmall/admin/updateAutoritiy">
+													<input type="hidden" name="m_number" value="${member.m_number}">	
+													<div class="modal-body">
+														
+															<div class="form-group">
+																<label for="sel1">등급</label> 
+																<select class="form-control" id="sel1" name="m_authority">
+																	<option>일반회원</option>
+																	<option>관리자</option>
+																	<option>VIP</option>
+																	<option>BC</option>
+																</select>
+																
+															</div>
+														
+													</div>
+									
+													<!-- Modal footer -->													
+													<div class="modal-footer">
+														<button type="submit" class="btn btn-danger" onclick="confirm('수정하시겠습니까?');">수정</button>
+														<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+													</div>
+													</form>
+									
+												</div>
+											</div>
+										</div>
+																																								
 									</div>
 								</div>								
 							</div>						
@@ -476,6 +519,8 @@
 				</div>
 		</footer>
 	</div>
+
+	
 </body>
 
 </html>

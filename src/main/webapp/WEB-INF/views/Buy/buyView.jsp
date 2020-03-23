@@ -104,7 +104,7 @@
 							Home
 						</a>
 						
-						<a href="/ssmall/myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						

@@ -59,13 +59,8 @@ public class CartController {
 		int totalprice = productImageVO.getP_price() * Integer.parseInt(b_amount); //상품의 가격과 구매하려는 갯수를 곱해 총가격
 		
 		cartService.addCart(p_number, memberVO.getM_number(), b_amount, totalprice); //상품번호, 회원번호, 구매갯수, 총가격으로 카트테이블에 삽입
-		
-		ArrayList<CartViewVO> cart = cartService.cartInfo(memberVO.getM_number()); //회원번호를 이용해서 카트에 담긴 정보를 담음
-		System.out.println(cart);
-		
-		model.addAttribute("cartList", cart); //카트리스트에 정보를 넘겨서 보여지게함 foreach문 써서
-		
-		return "Cart/shopping-cart";				
+
+		return "redirect:/cart/cartView";				
 	}
 	
 	//장바구니 탭 눌렀을 때 
@@ -206,7 +201,7 @@ public class CartController {
 	}
 	
 	
-	//홈페이지에서 햄버거 옆에 카트눌렀을때 나오기위해 제이슨으로 보내서 ajax할거임
+
 	
 	
 }

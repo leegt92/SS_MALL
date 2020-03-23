@@ -6,8 +6,8 @@ public class RefundVO {
 	private int r_number; //환불번호
 	private int m_number; //회원번호
 	private int p_number; //상품번호
-	private String r_amount; //환불수량
-	private String r_price; //환불가격
+	private int r_amount; //환불수량
+	private int r_price; //환불가격
 	private Date r_date; //환불일자
 	private String r_status; //환불상태
 	private String p_image; // 상품사진
@@ -32,16 +32,16 @@ public class RefundVO {
 	public void setP_number(int p_number) {
 		this.p_number = p_number;
 	}
-	public String getR_amount() {
+	public int getR_amount() {
 		return r_amount;
 	}
-	public void setR_amount(String r_amount) {
+	public void setR_amount(int r_amount) {
 		this.r_amount = r_amount;
 	}
-	public String getR_price() {
+	public int getR_price() {
 		return r_price;
 	}
-	public void setR_price(String r_price) {
+	public void setR_price(int r_price) {
 		this.r_price = r_price;
 	}
 	public Date getR_date() {

@@ -34,6 +34,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 
 <style>
@@ -102,7 +105,7 @@
 			</form>
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -218,11 +221,7 @@
 												</table>
 											</c:when>
 										
-											<c:when test="${member[0] == NULL}">
-												<script>
-														alert("가입한 회원이 없습니다.");
-												</script>
-												
+											<c:when test="${member[0] == NULL}">				
 												<table class="table table-list-search">
 													<h3>가입한 회원이 없습니다.</h3>
 												</table>
@@ -325,7 +324,9 @@
 													<c:forEach items="${admin}" var="admin">
 													<tr>
 														<td style="text-align: center; vertical-align: middle;">${admin.m_authority}</td>											
-														<td style="text-align: center; vertical-align: middle;">${admin.m_id}</td>						
+														<td style="text-align: center; vertical-align: middle;">
+															<a href="/ssmall/admin/memberInfo?m_number=${admin.m_number}" style="text-decoration: none;">${admin.m_id}</a>
+														</td>						
 														<td style="text-align: center; vertical-align: middle;">${admin.m_name}</td>
 														<td style="text-align: center; vertical-align: middle;">${admin.m_age}</td>
 														<td style="text-align: center; vertical-align: middle;">${admin.m_email}</td>
@@ -333,7 +334,8 @@
 														<td style="text-align: center; vertical-align: middle;">${admin.m_phonenum}</td>										
 													</tr>
 													</c:forEach>													
-												</table>						
+												</table>
+											
 											</div>
 										</div>								
 									</div>						

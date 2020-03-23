@@ -104,7 +104,7 @@
 							Home
 						</a>
 						
-						<a href="/ssmall/myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
@@ -205,7 +205,7 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="/ssmall/cartView" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/ssmall/cart/cartView" class="stext-109 cl8 hov-cl1 trans-04">
 				장바구니
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -253,7 +253,7 @@
 										pattern="###,###,###" />원</td>
 								<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
 							</tr>
-							</c:forEach>
+							</c:forEach>							
 							<tr>
 								<td colspan="4" align="right">
 								<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
@@ -345,7 +345,7 @@
 			<div class="tab-content p-t-43">
 			
 				<div class="how-pos2 p-lr-15-md">
-		       		<button type="submit" class="btn btn-secondary">구매하기</button>
+		       		<button type="submit" class="btn btn-secondary" onclick="return confirm('구매하시겠습니까?');">구매하기</button>
 		            <button type="reset" class="btn btn-secondary">취소하기</button>
 				</div>				
 			</div>

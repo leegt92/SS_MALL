@@ -38,6 +38,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
+
 <!--===============================================================================================-->
 
 </head>
@@ -59,7 +60,7 @@
 							Home
 						</a>
 						
-						<a href="/ssmall/myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
@@ -97,7 +98,7 @@
 							<li>
 								<a href="/ssmall/boardnoticeView">공지사항</a>
 							</li>
-							
+					
 							<li>
 								<a href="/ssmall/companyView">회사소개</a>
 							</li>
@@ -202,37 +203,36 @@
 							
 							<table class="table table-list-search">	
 								<tr>
+									<th><i class="fa fa-check-square" aria-hidden="true"></i></th>													
 									<th></th>
 									<th style="text-align: center; vertical-align: middle;">상품명</th>
 									<th style="text-align: center; vertical-align: middle;">구매수량</th>
 									<th style="text-align: center; vertical-align: middle;">구매가격</th>
 									<th></th>
-									<th></th>
 								</tr>
 								<c:set var="totalprice" value="0"></c:set>
-									
 								<c:forEach items="${cartList}" var="cart">
 								<tr>
+									<td style="text-align: center; vertical-align: middle;"><input type="checkbox" name="check" value="${cart.c_id}" checked="checked"></td>								
 									<td style="text-align: center; vertical-align: middle;">
 										<a href="/ssmall/productDetail?p_number=${cart.p_number}">
-										<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
-										</a>
-									</td>								
-									<td style="text-align: center; vertical-align: middle;">${cart.p_description}</td>						
+										<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="70px" height="70px" style="border-radius:10px; margin-right: 5px;">
+										</a>																
+									</td>
+									<td style="text-align: center; vertical-align: middle;">${cart.p_brand} ${cart.p_name}</td>												
 									<td style="text-align: center; vertical-align: middle;">${cart.c_amount}</td>
 									<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>									
 									<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
-									<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/cart/cartDelete?c_id=${cart.c_id}">삭제</a></td>
-									<td style="text-align: center; vertical-align: middle;"><input type="checkbox" name="check" value="${cart.c_id}"></td>
+									<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/cart/cartDelete?c_id=${cart.c_id}" onclick="return confirm('삭제하시겠습니까?');">삭제</a></td>
 								</tr>
 								</c:forEach>						
 								<tr>
-									<td colspan="6" align="right">
+									<td colspan="7" align="right">
 									<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
 								</tr>								
 								<tr>										
-									<td colspan="6" align="right">								
-									<button type="submit" class="btn icon-btn btn-success">구매하기</button></td>
+									<td colspan="7" align="right">								
+									<button type="submit" class="btn icon-btn btn-success" onclick="return confirm('선택한 제품을 구매하시겠습니까?');">구매하기</button></td>
 								</tr>
 								</table>
 							</form:form>
@@ -460,6 +460,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 </script> 
 <span class="bt-basic" id="map"></span>  
+
 <!--===============================================================================================-->
 </body>
 </html>
