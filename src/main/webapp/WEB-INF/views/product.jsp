@@ -106,7 +106,7 @@
 					</div>	
 
 					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
+					<!-- <div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
@@ -118,7 +118,7 @@
 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
-					</div>
+					</div> -->
 				</nav>
 			</div>	
 		</div>
@@ -260,71 +260,13 @@
 			</div>
 			
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
+				<ul id="miniCart" class='header-cart-wrapitem w-full'>
 				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
+				</ul>
+				<div id="total" class="w-full">
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -354,11 +296,11 @@
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+					<!-- <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						 Filter 조건설정
-					</div>
+					</div> -->
 
 					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
@@ -373,9 +315,19 @@
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
 						</button>
-						<p>373번째줄 search 구분</p>
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search_product" placeholder="Search">
-						<input type="submit" value="검색" width = "300"/>
+						<!-- <p>373번째줄 search 구분</p> -->
+						<!-- <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" value="keyword" name="search_product" placeholder="Search">
+						<input type="submit" value="검색" width = "300"/> -->
+						<form action="productViewSearch" method="get">
+							<!-- <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" />
+							<input type="submit" value="검색" /> -->
+							
+							<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" value="" name="keyword" placeholder="Search">
+							<input type="submit" value="검색" width = "300"/>
+						</form>
+						<!--<input class="form-control" type="text" id="keyword" name="keyword" 
+								value="keyword" placeholder="검색어를 입력하세요"/>
+						<button id="searchBtn" class="btn btn-primary">Search</button>-->
 						
 					</div>	
 				</div>
@@ -576,7 +528,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="productimage/${product.i_name}" alt="IMG-PRODUCT" width="300" height="300">
+							<img src="productimage/${product.p_image}" alt="IMG-PRODUCT" width="300" height="300">
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
@@ -593,28 +545,38 @@
 									<!-- productDetail2 -->${product.p_name}
 								</a>
 								
-								<a href="product_replyAjax2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									ajax 확인
-								</a>
+								<%-- <a href="product_replyAjax2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
+									ajax 값 잘 넘어오나 확인버튼
+								</a> --%>
 								
 								<span class="stext-105 cl3">
 									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
 								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
+							<!-- <div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					
 				</div>
 				</c:forEach>
 			</div>
-
+			<!-- 페이징 글번호 -->
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+			<c:out value="${pageMaker.cri.page == idx?'':''}" />
+			<a href="productView${pageMaker.makeQuery(idx)}">${idx}</a>
+		</c:forEach>
+	
+		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<a href="productView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+		</c:if> <br>
+        	
+			<!-- 페이징 글번호 끝 -->
 			<!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
@@ -772,31 +734,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="productimage/${product.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="productimage/${product.p_image}" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.p_image}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="productimage/${product.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="productimage/${product.p_image}" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.p_image}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="productimage/${product.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="productimage/${product.p_image}" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.p_image}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -1047,7 +1009,88 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 	
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+
+<script type="text/javascript">
+
+	function numberFormat(inputNumber) {
+	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	
+	$(function(){
+		$.ajax({
+			url : '/ssmall/miniCart',
+			dataType : 'json',
+			success : function(data){
+				console.log(data);
+				var totalprice = 0;			
+				var itemcount = 0;
+				
+				$.each(data, function(key, value){
+					totalprice = totalprice + value.c_grandtotal;
+					itemcount += 1;
+					var tag = "";
+					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
+					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
+					tag = tag + "<div class='header-cart-item-img'>";
+					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
+					tag = tag + "</div>";
+					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
+					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
+					tag = tag + value.p_description + " x " + value.c_amount;
+					tag = tag + "</a>";
+					tag = tag + "<span class='header-cart-item-info'>";
+					tag = tag + numberFormat(value.c_grandtotal)+"원";
+					tag = tag + "</span></div></li>";
+					
+					
+				
+					$("#miniCart").append(tag);
+					
+				})
+				
+				var tag2 = "";
+				tag2 = tag2 + "<div class='header-cart-total w-full p-tb-40'>"
+				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
+				tag2 = tag2 + "</div>"
+				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
+				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
+				tag2 = tag2 + "View Cart </a></div>";
+				
+				$("#total").append(tag2);
+				
+				$(document).ready(function () {
+
+					$('#count').attr('data-notify', itemcount);
+
+			    });
+				
+				
+				
+			}
+		})
+	})
+	//검색 script
+/* 	function setSearchTypeSelect(){
+		var keyword = $('#keyword');
+
+		$('#searchBtn').on('click',function(){
+			var keywordVal = keyword.val();
+
+			//검색어 입력 안했으면 검색창
+			if(!keywordVal){
+				alert("검색어를 입력하세요!");
+				$('#keyword').focus();
+				return;
+			}
+			var url = "productView?page=1"
+				+ "&perPageNum=" + "${pageMaker.cri.perPageNum}"
+				+ "&keyword=" + encodeURIComponent(keywordVal);
+			window.location.href = url;
+		})
+	}*/
+	
+</script>
 
 </body>
 </html>

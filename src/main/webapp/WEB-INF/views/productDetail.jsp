@@ -165,11 +165,14 @@
 	    	 	
 	    		 success : function(data) {
 	    			 var tag="";
+	    			 var number = 0;
+    				 console.log(number);
 	    			 console.log(data);
 	    			 $.each(data, function(key, data){
+	    				 
 	    				 console.log('1product_replyAjax확인');	
 	    				 	    				 	    				 
-	    				 tag = tag+ "<div class='postRight'>";
+	    				 tag = tag+ "<div class='postRight' 'border:1px solid'>";
 	    				 tag = tag+ "<div class='postContents container photo_est_cont'>";
 	    				 tag = tag+ "<div class='profile'>";
 	    				 tag = tag+ "<p>";
@@ -181,9 +184,9 @@
 	    				 tag = tag+ "<div class='pContent'>";
 										
 	    				 tag = tag+ "<div class='summary' style='cursor: pointer;'>";
-	    				 tag = tag+ "<div class='cArea'>";
+	    				 tag = tag+ "<div class='cArea' style='border:1px solid gray'>";
 	    				 tag = tag+ "<div class='pContent_text'>";
-	    				 tag = tag+ "<h3><div class='tit'>"+data.btitle+"</div></h3><br/>";
+	    				 tag = tag+ "<h4>제목 : <span class='tit'>"+data.btitle+"</span></h3><br/>";
 	    				 tag = tag+ "<span class='content-review'>"+data.bcontent+"</span>";
 	    				 tag = tag+ "</div>";
 	    				 tag = tag+ "<div class='pContent_Img img3 photoReview'>";
@@ -200,43 +203,31 @@
 						tag = tag+ "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
 															console.log(data.bid);
 						tag = tag+ "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>";
-						tag = tag+ "<input type='text' id = 'm_number' name='m_number' value='"+data.m_number+"'>";
-						tag = tag+ "<input type='text' id = 'm_id' name='m_id' value='"+data.m_id+"'>";
+						/* tag = tag+ "<input type='text' id = 'bstep' name='bstep' value='"+data.bstep+"'>"; */
+						tag = tag+ "<input type='hidden' id = 'bstep_"+data.bid+"' name='bstep' value='"+data.bstep+"'>";
+						tag = tag+ "<input type='hidden' id = 'bindent_"+data.bid+"' name='bindent' value='"+data.bindent+"'>";
+						console.log("data.bstep : "+data.bstep);
+						console.log("data.bindent : "+data.bindent);
+						tag = tag+ "<input type='hidden' id = 'm_number' name='m_number' value='"+data.m_number+"'>";
+						tag = tag+ "<input type='hidden' id = 'm_id' name='m_id' value='"+data.m_id+"'>";
 												
 						tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
 						tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
 						tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
 						
-						
-						tag = tag + "<c:set var='name' value='홍길동' />";
-						
-
-						
-						
-						tag = tag + "<c:set var='p_m_id' value='${principal_m_id}' />";//로그인한 아이디 잘넘어감
-						tag = tag + "<c:set var='dm_id' value='123'/>";
-						tag = tag + "<c:if test='${p_m_id == '"+data.m_id+"'}'>";
-						tag = tag + "<p>principal_m_id:${principal_m_id}</p>";//잘나옴. 오류없이 완성되면 m_number로 바꿀것
-						tag = tag + "<p>data.m_id:"+data.m_id+"</p>";//잘나옴 m_id는 회원탈퇴 후 다시 만들경우 중복될 수 있기 때문.
-						tag = tag + "<button type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제1"+"</button><br/>";
-						tag = tag + "<button type = 'button' id = popbutton name = 'popbutton' value='"+data.bid+"'>"+"수정1"+"</button>";
-						tag = tag + "</c:if>";
-
-
-						
-						
 						console.log("data.m_id : "+data.m_id);//글을 썻을때 그 글에 저장되는 아이디.
 						console.log("principal_m_id : "+'${principal_m_id}');//현재 로그인 한 아이디.
+						console.log("modelCheck : "+'${modelCheck}');
 		
 						tag = tag + "<sec:authorize access='hasRole("USER")'>";												
 						tag = tag + "<p class='text-success' style='font-weight:bold; font-size: 1.5em;''></p>";
-						tag = tag + "<p>principal_m_id:'${principal_m_id}'</p>";
-						tag = tag + "<p>data.m_id:"+data.m_id+"</p>";
-						tag = tag + "<button type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제"+"</button><br/>";
-						tag = tag + "<button type = 'button' id = popbutton name = 'popbutton' value='"+data.bid+"'>"+"수정"+"</button>";
+						/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
+						tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
+						tag = tag + "<button style='margin-right: 10px;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
+						tag = tag + "<button type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button><br/>";
+						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; */
 						tag = tag + "</sec:authorize>";
-						
-																														
+																									
 						tag = tag + "</p>";
 						tag = tag + "</form>";								
 						tag = tag + "</div>";
@@ -267,6 +258,8 @@
 						tag = tag+"</div>";
 						<!--//postContents-->													
 						tag = tag+"</div>";
+						number++;
+						console.log(number);
 	    				 
 	    			 });
 	    			 $("section.reply_ajax ol").html(tag);
@@ -280,7 +273,7 @@
                  }	    		 	    		 
 	    		 
 	    	 });
-	    	 alert("replyList탐");
+	    	 /* alert("replyList탐"); */
 	    	 console.log('1532번');
 
 	    	}
@@ -297,152 +290,174 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">Free shipping for standard order
-						over $100</div>
+					<div class="left-top-bar">						
+						SSMALL with luxury watches and wallets
+					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a> <a
-							href="#" class="flex-c-m trans-04 p-lr-25"> My Account </a> <a
-							href="#" class="flex-c-m trans-04 p-lr-25"> EN </a> <a href="#"
-							class="flex-c-m trans-04 p-lr-25"> USD </a>
+						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+							Home
+						</a>
+						
+						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+							My
+						</a>
+						
+						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+							Cart
+						</a>
+
+						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
+							About Us
+						</a>
+					
 					</div>
 				</div>
 			</div>
 
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-
-					<!-- Logo desktop -->
-					<a href="#" class="logo"> <img src="images/icons/logo-01.png"
-						alt="IMG-LOGO">
+					
+					<!-- Logo desktop -->		
+					<a href="homeview" class="logo">
+						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li><a href="index.html">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul></li>
+							<li>
+								<a href="homeview">홈</a>
+							</li>
 
-							<li><a href="product.html">Shop</a></li>
-
-							<li class="label1" data-label1="hot"><a
-								href="shoping-cart.html">Features</a></li>
-
-							<li><a href="blog.html">Blog</a></li>
-
-							<li><a href="about.html">About</a></li>
-
-							<li><a href="contact.html">Contact</a></li>
+							<li>
+								<a href="productView">상품</a>
+							</li>
+						
+							<li>
+								<a href="boardnoticeView">공지사항</a>
+							</li>
+							<li>
+								<a href="companyView">회사소개</a>
+							</li>
+							<li>
+								<a href="asView">AS</a>
+							</li>	
 						</ul>
-					</div>
+					</div>	
 
 					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+					<!-- <div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-							data-notify="2">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#"
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-							data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
+						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
-					</div>
+					</div> -->
 				</nav>
-			</div>
+			</div>	
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->
+			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png"
-					alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+			<!-- <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-					data-notify="2">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#"
-					class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-					data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
 				</a>
-			</div>
+			</div> -->
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box"> <span class="hamburger-inner"></span>
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
 				</span>
 			</div>
 		</div>
+
 
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
 				<li>
-					<div class="left-top-bar">Free shipping for standard order
-						over $100</div>
+					<div class="left-top-bar">
+						SSMALL with luxury watches and wallets
+					</div>
 				</li>
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
-							href="#" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a
-							href="#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="#"
-							class="flex-c-m p-lr-10 trans-04"> USD </a>
+						<a href="homeview" class="flex-c-m p-lr-10 trans-04">
+							Home
+						</a>
+
+						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
+							My
+						</a>
+
+						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
+							cart
+						</a>
+						
+						<a href="companyView" class="flex-c-m p-lr-10 trans-04">
+							About Us
+						</a>
+					
 					</div>
 				</li>
 			</ul>
 
 			<ul class="main-menu-m">
-				<li><a href="index.html">Home</a>
-					<ul class="sub-menu-m">
+				<li>
+					<a href="homeview">홈</a>
+					<!-- <ul class="sub-menu-m">
 						<li><a href="index.html">Homepage 1</a></li>
 						<li><a href="home-02.html">Homepage 2</a></li>
 						<li><a href="home-03.html">Homepage 3</a></li>
-					</ul> <span class="arrow-main-menu-m"> <i
-						class="fa fa-angle-right" aria-hidden="true"></i>
-				</span></li>
+					</ul> -->
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
 
-				<li><a href="product.html">Shop</a></li>
-
-				<li><a href="shoping-cart.html" class="label1 rs1"
-					data-label1="hot">Features</a></li>
-
-				<li><a href="blog.html">Blog</a></li>
-
-				<li><a href="about.html">About</a></li>
-
-				<li><a href="contact.html">Contact</a></li>
+				<li>
+					<a href="productView">상품</a>
+				</li>
+				<li>
+					<a href="boardnoticeView">공지사항</a>
+				</li>
+				<li>
+					<a href="companyView">회사소개</a>
+				</li>
+				<li>
+					<a href="asView">AS</a>
+				</li>
 			</ul>
 		</div>
 
 		<!-- Modal Search -->
-		<div
-			class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
-				<button
-					class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
 					<img src="images/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
@@ -450,9 +465,7 @@
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="plh3" type="text" name="search"
-						placeholder="Search...">\
-
+					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
 			</div>
 		</div>
@@ -464,64 +477,23 @@
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2"> Your Cart </span>
+				<span class="mtext-103 cl2">
+					Your Cart
+				</span>
 
-				<div
-					class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-
+			
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat </a> <span class="header-cart-item-info"> 1
-								x $19.00 </span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star </a> <span class="header-cart-item-info"> 1
-								x $39.00 </span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather </a> <span class="header-cart-item-info">
-								1 x $17.00 </span>
-						</div>
-					</li>
+				<ul id="miniCart" class='header-cart-wrapitem w-full'>
+				
 				</ul>
-
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">Total: $75.00</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart </a> <a href="shoping-cart.html"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out </a>
-					</div>
+				<div id="total" class="w-full">
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -758,14 +730,14 @@
 																												
 										<div class="container">
 											<sec:authorize access="isAnonymous()">												
-												<p style="font-weight: bold; font-size: 1.5em;">isAnonymous</p>
-												<button type="button" id="btn_collapse_notLogin"class="btn btn-info">구매후기 작성(비로그인)</button>
+												<!-- <p style="font-weight: bold; font-size: 1.5em;">isAnonymous</p> -->
+												<button type="button" id="btn_collapse_notLogin"class="btn btn-info">구매후기 작성</button>
 											</sec:authorize>
 															
 											<sec:authorize access="hasRole('USER')">												
-												<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
-												<p>principal_m_id:"${principal_m_id}"</p>
-												<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성(로그인)</button>
+												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
+												<p>principal_m_id:"${principal_m_id}"</p> --%>
+												<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button>
 											</sec:authorize>
 																																	
 											<!-- <button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button> -->
@@ -773,9 +745,9 @@
 												<div id="demo" class="collapse in" style="border: 1px solid;">																																																	
 													<form id="form" name="form" role="form" method="post" autocomplete="off">
 														<input type="hidden" id="p_number" value="${productNum.p_number}"name="p_number">																													
-														<input type="text" id="m_number" value="${principal_m_number}" name="m_number"><!-- 미구현.테스트 -->
+														<input type="hidden" id="m_number" value="${principal_m_number}" name="m_number">
 														<!-- m_number의 value에 로그인한 사람의 m_number를 가져오면 됨. -->
-														<input type="text" id="m_id" value="${principal_m_id}" name="m_id" /><!-- 미구현.테스트 -->
+														<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" />
 														<label>제목</label>
 														<input type="text" class="btitleCollapse" id="btitle" name="btitle" style="border: 1px solid;" /><br />
 														<!-- <label>작성자</label> <input type="text" name="m_id" style=" border:1px solid;" /><br /> -->
@@ -936,7 +908,7 @@
 										</script>
 											
 											<!-- 댓글수정 버튼을 누르면 열리는 창 -->
-											<div id="wrap">
+											<%-- <div id="wrap">
 												<br><b><font size="5" color="gray">댓글 답변</font></b>
 												<hr size="1" width="550">
 												<br>
@@ -950,7 +922,7 @@
 															
 													</form>
 												</div>
-											</div>
+											</div> --%>
 
 										
 
@@ -1490,9 +1462,9 @@
 	<script src="js/main.js"></script>
 
 	
-	   
+
 	   <!-- 모달 -->
-	<div class="modal fade" id="layerpop">
+	<div class="modal fade" id="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<!-- header -->
@@ -1500,21 +1472,58 @@
 					<!-- 닫기(x) 버튼 -->
 					<button type="button" class="close" data-dismiss="modal">×</button>
 					<!-- header title -->
-					<h4 class="modal-title">Header</h4>
+					<h4 class="modal-title">수정</h4>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
 					<form id="modalForm" name="modalForm" action="modifyReply2" method="post">
-						<input id="bid" type="text" name="bid">
-						<input id="p_number" type="text" name="p_number" value="${productNum.p_number}">
-						<input type="text"name="btitle" id="btitle" size="50" style=""><br>
-						<textarea name="bcontent" rows="10" cols="50"></textarea>
+						<input id="bid" type="hidden" name="bid">
+						<input id="check" type="hidden" name="check" value="modal1">
+						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
+						<p>제목</p>
+						<input type="text"name="btitle" id="btitle" size="50" style="border:1px solid gray"><br>
+						<p>내용</p>
+						<textarea name="bcontent" rows="10" cols="50" style="border:1px solid gray"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
 					</form>
 				</div>
 				<!-- Footer -->
 				<div class="modal-footer">
-					Footer
+					<!-- Footer -->
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="replyReply">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title">수정</h4>
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<form id="modalForm" name="replyReplymodalForm" action="product_Write_reply_reply" method="post">
+						<input id="bid2" type="hidden" name="bid">
+						<input id="m_number2" type="hidden" name="m_number" value="${principal_m_number}">
+						<input id="check" type="hidden" name="check" value="modal2">
+						<input id="bstep2" type="hidden" name="bstep"><!-- 여기다 현재 bstep과 bindent 넣어야함 -->
+						<input id="bindent2" type="hidden" name="bindent">
+						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
+						<input type="text"name="btitle" id="btitle" size="50" style="">제목<br>
+						<textarea name="bcontent" rows="10" cols="50">내용</textarea>
+						<input type="button" id = "replyReplymodalSubmit" type="submit" data-dismiss="modal" value="입력">
+					</form>
+				</div>
+				<!-- Footer -->
+				<div class="modal-footer">
+					
 					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
 
 				</div>
@@ -1525,10 +1534,10 @@
 
 
 								<script>
-								
+									//수정modal창에서 수정확인 버튼을 눌럿을때,DB에서 값이 수정되고 난 후 화면(리스트)를 다시 갱신하는 스크립트.
 									$(function(){
 										$(document).on("click","#modalSubmit",function(){
-											alert("확인");
+											/* alert("확인"); */
 											var queryString = $("form[name=modalForm]").serialize();
 											
 											$.ajax({
@@ -1539,6 +1548,29 @@
 													alert(error);
 												},
 												success:function(){
+													replyList();
+												},
+											});												
+											})
+										})
+										
+										$(function(){
+										$(document).on("click","#replyReplymodalSubmit",function(){
+											console.log("replyReplymodalSubmit밑")
+											var queryString = $("form[name=replyReplymodalForm]").serialize();
+											console.log(queryString);
+											console.log("queryString 밑");
+											$.ajax({
+												method:"get",
+												url:"/ssmall/product_Write_reply_reply",
+												data:queryString,
+												error:function(xhr,status,error){
+													alert("에러");
+													alert(error);
+												},
+												success:function(){
+													
+													console.log("replyReply 탔음");
 													replyList();
 												},
 											});												
@@ -1581,24 +1613,104 @@
 										}) */
 										
 										$(document).on("click", "#deleteBoard", function(){
-											  alert($(this).attr("value"));
-											  var data = {bid : $(this).attr("value")};
-											   
+											  /* alert($(this).attr("value")); */											 
+											  var m_number = $("#m_number").val();
+											  console.log("m_number : "+m_number);
+											  console.log("딜리트보드 밑 m_number 옮기기");
+											  var data = {
+													  bid : $(this).attr("value"),
+													  m_number : m_number											  
+											  };
+											  
+											  
 											  $.ajax({
 											   url : "/ssmall/deleteReply",
 											   type : "get",
 											   data : data,
-											   success : function(){
-												 console.log("삭제1");
-											     replyList();
-											     console.log("삭제2");
+											   success : function(result){
+												 if(result == 1){
+													 console.log("result=1. 삭제완료 후 갱신");
+													 alert("삭제되었습니다.");
+												     replyList();
+												 }
+												 else{
+													 console.log("result=0. 삭제 실패");
+													 alert("작성자만 가능합니다.");
+												     replyList();
+												 }
 											   }
 											  });
 											 });
 										
 											$(function(){
-											    $(document).on("click","#popbutton",function(){
-											    	
+											    $(document).on("click","#modify",function(){
+											    	var bid = $(this).attr("value");
+											    	var data = {
+											    			bid : bid											    			
+											    	};											    		
+													$.ajax({
+														url:"/ssmall/checkUser",
+														type:"get",
+														data:data,
+														success:function(result){
+															if(result == 1){
+																/* alert("유저인증 확인"); */
+																console.log("모달스크립트");
+														    	/* alert(data.bid); */
+														        $('#modal').modal();
+														    	$('#bid').val(data.bid);	
+															}
+															else{
+																alert("작성자만 가능합니다.");
+															}
+														}
+														
+													})											    											    											    	
+											    })
+											})
+											
+											$(function(){
+											    $(document).on("click","#reply_reply",function(){
+											    	var bid = $(this).attr("value");
+											    	console.log(bid);
+											    	var bstep = $('#bstep_'+bid).attr("value");
+											    	console.log(bstep);
+											    	var bindent = $('#bindent_'+bid).attr("value");
+											    	console.log(bindent);
+											    	/* var form = $('#form_' + bid); 예시*/
+											    	/* var bstep = $('#bstep').attr("value");값은 나오는데 항상 최신값 */											    	
+											    	var data = {
+											    			bid : bid,
+											    			bstep : bstep,
+											    			bindent : bindent
+											    			
+											    	};											    		
+													$.ajax({
+														url:"/ssmall/product_Write_reply_replyCheckAjax",
+														type:"get",
+														data:data,
+														success:function(result){
+															if(result == 1){
+																/* alert("대댓글 유저인증 확인"); */
+																console.log("모달스크립트");
+														    	/* alert(data.bid); */
+														        $('#replyReply').modal();
+														    	$('#bid2').val(data.bid);
+														    	$('#bstep2').val(data.bstep);
+														    	$('#bindent2').val(data.bindent);
+															}
+															else{
+																alert("작성자만 가능합니다.");
+															}
+														}
+														
+													})											    											    											    	
+											    })
+											})
+											
+											/*$(function(){
+											    $(document).on("click","#modify",function(){
+													
 											    	console.log("모달스크립트");
 											    	alert($(this).attr("value"));
 											        $('div.modal').modal();
@@ -1606,12 +1718,12 @@
 											        var bid = $(this).attr("value");
 											    	$('#bid').val(bid);
 											    	alert(bid);											    
-											    	/* var p_number = ${productNum.p_number};
+											    	var p_number = ${productNum.p_number};
 											    	$('#p_number').val(p_number);
-											    	alert(p_number); */
+											    	alert(p_number); 
 											    	
 											    })
-											})
+											})*/
 											
 											/* $(function(){
 											    $(document).on("click","#modalSubmit",function(seq){
@@ -1659,6 +1771,67 @@
  											*/
 											
 										</script>
+<script type="text/javascript">
+
+	function numberFormat(inputNumber) {
+	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	
+	$(function(){
+		$.ajax({
+			url : '/ssmall/miniCart',
+			dataType : 'json',
+			success : function(data){
+				console.log(data);
+				var totalprice = 0;			
+				var itemcount = 0;
+				
+				$.each(data, function(key, value){
+					totalprice = totalprice + value.c_grandtotal;
+					itemcount += 1;
+					var tag = "";
+					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
+					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
+					tag = tag + "<div class='header-cart-item-img'>";
+					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
+					tag = tag + "</div>";
+					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
+					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
+					tag = tag + value.p_description + " x " + value.c_amount;
+					tag = tag + "</a>";
+					tag = tag + "<span class='header-cart-item-info'>";
+					tag = tag + numberFormat(value.c_grandtotal)+"원";
+					tag = tag + "</span></div></li>";
+					
+					
+				
+					$("#miniCart").append(tag);
+					
+				})
+				
+				var tag2 = "";
+				tag2 = tag2 + "<div class='header-cart-total w-full p-tb-40'>"
+				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
+				tag2 = tag2 + "</div>"
+				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
+				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
+				tag2 = tag2 + "View Cart </a></div>";
+				
+				$("#total").append(tag2);
+				
+				$(document).ready(function () {
+
+					$('#count').attr('data-notify', itemcount);
+
+			    });
+				
+				
+				
+			}
+		})
+	})
+</script>
 
 </body>
 </html>
