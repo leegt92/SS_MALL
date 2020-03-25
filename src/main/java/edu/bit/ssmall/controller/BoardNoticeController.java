@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.bit.ssmall.noticepage.Criteria;
 import edu.bit.ssmall.noticepage.PageMaker;
+
 import edu.bit.ssmall.service.BoardNoticeService;
 import edu.bit.ssmall.vo.BoardNoticeVO;
 
@@ -31,6 +32,7 @@ public class BoardNoticeController {
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
+		
 
 		System.out.println(criteria.getPerPageNum());
 		System.out.println(criteria.getPage());
@@ -43,10 +45,8 @@ public class BoardNoticeController {
 
 		pageMaker.setTotalCount(totalCount);
 		List<BoardNoticeVO> boardList = bservice.selectBoardListPage(startNum, endNum);
-		
-
+	
 		model.addAttribute("list", boardList);
-		
 		model.addAttribute("pageMaker", pageMaker);
 
 		return "boardnotice";

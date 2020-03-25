@@ -230,19 +230,20 @@
 					      <a href="boardgradenoticeView"><button type="button" class="nav-link" >등급별 혜택</button> </a>
 					    </li>
 					  </ul>
-					 <form class="form-inline" action="boardnoticeView.php">
-					    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput">
-					    <button class="btn btn-success" type="submit" >Search</button>
-	  				</form>	
+					  <form class="form-inline" action="boardnoticeView.php ">
+					  	<input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput">
+						<button class="btn btn-success" type="submit" >Search</button>
+				  	</form>	
+					
 				</nav> 
 			</div>
 			<c:choose>
 				<c:when test="${list[0] != null}">
-					 <table class="table table-list-search table-hover "><!--, table-list-search --><!--  table-dark table-hover, table table-bordered table-hover -->
+					 <table  class="table table-list-search table-hover "><!--, table-list-search --><!--  table-dark table-hover, table table-bordered table-hover -->
 						<tbody id="myTable">
 							<c:forEach items="${list}" var="dto">
 							
-										<tr>									
+										<tr >									
 											<td>공지</td>
 											<%-- <td>${dto.bName}</td> --%>
 											<td>
@@ -250,8 +251,11 @@
 											</td>
 											<%-- <td>${dto.bHit}</td> --%>
 											<td>${dto.bDate}</td>
-										</tr>
+											
 								
+										</tr>
+										  	
+								 
 							</c:forEach>
 						</tbody>
 					</table>
@@ -274,7 +278,7 @@
 			</ul>
 				</c:when>
 				<c:otherwise>
-					<table class="table table-list-search table-hover ">
+					<table id= "grade"class="table table-list-search table-hover ">
 				
 					<c:forEach items="${gradelist}" var="dto">
 
@@ -541,18 +545,8 @@ $(document).ready(function() {
 	</script>
 <!--===============================================================================================-->	
 
-<!--===============================================================================================-->
- <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script> 
-	
+
+ 
 
 <!--===============================================================================================-->
 <div id="fb-root"></div>
