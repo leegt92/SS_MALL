@@ -28,6 +28,7 @@ import edu.bit.ssmall.vo.ProductImageVO;
 
 //장바구니 관련 컨트롤러
 @Controller
+@RequestMapping("cart")
 public class CartController {
 	
 	@Autowired
@@ -58,13 +59,8 @@ public class CartController {
 		int totalprice = productImageVO.getP_price() * Integer.parseInt(b_amount); //상품의 가격과 구매하려는 갯수를 곱해 총가격
 		
 		cartService.addCart(p_number, memberVO.getM_number(), b_amount, totalprice); //상품번호, 회원번호, 구매갯수, 총가격으로 카트테이블에 삽입
-		
-		ArrayList<CartViewVO> cart = cartService.cartInfo(memberVO.getM_number()); //회원번호를 이용해서 카트에 담긴 정보를 담음
-		System.out.println(cart);
-		
-		model.addAttribute("cartList", cart); //카트리스트에 정보를 넘겨서 보여지게함 foreach문 써서
-		
-		return "Cart/shopping-cart";				
+
+		return "redirect:/cart/cartView";				
 	}
 	
 	//장바구니 탭 눌렀을 때 
@@ -97,7 +93,7 @@ public class CartController {
 			//체크한게 없으면 다시 장바구니로			
 			session.setAttribute("checkNull", "checkNull");
 
-			return "redirect:/cartView";
+			return "redirect:/cart/cartView";
 		}
 		
 		int amount = 0; //구매하려는 총갯수
@@ -134,7 +130,7 @@ public class CartController {
 		System.out.println("c_id");
 		cartService.cartDelete(c_id); //해당 cid로 삭제
 		
-		return"redirect:/cartView";
+		return"redirect:/cart/cartView";
 	}
 	
 	//장바구니에서 구매하기 누르고 나오는 창에서 주문정보값 받는곳
@@ -205,11 +201,7 @@ public class CartController {
 	}
 	
 	
-	//홈페이지에서 햄버거 옆에 카트눌렀을때 나오기위해 제이슨으로 보내서 ajax할거임
-	@ResponseBody
-	@RequestMapping("/miniCart")
-	public ArrayList<CartViewVO> miniCart(Principal principal){
-		return cartService.miniCartInfo(principal.getName());
-	}
+
+	
 	
 }

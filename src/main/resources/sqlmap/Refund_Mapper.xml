@@ -7,8 +7,15 @@
 			
 	<insert id="addRefund">
 		<![CDATA[ 
+<<<<<<< HEAD
         Insert into refund(r_number, m_number, p_number, r_amount, r_price, r_status,r_date) 
         values(refund_seq.nextval, #{m_number}, #{p_number}, #{b_amount}, #{b_total}, '환불완료',sysdate)
+=======
+        
+        Insert into refund(r_number, m_number, p_number, r_amount, r_price, r_status,r_date) 
+        values(refund_seq.nextval, #{m_number}, #{p_number}, #{b_amount}, #{b_total}, '환불완료',sysdate)
+
+>>>>>>> origin/dev_hyemin
 		]]>
 	</insert>		
 	

@@ -28,6 +28,16 @@ public class BuyService {
 		//재고 및 판매량 업데이트		
 		buyMapper.updateProduct(p_number,amount);
 		
+		//회원 포인트적립
+		int point = (int) Math.floor((double) Integer.parseInt(totalprice) * 0.01);
+		
+		if (point > 50000) {
+			point = 50000;
+		}
+		System.out.println(point);
+		
+		buyMapper.plusPoint(m_number,point);
+		
 	}
 
 	public MemberVO memberInfo(String m_id) {

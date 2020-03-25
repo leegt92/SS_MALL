@@ -10,34 +10,34 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
 <!--===============================================================================================-->
 <!--===============================================================================================-->	
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -100,19 +100,19 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/companyView" class="flex-c-m trans-04 p-lr-25">
 							About Us
 						</a>				
 					</div>
@@ -123,31 +123,31 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="homeview" class="logo">
-						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
+					<a href="/ssmall/homeview" class="logo">
+						<img src="/ssmall/images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="homeview">홈</a>
+								<a href="/ssmall/homeview">홈</a>
 							</li>
 
 							<li>
-								<a href="productView">상품</a>
+								<a href="/ssmall/productView">상품</a>
 							</li>
 													
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="/ssmall/boardnoticeView">공지사항</a>
 							</li>
 							
 							<li>
-								<a href="companyView">회사소개</a>
+								<a href="/ssmall/companyView">회사소개</a>
 							</li>
 							
 							<li>
-								<a href="masterView">AS</a>
+								<a href="/ssmall/asView">AS</a>
 							</li>
 						</ul>
 					</div>	
@@ -161,7 +161,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
+				<a href="/ssmall/homeview"><img src="/ssmall/images/icons/productlogo.png" alt="IMG-LOGO"></a>
 			</div>	
 
 			<!-- Button show menu -->
@@ -179,25 +179,25 @@
 
 			<ul class="main-menu-m">		
 				<li>
-					<a href="homeview">홈</a>
+					<a href="/ssmall/homeview">홈</a>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
 				</li>
 				<li>
-					<a href="productView">상품</a>
+					<a href="/ssmall/productView">상품</a>
 				</li>
 
 				<li>
-					<a href="boardnoticeView">공지사항</a>
+					<a href="/ssmall/boardnoticeView">공지사항</a>
 				</li>
 
 				<li>
-					<a href="companyView">회사소개</a>
+					<a href="/ssmall/companyView">회사소개</a>
 				</li>
 				
 				<li>
-					<a href="asView">AS</a>
+					<a href="/ssmall/asView">AS</a>
 				</li>
 		
 			</ul>
@@ -209,18 +209,18 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/ssmall/homeview" class="stext-109 cl8 hov-cl1 trans-04">
 				메인
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="productView" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/ssmall/productView" class="stext-109 cl8 hov-cl1 trans-04">
 				상품
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}" class="stext-109 cl4">
-				${productImageVO.p_description} 
+				${productImageVO.p_brand} ${productImageVO.p_name} 
 			</a>
 		</div>
 	</div>
@@ -242,20 +242,20 @@
 						<table class="table table-list-search">
 							<tr>
 								<th></th>
-								<th>상품명</th>
-								<th>구매수량</th>
-								<th>구매가격</th>
+								<th style="text-align: center; vertical-align: middle;">상품명</th>
+								<th style="text-align: center; vertical-align: middle;">구매수량</th>
+								<th style="text-align: center; vertical-align: middle;">구매가격</th>
 							</tr>
 
 							<tr>
-								<td>
+								<td style="text-align: center; vertical-align: middle;">
 									<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}"> 
-									<img src="productimage/${productImageVO.i_name}" alt="IMG" width="100px" height="auto">
+									<img src="/ssmall/productimage/${productImageVO.i_name}" alt="IMG" width="100px" height="auto">
 									</a>
 								</td>
-								<td>${productImageVO.p_description}</td>
-								<td>${amount}</td>
-								<td><fmt:formatNumber value="${totalprice}"
+								<td style="text-align: center; vertical-align: middle;">${productImageVO.p_brand} ${productImageVO.p_name}</td>
+								<td style="text-align: center; vertical-align: middle;">${amount}</td>
+								<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${totalprice}"
 										pattern="###,###,###" />원</td>
 							</tr>
 
@@ -265,7 +265,7 @@
 			</div>
 			<hr>
 			<!-- 수령자 설정 -->
-			<form:form role="form" commandName="payVO" action="buyDo">	
+			<form:form role="form" commandName="payVO" action="/ssmall/buy/buyDo">	
 			<div class="tab-content p-t-43">		
 				<div class="tab-pane fade show active" id="description"
 					role="tabpanel">
@@ -363,13 +363,13 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="/ssmall/productView" class="stext-130 cl7 hov-cl1 trans-04">
 								Watch
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="/ssmall/productView" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
 						</li>
@@ -443,7 +443,7 @@
 				</div>
 				
 				  <div class="col-sm-6 col-lg-3 p-b-50">
-				  	<img src="images/icons/mainlogo.png" width="500">
+				  	<img src="/ssmall/images/icons/mainlogo.png" width="500">
 					<!-- <h4 class="stext-301 cl0 p-b-30">
 						Newsletter
 					</h4>
@@ -466,23 +466,23 @@
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
@@ -498,21 +498,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="/ssmall/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/popper.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="/ssmall/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/popper.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="/ssmall/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -522,10 +522,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="/ssmall/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 	
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -542,7 +542,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-<script src="js/main.js"></script>
+<script src="/ssmall/js/main.js"></script>
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 	<script>

@@ -41,8 +41,8 @@ public interface ProductMapper {
 	@Select("select * from board b, member m where m.m_number = b.m_number and b.p_number = #{p_number} order by bdate desc")	  		
 	public List<ProductReplyVO> productReply(@Param("p_number")String p_number);
 
-	@Insert("insert into board(bid, btitle, bname, bdate, bhit, bcontent, bstep, bindent, bgroup, btotallike, btype, btotalrepot, m_number,p_number)\r\n" + 
-			"values (board_seq.nextval, #{btitle},1, sysdate, 0, #{bcontent}, 0, 0, 0, 0, 1, 0, #{m_number},#{p_number})")
+	@Insert("insert into board(bid, btitle, bname, bdate, bhit, bcontent, bstep, bindent, bgroup,  btype, btotalrepot, m_number,p_number)\r\n" + 
+			"values (board_seq.nextval, #{btitle},1, sysdate, 0, #{bcontent}, 0, 0, 0, 1, 0, 1, 7)")
 	public void productReplyWrite(ProductReplyVO productReplyVO);
 	//��۾���. ȸ���� ���� �κ��� ���� �̼���
 

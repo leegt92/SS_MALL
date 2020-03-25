@@ -8,9 +8,25 @@ public class CartViewVO {
 	private int c_amount; //구매수량	
 	private int c_grandtotal;//구매 총가격
 	private String p_description;
+	private String p_name;
+	private String p_brand;
 	private String i_name; //이미지
 	private String m_name; //이름
 
+	
+	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getP_brand() {
+		return p_brand;
+	}
+	public void setP_brand(String p_brand) {
+		this.p_brand = p_brand;
+	}
 	public String getP_description() {
 		return p_description;
 	}
@@ -64,10 +80,9 @@ public class CartViewVO {
 	@Override
 	public String toString() {
 		return "CartViewVO [c_id=" + c_id + ", m_number=" + m_number + ", p_number=" + p_number + ", c_amount="
-				+ c_amount + ", c_grandtotal=" + c_grandtotal + ", p_description=" + p_description + ", i_name="
-				+ i_name + ", m_name=" + m_name + "]";
+				+ c_amount + ", c_grandtotal=" + c_grandtotal + ", p_description=" + p_description + ", p_name="
+				+ p_name + ", p_brand=" + p_brand + ", i_name=" + i_name + ", m_name=" + m_name + "]";
 	}
-	
-	
+
 	
 }
