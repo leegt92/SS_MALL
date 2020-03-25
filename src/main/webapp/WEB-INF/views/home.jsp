@@ -167,14 +167,18 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
-							</li>
+								
 							<li>
 								<a href="productView">상품</a>
 							</li>
 							
+							
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="boardnoticeView">새소식</a>
+								
 							</li>
+						
+							
 							
 							<li>
 								<a href="companyView">회사소개</a>						
@@ -227,7 +231,8 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="homeview">홈</a>					
+					<a href="homeview">홈</a>
+										
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
