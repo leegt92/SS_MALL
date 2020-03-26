@@ -48,7 +48,8 @@ public class LoginController {
  
 
 		return "Login/login";
-	}
+	}		
+	
 	//네이버로그인 창에서 로그인하면 지정한 콜백함수로 토큰값 넘어옴 http://localhost:8282/ssmall/naver/callback이 콜백주소인데 그뒤에 ? 해서 겟방식으로 토큰 넘어옴
 	@RequestMapping(value="naver/callback", method = { RequestMethod.GET, RequestMethod.POST})
 	public String snsLoginCallback(Model model, @RequestParam String code, HttpServletRequest request,HttpServletResponse response)throws Exception {
