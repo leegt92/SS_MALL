@@ -139,7 +139,7 @@ public class AdminPageController {
 
 	//회원 검색
 	@RequestMapping(value = "memberSearch", method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberSearch(Model model, HttpServletRequest request) {
+	public String memberSearch(Model model, HttpServletRequest request, Criteria criteria) {
 		System.out.println("memberSearch 시작");
 		System.out.println(request.getParameter("search"));
 		String search = request.getParameter("search");
@@ -147,7 +147,27 @@ public class AdminPageController {
 			return "redirect:/admin/memberList";
 		}
 		
-		model.addAttribute("search", adminService.memberSearch(search));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		System.out.println("현재페이지 : "+criteria.getPage());
+		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+
+		int startNum = criteria.getStartNum();
+		int endNum = criteria.getEndNum();
+
+		int totalCount = adminService.countSearchMember(search);
+		System.out.println("회원 수 : " + totalCount);
+		
+		pageMaker.setTotalCount(totalCount);
+		
+		List<MemberVO> list = adminService.searchMemberList(startNum, endNum, search);
+		System.out.println(list);
+
+		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("search", list);
+		model.addAttribute("keyword",search);
+		
 		return "Admin/admin_memberList";
 	}
 	

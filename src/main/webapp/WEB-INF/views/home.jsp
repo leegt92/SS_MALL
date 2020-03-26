@@ -51,7 +51,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<script type="text/javascript" src="/ssmall/js/sockjs-0.3.4.js"></script>
 
 <script type="text/javascript">
 
@@ -236,6 +236,50 @@
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
+				<sec:authorize access="isAnonymous()">
+					<li>
+						<a href="login">로그인</a>
+					</li>	
+				</sec:authorize>
+				<sec:authorize access="hasRole('ADMIN')">
+					<li>
+						<p><%=name%>님</p>
+					</li>
+						
+					<li>
+						<a href="#" class="stext-102 cl2 hov-cl1 trans-04" onclick="document.getElementById('logout').submit();">
+							로그아웃</a>
+						<form id="logout" action="logout" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+						</form>
+					</li>
+			
+					<li>
+						<a href="/ssmall/admin/adminpage">관리자페이지 </a>
+					</li>
+				</sec:authorize>
+					
+				<sec:authorize access="hasRole('USER')">
+					<li>
+						<p><%=name%>님</p>
+					</li>
+					<li>
+						<a href="#"  onclick="document.getElementById('logout').submit();">
+						로그아웃</a>
+						<form id="logout" action="logout" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+						</form>
+					</li>
+						
+					<li>
+						<a href="/ssmall/mypage/myPage_orderedList">마이페이지</a>
+					</li>
+						
+					<li>
+						<a href="/ssmall/cart/cartView">장바구니 </a>
+					</li>
+					</sec:authorize>
+				
 				<li>
 					<a href="homeview">홈</a>					
 					<span class="arrow-main-menu-m">

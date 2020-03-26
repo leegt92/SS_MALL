@@ -1,6 +1,7 @@
 package edu.bit.ssmall.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class AdminService {
 		
 		return adminMapper.countRefund(m_number);
 	}
+	
+	public int countSearchMember(String search) {
+		
+		return adminMapper.countSearchMember(search);
+	}
 
 /*===========================페이징처리 ========================================================*/	
 	
@@ -59,6 +65,11 @@ public class AdminService {
 	public ArrayList<RefundVO> refundInfo(String m_number, int startNum, int endNum) {
 		System.out.println("회원의 환불 리스트");
 		return adminMapper.refundInfo(m_number,startNum, endNum);
+	}
+	
+	public List<MemberVO> searchMemberList(int startNum, int endNum, String search) {
+		System.out.println("회원의 검색 후  리스트");
+		return adminMapper.searchMemberList(startNum,endNum, search);
 	}
 	
 /*===========================회원관리========================================================*/	
@@ -113,6 +124,8 @@ public class AdminService {
 		adminMapper.updateAuthority(m_number, m_authority);
 		
 	}
+	
+	
 
 	
 

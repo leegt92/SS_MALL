@@ -219,6 +219,26 @@
 													</tr>
 													</c:forEach>													
 												</table>
+												
+												<nav aria-label="Page navigation example">
+													<ul class="pagination m-5 flex-c-m">				
+														<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+															<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/admin/memberSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}&search=${keyword}">«</a></li>
+															<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+														</c:if>
+														<!-- var="idx"하게되면 1씩증가  -->								
+														<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+															<c:out value="${pageMaker.cri.page == idx?'':''}" />
+															<li class="page-item"><a class="page-link" href="/ssmall/admin/memberSearch${pageMaker.makeQuery(idx)}&search=${keyword}">${idx}</a></li>
+														</c:forEach>
+								
+														<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+																<li class="page-item"><a class="page-link" href="/ssmall/admin/memberSearch${pageMaker.makeQuery(pageMaker.endPage +1) }&search=${keyword}">»</a></li>
+														</c:if>
+														
+													</ul>
+													
+												</nav>		
 											</c:when>
 										
 											<c:when test="${member[0] == NULL}">				

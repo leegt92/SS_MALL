@@ -1,6 +1,7 @@
 package edu.bit.ssmall.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -27,6 +28,10 @@ public interface AdminMapper {
 	
 	@Select("Select count(*) from refund where m_number = #{m_number}")
 	public int countRefund(String m_number);
+	
+	@Select("Select count(*) from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc")
+	public int countSearchMember(String search);
+	
 
 /*=====================페이징 처리한 select문 쿼리======================================================================*/
 	
@@ -49,6 +54,11 @@ public interface AdminMapper {
 			+ "where r.m_number = m.m_number and r.p_number = p.p_number and r.m_number = #{m_number} ORDER BY r.r_date desc) A) B,product P "
 			+ "where B.P_NUMBER = P.P_NUMBER and RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public ArrayList<RefundVO> refundInfo(@Param("m_number")String m_number, @Param("startNum")int startNum, @Param("endNum")int endNum);
+	
+	
+	
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (Select * from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	public List<MemberVO> searchMemberList(@Param("startNum")int startNum, @Param("endNum")int endNum, @Param("search")String search);
 	
 /*===================================회원관리======================================================================*/	
 	@Select("Select * from member where m_number = #{m_number}")
@@ -78,6 +88,9 @@ public interface AdminMapper {
 	
 	@Select("Select * from product where p_brand like '%'||#{search}||'%' or  p_name like '%'||#{search}||'%' order by p_price desc")
 	public ArrayList<ProductVO> productSearch(@Param("search")String search);
+
+	
+
 	
 	
 

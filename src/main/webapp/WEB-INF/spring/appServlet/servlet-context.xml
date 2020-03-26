@@ -60,13 +60,6 @@
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 
-	
-	<!-- <beans:bean id="echoHandler" class="edu.bit.ssmall.chat.EchoHandler"/>
-	<websocket:handlers>	
-	    <websocket:mapping handler="echoHandler" path="/echo" />	
-	    <websocket:sockjs />	
-	</websocket:handlers>  -->
-	
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
@@ -82,5 +75,15 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePublicMethod" />
 	</aop:config>   -->
 
+	<beans:bean id="echochoHandler" class="edu.bit.ssmall.chat.EchoHandler"/>
 
+	<websocket:handlers>
+		<websocket:mapping handler="echochoHandler" path="/echo" />
+		<websocket:handshake-interceptors>
+		      <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
+	
+	
 </beans:beans>
