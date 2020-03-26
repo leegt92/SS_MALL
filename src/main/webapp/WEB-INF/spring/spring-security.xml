@@ -15,6 +15,7 @@
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
         <intercept-url pattern="/mypage/**" access="hasRole('USER')" />
         <intercept-url pattern="/login/**" access="isAnonymous()" />
+        <intercept-url pattern="/productDetailLogin/**" access="hasRole('USER')" />
         <intercept-url pattern="/buy/**" access="hasRole('USER')" />     
         <intercept-url pattern="/addCart/**" access="hasRole('USER')" />
         <intercept-url pattern="/cartview/**" access="hasRole('USER')" />      

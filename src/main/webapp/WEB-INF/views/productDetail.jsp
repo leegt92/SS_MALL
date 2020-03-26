@@ -66,10 +66,15 @@
 <!--===============================================================================================-->
 
 <style type="text/css">
-/* 
+
+.cArea{
+/* 	border: 2px solid; */
+	padding: 5px;
+}
+
 .postRight{
 		font-family: 'Verdana', "gulim", "굴림";
-		font-size: 12px;
+		font-size: 15px;
 		color: #000;
 		margin: 0;
 		outline: 0;
@@ -77,9 +82,27 @@
 		background: transparent;
 		margin-top: -1px;
 		border: 1px solid #ddd;
-		padding: 15px 15px 15px 107px;
+		padding: 15px 15px 15px 15px;
 		position: relative;
 		background-color: #fff;
+}
+
+#demo{
+	position:relatve;
+	font-family: 'Verdana', "gulim", "굴림";
+		font-size: 15px;
+		color: #000;
+		right:15px;
+		width:659px;
+		outline: 0;
+		vertical-align: top;
+		background: transparent;
+		margin-top: -1px;
+		border: 1px solid #ddd;
+		padding: 15px 15px 15px 35px;
+		position: relative;
+		background-color: #fff;
+		
 }
 
 .qna_reply_area qa_c3{
@@ -172,25 +195,25 @@
 	    				 
 	    				 console.log('1product_replyAjax확인');	
 	    				 	    				 	    				 
-	    				 tag = tag+ "<div class='postRight' 'border:1px solid'>";
+	    				 tag = tag+ "<div class='postRight'>";
 	    				 tag = tag+ "<div class='postContents container photo_est_cont'>";
 	    				 tag = tag+ "<div class='profile'>";
 	    				 tag = tag+ "<p>";
-	    				 tag = tag+ "<span class='gallery_lv'>"+"작성자 : "+data.m_id+"</span>";
-	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+data.bdate+"</span>"	;												
+	    				 tag = tag+ "<span class='gallery_lv' style='margin-right: 10px;'>"+"작성자 : "+data.m_id+"</span>";
+	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+data.bdate+"</span>";												
 	    				 tag = tag+ "</p>";											
 	    				 tag = tag+ "</div>";
 
 	    				 tag = tag+ "<div class='pContent'>";
 										
 	    				 tag = tag+ "<div class='summary' style='cursor: pointer;'>";
-	    				 tag = tag+ "<div class='cArea' style='border:1px solid gray'>";
+	    				 tag = tag+ "<div class='cArea'>";
 	    				 tag = tag+ "<div class='pContent_text'>";
 	    				 tag = tag+ "<h4>제목 : <span class='tit'>"+data.btitle+"</span></h3><br/>";
-	    				 tag = tag+ "<span class='content-review'>"+data.bcontent+"</span>";
+	    				 tag = tag+ "<span class='content-review'><textarea cols='60' rows='5' style='border: 1px solid; resize: none; padding:10px;'>"+data.bcontent+"</textarea></span>";
 	    				 tag = tag+ "</div>";
-	    				 tag = tag+ "<div class='pContent_Img img3 photoReview'>";
-	    				 tag = tag+ "<img class='musinsa-gallery-images' src='//image.msscdn.net/data/estimate/1199146_0/gallery_5e439a2f82e05.jpg.list' alt='BRENSON [패키지] Errday'>";
+	    				 /* tag = tag+ "<div class='pContent_Img img3 photoReview'>"; */
+	    				 /* tag = tag+ "<img class='musinsa-gallery-images' src='//image.msscdn.net/data/estimate/1199146_0/gallery_5e439a2f82e05.jpg.list' alt='BRENSON [패키지] Errday'>"; */
 														
 														
 						 tag = tag+ "</div>";
@@ -220,11 +243,11 @@
 						console.log("modelCheck : "+'${modelCheck}');
 		
 						tag = tag + "<sec:authorize access='hasRole("USER")'>";												
-						tag = tag + "<p class='text-success' style='font-weight:bold; font-size: 1.5em;''></p>";
+						tag = tag + "<p class='text-success' style='font-weight:bold; font-size: 1.5em;'></p>";
 						/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
 						tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
-						tag = tag + "<button style='margin-right: 10px;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
-						tag = tag + "<button type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button><br/>";
+						tag = tag + "<button style='margin-right:10px; margin-left:10px; color:gray;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
+						tag = tag + "<button style='color:gray;' type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button>";
 						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; */
 						tag = tag + "</sec:authorize>";
 																									
@@ -742,23 +765,24 @@
 																																	
 											<!-- <button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button> -->
 																																																																																			
-												<div id="demo" class="collapse in" style="border: 1px solid;">																																																	
+												<div id="demo" class="collapse in" >	<!-- style="border: 1px solid;"	 -->																																															
 													<form id="form" name="form" role="form" method="post" autocomplete="off">
 														<input type="hidden" id="p_number" value="${productNum.p_number}"name="p_number">																													
 														<input type="hidden" id="m_number" value="${principal_m_number}" name="m_number">
 														<!-- m_number의 value에 로그인한 사람의 m_number를 가져오면 됨. -->
 														<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" />
 														<label>제목</label>
-														<input type="text" class="btitleCollapse" id="btitle" name="btitle" style="border: 1px solid;" /><br />
+														<input type="text" class="btitleCollapse" size="62" id="btitle" name="btitle" style="border: 1px solid;" /><br />
 														<!-- <label>작성자</label> <input type="text" name="m_id" style=" border:1px solid;" /><br /> -->
 														<label>내용</label>
-														<textarea cols="50" rows="5" class="bcontentCollapse" id="bcontent" name="bcontent" style="border: 1px solid;"></textarea><br/>
-														<button type="button" id="reply_btn" data-toggle="collapse" data-target="#demo" style="border: 1px solid;">작성</button>	
+														<textarea cols="63" rows="5" class="bcontentCollapse" id="bcontent" name="bcontent" style="border: 1px solid; resize: none;"></textarea><br/>
+														<button type="button" id="reply_btn" data-toggle="collapse" data-target="#demo">작성</button>	
 														
 														<script>
 															$("#btn_collapse_notLogin").click(function(){
 																console.log("btn_collapse_notLogin 버튼이벤트 탐");
-																alert("로그인 후 이용 가능합니다");
+																alert("로그인 후 이용 가능합니다");																
+																location.href="productDetailLogin?p_number=${productNum.p_number}";
 															})
 
 															$("#reply_btn").click(function(){
@@ -1483,7 +1507,7 @@
 						<p>제목</p>
 						<input type="text"name="btitle" id="btitle" size="50" style="border:1px solid gray"><br>
 						<p>내용</p>
-						<textarea name="bcontent" rows="10" cols="50" style="border:1px solid gray"></textarea>
+						<textarea name="bcontent" rows="10" cols="52" style="border:1px solid gray"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
 					</form>
 				</div>

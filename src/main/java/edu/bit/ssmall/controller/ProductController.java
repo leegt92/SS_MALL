@@ -1,4 +1,4 @@
-package edu.bit.ssmall.controller;
+ package edu.bit.ssmall.controller;
 
 import java.util.List;
 
@@ -221,6 +221,41 @@ public class ProductController {
 	}
 	@RequestMapping("/productDetail")
 	public String product_detail(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
+		int check = 123;
+		model.addAttribute("modelCheck",check);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	 
+	    String name = "";
+	    if(principal != "anonymousUser") {
+	        name = auth.getName();
+	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
+	    }
+	    System.out.println("principal : "+principal);
+	    System.out.println("name : "+ name);
+	    System.out.println("auth.getName() : "+auth.getName());
+	    
+		System.out.println("productDetail시작");
+		String p_number = request.getParameter("p_number");
+		System.out.println("상품번호 : "+p_number);
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));
+		model.addAttribute("productAmount", productService.selectProductListAmount());
+		model.addAttribute("productReply", productService.productReply(p_number));
+		model.addAttribute("productNum", productService.productOne(p_number));
+		
+		model.addAttribute("principal_m_id",name);//principal로 받은 회원의 id. leegt92같은거.
+		
+		
+		System.out.println("productDetail끝");
+				
+		
+		
+		return "productDetail";
+	}
+	//시큐리티 이용 로그인확인
+	@RequestMapping("/productDetailLogin")
+	public String productDetailLogin(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
 		int check = 123;
 		model.addAttribute("modelCheck",check);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
