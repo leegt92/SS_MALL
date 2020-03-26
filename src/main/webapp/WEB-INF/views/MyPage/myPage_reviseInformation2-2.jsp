@@ -167,11 +167,6 @@ table#tabletype td {
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 
 				<form:form action="myPage_reviseInformation2_2" class="container-login100">
-
-				
-
-
-
 				<form:form action="/ssmall/mypage/myPage_reviseInformation2_2" class="container-login100">
 
 					method="post" id="reviseInformation">
@@ -320,12 +315,13 @@ table#tabletype td {
 
 					">
     			</form:form>
-    			</form:form>
-			</div>
+    		</form:form>
+    		</form:form>
 		</div>
 	</div>
-      </div>
-    </div>
+</div>
+ </div>
+ </div>
 
  
     ================================================== -->

@@ -230,10 +230,14 @@
 					      <a href="boardgradenoticeView"><button type="button" class="nav-link" >등급별 혜택</button> </a>
 					    </li>
 					  </ul>
-					  <form class="form-inline" action="boardnoticeView.php ">
-					  	<input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput">
-						<button class="btn btn-success" type="submit" >Search</button>
-				  	</form>	
+					  
+					
+								<form class="form-inline" action="boardnoticeView.php">
+								  	<input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput">
+									<button class="btn btn-success" type="submit" >Search</button>
+							  	</form>	
+						
+			
 					
 				</nav> 
 			</div>
@@ -242,7 +246,6 @@
 					 <table  class="table table-list-search table-hover "><!--, table-list-search --><!--  table-dark table-hover, table table-bordered table-hover -->
 						<tbody id="myTable">
 							<c:forEach items="${list}" var="dto">
-							
 										<tr >									
 											<td>공지</td>
 											<%-- <td>${dto.bName}</td> --%>
@@ -252,10 +255,7 @@
 											<%-- <td>${dto.bHit}</td> --%>
 											<td>${dto.bDate}</td>
 											
-								
-										</tr>
-										  	
-								 
+										</tr>							
 							</c:forEach>
 						</tbody>
 					</table>

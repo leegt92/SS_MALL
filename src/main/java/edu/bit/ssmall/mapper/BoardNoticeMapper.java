@@ -1,12 +1,15 @@
 package edu.bit.ssmall.mapper;
 
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
 import edu.bit.ssmall.vo.BoardNoticeVO;
+
 
 public interface BoardNoticeMapper {
 
@@ -47,4 +50,10 @@ public interface BoardNoticeMapper {
 	
 	
 	
+	
+	/*
+	 * @Select("Select * from board where bType='공지사항' like '%'||#{search}||'%' or  bid like '%'||#{search}||'%' order by bid desc"
+	 * ) public List<BoardNoticeVO> selectBoardListPage( @Param("startNum") int
+	 * startNum, @Param("endNum") int endNum,@Param("search")String search);
+	 */
 }

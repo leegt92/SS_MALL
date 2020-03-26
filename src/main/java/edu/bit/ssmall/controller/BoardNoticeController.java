@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import edu.bit.ssmall.noticepage.Criteria;
 import edu.bit.ssmall.noticepage.PageMaker;
 
@@ -38,7 +39,7 @@ public class BoardNoticeController {
 		System.out.println(criteria.getPage());
 
 		int startNum = criteria.getStartNum();
-		int endNum = criteria.getEndNum();
+		int endNum = criteria.getEndNum(); 
 
 		int totalCount = bservice.selectCountBoard();
 		System.out.println("게시글갯수:" + totalCount);
@@ -48,9 +49,11 @@ public class BoardNoticeController {
 	
 		model.addAttribute("list", boardList);
 		model.addAttribute("pageMaker", pageMaker);
-
+		
 		return "boardnotice";
+		
 	}
+
 	
 	@RequestMapping("/boardgradenoticeView")
 	public String gradenotice(Model model, Criteria criteria) throws Exception {
@@ -80,6 +83,7 @@ public class BoardNoticeController {
 	}
 	
 	
+	
 	@RequestMapping("/content_view")
 	public String content_view(HttpServletRequest request, Model model) {
 
@@ -91,5 +95,7 @@ public class BoardNoticeController {
 		return "content_view";
 
 	}
+	
+	
 
 }

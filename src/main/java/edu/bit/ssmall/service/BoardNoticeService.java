@@ -16,15 +16,6 @@ public class BoardNoticeService {
 	@Inject
 	BoardNoticeMapper boardMpper;
 
-	/*
-	 * BoardNoticeMapper boardMpper1;
-	 */
-	
-	/*
-	 * public List<BoardNoticeVO> selectBoardList() throws Exception{
-	 * 
-	 * return boardMpper.selectBoardList(); }
-	 */
 	
 	public BoardNoticeVO selectBoardOne(String bId) {
 		boardMpper.upHit(bId);
@@ -40,23 +31,17 @@ public class BoardNoticeService {
 		
 		return boardMpper.selectCountGradeBoard();
 	}
+
 	
-	/*
-	 * public int selectCountBoard1() {
-	 * 
-	 * return boardMpper1.selectCountBoard1(); }
-	 */
 	
-	public List<BoardNoticeVO> selectBoardListPage(int startNum,int endNum){
-		return boardMpper.selectBoardListPage(startNum, endNum);
-	}
+	  public List<BoardNoticeVO> selectBoardListPage(int startNum,int endNum){
+	  return boardMpper.selectBoardListPage(startNum, endNum);
+	  }
+	
 	
 	public List<BoardNoticeVO> selectGradeBoardListPage(int startNum,int endNum){
 		return boardMpper.selectGradeBoardListPage(startNum, endNum);
 	}
-
-	
-	
 
 }
 
