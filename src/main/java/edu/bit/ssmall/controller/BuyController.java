@@ -15,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ssmall.kakaopay.KakaoPay;
 import edu.bit.ssmall.kakaopay.KakaoPayApprovalVO;
@@ -46,7 +47,7 @@ public class BuyController {
 	
 	//productDetail에서 구매하기 누를 시
 	@RequestMapping(value = "buy", method = RequestMethod.POST)
-	public String buy(Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String buy(Model model, HttpServletRequest request, HttpServletResponse response,Principal principal) {
 		
 		String amount = request.getParameter("b_amount"); //구매수량
 		String p_number = request.getParameter("p_number"); //상품번호
@@ -60,12 +61,15 @@ public class BuyController {
 		System.out.println("productImageVO 출력 : "+productImageVO); //상품정보 체크
 		
 		PayVO payVO = new PayVO();
+		MemberVO memberVO = buyService.memberInfo(principal.getName());
+		
 		
 		HttpSession session = request.getSession(); 
 		
 		session.setAttribute("productImageVO", productImageVO);// productImageVO(상품정보) 세션처리해준다. 		
 		session.setAttribute("amount", amount); //구매수량 세션처리
 		session.setAttribute("totalprice", totalprice); //총가격 세션처리
+		session.setAttribute("member", memberVO);
 		model.addAttribute("payVO",payVO); //validator 하기위해 담아서 보내줌 (회원가입때랑 마찬가지로 form:form command에 payVO하기위해)
 		
 		return "Buy/buyView"; 
@@ -96,11 +100,20 @@ public class BuyController {
 			return "Buy/buyView";
 		}
 		String adress = "(" + addr1 + ") " + addr2 + " " + addr3;
-		String totalprice = String.valueOf(session.getAttribute("totalprice")); 
 		String amount =  String.valueOf(session.getAttribute("amount"));
+		int usingPoint = 0;
+		int totalprice = Integer.parseInt(String.valueOf(session.getAttribute("totalprice"))); 
+		if(request.getParameter("usingPoint").equals("")) {
+			usingPoint = 0;
+		}else {
+			usingPoint = Integer.parseInt(request.getParameter("usingPoint"));
+		}
+		int finalPrice = totalprice - usingPoint;
+		System.out.println("usingPoint : " + usingPoint);
+		System.out.println("finalPrice : " + finalPrice);
 		
 		payVO.setAddr(adress);
-		payVO.setTotalPrice(Integer.parseInt(totalprice));
+		payVO.setTotalPrice(finalPrice);
 		payVO.setAmount(amount);
 		
 		session.setAttribute("payVO",payVO); //구매정보를 담은 객체 세션처리.
@@ -113,7 +126,7 @@ public class BuyController {
 		String m_id = principal.getName(); //로그인한 사용자 id가져옴 (시큐리티 Principal) 		
 		String p_name = productImageVO.getP_name(); //상품이름
 
-		String url = kakaoPay.kakaoPayReady(p_name,totalprice , amount, m_id, request); //에러가 있다면 null
+		String url = kakaoPay.kakaoPayReady(p_name,Integer.toString(finalPrice), amount, m_id, request); //에러가 있다면 null
 		
 		if(url == null) {
 			System.out.println("url : "+url);
@@ -151,7 +164,7 @@ public class BuyController {
 			//성공하면 db 저장
 			PayVO payVO = (PayVO)session.getAttribute("payVO");
 			MemberVO memberVO = buyService.memberInfo(m_id);
-			
+			System.out.println(payVO.getTotalPrice());
 			String m_number = Integer.toString(memberVO.getM_number()); //회원번호
 			String p_number = Integer.toString(productImageVO.getP_number()); //상품번호
 			String totalprice = Integer.toString(payVO.getTotalPrice()); //구매총가격
@@ -187,9 +200,13 @@ public class BuyController {
 		
 		//kakaoPayApprovalVO가 null이 아니면 db에 구매내역 저장
 		PayVO payVO = (PayVO)session.getAttribute("payVO");
+		System.out.println("디버깅위한 payVO" + payVO);
+		
 		ArrayList<CartViewVO> list = (ArrayList<CartViewVO>) session.getAttribute("cart");
 		
 		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list);
+			
 			String m_number = Integer.toString(list.get(i).getM_number());//회원번호
 			String p_number = Integer.toString(list.get(i).getP_number());//상품번호
 			String amount = Integer.toString(list.get(i).getC_amount());//구매할 갯수
@@ -243,6 +260,14 @@ public class BuyController {
 		session.setAttribute("fail", "fail");
 		
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "pointInfo", method = { RequestMethod.POST, RequestMethod.GET})
+	public MemberVO pointInfo(Principal principal) throws Exception {
+	
+		
+		return buyService.memberInfo(principal.getName());
 	}
 	
 

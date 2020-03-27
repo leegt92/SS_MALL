@@ -116,7 +116,7 @@ public interface MypageMapper {
 	public List<Product_BuyVO> getP_BVO (@Param("m_number") int m_number);
 	
 	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '결제완료' order by b_number desc")
-	public List<Product_BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
+	public List<BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
 	
 	/*===================================BOARD 관련 SQL문들============================================================*/
 	//한 회원이 작성한 모든 1:1문의글들을 가져오는 SQL문

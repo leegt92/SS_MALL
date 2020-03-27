@@ -159,7 +159,7 @@ public class MypageService {
 		return mypageMapper.getP_BVO(m_number);	
 	}
 	
-	public List<Product_BuyVO> getOrderedP_BVO(int m_number) throws Exception {
+	public List<BuyVO> getOrderedP_BVO(int m_number) throws Exception {
 		return mypageMapper.getOrderedP_BVO(m_number);	
 	}
 	/*======================Board 관련 SQL문============================================*/

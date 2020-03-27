@@ -20,6 +20,7 @@ public class BuyVO {
 	private String p_image;//상품이미지
 	private String p_brand; //브랜드
 	private String p_name; //상품명
+	
 	public int getB_number() {
 		return b_number;
 	}

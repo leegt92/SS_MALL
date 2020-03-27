@@ -19,7 +19,7 @@ public interface PageMapper {
 	@Select("SELECT * FROM (SELECT A.r_number, A.m_number, A.p_number, A.r_price, A.r_amount, A.r_date, A.r_status,ROWNUM AS RNUM "
 			+ "FROM(SELECT r.r_number, r.m_number, p.p_number, r.r_price, r.r_amount, r.r_date, r.r_status "
 			+ "FROM refund r, member m, product p "
-			+ "where r.m_number = m.m_number and r.p_number = p.p_number and r.m_number = 1 ORDER BY r.r_date desc) A) B,product P "
+			+ "where r.m_number = m.m_number and r.p_number = p.p_number and r.m_number = #{m_number} ORDER BY r.r_date desc) A) B,product P "
 			+ "where B.P_NUMBER = P.P_NUMBER and RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<RefundVO> refundListPage(@Param("m_number")int m_number, @Param("startNum")int startNum, @Param("endNum")int endNum);
 	

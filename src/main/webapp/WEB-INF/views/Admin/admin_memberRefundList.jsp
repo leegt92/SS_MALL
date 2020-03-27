@@ -113,23 +113,23 @@
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>							
+								<a href="/ssmall/admin/memberList"><button class="dropbtn"  style="font-weight: bold;">회원관리</button></a>							
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn" >상품</button></a>
 								<div class="dropdown-content" >
-								    <a href="/ssmall/admin/productList" style="font-weight: bold;">상품 목록</a>
+								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
 								 </div>															
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/noticeList">공지사항</a>
+									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
 								</div>
 							</div>

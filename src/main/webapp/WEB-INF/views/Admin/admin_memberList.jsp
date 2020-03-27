@@ -132,7 +132,7 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn">상품</button></a>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -141,9 +141,9 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/noticeList">공지사항</a>
+									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
 								</div>
 							</div>

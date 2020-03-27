@@ -22,8 +22,8 @@ import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.MypageService;
 import edu.bit.ssmall.service.PageService;
 import edu.bit.ssmall.service.RefundService;
-import edu.bit.ssmall.vo.BoardNoticeVO;
 import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.Product_BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
@@ -126,7 +126,7 @@ public class MyPageController {
 			model.addAttribute("m_number", m_number);
 			int m_point = mypageService.getMpoint(name);
 			model.addAttribute("m_point", m_point);
-			List<Product_BuyVO> p_b_vos = mypageService.getOrderedP_BVO(m_number);
+			List<BuyVO> p_b_vos = mypageService.getOrderedP_BVO(m_number);
 			model.addAttribute("p_b_vos",p_b_vos);
 			
 		} catch (Exception e) {

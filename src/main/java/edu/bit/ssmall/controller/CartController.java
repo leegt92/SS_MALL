@@ -82,7 +82,7 @@ public class CartController {
 	
 	//장바구니에서 구매할 물건 체크해서 구매하기
 	@RequestMapping(value="cartBuy", method = {RequestMethod.POST,RequestMethod.GET})
-	public String cartBuy(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String cartBuy(Model model, Principal principal, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("cartBuy() 장바구니에서 체크해서 구매하기!");
 		HttpSession session = request.getSession();		
 	
@@ -110,12 +110,13 @@ public class CartController {
 			System.out.println(item);
 		}
 		PayVO payVO = new PayVO();
+		MemberVO memberVO = cartService.memberInfo(principal.getName());
 		System.out.println(totalprice);
 		
 		session.setAttribute("cart", cart); // 구매하려는 상품들을 세션으로 저장
 		session.setAttribute("amount", amount); //구매하려는 상품갯수을 세션으로 저장
 		session.setAttribute("totalprice", totalprice); // 구매하려는 상품의 총가격을 세션으로 저장
-
+		session.setAttribute("member", memberVO);
 		model.addAttribute("payVO",payVO); //구매할때 배송자 정보를 유효성 검사하기위해 payVO 객체를 넣어줌
 		
 		return "Cart/cartBuyView";
@@ -160,13 +161,24 @@ public class CartController {
 			return "Cart/cartBuyView";
 		}
 		String adress = "(" + addr1 + ") " + addr2 + " " + addr3;		
-		String totalprice = String.valueOf(session.getAttribute("totalprice")); 
+		
 		String amount =  String.valueOf(session.getAttribute("amount"));
+		
+		int usingPoint = 0;
+		int totalprice = Integer.parseInt(String.valueOf(session.getAttribute("totalprice"))); 
+		if(request.getParameter("usingPoint").equals("")) {
+			usingPoint = 0;
+		}else {
+			usingPoint = Integer.parseInt(request.getParameter("usingPoint"));
+		}
+		int finalPrice = totalprice - usingPoint;
+		System.out.println("usingPoint : " + usingPoint);
+		System.out.println("finalPrice : " + finalPrice);
 		System.out.println(totalprice);
 		System.out.println(amount);
 		
 		payVO.setAddr(adress);
-		payVO.setTotalPrice(Integer.parseInt(totalprice));
+		payVO.setTotalPrice(finalPrice);
 		payVO.setAmount(amount);
 		
 		session.setAttribute("payVO",payVO); //구매정보를 담은 객체 세션처리.
@@ -189,7 +201,7 @@ public class CartController {
 		String m_id = principal.getName(); //로그인한 사용자 id가져옴	
 		session.setAttribute("p_name", p_name); //상품명들 세션처리
 		
-		String url = kakaoPay.kakaoPayReady(p_name,totalprice , amount, m_id, request); //에러가 있다면 null
+		String url = kakaoPay.kakaoPayReady(p_name,Integer.toString(finalPrice) , amount, m_id, request); //에러가 있다면 null
 		
 		if(url == null) {
 			System.out.println("url : "+url);

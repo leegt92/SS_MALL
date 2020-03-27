@@ -229,10 +229,10 @@
 										</div>
 									</td>
 									<td style="text-align: center;"><c:out value = "${p_b_vo.p_name}"/></td>
-									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.p_price}" pattern="#,###" />원</td>
+									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
 									<td style="text-align: center;">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
-									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
-									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
+									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.b_total}" pattern="#,###" />원</td>
+									<c:set var="hap" value="${hap+p_b_vo.b_total*p_b_vo.b_amount}"/>
 									<td style="text-align: center;" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
 									<td style="padding-left : 10px; cursor:pointer;" onclick="if(confirm('취소 하시겠습니까?')){return location.href = '/ssmall/refund/refund?b_number=${p_b_vo.b_number}'}">취소</td>
 									

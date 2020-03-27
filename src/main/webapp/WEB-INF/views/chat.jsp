@@ -21,6 +21,7 @@
     	  if (socket.readyState !== 1) return;
     	    	  let msg = $('input#msg').val();
     	    	  socket.send(msg);
+    	    	  document.getElementById("msg").value = null;
     	    });
     	 connect();
     });
@@ -87,7 +88,7 @@ var socket = null;
 
 							<div class="panel-footer">
 								<div class="input-group">
-									<input id="msg" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." /> 
+									<input id="msg" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." value="" /> 
 									<span class="input-group-btn">
 										<button type="button" class="btn btn-primary btn-sm" id="btnSend">
 											<i class="fa fa-send fa-1x" aria-hidden="true"></i>

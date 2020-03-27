@@ -67,7 +67,7 @@ public interface AdminMapper {
 	@Select("Select * from buy b, product p where b.p_number = p.p_number and b.m_number = #{m_number}")
 	public ArrayList<BuyVO> buyList(@Param("m_number")String m_number);
 
-	@Select("Select * from refund r, product p where r.p_number = p.p_number and r.m_number = #{m_number}")
+	@Select("Select * from refund r, product p where r.p_number = p.p_number and r.m_number = #{m_number} order by r.r_date desc")
 	public ArrayList<RefundVO> refundList(String m_number);
 	
 	@Select("Select * from board where m_number = #{m_number} and btype='문의/건의' order by bdate desc")
