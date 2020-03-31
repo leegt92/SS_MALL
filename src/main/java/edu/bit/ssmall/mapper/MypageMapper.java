@@ -46,6 +46,12 @@ public interface MypageMapper {
 	@Select("select m_point from member where m_id = #{m_id}")
 	public int getMpoint(@Param("m_id")String m_id);
 	
+	@Select("select m_naver from member where m_id = #{m_id}")
+	public String getMnaver(@Param("m_id")String m_id);
+	
+	@Select("select m_kakao from member where m_id = #{m_id}")
+	public String getMkakao(@Param("m_id")String m_id);
+	
 	@Update("update member set m_name = #{m_name} where m_id = #{m_id}")
 	public void updateMname(@Param("m_name")String m_name, @Param("m_id")String m_id);
 	
@@ -96,7 +102,7 @@ public interface MypageMapper {
 	@Select("select b_number from buy where m_number = #{m_number} order by b_number desc")
 	public List<Integer> getBnumbers (@Param("m_number") int m_number);
 	
-	@Select("select b_number from buy where m_number = #{m_number} and b_done = '1'")
+	@Select("select b_number from buy where m_number = #{m_number} and b_status = '배송완료'")
 	public List<Integer> getOrderedBnumbers (@Param("m_number") int m_number);
 	
 	@Select("select b_amount from buy where b_number = #{b_number}")
@@ -106,10 +112,10 @@ public interface MypageMapper {
 	public Date getBdate (@Param("b_number") int b_number);
 	
 	/*===================================PRODUCT_BUY 관련 SQL문들============================================================*/
-	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} order by b_number desc")
+	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '배송완료' order by b_number desc")
 	public List<Product_BuyVO> getP_BVO (@Param("m_number") int m_number);
 	
-	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_done = '1' order by b_number desc")
+	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '결제완료' order by b_number desc")
 	public List<Product_BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
 	
 	/*===================================BOARD 관련 SQL문들============================================================*/
@@ -129,6 +135,12 @@ public interface MypageMapper {
 	
 	@Select("select count(*) from board")
 	public int selectCountBoard();
+	
+	@Select("select bTitle from board where bid = #{bid}")
+	public String selectFbTitle(@Param("bid") String bid);
+	
+	@Select("select bContent from board where bid = #{bid}")
+	public String selectFbContent(@Param("bid") String bid);
 	
 	@Select("select count(*) from board where m_number = #{m_number} and btype='문의/건의'")
 	public int selectAskCountBoard(@Param("m_number") int m_number);

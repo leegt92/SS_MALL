@@ -50,9 +50,106 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+<script type="text/javascript">
+
+	function numberFormat(inputNumber) {
+	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	
+	$(function(){
+		$.ajax({
+			url : '/ssmall/miniCart',
+			dataType : 'json',
+			success : function(data){
+				console.log(data);
+				var totalprice = 0;			
+				var itemcount = 0;
+				
+				$.each(data, function(key, value){
+					totalprice = totalprice + value.c_grandtotal;
+					itemcount += 1;
+					var tag = "";
+					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
+					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
+					tag = tag + "<div class='header-cart-item-img'>";
+					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
+					tag = tag + "</div>";
+					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
+					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
+					tag = tag + value.p_description + " x " + value.c_amount;
+					tag = tag + "</a>";
+					tag = tag + "<span class='header-cart-item-info'>";
+					tag = tag + numberFormat(value.c_grandtotal)+"원";
+					tag = tag + "</span></div></li>";
+					
+					
+				
+					$("#miniCart").append(tag);
+					
+				})
+				
+				var tag2 = "";
+				tag2 = tag2 + "<div class='header-cart-total w-full p-tb-40'>"
+				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
+				tag2 = tag2 + "</div>"
+				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
+				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
+				tag2 = tag2 + "View Cart </a></div>";
+				
+				$("#total").append(tag2);
+				
+				$(document).ready(function () {
+
+					$('#count').attr('data-notify', itemcount);
+
+			    });
+				
+				
+				
+			}
+		})
+	})
+</script>
+
+<c:choose>
+	<c:when test="${error eq 'error'}">
+		<script>
+			alert('${msg}');
+		</script>
+		<% 
+			session.removeAttribute("error");
+			session.removeAttribute("msg");
+		%>
+	</c:when>
+	
+	<c:when test="${success eq 'success'}">
+		<script>
+			alert('결제가 완료되었습니다.');
+		</script>
+		<% session.removeAttribute("success"); %>
+	</c:when>
+	
+	<c:when test="${cancel eq 'cancel'}">
+		<script>
+			alert('결제가 취소되었습니다.');
+		</script>
+		<% session.removeAttribute("cancel"); %>
+	</c:when>
+	
+	<c:when test="${fail eq 'fail'}" >
+		<script>
+			alert('결제를 실패하였습니다..');
+		</script>
+		<% session.removeAttribute("fail"); %>
+	</c:when>
+
+</c:choose>
 </head>
 <body class="animsition">
-	
 	<!-- Header -->
 	<header class="header-v3">
 		<!-- Header desktop -->
@@ -71,20 +168,19 @@
 							<li>
 								<a href="homeview">홈</a>
 							</li>
-
 							<li>
 								<a href="productView">상품</a>
 							</li>
-							<li>
-								<a href="cartview" >장바구니</a>
-							</li>
-							
 							
 							<li>
-								<a href="notice">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
+							
 							<li>
-								<a href="companyView">회사소개</a>
+								<a href="companyView">회사소개</a>						
+							
+							<li>
+								<a href="asView">AS</a>
 							</li>
 							
 						</ul>
@@ -93,7 +189,8 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+							<div id="count" class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" >
+
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -115,14 +212,7 @@
 				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO" ></a>
 			</div>
 
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-				<div class="flex-c-m h-full p-r-5">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-						<i class="zmdi zmdi-shopping-cart"></i>
-					</div>
-				</div>
-			</div>
+			
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -137,12 +227,7 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="homeview">홈</a>
-					<!-- <ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
-					</ul> -->
+					<a href="homeview">홈</a>					
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -151,11 +236,17 @@
 				<li>
 					<a href="productView">상품</a>
 				</li>
+				
 				<li>
-					<a href="notice">공지사항</a>
+					<a href="boardnoticeView">공지사항</a>
 				</li>
+				
 				<li>
-					<a href="blogview">회사소개</a>
+					<a href="companyView">회사소개</a>
+				</li>
+				
+				<li>
+					<a href="asView">AS</a>
 				</li>
 
 			</ul>
@@ -217,7 +308,7 @@
 						</li>
 			
 						<li class="p-b-13">
-							<a href="admin" class="stext-102 cl2 hov-cl1 trans-04">
+							<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
 								<p style="font-weight: bold; font-size: 1.5em;">관리자페이지 </p>
 							</a>
 						</li>
@@ -236,13 +327,13 @@
 						</li>
 						
 						<li class="p-b-13">
-						<a href="myPage" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">마이페이지 </p>
 						</a>
 						</li>
 						
 						<li class="p-b-13">
-						<a href="cart" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="cartView" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">장바구니 </p>
 						</a>
 						</li>
@@ -255,7 +346,7 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="notice" class="stext-102 cl2 hov-cl1 trans-04"> 
+						<a href="boardnoticeView" class="stext-102 cl2 hov-cl1 trans-04"> 
 							<p style="font-weight: bold; font-size: 1.5em;">공지사항</p>
 						</a>
 					</li>
@@ -265,7 +356,13 @@
 							<p style="font-weight: bold; font-size: 1.5em;">회사소개</p>
 						</a>
 					</li>
-
+					
+					<li class="p-b-13">
+						<a href="asView" class="stext-102 cl2 hov-cl1 trans-04">
+							<p style="font-weight: bold; font-size: 1.5em;">AS</p>
+						</a>
+					</li>
+					
 				</ul>
 				</div>
 
@@ -354,9 +451,7 @@
 					<p class="stext-108 cl6 p-t-27">안녕하세요. 남자 명품 시계,지갑을 판매하는
 						상승몰입니다. 저희 쇼핑몰은 여러가지 명품을 취급하여 고객님들께서 많은 종류의 명품과 제품을 볼 수 있도록 하였습니다.
 						다른 쇼핑몰보다 체계화된 AS도 받을 수 있으니 즐거운 쇼핑 되시길 바랍니다.</p>
-				</div>
-				
-				
+				</div>	
 			</div>
 		</div>
 	</aside>
@@ -378,71 +473,13 @@
 			</div>
 			
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
+				<ul id="miniCart" class='header-cart-wrapitem w-full'>
 				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
+				</ul>
+				<div id="total" class="w-full">
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -450,14 +487,15 @@
 
 
 	<!-- Slider -->
-	<section class="section-slide">
-		<div class="wrap-slick1 rs2-slick1">
+	<section  class="section-slide ">
+		<div class="wrap-slick1 rs2-slick1" >
 			<div class="slick1">
 				<div class="item-slick1 bg-overlay1" style="background-image: url(images/main01.PNG);"  data-thumb="images/main01.PNG" data-caption="Watch">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+							
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-202 txt-center cl0 respon2">
+								<span class="ltext-202 txt-center cl0 respon2 " >
 									Watch
 								</span>
 							</div>
@@ -467,17 +505,18 @@
 									Best Watch
 								</h2>
 							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+
+								<!-- <button id="watch" type="button"class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">Shop Now</button> -->
+						
+							<div  class="layer-slick1 animated visible-false " data-appear="zoomIn" data-delay="1600"  data-filter=".시계">
+								<a id="watch2" href="productViewWatch" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
 									Shop Now
-								</a>
+								</a><!-- href="productView" id=abc&pw=1234 -->
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/main02.PNG);" data-thumb="images/main02.PNG" data-caption="Wallet">
+				 <div class="item-slick1 bg-overlay1" style="background-image: url(images/main02.PNG);" data-thumb="images/main02.PNG" data-caption="Wallet">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -491,20 +530,17 @@
 									Best Wallet
 								</h2>
 							</div>
-								
-							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="productView" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+						
+							<div id="wallet2" class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
+								<a href="productViewWallet" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
 									Shop Now
 								</a>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				
+				</div>	
 			</div>
-
-			<div class="wrap-slick1-dots p-lr-10"></div>
+			 <div class="wrap-slick1-dots p-lr-10"></div> 
 		</div>
 	</section>
 
@@ -518,37 +554,37 @@
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner1.PNG" alt="IMG-BANNER">
 
-						<a href="productView" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Watch
-								</span>
-
-								
-							</div>
-						</a>
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">
+						<a href="productViewWatch" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
+						<div class="block1-txt-child1 flex-col-l">
+							<span class="block1-name ltext-102 trans-04 p-b-8">
+								Watch
+							</span>								
+						</div>						
+							
+				
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
-								</div>
 							</div>
+						</div>
 						
-					</div>
+					</a>
 				</div>
+			</div>
 
 				<div class="col-md-6 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner2.PNG" alt="IMG-BANNER">
 
-						<a href="productView" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".지갑">
+						<a href="productViewWallet" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".지갑">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Wallet
 								</span>
 							</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-txt-child2 p-b-4 trans-05" >
 								<div class="block1-link stext-101 cl0 trans-09">
 									Shop Now
 								</div>
@@ -565,20 +601,20 @@
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg-2 p-b-50">
 					<h4 class="stext-500 cl0 p-b-30">
 						Category
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
 								Watch
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
 						</li>
@@ -592,64 +628,61 @@
 						Help
 					</h4>
 
-					<p class="stext-130 cl7 size-201">
-						● 대표 전화번호: 02-1234-5678
-					</p>
-					
-					<p class="stext-130 cl7 size-201">
-						● 고객센터 : 1234-5678
-					</p>
-					
-					<p class="stext-130 cl7 size-201">
-						● 이메일문의 : abcdefg@abcdefg.com
-					</p>
-					
-					<p class="stext-130 cl7 size-201">
-						● FAQ
-					</p>
+
+						<p class="stext-130 cl7 size-201">
+							● 대표 전화번호: 02-1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">
+							● 고객센터 : 1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:wlsgpals2@naver.com" title="이메일 문의"class="stext-130 cl7 size-201">
+						 	wlsgpals2@naver.com
+						</a></p>
+						<p class="stext-130 cl7 size-201">
+							● FAQ
+						</p>
 					
 					
 				</div> 
 
-				<div class="col-sm-3 col-lg-50 p-b-40" >
-					<h4 class="stext-500 cl0 p-b-30">Directions</h4>
-				 		<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-			
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
+				<div class="col-sm-2 col-lg-50 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						Directions
+				 </h4>
+				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+						
+					
+			</div>
+				
+				<div class="col-sm-2 col-lg-40 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						SNS Page
+				 	</h4>
+				 		
+					<div class="p-t-10">			
+						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<i class="fa fa-facebook"></i>
+									</a>
+					
+						
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-instagram"></i>
+							</a>
+					
+					
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</div>
 					</div>
 				</div>
 				
 				  <div class="col-sm-6 col-lg-3 p-b-50">
 				  	<img src="images/icons/mainlogo.png" width="500">
-					<!-- <h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
-
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form> -->
 				</div>  
 			</div>
+			
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
@@ -844,7 +877,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</div>
 		</div>
-	 --></div>  
+	 </div>  
 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -928,6 +961,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
+  
+		
+<!--===============================================================================================-->
  <script src="js/main.js"></script>
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
@@ -963,4 +999,44 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	
 </body>
+
+<script type="text/javascript"></script> 
+
+<script>
+$(document).ready(function() {
+	/* 
+	$('#watch2').on('click',function(){
+		
+		$('#watch1').trigger("click");	
+		
+	});  	 */
+});	 
+
+	/*  $('#watch2').click(function(){
+		  var a = document.getElementById('watch1');
+		  a.click('#watch1'); 
+	});	  
+	  */
+	  /*  $('#watch2','#watch1').click(function() {
+		var $this=$(this);
+		
+		if($this.hasId('watch2')){
+			$(location).attr('href','productView');
+			$("#watch1").trigger("click");	
+		}
+		
+		else{
+			
+		}
+	});  */
+	/*  $(document).on("click","#watch2", function(){
+		 
+	
+		 $("#watch1").trigger("click");
+	 }); */
+
+
+ 	 
+</script> 
+ 
 </html>

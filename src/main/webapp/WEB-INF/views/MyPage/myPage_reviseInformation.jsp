@@ -69,10 +69,10 @@
  	"></a>
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartview" style="color:white">장바구니</a>
-      <a href="blog.html" style="color:white">Blog</a>
-      <a href="about.html" style="color:white">About</a>
-      <a href="contact.html" style="color:white">Contact</a>
+      <a href="/ssmall/cartView" style="color:white">장바구니</a>
+      <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
+      <a href="/ssmall/companyView" style="color:white">회사소개</a>
+      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -96,8 +96,8 @@
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
                   Dashboard <span class="sr-only">(current)</span>
-                </a> -->
-              </li>
+                </a> 
+              </li>-->
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
@@ -116,12 +116,17 @@
                   <b>나의 구매 내역</b>
                 </a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="/ssmall/myPage_refundList">
+                  <span data-feather="shopping-cart"></span>
+                  <b>나의 환불 내역</b>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
                   <b>1:1 문의</b>
                 </a>
-              </li>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_aSRequestView">
@@ -132,12 +137,18 @@
             </ul>
           </div>
         </nav>
+
+		
+		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px; ">
+		<div class="container-login100" style="background-color:#f8f8f8;height: 400px; border:3px solid black;">
+
       </div>
     </div>
     
 <div style="overflow:hidden; position:fixed;width: 1600px;height: 940px;left: 320px;"> 
     <div  class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
 		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
+
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form:form id="login" action="myPage_reviseInformation" class="login100-form validate-form" method="POST">
 					
@@ -149,21 +160,18 @@
     position:fiexd;
     height: 30px;
     border:1px solid black;
+ 	
     margin-top: 30px;
+    
     " />
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<br>
 					<div class="flex-c-m" style="position:fixed;top: 550px;left: 975px;">
-						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>
+						<input id="submit" class="btn btn-primary" type="submit" value="로그인"><pre> </pre>
 						
 											
 					</div>
-					
-
-				
-					
-					
 				</form:form>
 			</div>
 		</div>

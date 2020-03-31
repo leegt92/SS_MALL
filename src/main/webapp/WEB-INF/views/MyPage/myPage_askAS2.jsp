@@ -61,10 +61,10 @@
  	"></a>
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartview" style="color:white">장바구니</a>
-      <a href="blog.html" style="color:white">Blog</a>
-      <a href="about.html" style="color:white">About</a>
-      <a href="contact.html" style="color:white">Contact</a>
+      <a href="/ssmall/cartView" style="color:white">장바구니</a>
+      <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
+      <a href="/ssmall/companyView" style="color:white">회사소개</a>
+      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -88,8 +88,8 @@
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
                   Dashboard <span class="sr-only">(current)</span>
-                </a> -->
-              </li>
+                </a> 
+              </li>-->
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
@@ -108,13 +108,19 @@
                   <b>나의 구매 내역</b>
                 </a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="/ssmall/myPage_refundList">
+                  <span data-feather="shopping-cart"></span>
+                  <b>나의 환불 내역</b>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
                   <b>1:1 문의</b>
                 </a>
               </li>
-              </li>
+           
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_aSRequestView">
                   <span data-feather="layers"></span>
@@ -148,12 +154,12 @@
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="수정할 제품명을 입력하세요"
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" value="${FbTitle}"
 							style="padding-left: 30px;">
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="제품의 하자사항과 세부 요청 수정 사항을 입력하세요"></textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" >${FbContent}</textarea>
 						</div>
 
 						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">

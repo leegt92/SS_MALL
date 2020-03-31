@@ -161,10 +161,10 @@
  	"></a>
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartview" style="color:white">장바구니</a>
-      <a href="blog.html" style="color:white">Blog</a>
-      <a href="about.html" style="color:white">About</a>
-      <a href="contact.html" style="color:white">Contact</a>
+      <a href="/ssmall/cartView" style="color:white">장바구니</a>
+       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
+      <a href="/ssmall/companyView" style="color:white">회사소개</a>
+      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -188,8 +188,8 @@
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
                   Dashboard <span class="sr-only">(current)</span>
-                </a> -->
-              </li>
+                </a> 
+              </li>-->
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_reviseInformation">
                   <span data-feather="file"></span>
@@ -208,12 +208,17 @@
                   <b>나의 구매 내역</b>
                 </a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="/ssmall/myPage_refundList">
+                  <span data-feather="shopping-cart"></span>
+                  <b>나의 환불 내역</b>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_askRequestView">
                   <span data-feather="users"></span>
                   <b>1:1 문의</b>
                 </a>
-              </li>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/myPage_aSRequestView">
@@ -233,7 +238,7 @@
            <thead>
            <th style="width:60%; padding-left:12px !important;">제목(작성날짜)</th>
            </thead>
-    </table>
+    </table> 
     <ul class="accordion1" style="height: 220px;">
     	<c:forEach items="${aSRequestboards}" var="aSRequestboards" varStatus="status">
         <li class="accordion2">
@@ -241,7 +246,7 @@
             	<c:when test="${aSRequestboards.banswered eq '답변완료'}">
             		<h3 style="font-size:16px; color:green;" class="accordion3">
             		<c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/>
-            		<button onclick="window.location.href='/ssmall/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button onclick="window.location.href='/ssmall/myPage_askAS2?bId=${aSRequestboards.bid}?bTitle=${aSRequestboards.btitle}?bContent=${aSRequestboards.bcontent}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
             		<button onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
@@ -319,7 +324,7 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<a href="myPage_aSRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-        <button onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">A/S서비스 신청하기</font></button>
+        <button onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
     </ul>
     
 </div>

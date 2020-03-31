@@ -63,7 +63,7 @@
  	"></a>
       <a href="/ssmall" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartview" style="color:white">장바구니</a>
+      <a href="/ssmall/cartView" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
@@ -239,9 +239,6 @@
       feather.replace()
     </script>
 
-<<<<<<< HEAD
-    
-=======
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>

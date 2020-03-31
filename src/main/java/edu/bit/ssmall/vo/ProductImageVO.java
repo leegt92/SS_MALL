@@ -10,12 +10,19 @@ public class ProductImageVO {
 	private String p_description;
 	private String p_released_date;
 	private int p_amount;
-	private String p_category;
-	
+	private String p_category;	
 	private String i_name;
 	private int i_type;
-
 	
+	
+	
+	@Override
+	public String toString() {
+		return "ProductImageVO [p_number=" + p_number + ", p_name=" + p_name + ", p_price=" + p_price + ", p_brand="
+				+ p_brand + ", p_stock=" + p_stock + ", p_description=" + p_description + ", p_released_date="
+				+ p_released_date + ", p_amount=" + p_amount + ", p_category=" + p_category + ", i_name=" + i_name
+				+ ", i_type=" + i_type + "]";
+	}
 	public int getI_type() {
 		return i_type;
 	}

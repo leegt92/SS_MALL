@@ -1,6 +1,5 @@
 package edu.bit.ssmall.controller;
 
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.page.Criteria;
+import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.MypageService;
-import edu.bit.ssmall.valid.MemberValidator;
 import edu.bit.ssmall.vo.BoardVO;
-import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.Product_BuyVO;
 
@@ -35,11 +31,14 @@ import edu.bit.ssmall.vo.Product_BuyVO;
 public class MyPageController {
 	
 	/*
-	 * ============DB 수정사항============================= 1BUY테이블에 주문배송완료여부(B_DONE) 추가
-	 * 2BUY테이블에 주문수량(B_AMOUNT) 추가 3PRODUCT 테이블에 P_IMAGE(대표사진) 추가 4BANSWERNO
-	 * BOARD테이블에 추가. 추가 어디에 답변했는지에 관한 것. 5BANSWERED(답변완료여부) BOARD테이블에 추가.
-	 * 6MEMBER(M_NUMBER)-BOARD(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가
-		7MEMBER(M_NUMBER)-BUY(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가 
+	 * ============DB 수정사항============================= 
+	 * 1BUY테이블에 주문배송완료여부(B_DONE) 추가
+	 * 2BUY테이블에 주문수량(B_AMOUNT) 추가 
+	 * 3PRODUCT 테이블에 P_IMAGE(대표사진) 추가 
+	 * 4BANSWERNO BOARD테이블에 추가. 추가 어디에 답변했는지에 관한 것. 
+	 * 5BANSWERED(답변완료여부) BOARD테이블에 추가.
+	 * 6MEMBER(M_NUMBER)-BOARD(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가 회.탈시 게시글있으면 삭제안되서 삭제
+		7MEMBER(M_NUMBER)-BUY(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가 회.탈시 구매내역있으면 삭제안되서 구매내역도 삭제
 	 */
 	
 	@Autowired
@@ -412,6 +411,8 @@ public class MyPageController {
 			String m_pw = mypageService.getMpw(name);
 			String m_id = mypageService.getMid(name);
 			String m_email = mypageService.getMemail(name);
+			String m_naver = mypageService.getMnaver(name);
+			String m_kakao = mypageService.getMkakao(name);
 			model.addAttribute("m_email",m_email);
 			model.addAttribute("m_id",m_id);
 			model.addAttribute("m_number", m_number);
@@ -425,8 +426,12 @@ public class MyPageController {
 			String m_phonenum2 = mypageService.getMphonenum(name);
 			model.addAttribute("m_phonenum2",m_phonenum2);
 			
+			 if(m_naver != null || m_kakao != null) {
+				 return "MyPage/myPage_reviseInformation2-2";
+			 }
+			 
 			 if(passwordEncoder.matches(pw, m_pw)) {
-				 return "MyPage/myPage_reviseInformation2";
+				 return "MyPage/myPage_reviseInformation2-2";
 			 }else {
 				 return "MyPage/checkPwError";
 			 }
@@ -515,6 +520,67 @@ public class MyPageController {
 
 	}
 	
+	@RequestMapping(value = "/myPage_reviseInformation2_2", method = RequestMethod.POST)
+	public String myPage_reviseInformation2_2(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String m_age = request.getParameter("m_age");
+	    String m_adress = request.getParameter("m_adress");
+	    String m_phonenum = request.getParameter("m_phonenum");
+	    String m_receive_email = request.getParameter("m_receive_email");
+	    if(m_age == "" && m_adress == "" && m_phonenum == ""  && m_receive_email == null) {
+	    	return "MyPage/checkPwError3_2";
+	    }
+	    
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String m_id = mypageService.getMid(name);
+			model.addAttribute("m_id",m_id);
+			String m_email = mypageService.getMemail(name);
+			model.addAttribute("m_email",m_email);
+			String m_name2 = mypageService.getMname(name);
+			model.addAttribute("m_name2",m_name2);
+			int m_age3 = mypageService.getMage(name);
+			model.addAttribute("m_age3",m_age3);
+			String m_adress2 = mypageService.getMadress(name);
+			model.addAttribute("m_adress2",m_adress2);
+			String m_phonenum2 = mypageService.getMphonenum(name);
+			model.addAttribute("m_phonenum2",m_phonenum2);
+			
+			if(m_age != "") {
+				int m_age2 = Integer.parseInt(m_age);
+		    	mypageService.updateMage(m_age2, name);
+		    }
+			if(m_adress != "") {
+		    	mypageService.updateMadress(m_adress, name);
+		    }
+			if(m_phonenum != "") {
+		    	mypageService.updateMphonenum(m_phonenum, name);
+		    }
+			if(m_receive_email.equals("0")) {
+				mypageService.updateMreceiveToYes(name);
+			}
+			if(m_receive_email.equals("1")) {
+				mypageService.updateMreceiveToNo(name);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_reviseInformation2-2";
+
+	}
+	
 	@RequestMapping(value = "/myPage_reviseInformation3", method = RequestMethod.POST)
 	public String myPage_reviseInformation3(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -578,6 +644,7 @@ public class MyPageController {
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
 	    model.addAttribute("bId",bId);
+	    
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -590,6 +657,10 @@ public class MyPageController {
 			if(bTitle != null && bContent != null) {
 				mypageService.updateAskAS(bTitle, bContent, bId);
 			}
+			String FbTitle = mypageService.selectFbTitle(bId);
+		    String FbContent = mypageService.selectFbContent(bId);
+			model.addAttribute("FbTitle",FbTitle);
+		    model.addAttribute("FbContent",FbContent);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -612,6 +683,7 @@ public class MyPageController {
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
 	    model.addAttribute("bId",bId);
+	    
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -655,7 +727,9 @@ public class MyPageController {
 	    String bTitle = request.getParameter("bTitle");
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
+	    
 	    model.addAttribute("bId",bId);
+	    
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -668,6 +742,10 @@ public class MyPageController {
 			if(bTitle != null && bContent != null) {
 				mypageService.updateAskAS(bTitle, bContent, bId);
 			}
+			String FbTitle = mypageService.selectFbTitle(bId);
+		    String FbContent = mypageService.selectFbContent(bId);
+			model.addAttribute("FbTitle",FbTitle);
+		    model.addAttribute("FbContent",FbContent);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -690,6 +768,7 @@ public class MyPageController {
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
 	    model.addAttribute("bId",bId);
+	   
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -764,7 +843,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:MyPage/myPage_askRequestView";
+	    return "redirect:/myPage_askRequestView";
 
 
 	}
@@ -808,7 +887,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:MyPage/myPage_aSRequestView";
+	    return "redirect:/myPage_aSRequestView";
 
 
 	}

@@ -67,6 +67,16 @@ public class MypageService {
 		return mypageMapper.getMpoint(m_id);
 	}
 	
+	public String getMnaver(String m_id) throws Exception{
+		
+		return mypageMapper.getMnaver(m_id);
+	}
+
+	public String getMkakao(String m_id) throws Exception{
+	
+		return mypageMapper.getMkakao(m_id);
+	}
+	
 	public void updateMname(String m_name, String m_id) throws Exception{
 		mypageMapper.updateMname(m_name, m_id);
 	}
@@ -171,6 +181,14 @@ public class MypageService {
 	
 	public int selectCountBoard() throws Exception {
 		return mypageMapper.selectCountBoard();	
+	}
+	
+	public String selectFbTitle(String bid) throws Exception {
+		return mypageMapper.selectFbTitle(bid);	
+	}
+	
+	public String selectFbContent(String bid) throws Exception {
+		return mypageMapper.selectFbContent(bid);	
 	}
 	
 	public int selectAskCountBoard(int m_number) throws Exception {

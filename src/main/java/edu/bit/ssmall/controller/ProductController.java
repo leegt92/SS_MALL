@@ -1,16 +1,18 @@
 package edu.bit.ssmall.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ssmall.service.ProductService;
-import edu.bit.ssmall.vo.ProductImageVO;
-
+import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.ProductReplyVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 /**
  * Handles requests for the application home page.
@@ -22,24 +24,122 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping("/productView")
-
-	public String productview(Model model) {
-
+	public String productview(HttpServletRequest request,Model model) {
+		
 		model.addAttribute("product", productService.selectProductList());
 		
 		return "product";
 	}
+	
+	@RequestMapping("/productViewWatch")
 
-	@RequestMapping("/productDetail")
-	public String product_detail(HttpServletRequest request,Model model) {
-		System.out.println("/productDetail");
-		String p_number = request.getParameter("p_number");
-//		ProductImageVO productImage  = productService.selectProductOne(p_number);
-		model.addAttribute("productDetail", productService.selectProductOne(p_number));//»çÁø¸ŞÀÎ,¼­ºê1,2 Æ÷ÇÔ. Áï °ª 3°³ ¸®½ºÆ®·Î¹Ş¾ÒÀ½
-		model.addAttribute("productAmount", productService.selectProductListAmount());
-		//model.addAttribute("product1", productService.selectProductOne2(p_number));//»çÁø1°³. Áï °ª 1°³ ÀÏ¹İÀ¸·Î ¹ŞÀ½.
-		System.out.println("ÄÁÆ®·Ñ·¯¸®ÅÏ³Ñ¾î°¨");
-		return "productDetail";
+	public String productview2(Model model) {
+
+		model.addAttribute("product", productService.selectProductList());
+		
+		return "productwatch";
 	}
 	
+	@RequestMapping("/productViewWallet")
+
+	public String productview3(Model model) {
+
+		model.addAttribute("product", productService.selectProductList());
+		
+		return "productwallet";
+	}
+	
+	
+	/*
+	 * @RequestMapping("/productDetail") public String product_detail(ProductReplyVO
+	 * productReplyVO, HttpServletRequest request,Model model) {
+	 * System.out.println("/productDetail"); String p_number =
+	 * request.getParameter("p_number"); // ProductImageVO productImage =
+	 * productService.selectProductOne(p_number);
+	 * model.addAttribute("productDetail",
+	 * productService.selectProductOne(p_number));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½1,2 ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ 3ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Î¹Ş¾ï¿½ï¿½ï¿½ model.addAttribute("productAmount",
+	 * productService.selectProductListAmount());
+	 * 
+	 * model.addAttribute("productReply", productService.productReply(p_number));
+	 * //model.addAttribute("product1",
+	 * productService.selectProductOne2(p_number));//ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½. model.addAttribute("productNum", productService.productOne(p_number));
+	 * //productService.productReplyWrite(productReplyVO);
+	 * System.out.println("ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½Ï³Ñ¾î°¨");
+	 * 
+	 * //êµ¬ë§¤ìœ„í•´ì„œ ì¶”ê°€í–ˆìŒ ProductVO productVO = productService.productOne(p_number);
+	 * System.out.println(productVO); model.addAttribute("product",productVO);
+	 * 
+	 * return "productDetail";
+	 * 
+	 * }
+	 */
+	
+	@ResponseBody
+	@RequestMapping(value = "product_Write_reply", method = {RequestMethod.POST, RequestMethod.GET})
+	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
+		System.out.println("/product_Write_replyAjax");
+		
+		String p_number = request.getParameter("p_number");
+		System.out.println("ìƒí’ˆë²ˆí˜¸ í™•ì¸ "+ p_number);
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));	
+		System.out.println(productService.selectProductOne(p_number));
+		
+		productService.productReplyWrite(productReplyVO);
+		System.out.println("Ajaxï¿½ï¿½ï¿½Î´ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½:55");
+		
+	}
+	
+	/*@RequestMapping("/product_Write_reply") ï¿½ï¿½ï¿½Å¼Ò°ï¿½ ajaxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½Ö¼ï¿½È­
+	public String product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
+		System.out.println("/product_Write_reply");
+		String p_number = request.getParameter("p_number");//nullï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?? System.out.println(request.getParameter("p_number"))ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½;
+		System.out.println("ï¿½ï¿½ï¿½Î´ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½:51");
+		System.out.println(request.getParameter("p_number"));
+		model.addAttribute("productDetail", productService.selectProductOne(p_number));	
+		System.out.println("ï¿½ï¿½ï¿½Î´ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½:53");
+		productService.productReplyWrite(productReplyVO);
+		System.out.println("ï¿½ï¿½ï¿½Î´ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½:55");
+		return "forward:/productDetail2";
+	}*/
+	@ResponseBody
+	@RequestMapping("/deleteReply")
+	public void deleteReply(BoardVO boardVO, Model model,HttpServletRequest request) {
+		System.out.println("/deleteReplyï¿½ï¿½ï¿½ï¿½");
+		String bid = request.getParameter("bid");
+		System.out.println(bid);
+		//String p_number = request.getParameter("p_number");	
+		//model.addAttribute("productDetail", productService.selectProductOne(p_number));	
+	
+		//String bid = request.getParameter("bid");
+		//model.addAttribute("boardNum", productService.boardOne(bid));
+		productService.replyDelete(boardVO);
+		System.out.println("/deleteReplyï¿½ï¿½");
+		//bidï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. jspï¿½ï¿½ï¿½ï¿½ ï¿½È³Ñ¾ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ bidï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´Â°ï¿½ È®ï¿½ï¿½. ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		//ï¿½ï¿½ ï¿½Ş¼Òµï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½
+	}
+	
+	/* ï¿½ï¿½ï¿½ï¿½ ajaxï¿½áº¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½
+	 * public String deleteReply(BoardVO boardVO, Model model,HttpServletRequest request) {
+		System.out.println("/deleteReplyï¿½ï¿½ï¿½ï¿½");
+		//String p_number = request.getParameter("p_number");	
+		//model.addAttribute("productDetail", productService.selectProductOne(p_number));	
+		System.out.println("bidï¿½ï¿½");
+		//String bid = request.getParameter("bid");
+		//model.addAttribute("boardNum", productService.boardOne(bid));
+		productService.replyDelete(boardVO);
+		System.out.println("/deleteReplyï¿½ï¿½");
+		return "forward:/productDetail2";
+		//bidï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. jspï¿½ï¿½ï¿½ï¿½ ï¿½È³Ñ¾ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ bidï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´Â°ï¿½ È®ï¿½ï¿½. ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		//ï¿½ï¿½ ï¿½Ş¼Òµï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½
+	}*/
+	
+	@RequestMapping("/modifyReply")
+	public String modifyReply(BoardVO boardVO, Model model) {
+		System.out.println("modifyReplyï¿½ï¿½ï¿½ï¿½");
+		//productService.updateBoard(boardVO);
+		return "forward:/productDetail";
+	}
+
 }

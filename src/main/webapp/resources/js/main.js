@@ -136,9 +136,11 @@
         $filter.on('click', 'button', function () {
             var filterValue = $(this).attr('data-filter');
             $topeContainer.isotope({filter: filterValue});
+            console.log(filterValue);
         });
         
     });
+   
 
     // init Isotope
     $(window).on('load', function () {
