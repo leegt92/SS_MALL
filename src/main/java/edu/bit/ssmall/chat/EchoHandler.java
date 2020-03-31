@@ -1,5 +1,6 @@
 package edu.bit.ssmall.chat;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -26,9 +27,16 @@ public class EchoHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session)throws Exception {
         System.out.println("afterConnectionEstablished" + session);
      
-        String senderId = getName(session); //세션아이디
-        sessions.put(senderId, session); //로그인한 회원 이름
+        String senderName = getName(session); //세션아이디
+        sessions.put(senderName, session); //로그인한 회원 이름
        
+        Iterator<String> sessionIds = sessions.keySet().iterator();
+        String sessionId="";
+        while(sessionIds.hasNext()){
+             sessionId = sessionIds.next();
+             System.out.println(sessionId); 
+			sessions.get(sessionId).sendMessage(new TextMessage("<p style='text-align : center;'>"+senderName + " 님이 입장하셨습니다.</p>" + "<br>"));
+        }    
     }
     
     
@@ -37,14 +45,24 @@ public class EchoHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	
     	System.out.println("handleTextMessage:"+session + " : " + message);
+   
     	String senderName = getName(session);
-       
+    	String time = getTime();
+
     	Iterator<String> sessionIds = sessions.keySet().iterator();
         String sessionId="";
         while(sessionIds.hasNext()){
              sessionId = sessionIds.next();
-             sessions.get(sessionId).sendMessage(new TextMessage("["+senderName +"]"+" : "+ message.getPayload()));
              
+             System.out.println(senderName); //작성자
+             System.out.println(sessionId); //맵에 담겨진거 돌면서    
+           
+             if (senderName.equals(sessionId)) { //자신이 작성한건 오른쪽에
+            	 sessions.get(sessionId).sendMessage(new TextMessage("<li class='right clearfix'><span class='chat-img pull-right'><img src='http://placehold.it/50/FA6F57/fff&text=ME' alt='User Avatar' class='img-circle' /></span>" + "<div class='chat-body clearfix'><div class='header'><small class='text-muted'><span class='glyphicon glyphicon-time'></span>" + time + "</small>" + "<strong class='pull-right primary-font'>" + senderName + "</strong></div>" + "<p>" + message.getPayload() + "</p></div></li>"));
+			} else {//남이 작성한건 왼쪽에
+				 sessions.get(sessionId).sendMessage(new TextMessage("<li class='left clearfix'>" + "<span class='chat-img pull-left'>" + "<img src='http://placehold.it/50/55C1E7/fff&text=U' alt='User Avatar' class='img-circle'/></span>" + "<div class='chat-body clearfix'>" + "<div class='header'>" + "<strong class='primary-font'>" + senderName + "</strong>" + "<small class='pull-right text-muted'>" + "<span class='glyphicon glyphicon-time'></span>"+ time + "</small></div>" + "<p>" + message.getPayload() + "</p></div></li>" ));
+			}
+ 
         }    
     }
     
@@ -60,11 +78,27 @@ public class EchoHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	System.out.println("afterConnectionClosed:"+ session +" : "+status);
-       
-    	sessions.remove(session.getId());
-       
+    	
+        sessions.remove(session.getId());
+    	
     }
     
+    private String getTime() {
+    	Calendar cal = Calendar.getInstance();
+    	String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+    	String min = Integer.toString(cal.get(Calendar.MINUTE));  
+    	String sec = Integer.toString(cal.get(Calendar.SECOND));
+        
+    	if (min.length()==1) {
+    		min = "0" + min;
+    	}
+    	if(sec.length()==1) {
+    		sec = "0" + sec;
+    	}
+    	
+        String today = hour + ":" + min + ":" + sec;
+        return today;
+    }
     
 }
 

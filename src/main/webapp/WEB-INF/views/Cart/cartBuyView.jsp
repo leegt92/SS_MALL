@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/ssmall/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -271,13 +271,13 @@
 						<div>
 						<form id="pointForm">			
 							<span class="label-input100">포인트</span><br>
-							<input id="point" class="form-control" style="width: 20%; display: inline" name="point" type="text" />							
+							<input id="pointInput" class="form-control" style="width: 20%; display: inline" name="point" type="text" />							
 							<input id="pointUse" type="button" class="btn btn-primary" value="전체사용" />
 							<span class="label-input100">현재 포인트 : <fmt:formatNumber value="${member.m_point}" pattern="###,###,###" /></span>
 							<span class="label-input100">사용가능 포인트 : <fmt:formatNumber value="${totalprice * 0.01}" pattern="###,###,###" /></span>
 							<br><br>
 							<span class="label-input100">최종가격</span>
-							<input id="result" type="text" class="form-control" style="width: 20%;" value="">
+							<input id="finalPrice" type="text" class="form-control" style="width: 20%;" value="">
 						</form>
 						</div>	
 					</div>
@@ -601,28 +601,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			if( ${totalprice * 0.01} < ${member.m_point}){
 				 //포인트 입력하는곳  상품금액의 1퍼센트 이상보다 더많은 포인트가 존재한다면  상품금액의 1퍼센트의 포인트가 들어가도록한다.
 				usePoint = ${totalprice * 0.01};
-				document.getElementById("point").value = usePoint;
+				document.getElementById("pointInput").value = usePoint;
 			}else{
 				//아니면 적거나 같은거니까 m_point다사용
 				usePoint = ${member.m_point};
-				document.getElementById("point").value = usePoint;
+				document.getElementById("pointInput").value = usePoint;
 			}
 	
 			var price = ${totalprice} - usePoint;			
 
-			document.getElementById("result").value = numberWithCommas(price); //최종가격
+			document.getElementById("finalPrice").value = numberWithCommas(price); //최종가격
 			document.getElementById("usingPoint").value = usePoint; //컨트롤러에 넘어가는 사용포인트
 		});
 		
-		$("#point").on("propertychange change keyup paste input", function() {
+		$("#pointInput").on("propertychange change keyup paste input", function() {
  			
 			var regexp = /^[0-9]*$/
 			var usePoint = $(this).val();
 			var price = null;
 			if( !regexp.test(usePoint) ) {
 
-				document.getElementById("point").value = null;
-				document.getElementById("result").value = null;					
+				document.getElementById("pointInput").value = null;
+				document.getElementById("finalPrice").value = null;					
 				
 				return false;
 			}
@@ -632,44 +632,44 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			if(usePoint > ${member.m_point} && usePoint > ${totalprice * 0.01}){	
 				alert('사용가능한 포인트보다 많음');
 				price = ${totalprice} - ${totalprice * 0.01};
-				document.getElementById("point").value = ${totalprice * 0.01};
-				document.getElementById("result").value = numberWithCommas(price);
+				document.getElementById("pointInput").value = ${totalprice * 0.01};
+				document.getElementById("finalPrice").value = numberWithCommas(price);
 				return false;
 			
 			}else if (usePoint > ${member.m_point}){
 				alert('보유한 포인트보다 많음');
 				price = ${totalprice} - ${member.m_point};
 				
-				document.getElementById("point").value = ${member.m_point};	
-				document.getElementById("result").value = numberWithCommas(price);
+				document.getElementById("pointInput").value = ${member.m_point};	
+				document.getElementById("finalPrice").value = numberWithCommas(price);
 				return false;
 			
 			}else if(usePoint > ${totalprice * 0.01}){
 				alert('사용가능한 포인트보다 많음');
 				price = ${totalprice} - ${totalprice * 0.01};
-				document.getElementById("point").value = ${totalprice * 0.01};
-				document.getElementById("result").value = numberWithCommas(price);
+				document.getElementById("pointInput").value = ${totalprice * 0.01};
+				document.getElementById("finalPrice").value = numberWithCommas(price);
 				return false;
 			}
 				
 			price = ${totalprice} - usePoint;
 			
 			
-			document.getElementById("result").value = numberWithCommas(price);
+			document.getElementById("finalPrice").value = numberWithCommas(price);
 			
 			document.getElementById("usingPoint").value = usePoint;
 			
          });
 		
 		$('#receiver').focus(function(){
-			var point = $('#point').val()
+			var point = $('#pointInput').val()
 			console.log(point);
 			if (point > 0 && point < 1000){
 				alert("포인트는 1000원이상부터 사용가능합니다.")
 				$('#receiver').blur();
-				document.getElementById("point").value = null;
-				document.getElementById("result").value = null;	
-				$('#point').focus();
+				document.getElementById("pointInput").value = null;
+				document.getElementById("finalPrice").value = null;	
+				$('#pointInput').focus();
 				return;
 			}
 		})

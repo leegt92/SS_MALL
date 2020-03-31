@@ -13,8 +13,10 @@ import org.springframework.web.client.RestClientException;
 
 import edu.bit.ssmall.kakaopay.KakaoPay;
 import edu.bit.ssmall.kakaopay.KakaoPayCancelVO;
+import edu.bit.ssmall.mapper.BuyMapper;
 import edu.bit.ssmall.mapper.RefundMapper;
 import edu.bit.ssmall.vo.BuyVO;
+import edu.bit.ssmall.vo.ProductImageVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 @Service
@@ -24,6 +26,9 @@ public class RefundService {
 	
 	@Autowired
 	RefundMapper refundMapper;
+	
+	@Autowired
+	BuyMapper buyMapper;
 	
 	//구매내역 조회
 	public BuyVO getBuyInfo(String b_number) {
@@ -42,12 +47,15 @@ public class RefundService {
 		}
 		refundMapper.addRefund(m_number,p_number,b_amount,b_total);
 		
-		int point = (int) Math.floor(b_total * 0.01);
+		ProductImageVO productImageVO = buyMapper.productinfo(Integer.toString(p_number));
+		
+		int point = (int)(productImageVO.getP_price() * 0.01);
 		
 		System.out.println("포인트회수 : "+ point);		
 		refundMapper.minusPoint(m_number, point);
 		refundMapper.removeBuy(m_number,b_number);
 		refundMapper.productRefund(p_number, b_amount);
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("success", "success");
 		return "mypage/myPage_refundList";

@@ -60,20 +60,7 @@
 		<beans:property name="dataSource" ref="dataSource" />
 	</beans:bean>
 
-
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="transactionTest" rollback-for="Exception" />
-		</tx:attributes>    
-	</tx:advice> -->
-	
-	<!-- Transaction을 위한 AOP 설정 -->
-	<!-- <aop:config>
-		<aop:pointcut id="servicePublicMethod" expression="execution(* edu..service.*Service.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePublicMethod" />
-	</aop:config>   -->
 
 	<beans:bean id="echochoHandler" class="edu.bit.ssmall.chat.EchoHandler"/>
 

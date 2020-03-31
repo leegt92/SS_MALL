@@ -182,6 +182,7 @@ public class CartController {
 		payVO.setAmount(amount);
 		
 		session.setAttribute("payVO",payVO); //구매정보를 담은 객체 세션처리.
+		session.setAttribute("usePoint", usingPoint);
 		
 		session.removeAttribute("totalprice"); //가격 수량 payVO로 세션처리햇으니 두개삭제
 		session.removeAttribute("amount");
@@ -192,7 +193,7 @@ public class CartController {
 		
 		for (int i = 0; i < list.size(); i++) {			
 			System.out.println(list.get(i)); //제대로 담겼는지 확인
-			p_name = p_name + cartService.getP_name(list.get(i).getP_number()) + ", ";
+			p_name = p_name + cartService.getP_name(list.get(i).getP_number()) + " ";
 			
 		}
 		p_name = p_name + ")";
