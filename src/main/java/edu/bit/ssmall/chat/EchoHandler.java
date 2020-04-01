@@ -66,13 +66,7 @@ public class EchoHandler extends TextWebSocketHandler {
         }    
     }
     
-    private String getName(WebSocketSession session) {
-		
-		MemberVO memberVO = chatService.getMemberInfo(session.getPrincipal().getName());
-		
-		return memberVO.getM_name();
-	}
-
+   
 
 	//클라이언트가 연결을 끊었을 때 실행되는 메소드  
     @Override
@@ -84,6 +78,7 @@ public class EchoHandler extends TextWebSocketHandler {
     }
     
     private String getTime() {
+    	
     	Calendar cal = Calendar.getInstance();
     	String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
     	String min = Integer.toString(cal.get(Calendar.MINUTE));  
@@ -100,5 +95,12 @@ public class EchoHandler extends TextWebSocketHandler {
         return today;
     }
     
+    private String getName(WebSocketSession session) {
+		
+		MemberVO memberVO = chatService.getMemberInfo(session.getPrincipal().getName());
+		
+		return memberVO.getM_name();
+	}
+
 }
 

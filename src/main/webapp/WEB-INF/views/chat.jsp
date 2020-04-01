@@ -9,7 +9,7 @@
 
 
 <title>상승몰 채팅</title>
-
+<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <script type="text/javascript" src="/ssmall/js/jquery-3.2.1.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
