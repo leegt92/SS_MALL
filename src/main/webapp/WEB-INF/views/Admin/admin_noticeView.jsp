@@ -127,8 +127,7 @@ span {
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user1-128x128.jpg" alt="User Avatar"
-									class="img-size-50 mr-3 img-circle">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i
@@ -144,8 +143,7 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user8-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i
@@ -161,8 +159,7 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user3-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i
@@ -276,7 +273,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>AS</h1>
+							<h1>공지사항</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -296,11 +293,37 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-								
+								<h3 class="card-title">공지사항 리스트</h3>
 
-
-
-					</div>	
+								<table width="500" cellpadding="0" cellspacing="0" border="1">
+		<form action="modify" method="post">
+			<input type="hidden" name="bId" value="${content_view.bId}">
+			<tr>
+				<td> 번호 </td>
+				<td> ${content_view.bId} </td>
+			</tr>
+			<tr>
+				<td> 히트 </td>
+				<td> ${content_view.bHit} </td>
+			</tr>
+			<tr>
+				<td> 이름 </td>
+				<td> <input type="text" name="bName" value="${content_view.bName}"></td>
+			</tr>
+			<tr>
+				<td> 제목 </td>
+				<td> <input type="text" name="bTitle" value="${content_view.bTitle}"></td>
+			</tr>
+			<tr>
+				<td> 내용 </td>
+				<td> <textarea rows="10" name="bContent" >${content_view.bContent}</textarea></td>
+			</tr>
+			<tr >
+				<td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp; <a href="noticeList">목록보기</a> &nbsp;&nbsp;</td>
+			</tr>
+		</form>
+	</table>							
+							</div>	
 								</tbody>
 									</table>								
 								</div>								

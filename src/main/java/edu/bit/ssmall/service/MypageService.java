@@ -105,8 +105,8 @@ public class MypageService {
 		mypageMapper.updateMpassword(m_password, m_id);
 	}
 	
-	public void insertAsk(String bTitle, String bContent, int m_number ) throws Exception{
-		mypageMapper.insertAsk(bTitle, bContent, m_number);
+	public void insertAsk(String bName, String bTitle, String bContent, int m_number ) throws Exception{
+		mypageMapper.insertAsk(bName, bTitle, bContent, m_number);
 	}
 	
 	public void updateAskAS(String bTitle, String bContent, String bId ) throws Exception{
@@ -117,8 +117,8 @@ public class MypageService {
 		mypageMapper.deleteAskAS(bId);
 	}
 
-	public void insertAS(String bTitle, String bContent, int m_number) throws Exception {
-		mypageMapper.insertAS(bTitle, bContent, m_number);	
+	public void insertAS(String bName, String bTitle, String bContent, int m_number) throws Exception {
+		mypageMapper.insertAS(bName, bTitle, bContent, m_number);	
 	}
 	
 	public void withdrawMember(String m_id) throws Exception {

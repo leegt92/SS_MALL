@@ -38,7 +38,6 @@
 
 
 
-
 <style>
 .dropdown button {
 	display: block;
@@ -127,8 +126,8 @@ span {
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user1-128x128.jpg" alt="User Avatar"
-									class="img-size-50 mr-3 img-circle">
+								<!-- <img src="dist/img/user1-128x128.jpg" alt="User Avatar"
+									class="img-size-50 mr-3 img-circle"> -->
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i
@@ -144,8 +143,8 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user8-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								<!-- <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
+									class="img-size-50 img-circle mr-3"> -->
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i
@@ -161,8 +160,8 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user3-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								<!-- <img src="dist/img/user3-128x128.jpg" alt="User Avatar"
+									class="img-size-50 img-circle mr-3"> -->
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i
@@ -276,7 +275,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>AS</h1>
+							<h1>공지사항</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -296,22 +295,75 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
+								<h3 class="card-title"></h3>
+
+<form id="submitAskRequest" action="/ssmall/admin/noticeWrite">
+
+					<form id="submitAskRequest" action="noticeWrite_back">
+
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							공지사항 작성
+						</h4> 
+
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."
+							style="padding-left: 30px;">
+						</div>
+
+						<div class="bor8 m-b-30">
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
+						</div>
+
+						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							제출
+						</button>
+					</form>
+					
+				</div>
+				</section>
+
 								
+ <section class="bg0 p-t-104 p-b-116" style="
+	    margin-left: 0px;
+	    margin-top: 100px;
+	    padding-top: 0px;
+	    padding-left: 0px;
+	    position: fixed;
+	    left: 400px;
+	    ">
+		<div class="container" >
+			<div class="flex-w flex-tr">
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
+				width:1142px; height:527px; style="
+				 width: 1142px;
+   				 height: 527px;
+				">
 
+					
 
-
-					</div>	
-								</tbody>
-									</table>								
-								</div>								
-							</div>														
-						</div>					
+				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md" style="
+					padding-left: 0px;
+					padding-right: 0px;
+					height: 162px;
+					width: 1142px;
+					">
+					<div class="flex-w w-full p-b-42" style="
+					    padding-bottom: 10px;
+					    width: 300px;">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-map-marker"></span>
+						</span>				
 					</div>
 				</div>
-			</section>
+			</div>
 		</div>
-
-
+	</section>														
+								</div>												
+							</div>										
+						</div>														
+					</div>					
+				</div>		
+			</div>
 
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
@@ -327,5 +379,51 @@ span {
 			</div>
 		</footer>
 	</div>
+	
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/ssmall/js/popper.min.js"></script>
+    <script src="/ssmall/js/bootstrap.min.js"></script>
+    <script src="/ssmall/js/sweetalert2.js"></script>
+	
+	<!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+    <script>
+    	
+	    $("#submitAskRequest").submit(function(event) {
+	    		var a1 = document.getElementById("bTitle").value;
+	    		var a2 = document.getElementById("bContent").value;
+	    		if(a1 == "" || a2 == "") {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'error',
+	    				position: 'center',
+	    				title: '글 제목 및 글 내용 미입력',
+	    				text: '글 제목과 글 내용을 모두 입력해 주십시오.',	
+	    			})
+	    		}
+	    		else {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'success',
+	    				position: 'center',
+	    				title: '작성 완료',
+	    				text: '작성이 완료되었습니다.',	
+	    				}).then(function() {
+	    					var elem = document.getElementById('submitAskRequest');
+	    					elem.submit();
+	    				});
+	    		}
+				
+	    });
+    		
+			
+    		
+	</script>
+	
 </body>
 </html>

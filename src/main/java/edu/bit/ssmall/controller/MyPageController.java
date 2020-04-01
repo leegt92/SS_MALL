@@ -138,7 +138,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)//문의글들 띄워놓는 부분에 대한 컨트롤러
 	public String myPage_askRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -176,7 +176,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)//신경쓰지 마시고
 	public String myPage_askRequestView2(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -214,7 +214,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)//신경X
 	public String myPage_aSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -252,7 +252,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)//실제로 입력하는 창 에 대한 컨트롤러 밑에꺼랑 세트
 	public String myPage_askRequest(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -266,10 +266,11 @@ public class MyPageController {
 	    
 	    try {
 			int m_number = mypageService.getMnum(name);
-			model.addAttribute("m_number", m_number);
-			
+			model.addAttribute("m_number", m_number); 
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAsk(bTitle, bContent, m_number);
+				mypageService.insertAsk(bName, bTitle, bContent, m_number);
 			}
 			
 		} catch (Exception e) {
@@ -280,6 +281,53 @@ public class MyPageController {
 		return "MyPage/myPage_askRequest";
 
 	}	
+	
+	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)//이것도 입력하는 창에 대한 컨트롤러인데 입력하는 창에 대한 컨트롤러가 두개인 이유는 위에꺼랑 쌍으로 구현해야 입력직후 게시글 목록으로 돌아오는 걸 구현할 수 있어서이다.
+	public String myPage_askRequest_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAsk(bName, bTitle, bContent, m_number);
+			}
+			int totalCount = mypageService.selectAskCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> askRequestboards = mypageService.selectAskBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("askRequestboards", askRequestboards);
+			List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<askRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+				askRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_askRequestView";
+
+	}
 	
 	@RequestMapping(value = "/myPage_askAS", method = RequestMethod.GET)
 	public String myPage_askAS(Model model, HttpServletRequest request) {
@@ -296,9 +344,11 @@ public class MyPageController {
 	    try {
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
 			
 			if(bTitle != null && bContent != null) {
-				mypageService.insertAS(bTitle, bContent, m_number);
+				mypageService.insertAS(bName, bTitle, bContent, m_number);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -308,6 +358,54 @@ public class MyPageController {
 		return "MyPage/myPage_askAS";
 
 	}
+	
+	@RequestMapping(value = "/myPage_askAS_back", method = RequestMethod.GET)
+	public String myPage_askAS_back(Model model, Criteria criteria, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.insertAS(bName, bTitle, bContent, m_number);
+			}
+			int totalCount = mypageService.selectASCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> aSRequestboards = mypageService.selectASBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("aSRequestboards", aSRequestboards);
+			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<aSRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllASRequestAnswer(aSRequestboards.get(i).getBid());
+				aSRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("aSRequestboardsAnswers", aSRequestboardsAnswers);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_aSRequestView";
+
+	}
+	
+	
 	
 	@RequestMapping(value = "/myPage_reviseInformation", method = {RequestMethod.GET, RequestMethod.POST})
 	public String myPage_reviseInformation(Model model,HttpServletRequest request) {
@@ -548,7 +646,7 @@ public class MyPageController {
 		    return "MyPage/myPage_reviseInformation4";
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET) //글 수정하는 창에 대한 컨트롤러
 	public String myPage_askRequest2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -576,6 +674,53 @@ public class MyPageController {
 		}
 
 		return "MyPage/myPage_askRequest2";
+
+	}
+	
+	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)//위에꺼랑 세트 이것까지 구현시 수정직후 알아서 게시글로 돌아옴
+	public String myPage_askRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	   
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.updateAskAS(bTitle, bContent, bId);
+			}
+			int totalCount = mypageService.selectAskCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> askRequestboards = mypageService.selectAskBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("askRequestboards", askRequestboards);
+			List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<askRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+				askRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_askRequestView";
 
 	}
 	
@@ -610,7 +755,54 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_aSRequest2_back", method = RequestMethod.GET)
+	public String myPage_aSRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	   
+	    String bTitle = request.getParameter("bTitle");
+	    String bContent = request.getParameter("bContent");
+	    String bId = request.getParameter("bId");
+	    model.addAttribute("bId",bId);
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			
+			if(bTitle != null && bContent != null) {
+				mypageService.updateAskAS(bTitle, bContent, bId);
+			}
+			int totalCount = mypageService.selectASCountBoard(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<BoardVO> aSRequestboards = mypageService.selectASBoardListPage(m_number, startNum, endNum);
+			model.addAttribute("aSRequestboards", aSRequestboards);
+			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<aSRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllASRequestAnswer(aSRequestboards.get(i).getBid());
+				aSRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("aSRequestboardsAnswers", aSRequestboardsAnswers);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "MyPage/myPage_aSRequestView";
+
+	}
+	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET) //삭제는 딱히 UI가 없고 그냥 삭제 논리대로 철기하는 컨트롤러 삭제버튼 누르면 이 컨트롤러를 탄다.
 	public String delete(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -654,7 +846,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)//일단 신경 X
 	public String delete2(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);

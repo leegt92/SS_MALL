@@ -66,7 +66,7 @@
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="/ssmall/logout" method="POST">
@@ -80,7 +80,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
           	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
@@ -146,7 +146,11 @@
 				 width: 1142px;
    				 height: 527px;
 				">
+
 					<form id="submitAskRequest" action="/ssmall/mypage/myPage_askRequest2">
+
+					<form id="submitAskRequest" action="myPage_askRequest2_back">
+
 						<input type="hidden" name="bId" value="${bId}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							수정할 문의 및 건의사항을 작성해 주세요.
