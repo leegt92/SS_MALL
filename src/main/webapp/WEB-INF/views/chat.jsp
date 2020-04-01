@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale =1">
 
-
 <title>상승몰 채팅</title>
 <link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <script type="text/javascript" src="/ssmall/js/jquery-3.2.1.js"></script>
@@ -56,7 +55,7 @@ var socket = null;
 	    
 	    ws.onopen = function () {
 	        console.log('Info: connection opened.');
-
+	       
 	    };
 	    
 	    ws.onmessage = function (event) {
@@ -68,12 +67,12 @@ var socket = null;
 	        //자동으로 스크롤 내려감
 	        var objDiv = document.getElementById("autoScroll");
 	  		objDiv.scrollTop = objDiv.scrollHeight;
- 
+					
 	    }; 
 	   
 	    ws.onclose = function (event) { 
 	    	console.log('Info: connection closed.');
-	    
+	    	
 	    	//setTimeout( function(){ connect(); }, 1000); // retry connection!!
 	   		//클로즈되면 1초에 한번씩 연결 다시한다.
 	    };

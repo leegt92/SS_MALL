@@ -940,41 +940,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	 </div>  
 	
-	<div id="popup" class="container main_pop">
-		<div class="row">
-
-			<div class="col-sm-8">
-				<div class="chatbody">
-					<div class="panel panel-primary">
-						<div class="panel-heading top-bar">
-							<div class="col-md-8 col-xs-8">
-								<h3 class="panel-title">
-									<span class="glyphicon glyphicon-comment"></span> 상승몰 채팅방
-								</h3>
-							</div>
-						</div>
-						<div id = data class="panel-body msg_container_base">						
-							
-						</div>
-						
-						<div class="panel-footer">
-							<div class="input-group">
-								<input id="msg" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." /> 
-								<span class="input-group-btn">
-									<button class="btn btn-primary btn-sm" id="btnSend">
-										<i class="fa fa-send fa-1x" aria-hidden="true"></i>
-									</button>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="close" style="width:50px; margin:auto;">
-				<button type="button">닫기</button> 
-			</div>
-		</div>
-	</div>
+	
 	
 	
 	
@@ -1098,16 +1064,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
+<script src="js/notification.js"></script>
+<script>
+	function chat(){
+		window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
+		noti("채팅방에 입장하였습니다.");  
+	}		
+</script>
 
-	<script>
-		function chat(){
-			window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
-		}
-		
-   </script>
-
-
-	
 </body>
  
 </html>
