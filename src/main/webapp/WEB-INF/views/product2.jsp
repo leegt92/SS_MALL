@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!-- 가지치기 하기위해 백업 + 글목록불러오기를 ajax로 하기로 했다.-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,10 +38,14 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	
+	<script>
+		console.log("product.jsp here");
+	</script>
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -238,9 +242,9 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="productView" class="stext-109 cl8 hov-cl1 trans-04">
+			<span class="stext-109 cl4">
 				상품
-			</a>
+			</span>
 		</div>
 	</div>
 
@@ -278,26 +282,35 @@
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				
-					<a href="productView" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						All Product
-					</a>
-					
-					<a href="productViewSearchCategory?p_category=시계" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Watch시계
-					</a>
-
-					<a href="productViewSearchCategory?p_category=지갑" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Wallet지갑
-					</a>
-				
-					<a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a>
-		 		
-					<!-- <button id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".시계">
-						Watch1
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						All Products
 					</button>
-					<button id="wallet1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".지갑">
-						wallet
-					</button> -->
+					
+				
+					<button id="wallet1"class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  data-filter=".지갑">
+						Wallet
+					</button> 
+				
+		 		
+					<button id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".시계">
+						Watch
+					</button>
+					
+					<button id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter="#에르메스">
+						BRAND
+					</button>
+
+<script>
+
+/* $('#watch2').click(function(){
+	
+	$('#watch1').trigger("click");	
+	
+}); */
+
+</script>
+
+
 				
 				
 				</div>
@@ -344,94 +357,89 @@
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Wallet By Brand 기준
+								Sort By 기준
 							</div>
 
 							<ul>
-							
 								<li class="p-b-6">
-									<a href="productViewSearchCategory?p_category=지갑" class="filter-link stext-106 trans-04">
-										All Wallet
-									</a>
-								</li>							
-								
-								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=고야드" class="filter-link stext-106 trans-04">
-										고야드
+									<a href="#" class="filter-link stext-106 trans-04">
+										Default 일반
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=구찌" class="filter-link stext-106 trans-04">
-										구찌
+									<a href="#" class="filter-link stext-106 trans-04">
+										Popularity 인기순
+									</a>
+								</li>
+
+								<!-- <li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Average rating 평균가격
+									</a>
+								</li> -->
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Newness <!-- filter-link-active -->
+									</a>
+								</li>
+
+								<!-- <li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: Low to High 가격 오름차순
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=루이비통" class="filter-link stext-106 trans-04">
-										루이비통
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: High to Low 가격 내림차순
 									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=에르메스" class="filter-link stext-106 trans-04">
-										에르메스<!-- filter-link-active -->
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=프라다" class="filter-link stext-106 trans-04">
-										프라다
-									</a>
-								</li>
-
-								
+								</li> -->
 							</ul>
 						</div>
 
 						<div class="filter-col2 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Watch By Brand 기준
+								브랜드
 							</div>
 
 							<ul>
-							
 								<li class="p-b-6">
-									<a href="productViewSearchCategory?p_category=시계" class="filter-link stext-106 trans-04">
-										All Watch
-									</a>
-								</li>
-							
-								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=iwc" class="filter-link stext-106 trans-04">
-										iwc
+									<a href="#" class="filter-link stext-106 trans-04">
+										All
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=롤렉스" class="filter-link stext-106 trans-04">
-										롤렉스
+									<a href="#" class="filter-link stext-106 trans-04">
+										$0.00 - $50.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=오메가" class="filter-link stext-106 trans-04">
-										오메가
+									<a href="#" class="filter-link stext-106 trans-04">
+										$50.00 - $100.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=태그호이어" class="filter-link stext-106 trans-04">
-										태그호이어
+									<a href="#" class="filter-link stext-106 trans-04">
+										$100.00 - $150.00
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="productViewSearchBrand?p_brand=파텍필립" class="filter-link stext-106 trans-04">
-										파텍필립
+									<a href="#" class="filter-link stext-106 trans-04">
+										$150.00 - $200.00
 									</a>
 								</li>
 
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										$200.00+
+									</a>
+								</li>
 							</ul>
 						</div>
 
@@ -533,54 +541,34 @@
 					</div>
 				</div>
 			</div>
-
-큌뷰 고치려면 아래 href에 값 보내서 퀵뷰가 열리는 상품번호를 넘길 수 있어야함.
-안그러면 퀵뷰 누르면 처음부터 끝까지 다나옴.
-
-
-			<div class="row isotope-grid">
-				<c:forEach items="${product}" var="product" varStatus="status">
-				<div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.p_category}" >
+		<!-- 상품 클릭시 나오는 첫목록 -->
+			
+				<div class="row isotope-grid">
+				<div id="productAjax">
+				<%-- ajax화를 위해 주석처리 <c:forEach items="${product}" var="product">
+				<div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.p_category}" id="${product.p_brand }" >
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="productimage/${product.p_image}" alt="IMG-PRODUCT" width="300" height="300">
-							<a href="productViewQuick?p_number=${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
-
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-							<%-- <div style="display:none">"${product.p_number}"</div> --%>
-								<%-- <a href="productDetail?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									${product.p_name}
-								</a> --%>
-								
 								<a href="productDetail?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									<!-- productDetail2 -->${product.p_name}
+									${product.p_name}
 								</a>
-								
-								<%-- <a href="product_replyAjax2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									ajax 값 잘 넘어오나 확인버튼
-								</a> --%>
-								
 								<span class="stext-105 cl3">
 									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
 								</span>
 							</div>
-
-							<!-- <div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div> -->
 						</div>
-					</div>
-					
+					</div>					
 				</div>
-				</c:forEach>
+				</c:forEach> --%>
+				</div>
 			</div>
 			<!-- 페이징 글번호 -->
 
@@ -608,12 +596,12 @@
 	</c:otherwise>
 </c:choose>
 			<!-- 페이징 글번호 끝 -->
-			<!-- Load more -->
-			<!-- <div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
+			<!-- Load more였지만, 검색 후 원래목록 돌아가기로 바꿀꺼임.-->
+			<div class="flex-c-m flex-w w-full p-t-45">
+				<a href="productView" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					Return to List
 				</a>
-			</div> -->
+			</div>
 		</div>
 	</div>
 		
@@ -628,7 +616,7 @@
 					</h4>
 
 					<ul>
-						<!-- <li class="p-b-10">
+						<li class="p-b-10">
 							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
 								Watch
 							</a>
@@ -638,7 +626,7 @@
 							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
-						</li> -->
+						</li>
 
 					
 					</ul>
@@ -754,9 +742,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
 					<img src="images/icons/icon-close.png" alt="CLOSE">
 				</button>
-				
-				<%-- <c:if test="${p_number eq product?p_number=${product.p_number}"> --%>
-				<c:forEach items="${product}" var="product">
+			<!-- 퀵뷰 눌럿을때 나오는 부분. 수정해야함 -->	
+			<%-- <c:if test="${p_number eq product?p_number=${product.p_number}"> --%>
+			<c:forEach items="${product}" var="product">
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -897,14 +885,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</div>
 					</div>
 				</div>
-				</c:forEach>
+			</c:forEach>
 				<%-- </c:if> --%>
 			</div>
 		</div>
 	 </div>  
 
-<!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -1041,6 +1028,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 <!--===============================================================================================-->
 
+<script>
+		console.log("product.jsp here2");
+</script>
+
 <script type="text/javascript">
 
 	function numberFormat(inputNumber) {
@@ -1049,6 +1040,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	
 	$(function(){
+		console.log("미니카트");
 		$.ajax({
 			url : '/ssmall/miniCart',
 			dataType : 'json',
@@ -1101,7 +1093,66 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			}
 		})
 	})
+</script>
+<script>
+
+	function numberFormat(inputNumber) {
+	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+$(function(){
+	console.log("멈xka");
+	$.ajax({
+		url : '/ssmall/productViewAjax',
+		type : 'get',
+		dataType : 'json',
+		error : function(request, status, error) {
+            console.log(request.responseText);
+            console.log(error);
+            console.log(this.url);
+        },           
+		success : function(data){
+			
+			console.log(data);
+			console.log("ajax성공");
+		$.each(data, function(key, data){
+			var tag="";
+				tag = tag + "<div  class='col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item"+data.p_category+"' >";
+					tag = tag + "<div class='block2'>";
+					tag = tag + "<div class='block2-pic hov-img0'>";
+					tag = tag + "<img src='productimage/"+data.p_image+"' alt='IMG-PRODUCT' width='300' height='300'>";
+					tag = tag + "<a href='#' class='block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1'>Quick View</a>";
+
+						tag = tag + "</div>";
+
+						tag = tag + "<div class='block2-txt flex-w flex-t p-t-14'>";
+						tag = tag + "<div class='block2-txt-child1 flex-col-l '>";
+						tag = tag + "<a href='productDetail?p_number="+data.p_number+"' class='stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6'>";
+						tag = tag + data.p_name;
+						tag = tag + "</a>";
+						tag = tag + "<span class='stext-105 cl3'>";
+						tag = tag + numberFormat(data.p_price)+"원";
+						tag = tag + "</span>";
+						tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+				tag = tag + "</div>";
+			
+			
+			$("#productAjax").append(tag);
+			
+			});
+		 
+		}
+       
+	})
+})	
+				/* tag = tag + "<div class='row isotope-grid'>";
+				tag = tag + "</div>"; */
 	//검색 script
+	
+	
+	
 /* 	function setSearchTypeSelect(){
 		var keyword = $('#keyword');
 
@@ -1123,5 +1174,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 </script>
 
+<%-- tag = tag+ "<fmt:formatNumber value='"+${data.p_price}+"' pattern='###,###,###'/>원"; --%>
 </body>
 </html>

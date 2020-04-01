@@ -30,7 +30,8 @@ public class ProductController {
 	
 	@Autowired
 	ProductService productService;
-
+	
+	
 	@RequestMapping("/productView")
 	public String productview(HttpServletRequest request,Model model, Criteria criteria) {
 		System.out.println("productview");
@@ -49,9 +50,62 @@ public class ProductController {
 		model.addAttribute("product",productList);
 		model.addAttribute("pageMaker",pageMaker);
 				
-		/* model.addAttribute("product", productService.selectProductList()); */	
+		/* model.addAttribute("product", productService.selectProductList()); */
+		System.out.println("product 탔음");
 		return "product";
 	}
+	//QuickView를 위한 메소드
+	@RequestMapping("/productViewQuick")
+	public String productviewQuick(HttpServletRequest request,Model model, Criteria criteria) {
+		System.out.println("productViewQuick");
+		String p_number = request.getParameter("p_number");
+		System.out.println("p_number : "+p_number);
+		//페이징
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		int startNum = criteria.getStartNum(); 
+		int endNum = criteria.getEndNum();
+		//페이징시 전체상품의 갯수를 확인하기 위해.
+		int totalCount = productService.selectCountProduct();
+		//페이지메이커에 전체상품의 갯수를 넣었다. 이로써 전체상품갯수를 이용해 다른값을 뽑아낼 수 있을것.
+		pageMaker.setTotalCount(totalCount);
+		//페이징처리된 상품목록을 불러올 코드
+		List<ProductVO> productList = productService.selectProductListPage(startNum, endNum);
+
+		model.addAttribute("product",productList);
+		model.addAttribute("pageMaker",pageMaker);
+				
+		/* model.addAttribute("product", productService.selectProductList()); */
+		System.out.println("product 탔음");
+		return "product";
+	}
+	
+	//ajax 확인
+	@ResponseBody
+	@RequestMapping("/productViewAjax")
+	public List<ProductVO> productviewAjax(HttpServletRequest request,Model model, Criteria criteria) {
+		System.out.println("productview");
+		//페이징
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		int startNum = criteria.getStartNum(); 
+		int endNum = criteria.getEndNum();
+		//페이징시 전체상품의 갯수를 확인하기 위해.
+		int totalCount = productService.selectCountProduct();
+		//페이지메이커에 전체상품의 갯수를 넣었다. 이로써 전체상품갯수를 이용해 다른값을 뽑아낼 수 있을것.
+		pageMaker.setTotalCount(totalCount);
+		//페이징처리된 상품목록을 불러올 코드
+		List<ProductVO> productList = productService.selectProductListPage(startNum, endNum);
+
+		model.addAttribute("product",productList);
+		model.addAttribute("pageMaker",pageMaker);
+				
+		/* model.addAttribute("product", productService.selectProductList()); */
+		System.out.println("product 탔음");
+		return productService.selectProductListPage(startNum, endNum);
+	}
+	//ajax 확인
+	
 	//검색시 페이징된 목록을 불러오기 위한 메소드. 위와 거의 똑같다.
 	@RequestMapping("/productViewSearch")
 	public String productViewSearch(HttpServletRequest request,Model model, SearchCriteria serchCriteria) {
@@ -74,16 +128,83 @@ public class ProductController {
 		
 		System.out.println("productList위");
 		List<ProductVO> productList = productService.searchProductListPage(startNum, endNum, keyword);
-
+		model.addAttribute("keyword",keyword);
 		model.addAttribute("product",productList);
 		model.addAttribute("pageMaker",pageMaker);
 				
 		/* model.addAttribute("product", productService.selectProductList()); */	
 		return "product";
 	}
+	//product 왼쪽상단 시계 버튼 눌럿을때 시계만 나오면서 페이징도 되도록 하기 위해 만듬======================================================
+	@RequestMapping("/productViewSearchCategory")
+	public String productViewSearchCategory(HttpServletRequest request,Model model, SearchCriteria serchCriteria) {
+		System.out.println("productview");
+		//페이징
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(serchCriteria);
+		int startNum = serchCriteria.getStartNum(); 
+		int endNum = serchCriteria.getEndNum();
+		String keyword = request.getParameter("p_category");
+		System.out.println("keyword(p_category) 확인 : "+keyword);
+		//페이징시 전체상품의 갯수를 확인하기 위해. 여기서는 검색어에 해당하는 상품갯수를 뽑았다.
+		int totalCount = productService.searchCountProductCategory(keyword);
+		System.out.println("totalCount위");
+		//페이지메이커에 전체상품의 갯수를 넣었다. 이로써 전체상품갯수를 이용해 다른값을 뽑아낼 수 있을것.
+		pageMaker.setTotalCount(totalCount);
+		System.out.println("setTotalCount위");
+		//페이징처리된 상품목록을 불러올 코드
+		/* String keyword = request.getParameter("keyword"); */
+		
+		System.out.println("productList위");
+		List<ProductVO> productList = productService.searchProductListPageCategory(startNum, endNum, keyword);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("product",productList);
+		model.addAttribute("pageMaker",pageMaker);
+				
+		/* model.addAttribute("product", productService.selectProductList()); */	
+		return "product";
+	}
+	//===================================================================================================
+	
+	//product 왼쪽상단 시계 버튼 눌럿을때 시계만 나오면서 페이징도 되도록 하기 위해 만듬======================================================
+	//product의 filter 브랜드별 필터 기능.
+		@RequestMapping("/productViewSearchBrand")
+		public String productViewSearchBrand(HttpServletRequest request,Model model, SearchCriteria serchCriteria) {
+			System.out.println("productview");
+			//페이징
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(serchCriteria);
+			int startNum = serchCriteria.getStartNum(); 
+			int endNum = serchCriteria.getEndNum();
+			String keyword = request.getParameter("p_brand");
+			System.out.println("keyword(p_category) 확인 : "+keyword);
+			//페이징시 전체상품의 갯수를 확인하기 위해. 여기서는 검색어에 해당하는 상품갯수를 뽑았다.
+			int totalCount = productService.searchCountProductBrand(keyword);
+			System.out.println("totalCount위");
+			//페이지메이커에 전체상품의 갯수를 넣었다. 이로써 전체상품갯수를 이용해 다른값을 뽑아낼 수 있을것.
+			pageMaker.setTotalCount(totalCount);
+			System.out.println("setTotalCount위");
+			//페이징처리된 상품목록을 불러올 코드
+			/* String keyword = request.getParameter("keyword"); */
+			
+			System.out.println("productList위");
+			List<ProductVO> productList = productService.searchProductListPageBrand(startNum, endNum, keyword);
+			model.addAttribute("keyword",keyword);
+			model.addAttribute("product",productList);
+			model.addAttribute("pageMaker",pageMaker);
+					
+			/* model.addAttribute("product", productService.selectProductList()); */	
+			return "product";
+		}
+		//===================================================================================================
+	
+	
+	
 	
 	@RequestMapping("/productViewWatch")
-	public String productview2(Model model) {
+	public String productview2(Model model, HttpServletRequest request) {
+		String p_category = request.getParameter("p_category");
+		System.out.println("p_category"+p_category);
 		model.addAttribute("product", productService.selectProductList());		
 		return "productwatch";
 	}
@@ -93,13 +214,20 @@ public class ProductController {
 		model.addAttribute("product", productService.selectProductList());		
 		return "productwallet";
 	}
+	
 	//글 작성시
 	@ResponseBody
-	@RequestMapping(value = "product_Write_reply", method = {RequestMethod.POST, RequestMethod.GET})
-	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
+	@RequestMapping("/product_Write_reply")
+	//@RequestMapping(value = "product_Write_reply", method = {RequestMethod.POST, RequestMethod.GET})
+	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {	
+	
 		System.out.println("/product_Write_replyAjax");		
 		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 확인 "+ p_number);
+		String btitle = request.getParameter("btitle");
+		System.out.println("btitle 확인 "+ btitle);
+		String bcontent = request.getParameter("bcontent");
+		System.out.println("bcontent 확인 "+ bcontent);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));	
 		System.out.println(productService.selectProductOne(p_number));		
 		productService.productReplyWrite(productReplyVO);

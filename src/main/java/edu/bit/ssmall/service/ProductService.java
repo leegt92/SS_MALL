@@ -115,5 +115,28 @@ public class ProductService {
 		
 		return productMapper.searchProductListPage(startNum, endNum, keyword);
 	}
+	
+	//검색시 검색어에 대응하는 상품 갯수를 페이징시 전체상품의 갯수를 확인하기 위해.
+	//product 왼쪽상단 시계, 지갑 누르면 그 카테고리에 해당하는 상품만 나오게 하기위해
+	public int searchCountProductCategory(String keyword) {		
+		return productMapper.searchCountProductCategory(keyword);
+	}
+	//검색시 페이징처리된 상품목록을 불러올 코드
+	//product 왼쪽상단 시계, 지갑 누르면 그 카테고리에 해당하는 상품만 나오게 하기위해
+	public List<ProductVO> searchProductListPageCategory(int startNum, int endNum, String keyword) {		
+		return productMapper.searchProductListPageCategory(startNum, endNum, keyword);
+	}
+	
+	//필터 브랜드버전==================================================================
+	//검색시 검색어에 대응하는 상품 갯수를 페이징시 전체상품의 갯수를 확인하기 위해.
+	//product 왼쪽상단 시계, 지갑 누르면 그 카테고리에 해당하는 상품만 나오게 하기위해
+	public int searchCountProductBrand(String keyword) {		
+		return productMapper.searchCountProductBrand(keyword);
+	}
+	//검색시 페이징처리된 상품목록을 불러올 코드
+	//product 왼쪽상단 시계, 지갑 누르면 그 카테고리에 해당하는 상품만 나오게 하기위해
+	public List<ProductVO> searchProductListPageBrand(int startNum, int endNum, String keyword) {		
+		return productMapper.searchProductListPageBrand(startNum, endNum, keyword);
+	}
 
 }

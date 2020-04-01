@@ -53,6 +53,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
+
 <script type="text/javascript">
 
 	function numberFormat(inputNumber) {
@@ -1000,18 +1001,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 </body>
 
-<script type="text/javascript"></script> 
+
 
 <script>
-$(document).ready(function() {
+/* $(document).ready(function() { */
 	/* 
 	$('#watch2').on('click',function(){
 		
 		$('#watch1').trigger("click");	
 		
 	});  	 */
-});	 
-
+/* });	 
+ */
 	/*  $('#watch2').click(function(){
 		  var a = document.getElementById('watch1');
 		  a.click('#watch1'); 
