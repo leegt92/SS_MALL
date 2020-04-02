@@ -299,9 +299,9 @@
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
-              <p><b>A/S 신청 제품명:</b><c:out value = "${aSRequestboards.btitle}"/></p>
+              <p><b>A/S 신청 제품명:</b>${aSRequestboards.btitle}</p>
             	<br/>
-            	<p><b>A/S 신청 내용:</b><c:out value = "${aSRequestboards.bcontent}"/></p>
+            	<p><b>A/S 신청 내용:</b>${aSRequestboards.bcontent}</p>
             	<br/>
             	=======================================================================================================================
             	<br/>

@@ -263,7 +263,7 @@
   	$("#submitASRequest").submit(function(event) {
 		var a1 = document.getElementById("bTitle").value;
 		var a2 = document.getElementById("bContent").value;
-		if(a1 == "" || a2 == "") {
+		if(a1 == "") {
 			event.preventDefault();
 			Swal.fire({
 				icon: 'error',
