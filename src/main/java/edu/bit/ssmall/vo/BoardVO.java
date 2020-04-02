@@ -13,7 +13,6 @@ public class BoardVO {
 	private int bstep;
 	private int bindent;
 	private int bgroup;
-	private int btotallike;
 	private String btype;
 	private int btotalrepot;
 	private int m_number;
@@ -23,7 +22,7 @@ public class BoardVO {
 	public BoardVO() {}
 	
 	public BoardVO(String bid, String btitle, String bname, Date bdate, int bhit, String bcontent, int bstep,
-			int bindent, int bgroup, int btotallike, String btype, int btotalrepot, int m_number, String banswerno,
+			int bindent, int bgroup, String btype, int btotalrepot, int m_number, String banswerno,
 			String banswered) {
 		super();
 		this.bid = bid;
@@ -35,7 +34,6 @@ public class BoardVO {
 		this.bstep = bstep;
 		this.bindent = bindent;
 		this.bgroup = bgroup;
-		this.btotallike = btotallike;
 		this.btype = btype;
 		this.btotalrepot = btotalrepot;
 		this.m_number = m_number;
@@ -96,12 +94,6 @@ public class BoardVO {
 	public void setBgroup(int bgroup) {
 		this.bgroup = bgroup;
 	}
-	public int getBtotallike() {
-		return btotallike;
-	}
-	public void setBtotallike(int btotallike) {
-		this.btotallike = btotallike;
-	}
 	public String getBtype() {
 		return btype;
 	}
@@ -136,7 +128,7 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [bid=" + bid + ", btitle=" + btitle + ", bname=" + bname + ", bdate=" + bdate + ", bhit=" + bhit
 				+ ", bcontent=" + bcontent + ", bstep=" + bstep + ", bindent=" + bindent + ", bgroup=" + bgroup
-				+ ", btotallike=" + btotallike + ", btype=" + btype + ", btotalrepot=" + btotalrepot + ", m_number="
+				+ ", btype=" + btype + ", btotalrepot=" + btotalrepot + ", m_number="
 				+ m_number + ", banswerno=" + banswerno + ", banswered=" + banswered + "]";
 	}
 	

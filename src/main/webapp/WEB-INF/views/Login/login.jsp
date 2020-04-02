@@ -58,7 +58,7 @@
 					</c:if>
 					<span class="login100-form-title p-b-49">
 						로그인
-					</span>				
+					</span>													
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "아이디를 입력하세요">
 						<span class="label-input100">아이디</span>														
 						<input id= "m_id" class="input100" type="text" name="m_id" placeholder="아이디를 입력하세요">

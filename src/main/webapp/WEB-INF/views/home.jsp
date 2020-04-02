@@ -54,6 +54,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
+
 <script type="text/javascript">
 
 	function numberFormat(inputNumber) {
@@ -1070,7 +1071,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
 	}		
 </script>
-
+	
 </body>
- 
 </html>

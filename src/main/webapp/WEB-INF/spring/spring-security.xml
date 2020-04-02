@@ -17,8 +17,10 @@
         <intercept-url pattern="/login/**" access="isAnonymous()" />
         <intercept-url pattern="/buy/**" access="hasAnyRole('USER, ADMIN')" />     
         <intercept-url pattern="/cart/**" access="hasAnyRole('USER, ADMIN')" />
-       	<intercept-url pattern="/chat/**" access="hasAnyRole('USER, ADMIN')" />  
-       	<intercept-url pattern="/resources/**" access="permitAll" />      
+       	<intercept-url pattern="/chat/**" access="hasAnyRole('USER, ADMIN')" />           
+        <intercept-url pattern="/productDetailLogin/**" access="hasRole('USER')" />
+    	<intercept-url pattern="/resources/**" access="permitAll" /> 
+
         <intercept-url pattern="/**" access="permitAll" />
         
    
