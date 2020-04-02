@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/ssmall/css/chat.css">
-
+<script src="js/notification.js"></script>
 <script type="text/javascript">
  
     $(document).ready(function(){
@@ -31,14 +31,14 @@
            }
 		
     	});
-    	
-    	
+    		
     	$('#btnSend').on('click', function(evt) {
     		evt.preventDefault();
     	  	if (socket.readyState !== 1) return;
-    	    	let msg = $('input#msg').val();
+    	    	let msg = $('input#msg').val(); 	
     	    	socket.send(msg);
     	    	document.getElementById("msg").value = null;
+    	    	$('#msg').focus();
     	});
     	
     	connect();
@@ -50,7 +50,7 @@
 var socket = null;
 
 	function connect(){
-	    var ws = new WebSocket("ws://localhost:8282/ssmall/echo");
+	    var ws = new WebSocket("ws://192.168.6.17:8282/ssmall/echo");
 	    socket = ws;
 	    
 	    ws.onopen = function () {
@@ -59,14 +59,23 @@ var socket = null;
 	    };
 	    
 	    ws.onmessage = function (event) {
-	        console.log(event.data+'\n');
+	        console.log('onmessage');
 	        
-	        var data = event.data;        
+	        var data = event.data;   
+	        
+    
+	        if(data.indexOf('입장') == -1){
+	        	if(data.indexOf('left clearfix') != -1) {	 
+		        	console.log("noti()");
+		        	noti("메시지가 도착했습니다."); //윈도우 알림 notification 사용       
+		        }	
+		    }         		
+    
 	        $("#data").append(data);
-	  		
 	        //자동으로 스크롤 내려감
 	        var objDiv = document.getElementById("autoScroll");
 	  		objDiv.scrollTop = objDiv.scrollHeight;
+	  		
 					
 	    }; 
 	   
@@ -93,7 +102,7 @@ var socket = null;
 			<div class="col-md-5">
 				<div class="panel panel-primary" style="margin-top : 10px">
 					<div class="panel-heading">
-						<span class="glyphicon glyphicon-comment"></span> Chat					
+						<span class="glyphicon glyphicon-comment"></span> Chat				
 					</div>
 					<div id="autoScroll" class="panel-body">
 						<ul id="data" class="chat">

@@ -1064,11 +1064,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-<script src="js/notification.js"></script>
+
 <script>
 	function chat(){
 		window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
-		noti("채팅방에 입장하였습니다.");  
 	}		
 </script>
 
