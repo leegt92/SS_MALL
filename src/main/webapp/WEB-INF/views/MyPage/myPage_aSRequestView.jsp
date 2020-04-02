@@ -324,11 +324,11 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<a href="myPage_aSRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-        <button onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
+        <button id=btnToAskAs onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
     </ul>
     
 </div>
-
+<!-- onclick="window.location.href='/ssmall/myPage_askAS'" -->
 
     
     
@@ -533,7 +533,48 @@
 			
     		
 	</script>
+	<script>
+   		/* var $form = $('<form></form>'); 
+		$form.attr('action', 'myPage_askAS'); 
+		$form.attr('method', 'post'); 
+		$form.appendTo('body'); 
+		
+		var example_1 = $('<input type="hidden" value="" name="">'); 
+		var example_2 = $('<input type="hidden" value="" name="">'); 
+		
+		$form.append(example_1).append(example_2);
+		
+		$form.submit(); */
+		
+		/* $(document).ready(function(){
 
-   
+			$("#btnToAskAs").click(function(){
+
+				var form = document.createElement('form');
+
+				/* var objs;
+
+				objs = document.createElement('input');
+
+				objs.setAttribute('type', 'hidden');
+
+				objs.setAttribute('name', 'name');
+
+				objs.setAttribute('value', value); 
+
+				form.appendChild(objs); */
+
+				/* form.setAttribute('method', 'post');
+
+				form.setAttribute('action', "myPage_askAS");
+
+				document.body.appendChild(form);
+
+				form.submit();
+
+			});	
+
+			}); */ */
+	</script>
   </body>
 </html>

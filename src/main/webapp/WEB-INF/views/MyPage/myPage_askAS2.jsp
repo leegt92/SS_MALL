@@ -245,6 +245,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert2.js"></script>
+    <script src="js/ckeditor/ckeditor.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -252,6 +253,7 @@
       feather.replace()
     </script>
   	<script>
+  	
     	
   	$("#submitASRequest").submit(function(event) {
 		var a1 = document.getElementById("bTitle").value;

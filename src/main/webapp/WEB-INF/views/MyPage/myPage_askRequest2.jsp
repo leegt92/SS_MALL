@@ -156,6 +156,7 @@
 							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" value="${FbTitle}"
 							style="padding-left: 30px;">
 						</div>
+						
 
 						<div class="bor8 m-b-30">
 							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" >${FbContent}</textarea>

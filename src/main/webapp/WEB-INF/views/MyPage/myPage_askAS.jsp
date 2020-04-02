@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -145,7 +146,7 @@
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
 				width:1142px; height:527px; style="
 				 width: 1142px;
-   				 height: 527px;
+				 height: 627px;
 				">
 					<form id="submitASRequest" action="myPage_askAS_back">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
@@ -244,14 +245,21 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+    <!-- Smart Editor -->
+  	<script type="text/javascript" src="js/se2/js/HuskyEZCreator.js"></script>
+  	<script type="text/javascript" src="js/se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js"></script>
+  	
+    
+
+	
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
-  	<script>
-    	
+    <script>	
   	$("#submitASRequest").submit(function(event) {
 		var a1 = document.getElementById("bTitle").value;
 		var a2 = document.getElementById("bContent").value;
@@ -278,10 +286,19 @@
 		}
 		
 });
-    		
-			
-    		
-	</script>
+	
+  	</script>
+  	 </script>
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bContent',{
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
+  	 
+  	 
+  	
 
    
   </body>
