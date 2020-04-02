@@ -39,6 +39,68 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style type="text/css">
+
+	.pagination>li>a, .pagination>li>span { 
+		border-radius: 50% !important;
+		margin: 0 5px;
+		background-color:gray;
+		color:white;
+		}
+	/* .pagination>li>a, .pagination>li>span:hover {
+	    border-radius: 50% !important;
+		margin: 0 5px;
+		background-color:white;
+		color:gray;
+		} */
+
+/* 	#custom-search-input{
+	    padding: 3px;
+	    border: solid 1px #E4E4E4;
+	    border-radius: 6px;
+	    background-color: #fff;
+	}
+	
+	#custom-search-input input{
+	    border: 0;
+	    box-shadow: none;
+	}
+	 */
+	#SearchButtonImage{
+	    background-color: gray;
+	    border-color: gray;
+
+	}
+/* 	.page-item{
+		background-color: gray;
+		color:gray;
+	} */
+	
+/* 	#SearchButtonImage{
+	    margin: 2px 0 0 0;
+	    background-color: gray;
+	    box-shadow: none;
+	    border: 0;
+	    color: #555555;
+	    padding: 0 8px 0 10px;
+	    border-left: solid 1px #ccc;
+	} */
+/* 	
+	#custom-search-input button:hover{
+	    border: 0;
+	    box-shadow: none;
+	    border-left: solid 1px #ccc;
+	}
+	
+	#custom-search-input .glyphicon-search{
+	    font-size: 23px;
+	} */
+</style>
 </head>
 <body class="animsition">
 	
@@ -283,11 +345,11 @@
 					</a>
 					
 					<a href="productViewSearchCategory?p_category=시계" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Watch시계
+						Watch
 					</a>
 
 					<a href="productViewSearchCategory?p_category=지갑" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						Wallet지갑
+						Wallet
 					</a>
 				
 					<a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a>
@@ -306,45 +368,71 @@
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Filter 조건설정
+						 Filter
 					</div>
 
 					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						Search 검색
+						Search
 					</div>
-				</div>
-				
+				</div>				
 				<!-- Search product -->
+					<!-- <div class="container">
+						<div class="row">
+					        <div class="col-md-6">
+					    		<h2>Custom search field</h2>
+					            <div id="custom-search-input">
+					            <form action="productViewSearch" method="get">
+					                <div class="input-group col-md-12">
+					                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search" />
+					                   	 	<span class="input-group-btn">
+					                        	<button class="btn btn-info btn-lg" type="submit">
+					                           	 	<i class="glyphicon glyphicon-search"></i>
+					                        	</button>
+					                    	</span>
+					                	</div>
+					                </form>
+					            </div>
+					        </div>
+						</div>
+					</div> -->
+				<!-- 원본-------------------------------------------------------------------------->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
-					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+					<!-- <div class="bor8 dis-flex p-l-15"> -->
+						<!-- <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
-						</button>
+						</button> -->
 						<!-- <p>373번째줄 search 구분</p> -->
 						<!-- <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" value="keyword" name="search_product" placeholder="Search">
 						<input type="submit" value="검색" width = "300"/> -->
 						<form action="productViewSearch" method="get">
-							<!-- <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" />
-							<input type="submit" value="검색" /> -->
-							
-							<input class="mtext-107 cl2 size-114 plh2 p-r-15" id="keyword" type="text" value="" name="keyword" placeholder="Search">
-							<input type="submit" value="검색" width = "300"/>
+							<!-- <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요1" />
+							<input type="submit" value="검색1" />
+								<input class="mtext-107 cl2 size-114 plh2 p-r-15" id="keyword" type="text" value="" name="keyword" placeholder="Search2">				
+								<button type="submit">검색2</button>
+							<input type="submit" value="검색1" width = "300"/> -->
+								<div class="input-group col-md-12">
+			                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search" />
+			                   	 	<span class="input-group-btn">
+			                        	<button id="SearchButtonImage" class="btn btn-info btn-lg" type="submit">
+			                           	 	<i class="glyphicon glyphicon-search"></i>
+			                        	</button>
+			                    	</span>
+			                	</div>
 						</form>
-						<!--<input class="form-control" type="text" id="keyword" name="keyword" 
+						<!-- <input class="form-control" type="text" id="keyword" name="keyword" 
 								value="keyword" placeholder="검색어를 입력하세요"/>
-						<button id="searchBtn" class="btn btn-primary">Search</button>-->
-						
-					</div>	
+						<button id="searchBtn" class="btn btn-primary">Search</button>	 -->					
+					<!-- </div> -->	
 				</div>
-
+				<!-- 원본끝-------------------------------------------------------------------------- -->
 				<!-- Filter -->
 				<div class="dis-none panel-filter w-full p-t-10">
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Wallet By Brand 기준
+								Wallet By Brand
 							</div>
 
 							<ul>
@@ -391,7 +479,7 @@
 
 						<div class="filter-col2 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Watch By Brand 기준
+								Watch By Brand
 							</div>
 
 							<ul>
@@ -437,7 +525,7 @@
 
 						<div class="filter-col3 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Color
+								순위
 							</div>
 
 							<ul>
@@ -446,8 +534,8 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Black
+									<a href="productViewRank?keyword=p_amount desc" class="filter-link stext-106 trans-04">
+										인기순
 									</a>
 								</li>
 
@@ -456,8 +544,8 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Blue
+									<a href="productViewRank?keyword=p_released_date desc" class="filter-link stext-106 trans-04">
+										최신순
 									</a>
 								</li>
 
@@ -466,8 +554,8 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Grey
+									<a href="productViewRank?keyword=p_price desc" class="filter-link stext-106 trans-04">
+										가격 높은순
 									</a>
 								</li>
 
@@ -476,12 +564,12 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Green
+									<a href="productViewRank?keyword=p_price asc" class="filter-link stext-106 trans-04">
+										가격 낮은순
 									</a>
 								</li>
 
-								<li class="p-b-6">
+								<!-- <li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
@@ -499,11 +587,11 @@
 									<a href="#" class="filter-link stext-106 trans-04">
 										White
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 
-						<div class="filter-col4 p-b-27">
+						<!-- <div class="filter-col4 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Tags
 							</div>
@@ -529,14 +617,10 @@
 									Crafts
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
-
-큌뷰 고치려면 아래 href에 값 보내서 퀵뷰가 열리는 상품번호를 넘길 수 있어야함.
-안그러면 퀵뷰 누르면 처음부터 끝까지 다나옴.
-
 
 			<div class="row isotope-grid">
 				<c:forEach items="${product}" var="product" varStatus="status">
@@ -545,9 +629,19 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="productimage/${product.p_image}" alt="IMG-PRODUCT" width="300" height="300">
-							<a href="productViewQuick?p_number=${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							
+							<%-- <a href="productViewQuick?p_number=${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
-							</a>
+							</a> --%>
+							
+							<%-- <button type="button" id="QuickViewBtn" name="QuickViewBtn" value="${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+									Quick View123
+							</button> --%>
+							
+							<button type="button" id="QuickViewBtn" name="QuickViewBtn" value="${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+									Quick View123
+							</button>
+							
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -585,28 +679,45 @@
 			<!-- 페이징 글번호 -->
 
 <!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
-<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->	
+<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
+<ul class="pagination">
 <c:choose>
 	<c:when test="${keyword!=null}">
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
 			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a>
+			<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a></li>
 		</c:forEach>																		
 		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a>
+				<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
+		</c:if> <br>
+	</c:when>
+	
+	<c:when test="${rankKeyword!=null}">
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+			<c:out value="${pageMaker.cri.page == idx?'':''}" />
+			<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}</a></li>
+		</c:forEach>																		
+		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
 		</c:if> <br>
 	</c:when>
 	
 	<c:otherwise>
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
 			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="productView${pageMaker.makeQuery(idx)}">${idx}</a>
+			<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}</a></li>
 		</c:forEach>																										
 		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a>
+				<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
 		</c:if> <br>
 	</c:otherwise>
 </c:choose>
+</ul>
+			<div class="flex-c-m flex-w w-full p-t-45">
+				<a href="productView" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					Return to List
+				</a>
+			</div>
 			<!-- 페이징 글번호 끝 -->
 			<!-- Load more -->
 			<!-- <div class="flex-c-m flex-w w-full p-t-45">
@@ -756,7 +867,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</button>
 				
 				<%-- <c:if test="${p_number eq product?p_number=${product.p_number}"> --%>
-				<c:forEach items="${product}" var="product">
+				<%-- <c:forEach items="${quickViewList}" var="product"> --%>
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -765,31 +876,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="productimage/${product.p_image}">
+									<div class="item-slick3" data-thumb="productimage/${quickViewList.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.p_image}" alt="IMG-PRODUCT">
+											<img src="productimage/${quickViewList.p_image}" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.p_image}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${quickViewList.p_image}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.p_image}">
+									<div class="item-slick3" data-thumb="productimage/'${quickViewList.p_image}'">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.p_image}" alt="IMG-PRODUCT">
+											<img src="productimage/'${quickViewList.p_image}'" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.p_image}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/'${quickViewList.p_image}'">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.p_image}">
+									<div class="item-slick3" data-thumb="productimage/'${quickViewList.p_image}'">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.p_image}" alt="IMG-PRODUCT">
+											<img src="productimage/'${quickViewList.p_image}'" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.p_image}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/'${quickViewList.p_image}'">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -801,16 +912,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								${product.p_name}
+							<h4 id="QuickName" class="mtext-105 cl2 js-name-detail p-b-14">
+								<%-- ${quickViewList.p_name} --%>
 							</h4>
 
-							<span class="mtext-106 cl2">
-								<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
+							<span id="QuickPrice" class="mtext-106 cl2">
+								<fmt:formatNumber value="${quickViewList.p_price}" pattern="###,###,###"/>원
 							</span>
 
 							<p class="stext-102 cl3 p-t-23">
-								${product.p_description}
+								${quickViewList.p_description}
 							</p>
 							
 							
@@ -897,7 +1008,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</div>
 					</div>
 				</div>
-				</c:forEach>
+				<%-- </c:forEach> --%>
 				<%-- </c:if> --%>
 			</div>
 		</div>
@@ -1120,7 +1231,36 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			window.location.href = url;
 		})
 	}*/
-	
+
+</script>
+<script>
+	$(function(){
+		$(document).on("click","#QuickViewBtn",function(){
+			alert($(this).attr("value"));
+			var data = {
+					  p_number : $(this).attr("value")
+			  };
+			$.ajax({
+				method:"get",
+				url:"/ssmall/productViewQuick",
+				data:data,
+				error:function(xhr,status,error){
+					alert(error);
+					alert("er");
+				},
+				success:function(data){
+					alert('성공');
+					alert(data.p_name);
+					
+					$('#QuickName').html(data.p_name);
+					$('#QuickPrice').html(data.p_price);
+					/* $('.wrap-modal1').modal(); */
+					 /* js-show-modal1 */
+
+				}
+			});
+		})
+	})
 </script>
 
 </body>

@@ -138,5 +138,11 @@ public class ProductService {
 	public List<ProductVO> searchProductListPageBrand(int startNum, int endNum, String keyword) {		
 		return productMapper.searchProductListPageBrand(startNum, endNum, keyword);
 	}
+	
+	//순위로 상품 정렬순서를 결정할 코드. 가져온 키워드로 order by 부분에 직접 keyword를 넣을 수 있나 확인
+	public List<ProductVO> selectProductListPageRank(int startNum, int endNum, String keyword) {
+		// TODO Auto-generated method stub
+		return productMapper.selectProductListPageRank(startNum, endNum, keyword);
+	}
 
 }

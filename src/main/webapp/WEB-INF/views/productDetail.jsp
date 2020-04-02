@@ -64,7 +64,8 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
+<!--===============================================================================================-->
 <style type="text/css">
 
 /* .cArea{
@@ -194,8 +195,8 @@
 	    				 tag = tag+ "</p>";
 	    				 tag = tag+ "<div class='row p-b-25'>"; <!-- class="container" -->
 	    				 tag = tag+ "<div class='col-sm-6 p-b-5'>";
-	    				 tag = tag+ "<label class='stext-102 cl3' for='name'>Title</label>";
-	    				 tag = tag+ "<input class='size-111 bor8 stext-102 cl2 p-lr-20' type='text' id='btitle' name='btitle' value='"+data.btitle+"'>";
+	    				 tag = tag+ "<label class='stext-102 cl3' for='name'></label>";//Title
+	    				 tag = tag+ "<input readonly class='size-111 bor8 stext-102 cl2 p-lr-20' type='hidden' id='btitle' name='btitle' value='"+data.btitle+"'>";
 	    				 tag = tag+ "</div>";							
 	    				 tag = tag+ "<div class='col-12 p-b-5'>";
 	    				 tag = tag+ "<label class='stext-102 cl3' for='review'>Review</label>";
@@ -529,7 +530,7 @@
 
 						<!--  -->
 						<div class="p-t-33">
-							<div class="flex-w flex-r-m p-b-10">
+							<!-- <div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
 									Size<br /> 사용할건지 말건지 확인
 								</div>
@@ -546,11 +547,11 @@
 										<div class="dropDownSelect2"></div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
-									Color<br /> 사용할건지 말건지 확인
+									Color<br />
 								</div>
 
 								<div class="size-204 respon6-next">
@@ -700,7 +701,7 @@
 											<sec:authorize access="hasRole('USER')">												
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
-												<button style='color:gray;' type = 'button' id = "write" name = "write">작성</button>
+												<button style='color:gray;' type = 'button' id = "write" name = "write"></button>
 											</sec:authorize>
 											<%-- 콜햅스 원본버튼. 모달로 바꿔보기 위해 주석처리함.
 											<sec:authorize access="hasRole('USER')">콜햅스원본												
@@ -709,7 +710,7 @@
 												<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button>
 											</sec:authorize> --%>
 											
-											<sec:authorize access="hasRole('USER')">콜햅스원본												
+											<sec:authorize access="hasRole('USER')">
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
 												<button type="button" class="btn btn-info" id="writeModalBtn">구매후기 작성</button>
@@ -756,8 +757,8 @@
 														
 														<div class="row p-b-25"> <!-- class="container" -->
 															<div class="col-sm-6 p-b-5">
-																<label class="stext-102 cl3" for="name">Title</label>
-																<input class="size-111 bor8 stext-102 cl2 p-lr-20" type="text" id="btitle" name="btitle">
+																<label class="stext-102 cl3" for="name"></label><!-- Title -->
+																<input class="size-111 bor8 stext-102 cl2 p-lr-20" type="hidden" id="btitle" name="btitle">
 															</div>
 															<!-- <div class="col-sm-6 p-b-5">
 																<label class="stext-102 cl3" for="email">Email</label>
@@ -784,15 +785,48 @@
 														 <script>
 															$("#btn_collapse_notLogin").click(function(){
 																console.log("btn_collapse_notLogin 버튼이벤트 탐");
-																alert("로그인 후 이용 가능합니다");																
-																location.href="productDetailLogin?p_number=${productNum.p_number}";
+																Swal.fire({
+																	title:'글쓰기',
+																	text:'로그인 후 이용 가능합니다.',
+																	type:'warning',
+																	showCancelButton: true,
+																	confirmButtonColor:'#3085d6',
+																	cancelButtonColor:'#d33',
+																	confirmButtonText:'Login'
+																}).then((result)=>{
+																	if(result.value){
+																		location.href="productDetailLogin?p_number=${productNum.p_number}";
+																	}
+																})
+																/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
 															})
 															
 															$("#writeModalBtn").click(function(){
-																$('#writeModal').modal();
-																
+																$('#writeModal').modal();																
 															})
-
+															
+															
+															/* $("#btn08").click(function(){
+																  Swal.fire({
+																    title: '好きなタイトルを入力',
+																    text: "好きなテキストを入力",
+																    type: 'warning',
+																    showCancelButton: true,
+																    confirmButtonColor: '#3085d6',
+																    cancelButtonColor: '#d33',
+																    confirmButtonText: 'OK'
+																  }).then((result) => {
+																    if (result.value) {
+																      Swal.fire(
+																        '自由に入力',
+																        '自由に入力',
+																        'success'
+																        );
+																    }
+																  });
+																}); */
+															
+															
 															/* 	구매후기 작성 누르면 콜햅스 내려와서 작성되는 스크립트.
 																작성 누르면 수정처럼 모달이 뜨고 거기서 글쓰기가 되게 하고싶음. 주석처리
 																$("#reply_btn").click(function(){
@@ -1515,7 +1549,7 @@
 						<input id="check" type="hidden" name="check" value="modal1">
 						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
 						<p>제목</p>
-						<input type="text"name="btitle" id="btitle" size="50" style="border:1px solid gray"><br>
+						<input type="hidden"name="btitle" id="btitle" size="50" style="border:1px solid gray" value="btitlehidden"><br>
 						<p>내용</p>
 						<textarea name="bcontent" rows="10" cols="52" style="border:1px solid gray"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
@@ -1536,22 +1570,24 @@
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header">
+					<!-- header title -->
+					<h4 class="modal-title">작성</h4>
 					<!-- 닫기(x) 버튼 -->
 					<button type="button" class="close" data-dismiss="modal">×</button>
-					<!-- header title -->
-					<h4 class="modal-title">라이트모달작성</h4>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
 					<form id="writeModalForm" name="writeModalForm" action="product_Write_reply" method="post">
-						<input type="text" id="m_number" value="${principal_m_number}" name="m_number">
-						<input type="text" id="m_id" value="${principal_m_id}" name="m_id" />
-						<input id="p_number" type="text" name="p_number" value="${productNum.p_number}">
-						<p>제목</p>
-						<input type="text"name="btitle" id="btitle" class="writeBtitle" size="50" style="border:1px solid gray"><br>
-						<p>내용</p>
-						<textarea name="bcontent" id="bcontent" class="writeBcontent" rows="10" cols="52" style="border:1px solid gray"></textarea>
-						<input type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value="입력">
+						<input type="hidden" id="m_number" value="${principal_m_number}" name="m_number">
+						<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" />
+						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
+						<!-- <p>제목</p> -->
+						<input type="hidden"name="btitle" id="btitle" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden"><br>
+						<p>Review</p>
+						<textarea name="bcontent" id="bcontent" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<div align="right">
+						<input type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value="작성">
+						</div>
 					</form>
 				</div>					
 			</div>
@@ -1647,35 +1683,103 @@
 											})
 										}) */
 										
+										/* $(document).on("click", "#deleteBoard", function(){
+											  alert($(this).attr("value"));
+											var result = confirm("삭제하시겠습니까?");
+											if(result){
+												var m_number = $("#m_number").val();
+												  console.log("m_number : "+m_number);
+												  console.log("딜리트보드 밑 m_number 옮기기");
+												  var data = {
+														  bid : $(this).attr("value"),
+														  m_number : m_number											  
+												  };											  											  
+												  $.ajax({
+												   url : "/ssmall/deleteReply",
+												   type : "get",
+												   data : data,
+												   success : function(result){
+													 if(result == 1){
+														 console.log("result=1. 삭제완료 후 갱신");
+														 alert("삭제되었습니다.");
+													     replyList();
+													 }
+													 else{
+														 console.log("result=0. 삭제 실패");
+														 alert("작성자만 가능합니다.");
+													     replyList();
+													 }
+												   }
+												  });
+												}else{
+												    alert("취소");
+												}
+
+											 }); */
+										
+											 
+											 $("#btn_collapse_notLogin").click(function(){
+													console.log("btn_collapse_notLogin 버튼이벤트 탐");
+													Swal.fire({
+														title:'글쓰기',
+														text:'로그인 후 이용 가능합니다.',
+														type:'warning',
+														showCancelButton: true,
+														confirmButtonColor:'#3085d6',
+														cancelButtonColor:'#d33',
+														confirmButtonText:'Login'
+													}).then((result)=>{
+														if(result.value){
+															location.href="productDetailLogin?p_number=${productNum.p_number}";
+														}
+													})
+													/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
+												})
+												
+												$("#writeModalBtn").click(function(){
+													$('#writeModal').modal();																
+												})	 
+											 
+											 
 										$(document).on("click", "#deleteBoard", function(){
-											  /* alert($(this).attr("value")); */											 
-											  var m_number = $("#m_number").val();
-											  console.log("m_number : "+m_number);
-											  console.log("딜리트보드 밑 m_number 옮기기");
-											  var data = {
-													  bid : $(this).attr("value"),
-													  m_number : m_number											  
-											  };
-											  
-											  
-											  $.ajax({
-											   url : "/ssmall/deleteReply",
-											   type : "get",
-											   data : data,
-											   success : function(result){
-												 if(result == 1){
-													 console.log("result=1. 삭제완료 후 갱신");
-													 alert("삭제되었습니다.");
-												     replyList();
-												 }
-												 else{
-													 console.log("result=0. 삭제 실패");
-													 alert("작성자만 가능합니다.");
-												     replyList();
-												 }
-											   }
-											  });
-											 });
+											  /* alert($(this).attr("value")); */
+											Swal.fire({
+												title:'글 삭제',
+												text:'글을 지우시겠습니까?',
+												type:'warning',
+												showCancelButton: true,
+												confirmButtonColor:'#3085d6',
+												cancelButtonColor:'#d33',
+												confirmButtonText:'OK'
+											}).then((result)=>{
+												if(result.value){
+													var m_number = $("#m_number").val();
+													  console.log("m_number : "+m_number);
+													  console.log("딜리트보드 밑 m_number 옮기기");
+													  var data = {
+															  bid : $(this).attr("value"),
+															  m_number : m_number											  
+													  };											  											  
+													  $.ajax({
+													   url : "/ssmall/deleteReply",
+													   type : "get",
+													   data : data,
+													   success : function(result){
+														 if(result == 1){
+															 console.log("result=1. 삭제완료 후 갱신");
+															 Swal.fire('글 삭제','삭제되었습니다','success');
+														     replyList();
+														 }
+														 else{
+															 console.log("result=0. 삭제 실패");
+															 Swal.fire('글 삭제','작성자만 가능합니다','error');
+														     replyList();
+														 }
+													   }
+													  });
+												}
+											}) 
+										})
 										
 											$(function(){
 											    $(document).on("click","#modify",function(){
@@ -1696,7 +1800,7 @@
 														    	$('#bid').val(data.bid);	
 															}
 															else{
-																alert("작성자만 가능합니다.");
+																Swal.fire('글 수정','작성자만 가능합니다','error');
 															}
 														}
 														

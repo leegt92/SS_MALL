@@ -134,6 +134,11 @@ public interface ProductMapper {
 	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_brand like '%'||#{keyword}||'%'order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum}")
 	public List<ProductVO> searchProductListPageBrand(@Param("startNum")int startNum, @Param("endNum")int endNum ,@Param("keyword")String keyword);
 	
+	//순위로 상품 정렬순서를 결정한 상품목록을 가져오는 sql문. order by 부분에 keyword를 직접 넣을 수 있나 확인 
+	//페이징처리된 상품목록을 불러오기 위한 sql문
+	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product order by ${keyword}) a)where rnum >= #{startNum} and rnum <= #{endNum}")
+	public List<ProductVO> selectProductListPageRank(@Param("startNum")int startNum, @Param("endNum")int endNum, @Param("keyword")String keyword);
+	
 	
 
 }

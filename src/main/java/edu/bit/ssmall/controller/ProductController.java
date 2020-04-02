@@ -55,11 +55,15 @@ public class ProductController {
 		return "product";
 	}
 	//QuickView를 위한 메소드
+	@ResponseBody
 	@RequestMapping("/productViewQuick")
-	public String productviewQuick(HttpServletRequest request,Model model, Criteria criteria) {
+	public ProductVO productviewQuick(HttpServletRequest request,Model model, Criteria criteria) {
 		System.out.println("productViewQuick");
 		String p_number = request.getParameter("p_number");
 		System.out.println("p_number : "+p_number);
+		ProductVO quickViewList = productService.productOne(p_number);
+		model.addAttribute("quickViewList",quickViewList);
+		System.out.println(quickViewList);
 		//페이징
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -77,34 +81,8 @@ public class ProductController {
 				
 		/* model.addAttribute("product", productService.selectProductList()); */
 		System.out.println("product 탔음");
-		return "product";
+		return quickViewList;
 	}
-	
-	//ajax 확인
-	@ResponseBody
-	@RequestMapping("/productViewAjax")
-	public List<ProductVO> productviewAjax(HttpServletRequest request,Model model, Criteria criteria) {
-		System.out.println("productview");
-		//페이징
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(criteria);
-		int startNum = criteria.getStartNum(); 
-		int endNum = criteria.getEndNum();
-		//페이징시 전체상품의 갯수를 확인하기 위해.
-		int totalCount = productService.selectCountProduct();
-		//페이지메이커에 전체상품의 갯수를 넣었다. 이로써 전체상품갯수를 이용해 다른값을 뽑아낼 수 있을것.
-		pageMaker.setTotalCount(totalCount);
-		//페이징처리된 상품목록을 불러올 코드
-		List<ProductVO> productList = productService.selectProductListPage(startNum, endNum);
-
-		model.addAttribute("product",productList);
-		model.addAttribute("pageMaker",pageMaker);
-				
-		/* model.addAttribute("product", productService.selectProductList()); */
-		System.out.println("product 탔음");
-		return productService.selectProductListPage(startNum, endNum);
-	}
-	//ajax 확인
 	
 	//검색시 페이징된 목록을 불러오기 위한 메소드. 위와 거의 똑같다.
 	@RequestMapping("/productViewSearch")
@@ -165,7 +143,6 @@ public class ProductController {
 		return "product";
 	}
 	//===================================================================================================
-	
 	//product 왼쪽상단 시계 버튼 눌럿을때 시계만 나오면서 페이징도 되도록 하기 위해 만듬======================================================
 	//product의 filter 브랜드별 필터 기능.
 		@RequestMapping("/productViewSearchBrand")
@@ -198,9 +175,37 @@ public class ProductController {
 		}
 		//===================================================================================================
 	
+		//===================================================================================================
+		//product 왼쪽상단 시계 버튼 눌럿을때 시계만 나오면서 페이징도 되도록 하기 위해 만듬======================================================
+		//product의 filter 순위별 필터 기능.검색이 아니라 나열의 순서조정이므로 keyword 필요 없다.
+		//각 버튼별 구별을 위해 keyword라는 단어를 사용하긴 할거임. 그저 구별을 위한 기능
+		//생각해보니 keyword로 sql문에 직접 영향을 줄 수 있나 확인해보기로함. 할 수 있다면 코드 줄일 수 있음.
+		@RequestMapping("/productViewRank")
+		public String productviewRank(HttpServletRequest request,Model model, Criteria criteria) {
+			System.out.println("productviewRank");
+			//페이징
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(criteria);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			//페이징시 전체상품의 갯수를 확인하기 위해.
+			int totalCount = productService.selectCountProduct();
+			//페이지메이커에 전체상품의 갯수를 넣었다. 이로써 전체상품갯수를 이용해 다른값을 뽑아낼 수 있을것.
+			pageMaker.setTotalCount(totalCount);			
+			//어떤 버튼을 선택했는가에 따라 정렬순서 분기
+			String keyword = request.getParameter("keyword");
+			System.out.println("keyword 체크 : "+keyword);
+			List<ProductVO> productList = productService.selectProductListPageRank(startNum, endNum,keyword);
+			model.addAttribute("product",productList);
+			model.addAttribute("pageMaker",pageMaker);
+			model.addAttribute("rankKeyword",keyword);
+			System.out.println("productViewRank 탔음");
+			return "product";
+		}
+			//===================================================================================================
 	
 	
-	
+	/*
 	@RequestMapping("/productViewWatch")
 	public String productview2(Model model, HttpServletRequest request) {
 		String p_category = request.getParameter("p_category");
@@ -213,7 +218,7 @@ public class ProductController {
 	public String productview3(Model model) {
 		model.addAttribute("product", productService.selectProductList());		
 		return "productwallet";
-	}
+	}*/
 	
 	//글 작성시
 	@ResponseBody
@@ -266,7 +271,6 @@ public class ProductController {
 		
 	}
 	
-
 	@ResponseBody
 	@RequestMapping("/deleteReply")
 	public int deleteReply(BoardVO boardVO, Model model,HttpServletRequest request) {
@@ -363,7 +367,6 @@ public class ProductController {
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
 	    System.out.println("auth.getName() : "+auth.getName());
-	    
 		System.out.println("productDetail시작");
 		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 : "+p_number);
@@ -371,14 +374,9 @@ public class ProductController {
 		model.addAttribute("productAmount", productService.selectProductListAmount());
 		model.addAttribute("productReply", productService.productReply(p_number));
 		model.addAttribute("productNum", productService.productOne(p_number));
-		
 		model.addAttribute("principal_m_id",name);//principal로 받은 회원의 id. leegt92같은거.
-		
-		
 		System.out.println("productDetail끝");
-				
-		
-		
+								
 		return "productDetail";
 	}
 	//시큐리티 이용 로그인확인
@@ -397,23 +395,18 @@ public class ProductController {
 	    }
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
-	    System.out.println("auth.getName() : "+auth.getName());
-	    
+	    System.out.println("auth.getName() : "+auth.getName());	    
 		System.out.println("productDetail시작");
 		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 : "+p_number);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));
 		model.addAttribute("productAmount", productService.selectProductListAmount());
 		model.addAttribute("productReply", productService.productReply(p_number));
-		model.addAttribute("productNum", productService.productOne(p_number));
-		
+		model.addAttribute("productNum", productService.productOne(p_number));		
 		model.addAttribute("principal_m_id",name);//principal로 받은 회원의 id. leegt92같은거.
-		
-		
+	
 		System.out.println("productDetail끝");
-				
-		
-		
+						
 		return "productDetail";
 	}
 	//상품에 대한 구매후기를 불러오는것.(댓글)
