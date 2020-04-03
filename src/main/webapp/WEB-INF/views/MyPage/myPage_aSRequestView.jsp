@@ -306,9 +306,9 @@
             	=======================================================================================================================
             	<br/>
             	<br/>
-              	<p><b>답변 제목:</b><c:out value = "${aSRequestboardsAnswers[status.index].btitle}"/></p>
+              	<p><b>답변 제목:</b>${aSRequestboardsAnswers[status.index].btitle}</p>
               	<br/>
-              	<p><b>답변 내용:</b><c:out value = "${aSRequestboardsAnswers[status.index].bcontent}"/></p>
+              	<p><b>답변 내용:</b>${aSRequestboardsAnswers[status.index].bcontent}</p>
             </div>
         </li>
         </c:forEach>
@@ -529,52 +529,6 @@
 	        }
 
 	});
-    		
-			
-    		
-	</script>
-	<script>
-   		/* var $form = $('<form></form>'); 
-		$form.attr('action', 'myPage_askAS'); 
-		$form.attr('method', 'post'); 
-		$form.appendTo('body'); 
-		
-		var example_1 = $('<input type="hidden" value="" name="">'); 
-		var example_2 = $('<input type="hidden" value="" name="">'); 
-		
-		$form.append(example_1).append(example_2);
-		
-		$form.submit(); */
-		
-		/* $(document).ready(function(){
-
-			$("#btnToAskAs").click(function(){
-
-				var form = document.createElement('form');
-
-				/* var objs;
-
-				objs = document.createElement('input');
-
-				objs.setAttribute('type', 'hidden');
-
-				objs.setAttribute('name', 'name');
-
-				objs.setAttribute('value', value); 
-
-				form.appendChild(objs); */
-
-				/* form.setAttribute('method', 'post');
-
-				form.setAttribute('action', "myPage_askAS");
-
-				document.body.appendChild(form);
-
-				form.submit();
-
-			});	
-
-			}); */ */
 	</script>
   </body>
 </html>

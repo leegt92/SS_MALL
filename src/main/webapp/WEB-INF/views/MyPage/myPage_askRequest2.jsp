@@ -142,9 +142,9 @@
 		<div class="container" >
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
-				width:1142px; height:527px; style="
+				style="
 				 width: 1142px;
-   				 height: 527px;
+				 height: 627px;
 				">
 					<form id="submitAskRequest" action="myPage_askRequest2_back">
 						<input type="hidden" name="bId" value="${bId}">
@@ -245,6 +245,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -284,6 +285,13 @@
     		
 	</script>
 
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bContent',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
    
   </body>
 </html>

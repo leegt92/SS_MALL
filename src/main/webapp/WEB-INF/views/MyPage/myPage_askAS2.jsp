@@ -143,9 +143,9 @@
 		<div class="container" >
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
-				width:1142px; height:527px; style="
+				 style="
 				 width: 1142px;
-   				 height: 527px;
+				 height: 627px;
 				">
 					<form id="submitASRequest" action="myPage_aSRequest2_back">
 					<input type="hidden" name="bId" value="${bId}">
@@ -159,7 +159,7 @@
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" >${FbContent}</textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent">${FbContent}</textarea>
 						</div>
 
 						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
@@ -245,7 +245,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sweetalert2.js"></script>
-    <script src="js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -285,7 +285,14 @@
 			
     		
 	</script>
-
+	
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bContent',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
    
   </body>
 </html>
