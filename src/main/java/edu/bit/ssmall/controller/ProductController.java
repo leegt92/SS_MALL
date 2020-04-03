@@ -18,7 +18,6 @@ import edu.bit.ssmall.productpage.PageMaker;
 import edu.bit.ssmall.productpage.SearchCriteria;
 import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.BoardVO;
-import edu.bit.ssmall.vo.ProductImageVO;
 import edu.bit.ssmall.vo.ProductReplyVO;
 import edu.bit.ssmall.vo.ProductVO;
 
@@ -227,6 +226,7 @@ public class ProductController {
 	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {	
 	
 		System.out.println("/product_Write_replyAjax");		
+
 		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 확인 "+ p_number);
 		String btitle = request.getParameter("btitle");

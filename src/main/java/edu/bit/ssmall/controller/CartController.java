@@ -28,6 +28,7 @@ import edu.bit.ssmall.vo.ProductImageVO;
 
 //장바구니 관련 컨트롤러
 @Controller
+@RequestMapping("cart")
 public class CartController {
 	
 	@Autowired
@@ -58,13 +59,8 @@ public class CartController {
 		int totalprice = productImageVO.getP_price() * Integer.parseInt(b_amount); //상품의 가격과 구매하려는 갯수를 곱해 총가격
 		
 		cartService.addCart(p_number, memberVO.getM_number(), b_amount, totalprice); //상품번호, 회원번호, 구매갯수, 총가격으로 카트테이블에 삽입
-		
-		ArrayList<CartViewVO> cart = cartService.cartInfo(memberVO.getM_number()); //회원번호를 이용해서 카트에 담긴 정보를 담음
-		System.out.println(cart);
-		
-		model.addAttribute("cartList", cart); //카트리스트에 정보를 넘겨서 보여지게함 foreach문 써서
-		
-		return "Cart/shopping-cart";				
+
+		return "redirect:/cart/cartView";				
 	}
 	
 	//장바구니 탭 눌렀을 때 
@@ -86,7 +82,7 @@ public class CartController {
 	
 	//장바구니에서 구매할 물건 체크해서 구매하기
 	@RequestMapping(value="cartBuy", method = {RequestMethod.POST,RequestMethod.GET})
-	public String cartBuy(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String cartBuy(Model model, Principal principal, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("cartBuy() 장바구니에서 체크해서 구매하기!");
 		HttpSession session = request.getSession();		
 	
@@ -97,7 +93,7 @@ public class CartController {
 			//체크한게 없으면 다시 장바구니로			
 			session.setAttribute("checkNull", "checkNull");
 
-			return "redirect:/cartView";
+			return "redirect:/cart/cartView";
 		}
 		
 		int amount = 0; //구매하려는 총갯수
@@ -114,12 +110,13 @@ public class CartController {
 			System.out.println(item);
 		}
 		PayVO payVO = new PayVO();
+		MemberVO memberVO = cartService.memberInfo(principal.getName());
 		System.out.println(totalprice);
 		
 		session.setAttribute("cart", cart); // 구매하려는 상품들을 세션으로 저장
 		session.setAttribute("amount", amount); //구매하려는 상품갯수을 세션으로 저장
 		session.setAttribute("totalprice", totalprice); // 구매하려는 상품의 총가격을 세션으로 저장
-
+		session.setAttribute("member", memberVO);
 		model.addAttribute("payVO",payVO); //구매할때 배송자 정보를 유효성 검사하기위해 payVO 객체를 넣어줌
 		
 		return "Cart/cartBuyView";
@@ -134,7 +131,7 @@ public class CartController {
 		System.out.println("c_id");
 		cartService.cartDelete(c_id); //해당 cid로 삭제
 		
-		return"redirect:/cartView";
+		return"redirect:/cart/cartView";
 	}
 	
 	//장바구니에서 구매하기 누르고 나오는 창에서 주문정보값 받는곳
@@ -164,16 +161,28 @@ public class CartController {
 			return "Cart/cartBuyView";
 		}
 		String adress = "(" + addr1 + ") " + addr2 + " " + addr3;		
-		String totalprice = String.valueOf(session.getAttribute("totalprice")); 
+		
 		String amount =  String.valueOf(session.getAttribute("amount"));
+		
+		int usingPoint = 0;
+		int totalprice = Integer.parseInt(String.valueOf(session.getAttribute("totalprice"))); 
+		if(request.getParameter("usingPoint").equals("")) {
+			usingPoint = 0;
+		}else {
+			usingPoint = Integer.parseInt(request.getParameter("usingPoint"));
+		}
+		int finalPrice = totalprice - usingPoint;
+		System.out.println("usingPoint : " + usingPoint);
+		System.out.println("finalPrice : " + finalPrice);
 		System.out.println(totalprice);
 		System.out.println(amount);
 		
 		payVO.setAddr(adress);
-		payVO.setTotalPrice(Integer.parseInt(totalprice));
+		payVO.setTotalPrice(finalPrice);
 		payVO.setAmount(amount);
 		
 		session.setAttribute("payVO",payVO); //구매정보를 담은 객체 세션처리.
+		session.setAttribute("usePoint", usingPoint);
 		
 		session.removeAttribute("totalprice"); //가격 수량 payVO로 세션처리햇으니 두개삭제
 		session.removeAttribute("amount");
@@ -184,7 +193,7 @@ public class CartController {
 		
 		for (int i = 0; i < list.size(); i++) {			
 			System.out.println(list.get(i)); //제대로 담겼는지 확인
-			p_name = p_name + cartService.getP_name(list.get(i).getP_number()) + ", ";
+			p_name = p_name + cartService.getP_name(list.get(i).getP_number()) + " ";
 			
 		}
 		p_name = p_name + ")";
@@ -193,7 +202,7 @@ public class CartController {
 		String m_id = principal.getName(); //로그인한 사용자 id가져옴	
 		session.setAttribute("p_name", p_name); //상품명들 세션처리
 		
-		String url = kakaoPay.kakaoPayReady(p_name,totalprice , amount, m_id, request); //에러가 있다면 null
+		String url = kakaoPay.kakaoPayReady(p_name,Integer.toString(finalPrice) , amount, m_id, request); //에러가 있다면 null
 		
 		if(url == null) {
 			System.out.println("url : "+url);
@@ -205,11 +214,7 @@ public class CartController {
 	}
 	
 	
-	//홈페이지에서 햄버거 옆에 카트눌렀을때 나오기위해 제이슨으로 보내서 ajax할거임
-	@ResponseBody
-	@RequestMapping("/miniCart")
-	public ArrayList<CartViewVO> miniCart(Principal principal){
-		return cartService.miniCartInfo(principal.getName());
-	}
+
+	
 	
 }

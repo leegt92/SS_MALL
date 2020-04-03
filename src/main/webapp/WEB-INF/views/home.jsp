@@ -20,6 +20,7 @@
 	<title>상승몰</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
@@ -62,8 +63,9 @@
 	
 	
 	$(function(){
+		
 		$.ajax({
-			url : '/ssmall/miniCart',
+			url : 'miniCart',
 			dataType : 'json',
 			success : function(data){
 				console.log(data);
@@ -77,10 +79,10 @@
 					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
 					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
 					tag = tag + "<div class='header-cart-item-img'>";
-					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
+					tag = tag + "<img src='/ssmall/productimage/" + value.i_name +"' alt='IMG'>";
 					tag = tag + "</div>";
 					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
-					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
+					tag = tag + "<a href='/ssmall/productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
 					tag = tag + value.p_description + " x " + value.c_amount;
 					tag = tag + "</a>";
 					tag = tag + "<span class='header-cart-item-info'>";
@@ -98,7 +100,7 @@
 				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
 				tag2 = tag2 + "</div>"
 				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
-				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
+				tag2 = tag2 + "<a href='/ssmall/cart/cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
 				tag2 = tag2 + "View Cart </a></div>";
 				
 				$("#total").append(tag2);
@@ -108,10 +110,19 @@
 					$('#count').attr('data-notify', itemcount);
 
 			    });
+			
 				
-				
-				
-			}
+			},
+			error : function(request, status, error) {           
+             	console.log("로그인x");
+            
+             	var itemcount = 0;
+             	$(document).ready(function () {
+
+					$('#count').attr('data-notify', itemcount);
+
+			 	});
+        	 }	    		 	   
 		})
 	})
 </script>
@@ -184,6 +195,10 @@
 								<a href="asView">AS</a>
 							</li>
 							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
+							</li>
+							
 						</ul>
 					</div>	
 
@@ -227,6 +242,50 @@
 		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
+				<sec:authorize access="isAnonymous()">
+					<li>
+						<a href="login">로그인</a>
+					</li>	
+				</sec:authorize>
+				<sec:authorize access="hasRole('ADMIN')">
+					<li>
+						<p><%=name%>님</p>
+					</li>
+						
+					<li>
+						<a href="#" class="stext-102 cl2 hov-cl1 trans-04" onclick="document.getElementById('logout').submit();">
+							로그아웃</a>
+						<form id="logout" action="logout" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+						</form>
+					</li>
+			
+					<li>
+						<a href="/ssmall/admin/adminpage">관리자페이지 </a>
+					</li>
+				</sec:authorize>
+					
+				<sec:authorize access="hasRole('USER')">
+					<li>
+						<p><%=name%>님</p>
+					</li>
+					<li>
+						<a href="#"  onclick="document.getElementById('logout').submit();">
+						로그아웃</a>
+						<form id="logout" action="logout" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
+						</form>
+					</li>
+						
+					<li>
+						<a href="/ssmall/mypage/myPage_orderedList">마이페이지</a>
+					</li>
+						
+					<li>
+						<a href="/ssmall/cart/cartView">장바구니 </a>
+					</li>
+					</sec:authorize>
+				
 				<li>
 					<a href="homeview">홈</a>					
 					<span class="arrow-main-menu-m">
@@ -309,7 +368,7 @@
 						</li>
 			
 						<li class="p-b-13">
-							<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+							<a href="/ssmall/admin/adminpage" class="stext-102 cl2 hov-cl1 trans-04">
 								<p style="font-weight: bold; font-size: 1.5em;">관리자페이지 </p>
 							</a>
 						</li>
@@ -328,16 +387,18 @@
 						</li>
 						
 						<li class="p-b-13">
-						<a href="myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="/ssmall/mypage/myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">마이페이지 </p>
 						</a>
 						</li>
 						
 						<li class="p-b-13">
-						<a href="cartView" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="/ssmall/cart/cartView" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">장바구니 </p>
 						</a>
 						</li>
+						
+					
 					</sec:authorize>
 
 					<li class="p-b-13">
@@ -879,7 +940,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	 </div>  
-
+	
+	
+	
+	
+	
+	
+	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -998,46 +1065,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-	
-</body>
-
-
 
 <script>
-/* $(document).ready(function() { */
-	/* 
-	$('#watch2').on('click',function(){
-		
-		$('#watch1').trigger("click");	
-		
-	});  	 */
-/* });	 
- */
-	/*  $('#watch2').click(function(){
-		  var a = document.getElementById('watch1');
-		  a.click('#watch1'); 
-	});	  
-	  */
-	  /*  $('#watch2','#watch1').click(function() {
-		var $this=$(this);
-		
-		if($this.hasId('watch2')){
-			$(location).attr('href','productView');
-			$("#watch1").trigger("click");	
-		}
-		
-		else{
-			
-		}
-	});  */
-	/*  $(document).on("click","#watch2", function(){
-		 
+	function chat(){
+		window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
+	}		
+</script>
 	
-		 $("#watch1").trigger("click");
-	 }); */
-
-
- 	 
-</script> 
- 
+</body>
 </html>

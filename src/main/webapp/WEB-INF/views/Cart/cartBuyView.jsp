@@ -10,34 +10,34 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
 <!--===============================================================================================-->
 <!--===============================================================================================-->	
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -100,19 +100,19 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
-						<a href="companyView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/companyView" class="flex-c-m trans-04 p-lr-25">
 							About Us
 						</a>
 					</div>
@@ -123,31 +123,31 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
+					<a href="/ssmall/homeview" class="logo">
+						<img src="/ssmall/images/icons/productlogo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="homeview">홈</a>
+								<a href="/ssmall/homeview">홈</a>
 							</li>
 
 							<li>
-								<a href="productView">상품</a>
+								<a href="/ssmall/productView">상품</a>
 							</li>
 													
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="/ssmall/boardnoticeView">공지사항</a>
 							</li>
 							
 							<li>
-								<a href="companyView">회사소개</a>
+								<a href="/ssmall/companyView">회사소개</a>
 							</li>
 							
 							<li>
-								<a href="asView">AS</a>
+								<a href="/ssmall/asView">AS</a>
 							</li>
 						</ul>
 					</div>					
@@ -159,7 +159,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
+				<a href="/ssmall/homeview"><img src="/ssmall/images/icons/productlogo.png" alt="IMG-LOGO"></a>
 			</div>
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -173,25 +173,25 @@
 		<div class="menu-mobile">			
 			<ul class="main-menu-m">
 				<li>
-					<a href="homeview">홈</a>
+					<a href="/ssmall/homeview">홈</a>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
 				</li>
 				<li>
-					<a href="productView">상품</a>
+					<a href="/ssmall/productView">상품</a>
 				</li>
 
 				<li>
-					<a href="boardnoticeView">공지사항</a>
+					<a href="/ssmall/boardnoticeView">공지사항</a>
 				</li>
 
 				<li>
-					<a href="companyView">회사소개</a>
+					<a href="/ssmall/companyView">회사소개</a>
 				</li>
 				
 				<li>
-					<a href="asView">AS</a>
+					<a href="/ssmall/asView">AS</a>
 				</li>
 			</ul>
 		</div>
@@ -200,12 +200,12 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/ssmall/homeview" class="stext-109 cl8 hov-cl1 trans-04">
 				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="cartView" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/ssmall/cart/cartView" class="stext-109 cl8 hov-cl1 trans-04">
 				장바구니
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -234,39 +234,60 @@
 						<table class="table table-list-search">
 							<tr>
 								<th></th>
-								<th>상품명</th>
-								<th>구매수량</th>
-								<th>구매가격</th>
+								<th style="text-align: center; vertical-align: middle;">상품명</th>
+								<th style="text-align: center; vertical-align: middle;">구매수량</th>
+								<th style="text-align: center; vertical-align: middle;">구매가격</th>
 								
 							</tr>
 							<c:set var="totalprice" value="0"></c:set>
 							<c:forEach items="${cart}" var="cart">
 							<tr>
-								<td>
+								<td style="text-align: center; vertical-align: middle;">
 									<a href="/ssmall/productDetail?p_number=${cart.p_number}">
-										<img src="productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
+										<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
 									</a>	
 								</td>
-								<td>${cart.p_description}</td>
-								<td>${cart.c_amount}</td>
-								<td><fmt:formatNumber value="${cart.c_grandtotal}"
+								<td style="text-align: center; vertical-align: middle;">${cart.p_description}</td>
+								<td style="text-align: center; vertical-align: middle;">${cart.c_amount}</td>
+								<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${cart.c_grandtotal}"
 										pattern="###,###,###" />원</td>
 								<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
 							</tr>
-							</c:forEach>
-							<tr>
-								<td colspan="4" align="right">
-								<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
-							</tr>	
+							</c:forEach>													
 						</table>
 					</div>
 				</div>
 			</div>
+			<br>
 			<hr>
 			
-			<form:form role="form" commandName="payVO" action="cartPay">
+			<!-- 포인트 사용여부 -->
+			<div class="tab-content p-t-43">
+				<!-- 무신사는 7%까지 적립가능 -->
+				<div class="tab-pane fade show active" id="description" role="tabpanel">
+					<div class="how-pos2 p-lr-15-md">
+					<h4>포인트 사용여부</h4>
+					<br>
+						<div>
+						<form id="pointForm">			
+							<span class="label-input100">포인트</span><br>
+							<input id="pointInput" class="form-control" style="width: 20%; display: inline" name="point" type="text" />							
+							<input id="pointUse" type="button" class="btn btn-primary" value="전체사용" />
+							<span class="label-input100">현재 포인트 : <fmt:formatNumber value="${member.m_point}" pattern="###,###,###" /></span>
+							<span class="label-input100">사용가능 포인트 : <fmt:formatNumber value="${totalprice * 0.01}" pattern="###,###,###" /></span>
+							<br><br>
+							<span class="label-input100">최종가격</span>
+							<input id="finalPrice" type="text" class="form-control" style="width: 20%;" value="">
+						</form>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<br>
+			<hr>
 			
-			
+			<form:form role="form" commandName="payVO" action="/ssmall/cart/cartPay">
+			<input id="usingPoint" type="hidden" name="usingPoint" value="0">	
 			<div class="tab-content p-t-43">		
 				<div class="tab-pane fade show active" id="description"
 					role="tabpanel">
@@ -345,7 +366,7 @@
 			<div class="tab-content p-t-43">
 			
 				<div class="how-pos2 p-lr-15-md">
-		       		<button type="submit" class="btn btn-secondary">구매하기</button>
+		       		<button type="submit" class="btn btn-secondary" onclick="return confirm('구매하시겠습니까?');">구매하기</button>
 		            <button type="reset" class="btn btn-secondary">취소하기</button>
 				</div>				
 			</div>
@@ -366,13 +387,13 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="/ssmall/productView" class="stext-130 cl7 hov-cl1 trans-04">
 								Watch
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="productView" class="stext-130 cl7 hov-cl1 trans-04">
+							<a href="/ssmall/productView" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
 						</li>
@@ -446,7 +467,7 @@
 				</div>
 				
 				  <div class="col-sm-6 col-lg-3 p-b-50">
-				  	<img src="images/icons/mainlogo.png" width="500">
+				  	<img src="/ssmall/images/icons/mainlogo.png" width="500">
 					<!-- <h4 class="stext-301 cl0 p-b-30">
 						Newsletter
 					</h4>
@@ -469,23 +490,23 @@
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="/ssmall/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
@@ -508,21 +529,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="/ssmall/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/popper.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="/ssmall/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/popper.js"></script>
+	<script src="/ssmall/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="/ssmall/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -532,10 +553,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="/ssmall/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 	
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -552,7 +573,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-<script src="js/main.js"></script> 	
+<script src="/ssmall/js/main.js"></script> 	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 <script>
 	$('#map').click(function(){
@@ -564,7 +585,99 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
 
 	});
-</script> 
+</script>
+<!--===============================================================================================-->
+<script>
+	
+	$(document).ready(function(){
+		
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
+		$('#pointUse').on('click', function(){
+			console.log('클릭이벤트 발생');	
+			var usePoint = null;
+			if( ${totalprice * 0.01} < ${member.m_point}){
+				 //포인트 입력하는곳  상품금액의 1퍼센트 이상보다 더많은 포인트가 존재한다면  상품금액의 1퍼센트의 포인트가 들어가도록한다.
+				usePoint = ${totalprice * 0.01};
+				document.getElementById("pointInput").value = usePoint;
+			}else{
+				//아니면 적거나 같은거니까 m_point다사용
+				usePoint = ${member.m_point};
+				document.getElementById("pointInput").value = usePoint;
+			}
+	
+			var price = ${totalprice} - usePoint;			
+
+			document.getElementById("finalPrice").value = numberWithCommas(price); //최종가격
+			document.getElementById("usingPoint").value = usePoint; //컨트롤러에 넘어가는 사용포인트
+		});
+		
+		$("#pointInput").on("propertychange change keyup paste input", function() {
+ 			
+			var regexp = /^[0-9]*$/
+			var usePoint = $(this).val();
+			var price = null;
+			if( !regexp.test(usePoint) ) {
+
+				document.getElementById("pointInput").value = null;
+				document.getElementById("finalPrice").value = null;					
+				
+				return false;
+			}
+			
+			
+			console.log(usePoint);
+			if(usePoint > ${member.m_point} && usePoint > ${totalprice * 0.01}){	
+				alert('사용가능한 포인트보다 많음');
+				price = ${totalprice} - ${totalprice * 0.01};
+				document.getElementById("pointInput").value = ${totalprice * 0.01};
+				document.getElementById("finalPrice").value = numberWithCommas(price);
+				return false;
+			
+			}else if (usePoint > ${member.m_point}){
+				alert('보유한 포인트보다 많음');
+				price = ${totalprice} - ${member.m_point};
+				
+				document.getElementById("pointInput").value = ${member.m_point};	
+				document.getElementById("finalPrice").value = numberWithCommas(price);
+				return false;
+			
+			}else if(usePoint > ${totalprice * 0.01}){
+				alert('사용가능한 포인트보다 많음');
+				price = ${totalprice} - ${totalprice * 0.01};
+				document.getElementById("pointInput").value = ${totalprice * 0.01};
+				document.getElementById("finalPrice").value = numberWithCommas(price);
+				return false;
+			}
+				
+			price = ${totalprice} - usePoint;
+			
+			
+			document.getElementById("finalPrice").value = numberWithCommas(price);
+			
+			document.getElementById("usingPoint").value = usePoint;
+			
+         });
+		
+		$('#receiver').focus(function(){
+			var point = $('#pointInput').val()
+			console.log(point);
+			if (point > 0 && point < 1000){
+				alert("포인트는 1000원이상부터 사용가능합니다.")
+				$('#receiver').blur();
+				document.getElementById("pointInput").value = null;
+				document.getElementById("finalPrice").value = null;	
+				$('#pointInput').focus();
+				return;
+			}
+		})
+
+		
+	});
+	</script>	
+ 
 <span class="bt-basic" id="map"></span>  
 <!--===============================================================================================-->	
 </body>

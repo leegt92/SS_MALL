@@ -13,34 +13,34 @@
     <title>상승몰</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ssmall/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet"> 
+    <link href="/ssmall/css/dashboard.css" rel="stylesheet"> 
     
     <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
 <!--===============================================================================================-->
 <style type="text/css">
 .bg-light {
@@ -155,21 +155,21 @@
   <body>
   
      <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+      <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
  	"></a>
-      <a href="/ssmall" style="color:white">홈</a>
+      <a href="/ssmall/" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartView" style="color:white">장바구니</a>
-       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
+      <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
+      <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
       <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3">
+      <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
-          	<form id="logout" action="logout" method="POST">
+          	<form id="logout" action="/ssmall/logout" method="POST">
           							Sign out
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
 			</form>
@@ -180,9 +180,9 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
+        <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -191,37 +191,37 @@
                 </a> 
               </li>-->
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
+                <a class="nav-link" href="/ssmall/mypage/myPage_reviseInformation">
                   <span data-feather="file"></span>
                   <b>회원 정보 수정</b>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_orderedList">
+                <a class="nav-link" href="/ssmall/mypage/myPage_orderedList">
                   <span data-feather="shopping-cart"></span>
                   <b>나의 주문 내역</b>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_shoppingList">
+                <a class="nav-link" href="/ssmall/mypage/myPage_shoppingList">
                   <span data-feather="shopping-cart"></span>
                   <b>나의 구매 내역</b>
                 </a>
               </li>
                <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_refundList">
+                <a class="nav-link" href="/ssmall/mypage/myPage_refundList">
                   <span data-feather="shopping-cart"></span>
                   <b>나의 환불 내역</b>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_askRequestView">
+                <a class="nav-link" href="/ssmall/mypage/myPage_askRequestView">
                   <span data-feather="users"></span>
                   <b>▶1:1 문의</b>
                 </a>
               </li>           
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_aSRequestView">
+                <a class="nav-link" href="/ssmall/mypage/myPage_aSRequestView">
                   <span data-feather="layers"></span>
                   <b>A/S 서비스 신청</b>
                 </a>
@@ -247,7 +247,7 @@
             		<h3 style="font-size:16px; color:green;" class="accordion3">
             		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
             		<c:set var="bId" value="${askRequestboards.bid}" />
-            		<button onclick="window.location.href='/ssmall/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button onclick="window.location.href='/ssmall/mypage/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
             		<button onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
@@ -263,7 +263,7 @@
         				      '삭제가 완료되었습니다.',
         				      'success'
         				    ).then(function() {
-        				    	window.location.href='/ssmall/delete.do?bId=' + ${askRequestboards.bid};
+        				    	window.location.href='/ssmall/mypage/delete.do?bId=' + ${askRequestboards.bid};
     	    				});
         				  }
         				})" style="position:fixed;left: 1550px;">
@@ -274,7 +274,7 @@
             	<c:otherwise>
             		<h3 style="font-size:16px; color:red;" class="accordion3">
             		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
-            		<button onclick="window.location.href='/ssmall/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button onclick="window.location.href='/ssmall/mypage/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
             		<button onclick="Swal.fire({
       				  title: '정말 삭제하시겠습니까?',
     				  text: '삭제 되면 복구되지 않습니다.',
@@ -290,7 +290,7 @@
     				      '삭제가 완료되었습니다.',
     				      'success'
     				    ).then(function() {
-    				    	window.location.href='/ssmall/delete.do?bId=' + ${askRequestboards.bid};
+    				    	window.location.href='/ssmall/mypage/delete.do?bId=' + ${askRequestboards.bid};
 	    				});
     				  }
     				})" style="position:fixed;left: 1550px;">
@@ -314,18 +314,18 @@
         </li>
         </c:forEach>
         <c:if test="${pageMaker.prev}">
-			<a href="myPage_askRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+			<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
 	</c:if>
 	
 	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="myPage_askRequestView${pageMaker.makeQuery(idx)}">${idx}</a>
+			<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
 	
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+				<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-        <button onclick="window.location.href='/ssmall/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
+        <button onclick="window.location.href='/ssmall/mypage/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
     </ul>
     
 </div>
@@ -338,10 +338,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/sweetalert2.js"></script>
+    <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/ssmall/js/popper.min.js"></script>
+    <script src="/ssmall/js/bootstrap.min.js"></script>
+    <script src="/ssmall/js/sweetalert2.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

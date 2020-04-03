@@ -35,6 +35,9 @@ public interface RefundMapper {
 	public void productRefund(@Param("p_number")int p_number, @Param("b_amount")int b_amount);
 	
 	public void addRefund(@Param("m_number")int m_number, @Param("p_number")int p_number, @Param("b_amount")int b_amount, @Param("b_total")int b_total);
+	
+	@Update("Update member set m_point = m_point - #{point} where m_number = #{m_number}")
+	public void minusPoint(@Param("m_number")int m_number, @Param("point")int point);
 
 	
 	
