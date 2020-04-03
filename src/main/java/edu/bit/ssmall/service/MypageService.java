@@ -202,4 +202,6 @@ public class MypageService {
 	public List<BoardVO> selectASBoardListPage(int m_number, int startNum, int endNum) throws Exception {
 		return mypageMapper.selectASBoardListPage(m_number, startNum, endNum);	
 	}
+
+	
 }

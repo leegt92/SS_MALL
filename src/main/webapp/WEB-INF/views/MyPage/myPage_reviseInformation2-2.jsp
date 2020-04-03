@@ -169,7 +169,7 @@ table#tabletype td {
 				<form:form action="myPage_reviseInformation2_2" class="container-login100">
 				<form:form action="/ssmall/mypage/myPage_reviseInformation2_2" class="container-login100">
 
-					method="post" id="reviseInformation">
+					
 					<!-- <span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"	><font size="5em"><b>회원정보 수정</b></font></span> -->
 			          <h1 id="name">회원 정보 수정</h1>
 			
@@ -243,7 +243,7 @@ table#tabletype td {
 					<td > 
 						<div class="form-control" >
 							<input id="m_adress" class="input100"
-								type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
+								type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력)" style="width: 545px;"> <span
 								class="focus-input100" data-symbol="&#xf206;"></span>
 						<!-- </div> -->
 						</div>
@@ -307,16 +307,10 @@ table#tabletype td {
     				
 					 margin-left: 410px;
 				  	 margin-top: 40px;">
-
-				<form:form action="/ssmall/mypage/myPage_reviseInformation3" class="login100-form validate-form" method="POST">
-    				<input class="btn btn-secondary" type="submit" value="회원탈퇴" style="
-					 margin-left: 280px;
-				  	 margin-top: 23px;
-
-					">
-    			</form:form>
+				</form:form>	
+				
     		</form:form>
-    		</form:form>
+    		
 		</div>
 	</div>
 </div>
@@ -324,7 +318,7 @@ table#tabletype td {
  </div>
 
  
-    ================================================== -->
+ 
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>

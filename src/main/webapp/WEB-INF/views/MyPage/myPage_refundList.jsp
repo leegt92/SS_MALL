@@ -135,9 +135,6 @@
 	width:130%;
 }
 
-
-
-
 table {
   border: 1px solid #ccc;
   border-collapse: collapse; /* 표(table)의 테두리와 셀(td)의 테두리 사이의 간격을 없앱니다. 겹치는 부분은 한 줄로 나타냅니다.  */
@@ -146,7 +143,7 @@ table {
   width: 100%; /* 부모요소 크기의 기준으로 퍼센트를 준다  */
   table-layout: fixed;/* 어떤 상황에서도 테이블의 크기를 고정시킬때 사용함 */
   line-height: 1.25;/* 줄높이를 정한다.  */
-  
+ 
 }
 
 /* table tr {
@@ -311,7 +308,7 @@ table th {
 		<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
 		<div class="container">
 			<div class="row">
-<<<<<<< HEAD
+
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="bottom: 70px; left:50px;">
 					<div class="m-l-25 m-r--38 m-lr-0-xl" >
 						<div class="table1"class="wrap-table-shopping-cart"  >
@@ -355,43 +352,7 @@ table th {
 									
 									</c:forEach>
 								</tbody>
-=======
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
-				bottom: 70px;
-				right: 50px;
-				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
-					width: 1000px;
-					">
-						<div class="wrap-table-shopping-cart">
-						<c:set var="hap" value="0"/>
-							<table class="table-shopping-cart2">
-								<tr class="table_head">
-									<th style="text-align: center;"></th>
-									<th style="text-align: center;">상품명</th>
-									<th style="text-align: center;">수량</th>
-									<th style="text-align: center;">가격</th>
-									<th style="text-align: center;">환불일자</th>
-									<th style="text-align: center;">환불상태</th>
-								</tr>		
-								<c:forEach items="${refund}"  var="refund">
-								<c:set var="hap" value="${hap+refund.r_price}"/>
-								<tr class="table_row">
-								
-									<td class="column-1" onclick="location.href='/ssmall/productDetail?p_number=${refund.p_number}'">
-										<div class="how-itemcart1">										
-											<img src="/ssmall/productimage/${refund.p_image}" alt="IMG">							
-										</div>
-									</td>
-									<td style="text-align: center;">${refund.p_name}</td>
-									<td style="text-align: center;">${refund.r_amount}개</td>				
-									<td style="text-align: center;"><fmt:formatNumber value="${refund.r_price}" pattern="###,###,###" />원</td>								
-									<td style="text-align: center;">${refund.r_date}</td>								
-									<td style="text-align: center;">${refund.r_status}</td>	
-								</tr>
-								</c:forEach>
->>>>>>> origin/dev_hyemin
-								
+	
 							</table>		
 						</div>
 				

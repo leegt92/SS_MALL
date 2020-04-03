@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -147,7 +148,19 @@
 				 width: 1142px;
    				 height: 527px;
 				">
-					<form id="submitASRequest" action="/ssmall/mypage/myPage_askAS_back">
+				<!-- form enctype="multipart/form-data" 을 꼭 적어줘야 함 -->
+			   <%--  <form class="form-horizontal" method="post" action="<c:url value='/re/add'/>" enctype="multipart/form-data">
+			        <!-- input type="file" 이라고 꼭 저어줘야 함 -->
+			        <input type="file" class="form-control1" id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+			        
+			        <button type="submit" class="btn btn-default">등록</button>
+			        <button type="reset" class="btn btn-default">취소</button>
+			    </form>
+ --%>
+			
+
+				
+					<form id="submitASRequest" action="/ssmall/mypage/myPage_askAS_back" >
 
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요
@@ -161,10 +174,10 @@
 						<div class="bor8 m-b-30">
 							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="제품의 하자사항과 세부 요청사항을 입력하세요"></textarea>
 						</div>
-
-						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						
+					  <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							제출
-						</button>
+						</button> 
 					</form>
 				</div>
 

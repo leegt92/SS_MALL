@@ -267,7 +267,7 @@
     	    				});
         				  }
         				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
+            		<font size="4em" style="border:2px solid black; background-color:#f0f8ff">삭제</font>
             		</button>
             		</h3>
             	</c:when>
@@ -294,7 +294,7 @@
 	    				});
     				  }
     				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
+            		<font size="4em" style="border:2px solid black; background-color:#f0f8ff;">삭제</font>
             		</button>
             		</h3>
             	</c:otherwise>
@@ -328,7 +328,7 @@
 
         <button onclick="window.location.href='/ssmall/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">1:1문의 글쓰기</font></button>
 
-        <button onclick="window.location.href='/ssmall/mypage/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
+        
 
     </ul>
     

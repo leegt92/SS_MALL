@@ -142,35 +142,39 @@
         </nav>
 
 		
-		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px; ">
-		<div class="container-login100" style="background-color:#f8f8f8;height: 400px; border:3px solid black;">
+		<div class="limiter" style="position:fixed; left: 810px; width: 400px; top: 100px; ">
+		<div class="container-login100" style="background-color:#f8f8f8;height: 750px; ">
 
       </div>
     </div>
-    
-<div style="overflow:hidden; position:fixed;width: 1600px;height: 940px;left: 320px;"> 
-    <div  class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
-		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
-
+   
+<div style="overflow:hidden; position:fixed;width: 1600px;height: 940px;left: 320px; "> 
+    <div  class="limiter" style="position:fixed; left: 810px; width: 400px; top: 100px; ">
+   	 
+		<div class="container-login100" style="background-color: #f0f8ff;height: 750px; border: 1px solid skyblue; border-radius: 10px;">
+ 			
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				
 				<form:form id="login" action="/ssmall/mypage/myPage_reviseInformation" class="login100-form validate-form" method="POST">
-					
-
-					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px;">
-						<span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 330px;">
-						<font size="5em" style="position:absolute;bottom: 0px;left: 0px;top: 0px;width: 400px;"><b>비밀번호를 다시 입력해 주세요.</b></font></span>
+					<div style="position:fixed; left:805px;" >
+						<img src="/ssmall/images/icons/productlogo.png" width="400" height="150">
+					</div>
+					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px; ">
+						<span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 340px; ">
+						<font size="5em" style="position:absolute;bottom: 0px;left: 50px;top: 0px;width: 400px; color:black;"><b> 개인정보 확인을 위해</b></font></span>
+						<span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 400px; ">
+						<font size="5em" style="position:absolute;bottom: 0px;left: 0px;  top: 0px;width: 400px; color:black;"><b> 비밀번호를 다시 입력해 주세요.</b></font></span>
 						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="" maxlength="20" style="
     position:fiexd;
     height: 30px;
     border:1px solid black;
- 	
-    margin-top: 30px;
+    margin-top: 100px;
     
     " />
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<br>
-					<div class="flex-c-m" style="position:fixed;top: 550px;left: 975px;">
+					<div class="flex-c-m" style="position:fixed;top: 650px;left: 975px;">
 						<input id="submit" class="btn btn-primary" type="submit" value="로그인"><pre> </pre>
 						
 											

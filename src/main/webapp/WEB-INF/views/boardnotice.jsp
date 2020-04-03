@@ -54,12 +54,25 @@
 		
 	}
 	
+	#search{
+		position:absolute;
+		top:230px;
+		left:1150px;
+	}
+	
+	#bar{
+		
+		padding-bottom: 30px;
+	}
+	
+
+	
 	 
 
         
 </style>
 </head>
-<body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
+<body class="animsition" ><!-- class="animsition" -->
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -220,29 +233,31 @@
 		 		
 		 		<!-- A grey horizontal navbar that becomes vertical on small screens -->
 		 	<div class="flex-w flex-l-m filter-tope-group m-tb-10 ">
-				<nav class="navbar navbar-expand-sm bg-light  ">
-					
-					  <ul class="navbar-nav">
-					     <li class="nav-item">
-					     <a href="boardnoticeView"> <button type="button"  class="nav-link" >공지사항</button></a>
-					    </li> 
-					    <li class="nav-item">
-					      <a href="boardgradenoticeView"><button type="button" class="nav-link" >등급별 혜택</button> </a>
-					    </li>
-					  </ul>
-					  
-					
-								<form class="form-inline" action="boardnoticeView.php">
-								  	<input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput">
-									<button class="btn btn-success" type="submit" >Search</button>
-							  	</form>	
-						
-			
-					
-				</nav> 
+				
 			</div>
 			<c:choose>
 				<c:when test="${list[0] != null}">
+				<div id="bar">
+					<ul class="nav nav-tabs nav-justified">
+					    <li class="nav-item">
+					      <a class="nav-link active" href="boardnoticeView">공지사항</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="boardgradenoticeView">혜택</a>
+					    </li>
+					   
+  					</ul>
+  				</div>
+  					<div id= "search" >
+  						
+						<form class="form-inline" action="boardnoticeView" >
+								<p class="btn btn-dark disabled" >제목  
+								
+								  	<input class="form-control mr-sm-1" type="text" placeholder="Search" id="myInput" name="keyword">
+									<button class="btn btn-dark" type="submit" >Search</button>
+								</p>
+							  	</form>	
+					</div>
 					 <table  class="table table-list-search table-hover "><!--, table-list-search --><!--  table-dark table-hover, table table-bordered table-hover -->
 						<tbody id="myTable">
 							<c:forEach items="${list}" var="dto">
@@ -278,6 +293,22 @@
 			</ul>
 				</c:when>
 				<c:otherwise>
+				<div id= "search">
+					<form class="form-inline" action="boardgradenoticeView">
+							<input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput" name="keyword">
+							<button class="btn btn-success" type="submit" >Search</button>
+					</form>
+				</div>	
+					<ul class="nav nav-tabs nav-justified">
+					    <li class="nav-item">
+					      <a class="nav-link " href="boardnoticeView">공지사항</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link active" href="boardgradenoticeView">혜택</a>
+					    </li>
+					   
+  					</ul>
+								
 					<table id= "grade"class="table table-list-search table-hover ">
 				
 					<c:forEach items="${gradelist}" var="dto">

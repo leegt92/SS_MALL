@@ -1,5 +1,6 @@
 package edu.bit.ssmall.controller;
 
+import java.io.File;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.MypageService;
 import edu.bit.ssmall.service.PageService;
 import edu.bit.ssmall.service.RefundService;
-import edu.bit.ssmall.vo.BoardNoticeVO;
+
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.Product_BuyVO;
@@ -36,14 +39,14 @@ import edu.bit.ssmall.vo.RefundVO;
 public class MyPageController {
 	
 	/*
-	 * ============DB 수정사항============================= 
-	 * 1BUY테이블에 주문배송완료여부(B_DONE) 추가
-	 * 2BUY테이블에 주문수량(B_AMOUNT) 추가 
-	 * 3PRODUCT 테이블에 P_IMAGE(대표사진) 추가 
-	 * 4BANSWERNO BOARD테이블에 추가. 추가 어디에 답변했는지에 관한 것. 
-	 * 5BANSWERED(답변완료여부) BOARD테이블에 추가.
-	 * 6MEMBER(M_NUMBER)-BOARD(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가 회.탈시 게시글있으면 삭제안되서 삭제
-		7MEMBER(M_NUMBER)-BUY(M_NUMBER)간에 주키-포린키 관계에서 ON DELETE CASCADE 추가 회.탈시 구매내역있으면 삭제안되서 구매내역도 삭제
+	 * ============DB �닔�젙�궗�빆============================= 
+	 * 1BUY�뀒�씠釉붿뿉 二쇰Ц諛곗넚�셿猷뚯뿬遺�(B_DONE) 異붽�
+	 * 2BUY�뀒�씠釉붿뿉 二쇰Ц�닔�웾(B_AMOUNT) 異붽� 
+	 * 3PRODUCT �뀒�씠釉붿뿉 P_IMAGE(���몴�궗吏�) 異붽� 
+	 * 4BANSWERNO BOARD�뀒�씠釉붿뿉 異붽�. 異붽� �뼱�뵒�뿉 �떟蹂��뻽�뒗吏��뿉 愿��븳 寃�. 
+	 * 5BANSWERED(�떟蹂��셿猷뚯뿬遺�) BOARD�뀒�씠釉붿뿉 異붽�.
+	 * 6MEMBER(M_NUMBER)-BOARD(M_NUMBER)媛꾩뿉 二쇳궎-�룷由고궎 愿�怨꾩뿉�꽌 ON DELETE CASCADE 異붽� �쉶.�깉�떆 寃뚯떆湲��엳�쑝硫� �궘�젣�븞�릺�꽌 �궘�젣
+		7MEMBER(M_NUMBER)-BUY(M_NUMBER)媛꾩뿉 二쇳궎-�룷由고궎 愿�怨꾩뿉�꽌 ON DELETE CASCADE 異붽� �쉶.�깉�떆 援щℓ�궡�뿭�엳�쑝硫� �궘�젣�븞�릺�꽌 援щℓ�궡�뿭�룄 �궘�젣
 	 */
 	
 	@Autowired
@@ -58,7 +61,7 @@ public class MyPageController {
 	@Autowired
 	PageService pageService;
 	
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage", method =  {RequestMethod.GET,RequestMethod.POST})
 	public String myPage(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -84,7 +87,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_shoppingList", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_shoppingList", method={RequestMethod.GET,RequestMethod.POST})
 	public String myPage_shoppingList(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -111,7 +114,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_orderedList", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_orderedList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_orderedList(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -138,7 +141,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -176,7 +179,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView2", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askRequestView2(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -214,7 +217,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_aSRequestView", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_aSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -252,7 +255,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askRequest(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -282,7 +285,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/myPage_askRequest_back", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askRequest_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -293,7 +296,10 @@ public class MyPageController {
 	    String bTitle = request.getParameter("bTitle");
 	    String bContent = request.getParameter("bContent");
 	    String name = "";
+	    
+	   
 	    if(principal != null) {
+	    	
 	        name = auth.getName();
 	    }
 	    
@@ -302,9 +308,10 @@ public class MyPageController {
 			model.addAttribute("m_number", m_number);
 			String bName = mypageService.getMname(name);
 			model.addAttribute("bName", bName);
-			
+		
 			if(bTitle != null && bContent != null) {
 				mypageService.insertAsk(bName, bTitle, bContent, m_number);
+				
 			}
 			int totalCount = mypageService.selectAskCountBoard(m_number);
 			pageMaker.setTotalCount(totalCount);
@@ -324,12 +331,18 @@ public class MyPageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return "MyPage/myPage_askRequestView";
-
+	    
+		   
+		/*
+		 * try { file.transferTo(new File(filePath + fileName)); } catch(Exception e) {
+		 * System.out.println("업로드 오류"); }
+		 */
+	
+			return "MyPage/myPage_askRequestView";
+	
 	}
 	
-	@RequestMapping(value = "/myPage_askAS", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askAS", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askAS(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -359,7 +372,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askAS_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askAS_back", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askAS_back(Model model, Criteria criteria, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -455,7 +468,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation2", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_reviseInformation2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -531,7 +544,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2_2", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation2_2", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_reviseInformation2_2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -592,7 +605,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation3", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation3", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_reviseInformation3(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -614,17 +627,17 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping("/pwChange")
+	@RequestMapping(value="/pwChange" ,method = {RequestMethod.GET,RequestMethod.POST})
 	public String pwChange(HttpServletRequest request,MemberVO memberVO, Errors errors, Model model, HttpServletResponse response) throws Exception{
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String hashpw = passwordEncoder.encode(memberVO.getM_password());
-		memberVO.setM_password(hashpw); // 암호화 해서 저장한다.
+		memberVO.setM_password(hashpw); // �븫�샇�솕 �빐�꽌 ���옣�븳�떎.
 		
 		return "MyPage/myPage_reviseInformation2";
 	}
 	
-	@RequestMapping(value = "/withdrawal.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/withdrawal.do", method =  {RequestMethod.GET,RequestMethod.POST})
 	public String withdraw(Model model) {
 		System.out.println("GKGKGKGKGK!!!!!!!!");
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -646,7 +659,7 @@ public class MyPageController {
 		    return "MyPage/myPage_reviseInformation4";
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2", method =  {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askRequest2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -677,7 +690,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2_back", method =  {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -724,7 +737,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askAS2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askAS2", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_askAS2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -755,7 +768,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequest2_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_aSRequest2_back", method = {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_aSRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -802,7 +815,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String delete(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -846,7 +859,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete2.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String delete2(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -890,21 +903,21 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value="myPage_refundList", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="myPage_refundList", method={RequestMethod.GET,RequestMethod.POST})
 	public String myPage_refundList(Criteria criteria, HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
 		String m_id = principal.getName();
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
 		
-		System.out.println("현재페이지 : "+criteria.getPage());
-		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+		System.out.println("�쁽�옱�럹�씠吏� : "+criteria.getPage());
+		System.out.println("�솕硫댁뿉 蹂댁뿬吏� �럹�씠吏��닔 : "+criteria.getPerPageNum());
 
 		int startNum = criteria.getStartNum();
 		int endNum = criteria.getEndNum();
 
 		int totalCount = pageService.countRefundList(m_id);
-		System.out.println("환불내역 조회 : " + totalCount + "회");
+		System.out.println("�솚遺덈궡�뿭 議고쉶 : " + totalCount + "�쉶");
 		
 		pageMaker.setTotalCount(totalCount);
 		
@@ -921,6 +934,10 @@ public class MyPageController {
 		
 		return "MyPage/myPage_refundList";
 	}
+	
+
+
+
 	
 	
 	
