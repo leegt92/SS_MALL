@@ -40,9 +40,10 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 
+<!-- 일단 멈춤 구매부분부터 -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <style type="text/css">
 
@@ -52,14 +53,14 @@
 		background-color:gray;
 		color:white;
 		}
-	/* .pagination>li>a, .pagination>li>span:hover {
+	 .pagination>li>a, .pagination>li>span:hover {
 	    border-radius: 50% !important;
 		margin: 0 5px;
 		background-color:white;
 		color:gray;
 		} */
 
-/* 	#custom-search-input{
+ 	#custom-search-input{
 	    padding: 3px;
 	    border: solid 1px #E4E4E4;
 	    border-radius: 6px;
@@ -70,18 +71,18 @@
 	    border: 0;
 	    box-shadow: none;
 	}
-	 */
+	 
 	#SearchButtonImage{
 	    background-color: gray;
 	    border-color: gray;
 
 	}
-/* 	.page-item{
+ 	.page-item{
 		background-color: gray;
 		color:gray;
-	} */
+	}
 	
-/* 	#SearchButtonImage{
+ 	#SearchButtonImage{
 	    margin: 2px 0 0 0;
 	    background-color: gray;
 	    box-shadow: none;
@@ -89,8 +90,8 @@
 	    color: #555555;
 	    padding: 0 8px 0 10px;
 	    border-left: solid 1px #ccc;
-	} */
-/* 	
+	}
+ 	
 	#custom-search-input button:hover{
 	    border: 0;
 	    box-shadow: none;
@@ -99,7 +100,7 @@
 	
 	#custom-search-input .glyphicon-search{
 	    font-size: 23px;
-	} */
+	}
 </style>
 </head>
 <body class="animsition">
@@ -730,7 +731,7 @@
 		
 
 	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
+		<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-2 p-b-50">
@@ -739,7 +740,7 @@
 					</h4>
 
 					<ul>
-						<!-- <li class="p-b-10">
+						<li class="p-b-10">
 							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
 								Watch
 							</a>
@@ -749,7 +750,7 @@
 							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
 								Wallet
 							</a>
-						</li> -->
+						</li>
 
 					
 					</ul>
