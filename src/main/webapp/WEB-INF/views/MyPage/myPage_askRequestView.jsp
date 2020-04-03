@@ -300,16 +300,16 @@
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
-            	<p><b>문의/건의 제목:</b><c:out value = "${askRequestboards.btitle}"/></p>
+            	<p><b>문의/건의 제목:</b>${askRequestboards.btitle}</p>
             	<br/>
-            	<p><b>문의/건의 내용:</b><c:out value = "${askRequestboards.bcontent}"/></p>
+            	<p><b>문의/건의 내용:</b>${askRequestboards.bcontent}</p>
             	<br/>
             	=======================================================================================================================
             	<br/>
             	<br/>
-              	<p><b>답변 제목:</b><c:out value = "${askRequestboardsAnswers[status.index].btitle}"/></p>
+              	<p><b>답변 제목:</b>${askRequestboardsAnswers[status.index].btitle}</p>
               	<br/>
-              	<p><b>답변 내용:</b><c:out value = "${askRequestboardsAnswers[status.index].bcontent}"/></p>
+              	<p><b>답변 내용:</b>${askRequestboardsAnswers[status.index].bcontent}</p>
             </div>
         </li>
         </c:forEach>

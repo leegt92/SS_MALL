@@ -142,9 +142,9 @@
 		<div class="container" >
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
-				width:1142px; height:527px; style="
+				style="
 				 width: 1142px;
-   				 height: 527px;
+				 height: 627px;
 				">
 
 					<form id="submitAskRequest" action="/ssmall/mypage/myPage_askRequest2_back">
@@ -154,12 +154,13 @@
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="수정할 글 제목을 입력하세요."
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" value="${FbTitle}"
 							style="padding-left: 30px;">
 						</div>
+						
 
 						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="수정할 글 내용을 입력하세요" ></textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" >${FbContent}</textarea>
 						</div>
 
 						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
@@ -241,10 +242,13 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
-    <script src="/ssmall/js/popper.min.js"></script>
-    <script src="/ssmall/js/bootstrap.min.js"></script>
-    <script src="/ssmall/js/sweetalert2.js"></script>
+
+    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -284,6 +288,13 @@
     		
 	</script>
 
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bContent',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
    
   </body>
 </html>

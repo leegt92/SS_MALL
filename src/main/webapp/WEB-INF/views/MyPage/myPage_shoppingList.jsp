@@ -53,15 +53,18 @@
     }
 html {
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
-</style>
+</style>		
   </head>
 
   <body>
   
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
+
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0" style="right: 16px;">
+      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+
     width: 200px;
     height: 60px;
  	"></a>
@@ -70,9 +73,9 @@ html {
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
+      
      
-      <ul class="navbar-nav px-3 d-none d-sm-block">
+      <ul class="navbar-nav px-2 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="/ssmall/logout" method="POST">
@@ -138,15 +141,15 @@ html {
         </nav>
 		
 		<!-- Shoping Cart -->
-		<DIV style="overflow:scroll;height:100vh;">
-	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
-		<div class="container">
+		<DIV style="overflow:scroll;width:100vw;height:100vh;margin-left: 320px;">
+	<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20" style="padding-left: 0px;margin-left: 110px;padding-right: 300px;margin-right: 26px;margin-top: 80px;height: 1192px;">
+		<div class="container" >
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style=" bottom: 70px; right: 50px;">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style=" width: 1000px;">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="z-index:1;bottom: 70px; right: 50px;">
+					<div class="m-l-25 m-r--38 m-lr-0-xl" style="background-color:white; width: 1000px;">
 						<div class="wrap-table-shopping-cart">
 						<c:set var="hap" value="0"/>
-							<table class="table-shopping-cart">
+							<table class="table-shopping-cart"> 
 								<tr class="table_head">
 									<th style="text-align: center;"></th>
 									<th style="text-align: center;">상품명</th>
@@ -176,7 +179,7 @@ html {
 				</div>
 				
 
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style =
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style = 
 					"height: 900px;
 					width: 130px;
 					padding-left: 15px;
@@ -229,7 +232,7 @@ html {
 		</div>
 	</form>
        </DIV>
-      </div>
+       </div>
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -244,7 +247,7 @@ html {
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
-    </script>
     
+    </script>
   </body>
 </html>

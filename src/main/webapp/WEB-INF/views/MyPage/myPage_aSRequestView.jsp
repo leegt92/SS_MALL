@@ -246,7 +246,10 @@
             	<c:when test="${aSRequestboards.banswered eq '답변완료'}">
             		<h3 style="font-size:16px; color:green;" class="accordion3">
             		<c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/>
-            		<button onclick="window.location.href='/ssmall/mypage/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+
+            		<%-- <button onclick="window.location.href='/ssmall/mypage/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button> --%>
+            		<button onclick="window.location.href='/ssmall/myPage_askAS2?bId=${aSRequestboards.bid}?bTitle=${aSRequestboards.btitle}?bContent=${aSRequestboards.bcontent}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+
             		<button onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
@@ -299,16 +302,16 @@
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
-              <p><b>A/S 신청 제품명:</b><c:out value = "${aSRequestboards.btitle}"/></p>
+              <p><b>A/S 신청 제품명:</b>${aSRequestboards.btitle}</p>
             	<br/>
-            	<p><b>A/S 신청 내용:</b><c:out value = "${aSRequestboards.bcontent}"/></p>
+            	<p><b>A/S 신청 내용:</b>${aSRequestboards.bcontent}</p>
             	<br/>
             	=======================================================================================================================
             	<br/>
             	<br/>
-              	<p><b>답변 제목:</b><c:out value = "${aSRequestboardsAnswers[status.index].btitle}"/></p>
+              	<p><b>답변 제목:</b>${aSRequestboardsAnswers[status.index].btitle}</p>
               	<br/>
-              	<p><b>답변 내용:</b><c:out value = "${aSRequestboardsAnswers[status.index].bcontent}"/></p>
+              	<p><b>답변 내용:</b>${aSRequestboardsAnswers[status.index].bcontent}</p>
             </div>
         </li>
         </c:forEach>
@@ -325,13 +328,17 @@
 				<a href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
 
-        <button onclick="window.location.href='/ssmall/mypage/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
+
+       <!--  <button onclick="window.location.href='/ssmall/mypage/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button> -->
         
+
+
+        <button id=btnToAskAs onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
 
     </ul>
     
 </div>
-
+<!-- onclick="window.location.href='/ssmall/myPage_askAS'" -->
 
     
     
@@ -532,11 +539,6 @@
 	        }
 
 	});
-    		
-			
-    		
 	</script>
-
-   
   </body>
 </html>
