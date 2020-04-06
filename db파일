@@ -493,3 +493,5 @@ insert into Image(p_number, i_name, i_type) values(19,'watch9.PNG', '1');
 insert into Image(p_number, i_name, i_type) values(20,'watch10.PNG', '1');
 insert into Image(p_number, i_name, i_type) values(7,'watch7_1.PNG', '2');
 insert into Image(p_number, i_name, i_type) values(7,'watch7_2.PNG', '3');
+
+ALTER TABLE buy RENAME COLUMN b_kakao_tid TO imp_uid;
