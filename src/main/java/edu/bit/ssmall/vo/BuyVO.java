@@ -11,7 +11,7 @@ public class BuyVO {
 	private int b_amount; //구매수량
 	private String b_status; //상태
 	private int b_total; // 구매총가격
-	private String b_kakao_tid; //카카오페이 결제고유번호
+	private String imp_uid; //아임포트 결제고유번호
 	private String b_memo; //배송메시지
 	private String b_name; //수령인
 	private String b_phonenum;//수령인 전화번호
@@ -63,11 +63,11 @@ public class BuyVO {
 	public void setB_total(int b_total) {
 		this.b_total = b_total;
 	}
-	public String getB_kakao_tid() {
-		return b_kakao_tid;
+	public String getImp_uid() {
+		return imp_uid;
 	}
-	public void setB_kakao_tid(String b_kakao_tid) {
-		this.b_kakao_tid = b_kakao_tid;
+	public void setImp_uid(String imp_uid) {
+		this.imp_uid = imp_uid;
 	}
 	public String getB_memo() {
 		return b_memo;
@@ -121,7 +121,7 @@ public class BuyVO {
 	public String toString() {
 		return "BuyVO [b_number=" + b_number + ", m_number=" + m_number + ", p_number=" + p_number + ", b_date="
 				+ b_date + ", b_amount=" + b_amount + ", b_status=" + b_status + ", b_total=" + b_total
-				+ ", b_kakao_tid=" + b_kakao_tid + ", b_memo=" + b_memo + ", b_name=" + b_name + ", b_phonenum="
+				+ ", imp_uid=" + imp_uid + ", b_memo=" + b_memo + ", b_name=" + b_name + ", b_phonenum="
 				+ b_phonenum + ", b_addr=" + b_addr + ", p_price=" + p_price + ", p_image=" + p_image + ", p_brand="
 				+ p_brand + ", p_name=" + p_name + "]";
 	}

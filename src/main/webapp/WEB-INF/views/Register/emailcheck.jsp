@@ -70,7 +70,7 @@
 					<br>
 					<div class="form-group">
 						<input type="email" name="m_email"placeholder="이메일주소를 입력하세요." style=" display: inline;">
-						<button type="submit" name="submit" class="btn btn-link">이메일 인증받기</button>
+						<button type="submit" name="submit" class="btn btn-link" style="color:black;">이메일 인증받기</button>
 					</div>		
 				
 				</form:form>

@@ -33,6 +33,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
 
@@ -204,101 +205,111 @@
 							</p>
 						</div>
 						
+						
 						<div class="p-b-63">
-							<h4 style="font-weight: bold;">장인소개 </h4>
-							<br><br>						
-							<p>남성 명품 전문 쇼핑몰 상승몰(SSMALL)입니다. 상승몰(SSMALL)은 고객님이 완벽하게 AS를 받으실 수 있는 시스템을 구축하였습니다.</p>
-							<p>뛰어난 실력을 가진 대한민국 명장님들과 협약이 되어 고객님이 빠르고 안전하게 AS를 받으실 수 있도록 최선을 다하겠습니다.</p>
-	   						<br>							
-	   						<p>SSMALL is a luxury mall for men. SSMALL has built a system that allows customers to receive AS completely.</p>
-							<p>We will do our best to be able to receive AS quickly and safely with the agreement with the Korean masters who have excellent skills.</p>
-							
+							<div class="master">
+								<i class="fas fa-wrench"></i><span style="font-weight: bold; font-size: 1.5em;"> 절차</span>							
+								<br><br>						
+								<span><img width="200px" height="200px" src="/ssmall/images/as/step1.PNG"></span>
+								<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+								
+								<span><img width="200px" height="200px" src="/ssmall/images/as/step2.PNG"></span>
+								<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+								
+								<span><img width="200px" height="200px" src="/ssmall/images/as/step3.PNG"></span>
+								<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+								
+								<span><img width="200px" height="200px" src="/ssmall/images/as/step4.PNG"></span>
+								<br><br><br><br>
+								
+								
+								<p>상승몰(SSMALL)은 고객님이 완벽하게 AS를 받으실 수 있는 시스템을 구축하였습니다</p>
+								<p>뛰어난 실력을 가진 대한민국 명장님들과 협약이 되어 수리를 받으실 수 있습니다</p>
+								<p>문의 한번으로 명장님들과 일정 논의 후 결정되면 고객님께 일정을 전달합니다</p>
+								<p>직접 명장님들과의 컨택을 원하신 다면 원하시는 명장님과 대화를 하실수 있게 합니다</p>
+								<p>수도권이 아닌 지방에 거주하시는 분들은 필요에 따라 저희가 직접 AS받으실 상품을 픽업하여 안전하게 전달해드립니다.</p>
+								<br><br><br>
+								<img src="/ssmall/images/as/refair2.PNG">
+								<br>
+								<img src="/ssmall/images/as/refair.PNG">
+							</div>
 						</div>
-
+	
 						<div class="p-b-63">
-							<h4 style="font-weight: bold;">비트시계 </h4>
-							<br><br>							
-							<p>안녕하세요. 대한민국 시계 명장  김 비트 입니다.</p>
-							<p>1972년부터 명품시계 수리 전문점을 운영하면서 수많은 명품시계의 문제점을 해결하여 기술력을 높였고</p>
-							<p>이 기술력을 바탕으로 새로운 수리법을 개발하였습니다. 또한 명품시계 수리에 필요한 공구를 개발하고 또한 공로를 인정받아</p>
-							<p> 국가로부터 1997년 기능인 최고의 명예인 명장 칭호를 시계부문 최초로 부여 받았습니다. 이후 교수로 재직하여 후진양성에 노력 하였습니다.</p>
-							<p>많은 후진들이 ROLEX, CARTIER를 비롯한 유수의 스위스 시계업체에서 기술자로 재직 중에 있습니다.</p>
-							<p>끝없는 기술 발전과 최고의 만족을 드리겠습니다.</p>
-	   						<br>							
-	   						<p>Hello. Korea's watch master Kim Bit.</p>
-							<p>Since 1972, we have operated a luxury watch repair shop to solve the problems of many luxury watches and to improve our technical skills and develop new repair methods based on this technology.</p>
-							<p>In addition, in 1997, the company was awarded the title of the highest honored master of the world for the watch category</p>
-							<p>which was recognized for its contribution to the development of the watch repair industry by developing tools for repairing luxury watches.</p>
-							<p>After that, he worked as a professor at xxx University and made efforts to foster future students.</p>
-							<p>Many backwards are technicians at leading Swiss watchmakers including ROLEX and CARTIER.</p>
-							<p>We will be happy with the endless technological development and the best satisfaction.</p>
+							<i class="fas fa-wrench"></i><span style="font-weight: bold; font-size: 1.5em;"> 협력체</span>
 							<br><br>
-							<p style="font-weight: bold;">비트시계 서초점</p>
-							<br>
-							<p>서울시 서초구 강남대로459 백암빌딩 (구관건물)</p>
-							<p>대표전화 : 02-4567-1111</p>
-							<p>평일 : 오전 11시 ~ 오후 8시</p>
-							<p>주말 : 오후 12시 ~ 오후 6시	</p>
-							<br>
-							<div id="map_seocho" style="width:100%;height:350px;"></div>		
-							<br>
-							<p style="font-weight: bold;">비트시계 강남점</p>
-							<br>
-							<p>서울시 강남구 테헤란로 5길 11 YOO빌딩 2층</p>
-							<p>대표전화 : 02-5555-7777</p>
-							<p>평일 : 오전 10시 ~ 오후 6시</p>
-							<p>주말 : 오전 10시 ~ 오후 6시</p>
-							<br>	
-							<div id="map_gangnam" style="width:100%;height:350px;"></div>
-														
+							<div class="master">		
+								<p style="font-weight: bold;">비트시계 </p>
+								<br>										
+								<p>안녕하세요. 대한민국 시계 명장  김 비트 입니다.</p>
+								<p>1972년부터 명품시계 수리 전문점을 운영하면서 수많은 명품시계의 문제점을 해결하여 기술력을 높였고</p>
+								<p>이 기술력을 바탕으로 새로운 수리법을 개발하였습니다. 또한 명품시계 수리에 필요한 공구를 개발하고 또한 공로를 인정받아</p>
+								<p> 국가로부터 1997년 기능인 최고의 명예인 명장 칭호를 시계부문 최초로 부여 받았습니다. 이후 교수로 재직하여 후진양성에 노력 하였습니다.</p>
+								<p>많은 후진들이 ROLEX, CARTIER를 비롯한 유수의 스위스 시계업체에서 기술자로 재직 중에 있습니다.</p>
+								<p>끝없는 기술 발전과 최고의 만족을 드리겠습니다.</p>
+								<br><br>
+								<p style="font-weight: bold;">비트시계 서초점</p>
+								<br>
+								<p>서울시 서초구 강남대로459 백암빌딩 (구관건물)</p>
+								<p>대표전화 : 02-4567-1111</p>
+								<p>평일 : 오전 11시 ~ 오후 8시</p>
+								<p>주말 : 오후 12시 ~ 오후 6시	</p>
+								<br>
+								<div id="map_seocho" style="width:100%;height:350px;"></div>		
+								<br>
+								<p style="font-weight: bold;">비트시계 강남점</p>
+								<br>
+								<p>서울시 강남구 테헤란로 5길 11 YOO빌딩 2층</p>
+								<p>대표전화 : 02-5555-7777</p>
+								<p>평일 : 오전 10시 ~ 오후 6시</p>
+								<p>주말 : 오전 10시 ~ 오후 6시</p>
+								<br>	
+								<div id="map_gangnam" style="width:100%;height:350px;"></div>
+							</div>						
 						</div>
 						
 						<div class="p-b-63">
 							<hr>
-							<h4 style="font-weight: bold;">캠프시계 </h4>
-							<br><br>							
-							<p>안녕하세요. 대한민국 시계 명장  이 캠프 입니다.</p>
-							<p>50년 전 도제로 시계수리업계에 입문하여 시계수리 1급 기능사을 취득하였으며 국내 최초 미국 공인고급시계사 자격을 취득하였습니다.</p>
-	   						<p>기능검정 출제 및 기능경기 심사의원과 전국 기능경기 심사위원장을 역임하여 이론과 실기가 완벽하게 준비 되어있습니다.</p>
-	   						<p>시계를 수리하고자 하신다면 시계수리 명장으로써 고객님의 시계를 성실히 수리하여 드릴 것을 약속드립니다.</p>
-	   						<br>							
-	   						<p>Hello. This is Korea's watch master Lee Camp.</p>
-							<p>Fifty years ago, he entered the watch repair industry as an apprentice and acquired the first-class technician in watch repair.</p>
-							<p>Skilled questions and functional competition judges and chairman of national skill competition judges are perfectly prepared for theory and practical skills.</p>
-							<p>If you would like to have your watch repaired, we promise to repair your watch in good faith as a watchmaker.</p>
-							<br><br>
-							<p style="font-weight: bold;">캠프시계 신촌점</p>
-							<br>
-							<p>서울시 마포구 백범로 23 구프라자 3층</p>
-							<p>대표전화 : 02-123-7892</p>
-							<p>평일 : 오전 10시 30분 ~ 오후 6시</p>
-							<p>주말 : 오전 10시 30분 ~ 오후 5시</p>
-							<br>
-							<div id="map_sinchon" style="width:100%;height:350px;"></div>							
+							<div class="master">		
+								<p style="font-weight: bold;">캠프시계 </p>
+								<br><br>							
+								<p>안녕하세요. 대한민국 시계 명장  이 캠프 입니다.</p>
+								<p>50년 전 도제로 시계수리업계에 입문하여 시계수리 1급 기능사을 취득하였으며 국내 최초 미국 공인고급시계사 자격을 취득하였습니다.</p>
+		   						<p>기능검정 출제 및 기능경기 심사의원과 전국 기능경기 심사위원장을 역임하여 이론과 실기가 완벽하게 준비 되어있습니다.</p>
+		   						<p>시계를 수리하고자 하신다면 시계수리 명장으로써 고객님의 시계를 성실히 수리하여 드릴 것을 약속드립니다.</p>
+		   					
+								<br><br>
+								<p style="font-weight: bold;">캠프시계 신촌점</p>
+								<br>
+								<p>서울시 마포구 백범로 23 구프라자 3층</p>
+								<p>대표전화 : 02-123-7892</p>
+								<p>평일 : 오전 10시 30분 ~ 오후 6시</p>
+								<p>주말 : 오전 10시 30분 ~ 오후 5시</p>
+								<br>
+								<div id="map_sinchon" style="width:100%;height:350px;"></div>							
+							</div>
 						</div>
 					
 						<div class="p-b-63">
 							<hr>
-							<h4 style="font-weight: bold;">명품수선 </h4>
-							<br><br>							
-							<p>안녕하세요 명품수선 입니다.</p>
-							<p>1978년 창업이래 명품수선이 명품수선 서비스를 시작한지도 40년의 시간이 흘렀습니다.</p>
-							<p>그동안 성원해 주시고 사랑해주신 고객 여러분께 진심으로 감사드립니다.</p>
-							<p>앞으로도 축적된 노하우와 장인의 손길로 한층 더 발전하는 명품수선이 되도록 최선의 노력을다하겠습니다.</p>
-	   						<br>							
-	   						<p>Hello luxury repair.</p>
-	   						<p>Since its establishment in 1978, 40 years have passed since the launch of luxury repair service.</p>
-							<p>We will do our best to be able to receive AS quickly and safely with the agreement with the Korean masters who have excellent skills.</p>
-							<p>I sincerely thank you for all your support and love for our customers.</p>
-							<p>We will do our best to be a masterpiece of luxury repair that develops further with the help of artisans.</p>
-							<br> <br>
-							<p style="font-weight: bold;">명품수선 종로점</p>
-							<br>
-							<p>서울시 종로구 종로 69 YMCA빌딩 7층</p>
-							<p>대표전화 : 02-4567-8912</p>
-							<p>평일 : 오전 10시 30분 ~ 오후 6시</p>
-							<p>주말 : 오전 10시 30분 ~ 오후 5시</p>
-							<div id="map_jonglo" style="width:100%;height:350px;"></div>
+							<div class="master">		
+								<p style="font-weight: bold;">명품수선 </p>
+								<br><br>							
+								<p>안녕하세요 명품수선 입니다.</p>
+								<p>1978년 창업이래 명품수선이 명품수선 서비스를 시작한지도 40년의 시간이 흘렀습니다.</p>
+								<p>그동안 성원해 주시고 사랑해주신 고객 여러분께 진심으로 감사드립니다.</p>
+								<p>앞으로도 축적된 노하우와 장인의 손길로 한층 더 발전하는 명품수선이 되도록 최선의 노력을다하겠습니다.</p>
+		   					
+								<br> <br>
+								<p style="font-weight: bold;">명품수선 종로점</p>
+								<br>
+								<p>서울시 종로구 종로 69 YMCA빌딩 7층</p>
+								<p>대표전화 : 02-4567-8912</p>
+								<p>평일 : 오전 10시 30분 ~ 오후 6시</p>
+								<p>주말 : 오전 10시 30분 ~ 오후 5시</p>
+								<br>
+								<div id="map_jonglo" style="width:100%;height:350px;"></div>
+							</div>
 						</div>									
 					</div>
 				</div>

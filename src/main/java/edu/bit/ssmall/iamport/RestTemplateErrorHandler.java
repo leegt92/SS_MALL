@@ -1,4 +1,4 @@
-package edu.bit.ssmall.kakaopay;
+package edu.bit.ssmall.iamport;
 
 import java.io.IOException;
 

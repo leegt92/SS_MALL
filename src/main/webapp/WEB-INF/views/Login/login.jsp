@@ -29,6 +29,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="login/css/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 	<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -73,7 +74,7 @@
 					<Br>
 					
 					<div style="float: right;">									
-						<span><a href="findId" style="font-weight: bold; display: inline;">아이디찾기</a></span>						
+						<i class="fas fa-key"></i><span><a href="findId" style="font-weight: bold; display: inline;"> 아이디찾기</a></span>						
 						<span><a href="findPw" style="font-weight: bold;">비밀번호찾기</a></span>									
 					</div>
 					
@@ -81,14 +82,14 @@
 					<br>
 	
 					<div class="flex-c-m" >
-						<input id="submit" class="btn btn-secondary" type="submit" value="로그인"><pre> </pre>				
+						<button id="submit" class="btn btn-secondary" type="submit">로그인</button><pre> </pre>				
 						<a href="register1"><button type="button" class="btn btn-secondary">회원가입</button></a>				
 					</div>
 					
 					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>
+						<strong style="color: black; ">
 							소셜로그인
-						</span>
+						</strong>
 					</div>
 
 					<div class="flex-c-m">

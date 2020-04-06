@@ -40,11 +40,11 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<style type="text/css">
+<!-- <style type="text/css">
 
 	.pagination>li>a, .pagination>li>span { 
 		border-radius: 50% !important;
@@ -100,7 +100,7 @@
 	#custom-search-input .glyphicon-search{
 	    font-size: 23px;
 	} */
-</style>
+</style> -->
 </head>
 <body class="animsition">
 	
@@ -116,15 +116,15 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="mypage/myPage" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
@@ -231,11 +231,11 @@
 							Home
 						</a>
 
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
+						<a href="mypage/myPage_orderedList" class="flex-c-m p-lr-10 trans-04">
 							My
 						</a>
 
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
+						<a href="cart/cartView" class="flex-c-m p-lr-10 trans-04">
 							cart
 						</a>
 						
@@ -677,42 +677,46 @@
 				</c:forEach>
 			</div>
 			<!-- 페이징 글번호 -->
-
-<!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
-<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
-<ul class="pagination">
-<c:choose>
-	<c:when test="${keyword!=null}">
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a></li>
-		</c:forEach>																		
-		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
-		</c:if> <br>
-	</c:when>
-	
-	<c:when test="${rankKeyword!=null}">
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}</a></li>
-		</c:forEach>																		
-		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
-		</c:if> <br>
-	</c:when>
-	
-	<c:otherwise>
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}</a></li>
-		</c:forEach>																										
-		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
-		</c:if> <br>
-	</c:otherwise>
-</c:choose>
-</ul>
+			
+			<!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
+			<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
+			<nav aria-label="Page navigation example">
+				<ul class="pagination m-5 flex-c-m" >
+				<c:choose>
+					<c:when test="${keyword!=null}">
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a></li>
+						</c:forEach>																		
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
+						</c:if> <br>
+					</c:when>
+					
+					<c:when test="${rankKeyword!=null}">
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}</a></li>
+						</c:forEach>																		
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
+						</c:if> <br>
+					</c:when>
+					
+					<c:otherwise>
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						</c:forEach>																										
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
+						</c:if> <br>
+					</c:otherwise>
+				</c:choose>
+				</ul>
+			</nav>
+			
+			
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="productView" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Return to List
@@ -878,7 +882,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="slick3 gallery-lb">
 									<div class="item-slick3" data-thumb="productimage/${quickViewList.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${quickViewList.p_image}" alt="IMG-PRODUCT">
+											<div id="img">
+												
+											</div>
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${quickViewList.p_image}">
 												<i class="fa fa-expand"></i>
@@ -1251,14 +1257,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				success:function(data){
 					alert('성공');
 					alert(data.p_name);
-					
+					$('#img').html("");
+					$('#img').append("<img src='productimage/"+data.p_image+"' alt='IMG-PRODUCT'>");
 					$('#QuickName').html(data.p_name);
 					$('#QuickPrice').html(data.p_price);
+					
 					/* $('.wrap-modal1').modal(); */
 					 /* js-show-modal1 */
 
 				}
 			});
+			
 		})
 	})
 </script>

@@ -127,39 +127,7 @@
 	})
 </script>
 
-<c:choose>
-	<c:when test="${error eq 'error'}">
-		<script>
-			alert('${msg}');
-		</script>
-		<% 
-			session.removeAttribute("error");
-			session.removeAttribute("msg");
-		%>
-	</c:when>
-	
-	<c:when test="${success eq 'success'}">
-		<script>
-			alert('결제가 완료되었습니다.');
-		</script>
-		<% session.removeAttribute("success"); %>
-	</c:when>
-	
-	<c:when test="${cancel eq 'cancel'}">
-		<script>
-			alert('결제가 취소되었습니다.');
-		</script>
-		<% session.removeAttribute("cancel"); %>
-	</c:when>
-	
-	<c:when test="${fail eq 'fail'}" >
-		<script>
-			alert('결제를 실패하였습니다..');
-		</script>
-		<% session.removeAttribute("fail"); %>
-	</c:when>
 
-</c:choose>
 </head>
 <body class="animsition">
 	<!-- Header -->
