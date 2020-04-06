@@ -36,7 +36,17 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
-
+<style>
+ #floating { 
+     	 
+	     position: fixed; 
+	     right: 50%; 
+	     top: 180px; 
+	     margin-right: -690px; 
+	     text-align:reft; 
+	     width: 200px; 
+     }
+</style>
 </head>
 <body class="animsition">
 	
@@ -316,6 +326,43 @@
 			</div>			
 		</div>
 	</section>
+
+	<div class="col-md-4 col-lg-3 p-b-80">
+		<div class="side-menu">
+			<div class="p-t-55">
+				<div id="floating">
+					<div class="jumbotron" style="border-radius : 20px; width : 80%; height : auto; ">
+						<strong class="mtext-100 cl2 p-b-33" style="font-size: 1.5em; color:black;">SNS 문의</strong>
+						<br><br>
+						<ul>
+							<li>
+								<div id="kakao-talk-channel-chat-button"></div>
+							</li>
+					
+							<li>	
+								<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<img src="/ssmall/images/facebook.PNG" width="105" height="40" style="border-radius: 20px; margin-top: 5px">
+									</a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<img src="/ssmall/images/instagram.PNG" width="105" height="40" style="border-radius: 20px; margin-top: 10px">
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
@@ -393,15 +440,15 @@
 					
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
+							<i class="fab fa-facebook"></i>
 						</a>
 
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
+							<i class="fab fa-instagram"></i>
 						</a>
 
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
+							<i class="fab fa-pinterest-p"></i>
 						</a>
 					</div>
 				</div>
@@ -452,7 +499,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fas fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
@@ -780,7 +827,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script> 
 
-	<span class="bt-basic" id="map"></span>  
+	<span class="bt-basic" id="map"></span> 
+<!--===============================================================================================-->	
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// input your appkey
+	Kakao.init('5ef19e54d3f212b5ec81e3fbbd80fdc7');
+	  
+	Kakao.Channel.createChatButton({
+		container: '#kakao-talk-channel-chat-button',
+	  	channelPublicId: '_LVxlXxb' // 채널 홈 URL에 명시된 id로 설정합니다.
+	 });
+});
+	
+</script> 
 <!--===============================================================================================-->
 </body>
 </html>

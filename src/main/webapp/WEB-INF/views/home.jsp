@@ -52,8 +52,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script type="text/javascript">
 
@@ -276,7 +275,7 @@
 				<li>
 					<a href="asView">AS</a>
 				</li>
-
+		
 			</ul>
 		</div>
 
@@ -1039,6 +1038,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
 	}		
 </script>
-	
+
 </body>
 </html>
