@@ -104,112 +104,10 @@ span {
 					href="adminpage" class="nav-link">Home</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
-			</ul>
-			<!-- SEARCH FORM -->
-			<form class="form-inline ml-3">
-				<div class="input-group input-group-sm">
-					<input class="form-control form-control-navbar" type="search"
-						placeholder="Search" aria-label="Search">
-					<div class="input-group-append">
-						<button class="btn btn-navbar" type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-			<!-- Right navbar links -->
-			<ul class="navbar-nav ml-auto">
-				<!-- Messages Dropdown Menu -->
-				<li class="nav-item dropdown"><a class="nav-link"
-					data-toggle="dropdown" href="#"> <i class="far fa-comments"></i>
-						<span class="badge badge-danger navbar-badge">3</span>
-				</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<a href="#" class="dropdown-item"> <!-- Message Start -->
-							<div class="media">
-								
-								<div class="media-body">
-									<h3 class="dropdown-item-title">
-										Brad Diesel <span class="float-right text-sm text-danger"><i
-											class="fas fa-star"></i></span>
-									</h3>
-									<p class="text-sm">Call me whenever you can...</p>
-									<p class="text-sm text-muted">
-										<i class="far fa-clock mr-1"></i> 4 Hours Ago
-									</p>
-								</div>
-							</div> <!-- Message End -->
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"> <!-- Message Start -->
-							<div class="media">
-								
-								<div class="media-body">
-									<h3 class="dropdown-item-title">
-										John Pierce <span class="float-right text-sm text-muted"><i
-											class="fas fa-star"></i></span>
-									</h3>
-									<p class="text-sm">I got your message bro</p>
-									<p class="text-sm text-muted">
-										<i class="far fa-clock mr-1"></i> 4 Hours Ago
-									</p>
-								</div>
-							</div> <!-- Message End -->
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"> <!-- Message Start -->
-							<div class="media">
-								
-								<div class="media-body">
-									<h3 class="dropdown-item-title">
-										Nora Silvester <span class="float-right text-sm text-warning"><i
-											class="fas fa-star"></i></span>
-									</h3>
-									<p class="text-sm">The subject goes here</p>
-									<p class="text-sm text-muted">
-										<i class="far fa-clock mr-1"></i> 4 Hours Ago
-									</p>
-								</div>
-							</div> <!-- Message End -->
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item dropdown-footer">See All
-							Messages</a>
-					</div></li>
-				<!-- Notifications Dropdown Menu -->
-				<li class="nav-item dropdown"><a class="nav-link"
-					data-toggle="dropdown" href="#"> <i class="far fa-bell"></i> <span
-						class="badge badge-warning navbar-badge">15</span>
-				</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<span class="dropdown-item dropdown-header">15
-							Notifications</span>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"> <i
-							class="fas fa-envelope mr-2"></i> 4 new messages <span
-							class="float-right text-muted text-sm">3 mins</span>
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"> <i
-							class="fas fa-users mr-2"></i> 8 friend requests <span
-							class="float-right text-muted text-sm">12 hours</span>
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"> <i class="fas fa-file mr-2"></i>
-							3 new reports <span class="float-right text-muted text-sm">2
-								days</span>
-						</a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item dropdown-footer">See All
-							Notifications</a>
-					</div></li>
-				<li class="nav-item"><a class="nav-link"
-					data-widget="control-sidebar" data-slide="true" href="#"><i
-						class="fas fa-th-large"></i></a></li>
-			</ul>
+			</ul>					
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -252,7 +150,11 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>							
+								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
+									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
@@ -273,7 +175,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>A/S</h1>
+							<h1>1:1 문의</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -293,18 +195,63 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-								<div id="Line_Controls_Chart">
-      
-		</div>
-								
+					
+					<table class="table table-list-search">
+													<tr>
+														<th style="text-align: center;">회원번호</th>
+														<th style="text-align: center;">회원 아이디</th>
+														<th style="text-align: center;">회원 이름</th>
+														<th style="text-align: center;">문의 제목</th>
+														<th style="text-align: center;">문의 내용</th>	
+													</tr>										
+													<c:forEach items="${aSRequestboards}" var="aSRequestboards">
+													<tr>														
+														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_number}</td>
+														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_id}</td>																				
+														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_name}</td>
+														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.btitle}</td>
+														<td style="text-align: center; vertical-align: middle;"><p>${aSRequestboards.bcontent}</p></td>										
+													</tr>
+													</c:forEach>													
+												</table>
+							<c:if test="${pageMaker.prev}">
+							<a href="/ssmall/admin/asList${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+							</c:if>
+							
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+									<c:out value="${pageMaker.cri.page == idx?'':''}" />
+									<a href="/ssmall/admin/asList${pageMaker.makeQuery(idx)}">${idx}</a>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<a href="/ssmall/admin/asList${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+							</c:if> <br>
+					
 					</div>	
+							
 																
-								</div>							
+								</div>								
 							</div>														
-						</div>
-						</section>						
+						</div>					
 					</div>
 				</div>
-</body>
 
+
+
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2014-2019 <a
+				href="http://adminlte.io">AdminLTE.io</a>.
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.0.2
+			</div>
+		</footer>
+	</div>
+</body>
 </html>

@@ -107,7 +107,7 @@ span {
 			</ul>					
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -204,16 +204,28 @@ span {
 														<th style="text-align: center;">문의 제목</th>
 														<th style="text-align: center;">문의 내용</th>	
 													</tr>										
-													<c:forEach items="${list}" var="list">
+													<c:forEach items="${askRequestboards}" var="askRequestboards">
 													<tr>														
-														<td style="text-align: center; vertical-align: middle;">${list.m_number}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.m_id}</td>																				
-														<td style="text-align: center; vertical-align: middle;">${list.m_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.b_title}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.b_content}</td>										
+														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_number}</td>
+														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_id}</td>																				
+														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_name}</td>
+														<td style="text-align: center; vertical-align: middle;">${askRequestboards.btitle}</td>
+														<td style="text-align: center; vertical-align: middle;"><p>${askRequestboards.bcontent}</p></td>										
 													</tr>
 													</c:forEach>													
 												</table>
+							<c:if test="${pageMaker.prev}">
+									<a href="/ssmall/admin/requestList${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+							</c:if>
+							
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+									<c:out value="${pageMaker.cri.page == idx?'':''}" />
+									<a href="/ssmall/admin/requestList${pageMaker.makeQuery(idx)}">${idx}</a>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<a href="/ssmall/admin/requestList${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+							</c:if> <br>
 					
 					</div>	
 							

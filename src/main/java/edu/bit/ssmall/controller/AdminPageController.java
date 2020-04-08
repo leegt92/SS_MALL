@@ -17,7 +17,9 @@ import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.AdminService;
 import edu.bit.ssmall.service.BoardNoticeService;
+import edu.bit.ssmall.service.MypageService;
 import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
 
 @Controller
@@ -32,19 +34,82 @@ public class AdminPageController {
 	
 	@Autowired
 	BoardNoticeService bservice;
+	
+	@Autowired
+	MypageService mypageService;
 
 	
 	@RequestMapping(value = "asList", method ={RequestMethod.GET,RequestMethod.POST})
-	public String asList(Model model) {
-		System.out.println("asList 시작");
+	public String admin_aSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			int totalCount = adminService.selectASCountBoard();
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<Board_MemberVO> aSRequestboards = adminService.selectASBoardListPage(startNum, endNum);
+			model.addAttribute("aSRequestboards", aSRequestboards);
+			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<aSRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllASRequestAnswer(aSRequestboards.get(i).getBid());
+				aSRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("aSRequestboardsAnswers", aSRequestboardsAnswers);
+			  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "Admin/admin_asList";
 
 	}
 	
 	@RequestMapping(value = "requestList", method ={RequestMethod.GET,RequestMethod.POST})
-	public String requestList(Model model) {
-		System.out.println("requestList 시작");
+		public String admin_askRequestView(Criteria criteria, Model model, BoardVO boardVO) {
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(criteria);
+			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    Object principal = auth.getPrincipal();
+		    String name = "";
+		    if(principal != null) {
+		        name = auth.getName();
+		    }
+		    
+		    try {
+				int m_number = mypageService.getMnum(name);
+				model.addAttribute("m_number", m_number);
+				int totalCount = adminService.selectAskCountBoard();
+				pageMaker.setTotalCount(totalCount);
+				model.addAttribute("pageMaker", pageMaker);
+				int startNum = criteria.getStartNum(); 
+				int endNum = criteria.getEndNum();
+				List<Board_MemberVO> askRequestboards = adminService.selectAskBoardListPage(startNum, endNum);
+				model.addAttribute("askRequestboards", askRequestboards);
+				List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+				for(int i=0; i<askRequestboards.size(); i++) { 
+					BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+					askRequestboardsAnswers.add(i, answer); 
+					}
+				  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+				  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		return "Admin/admin_requestList";
 

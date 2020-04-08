@@ -324,9 +324,7 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-<!-- <<<<<<< HEAD
-        <button onclick="window.location.href='/ssmall/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">1:1문의 글쓰기</font></button>
-======= -->
+
         <button onclick="window.location.href='/ssmall/mypage/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
 
     </ul>
