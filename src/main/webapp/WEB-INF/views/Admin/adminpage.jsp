@@ -35,9 +35,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- google charts -->
+	   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawVisualization);
+	
+		function drawVisualization() { 
+			var data = google.visualization.arrayToDataTable([
+					['Month', '지갑', 	'시계'],
+					['2019/12',  742,    938,],
+					['2020/01',  594,    783,],
+					['2020/02',  923,    630,],
+					['2020/03',  867,    663,],
+					['2020/04',  712,    691,]
+				]);
+			var options = {
+					title : '월별 지갑, 시계 판매량',
+					vAxis: {title: 'Cups'},
+					hAxis: {title: 'Month'}, 
+					seriesType: 'bars',
+					series: {5: {type: 'line'}}
+				};
+			
+			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+	</script>
+
+
 <style>
-
-
 .dropdown button {
  display: block;    /* table */
     width: 230px;
@@ -162,7 +194,11 @@ to get the desired effect
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>							
+								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
+									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
@@ -194,141 +230,36 @@ to get the desired effect
             </ol>
           </div>
         </div>
-        
-        
-     
       <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        
         <!-- 1번째 줄 -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>150</h3>
+        <div class="col-md-12">
+						<div class="card card-primary card-outline">
+							<div class="card-header">
+								<div id="Line_Controls_Chart">
+      <!-- 라인 차트 생성할 영역 -->
+      <h4>방문자 성별 현황 그래프</h4>
+  		<div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+      <!-- 컨트롤바를 생성할 영역 -->
+  		<div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+				</div>			
+			</div>	
+		</div>							
+	</div>
 
-                <p>새 주문</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="admin_order1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>5</h3>
-
-                <p>A/S 문의</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="admin_AS1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p>신규 회원</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="admin_member1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>새 글</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="admin_board2" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
+        <div class="col-md-12">
+						<div class="card card-primary card-outline">
+							<div class="card-header">
+								<div id="Line_Controls_Chart">
+      <!-- 라인 차트 생성할 영역 -->
+      <div id="chart_div" style="width:900px; height: 500px;"></div>
+				</div>			
+			</div>	
+		</div>							
+	</div>
         
-        <!-- 2번째 줄 -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>3</h3>
-
-                <p>공지글 작성</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="admin_order1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>5</h3>
-
-                <p>일간 판매량</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="admin_AS1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p>월간 판매량</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="admin_member1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>연간 판매량</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="admin_board2" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
         
         <!-- 3번째 줄 -->
         <div class="row">
@@ -457,7 +388,8 @@ to get the desired effect
           </div>
           <!-- ./col -->
         </div>
-
+</div>
+</section>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -482,20 +414,117 @@ to get the desired effect
     </div>
   </footer>
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-
-
-
-
 
 <script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 
-</script>
+  var chartDrowFun = {
+
+    chartDrow : function(){
+        var chartData = '';
+
+        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
+        var chartDateformat 	= 'yyyy년MM월dd일';
+        //라인차트의 라인 수
+        var chartLineCount    = 20;
+        //컨트롤러 바 차트의 라인 수
+        var controlLineCount	= 20;
+
+
+        function drawDashboard() {
+
+          var data = new google.visualization.DataTable();
+          //그래프에 표시할 컬럼 추가
+          data.addColumn('datetime' , '날짜');
+          data.addColumn('number'   , '남성');
+          data.addColumn('number'   , '여성');
+          data.addColumn('number'   , '전체');
+
+          //그래프에 표시할 데이터
+          var dataRow = [];
+
+          for(var i = 0; i <= 29; i++){ //랜덤 데이터 생성
+            var total   = Math.floor(Math.random() * 500) + 1;
+            var man     = Math.floor(Math.random() * total) + 1;
+            var woman   = total - man;
+
+            dataRow = [new Date('2020', '03', i , '10'), man, woman , total];
+            data.addRow(dataRow);
+          }
+
+
+            var chart = new google.visualization.ChartWrapper({
+              chartType   : 'LineChart',
+              containerId : 'lineChartArea', //라인 차트 생성할 영역
+              options     : {
+                              isStacked   : 'percent',
+                              focusTarget : 'category',
+                              height		  : 500,
+                              width			  : '100%',
+                              legend		  : { position: "top", textStyle: {fontSize: 13}},
+                              pointSize		: 5,
+                              tooltip		  : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
+                              hAxis			  : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
+                                                                  years : {format: ['yyyy년']},
+                                                                  months: {format: ['MM월']},
+                                                                  days  : {format: ['dd일']},
+                                                                  hours : {format: ['HH시']}}
+                                                                },textStyle: {fontSize:12}},
+                vAxis			  : {minValue: 100,viewWindow:{min:0},gridlines:{count:-1},textStyle:{fontSize:12}},
+                animation		: {startup: true,duration: 1000,easing: 'in' },
+                annotations	: {pattern: chartDateformat,
+                                textStyle: {
+                                fontSize: 15,
+                                bold: true,
+                                italic: true,
+                                color: '#871b47',
+                                auraColor: '#d799ae',
+                                opacity: 0.8,
+                                pattern: chartDateformat
+                              }
+                            }
+              }
+            });
+
+            var control = new google.visualization.ControlWrapper({
+              controlType: 'ChartRangeFilter',
+              containerId: 'controlsArea',  //control bar를 생성할 영역
+              options: {
+                  ui:{
+                        chartType: 'LineChart',
+                        chartOptions: {
+                        chartArea: {'width': '60%','height' : 80},
+                          hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
+                            gridlines:{count:controlLineCount,units: {
+                                  years : {format: ['yyyy년']},
+                                  months: {format: ['MM월']},
+                                  days  : {format: ['dd일']},
+                                  hours : {format: ['HH시']}}
+                            }}
+                        }
+                  },
+                    filterColumnIndex: 0
+                }
+            });
+
+            var date_formatter = new google.visualization.DateFormat({ pattern: chartDateformat});
+            date_formatter.format(data, 0);
+
+            var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
+            window.addEventListener('resize', function() { dashboard.draw(data); }, false); //화면 크기에 따라 그래프 크기 변경
+            dashboard.bind([control], [chart]);
+            dashboard.draw(data);
+
+        }
+          google.charts.setOnLoadCallback(drawDashboard);
+
+      }
+    }
+
+$(document).ready(function(){
+  google.charts.load('current', {'packages':['line','controls']});
+  chartDrowFun.chartDrow(); //chartDrow() 실행
+});
+  </script>
 
 </body>
 </html>

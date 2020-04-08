@@ -34,6 +34,30 @@ public class AdminPageController {
 	BoardNoticeService bservice;
 
 	
+	@RequestMapping(value = "asList", method ={RequestMethod.GET,RequestMethod.POST})
+	public String asList(Model model) {
+		System.out.println("asList 시작");
+		
+		return "Admin/admin_asList";
+
+	}
+	
+	@RequestMapping(value = "requestList", method ={RequestMethod.GET,RequestMethod.POST})
+	public String requestList(Model model) {
+		System.out.println("requestList 시작");
+		
+		return "Admin/admin_requestList";
+
+	}
+	
+	@RequestMapping(value = "requestWrite", method ={RequestMethod.GET,RequestMethod.POST})
+	public String requestWrite(Model model) {
+		System.out.println("requestWrite 시작");
+		
+		return "Admin/admin_requestWrite";
+
+	}
+	
 	//관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
 	@RequestMapping(value = "adminpage", method ={RequestMethod.GET,RequestMethod.POST})
 	public String adminpage(Model model) {

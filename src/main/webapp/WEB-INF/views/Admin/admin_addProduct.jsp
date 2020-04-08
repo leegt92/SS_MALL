@@ -37,7 +37,37 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
 
+<script>
+function previewImage(f){
 
+	var file = f.files;
+
+	// 확장자 체크
+	if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+		alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+
+		// 선택한 파일 초기화
+		f.outerHTML = f.outerHTML;
+
+		document.getElementById('preview').innerHTML = '';
+
+	}
+	else {
+
+		// FileReader 객체 사용
+		var reader = new FileReader();
+
+		// 파일 읽기가 완료되었을때 실행
+		reader.onload = function(rst){
+			document.getElementById('preview').innerHTML = '<img src="' + rst.target.result + '">';
+		}
+
+		// 파일을 읽는다
+		reader.readAsDataURL(file[0]);
+
+	}
+}
+</script>
 
 <style>
 .dropdown button {
@@ -127,8 +157,7 @@ span {
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user1-128x128.jpg" alt="User Avatar"
-									class="img-size-50 mr-3 img-circle">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i
@@ -144,8 +173,7 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user8-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i
@@ -161,8 +189,7 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user3-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i
@@ -276,9 +303,14 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>상품추가</h1>
+							<h1>상품 등록</h1>
 						</div>
-						
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="#"></a></li>
+								<li class="breadcrumb-item"></li>
+							</ol>
+						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
@@ -291,20 +323,17 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-								
+							<input type="file" name="files1" accept="image/*" multiple onchange="previewImage(this)" />
+								<div id="preview"></div>
 
-
-
-					</div>	
-								</tbody>
-									</table>								
+<input type="file" style="width:500px;" accept="image/*" multiple onchange="fileInfo(this)" />
+							
+					</div>										
 								</div>								
 							</div>														
 						</div>					
 					</div>
-				</div>
-			</section>
-		</div>
+			
 
 
 

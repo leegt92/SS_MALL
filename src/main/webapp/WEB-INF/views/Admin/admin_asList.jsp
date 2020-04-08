@@ -127,8 +127,7 @@ span {
 					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user1-128x128.jpg" alt="User Avatar"
-									class="img-size-50 mr-3 img-circle">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Brad Diesel <span class="float-right text-sm text-danger"><i
@@ -144,8 +143,7 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user8-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										John Pierce <span class="float-right text-sm text-muted"><i
@@ -161,8 +159,7 @@ span {
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"> <!-- Message Start -->
 							<div class="media">
-								<img src="dist/img/user3-128x128.jpg" alt="User Avatar"
-									class="img-size-50 img-circle mr-3">
+								
 								<div class="media-body">
 									<h3 class="dropdown-item-title">
 										Nora Silvester <span class="float-right text-sm text-warning"><i
@@ -276,7 +273,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>AS</h1>
+							<h1>A/S</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -296,36 +293,18 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
+								<div id="Line_Controls_Chart">
+      
+		</div>
 								
-
-
-
 					</div>	
-								</tbody>
-									</table>								
-								</div>								
+																
+								</div>							
 							</div>														
-						</div>					
+						</div>
+						</section>						
 					</div>
 				</div>
-			</section>
-		</div>
-
-
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<strong>Copyright &copy; 2014-2019 <a
-				href="http://adminlte.io">AdminLTE.io</a>.
-			</strong> All rights reserved.
-			<div class="float-right d-none d-sm-inline-block">
-				<b>Version</b> 3.0.2
-			</div>
-		</footer>
-	</div>
 </body>
+
 </html>

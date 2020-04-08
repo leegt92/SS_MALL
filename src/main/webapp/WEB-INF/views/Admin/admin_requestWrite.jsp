@@ -36,9 +36,18 @@
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <style>
+
+
+
 .dropdown button {
 	display: block;
 	width: 230px;
@@ -180,59 +189,37 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>공지사항</h1>
+							<h1>1:1 문의 답변</h1>
 						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item"></li>
-							</ol>
-						</div>
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-			</section>
+						
+						<div class="container">
+		<table class="table table-bordered">
+   
+    <tbody>
+        <form action="write_ok.jsp" method="post" encType="multiplart/form-data">
+            <tr>
+                <th>제목: </th>
+                <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+            </tr>
+            <tr>
+                <th>내용: </th>
+                <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="등록" onclick="sendData()" class="pull-right"/>
+                </td>
+            </tr>
 
-			<!-- Main content -->
-			<section class="content style=">
-				<div class="row">
-					<!-- /.col -->
-					<div class="col-md-12">
-						<div class="card card-primary card-outline">
-							<div class="card-header">
-								<h3 class="card-title"></h3>
-
-<form id="submitAskRequest" action="/ssmall/admin/noticeWrite">
-
-					<form id="submitAskRequest" action="noticeWrite_back">
-
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							공지사항 작성
-						</h4> 
-
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."
-							style="">
-						</div>
-
-						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="noresize" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
-						</div>
-
-						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							제출
-						</button>
-					</form>
-					
-					
-					
-				</div>
-				</section>
-												
+    </tbody>
+</table>
+</div>									
 								</div>												
 							</div>										
-
-
+						</div>														
+					</div>	
+					
+					
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Control sidebar content goes here -->
@@ -257,41 +244,6 @@ span {
 	
 	<!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
-    <script>
-    	
-	    $("#submitAskRequest").submit(function(event) {
-	    		var a1 = document.getElementById("bTitle").value;
-	    		var a2 = document.getElementById("bContent").value;
-	    		if(a1 == "" || a2 == "") {
-	    			event.preventDefault();
-	    			Swal.fire({
-	    				icon: 'error',
-	    				position: 'center',
-	    				title: '글 제목 및 글 내용 미입력',
-	    				text: '글 제목과 글 내용을 모두 입력해 주십시오.',	
-	    			})
-	    		}
-	    		else {
-	    			event.preventDefault();
-	    			Swal.fire({
-	    				icon: 'success',
-	    				position: 'center',
-	    				title: '작성 완료',
-	    				text: '작성이 완료되었습니다.',	
-	    				}).then(function() {
-	    					var elem = document.getElementById('submitAskRequest');
-	    					elem.submit();
-	    				});
-	    		}
-				
-	    });
-    		
-			
-    		
-	</script>
-	
+   
 </body>
 </html>
