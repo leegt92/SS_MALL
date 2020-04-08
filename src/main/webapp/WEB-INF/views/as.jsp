@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -55,11 +55,11 @@
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="mypage/myPage" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 

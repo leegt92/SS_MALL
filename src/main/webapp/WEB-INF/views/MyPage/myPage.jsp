@@ -14,34 +14,34 @@
     <title>상승몰</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ssmall/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet"> 
+    <link href="/ssmall/css/dashboard.css" rel="stylesheet"> 
     
     <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
 <!--===============================================================================================-->
 <style>
 .bg-light {
@@ -57,13 +57,13 @@
 
   
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+      <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
  	"></a>
-      <a href="/ssmall" style="color:white">홈</a>
+      <a href="/ssmall/" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
-      <a href="/ssmall/cartView" style="color:white">장바구니</a>
+      <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="blog.html" style="color:white">Blog</a>
       <a href="about.html" style="color:white">About</a>
       <a href="contact.html" style="color:white">Contact</a>
@@ -270,7 +270,6 @@
         }
       });
     </script>
-   
->>>>>>> origin/dev_hyemin
+
   </body>
 </html>

@@ -58,9 +58,9 @@ public class KakaoPay {
         params.add("quantity", amount); //구매할 수량
         params.add("total_amount", totalprice); //구매할 총가격
         params.add("tax_free_amount", "0"); //상품 비과세 금액
-        params.add("approval_url", "http://localhost:8282/ssmall/kakaoPaySuccess"); //결제 성공시 url
-        params.add("cancel_url", "http://localhost:8282/ssmall/kakaoPayCancel"); //결제 취소시 url
-        params.add("fail_url", "http://localhost:8282/ssmall/kakaoPaySuccessFail"); //결제 실패시 url
+        params.add("approval_url", "http://localhost:8282/ssmall/buy/kakaoPaySuccess"); //결제 성공시 url
+        params.add("cancel_url", "http://localhost:8282/ssmall/buy/kakaoPayCancel"); //결제 취소시 url
+        params.add("fail_url", "http://localhost:8282/ssmall/buy/kakaoPaySuccessFail"); //결제 실패시 url
  
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         //헤더와 바디를 합친다.

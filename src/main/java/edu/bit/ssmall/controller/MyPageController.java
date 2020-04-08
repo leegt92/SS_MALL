@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,14 +40,19 @@ import com.google.gson.JsonObject;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.MypageService;
+import edu.bit.ssmall.service.PageService;
+import edu.bit.ssmall.service.RefundService;
+import edu.bit.ssmall.vo.BoardNoticeVO;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.Product_BuyVO;
+import edu.bit.ssmall.vo.RefundVO;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("mypage")
 public class MyPageController {
 	
 	/*
@@ -65,6 +71,12 @@ public class MyPageController {
 	
 	@Autowired
 	MypageService mypageService;
+	
+	@Autowired
+	RefundService refundService;
+	
+	@Autowired
+	PageService pageService;
 	
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPage(Model model) {
@@ -146,7 +158,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)//문의글들 띄워놓는 부분에 대한 컨트롤러
 	public String myPage_askRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -184,7 +196,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)//신경쓰지 마시고
 	public String myPage_askRequestView2(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -222,7 +234,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)//신경X
 	public String myPage_aSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -260,7 +272,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)//실제로 입력하는 창 에 대한 컨트롤러 밑에꺼랑 세트
 	public String myPage_askRequest(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -290,7 +302,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)//이것도 입력하는 창에 대한 컨트롤러인데 입력하는 창에 대한 컨트롤러가 두개인 이유는 위에꺼랑 쌍으로 구현해야 입력직후 게시글 목록으로 돌아오는 걸 구현할 수 있어서이다.
 	public String myPage_askRequest_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -651,10 +663,10 @@ public class MyPageController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	return "MyPage/myPage_reviseInformation4";
+		    return "MyPage/myPage_reviseInformation4";
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET) //글 수정하는 창에 대한 컨트롤러
 	public String myPage_askRequest2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -690,7 +702,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)//위에꺼랑 세트 이것까지 구현시 수정직후 알아서 게시글로 돌아옴
 	public String myPage_askRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -775,7 +787,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequest2_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askAS2_back", method = RequestMethod.GET)
 	public String myPage_aSRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -822,7 +834,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET) //삭제는 딱히 UI가 없고 그냥 삭제 논리대로 철기하는 컨트롤러 삭제버튼 누르면 이 컨트롤러를 탄다.
 	public String delete(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -861,12 +873,12 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:/myPage_askRequestView";
+	    return "redirect:/mypage/myPage_askRequestView";
 
 
 	}
 	
-	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)//일단 신경 X
 	public String delete2(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -904,7 +916,8 @@ public class MyPageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    return "redirect:/myPage_aSRequestView";
+
+		return "redirect:/mypage/myPage_aSRequestView";
 	}
 	
 	 @RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
@@ -947,7 +960,7 @@ public class MyPageController {
 	            
 	            String callback = request.getParameter("CKEditorFuncNum");
 	            printWriter = response.getWriter();
-	            String fileUrl = "/ssmall/mine/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
+	            String fileUrl = "/ssmall/mypage/mine/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
 	            
 	        // 업로드시 메시지 출력
 	          printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
@@ -965,6 +978,37 @@ public class MyPageController {
 	        return;
 	    }
 	
+	@RequestMapping(value="myPage_refundList", method= {RequestMethod.GET,RequestMethod.POST})
+	public String myPage_refundList(Criteria criteria, HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
+		String m_id = principal.getName();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		System.out.println("현재페이지 : "+criteria.getPage());
+		System.out.println("화면에 보여질 페이지수 : "+criteria.getPerPageNum());
+
+		int startNum = criteria.getStartNum();
+		int endNum = criteria.getEndNum();
+
+		int totalCount = pageService.countRefundList(m_id);
+		System.out.println("환불내역 조회 : " + totalCount + "회");
+		
+		pageMaker.setTotalCount(totalCount);
+		
+		List<RefundVO> refundList = pageService.refundListPage(m_id, startNum, endNum);
+		System.out.println(refundList);
+		
+		//ArrayList<RefundVO> refundVO = refundService.refundInfo(m_id);
+		
+			
+		//model.addAttribute("list", refundList);
+		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("refund", refundList);
+		
+		
+		return "MyPage/myPage_refundList";
+	}
 	 @RequestMapping(value="/mine/ckImgSubmit.do")
 	    public void ckSubmit(@RequestParam(value="uid") String uid
 	                            , @RequestParam(value="fileName") String fileName

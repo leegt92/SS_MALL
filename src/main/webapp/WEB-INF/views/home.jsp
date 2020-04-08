@@ -61,8 +61,9 @@
 	
 	
 	$(function(){
+		
 		$.ajax({
-			url : '/ssmall/miniCart',
+			url : 'miniCart',
 			dataType : 'json',
 			success : function(data){
 				console.log(data);
@@ -76,10 +77,10 @@
 					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
 					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
 					tag = tag + "<div class='header-cart-item-img'>";
-					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
+					tag = tag + "<img src='/ssmall/productimage/" + value.i_name +"' alt='IMG'>";
 					tag = tag + "</div>";
 					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
-					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
+					tag = tag + "<a href='/ssmall/productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
 					tag = tag + value.p_description + " x " + value.c_amount;
 					tag = tag + "</a>";
 					tag = tag + "<span class='header-cart-item-info'>";
@@ -97,7 +98,7 @@
 				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
 				tag2 = tag2 + "</div>"
 				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
-				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
+				tag2 = tag2 + "<a href='/ssmall/cart/cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
 				tag2 = tag2 + "View Cart </a></div>";
 				
 				$("#total").append(tag2);
@@ -107,10 +108,19 @@
 					$('#count').attr('data-notify', itemcount);
 
 			    });
+			
 				
-				
-				
-			}
+			},
+			error : function(request, status, error) {           
+             	console.log("로그인x");
+            
+             	var itemcount = 0;
+             	$(document).ready(function () {
+
+					$('#count').attr('data-notify', itemcount);
+
+			 	});
+        	 }	    		 	   
 		})
 	})
 </script>
@@ -308,7 +318,7 @@
 						</li>
 			
 						<li class="p-b-13">
-							<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+							<a href="/ssmall/admin/adminpage" class="stext-102 cl2 hov-cl1 trans-04">
 								<p style="font-weight: bold; font-size: 1.5em;">관리자페이지 </p>
 							</a>
 						</li>
@@ -327,13 +337,13 @@
 						</li>
 						
 						<li class="p-b-13">
-						<a href="myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="/ssmall/mypage/myPage_orderedList" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">마이페이지 </p>
 						</a>
 						</li>
 						
 						<li class="p-b-13">
-						<a href="cartView" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="/ssmall/cart/cartView" class="stext-102 cl2 hov-cl1 trans-04">
 							<p style="font-weight: bold; font-size: 1.5em;">장바구니 </p>
 						</a>
 						</li>
@@ -999,44 +1009,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	
 </body>
-
-<script type="text/javascript"></script> 
-
-<script>
-$(document).ready(function() {
-	/* 
-	$('#watch2').on('click',function(){
-		
-		$('#watch1').trigger("click");	
-		
-	});  	 */
-});	 
-
-	/*  $('#watch2').click(function(){
-		  var a = document.getElementById('watch1');
-		  a.click('#watch1'); 
-	});	  
-	  */
-	  /*  $('#watch2','#watch1').click(function() {
-		var $this=$(this);
-		
-		if($this.hasId('watch2')){
-			$(location).attr('href','productView');
-			$("#watch1").trigger("click");	
-		}
-		
-		else{
-			
-		}
-	});  */
-	/*  $(document).on("click","#watch2", function(){
-		 
-	
-		 $("#watch1").trigger("click");
-	 }); */
-
-
- 	 
-</script> 
  
 </html>

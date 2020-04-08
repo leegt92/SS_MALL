@@ -9,17 +9,17 @@ public class Criteria {
 	
 	public Criteria() {
 		this.page = 1;
-		this.perPageNum = 5;
+		this.perPageNum = 10;
 	}
 	
-public int getStartNum() {
+	public int getStartNum() {
     	
     	if(page == 1)
     		startNum = 1;
     	else{
     		startNum = getEndNum() - perPageNum +1 ;
     	}
-    	System.out.println("���۹�ȣ" + startNum);
+ 
 		return startNum;
 	}
 
@@ -30,7 +30,7 @@ public int getStartNum() {
 	public int getEndNum() {
 		endNum  =  page * getPerPageNum();
 		//endNum  = getStartNum() + getPerPageNum();		
-		System.out.println("�����ȣ" + endNum);
+		
 		return endNum;
 	}
 
@@ -38,13 +38,11 @@ public int getStartNum() {
 		this.endNum = endNum;
 	}    
     
-    // limit �������� ���� �κп� �ʿ��� ���� ��ȯ(mybatis���� ���)
+    
     public int getPageStart(){
         return (this.page -1) * this.perPageNum;
-		// RowBounds �� �Ű������� ���� �����ϴ� �޼ҵ�
-		// RouwBounds �� start index�� 0���� �����ϹǷ�
-		// 1������ : 1-1 * 10 = 0 ->>
-		// 2������ : 2-1 * 10 = 10 ->>
+		
+	
     }
  
     // getter setter
@@ -53,7 +51,7 @@ public int getStartNum() {
     }
     public void setPage(int page) {
         if ( page <= 0 ){
-            // �������� 1���������������� 0���� �۰ų� �������� ��� ������ ù��° �������� �����ǵ��� ���ش�.
+           
             this.page = 1;
         }else{
             this.page = page;
