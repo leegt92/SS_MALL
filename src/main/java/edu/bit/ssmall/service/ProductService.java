@@ -63,6 +63,11 @@ public class ProductService {
 			
 		return productMapper.productOne(p_number);
 	}
+	//product의 modal1 부분에서 p_number로 상품의 모든 정보와 i_name을 가져오기 위해.
+	public List<ProductImageVO> productOneAndIname(String p_number) {
+		
+		return productMapper.productOneAndIname(p_number);
+	}
 
 	public int principalGetMid(String m_id) {
 		

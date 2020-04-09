@@ -169,7 +169,18 @@
 		        display: inline-block;
 		        text-align: left;
 		        vertical-align: middle;
-		}       
+		}
+		
+		
+		       
+</style>
+<style>
+.DetailTable{
+		font-size:15px;
+		width:"200";
+
+
+	}
 </style>
 
 <script>	    	    	
@@ -259,15 +270,15 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
@@ -557,12 +568,43 @@
 								</div>
 							</div> -->
 
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">
-									Color<br />
+							<div class="stext-102 cl3 p-t-23">
+								<div class="size-203 flex-c-m respon6" style="width: 250px">
+									<table class="table table-search">									
+									 <tr>
+									   <td>적립금</td>
+									   <td>
+									<fmt:formatNumber
+									value="${productNum.p_price/10}" pattern="###,###,###" />원
+									 </tr>
+									 <tr>
+									   <td>배송비</td>
+									   <td>무료</td>
+									 </tr>
+									 <tr>
+									   <td>브랜드</td>
+									   <td>${productNum.p_brand}</td>
+									 </tr>
+									</table>
 								</div>
+								
+								<!-- <div class="flex-w flex-r-m p-b-10">
+								<div class="size-203 flex-c-m respon6">
+									<table border="1">
+										<th>자리1</th>
+										<th>자리2</th>
+										<tr> 첫번째줄
+											<td>1자리</td>
+											<td>2자리</td>
+										</tr>
+										<tr> 두번째줄
+											<td>1자리</td>
+											<td>2자리</td>
+										</tr>
+									</table>
+								</div> -->
 
-								<div class="size-204 respon6-next">
+								<!-- <div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
 										<select class="js-select2" name="time">
 											<option>Choose an option</option>
@@ -573,36 +615,39 @@
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
-									<form:form role="form" method="post">
-									<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
-										<input type="hidden" name="p_number" value="${productNum.p_number}">
-										
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
+								<div class="size-204 flex-w flex-m respon6-next" style="width: 500px">
+									<form:form role="form" method="post" id="buyForm" >
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+											<input type="hidden" name="p_number" value="${productNum.p_number}">
+											<div id="minus" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+											<input id="b_amount" readonly class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="0">
+											<div id="plus" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
 										</div>
-										
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="1">
+											<span class="label-input100">최종가격</span>
+											<input id="finalPrice" type="text" class="form-control m-3" style="width: 50%;" value="0" readonly>
+											<div>
+											<button id="cart" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button" style="float: left;">
+												장바구니
+											</button>
+											<button id="buy" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button">
+												구입하기
+											</button>
+											<!-- <button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/cart/addCart';" >
+												장바구니
+											</button>
+											<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy/buy';">
+												구입하기
+											</button>	 -->									
+										</div>
 
-
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>							
-										
-									</div>
-
-									<div>
-										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/cart/addCart';" >
-											장바구니
-										</button>
-										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy/buy';">
-											구입하기
-										</button>										
-									</div>
 									</form:form>
 								</div>
 							</div>
@@ -1155,107 +1200,119 @@
 	</section>
 
 	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
+		<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">Categories</h4>
+				<div class="col-sm-6 col-lg-2 p-b-50">
+					<h4 class="stext-500 cl0 p-b-30">
+						Category
+					</h4>
 
 					<ul>
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Women </a></li>
+						<li class="p-b-10">
+							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
+								Watch
+							</a>
+						</li>
 
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Men </a></li>
+						<li class="p-b-10">
+							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
+								Wallet
+							</a>
+						</li>
 
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Shoes </a></li>
-
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Watches </a></li>
+					
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">Help</h4>
+					<h4 class="stext-500 cl0 p-b-30">
+						Help
+					</h4>
 
-					<ul>
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Track Order </a></li>
 
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Returns </a></li>
+						<p class="stext-130 cl7 size-201">
+							● 대표 전화번호: 02-1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">
+							● 고객센터 : 1234-5678
+						</p>
+						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
+						 	abcdefg@abcdefg.com
+						</a></p>
+						<p class="stext-130 cl7 size-201">
+							● FAQ
+						</p>
+					
+					
+				</div> 
 
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> Shipping </a></li>
-
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl1 trans-04"> FAQs </a></li>
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">GET IN TOUCH</h4>
-
-					<p class="stext-107 cl7 size-201">Any questions? Let us know in
-						store at 8th floor, 379 Hudson St, New York, NY 10018 or call us
-						on (+1) 96 716 6879</p>
-
-					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
-							class="fa fa-facebook"></i>
-						</a> <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
-							class="fa fa-instagram"></i>
-						</a> <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
-							class="fa fa-pinterest-p"></i>
-						</a>
+				<div class="col-sm-2 col-lg-50 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						Directions
+				 </h4>
+				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+						
+					
+			</div>
+				
+				<div class="col-sm-2 col-lg-40 p-b-40" >
+					<h4 class="stext-500 cl0 p-b-30">
+						SNS Page
+				 	</h4>
+				 		
+					<div class="p-t-10">			
+						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+										<i class="fa fa-facebook"></i>
+									</a>
+					
+						
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-instagram"></i>
+							</a>
+					
+					
+							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</div>
 					</div>
 				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">Newsletter</h4>
-
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text"
-								name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button
-								class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe</button>
-						</div>
-					</form>
-				</div>
+				
+				  <div class="col-sm-6 col-lg-3 p-b-50">
+				  	<img src="images/icons/mainlogo.png" width="500">
+				</div>  
 			</div>
+			
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1"> <img
-						src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a> <a href="#" class="m-all-1"> <img
-						src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a> <a href="#" class="m-all-1"> <img
-						src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a> <a href="#" class="m-all-1"> <img
-						src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a> <a href="#" class="m-all-1"> <img
-						src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script>
-						document.write(new Date().getFullYear());
-					</script>
-					All rights reserved | This template is made with <i
-						class="fa fa-heart-o" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>
@@ -1381,6 +1438,8 @@
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+										
+											<div class="size-203 flex-c-m respon6">Amount</div>
 											<div
 												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
@@ -2037,7 +2096,77 @@
 			}																	
 		});
 		
-	});													
+	});
+	//productDetail에서 물품 구매 수량을 바꿧을때 가격이 바로바로 바뀌는 부분
+	
+	$(document).ready(function(){
+	
+	function numberWithCommas(x) {
+		console.log("numberWithCommas");    
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	/* $("#b_amount").on("propertychange change keyup paste input", function() { */
+	/* $("#b_amount").on("change",function() { */
+	$("#plus").on("click",function(){
+	
+		console.log("버튼");
+		var amount = $("#b_amount").val();
+		var price = null;
+		
+		price = ${productNum.p_price} * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });
+	
+	$("#minus").on("click",function(){
+		
+		console.log("버튼");
+		var amount = $("#b_amount").val();
+		var price = null;
+		
+		price = ${productNum.p_price} * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });	
+	
+	/* 상품개수가 0인 상태로 장바구니 클릭시 카트로 넘어가서 0으로 나오는걸 막는 코드 */
+		$(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				var form = $('#buyForm');
+				console.log(form);
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/cart/addCart");
+				form.attr("method","get");												
+				form.submit();
+			}
+			
+		});
+		/* 상품개수가 0인 상태로 구매 클릭시 0으로 나오는걸 막는 코드 */
+		$(document).on("click","#buy",function(){
+			console.log("구매버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				var form = $('#buyForm');
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/buy/buy");
+				form.attr("method","post");												
+				form.submit();
+			}
+			
+		});
+	})
+		
 </script>
 <script src="/ssmall/js/chat.js"></script>
 </body>

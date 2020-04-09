@@ -37,6 +37,9 @@ public interface ProductMapper {
 	
 	@Select("Select * from product where p_number = #{p_number}")
 	public ProductVO productOne(String p_number);
+	//product의 modal1 부분에서 p_number로 상품의 모든 정보와 i_name을 가져오기 위해.
+	@Select("Select * from product p, image i where p.p_number = #{p_number} and p.p_number = i.p_number")
+	public List<ProductImageVO> productOneAndIname(String p_number);
 	
 	@Select("select * from board where bid = #{bid}")
 	public BoardVO boardOne(String bid);
