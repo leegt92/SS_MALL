@@ -306,6 +306,10 @@
 							</li>
 							<li>
 								<a href="asView">AS</a>
+							</li>
+							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
 							</li>	
 						</ul>
 					</div>	
@@ -414,6 +418,10 @@
 				</li>
 				<li>
 					<a href="asView">AS</a>
+				</li>
+				
+				<li>
+					<a href="#" onclick="chat();">채팅</a>
 				</li>
 			</ul>
 		</div>
@@ -2031,6 +2039,6 @@
 		
 	});													
 </script>
-
+<script src="/ssmall/js/chat.js"></script>
 </body>
 </html>

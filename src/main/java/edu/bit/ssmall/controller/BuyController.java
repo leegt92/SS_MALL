@@ -20,7 +20,6 @@ import edu.bit.ssmall.service.CartService;
 import edu.bit.ssmall.service.RegisterService;
 import edu.bit.ssmall.vo.CartViewVO;
 import edu.bit.ssmall.vo.MemberVO;
-import edu.bit.ssmall.vo.PayVO;
 import edu.bit.ssmall.vo.ProductImageVO;
 
 //구매관련 컨트롤러
@@ -41,7 +40,7 @@ public class BuyController {
 	IamPort iamPort;
 	
 	//productDetail에서 구매하기 누를 시
-	@RequestMapping(value = "buy", method = RequestMethod.POST)
+	@RequestMapping(value = "buy", method = {RequestMethod.POST,RequestMethod.GET})
 	public String buy(Model model, HttpServletRequest request, HttpServletResponse response,Principal principal) {
 		
 		String amount = request.getParameter("b_amount"); //구매수량

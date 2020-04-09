@@ -106,7 +106,11 @@
 							
 							<li>
 								<a href="/ssmall/asView">AS</a>
-							</li>						
+							</li>	
+							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
+							</li>					
 						</ul>
 					</div>	
 
@@ -152,6 +156,10 @@
 				
 				<li>
 					<a href="/ssmall/asView">AS</a>
+				</li>
+				
+				<li>
+					<a href="#" onclick="chat();">채팅</a>
 				</li>
 			</ul>
 		</div>
@@ -468,7 +476,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 </script> 
 <span class="bt-basic" id="map"></span>  
-
+<script src="/ssmall/js/chat.js"></script>
 <!--===============================================================================================-->
 </body>
 </html>

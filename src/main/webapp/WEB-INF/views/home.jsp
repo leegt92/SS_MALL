@@ -1032,12 +1032,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-
-<script>
-	function chat(){
-		window.open("/ssmall/chat", "PopupWin", "width=500,height=600", "location=no, directories=no, resizable=no, status=no, toolbar=no, menubar=no");
-	}		
-</script>
+<script src="/ssmall/js/chat.js"></script>
 
 </body>
 </html>

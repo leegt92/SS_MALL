@@ -135,6 +135,10 @@
 							<li>
 								<a href="asView">AS</a>
 							</li>
+							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
+							</li>
 						</ul>
 					</div>	
 				</nav>
@@ -184,6 +188,10 @@
 
 				<li>
 					<a href="asView">AS</a>
+				</li>
+				
+				<li>
+					<a href="#" onclick="chat();">채팅</a>
 				</li>
 				
 			</ul>
@@ -907,7 +915,7 @@ $(document).ready(function() {
 		}
 		 scroll_follow( "#scroll" );
  </script>
-	
+ <script src="/ssmall/js/chat.js"></script>
 
 </body>
 </html>
