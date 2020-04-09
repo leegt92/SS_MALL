@@ -166,16 +166,20 @@ span {
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
-						</li>			
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -198,7 +202,8 @@ span {
 		
    
     
-        <form action="write_ok.jsp" method="post" >
+        <form action="/ssmall/admin/doAnswer" method="get">
+        	<input type="hidden" value="${bId}" name="bId"/>
             <tr>
                 <th style="width: 168px;">문의 및 요청 제목: </th>
                 <td><input type="text" value="${FbTitle}" name="subject" class="form-control"/></td>
@@ -210,15 +215,15 @@ span {
             <br>
              <tr>
                 <th>답변 제목: </th>
-                <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+                <td><input type="text" value="${FanswerbTitle}" name="answerTitle" class="form-control"/></td>
             </tr>
             <tr>
                 <th>답변 내용: </th>
-                <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control" style="height: 214px;"></textarea></td>
+                <td><textarea id="answerContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" style="height: 214px;">${FanswerbContent}</textarea></td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="button" value="답변 등록 및 수정" onclick="sendData()" class="pull-right"/>
+                    <input type="submit" value="답변 등록 및 수정"  class="pull-right"/>
                 </td>
             </tr>
 		</form>
@@ -260,6 +265,14 @@ span {
     <script type="text/javascript">
 		$(function(){
 			CKEDITOR.replace('askContent',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
+	
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('answerContent',{extraPlugins : 'confighelper',
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 			});
 		});

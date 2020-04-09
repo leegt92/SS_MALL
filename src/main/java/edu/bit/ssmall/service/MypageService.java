@@ -187,8 +187,16 @@ public class MypageService {
 		return mypageMapper.selectFbTitle(bid);	
 	}
 	
+	public String selectFanswerbTitle(String bid) throws Exception {
+		return mypageMapper.selectFanswerbTitle(bid);	
+	}
+	
 	public String selectFbContent(String bid) throws Exception {
 		return mypageMapper.selectFbContent(bid);	
+	}
+	
+	public String selectFanswerbContent(String bid) throws Exception {
+		return mypageMapper.selectFanswerbContent(bid);	
 	}
 	
 	public int selectAskCountBoard(int m_number) throws Exception {

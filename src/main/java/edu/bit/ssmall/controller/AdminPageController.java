@@ -52,6 +52,48 @@ public class AdminPageController {
 	@Autowired
 	MypageService mypageService;
 
+	@RequestMapping(value = "/doAnswer", method ={RequestMethod.GET,RequestMethod.POST})
+	public String admin_doAnswer(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String bId = request.getParameter("bId");
+		model.addAttribute("bId",bId);
+	    String bTitle = request.getParameter("answerTitle");
+	    String bContent = request.getParameter("answerContent");
+	    String name = "";
+	    
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+	    	String FanswerbTitle = mypageService.selectFanswerbTitle(bId);
+	    	System.out.println("성원숭2" + FanswerbTitle);
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number); 
+			String bName = mypageService.getMname(name);
+			model.addAttribute("bName", bName);
+			if(FanswerbTitle == null) {
+				adminService.updateBanswered(bId);
+				adminService.insertAnswer(bName, bTitle, bContent, m_number, bId);
+			}
+			else {
+				adminService.updateAnswer(bTitle, bContent, bId);
+			}
+			String type = adminService.selectBtype(bId);
+			if(type.equals("문의/건의")) {
+				return "redirect:/admin/requestList";
+			}
+			else {
+				return "redirect:/admin/asList";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return "Admin/admin_asList";
+	}	
 	
 	@RequestMapping(value = "asList", method ={RequestMethod.GET,RequestMethod.POST})
 	public String admin_aSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
@@ -73,7 +115,7 @@ public class AdminPageController {
 			model.addAttribute("pageMaker", pageMaker);
 			int startNum = criteria.getStartNum(); 
 			int endNum = criteria.getEndNum();
-			List<Board_MemberVO> aSRequestboards = adminService.selectASBoardListPage(startNum, endNum);
+			List<Board_MemberVO> aSRequestboards = adminService.selectAnsweredASBoardListPage(startNum, endNum);
 			model.addAttribute("aSRequestboards", aSRequestboards);
 			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
 			for(int i=0; i<aSRequestboards.size(); i++) { 
@@ -88,6 +130,44 @@ public class AdminPageController {
 		}
 		
 		return "Admin/admin_asList";
+
+	}
+	
+	@RequestMapping(value = "unAnsweredasList", method ={RequestMethod.GET,RequestMethod.POST})
+	public String admin_unAnsweredaSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			int totalCount = adminService.selectASCountBoard();
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<Board_MemberVO> aSRequestboards = adminService.selectUnAnsweredASBoardListPage(startNum, endNum);
+			model.addAttribute("aSRequestboards", aSRequestboards);
+			List<BoardVO> aSRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<aSRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllASRequestAnswer(aSRequestboards.get(i).getBid());
+				aSRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("aSRequestboardsAnswers", aSRequestboardsAnswers);
+			  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "Admin/admin_unAnsweredasList";
 
 	}
 	
@@ -111,7 +191,7 @@ public class AdminPageController {
 				model.addAttribute("pageMaker", pageMaker);
 				int startNum = criteria.getStartNum(); 
 				int endNum = criteria.getEndNum();
-				List<Board_MemberVO> askRequestboards = adminService.selectAskBoardListPage(startNum, endNum);
+				List<Board_MemberVO> askRequestboards = adminService.selectAnsweredAskBoardListPage(startNum, endNum);
 				model.addAttribute("askRequestboards", askRequestboards);
 				List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
 				for(int i=0; i<askRequestboards.size(); i++) { 
@@ -129,6 +209,44 @@ public class AdminPageController {
 
 	}
 	
+	@RequestMapping(value = "unAnsweredrequestList", method ={RequestMethod.GET,RequestMethod.POST})
+	public String admin_unAnsweredaskRequestView(Criteria criteria, Model model, BoardVO boardVO) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			int totalCount = adminService.selectAskCountBoard();
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker", pageMaker);
+			int startNum = criteria.getStartNum(); 
+			int endNum = criteria.getEndNum();
+			List<Board_MemberVO> askRequestboards = adminService.selectUnAnsweredAskBoardListPage(startNum, endNum);
+			model.addAttribute("askRequestboards", askRequestboards);
+			List<BoardVO> askRequestboardsAnswers = new ArrayList<BoardVO>(); 
+			for(int i=0; i<askRequestboards.size(); i++) { 
+				BoardVO answer =mypageService.getAllAskRequestAnswer(askRequestboards.get(i).getBid());
+				askRequestboardsAnswers.add(i, answer); 
+				}
+			  model.addAttribute("askRequestboardsAnswers", askRequestboardsAnswers);
+			  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	return "Admin/admin_unAnsweredrequestList";
+
+}
+	
 	@RequestMapping(value = "requestWrite", method ={RequestMethod.GET,RequestMethod.POST})
 	public String requestWrite(Model model, HttpServletRequest request, Board_MemberVO boardVO) {
 		String bId = request.getParameter("bId");
@@ -139,6 +257,10 @@ public class AdminPageController {
 	    String FbContent = mypageService.selectFbContent(bId);
 		model.addAttribute("FbTitle",FbTitle);
 	    model.addAttribute("FbContent",FbContent);
+	    String FanswerbTitle = mypageService.selectFanswerbTitle(bId);
+	    String FanswerbContent = mypageService.selectFanswerbContent(bId);
+	    model.addAttribute("FanswerbTitle",FanswerbTitle);
+	    model.addAttribute("FanswerbContent",FanswerbContent);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

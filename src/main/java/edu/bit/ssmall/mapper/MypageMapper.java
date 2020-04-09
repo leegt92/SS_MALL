@@ -127,10 +127,10 @@ public interface MypageMapper {
 	@Select("select * from board where m_number = #{m_number} and btype='AS요청' ORDER BY bid desc")
 	public List<BoardVO> getAllASRequest (@Param("m_number") int m_number);
 	
-	@Select("select * from board where banswerno = #{bid} and btype='문의/건의_답변'")
+	@Select("select * from board where banswerno = #{bid}")
 	public BoardVO getAllAskRequestAnswer(@Param("bid") String bid);
 	
-	@Select("select * from board where banswerno = #{bid} and btype='AS요청_답변'")
+	@Select("select * from board where banswerno = #{bid}")
 	public BoardVO getAllASRequestAnswer(@Param("bid") String bid);
 	
 	@Select("select count(*) from board")
@@ -139,8 +139,14 @@ public interface MypageMapper {
 	@Select("select bTitle from board where bid = #{bid}")
 	public String selectFbTitle(@Param("bid") String bid);
 	
+	@Select("select bTitle from board where banswerno = #{bid}")
+	public String selectFanswerbTitle(@Param("bid") String bid);
+	
 	@Select("select bContent from board where bid = #{bid}")
 	public String selectFbContent(@Param("bid") String bid);
+	
+	@Select("select bContent from board where banswerno = #{bid}")
+	public String selectFanswerbContent(@Param("bid") String bid);
 	
 	@Select("select count(*) from board where m_number = #{m_number} and btype='문의/건의'")
 	public int selectAskCountBoard(@Param("m_number") int m_number);
