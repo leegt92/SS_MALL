@@ -38,9 +38,114 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 	
 	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pay').click(function(){	
+			
+			if(checkForm() == false){
+				return; 
+			}
+			
+	
+			var IMP = window.IMP; 
+			IMP.init('imp09486615'); 
+			var price = $('#finalPrice').val();
+			var pname = "<c:out value='${productImageVO.p_name}'/>";
+			var email = "<c:out value='${member.m_email}'/>";			
+			var name = $('#receiver').val();
+			var tel = $('#tel').val();
+			var addr =  $('#addr2').val() + $('#addr3').val();			
+			var postcode = $('#addr1').val();	
+	
+			var csrf_parameterName = "<c:out value='${_csrf.parameterName}'/>";
+			var csrf_token = "<c:out value='${_csrf.token}'/>"
+			
+			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : pname,
+			    amount : price,
+			    buyer_email : email,
+			    buyer_name : name,
+			    buyer_tel : tel,
+			    buyer_addr : addr,
+			    buyer_postcode : postcode,
+			    m_redirect_url : '/ssmall/buy/payments/complete'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	console.log("rsp.success");
+			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+	                $.ajax({	                	
+	                    url: "/ssmall/buy/payments/complete?"+csrf_parameterName+"="+csrf_token, //cross-domain error가 발생하지 않도록 주의해주세요
+	                    type: 'POST',
+	                    dataType: 'text',
+	                    data: {
+	                        imp_uid : rsp.imp_uid, //아임포트 고유번호
+	                        price : rsp.paid_amount, //최종적으로 결제한 가격
+	                  
+	                        //기타 필요한 데이터가 있으면 추가 전달
+	                    },
+	                	success : function(data){
+	                   
+		                	//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+		                 	console.log("서버에서 REST API로 결제정보확인 및 서비스루틴이 정상");
+		                    console.log(data);
+		                    alert("성공적으로 구매완료 되었습니다.")
+		                    $('#iamportPay').submit();
+		                    
+						},
+	                	error : function(request, status, error) {           
+			             	console.log(request);
+			             	console.log(status);
+			             	console.log(error);
+						}	    		            
+					});
+				}
+			});
+		});
+	});
+		
+</script>
+<script>
+function checkForm(){
+	  var id = document.getElementById("receiver");
+	  // 아이디 입력 유무 체크
+	  if(id.value == '' || !(id.value.length >= 2 && id.value.length <= 10)) {
+	       alert("수령인 정보를 제대로 입력해주세요");
+	        $('#receiver').focus();
+	      	
+	        return false; // 아이디 입력이 안되어 있다면 submit 이벤트를 중지
+	  }
+	  
+	  var tel = document.getElementById('tel');
+	  
+	  if(tel.value=='' || !(tel.value.length == 11)){
+		  alert('핸드폰 번호를 제대로 입력해주세요');
+		  $('#tel').focus();
+		  return false;
+	  }
+	  
+	  var addr1 = document.getElementById('addr1');
+	  var addr2 = document.getElementById('addr2');
+	  var addr3 = document.getElementById('addr3');
+	    // 암호 입력 유무 체크
+	  if(addr1.value == '' || addr2.value =='' || addr3.value=='' || !(addr3.value.length >= 5)){
+	      alert('수령지를 제대로 입력해주세요');
+	      $('#addr3').focus();
+	      return false;
+	  }
+	    
+	  
+}
+</script>
 <!--===============================================================================================-->
 <script>
 	
@@ -370,13 +475,13 @@
 						<div>
 						<form id="pointForm">			
 							<span class="label-input100">포인트</span><br>
-							<input id="pointInput" class="form-control" style="width: 20%; display: inline" name="point" type="text" />							
+							<input id="pointInput" class="form-control" style="width: 20%; display: inline" name="point" type="text" value="0" />							
 							<input id="pointUseAll" type="button" class="btn btn-primary" value="전체사용" />
 							<span class="label-input100">현재 포인트 : <fmt:formatNumber value="${member.m_point}" pattern="###,###,###" /></span>
 							<span class="label-input100">사용가능 포인트 : <fmt:formatNumber value="${totalprice * 0.01}" pattern="###,###,###" /></span>
 							<br><br>
 							<span class="label-input100">최종가격</span>
-							<input id="finalPrice" type="text" class="form-control" style="width: 20%;" value="">
+							<input id="finalPrice" type="text" class="form-control" style="width: 20%;" value="${totalprice}">
 						</form>
 						</div>	
 					</div>
@@ -386,31 +491,30 @@
 			<hr>
 			
 			<!-- 수령자 설정 -->
-			<form:form role="form" commandName="payVO" action="/ssmall/buy/buyDo">	
+			<form id="iamportPay" action="/ssmall/buy/iamport">	
 			<input id="usingPoint" type="hidden" name="usingPoint" value="0">
 			<div class="tab-content p-t-43">		
-				<div class="tab-pane fade show active" id="description"
-					role="tabpanel">
+				<div class="tab-pane fade show active" id="description" role="tabpanel">
 					<div class="how-pos2 p-lr-15-md">
-					<h4>수령자 정보</h4>
-					<br>		
+					<i class="fas fa-user"></i><strong style="font-weight: bold; font-size: 1.5em;"> 수령자 정보</strong>
+					<br><br>		
 						<div class="wrap-input100 validate-input m-b-23">
 							<table class="table table-list-search">
 								<tr>
 									<td>
 										<span class="label-input100">수령인</span>
-										<form:input id="receiver" class="form-control" style="width: 40%;" 
-											name="name" type="text" placeholder="수령인" path="name"></form:input>
-										<form:errors path="name" cssStyle="color:red;"/> 
+										<input id="receiver" class="form-control" style="width: 40%;" 
+											name="name" type="text" placeholder="수령인">
+										
 									</td>
 								</tr>
 								
 								<tr>
 									<td>
 										<span class="label-input100">전화번호</span><br>
-										<form:input class="form-control" style="width: 40%;"
-											name="phonenum" type="text" placeholder="전화번호 -없이 입력해주세요" path="phonenum"></form:input>
-										<form:errors path="phonenum" cssStyle="color:red;"/>
+										<input id="tel" class="form-control" style="width: 40%;"
+											name="phonenum" type="text" placeholder="전화번호 입력해주세요">
+										
 									</td>
 								</tr>
 								
@@ -464,12 +568,12 @@
 			<div class="tab-content p-t-43">
 			
 				<div class="how-pos2 p-lr-15-md">
-		       		<button type="submit" class="btn btn-secondary">구매하기</button>
-		            <button type="reset" class="btn btn-secondary">취소하기</button>
+		       		<button id="pay" type="button" class="btn btn-secondary"><i class="far fa-credit-card"></i> 구매하기</button>
+		            <button type="reset" class="btn btn-secondary"><i class="fas fa-eraser"></i> 취소하기</button>
 				</div>				
 			</div>
 			
-			</form:form>		
+			</form>		
 		</div>
 	</div>
 

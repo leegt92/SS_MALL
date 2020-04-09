@@ -623,8 +623,10 @@
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
+											<div>
 											<span class="label-input100">최종가격</span>
 											<input id="finalPrice" type="text" class="form-control m-3" style="width: 50%;" value="0" readonly>
+											</div>
 											<div>
 											<button id="cart" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button" style="float: left;">
 												장바구니
@@ -1156,10 +1158,10 @@
 							<div class="block2">
 								<div class="block2-pic hov-img0">
 									<img src="productimage/${productAmount.i_name}"
-										alt="IMG-PRODUCT" width="300" height="300"> <a
+										alt="IMG-PRODUCT" width="300" height="300"> <%-- <a
 										href="productDetail?p_number=${product.p_number}"
 										class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Quick View </a>
+										Quick View </a> --%>
 								</div>
 
 								<div class="block2-txt flex-w flex-t p-t-14">

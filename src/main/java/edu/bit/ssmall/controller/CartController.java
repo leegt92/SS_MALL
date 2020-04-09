@@ -1,6 +1,5 @@
 package edu.bit.ssmall.controller;
 
-import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
 
@@ -11,19 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.bit.ssmall.kakaopay.KakaoPay;
 import edu.bit.ssmall.service.BuyService;
 import edu.bit.ssmall.service.CartService;
 import edu.bit.ssmall.service.RegisterService;
-import edu.bit.ssmall.valid.PayValidator;
 import edu.bit.ssmall.vo.CartViewVO;
 import edu.bit.ssmall.vo.MemberVO;
-import edu.bit.ssmall.vo.PayVO;
 import edu.bit.ssmall.vo.ProductImageVO;
 
 //장바구니 관련 컨트롤러
@@ -31,8 +25,6 @@ import edu.bit.ssmall.vo.ProductImageVO;
 @RequestMapping("cart")
 public class CartController {
 	
-	@Autowired
-	KakaoPay kakaoPay;
 	
 	@Autowired
 	BuyService buyService;
@@ -97,7 +89,8 @@ public class CartController {
 		}
 		
 		int amount = 0; //구매하려는 총갯수
-		int totalprice = 0; 
+		int totalprice = 0;
+		String p_name = "";
 		//구매하려고 체크한거를 뽑아온다 arr[0]째의 cart테이블에서 정보를 뺴온다.
 		//구매할 상품 사진 이름 구매수량 구매가격을 cartBuyView에 전달
 		ArrayList<CartViewVO> cart = new ArrayList<CartViewVO>();
@@ -106,18 +99,18 @@ public class CartController {
 			CartViewVO item = cartService.cartByCid(check[i]); //체크한 카트아이디를 이용해서 정보뽑아냄 
 			amount = amount + 1; // 계속 돌면서 체크된 수 만큼 갯수가 늘게함
 			totalprice = totalprice + item.getC_grandtotal();
+			p_name = p_name +item.getP_name()+", ";
 			cart.add(item); // 계속 돌면서 ArrayList에 담음
 			System.out.println(item);
 		}
-		PayVO payVO = new PayVO();
 		MemberVO memberVO = cartService.memberInfo(principal.getName());
+		
 		System.out.println(totalprice);
 		
 		session.setAttribute("cart", cart); // 구매하려는 상품들을 세션으로 저장
-		session.setAttribute("amount", amount); //구매하려는 상품갯수을 세션으로 저장
 		session.setAttribute("totalprice", totalprice); // 구매하려는 상품의 총가격을 세션으로 저장
-		session.setAttribute("member", memberVO);
-		model.addAttribute("payVO",payVO); //구매할때 배송자 정보를 유효성 검사하기위해 payVO 객체를 넣어줌
+		session.setAttribute("p_name", p_name); //구매하려는 상품들 이름 +해서 결제정보에 나타내기위해 
+		session.setAttribute("member", memberVO);//포인트위해 세션
 		
 		return "Cart/cartBuyView";
 	}
@@ -133,88 +126,6 @@ public class CartController {
 		
 		return"redirect:/cart/cartView";
 	}
-	
-	//장바구니에서 구매하기 누르고 나오는 창에서 주문정보값 받는곳
-	@RequestMapping(value="cartPay", method = {RequestMethod.POST,RequestMethod.GET})
-	public String cartPay(Model model, PayVO payVO, Errors errors,HttpServletResponse response, HttpServletRequest request, Principal principal) throws Exception {
-		System.out.println("cartPay() 해당상품 결제하기!");
-		
-		HttpSession session = request.getSession();
-			
-		//배송정보들
-		String addr1 =request.getParameter("addr1");
-		String addr2 =request.getParameter("addr2");
-		String addr3 =request.getParameter("addr3");
-		
-		int result = registerService.check(addr1, addr2, addr3); //registerService에 주소 널값 확인 (NULL 이면 1 반환)	
-		new PayValidator().validate(payVO, errors); //유효성검사
-		
-		if(result == 1 || errors.hasErrors()) {
-			//주소가 널값이거나 에러가 발생한다면 정보다시 확인하라는 경고창 띄움
-			System.out.println("에러발생");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();	
-			out.println("<script>alert('입력한 정보를 다시 확인하여 주세요!');</script>");			 
-			out.flush();
-			
-			
-			return "Cart/cartBuyView";
-		}
-		String adress = "(" + addr1 + ") " + addr2 + " " + addr3;		
-		
-		String amount =  String.valueOf(session.getAttribute("amount"));
-		
-		int usingPoint = 0;
-		int totalprice = Integer.parseInt(String.valueOf(session.getAttribute("totalprice"))); 
-		if(request.getParameter("usingPoint").equals("")) {
-			usingPoint = 0;
-		}else {
-			usingPoint = Integer.parseInt(request.getParameter("usingPoint"));
-		}
-		int finalPrice = totalprice - usingPoint;
-		System.out.println("usingPoint : " + usingPoint);
-		System.out.println("finalPrice : " + finalPrice);
-		System.out.println(totalprice);
-		System.out.println(amount);
-		
-		payVO.setAddr(adress);
-		payVO.setTotalPrice(finalPrice);
-		payVO.setAmount(amount);
-		
-		session.setAttribute("payVO",payVO); //구매정보를 담은 객체 세션처리.
-		session.setAttribute("usePoint", usingPoint);
-		
-		session.removeAttribute("totalprice"); //가격 수량 payVO로 세션처리햇으니 두개삭제
-		session.removeAttribute("amount");
-		
-	
-		ArrayList<CartViewVO> list = (ArrayList<CartViewVO>) session.getAttribute("cart");
-		String p_name = "상승몰 장바구니 결제("; //상품이름
-		
-		for (int i = 0; i < list.size(); i++) {			
-			System.out.println(list.get(i)); //제대로 담겼는지 확인
-			p_name = p_name + cartService.getP_name(list.get(i).getP_number()) + " ";
-			
-		}
-		p_name = p_name + ")";
-		
-		//사용자정보
-		String m_id = principal.getName(); //로그인한 사용자 id가져옴	
-		session.setAttribute("p_name", p_name); //상품명들 세션처리
-		
-		String url = kakaoPay.kakaoPayReady(p_name,Integer.toString(finalPrice) , amount, m_id, request); //에러가 있다면 null
-		
-		if(url == null) {
-			System.out.println("url : "+url);
-			return "redirect:/";
-		}
-		//결제창 띄우는 거임
-		return "redirect:" + url;
-
-	}
-	
-	
-
 	
 	
 }

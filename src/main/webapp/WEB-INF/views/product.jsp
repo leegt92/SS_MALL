@@ -47,7 +47,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
-<style type="text/css">
+
+<!-- <style type="text/css">
 
 	/* .pagination>li>a, .pagination>li>span { 
 		border-radius: 50% !important;
@@ -102,8 +103,10 @@
 	
 	#custom-search-input .glyphicon-search{
 	    font-size: 23px;
+<<<<<<< HEAD
 	}
-</style>
+</style> -->
+
 </head>
 <body class="animsition">
 	
@@ -128,6 +131,7 @@
 						</a>
 						
 						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
+
 							Cart
 						</a>
 
@@ -234,11 +238,11 @@
 							Home
 						</a>
 
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
+						<a href="mypage/myPage_orderedList" class="flex-c-m p-lr-10 trans-04">
 							My
 						</a>
 
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
+						<a href="cart/cartView" class="flex-c-m p-lr-10 trans-04">
 							cart
 						</a>
 						
@@ -680,42 +684,46 @@
 				</c:forEach>
 			</div>
 			<!-- 페이징 글번호 -->
-
-<!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
-<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
-<ul class="pagination">
-<c:choose>
-	<c:when test="${keyword!=null}">
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a></li>
-		</c:forEach>																		
-		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
-		</c:if> <br>
-	</c:when>
-	
-	<c:when test="${rankKeyword!=null}">
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}</a></li>
-		</c:forEach>																		
-		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
-		</c:if> <br>
-	</c:when>
-	
-	<c:otherwise>
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}</a></li>
-		</c:forEach>																										
-		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
-		</c:if> <br>
-	</c:otherwise>
-</c:choose>
-</ul>
+			
+			<!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
+			<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
+			<nav aria-label="Page navigation example">
+				<ul class="pagination m-5 flex-c-m" >
+				<c:choose>
+					<c:when test="${keyword!=null}">
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a></li>
+						</c:forEach>																		
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
+						</c:if> <br>
+					</c:when>
+					
+					<c:when test="${rankKeyword!=null}">
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}</a></li>
+						</c:forEach>																		
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
+						</c:if> <br>
+					</c:when>
+					
+					<c:otherwise>
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						</c:forEach>																										
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
+						</c:if> <br>
+					</c:otherwise>
+				</c:choose>
+				</ul>
+			</nav>
+			
+			
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="productView" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Return to List
@@ -882,7 +890,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="slick3 gallery-lb">
 									<div class="item-slick3" data-thumb="productimage/${quickViewList.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${quickViewList.p_image}" alt="IMG-PRODUCT">
+											<div id="img">
+												
+											</div>
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${quickViewList.p_image}">
 												<i class="fa fa-expand"></i>
@@ -1307,7 +1317,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					alert("er");
 				},
 				success:function(data){
-					
 					function numberWithCommas(x) {
 						console.log("numberWithCommas");    
 						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1363,11 +1372,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "</ul>";
 
 					tag = tag + "</div>";
-					
-
-
-					
-					
 					
 					
 
@@ -1467,6 +1471,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					});
 			}
 		});
+
 	})
 })
 
@@ -1544,6 +1549,64 @@ $(document).ready(function(){
      });
 	//QuickView Modal의 왼쪽 3줄 버튼누르면 각각 화면 변환되는 코드.
 	//원래 slick이 자동으로 해주는 거지만 ajax쓰니 안먹혀서 직접구현
+	
+	//화살표 누르면 바뀌는 코드인데 처음은 되는데 그 다음이 안됨
+	/* $(document).on("click","#arrowLeft",function(){
+		console.log("arrowLeft버튼");
+		var mainImage = $("#mainModalImage").attr("src");
+		console.log(mainImage);
+		var image1 = $("#2leftModalImage1").attr("src");
+		console.log(image1);
+		var image2 = $("#2leftModalImage2").attr("src");
+		console.log(image2);
+		var image3 = $("#2leftModalImage3").attr("src");
+		console.log(image3);
+		
+		if(mainImage = image1){
+			console.log("1번사진");
+			var image = $("#2leftModalImage3").attr("src");
+			console.log(image);
+			$("#leftModalImage3").attr('class','slick-active');
+			$("#leftModalImage2").attr('class','');
+			$("#leftModalImage1").attr('class','');
+			$("#mainModalImage").attr('src',image);
+		}else if(mainImage = image2){
+			console.log("2번사진");
+			console.log("leftModalImage1버튼");
+			var image = $("#2leftModalImage1").attr("src");
+			console.log(image);
+			$("#leftModalImage1").attr('class','slick-active');
+			$("#leftModalImage2").attr('class','');
+			$("#leftModalImage3").attr('class','');
+			$("#mainModalImage").attr('src',image);
+		}else if(mainImage = image3){
+			console.log("3번사진");
+			console.log("leftModalImage1버튼");
+			var image = $("#2leftModalImage1").attr("src");
+			console.log(image);
+			$("#leftModalImage2").attr('class','slick-active');
+			$("#leftModalImage1").attr('class','');
+			$("#leftModalImage3").attr('class','');
+			$("#mainModalImage").attr('src',image);
+		}
+     });
+	tag = tag + "<div class='wrap-slick3-arrows flex-sb-m flex-w'>";
+	tag = tag + "<button class='arrow-slick3 prev-slick3 slick-arrow' id='arrowLeft' style=''><i class='fa fa-angle-left' aria-hidden='true'></i></button>";
+	tag = tag + "<button class='arrow-slick3 next-slick3 slick-arrow' id='arrowRight' style=''><i class='fa fa-angle-right' aria-hidden='true'></i></button>";
+	tag = tag + "</div>";
+	*/
+	
+	$(document).on("click","#arrowRight",function(){
+		console.log("arrowRight버튼");
+		var image = $("#mainModalImage").attr("src");
+		console.log(image);
+		$("#leftModalImage1").attr('class','slick-active');
+		$("#leftModalImage2").attr('class','');
+		$("#leftModalImage3").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	
 	$(document).on("click","#leftModalImage1",function(){
 		console.log("leftModalImage1버튼");
 		var image = $("#2leftModalImage1").attr("src");
@@ -1590,7 +1653,9 @@ $(document).ready(function(){
 				}
 				console.log(p_number);
 				console.log(b_amount);
-				$.ajax({
+				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				//위에껄로 다됨...
+				/*$.ajax({
 					url:"/ssmall/cart/addCart",
 					type:"get",
 					data : data,
@@ -1598,7 +1663,7 @@ $(document).ready(function(){
 						console.log("장바구니ajax 성공");
 						window.location.href = '/ssmall/cart/cartView';
 					}
-				});
+				});*/
 			}
 		});
 	
@@ -1616,16 +1681,18 @@ $(document).ready(function(){
 				}
 				console.log(p_number);
 				console.log(b_amount);
-				$.ajax({
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+			/*	$.ajax({
 					url:"/ssmall/buy/buy",
 					type:"get",
 					data : data,
 					success:function(){
 						console.log("구매ajax 성공");
-						//window.location.href = '/ssmall/buy/buy';
+						window.location.href = '/ssmall/buy/buy?'+p_number;
 						
 					}
 				});
+			*/
 			}
 		});
 		
