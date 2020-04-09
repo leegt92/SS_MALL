@@ -18,6 +18,7 @@ import edu.bit.ssmall.productpage.PageMaker;
 import edu.bit.ssmall.productpage.SearchCriteria;
 import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.ProductImageVO;
 import edu.bit.ssmall.vo.ProductReplyVO;
 import edu.bit.ssmall.vo.ProductVO;
 
@@ -56,11 +57,11 @@ public class ProductController {
 	//QuickView를 위한 메소드
 	@ResponseBody
 	@RequestMapping("/productViewQuick")
-	public ProductVO productviewQuick(HttpServletRequest request,Model model, Criteria criteria) {
+	public List<ProductImageVO> productviewQuick(HttpServletRequest request,Model model, Criteria criteria) {
 		System.out.println("productViewQuick");
 		String p_number = request.getParameter("p_number");
 		System.out.println("p_number : "+p_number);
-		ProductVO quickViewList = productService.productOne(p_number);
+		List<ProductImageVO> quickViewList = productService.productOneAndIname(p_number);
 		model.addAttribute("quickViewList",quickViewList);
 		System.out.println(quickViewList);
 		//페이징

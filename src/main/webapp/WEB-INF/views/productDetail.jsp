@@ -270,15 +270,15 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
@@ -561,8 +561,8 @@
 							</div> -->
 
 							<div class="stext-102 cl3 p-t-23">
-								<div class="size-203 flex-c-m respon6">
-									<table class="DetailTable">									
+								<div class="size-203 flex-c-m respon6" style="width: 250px">
+									<table class="table table-search">									
 									 <tr>
 									   <td>적립금</td>
 									   <td>
@@ -577,7 +577,7 @@
 									   <td>브랜드</td>
 									   <td>${productNum.p_brand}</td>
 									 </tr>
-							</table>
+									</table>
 								</div>
 								
 								<!-- <div class="flex-w flex-r-m p-b-10">
@@ -611,36 +611,34 @@
 							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
-									<form:form role="form" method="post">
-									<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
-										<input type="hidden" name="p_number" value="${productNum.p_number}">
-										
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
+								<div class="size-204 flex-w flex-m respon6-next" style="width: 500px">
+									<form:form role="form" method="post" id="buyForm" >
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+											<input type="hidden" name="p_number" value="${productNum.p_number}">
+											<div id="minus" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+											<input id="b_amount" readonly class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="0">
+											<div id="plus" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
 										</div>
-										
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="1">
-
-
-										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
+											<span class="label-input100">최종가격</span>
+											<input id="finalPrice" type="text" class="form-control m-3" style="width: 50%;" value="0" readonly>
+											<div>
+											<button id="cart" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button" style="float: left;">
+												장바구니
+											</button>
+											<button id="buy" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button">
+												구입하기
+											</button>
+											<!-- <button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/cart/addCart';" >
+												장바구니
+											</button>
+											<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy/buy';">
+												구입하기
+											</button>	 -->									
 										</div>
-										
-									</div>
-									
-										<span class="mtext-106 cl2"> <fmt:formatNumber
-											value="${productNum.p_price*b_amount}" pattern="###,###,###" />원
-										</span>
-
-									<div>
-										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/addCart';" >
-											장바구니
-										</button>
-										<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy';">
-											구입하기
-										</button>										
-									</div>
 									</form:form>
 								</div>
 							</div>
@@ -2089,7 +2087,77 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			}																	
 		});
 		
-	});													
+	});
+	//productDetail에서 물품 구매 수량을 바꿧을때 가격이 바로바로 바뀌는 부분
+	
+	$(document).ready(function(){
+	
+	function numberWithCommas(x) {
+		console.log("numberWithCommas");    
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	/* $("#b_amount").on("propertychange change keyup paste input", function() { */
+	/* $("#b_amount").on("change",function() { */
+	$("#plus").on("click",function(){
+	
+		console.log("버튼");
+		var amount = $("#b_amount").val();
+		var price = null;
+		
+		price = ${productNum.p_price} * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });
+	
+	$("#minus").on("click",function(){
+		
+		console.log("버튼");
+		var amount = $("#b_amount").val();
+		var price = null;
+		
+		price = ${productNum.p_price} * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });	
+	
+	/* 상품개수가 0인 상태로 장바구니 클릭시 카트로 넘어가서 0으로 나오는걸 막는 코드 */
+		$(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				var form = $('#buyForm');
+				console.log(form);
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/cart/addCart");
+				form.attr("method","get");												
+				form.submit();
+			}
+			
+		});
+		/* 상품개수가 0인 상태로 구매 클릭시 0으로 나오는걸 막는 코드 */
+		$(document).on("click","#buy",function(){
+			console.log("구매버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				var form = $('#buyForm');
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/buy/buy");
+				form.attr("method","post");												
+				form.submit();
+			}
+			
+		});
+	})
+		
 </script>
 
 </body>

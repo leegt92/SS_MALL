@@ -46,11 +46,12 @@ public class BuyController {
 	KakaoPay kakaoPay;
 	
 	//productDetail에서 구매하기 누를 시
-	@RequestMapping(value = "buy", method = RequestMethod.POST)
+	@RequestMapping(value = "buy",  method = { RequestMethod.POST, RequestMethod.GET} )
 	public String buy(Model model, HttpServletRequest request, HttpServletResponse response,Principal principal) {
-		
+		System.out.println("buy 구매!");
 		String amount = request.getParameter("b_amount"); //구매수량
 		String p_number = request.getParameter("p_number"); //상품번호
+		System.out.println("p_number"+p_number);
 		//구매버튼 누르면 주문에 필요한 정보를 담아서 넘겨야한다.
 		//몇개를 살지 넘어올것이고, 해당 p_number가 넘어올것 
 		//해당 p_number를 가지고 상품 정보를 빼낸다.

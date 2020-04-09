@@ -39,15 +39,17 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
+<!--===============================================================================================-->
 
 <!-- 일단 멈춤 구매부분부터 -->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <style type="text/css">
 
-	.pagination>li>a, .pagination>li>span { 
+	/* .pagination>li>a, .pagination>li>span { 
 		border-radius: 50% !important;
 		margin: 0 5px;
 		background-color:gray;
@@ -72,17 +74,17 @@
 	    box-shadow: none;
 	}
 	 
-	#SearchButtonImage{
+	/* #SearchButtonImage{
 	    background-color: gray;
 	    border-color: gray;
 
-	}
- 	.page-item{
+	} */
+ 	/* .page-item{
 		background-color: gray;
 		color:gray;
-	}
+	} */
 	
- 	#SearchButtonImage{
+ 	/* #SearchButtonImage{
 	    margin: 2px 0 0 0;
 	    background-color: gray;
 	    box-shadow: none;
@@ -90,7 +92,7 @@
 	    color: #555555;
 	    padding: 0 8px 0 10px;
 	    border-left: solid 1px #ccc;
-	}
+	} */
  	
 	#custom-search-input button:hover{
 	    border: 0;
@@ -117,15 +119,15 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
 						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
@@ -859,7 +861,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- 
 	<!--  Modal1  -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
+		<div class="overlay-modal1 js-hide-modal1" id="hideModal"></div>
 
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
@@ -869,8 +871,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				
 				<%-- <c:if test="${p_number eq product?p_number=${product.p_number}"> --%>
 				<%-- <c:forEach items="${quickViewList}" var="product"> --%>
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
+				<div id="quickViewModal" class="row">
+				<!-- ajax로 만든 modal 들어올 자리 -->
+<%-- 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
 							<div class="wrap-slick3 flex-sb flex-w">
 								<div class="wrap-slick3-dots"></div>
@@ -914,20 +917,38 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 id="QuickName" class="mtext-105 cl2 js-name-detail p-b-14">
-								<%-- ${quickViewList.p_name} --%>
+								${quickViewList.p_name}
 							</h4>
 
 							<span id="QuickPrice" class="mtext-106 cl2">
 								<fmt:formatNumber value="${quickViewList.p_price}" pattern="###,###,###"/>원
 							</span>
 
-							<p class="stext-102 cl3 p-t-23">
-								${quickViewList.p_description}
-							</p>
+							<div class="stext-102 cl3 p-t-23">
+								<div class="size-203 flex-c-m respon6">
+									<table class="DetailTable">									
+									 <tr>
+									   <td>적립금</td>
+									   <td>
+									<fmt:formatNumber
+									value="3333333333" pattern="###,###,###" />원
+									 </tr>
+									 <tr>
+									   <td>배송비</td>
+									   <td>무료</td>
+									 </tr>
+									 <tr>
+									   <td>브랜드</td>
+									   <td>브랜드값들어갈자리</td>
+									 </tr>
+									</table>
+								</div>
+								
+							</div>
 							
 							
 							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
+								<!-- <div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
 										Size
 									</div>
@@ -944,9 +965,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
-								<div class="flex-w flex-r-m p-b-10">
+								<!-- <div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
 										Color
 									</div>
@@ -963,9 +984,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
-								<div class="flex-w flex-r-m p-b-10">
+								<!-- <div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -983,7 +1004,41 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											Add to cart
 										</button>
 									</div>
-								</div>	
+								</div> -->	
+								
+								<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									<form:form role="form" method="post" id="buyForm" >
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+											<input type="hidden" name="p_number" value="${quickViewList.p_number}">
+											<div id="minus" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+											<input id="b_amount" readonly class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="0">
+											<div id="plus" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+											<span class="label-input100">최종가격</span>
+											<input id="finalPrice" type="text" class="form-control" style="width: 50%;" value="0" readonly>
+										<div>
+											<button id="cart" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button" style="float: left;">
+												장바구니
+											</button>
+											<button id="buy" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button">
+												구입하기
+											</button>
+											<!-- <button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/cart/addCart';" >
+												장바구니
+											</button>
+											<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy/buy';">
+												구입하기
+											</button>	 -->									
+										</div>
+									</form:form>
+								</div>
+							</div>
+								
 							</div>
 
 							
@@ -1007,7 +1062,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 				</div>
 				<%-- </c:forEach> --%>
 				<%-- </c:if> --%>
@@ -1237,7 +1292,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script>
 	$(function(){
 		$(document).on("click","#QuickViewBtn",function(){
-			alert($(this).attr("value"));
+			
+			/* alert($(this).attr("value")); */
 			var data = {
 					  p_number : $(this).attr("value")
 			  };
@@ -1245,24 +1301,415 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				method:"get",
 				url:"/ssmall/productViewQuick",
 				data:data,
+				async:false,
 				error:function(xhr,status,error){
 					alert(error);
 					alert("er");
 				},
 				success:function(data){
-					alert('성공');
-					alert(data.p_name);
 					
-					$('#QuickName').html(data.p_name);
-					$('#QuickPrice').html(data.p_price);
+					function numberWithCommas(x) {
+						console.log("numberWithCommas");    
+						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					};
+					
+					$.each(data.slice(0, 1), function(key, data){
+						modalIname1 = data.i_name;
+						numberWithCommas = numberWithCommas(data.p_price);
+					})
+					$.each(data.slice(0, 2), function(key, data){
+						modalIname2 = data.i_name;
+					})
+					$.each(data.slice(0, 3), function(key, data){
+						modalIname3 = data.i_name;
+					})
+					console.log(modalIname1);
+					console.log(modalIname2);
+					console.log(modalIname3);
+					
+					$.each(data.slice(0, 1), function(key, data){
+						/* console.log(data.i_name); */
+					
+					
+					/* var modal = {
+							p_name : data.p_name,
+							p_price : data.p_price,
+							p_number : data.p_number
+					}; */
+					
+					
+					var tag = "";
+					
+					tag = tag + "<div class='col-md-6 col-lg-7 p-b-30'>";
+					tag = tag + "<div class='p-l-25 p-r-30 p-lr-0-lg'>";
+					tag = tag + "<div class='wrap-slick3 flex-sb flex-w'>";
+					
+					tag = tag + "<div class='wrap-slick3-dots'>";
+					
+					tag = tag + "<ul class='slick3-dots' role='tablist' style=''>";
+
+					tag = tag + "<li class='slick-active' role='presentation' id='leftModalImage1'>";
+					tag = tag + "<img src='productimage/"+modalIname1+"' id='2leftModalImage1'>";
+					tag = tag + "<div class='slick3-dot-overlay'></div>";
+					tag = tag + "</li>";
+					tag = tag + "<li role='presentation' class='' id='leftModalImage2'>";
+					tag = tag + "<img src=' productimage/"+modalIname2+"' id='2leftModalImage2'>";
+					tag = tag + "<div class='slick3-dot-overlay'></div>";
+					tag = tag + "</li>";
+					tag = tag + "<li class='' role='presentation' class='' id='leftModalImage3'>";
+					tag = tag + "<img src=' productimage/"+modalIname3+"' id='2leftModalImage3'>";
+					tag = tag + "<div class='slick3-dot-overlay'></div>";
+					tag = tag + "</li>"
+					tag = tag + "</ul>";
+
+					tag = tag + "</div>";
+					
+
+
+					
+					
+					
+					
+
+					tag = tag + "<div class='slick3 gallery-lb'>";
+					tag = tag + "<div class='item-slick3' data-thumb='productimage/"+modalIname1+"'>";
+					tag = tag + "<div class='wrap-pic-w pos-relative'>";
+					tag = tag + "<img src='productimage/"+modalIname1+"' alt='IMG-PRODUCT' id='mainModalImage'>";
+					tag = tag + "<a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='productimage/"+modalIname1+"'>";
+					tag = tag + "<i class='fa fa-expand'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					
+					tag = tag + "<div class='col-md-6 col-lg-5 p-b-30'>";
+					tag = tag + "<div class='p-r-50 p-t-5 p-lr-0-lg'>";
+					tag = tag + "<h4 id='QuickName' class='mtext-105 cl2 js-name-detail p-b-14'>"+data.p_name+"</h4>";
+								
+					tag = tag + "<span id='QuickPrice' class='mtext-106 cl2'>"+numberWithCommas+"</span>원";
+
+					tag = tag + "<div class='stext-102 cl3 p-t-23'>";
+					tag = tag + "<div class='size-203 flex-c-m respon6' style='width: 250px'>";
+				    
+					
+					tag = tag + "<table class='table table-search'>";									
+					tag = tag + "<tr>";
+					tag = tag + "<td>적립금</td>";
+					tag = tag + "<td>";
+					tag = tag + +data.p_price/10+"원";
+					tag = tag + "</tr>";
+					tag = tag + "<tr>";
+					tag = tag + "<td>배송비</td>";
+					tag = tag + "<td>무료</td>";
+					tag = tag + "</tr>";
+					tag = tag + "<tr>";
+					tag = tag + "<td>브랜드</td>";
+					tag = tag + "<td>브랜드값들어갈자리</td>";
+					tag = tag + "</tr>";
+					tag = tag + "</table>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "<div class='p-t-33'>";
+					tag = tag + "<div class='flex-w flex-r-m p-b-10'>";
+					tag = tag + "<div class='size-204 flex-w flex-m respon6-next' style='width: 500px'>";
+					tag = tag + "<form:form role='form' method='post' id='buyForm' >";
+					tag = tag + "<div class='wrap-num-product flex-w m-r-20 m-tb-10' >";					
+					tag = tag + "<input type='hidden' name='p_number' id='p_number' value='"+data.p_number+"'>";
+					tag = tag + "<div id='minus' value='"+data.p_price+"' class='btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m'>";
+					tag = tag + "<i class='fs-16 zmdi zmdi-minus'></i>";
+					tag = tag + "</div>";
+					tag = tag + "<input id='b_amount' readonly class='mtext-104 cl3 txt-center num-product' type='number' name='b_amount' value='0'>";
+					tag = tag + "<div id='plus' value='"+data.p_price+"' class='btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m'>";
+					tag = tag + "<i class='fs-16 zmdi zmdi-plus'></i>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "<span class='label-input100'>최종가격</span>";
+					tag = tag + "<input id='finalPrice' type='text' class='form-control m-3' style='width: 50%;' value='0' readonly >";
+					tag = tag + "<div>";
+					tag = tag + "<button id='cart' class='stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' value='"+data.p_number+"' type='button' style='float: left;'>장바구니</button>";
+					tag = tag + "<button id='buy' class='stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' value='"+data.p_number+"' type='button'>구입하기</button>";
+					tag = tag + "</div>";
+					tag = tag + "</form:form>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+
+					tag = tag + "<div class='flex-w flex-m p-l-100 p-t-40 respon7'>";
+					tag = tag + "<div class='flex-m bor9 p-r-10 m-r-11'>";
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100' data-tooltip='Add to Wishlist'>";
+					tag = tag + "<i class='zmdi zmdi-favorite'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Facebook'>";
+					tag = tag + "<i class='fa fa-facebook'></i>";
+					tag = tag + "</a>";
+
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Twitter'>";
+					tag = tag + "<i class='fa fa-twitter'></i>";
+					tag = tag + "</a>";
+
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Google Plus'>";
+					tag = tag + "<i class='fa fa-google-plus'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					
+					
+					
+					$("#quickViewModal").html(tag);
+					 console.log("quickViewModal탐");
+					});
+			}
+		});
+	})
+})
+
+
+/* $('#QuickName').html(data.p_name);
+$('#QuickPrice').html('<p>'+data.p_price+'</p>');
+$('#QuickDescription').html(data.p_description); */
+
+
+
+//ajax 예시. 끝나면 지울것
+/* var tag = "";
+	tag = tag + "<div class='size-203 flex-c-m respon6'>";
+	tag = tag + "<table class='DetailTable'>";									
+	 tag = tag + "<tr>";
+	   tag = tag + "<td>적립금</td>";
+	   tag = tag + "<td>";
+	tag = tag + "<td>"+data.p_price/10+"</td>원";
+	 tag = tag + "</tr>";
+	 tag = tag + "<tr>";
+	   tag = tag + "<td>배송비</td>";
+	   tag = tag + "<td>무료</td>";
+	 tag = tag + "</tr>";
+	 tag = tag + "<tr>";
+	   tag = tag + "<td>브랜드</td>";
+	   tag = tag + "<td>"+data.p_brand+"</td>";
+	 tag = tag + "</tr>";
+	tag = tag + "</table>";
+tag = tag + "</div>";
+
+$("#QuickDescription").html(tag);
+		 console.log("QuickDescription탐"); */
+
+//QuickView의 modal에서 개수 버튼을 누르면 그 개수에 따라 값이 아래 나오는 코드+구매시 오류방지코드
+$(document).ready(function(){
+	
+	function numberWithCommas(x) {
+		console.log("numberWithCommas");    
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	};
+	//모달에서 +버튼을 누르면 개수가 변하지 않고, 그에 따라 최종값이 나오지 않는다.
+	//최종값 구하기는 어찌저찌 했는데, + 혹은 -버튼을 누를 때 b_amount가 +되거나 -되게 하는거에서 막혀있다.
+	//slick과 마찬가지로 호출 순서에 문제가 있어서 버튼이 작동하지 않아서 강제로 클릭이벤트로 하게 하고 있다.
+	//호출 순서 문제를 해결하면 한번에 될 것 같다.
+	$(document).on("click","#plus",function(){	
+		console.log("plus버튼");
+		var price = $(this).attr("value");
+		var amount = $("#b_amount").val();	
+		$("#b_amount").val(parseInt(amount)+1);
+		amount = $("#b_amount").val();
+		console.log("amount");
+		console.log(amount);
+		price = price * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });
+	
+	$(document).on("click","#minus",function(){	
+		console.log("minus버튼");
+		var price = $(this).attr("value");
+		var amount = $("#b_amount").val();
+		if(amount==0){
+			console.log("0일때");
+			return false;
+		}
+		$("#b_amount").val(parseInt(amount)-1);
+		amount = $("#b_amount").val();
+		console.log("amount");
+		console.log(amount);
+		price = price * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });
+	//QuickView Modal의 왼쪽 3줄 버튼누르면 각각 화면 변환되는 코드.
+	//원래 slick이 자동으로 해주는 거지만 ajax쓰니 안먹혀서 직접구현
+	$(document).on("click","#leftModalImage1",function(){
+		console.log("leftModalImage1버튼");
+		var image = $("#2leftModalImage1").attr("src");
+		console.log(image);
+		$("#leftModalImage1").attr('class','slick-active');
+		$("#leftModalImage2").attr('class','');
+		$("#leftModalImage3").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	$(document).on("click","#leftModalImage2",function(){
+		console.log("leftModalImage2버튼");
+		var image = $("#2leftModalImage2").attr("src");
+		console.log(image);
+		$("#leftModalImage2").attr('class','slick-active');
+		$("#leftModalImage1").attr('class','');
+		$("#leftModalImage3").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	$(document).on("click","#leftModalImage3",function(){
+		console.log("leftModalImage3버튼");
+		var image = $("#2leftModalImage3").attr("src");
+		console.log(image);
+		$("#leftModalImage3").attr('class','slick-active');
+		$("#leftModalImage2").attr('class','');
+		$("#leftModalImage1").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	
+	/* 상품개수가 0인 상태로 장바구니 클릭시 카트로 넘어가서 0으로 나오는걸 막는 코드 */
+		$(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("장바구니 1개이상일때 1번");
+				var data = {
+						p_number : p_number,
+						b_amount : b_amount
+				}
+				console.log(p_number);
+				console.log(b_amount);
+				$.ajax({
+					url:"/ssmall/cart/addCart",
+					type:"get",
+					data : data,
+					success:function(){
+						console.log("장바구니ajax 성공");
+						window.location.href = '/ssmall/cart/cartView';
+					}
+				});
+			}
+		});
+	
+		$(document).on("click","#buy",function(){
+			console.log("구매 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
+			if(b_amount==0){
+				Swal.fire('구매','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("구매 1개이상일때 1번");
+				var data = {
+						p_number : p_number,
+						b_amount : b_amount
+				}
+				console.log(p_number);
+				console.log(b_amount);
+				$.ajax({
+					url:"/ssmall/buy/buy",
+					type:"get",
+					data : data,
+					success:function(){
+						console.log("구매ajax 성공");
+						//window.location.href = '/ssmall/buy/buy';
+						
+					}
+				});
+			}
+		});
+		
+		//백업용
+		/* $(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("장바구니 1개이상일때 1번");
+				var form = $('#buyForm');
+				console.log(form);
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/cart/addCart");
+				form.attr("method","get");												
+				form.submit();
+				$("#hideModal").trigger("click");//모달 닫는 버튼을 강제실행
+				$("#b_amount").val(0);//값 초기화
+				$("#finalPrice").val(0);
+				console.log("장바구니 1개이상일때 2번");
+			}
+			
+		});	 */
+		//form태그 전송이 아니라 직접 data에 넣어서 보내보겠음
+		/* $(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("장바구니 1개이상일때 1번");
+				var form = $('#buyForm');
+				console.log(form);
+				$.ajax({
+					url:"/ssmall/cart/addCart",
+					type:"get",
+					data : form.serialize(),
+					success:function(){
+						console.log("장바구니ajax 성공");
+					}
+				});
+			}
+		}); */
+	
+	
+		/* 상품개수가 0인 상태로 구매 클릭시 0으로 나오는걸 막는 코드 
+		$(document).on("click","#buy",function(){
+			console.log("구매버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				var form = $('#buyForm');
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/buy/buy");
+				form.attr("method","post");												
+				form.submit();
+			}
+			
+		});*/
+	});
+
+
+</script>
+<%-- /* $('#QuickPrice').html('<p>'+data.p_name+'</p>'); */
+					/*$('#QuickPrice').html(data.p_price); */
 					/* $('.wrap-modal1').modal(); */
 					 /* js-show-modal1 */
-
-				}
-			});
-		})
-	})
-</script>
+					//$('#QuickPrice').html("<fmt:formatNumber value='"+data.p_price+"' pattern='###,###,###'/>원"); --%>
+					
+					<!-- 모달의 사진 좌우변경 화살표. modal 완성 후 필요없으면 지울 예정
+					tag = tag + "<div class='wrap-slick3-arrows flex-sb-m flex-w'>"
+					tag = tag + "<div class='item-slick3' data-thumb='productimage/"+data.p_image+"'>";
+					tag = tag + "<div class='wrap-pic-w pos-relative'>";
+					tag = tag + "<img src='productimage/"+data.p_image+"' alt='IMG-PRODUCT'>";
+					tag = tag + "<a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='productimage/"+data.p_image+"'>";
+					tag = tag + "<i class='fa fa-expand'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>"; -->
 
 </body>
 </html>

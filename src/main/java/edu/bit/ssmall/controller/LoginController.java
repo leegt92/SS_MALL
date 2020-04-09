@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -35,7 +36,7 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
-	//로그인 페이지로 
+	//로그인 페이지로
 	@RequestMapping("/login")
 	public String login(Model model, HttpSession session) throws Exception {		
 		System.out.println("로그인 페이지로");
