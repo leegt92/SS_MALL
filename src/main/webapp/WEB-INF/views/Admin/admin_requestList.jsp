@@ -198,19 +198,17 @@ span {
 					
 					<table class="table table-list-search">
 													<tr>
-														<th style="text-align: center;">회원번호</th>
 														<th style="text-align: center;">회원 아이디</th>
 														<th style="text-align: center;">회원 이름</th>
 														<th style="text-align: center;">문의 제목</th>
-														<th style="text-align: center;">문의 내용</th>	
+														<th style="text-align: center;">작성 날짜</th>	
 													</tr>										
 													<c:forEach items="${askRequestboards}" var="askRequestboards">
 													<tr>														
-														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_number}</td>
 														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_id}</td>																				
 														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_name}</td>
 														<td style="text-align: center; vertical-align: middle;">${askRequestboards.btitle}</td>
-														<td style="text-align: center; vertical-align: middle;"><p>${askRequestboards.bcontent}</p></td>										
+														<td style="text-align: center; vertical-align: middle;"><p>${askRequestboards.bdate}</p></td>										
 													</tr>
 													</c:forEach>													
 												</table>

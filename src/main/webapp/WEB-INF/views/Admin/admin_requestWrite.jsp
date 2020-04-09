@@ -189,29 +189,40 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>1:1 문의 답변</h1>
+							<h1>1:1 문의 및 A/S 요청 답변</h1>
 						</div>
 						
 						<div class="container">
+						
 		<table class="table table-bordered">
+		
    
-    <tbody>
-        <form action="write_ok.jsp" method="post" encType="multiplart/form-data">
+    
+        <form action="write_ok.jsp" method="post" >
             <tr>
-                <th>제목: </th>
+                <th style="width: 168px;">문의 및 요청 제목: </th>
+                <td><input type="text" value="${FbTitle}" name="subject" class="form-control"/></td>
+            </tr>
+            <tr>
+                <th>문의 및 요청 내용: </th>
+                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control" style="height: 214px;">${FbContent}</textarea></td>
+            </tr>
+            <br>
+             <tr>
+                <th>답변 제목: </th>
                 <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
             </tr>
             <tr>
-                <th>내용: </th>
-                <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control"></textarea></td>
+                <th>답변 내용: </th>
+                <td><textarea cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control" style="height: 214px;"></textarea></td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="button" value="등록" onclick="sendData()" class="pull-right"/>
+                    <input type="button" value="답변 등록 및 수정" onclick="sendData()" class="pull-right"/>
                 </td>
             </tr>
-
-    </tbody>
+		</form>
+   
 </table>
 </div>									
 								</div>												
@@ -241,9 +252,18 @@ span {
     <script src="/ssmall/js/popper.min.js"></script>
     <script src="/ssmall/js/bootstrap.min.js"></script>
     <script src="/ssmall/js/sweetalert2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 	
 	<!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    
+    <script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('askContent',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
    
 </body>
 </html>

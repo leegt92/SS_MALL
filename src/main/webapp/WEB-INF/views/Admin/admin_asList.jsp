@@ -175,7 +175,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>1:1 문의</h1>
+							<h1>A/S 요청</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -198,19 +198,17 @@ span {
 					
 					<table class="table table-list-search">
 													<tr>
-														<th style="text-align: center;">회원번호</th>
 														<th style="text-align: center;">회원 아이디</th>
 														<th style="text-align: center;">회원 이름</th>
 														<th style="text-align: center;">문의 제목</th>
-														<th style="text-align: center;">문의 내용</th>	
+														<th style="text-align: center;">작성 날짜</th>	
 													</tr>										
 													<c:forEach items="${aSRequestboards}" var="aSRequestboards">
 													<tr>														
-														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_number}</td>
 														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_id}</td>																				
 														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.btitle}</td>
-														<td style="text-align: center; vertical-align: middle;"><p>${aSRequestboards.bcontent}</p></td>										
+														<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/admin/requestWrite?bId=${aSRequestboards.bid}">${aSRequestboards.btitle}</a></td>
+														<td style="text-align: center; vertical-align: middle;"><p>${aSRequestboards.bdate}</p></td>										
 													</tr>
 													</c:forEach>													
 												</table>
