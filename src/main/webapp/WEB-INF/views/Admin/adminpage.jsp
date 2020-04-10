@@ -11,13 +11,7 @@
     <link rel="icon" href="favicon.ico">
 
     <title>상승몰 관리자 페이지</title>
-    
-    
 
-    <!-- Bootstrap core CSS -->
-  <!-- IonIcons -->
-  
-  
   <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
   
   <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
@@ -48,12 +42,16 @@
 	
 		function drawVisualization() { 
 			var data = google.visualization.arrayToDataTable([
-					['Month', '지갑', 	'시계'],
-					['2019/12',  742,    938,],
-					['2020/01',  594,    783,],
-					['2020/02',  923,    630,],
-					['2020/03',  867,    663,],
-					['2020/04',  712,    691,]
+					['Month'  , '지갑', 	'시계',   '시계'],
+					['2019/12',  742,    938,123],
+					['2020/01',  594,    783,1],
+					['2020/02',  923,    630,1],
+					['2020/03',  867,    663,1],
+					['2020/03',  867,    663,2],
+					['2020/03',  867,    663,3],
+					['2020/03',  867,    663,4],
+					['2020/03',  867,    663,6],
+					['2020/04',  712,    691,7]
 				]);
 			var options = {
 					title : '월별 지갑, 시계 판매량',
@@ -144,7 +142,7 @@ to get the desired effect
         <a href="adminpage" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">공지사항</a>
+        <a href="noticeList" class="nav-link">공지사항</a>
       </li>
     </ul>
   </nav>
@@ -269,12 +267,12 @@ to get the desired effect
               <div class="inner">
                 <h3>150</h3>
 
-                <p>할인 상품 관리</p>
+                <p>주간 판매실적</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="admin_order1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info</a>
             </div>
           </div>
           <!-- ./col -->
@@ -284,12 +282,12 @@ to get the desired effect
               <div class="inner">
                 <h3>5</h3>
 
-                <p>방문자 수</p>
+                <p>월간 판매실적</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-bag"></i>
               </div>
-              <a href="admin_AS1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info</a>
             </div>
           </div>
           <!-- ./col -->
@@ -299,12 +297,12 @@ to get the desired effect
               <div class="inner">
                 <h3>44</h3>
 
-                <p>신규 회원</p>
+                <p>연간 판매실적</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="admin_member1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info</a>
             </div>
           </div>
           <!-- ./col -->
@@ -314,80 +312,18 @@ to get the desired effect
               <div class="inner">
                 <h3>65</h3>
 
-                <p>신규 사원</p>
+                <p>총 판매실적</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="admin_board2" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info</a>
             </div>
           </div>
           <!-- ./col -->
         </div>
         
-        <!-- 4번째 줄 -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p><a class="text-danger">취소</a></p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="admin_order1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>5</h3>
-
-                <p><a class="text-danger">교환</a></p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="admin_AS1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p><a class="text-danger">환불</a></p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="admin_member1" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p><a class="text-danger">반품</a></p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="admin_board2" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
+        
 </div>
 </section>
 
