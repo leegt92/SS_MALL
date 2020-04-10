@@ -66,7 +66,40 @@
 	 	background-color:#F8F8F8;
 	 } 
 	 
-	 
+ /* 회사소개 슬라이드 배너 */
+.mcBanC { 
+	border:2px solid gray;
+	width:325px; 
+	height:203px;
+ 	overflow:hidden;
+  	position:relative; 
+  	left:300px;
+  }
+.mcBanSlides {
+	 width:325px;
+	 height:203px; 
+	 position:absolute;
+ }
+.mcBanSlides li { 
+ border:2px solid gray;
+	width:325px; 
+	float:left; 
+}
+
+.mcBanDot { 
+	cursor:pointer; 
+	
+	position:absolute; 
+	left:10px;
+	vertical-align: middle;
+}
+.mcBanDot li { 
+	margin:0 3px; 
+	float:left; 
+}
+
+
+
 
         
 </style>
@@ -135,10 +168,6 @@
 							<li>
 								<a href="asView">AS</a>
 							</li>
-							
-							<li>
-								<a href="#" onclick="chat();">채팅</a>
-							</li>
 						</ul>
 					</div>	
 				</nav>
@@ -200,10 +229,6 @@
 					<a href="asView">AS</a>
 				</li>
 				
-				<li>
-					<a href="#" onclick="chat();">채팅</a>
-				</li>
-				
 			</ul>
 		</div>
 
@@ -229,6 +254,21 @@
 			</span>
 		</div>
 	</div>
+	
+	<!-- 슬라이드 배너 -->
+	<div class="mcBanC">
+       <ul class="mcBanSlides">
+            <li>인기상품</li>
+            <li>AS</li>
+            <li>테스트</li>
+       </ul>
+       <ul class="mcBanDot">
+            <li><img src="/ssmall/images/icons/productlogo.png" width="100"height="100"></li>
+            <li><img src="/ssmall/images/icons/mainlogo.png" width="100"height="100"></li>
+            <li><img src="/ssmall/images/icons/productlogo.png" width="100"height="100"></li>
+        </ul>
+
+</div>
 
 
 
@@ -684,7 +724,6 @@
 	</div>
 
 
-	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
@@ -887,6 +926,59 @@ $(document).ready(function() {
 });
 </script>
 <!--===============================================================================================-->
+<script>
+var $list = $('ul.mcBanSlides');
+var size = $list.children().outerWidth();
+var len =  $list.children().length;
+var speed = 5000;
+var timer = null;
+var auto = true;
+var cnt = 1;
+$list.css('width',len*size);
+if(auto) timer = setInterval(autoSlide, speed);
+$list.children().bind({
+    'mouseenter': function(){
+        if(!auto) return false;
+        clearInterval(timer);
+        auto = false;
+    },
+    'mouseleave': function(){
+        timer = setInterval(autoSlide, speed);
+        auto = true;
+    }
+})
+$('.mcBanDot').children().bind({
+    'click': function(){
+        var idx = $('.mcBanDot').children().index(this);
+        cnt = idx;
+        autoSlide();
+        return false;
+    },
+    'mouseenter': function(){
+        if(!auto) return false;
+        clearInterval(timer);
+        auto = false;
+    },
+    'mouseleave': function(){
+        timer = setInterval(autoSlide, speed);
+        auto = true;
+    }
+});
+function autoSlide(){
+    if(cnt>len-1){
+        cnt = 0;
+    }
+    $list.animate({'left': -(cnt*size)+'px' },'normal');
+    var source2 = $('.mcBanDot').children().find('img').attr('src').replace('_.png','.png');
+    $('.mcBanDot').children().find('img').attr('src',source2);
+    var source = $('.mcBanDot').children().find('img').attr('src').replace('.png','_.png');
+    $('.mcBanDot').children().eq(cnt).find('img').attr('src',source);
+    cnt++;
+
+}
+
+</script>
+<!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 	
@@ -908,19 +1000,8 @@ $(document).ready(function() {
 	</script>
 <!--===============================================================================================-->
 
-	<script>
-	function scroll_follow( id )
-		{
-		  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
-		  { 
-		      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-		      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
-		   });
-		}
-		 scroll_follow( "#scroll" );
- </script>
- <script src="/ssmall/js/chat.js"></script>
-
+	
 
 </body>
+
 </html>

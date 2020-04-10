@@ -39,8 +39,4 @@ public interface RefundMapper {
 	@Update("Update member set m_point = m_point - #{point} where m_number = #{m_number}")
 	public void minusPoint(@Param("m_number")int m_number, @Param("point")int point);
 
-	
-	
-	
-	
 }

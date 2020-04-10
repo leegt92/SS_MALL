@@ -1,3 +1,4 @@
+
 package edu.bit.ssmall.mapper;
 
 import java.sql.Date;
@@ -9,12 +10,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import edu.bit.ssmall.vo.MemberVO;
-import edu.bit.ssmall.vo.ProductVO;
-import edu.bit.ssmall.vo.Product_BuyVO;
-import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.BuyVO;
+import edu.bit.ssmall.vo.Product_BuyVO;
 
 public interface MypageMapper {
 	/*===================================MEMBER 관련 SQL문들============================================================*/

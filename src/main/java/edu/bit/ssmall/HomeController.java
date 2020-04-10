@@ -1,3 +1,4 @@
+
 package edu.bit.ssmall;
 
 import java.io.ByteArrayOutputStream;
@@ -9,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -27,7 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import edu.bit.ssmall.service.CartService;
+import edu.bit.ssmall.service.HomeService;
 import edu.bit.ssmall.vo.CartViewVO;
+import edu.bit.ssmall.vo.ProductImageVO;
 
 /**
  * Handles requests for the application home page.
@@ -38,6 +42,8 @@ public class HomeController {
 	@Autowired
 	CartService cartService;
 	
+	@Autowired
+	HomeService homeService;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -181,4 +187,16 @@ public class HomeController {
             }
         }
     }
+
+
+	@ResponseBody
+	@RequestMapping("/hitItem")
+	public List<ProductImageVO> hitItem(ProductImageVO productimage, HttpServletRequest request, Model model){
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(homeService.selectProductListAmount());
+		//model.addAttribute(,homeService.selectProductListAmount(productimage));
+		return homeService.selectProductListAmount();
+	}
+	
+	
 }

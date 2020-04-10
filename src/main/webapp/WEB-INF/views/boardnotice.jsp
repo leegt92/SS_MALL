@@ -39,7 +39,7 @@
 		
 	}
 	#notice h1{
-	 text-align:center;
+	 text-align:left;
 	 color:black;
 	 letter-spacing:10px;
 	
@@ -49,13 +49,30 @@
 		background-color: black;
 		color:white;
 	}
+	.form-inline{
+		/* text-align:right; */
+		
+	}
+	
+	#search{
+		position:absolute;
+		top:230px;
+		left:1150px;
+	}
+	
+	#bar{
+		
+		padding-bottom: 30px;
+	}
+	
+
 	
 	 
 
         
 </style>
 </head>
-<body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
+<body class="animsition" ><!-- class="animsition" -->
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -120,10 +137,6 @@
 							<li>
 								<a href="asView">AS</a>
 							</li>	
-							
-							<li>
-								<a href="#" onclick="chat();">채팅</a>
-							</li>
 						</ul>
 					</div>	
 			
@@ -163,8 +176,6 @@
 					<a href="productView">상품</a>
 				</li>
 				
-				
-				
 				<li>
 					<a href="boardnoticeView">공지사항</a>
 				</li>
@@ -178,11 +189,7 @@
 				<li>
 					<a href="asView">AS</a>
 				</li>
-
-				
-				<li>
-					<a href="#" onclick="chat();">채팅</a>
-				</li>
+			
 
 			</ul>
 		</div>
@@ -216,44 +223,58 @@
 		</div>
 	</div>
 
-	
+
 	
 		<div id="notice">
-
-		 	<div class="table-responsive">
-
-
-		 	<h1 class="m-5">공지사항</h1>
-
-			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
-			 	<thead id="color">
-					<tr>
-						<th>번호</th> 
-						<th>아이디</th>
-						<th>제목</th>
-						<th>날짜</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="dto">
-					<tr>
-						<td>공지사항</td>
-						<td>${dto.bName}</td>
-						<td>
-							<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
-							<a href="content_view?bId=${dto.bId}">${dto.bTitle}</a></td>
-						<td>${dto.bDate}</td>
-						<td>${dto.bHit}</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-				<!-- <tr>
-					<td colspan="5"> <a href="write_view">글작성</a> </td>
-				</tr> -->	
-			</table>
-		</div>
-			<ul class="pagination m-5 flex-c-m" >
+			
+			<div class="table-responsive "> 
+				
+	 			<h1 class="m-5">공지사항</h1>
+		 		
+		 		<!-- A grey horizontal navbar that becomes vertical on small screens -->
+		 	<div class="flex-w flex-l-m filter-tope-group m-tb-10 ">
+				
+			</div>
+			<c:choose>
+				<c:when test="${list[0] != null}">
+				<div id="bar">
+					<ul class="nav nav-tabs nav-justified">
+					    <li class="nav-item">
+					      <a class="nav-link active" href="boardnoticeView">공지사항</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="boardgradenoticeView">혜택</a>
+					    </li>
+					   
+  					</ul>
+  				</div>
+  					<div id= "search" >
+  						
+						<form class="form-inline" action="boardnoticeView" >
+								<p class="btn btn-dark disabled" >제목  
+								
+								  	<input class="form-control mr-sm-1" type="text" placeholder="Search" id="myInput" name="keyword">
+									<button class="btn btn-dark" type="submit" >Search</button>
+								</p>
+							  	</form>	
+					</div>
+					 <table  class="table table-list-search table-hover "><!--, table-list-search --><!--  table-dark table-hover, table table-bordered table-hover -->
+						<tbody id="myTable">
+							<c:forEach items="${list}" var="dto">
+										<tr >									
+											<td>공지</td>
+											<%-- <td>${dto.bName}</td> --%>
+											<td>
+												<a href="content_view?bId=${dto.bId}">${dto.bTitle}</a>
+											</td>
+											<%-- <td>${dto.bHit}</td> --%>
+											<td>${dto.bDate}</td>
+											
+										</tr>							
+							</c:forEach>
+						</tbody>
+					</table>
+					<ul class="pagination m-5 flex-c-m" >
 					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
 						<li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
 						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
@@ -270,23 +291,74 @@
 						<li class="page-item"><a class="page-link" href="boardnoticeView${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
 					</c:if>
 			</ul>
-			
+				</c:when>
+				<c:otherwise>
+				<div id= "search">
+					<form class="form-inline" action="boardgradenoticeView">
+							<input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput" name="keyword">
+							<button class="btn btn-success" type="submit" >Search</button>
+					</form>
+				</div>	
+					<ul class="nav nav-tabs nav-justified">
+					    <li class="nav-item">
+					      <a class="nav-link " href="boardnoticeView">공지사항</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link active" href="boardgradenoticeView">혜택</a>
+					    </li>
+					   
+  					</ul>
+								
+					<table id= "grade"class="table table-list-search table-hover ">
+				
+					<c:forEach items="${gradelist}" var="dto">
+
+								<tr>									
+									<td>혜택</td>
+									<%-- <td>${dto.bName}</td> --%>
+									<td>
+										<a href="content_view?bId=${dto.bId}">${dto.bTitle}</a>
+									</td>
+									<%-- <td>${dto.bHit}</td> --%>
+									<td>${dto.bDate}</td>
+								</tr>
+							
+					</c:forEach>
+				</tbody>
+			</table>
+			<ul class="pagination m-5 flex-c-m" >
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href=boardgradenoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="boardgradenoticeView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
 					
-			 <!-- <ul id="button" class="pagination m-5 flex-c-m" >
-			  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-			  <li class="page-item"><a class="page-link" href="#">1</a></li>
-			  <li class="page-item"><a class="page-link" href="#">2</a></li>
-			  <li class="page-item"><a class="page-link" href="#">3</a></li>
-			  <li class="page-item"><a class="page-link" href="#">4</a></li>
-			  <li class="page-item"><a class="page-link" href="#">5</a></li>
-			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-			</ul>  -->
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="boardgradenoticeView${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+			</ul>
+					
+			</c:otherwise>
+	</c:choose>
+			
+			
+			
+		</div>
+			
+			
+		
 		</div>
 
 
 	
 
-		</div>
+	
 
 
 
@@ -502,15 +574,15 @@ $(document).ready(function() {
 			})
 		});
 	</script>
+<!--===============================================================================================-->	
 
 
-
-	
+ 
 
 <!--===============================================================================================-->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
 <!--===============================================================================================-->
-<script src="/ssmall/js/chat.js"></script>
 </body>
+
 </html>

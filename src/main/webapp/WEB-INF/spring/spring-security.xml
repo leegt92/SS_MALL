@@ -106,7 +106,4 @@
 	
 	<context:component-scan base-package="edu.bit.ssmall.security"/>
 
-	
-
-   
 </beans:beans>

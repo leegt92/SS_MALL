@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -11,7 +12,7 @@
 			/WEB-INF/spring/spring-security.xml
 		</param-value>
 	</context-param>
-	
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -28,77 +29,79 @@
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported> <!-- 웹소켓을 위한 설정(비동기지원) -->
 	</servlet>
-		
+
+	<!-- <mvc:default-servlet-handler/> -->
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<filter> 
-	 	<filter-name>encodingFilter</filter-name> 
-	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
-	    <init-param> 
-	       <param-name>encoding</param-name> 
-	       <param-value>UTF-8</param-value> 
-	    </init-param> 
-	    <init-param> 
-	       <param-name>forceEncoding</param-name> 
-	       <param-value>true</param-value> 
-	    </init-param> 
- 	</filter> 
-	<filter-mapping> 
-	    <filter-name>encodingFilter</filter-name> 
-	    <url-pattern>/*</url-pattern> 
- 	</filter-mapping> 
-	
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Spring Security Filter -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- x-frame-허용 -->
 	<filter>
-	    <filter-name>httpHeaderSecurity</filter-name>
-	    <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
-	    <init-param>
-	        <param-name>antiClickJackingOption</param-name>
-	        <param-value>SAMEORIGIN</param-value>
-	    </init-param>
+		<filter-name>httpHeaderSecurity</filter-name>
+		<filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+		<init-param>
+			<param-name>antiClickJackingOption</param-name>
+			<param-value>SAMEORIGIN</param-value>
+		</init-param>
 	</filter>
 
 	<filter-mapping>
-	    <filter-name>httpHeaderSecurity</filter-name>
-	    <url-pattern>/*</url-pattern>
+		<filter-name>httpHeaderSecurity</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 
-	
+
 	<!-- CKFINDER START -->
-		<servlet>
-		  <servlet-name>ConnectorServlet</servlet-name>
-		  <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
-		  <init-param>
-		      <param-name>XMLConfig</param-name>
-		      <param-value>/WEB-INF/config.xml</param-value>
-		  </init-param>
-		  <init-param>
-		      <param-name>debug</param-name>
-		      <param-value>false</param-value>
-		  </init-param>
-		  <load-on-startup>1</load-on-startup>
-		</servlet>
-		  
-		<servlet-mapping>
-		  <servlet-name>ConnectorServlet</servlet-name>
-		  <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
-		</servlet-mapping>  
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+		<init-param>
+			<param-name>XMLConfig</param-name>
+			<param-value>/WEB-INF/config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
+	</servlet-mapping>
 	<!-- CKFINDER END -->
 
-	
+
 </web-app>

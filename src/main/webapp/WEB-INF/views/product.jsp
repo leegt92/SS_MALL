@@ -1675,4 +1675,5 @@ $(document).ready(function(){
 <script src="/ssmall/js/chat.js"></script>
 
 </body>
+
 </html>

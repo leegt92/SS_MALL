@@ -113,10 +113,6 @@
 							
 							<li>
 								<a href="asView">AS</a>
-							</li>
-							
-							<li>
-								<a href="#" onclick="chat();">채팅</a>
 							</li>	
 		
 						</ul>
@@ -169,10 +165,6 @@
 
 				<li>
 					<a href="asView">AS</a>
-				</li>
-				
-				<li>
-					<a href="#" onclick="chat();">채팅</a>
 				</li>
 			</ul>
 		</div>
@@ -258,7 +250,7 @@
 			<a  href="boardnoticeView" class="btn btn-primary m-2">목록보기</a>
 		</div>							
 								
-
+		
 
 
 
@@ -483,6 +475,6 @@ $(document).ready(function() {
 		 scroll_follow( "#scroll" );
  </script>
 	
-<script src="/ssmall/js/chat.js"></script>
+
 </body>
 </html>

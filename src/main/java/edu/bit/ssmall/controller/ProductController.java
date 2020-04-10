@@ -1,4 +1,4 @@
- package edu.bit.ssmall.controller;
+package edu.bit.ssmall.controller;
 
 import java.util.List;
 
@@ -455,3 +455,4 @@ public class ProductController {
 	}*/
 	
 }
+
