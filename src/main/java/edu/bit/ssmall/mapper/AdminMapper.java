@@ -3,6 +3,7 @@ package edu.bit.ssmall.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -35,7 +36,7 @@ public interface AdminMapper {
 
 /*=====================페이징 처리한 select문 쿼리======================================================================*/
 	
-	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM product ORDER BY p_name desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM product ORDER BY p_name desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum} ")
 	public ArrayList<ProductVO> productList(@Param("startNum")int startNum, @Param("endNum")int endNum);
 	
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM member where m_authority != '관리자' ORDER BY m_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
@@ -86,8 +87,27 @@ public interface AdminMapper {
 	@Select("Select * from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc")
 	public ArrayList<MemberVO> memberSearch(@Param("search")String search);
 	
-	@Select("Select * from product where p_brand like '%'||#{search}||'%' or  p_name like '%'||#{search}||'%' order by p_price desc")
+	@Select("Select * from product where p_brand like '%'||#{search}||'%' or  p_name like '%'||#{search}||'%'  order by p_price desc")
 	public ArrayList<ProductVO> productSearch(@Param("search")String search);
+
+	
+/*===================================상품 수정 처리======================================================================*/	
+	@Select("Select * from product where p_number = #{p_number}")
+	public ProductVO productOne(@Param("p_number")String p_number);
+
+	@Update("Update product set p_name = #{p_name} , p_brand = #{p_brand}, p_price = #{p_price}, p_stock = #{p_stock}, p_image = #{originFileName}, p_enabled = #{p_enabled} where p_number = #{p_number}")
+	public void updateProduct(@Param("p_number")String p_number, @Param("p_name")String p_name, @Param("p_brand")String p_brand, @Param("p_price")String p_price, @Param("p_stock")String p_stock,
+			@Param("originFileName")String originFileName, @Param("p_enabled")int p_enabled);
+
+	@Update("Update image set i_name = #{originFileName} where p_number = #{p_number} and i_type = #{i_type} ")
+	public void updateImage(@Param("p_number")String p_number, @Param("originFileName")String originFileName, @Param("i_type")int i_type);
+	
+	@Update("Update product set p_name = #{p_name} , p_brand = #{p_brand}, p_price = #{p_price}, p_stock = #{p_stock}, p_enabled = #{p_enabled} where p_number = #{p_number}")
+	public void updateOnlyProduct(@Param("p_number")String p_number, @Param("p_name")String p_name, @Param("p_brand")String p_brand, @Param("p_price")String p_price, @Param("p_stock")String p_stock,
+			@Param("p_enabled")int p_enabled);
+	
+	
+	
 
 	
 

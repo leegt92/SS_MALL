@@ -250,9 +250,7 @@
 									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.b_total}"/>
 									<td style="text-align: center;" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
-									<td style="padding-left : 10px; cursor:pointer;" onclick="if(confirm('취소 하시겠습니까?')){return location.href = '/ssmall/refund/refund?imp_uid=${p_b_vo.imp_uid}'}">취소</td>
-									
-									
+									<td style="padding-left : 10px; cursor:pointer;" onclick="if(confirm('취소 하시겠습니까?')){return location.href = '/ssmall/refund/refund?imp_uid=${p_b_vo.imp_uid}'}">취소</td>						
 								</c:forEach>
 								
 							</table>

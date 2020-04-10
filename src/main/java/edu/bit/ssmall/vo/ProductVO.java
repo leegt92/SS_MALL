@@ -12,9 +12,19 @@ public class ProductVO {
 	private int p_amount;
 	private String p_category;
 	private String p_image;
+	private int p_enabled;
 	
 	
 	
+	
+	public int getP_enabled() {
+		return p_enabled;
+	}
+
+	public void setP_enabled(int p_enabled) {
+		this.p_enabled = p_enabled;
+	}
+
 	public String getP_image() {
 		return p_image;
 	}
@@ -99,8 +109,9 @@ public class ProductVO {
 		return "ProductVO [p_number=" + p_number + ", p_name=" + p_name + ", p_price=" + p_price + ", p_brand="
 				+ p_brand + ", p_stock=" + p_stock + ", p_description=" + p_description + ", p_released_date="
 				+ p_released_date + ", p_amount=" + p_amount + ", p_category=" + p_category + ", p_image=" + p_image
-				+ "]";
+				+ ", p_enabled=" + p_enabled + "]";
 	}
+
 	
 	
 }

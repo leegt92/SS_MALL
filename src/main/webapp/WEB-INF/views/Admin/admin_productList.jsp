@@ -205,19 +205,45 @@
 														<th style="text-align: center;">상품 종류</th>
 													</tr>										
 													<c:forEach items="${search}" var="search">
-													<tr>
-														<td style="text-align: center;">
-															<a href="/ssmall/productDetail?p_number=${search.p_number}">
-																<img src="/ssmall/productimage/${search.p_image}" alt="IMG" width="100px" height="100px">
-															</a>
-														</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_brand}</td>						
-														<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${search.p_price}" pattern="###,###,###" />원</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_stock}</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_amount}</td>
-														<td style="text-align: center; vertical-align: middle;">${search.p_category}</td>										
-													</tr>
+														<c:choose>
+															<c:when test="${search.p_enabled == 0 }">
+																<tr>
+																	<td style="text-align: center; background-color:#d3d3d3;">
+																		<a href="/ssmall/productDetail?p_number=${search.p_number}">
+																			<img src="/ssmall/productimage/${search.p_image}" alt="No Image" width="100px" height="100px">
+																		</a>
+																	</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${search.p_name}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${search.p_brand}</td>						
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;"><fmt:formatNumber value="${search.p_price}" pattern="###,###,###" />원</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${search.p_stock}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${search.p_amount}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${search.p_category}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">
+																		<a href="/ssmall/admin/productModify?p_number=${search.p_number}" style="color:black;"><i class="fas fa-pen-square"></i> 수정</a>
+																	
+																	</td>												
+																</tr>
+															</c:when>													
+															<c:otherwise>
+																<tr>
+																	<td style="text-align: center;">
+																		<a href="/ssmall/productDetail?p_number=${search.p_number}">
+																			<img src="/ssmall/productimage/${search.p_image}" alt="No Image" width="100px" height="100px">
+																		</a>
+																	</td>
+																	<td style="text-align: center; vertical-align: middle;">${search.p_name}</td>
+																	<td style="text-align: center; vertical-align: middle;">${search.p_brand}</td>						
+																	<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${search.p_price}" pattern="###,###,###" />원</td>
+																	<td style="text-align: center; vertical-align: middle;">${search.p_stock}</td>
+																	<td style="text-align: center; vertical-align: middle;">${search.p_amount}</td>
+																	<td style="text-align: center; vertical-align: middle;">${search.p_category}</td>
+																	<td style="text-align: center; vertical-align: middle;">
+																		<a href="/ssmall/admin/productModify?p_number=${search.p_number}" style="color:black;"><i class="fas fa-pen-square"></i> 수정</a>																
+																	</td>												
+																</tr>
+															</c:otherwise>
+														</c:choose>												
 													</c:forEach>													
 												</table>
 											</c:when>
@@ -243,19 +269,46 @@
 														<th style="text-align: center;">상품 종류</th>
 													</tr>										
 													<c:forEach items="${list}" var="list">
-													<tr>
-														<td style="text-align: center;">
-															<a href="/ssmall/productDetail?p_number=${list.p_number}">
-																<img src="/ssmall/productimage/${list.p_image}" alt="IMG" width="100px" height="100px">
-															</a>
-														</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_brand}</td>						
-														<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${list.p_price}" pattern="###,###,###" />원</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_stock}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_amount}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.p_category}</td>										
-													</tr>
+														<c:choose>
+															<c:when test="${list.p_enabled == 0}">
+																<tr>
+																	<td style="text-align: center; background-color:#d3d3d3;">
+																		<a href="/ssmall/productDetail?p_number=${list.p_number}">
+																			<img src="/ssmall/productimage/${list.p_image}" alt="No Image" width="100px" height="100px" style="">
+																		</a>
+																	</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${list.p_name}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${list.p_brand}</td>						
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;"><fmt:formatNumber value="${list.p_price}" pattern="###,###,###" />원</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${list.p_stock}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${list.p_amount}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">${list.p_category}</td>
+																	<td style="text-align: center; vertical-align: middle; background-color:#d3d3d3;">
+																		<a href="/ssmall/admin/productModify?p_number=${list.p_number}" style="color:black;"><i class="fas fa-pen-square"></i> 수정</a>
+																		
+																	</td>												
+																</tr>													
+															</c:when>
+															<c:otherwise>
+																<tr>
+																	<td style="text-align: center;">
+																		<a href="/ssmall/productDetail?p_number=${list.p_number}">
+																			<img src="/ssmall/productimage/${list.p_image}" alt="No Image" width="100px" height="100px">
+																		</a>
+																	</td>
+																	<td style="text-align: center; vertical-align: middle;">${list.p_name}</td>
+																	<td style="text-align: center; vertical-align: middle;">${list.p_brand}</td>						
+																	<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${list.p_price}" pattern="###,###,###" />원</td>
+																	<td style="text-align: center; vertical-align: middle;">${list.p_stock}</td>
+																	<td style="text-align: center; vertical-align: middle;">${list.p_amount}</td>
+																	<td style="text-align: center; vertical-align: middle;">${list.p_category}</td>
+																	<td style="text-align: center; vertical-align: middle;">														
+																		<a href="/ssmall/admin/productModify?p_number=${list.p_number}" style="color:black;"><i class="fas fa-pen-square"></i> 수정</a>
+																		<br>																																						
+																	</td>											
+																</tr>
+															</c:otherwise>
+														</c:choose>								
 													</c:forEach>													
 												</table>
 												
@@ -299,5 +352,6 @@
 		</footer>		
 	</div>
 </body>
+
 
 </html>

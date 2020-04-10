@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>SS_MALL</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -693,22 +693,31 @@
 			<!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
 			<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
 			<nav aria-label="Page navigation example">
-				<ul class="pagination m-5 flex-c-m" >
+				<ul class="pagination flex-c-m" >
 				<c:choose>
 					<c:when test="${keyword!=null}">
+						<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+							<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/productViewSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+							<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+						</c:if>
+						
 						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
 							<c:out value="${pageMaker.cri.page == idx?'':''}" />
-							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a></li>
+							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}&nbsp;&nbsp;&nbsp;</a></li>
 						</c:forEach>																		
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
-						</c:if> <br>
+							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
+						</c:if><br>
 					</c:when>
 					
 					<c:when test="${rankKeyword!=null}">
+						<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+							<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/productViewSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+							<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+						</c:if>
 						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
 							<c:out value="${pageMaker.cri.page == idx?'':''}" />
-							<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}</a></li>
+							<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}&nbsp;&nbsp;&nbsp;</a></li>
 						</c:forEach>																		
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
@@ -716,9 +725,13 @@
 					</c:when>
 					
 					<c:otherwise>
+						<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+							<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/productViewSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+							<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+						</c:if>
 						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
 							<c:out value="${pageMaker.cri.page == idx?'':''}" />
-							<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+							<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}&nbsp;&nbsp;&nbsp;</a></li>
 						</c:forEach>																										
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
@@ -1225,64 +1238,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <script type="text/javascript">
 
-	function numberFormat(inputNumber) {
-	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
 	
-	
-	$(function(){
-		$.ajax({
-			url : '/ssmall/miniCart',
-			dataType : 'json',
-			success : function(data){
-				console.log(data);
-				var totalprice = 0;			
-				var itemcount = 0;
-				
-				$.each(data, function(key, value){
-					totalprice = totalprice + value.c_grandtotal;
-					itemcount += 1;
-					var tag = "";
-					tag = tag + "<ul class='header-cart-wrapitem w-full'>";
-					tag = tag + "<li class='header-cart-item flex-w flex-t m-b-12'>";
-					tag = tag + "<div class='header-cart-item-img'>";
-					tag = tag + "<img src='productimage/" + value.i_name +"' alt='IMG'>";
-					tag = tag + "</div>";
-					tag = tag + "<div class='header-cart-item-txt p-t-8'>";
-					tag = tag + "<a href='productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
-					tag = tag + value.p_description + " x " + value.c_amount;
-					tag = tag + "</a>";
-					tag = tag + "<span class='header-cart-item-info'>";
-					tag = tag + numberFormat(value.c_grandtotal)+"원";
-					tag = tag + "</span></div></li>";
-					
-					
-				
-					$("#miniCart").append(tag);
-					
-				})
-				
-				var tag2 = "";
-				tag2 = tag2 + "<div class='header-cart-total w-full p-tb-40'>"
-				tag2 = tag2 + "Total: "+numberFormat(totalprice) + "원";
-				tag2 = tag2 + "</div>"
-				tag2 = tag2 + "<div class='header-cart-buttons flex-w w-full'>";
-				tag2 = tag2 + "<a href='cartView' class='flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10'>";
-				tag2 = tag2 + "View Cart </a></div>";
-				
-				$("#total").append(tag2);
-				
-				$(document).ready(function () {
-
-					$('#count').attr('data-notify', itemcount);
-
-			    });
-				
-				
-				
-			}
-		})
-	})
 	//검색 script
 /* 	function setSearchTypeSelect(){
 		var keyword = $('#keyword');
@@ -1322,22 +1278,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					alert("er");
 				},
 				success:function(data){
-
-					alert('성공');
-					alert(data.p_name);
-					$('#img').html("");
-					$('#img').append("<img src='productimage/"+data.p_image+"' alt='IMG-PRODUCT'>");
-					$('#QuickName').html(data.p_name);
-					$('#QuickPrice').html(data.p_price);
-					
-					/* $('.wrap-modal1').modal(); */
-					 /* js-show-modal1 */
-
-				}
-			});
-			
-		})
-
 					
 					function numberWithCommas(x) {
 						console.log("numberWithCommas");    
@@ -1354,6 +1294,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					$.each(data.slice(0, 3), function(key, data){
 						modalIname3 = data.i_name;
 					})
+					
 					console.log(modalIname1);
 					console.log(modalIname2);
 					console.log(modalIname3);
@@ -1647,7 +1588,8 @@ $(document).ready(function(){
 				}
 				console.log(p_number);
 				console.log(b_amount);
-				$.ajax({
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+				/*$.ajax({
 					url:"/ssmall/buy/buy",
 					type:"get",
 					data : data,
@@ -1657,6 +1599,7 @@ $(document).ready(function(){
 						
 					}
 				});
+				*/
 			}
 		});
 		

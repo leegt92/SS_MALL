@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.bit.ssmall.mapper.AdminMapper;
 import edu.bit.ssmall.vo.BoardVO;
@@ -108,7 +109,10 @@ public class AdminService {
 		return adminMapper.adminList();
 	}
 	
-	
+	public void updateAuthority(String m_number, String m_authority) {
+		adminMapper.updateAuthority(m_number, m_authority);
+		
+	}
 /*===========================검색했을때 처리========================================================*/		
 	
 	public ArrayList<MemberVO> memberSearch(String search) {
@@ -120,14 +124,29 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return adminMapper.productSearch(search);
 	}
-	public void updateAuthority(String m_number, String m_authority) {
-		adminMapper.updateAuthority(m_number, m_authority);
+	
+	
+/*===========================상품 수정 처리========================================================*/	
+	public ProductVO productOne(String p_number) {
 		
+		return adminMapper.productOne(p_number);
 	}
 	
+
+	public void updateProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, String originFileName, int p_enabled) {
+		adminMapper.updateProduct(p_number, p_name, p_brand, p_price, p_stock, originFileName, p_enabled);		
+	}
 	
 
+	public void updateImage(String p_number, String originFileName, int i_type) {
+
+		adminMapper.updateImage(p_number, originFileName,i_type);			
+	}
 	
+	public void updateOnlyProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, int p_enabled) {
+		adminMapper.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock, p_enabled);
+		
+	}
 
 	
 	

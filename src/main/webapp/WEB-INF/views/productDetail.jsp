@@ -122,7 +122,7 @@
 	display: none;
 }*/
 
-    <style type="text/css">
+   
         #wrap {
             width: 550px;
             margin: 0 auto 0 auto;
