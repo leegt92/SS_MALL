@@ -147,6 +147,7 @@
 				 width: 1142px;
    				 height: 527px;
 				">
+
 					<form id="submitASRequest" action="/ssmall/mypage/myPage_aSRequest2_back">
 					<input type="hidden" name="bId" value="${bId}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">

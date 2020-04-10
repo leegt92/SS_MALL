@@ -147,7 +147,9 @@
    				 height: 527px;
 				">
 
+
 					<form id="submitAskRequest" action="/ssmall/mypage/myPage_askRequest2_back">
+
 						<input type="hidden" name="bId" value="${bId}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							수정할 문의 및 건의사항을 작성해 주세요.

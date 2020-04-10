@@ -37,7 +37,37 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
 
+<script>
+function previewImage(f){
 
+	var file = f.files;
+
+	// 확장자 체크
+	if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+		alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+
+		// 선택한 파일 초기화
+		f.outerHTML = f.outerHTML;
+
+		document.getElementById('preview').innerHTML = '';
+
+	}
+	else {
+
+		// FileReader 객체 사용
+		var reader = new FileReader();
+
+		// 파일 읽기가 완료되었을때 실행
+		reader.onload = function(rst){
+			document.getElementById('preview').innerHTML = '<img src="' + rst.target.result + '">';
+		}
+
+		// 파일을 읽는다
+		reader.readAsDataURL(file[0]);
+
+	}
+}
+</script>
 
 <style>
 .dropdown button {
@@ -177,7 +207,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>A/S</h1>
+							<h1>상품 등록</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -196,19 +226,30 @@ span {
 					<!-- /.col -->
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
-							<div class="card-header">
-								<div id="Line_Controls_Chart">
-      
-		</div>
-								
-					</div>	
+										<div>
 																
-								</div>							
-							</div>														
+								</div>								
+							</div>
 						</div>
-						</section>						
 					</div>
-				</div>
-</body>
+				</section>														
+			</div>					
+		</div>
 
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2014-2019 <a
+				href="http://adminlte.io">AdminLTE.io</a>.
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.0.2
+			</div>
+		</footer>
+	</div>
+</body>
 </html>

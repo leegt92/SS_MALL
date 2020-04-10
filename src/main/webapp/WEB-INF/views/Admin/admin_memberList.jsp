@@ -89,6 +89,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+
 	<div class="wrapper">
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -376,6 +377,9 @@
 		</footer>
 		
 	</div>
+
+
+
 </body>
 
 </html>

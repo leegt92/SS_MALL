@@ -138,7 +138,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView", method = RequestMethod.GET)//문의글들 띄워놓는 부분에 대한 컨트롤러
 	public String myPage_askRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -176,7 +176,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequestView2", method = RequestMethod.GET)//신경쓰지 마시고
 	public String myPage_askRequestView2(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -214,7 +214,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_aSRequestView", method = RequestMethod.GET)//신경X
 	public String myPage_aSRequestView(Criteria criteria, Model model, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -252,7 +252,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest", method = RequestMethod.GET)//실제로 입력하는 창 에 대한 컨트롤러 밑에꺼랑 세트
 	public String myPage_askRequest(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -282,7 +282,7 @@ public class MyPageController {
 
 	}	
 	
-	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest_back", method = RequestMethod.GET)//이것도 입력하는 창에 대한 컨트롤러인데 입력하는 창에 대한 컨트롤러가 두개인 이유는 위에꺼랑 쌍으로 구현해야 입력직후 게시글 목록으로 돌아오는 걸 구현할 수 있어서이다.
 	public String myPage_askRequest_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -646,7 +646,7 @@ public class MyPageController {
 		    return "MyPage/myPage_reviseInformation4";
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2", method = RequestMethod.GET) //글 수정하는 창에 대한 컨트롤러
 	public String myPage_askRequest2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -677,7 +677,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askRequest2_back", method = RequestMethod.GET)//위에꺼랑 세트 이것까지 구현시 수정직후 알아서 게시글로 돌아옴
 	public String myPage_askRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -802,7 +802,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET) //삭제는 딱히 UI가 없고 그냥 삭제 논리대로 철기하는 컨트롤러 삭제버튼 누르면 이 컨트롤러를 탄다.
 	public String delete(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -846,7 +846,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete2.do", method = RequestMethod.GET)//일단 신경 X
 	public String delete2(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);

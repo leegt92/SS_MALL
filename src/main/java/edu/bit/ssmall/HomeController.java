@@ -22,12 +22,7 @@ public class HomeController {
 	@Autowired
 	CartService cartService;
 	
-	@RequestMapping(value = "/kakao", method = RequestMethod.GET)
-	public String kakao(Model model) {
-
-		return "kakao";
-
-	}	
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {

@@ -304,7 +304,6 @@
             	<br/>
             	<p><b>문의/건의 내용:</b><c:out value = "${askRequestboards.bcontent}"/></p>
             	<br/>
-            	=======================================================================================================================
             	<br/>
             	<br/>
               	<p><b>답변 제목:</b><c:out value = "${askRequestboardsAnswers[status.index].btitle}"/></p>

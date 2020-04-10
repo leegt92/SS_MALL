@@ -177,7 +177,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>A/S</h1>
+							<h1>공지사항</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -197,18 +197,62 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-								<div id="Line_Controls_Chart">
-      
-		</div>
-								
-					</div>	
-																
-								</div>							
+								<h3 class="card-title">공지사항 리스트</h3>
+
+								<table width="500" cellpadding="0" cellspacing="0" border="1">
+		<form action="modify" method="post">
+			<input type="hidden" name="bId" value="${content_view.bId}">
+			<tr>
+				<td> 번호 </td>
+				<td> ${content_view.bId} </td>
+			</tr>
+			<tr>
+				<td> 히트 </td>
+				<td> ${content_view.bHit} </td>
+			</tr>
+			<tr>
+				<td> 이름 </td>
+				<td> <input type="text" name="bName" value="${content_view.bName}"></td>
+			</tr>
+			<tr>
+				<td> 제목 </td>
+				<td> <input type="text" name="bTitle" value="${content_view.bTitle}"></td>
+			</tr>
+			<tr>
+				<td> 내용 </td>
+				<td> <textarea rows="10" name="bContent" >${content_view.bContent}</textarea></td>
+			</tr>
+			<tr >
+				<td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp; <a href="noticeList">목록보기</a> &nbsp;&nbsp;</td>
+			</tr>
+		</form>
+	</table>							
+							</div>	
+								</tbody>
+									</table>								
+								</div>								
 							</div>														
-						</div>
-						</section>						
+						</div>					
 					</div>
 				</div>
-</body>
+			</section>
+		</div>
 
+
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2014-2019 <a
+				href="http://adminlte.io">AdminLTE.io</a>.
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.0.2
+			</div>
+		</footer>
+	</div>
+</body>
 </html>

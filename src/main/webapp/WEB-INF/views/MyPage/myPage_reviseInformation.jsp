@@ -40,6 +40,9 @@
 <!--===============================================================================================-->
 
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
@@ -47,7 +50,12 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
+
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">

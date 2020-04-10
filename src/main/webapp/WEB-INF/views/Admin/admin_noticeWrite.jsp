@@ -38,7 +38,6 @@
 
 
 
-
 <style>
 .dropdown button {
 	display: block;
@@ -89,6 +88,11 @@ span {
 	text-align: left;
 	vertical-align: middle;
 }
+
+.noresize {
+  resize: both; /* 공지작성 내용 크기조절 */
+}
+
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -105,7 +109,6 @@ span {
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
 			</ul>
-			
 			
 		</nav>
 		<!-- Main Sidebar Container -->
@@ -177,7 +180,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>A/S</h1>
+							<h1>공지사항</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -197,18 +200,98 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-								<div id="Line_Controls_Chart">
-      
-		</div>
-								
-					</div>	
-																
-								</div>							
-							</div>														
-						</div>
-						</section>						
-					</div>
-				</div>
-</body>
+								<h3 class="card-title"></h3>
 
+<form id="submitAskRequest" action="/ssmall/admin/noticeWrite">
+
+					<form id="submitAskRequest" action="noticeWrite_back">
+
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							공지사항 작성
+						</h4> 
+
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."
+							style="">
+						</div>
+
+						<div class="bor8 m-b-30">
+							<textarea id="bContent" class="noresize" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
+						</div>
+
+						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							제출
+						</button>
+					</form>
+					
+					
+					
+				</div>
+				</section>
+												
+								</div>												
+							</div>										
+
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2014-2019 <a
+				href="http://adminlte.io">AdminLTE.io</a>.
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.0.2
+			</div>
+		</footer>
+	</div>
+	
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/ssmall/js/popper.min.js"></script>
+    <script src="/ssmall/js/bootstrap.min.js"></script>
+    <script src="/ssmall/js/sweetalert2.js"></script>
+	
+	<!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+    <script>
+    	
+	    $("#submitAskRequest").submit(function(event) {
+	    		var a1 = document.getElementById("bTitle").value;
+	    		var a2 = document.getElementById("bContent").value;
+	    		if(a1 == "" || a2 == "") {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'error',
+	    				position: 'center',
+	    				title: '글 제목 및 글 내용 미입력',
+	    				text: '글 제목과 글 내용을 모두 입력해 주십시오.',	
+	    			})
+	    		}
+	    		else {
+	    			event.preventDefault();
+	    			Swal.fire({
+	    				icon: 'success',
+	    				position: 'center',
+	    				title: '작성 완료',
+	    				text: '작성이 완료되었습니다.',	
+	    				}).then(function() {
+	    					var elem = document.getElementById('submitAskRequest');
+	    					elem.submit();
+	    				});
+	    		}
+				
+	    });
+    		
+			
+    		
+	</script>
+	
+</body>
 </html>
