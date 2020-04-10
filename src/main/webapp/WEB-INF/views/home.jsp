@@ -5,6 +5,10 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+
 <%
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     Object principal = auth.getPrincipal();
@@ -20,6 +24,8 @@
 	<title>상승몰</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
@@ -103,7 +109,7 @@
 				
 				$("#total").append(tag2);
 				
-				$(document).ready(function () {
+					$(document).ready(function () {
 
 					$('#count').attr('data-notify', itemcount);
 
@@ -124,6 +130,76 @@
 		})
 	})
 </script>
+<script>
+$(function(){
+	console.log("ajax 앞");
+	$.ajax({
+		url : '/ssmall/hitItem',
+		type :'get',
+		dataType : 'json',
+		success : function(data){
+			console.log("ddd");
+			var tag = "";
+			$.each(data, function(key, value){
+				tag = tag + "<div id='hit'>";
+				tag = tag + "<li><div class='img'>";
+				tag = tag + "<img src='/ssmall/productimage/"+value.i_name+"'height='200' width='200'>";
+				tag = tag + "<a href='productDetail?p_number="+value.p_number+"'></a></div></li>";
+				tag = tag + "</div>";
+			})
+			$('#hitItem').html(tag);
+    	 }
+	});	
+		
+		console.log("qjwqdnwqdiowqdjniowqdniodwqionwdqniowqdniowqdniowqdoniwqdnio");
+});
+
+
+
+/* $(function(){
+	console.log("ajax 앞");
+	$.ajax({
+		url : '/ssmall/hitItem',
+		type :'get',
+		dataType : 'json',
+		success : function(data){
+			console.log(data);
+			var tag = "";
+			$.each(data, function(key, value){
+				tag = tag + "<div id='hit'>";
+				tag = tag + "<li><div class='img'>";
+				tag = tag + "<img src='/ssmall/productimage/"+data.i_name+"'height='200' width='200'>";
+				tag = tag + "<a href='productDetail?p_number="+data.p_number+"'></a></div></li>";
+				tag = tag + "</div>";
+			});
+    	 }
+		$('#hitItem').html(tag);
+		console.log("qjwqdnwqdiowqdjniowqdniodwqionwdqniowqdniowqdniowqdoniwqdnio");
+	})
+}); */
+
+
+/* <li>
+			   <div class="img"><img src="productimage/watch1.PNG" height="200" width="200"></div>
+			   <p>상품이름</p>
+			  </li> */
+</script>
+<script > 
+ 
+function setCookie( name, value, expiredays ) { 
+    var todayDate = new Date(); 
+        todayDate.setDate( todayDate.getDate() + expiredays ); 
+        document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+    }
+function closeWin() { 
+    if ( document.notice_form.chkbox.checked ){ 
+        setCookie( "maindiv", "done" , 1 ); 
+    } 
+    document.all['divpop'].style.visibility = "hidden"; 
+} 
+  
+</script> 
+
 
 <c:choose>
 	<c:when test="${error eq 'error'}">
@@ -158,8 +234,128 @@
 	</c:when>
 
 </c:choose>
+
+<style>
+#bestitem img{
+overflow:hidden;
+float:left;
+width:300px;
+height:300px;
+
+}
+/* 이미지 슬라이드 부분 */
+li{
+list-style:none;
+}
+.clearfix {
+ overflow: auto; 
+ }
+.clearfix::after {
+content: ""; clear: both; display: table; 
+}
+.clear{
+clear: both;
+}    
+.gallery{
+width: 1200px; 
+margin: 20px auto; 
+border: 1px solid #ccc; 
+overflow: hidden; 
+padding-left:0; 
+}
+.gallery ul{
+width: 300%; 
+position: relative; 
+left: -300px;
+}
+.gallery ul li {
+float: left; 
+width: 300px; 
+height: 300px;
+box-sizing: border-box; 
+padding: 15px; 
+text-align: center; 
+line-height: 150px;
+}
+/* .gallery ul li .img{
+border: 1px solid #ccc;
+}  */
+
+.g_item{
+width: 900px; 
+margin: 0 auto; 
+text-align: center;
+}
+.g_item ul li{
+display: inline-block;
+ margin-right: 10px; 
+ background: #ccc; 
+ width: 10px; 
+ height: 10px; 
+ border-radius: 50%;
+ }
+.g_item ul li.on{
+background: #f00;
+}
+
+
+</style>
+
+
+
 </head>
-<body class="animsition">
+<body class="animsition ">
+	<!-- POPUP --> 
+	<div id="divpop" style="position:absolute;left:395px;top:190px;z-index:200;visibility:hidden;"> 
+		
+		<table width=300 height=400 cellpadding=2 cellspacing=0> 
+			
+			<tr> 
+				
+ 				<td style="border:1px #666666 solid" height=360 align=center bgcolor=white> 
+		 				<div id="demo"class="carousel slide" data-ride="carousel">
+						<ul class="carousel-indicators">
+						    <li data-target="#demo" data-slide-to="0" class="active"></li>
+						    <li data-target="#demo" data-slide-to="1"></li>
+						    <li data-target="#demo" data-slide-to="2"></li>
+		 				 </ul>
+		 				 
+		 				<div class="carousel-inner">
+						  <div class="carousel-item active">
+						   	<img src="productimage/watch2.PNG" height="360"width="300">
+						 </div>
+						  <div class="carousel-item">
+						   	<img src="productimage/watch3.PNG" height="360"width="300">
+						  </div>
+						   <div class="carousel-item">
+						   	<img src="productimage/watch1.PNG" height="360"width="300">
+						  </div>
+						  <!-- Left and right controls -->
+							  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+							    <span class="carousel-control-prev-icon"></span>
+							  </a>
+							  <a class="carousel-control-next" href="#demo" data-slide="next">
+							    <span class="carousel-control-next-icon"></span>
+							  </a>
+						</div>
+					</div>
+			    </td> 
+			   
+			</tr>
+		
+	<tr > 
+	   <form name="notice_form"> 
+		    <td align=left bgcolor= white  >
+		    <input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
+		    오늘 하루 이 창을 열지 않음
+		    	
+		        <a href="javascript:closeWin();"><B>[닫기]</B></a> 
+		    </td> 
+	    </form> 
+	</tr> 
+	        
+	</table> 
+	</div> 
 	<!-- Header -->
 	<header class="header-v3">
 		<!-- Header desktop -->
@@ -199,6 +395,7 @@
 							
 						</ul>
 					</div>	
+					
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
@@ -604,14 +801,612 @@
 									Shop Now
 								</div>
 							</div>
+						
 						</a>
 					</div>
 				</div>
 			</div>	
-		</div>
 		
 	</div>
+</div>
+		<div class="p-b-10">
+			<div class="container">
+				<h3 class="ltext-103 cl5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+					이달의 인기상품
+				</font></font></h3>
+			</div>
+		</div>
 
+			<div class="gallery">
+			 <ul id="hitItem" class="clearfix">
+			   
+			 
+			   
+			 </ul>
+			</div>
+			
+			<div class="g_item">
+			  <ul>
+			    <li class="on"></li>
+			    <li></li>
+			    <li></li>
+			    <li></li>
+			    <li></li>
+			  </ul>
+			</div>
+
+
+			
+		<%-- 
+	<section  class="bg0 p-t-23 p-b-130">
+		<div  class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+					제품 개요
+				</font></font></h3>
+			</div>
+
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+						전체 상품
+					</font></font></button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+						시계
+					</font></font></button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+						지갑
+					</font></font></button>
+
+					
+				</div>
+
+			</div>
+			<!-- <div id="slider"> -->
+			
+	
+			<div class="autoplay">
+			<div  class="row isotope-grid" style="position: relative; height: 1513.81px;">
+				
+				<div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 0%; top: 0px;">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0 " >
+							<img src="productimage/watch1.PNG" alt="IMG- 제품" height="390">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">
+								Quick View
+							</font></font>
+							</a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									에스프리 프릴 셔츠
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 16.64
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 24.9516%; top: 0px;">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="productimage/watch2.PNG" alt="IMG- 제품" height="390">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									허셜 공급
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 35.31
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men" style="position: absolute; left: 50%; top: 0px;">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="productimage/watch3.PNG" alt="IMG- 제품" height="390">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									바지 만 확인
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 25.50
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 74.9516%; top: 0px;">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-04.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									클래식 트렌치 코트
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 75.00
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 0%; top: 377px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-05.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									프론트 포켓 점퍼
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 34.75
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches" style="position: absolute; left: 24.9516%; top: 377px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-06.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									빈티지 인스파이어 드 클래식 
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 93.20
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 50%; top: 377px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-07.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									스트레치 코튼 셔츠
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 52.66
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 74.9516%; top: 377px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-08.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									조각 메탈 프린트
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 18.96
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item shoes" style="position: absolute; left: 0%; top: 755px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-09.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									컨버스 올스타 하이 플 림솔
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 75.00
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 24.9516%; top: 755px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-10.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									Femme 티셔츠 in 스트라이프
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 25.85
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men" style="position: absolute; left: 50%; top: 755px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-11.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									허셜 공급 
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 63.16
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men" style="position: absolute; left: 74.9516%; top: 755px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-12.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									허셜 공급
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 63.15
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 0%; top: 1133px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-13.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"></font></a>
+
+								<font style="vertical-align: inherit;"><span class="stext-105 cl3"><font style="vertical-align: inherit;">
+									소매가있는 </font></span><a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;">
+									티셔츠
+								 </font></a></font><span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 18.49
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 24.9516%; top: 1133px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-14.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									예쁜 것
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 54.79
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches" style="position: absolute; left: 50%; top: 1133px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-15.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									미니 실버 메쉬 시계
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 86.85
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" style="position: absolute; left: 74.9516%; top: 1133px;">
+					Block2
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="images/product-16.jpg" alt="IMG- 제품">
+
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+								Quick View
+							</font></font></a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									스퀘어 넥 백
+								 </font></font></a>
+
+								<span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+									$ 29.64
+								</font></font></span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+
+		
+			<div class="flex-c-m flex-w w-full p-t-38">
+				<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
+				<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+					1
+				 </font></font></a>
+
+				<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+					2
+				</font></font></a>
+			</div> 
+			 </div> 
+				</div>
+				
+			</div>
+			
+		</div>
+	
+ --%></section>
+		
+		
+	
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -895,6 +1690,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	 </div>  
 
+	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -976,11 +1772,77 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			});
 		});
 	</script>
+	
 <!--===============================================================================================-->
+<!--  <script>
+$(document).ready(function(){
+	$('.autoplay').slick({
+	  slidesToShow: 4,
+	  slidesToScroll: 1,
+	  autoplay: true,
+	  autoplaySpeed: 2000
+		});
+});
+</script> -->
+<script>
+var gall  = setInterval(galleryFun, 2000);
+  var inter = true;
+  var idx = 1;
   
-		
+   function galleryFun(){
+     
+      $(".gallery ul").animate({
+        "left":-300*idx+"px"
+      },300);
+     $(".g_item ul li").eq(idx-1).addClass("on").siblings().removeClass("on");
+     idx++;
+     if(idx> $(".gallery ul li").length-3){
+       $(".gallery ul").animate({
+         "left":0
+       },0);
+       idx=0;
+       
+     }
+   }
+   
+   
+   $(".gallery , .g_item").hover(function(){
+     if(inter==true){
+       clearInterval(gall);
+       inter=false;
+     }
+   },function(){
+     if(inter==false){
+       gall  = setInterval(galleryFun, 2000);
+       inter=true;
+     }
+     
+   });
+   
+   
+   
+   $(".g_item ul li").on('click',function(){
+     $(this).addClass("on").siblings().removeClass("on");
+     idx = $(this).index()+1;
+     $(".gallery ul").animate({
+        "left":-300*idx+"px"
+      },1000);
+     
+   });
+  </script>
+
 <!--===============================================================================================-->
- <script src="js/main.js"></script>
+<script > 
+//
+cookiedata = document.cookie;    
+if ( cookiedata.indexOf("maindiv=done") < 0 ){      
+    document.all['divpop'].style.visibility = "visible"; 
+    } 
+    else { 
+        document.all['divpop'].style.visibility = "hidden"; 
+} 
+</script>
+<!--===============================================================================================-->
 	 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 	<script>
@@ -995,6 +1857,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script> 
 	<span class="bt-basic" id="map"></span>  
+	
 <!--===============================================================================================  -->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -1013,7 +1876,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-	
+	 <script src="js/main.js"></script>
 </body>
  
 </html>

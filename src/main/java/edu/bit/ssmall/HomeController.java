@@ -2,6 +2,7 @@ package edu.bit.ssmall;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ssmall.corona.Corona;
-import edu.bit.ssmall.corona.StoresVO;
 import edu.bit.ssmall.service.CartService;
+import edu.bit.ssmall.service.HomeService;
+import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.CartViewVO;
+import edu.bit.ssmall.vo.ProductImageVO;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +31,13 @@ public class HomeController {
 	
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+	ProductService productService;
+	
+	@Autowired
+	HomeService homeService;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -59,30 +69,21 @@ public class HomeController {
 
 	}
 	
-	@RequestMapping(value="corona", method= {RequestMethod.GET, RequestMethod.POST})
-	public String corona(Model model, HttpServletRequest request){
-		return "corona";
-	}
-	
-	@RequestMapping(value="coronaView", method= {RequestMethod.GET, RequestMethod.POST})
-	public String coronaView(Model model, HttpServletRequest request){
-		
-		String address = request.getParameter("address");
-		
-		ArrayList<StoresVO> list= corona.coronaView(address);
-	
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
-		model.addAttribute("list", list);
-		
-		return "coronaView";
-	}
-	
 	@ResponseBody
 	@RequestMapping("miniCart")
 	public ArrayList<CartViewVO> miniCart(Principal principal){
 		System.out.println(cartService.miniCartInfo(principal.getName()));
 		return cartService.miniCartInfo(principal.getName());
 	}
+	
+	@ResponseBody
+	@RequestMapping("/hitItem")
+	public List<ProductImageVO> hitItem(ProductImageVO productimage, HttpServletRequest request, Model model){
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(homeService.selectProductListAmount());
+		//model.addAttribute(,homeService.selectProductListAmount(productimage));
+		return homeService.selectProductListAmount();
+	}
+	
+	
 }

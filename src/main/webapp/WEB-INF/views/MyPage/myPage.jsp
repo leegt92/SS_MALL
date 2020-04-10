@@ -19,6 +19,9 @@
     <!-- Custom styles for this template -->
     <link href="/ssmall/css/dashboard.css" rel="stylesheet"> 
     
+
+
+
     <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
@@ -93,7 +96,7 @@
                 </a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ssmall/myPage_reviseInformation">
+                <a class="nav-link" href="/ssmall/mypage/myPage_reviseInformation">
                   <span data-feather="file"></span>
                   <b>회원 정보 수정</b>
                 </a>

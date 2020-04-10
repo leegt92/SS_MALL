@@ -119,6 +119,8 @@ public interface ProductMapper {
 	//product에서 검색하기 위한 쿼리문
 	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_name like '%'||#{keyword}||'%'order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum}")
 	public List<ProductVO> searchProductListPage(@Param("startNum")int startNum, @Param("endNum")int endNum ,@Param("keyword")String keyword);
+
+	
 	
 	
 

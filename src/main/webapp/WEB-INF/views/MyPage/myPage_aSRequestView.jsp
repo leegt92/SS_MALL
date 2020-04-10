@@ -329,12 +329,11 @@
 	</c:if> <br>
 
 
-       <!--  <button onclick="window.location.href='/ssmall/mypage/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button> -->
+  <button onclick="window.location.href='/ssmall/mypage/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button> 
         
 
 
-        <button id=btnToAskAs onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
-
+       
     </ul>
     
 </div>

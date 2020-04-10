@@ -930,10 +930,11 @@ public class MyPageController {
 	    return "redirect:/myPage_aSRequestView";
 	}
 	
-	 @RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
+	 @RequestMapping(value="/mine/imageUpload.do", method =  {RequestMethod.GET,RequestMethod.POST})
 	    public void imageUpload(HttpServletRequest request,
 	            HttpServletResponse response, MultipartHttpServletRequest multiFile
 	            , @RequestParam MultipartFile upload) throws Exception{
+		 System.out.println("가나다라마");
 	        // 랜덤 문자 생성
 	        UUID uid = UUID.randomUUID();
 	        
@@ -970,7 +971,7 @@ public class MyPageController {
 	            
 	            String callback = request.getParameter("CKEditorFuncNum");
 	            printWriter = response.getWriter();
-	            String fileUrl = "/ssmall/mine/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
+	            String fileUrl = "/ssmall/mypage/mine/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
 	            
 	        // 업로드시 메시지 출력
 	          printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");

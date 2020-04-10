@@ -99,10 +99,6 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping(value = "product_Write_reply", method = {RequestMethod.POST, RequestMethod.GET})
 
-	
-		
-		
-
 	public void product_Write_reply(ProductReplyVO productReplyVO, HttpServletRequest request,Model model) {
 		System.out.println("/product_Write_replyAjax");		
 

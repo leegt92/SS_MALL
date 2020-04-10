@@ -125,7 +125,7 @@ html {
   
 
      <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0" style="right: 16px;">
-      <a href="/ssmall" class="logo"><img src="images/icons/mainlogo.png" alt="IMG-LOGO" style="
+      <a href="/ssmall" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
 
     width: 200px;
     height: 60px;
