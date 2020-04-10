@@ -143,9 +143,9 @@
 		<div class="container" >
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
-				width:1142px; height:527px; style="
+				style="
 				 width: 1142px;
-   				 height: 527px;
+				 height: 627px;
 				">
 
 					<form id="submitAskRequest" action="/ssmall/mypage/myPage_askRequest_back">
@@ -159,7 +159,7 @@
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="글 내용을 입력하세요" ></textarea>
+							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent" placeholder="글 내용을 입력하세요(이미지 업로드를 원할 경우 상단의 이미지 버튼 클릭 후 업로드 탭에서 파일 첨부 후 서버로 전송 클릭 후 확인 클릭)"></textarea>
 						</div>
 
 						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
@@ -241,10 +241,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
+
+    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="/ssmall/js/popper.min.js"></script>
     <script src="/ssmall/js/bootstrap.min.js"></script>
     <script src="/ssmall/js/sweetalert2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -256,13 +258,13 @@
 	    $("#submitAskRequest").submit(function(event) {
 	    		var a1 = document.getElementById("bTitle").value;
 	    		var a2 = document.getElementById("bContent").value;
-	    		if(a1 == "" || a2 == "") {
+	    		if(a1 == "") {
 	    			event.preventDefault();
 	    			Swal.fire({
 	    				icon: 'error',
 	    				position: 'center',
-	    				title: '글 제목 및 글 내용 미입력',
-	    				text: '글 제목과 글 내용을 모두 입력해 주십시오.',	
+	    				title: '글 제목 미입력',
+	    				text: '글 제목을 입력해 주십시오.',	
 	    			})
 	    		}
 	    		else {
@@ -283,7 +285,14 @@
 			
     		
 	</script>
-
+	
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bContent',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mypage/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+			});
+		});
+	</script> 
    
   </body>
 </html>

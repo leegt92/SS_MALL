@@ -173,14 +173,17 @@
 				<li>
 					<a href="companyView">회사소개</a>
 				</li>
+
 				
 				<li>
 					<a href="asView">AS</a>
 				</li>
+
 				
 				<li>
 					<a href="#" onclick="chat();">채팅</a>
 				</li>
+
 			</ul>
 		</div>
 		<!-- Modal Search -->
@@ -216,7 +219,12 @@
 	
 	
 		<div id="notice">
+
+		 	<div class="table-responsive">
+
+
 		 	<h1 class="m-5">공지사항</h1>
+
 			 <table class="table table-bordered table-hover "><!--, table-list-search --><!--  table-dark table-hover -->
 			 	<thead id="color">
 					<tr>
@@ -230,7 +238,7 @@
 				<tbody>
 					<c:forEach items="${list}" var="dto">
 					<tr>
-						<td>${dto.bId}</td>
+						<td>공지사항</td>
 						<td>${dto.bName}</td>
 						<td>
 							<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
@@ -244,8 +252,8 @@
 					<td colspan="5"> <a href="write_view">글작성</a> </td>
 				</tr> -->	
 			</table>
+		</div>
 			<ul class="pagination m-5 flex-c-m" >
-				
 					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
 						<li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
 						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
@@ -274,7 +282,14 @@
 			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
 			</ul>  -->
 		</div>
+
+
 	
+
+		</div>
+
+
+
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -427,6 +442,50 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
+
+<script src="js/main.js"></script>
+	 	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
+	<script>
+		$('#map1').click(function(){
+			var container = document.getElementById('map1');
+			 var options = {
+				center: new kakao.maps.LatLng(37.552475, 126.937825),
+				level: 3
+			}; 
+			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+
+		});
+	</script> 
+	<span class="bt-basic" id="map"></span> 
+<!--===============================================================================================-->
+<script>
+$(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#floatMenu").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+		/* 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 */
+
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 300);
+
+	}).scroll();
+});
+</script>
+<!--===============================================================================================-->
+
+	
+
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
@@ -443,22 +502,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
- 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
-	<script>
-		$('#map1').click(function(){
-			var container = document.getElementById('map1');
-			 var options = {
-				center: new kakao.maps.LatLng(37.552475, 126.937825),
-				level: 3
-			}; 
-			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
 
-		});
-	</script> 
-	<span class="bt-basic" id="map"></span> 
+
+
+	
+
 <!--===============================================================================================-->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>

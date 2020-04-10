@@ -1,12 +1,26 @@
 package edu.bit.ssmall.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.sql.Date;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.Map;
+import java.util.logging.Logger;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +30,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.google.gson.JsonObject;
 
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
@@ -442,7 +462,7 @@ public class MyPageController {
 			 }
 			 
 			 if(passwordEncoder.matches(pw, m_pw)) {
-				 return "MyPage/myPage_reviseInformation2";
+				 return "MyPage/myPage_reviseInformation2-2";
 			 }else {
 				 return "MyPage/checkPwError";
 			 }
@@ -655,6 +675,7 @@ public class MyPageController {
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
 	    model.addAttribute("bId",bId);
+	    
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -667,6 +688,10 @@ public class MyPageController {
 			if(bTitle != null && bContent != null) {
 				mypageService.updateAskAS(bTitle, bContent, bId);
 			}
+			String FbTitle = mypageService.selectFbTitle(bId);
+		    String FbContent = mypageService.selectFbContent(bId);
+			model.addAttribute("FbTitle",FbTitle);
+		    model.addAttribute("FbContent",FbContent);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -689,6 +714,7 @@ public class MyPageController {
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
 	    model.addAttribute("bId",bId);
+	    
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -732,7 +758,9 @@ public class MyPageController {
 	    String bTitle = request.getParameter("bTitle");
 	    String bContent = request.getParameter("bContent");
 	    String bId = request.getParameter("bId");
+	    
 	    model.addAttribute("bId",bId);
+	    
 	    String name = "";
 	    if(principal != null) {
 	        name = auth.getName();
@@ -745,6 +773,10 @@ public class MyPageController {
 			if(bTitle != null && bContent != null) {
 				mypageService.updateAskAS(bTitle, bContent, bId);
 			}
+			String FbTitle = mypageService.selectFbTitle(bId);
+		    String FbContent = mypageService.selectFbContent(bId);
+			model.addAttribute("FbTitle",FbTitle);
+		    model.addAttribute("FbContent",FbContent);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -755,7 +787,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_aSRequest2_back", method = RequestMethod.GET)
+	@RequestMapping(value = "/myPage_askAS2_back", method = RequestMethod.GET)
 	public String myPage_aSRequest2_back(Criteria criteria, Model model, HttpServletRequest request, BoardVO boardVO) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(criteria);
@@ -885,10 +917,66 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:/mypage/myPage_aSRequestView";
-
-
+		return "redirect:/mypage/myPage_aSRequestView";
 	}
+	
+	 @RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
+	    public void imageUpload(HttpServletRequest request,
+	            HttpServletResponse response, MultipartHttpServletRequest multiFile
+	            , @RequestParam MultipartFile upload) throws Exception{
+	        // 랜덤 문자 생성
+	        UUID uid = UUID.randomUUID();
+	        
+	        OutputStream out = null;
+	        PrintWriter printWriter = null;
+	        
+	        //인코딩
+	        response.setCharacterEncoding("utf-8");
+	        response.setContentType("text/html;charset=utf-8");
+	        
+	        try{
+	            
+	            //파일 이름 가져오기
+	            String fileName = upload.getOriginalFilename();
+	            byte[] bytes = upload.getBytes();
+	            
+	            //이미지 경로 생성
+	            String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\img\\"; //fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+	            String ckUploadPath = path + uid + "_" + fileName;
+	            File folder = new File(path);
+	            
+	            //해당 디렉토리 확인
+	            if(!folder.exists()){
+	                try{
+	                    folder.mkdirs(); // 폴더 생성
+	                }catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+	            
+	            out = new FileOutputStream(new File(ckUploadPath));
+	            out.write(bytes);
+	            out.flush(); // outputStram에 저장된 데이터를 전송하고 초기화
+	            
+	            String callback = request.getParameter("CKEditorFuncNum");
+	            printWriter = response.getWriter();
+	            String fileUrl = "/ssmall/mypage/mine/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
+	            
+	        // 업로드시 메시지 출력
+	          printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+	          printWriter.flush();
+	            
+	        }catch(IOException e){
+	            e.printStackTrace();
+	        } finally {
+	          try {
+	           if(out != null) { out.close(); }
+	           if(printWriter != null) { printWriter.close(); }
+	          } catch(IOException e) { e.printStackTrace(); }
+	         }
+	        
+	        return;
+	    }
 	
 	@RequestMapping(value="myPage_refundList", method= {RequestMethod.GET,RequestMethod.POST})
 	public String myPage_refundList(Criteria criteria, HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
@@ -921,7 +1009,52 @@ public class MyPageController {
 		
 		return "MyPage/myPage_refundList";
 	}
-	
-	
+	 @RequestMapping(value="/mine/ckImgSubmit.do")
+	    public void ckSubmit(@RequestParam(value="uid") String uid
+	                            , @RequestParam(value="fileName") String fileName
+	                            , HttpServletRequest request, HttpServletResponse response)
+	 throws ServletException, IOException{
+	        
+	        //서버에 저장된 이미지 경로
+	        String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\img\\";
+	    
+	        String sDirPath = path + uid + "_" + fileName;
+	    
+	        File imgFile = new File(sDirPath);
+	        
+	        //사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
+	        if(imgFile.isFile()){
+	            byte[] buf = new byte[1024];
+	            int readByte = 0;
+	            int length = 0;
+	            byte[] imgBuf = null;
+	            
+	            FileInputStream fileInputStream = null;
+	            ByteArrayOutputStream outputStream = null;
+	            ServletOutputStream out = null;
+	            
+	            try{
+	                fileInputStream = new FileInputStream(imgFile);
+	                outputStream = new ByteArrayOutputStream();
+	                out = response.getOutputStream();
+	                
+	                while((readByte = fileInputStream.read(buf)) != -1){
+	                    outputStream.write(buf, 0, readByte);
+	                }
+	                
+	                imgBuf = outputStream.toByteArray();
+	                length = imgBuf.length;
+	                out.write(imgBuf, 0, length);
+	                out.flush();
+	                
+	            }catch(IOException e){
+	                e.printStackTrace();
+	            }finally {
+	                outputStream.close();
+	                fileInputStream.close();
+	                out.close();
+	            }
+	        }
+	    }
 	
 }

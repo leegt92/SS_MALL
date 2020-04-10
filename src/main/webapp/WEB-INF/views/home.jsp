@@ -664,8 +664,8 @@
 						<p class="stext-130 cl7 size-201">
 							● 고객센터 : 1234-5678
 						</p>
-						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
-						 	abcdefg@abcdefg.com
+						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:wlsgpals2@naver.com" title="이메일 문의"class="stext-130 cl7 size-201">
+						 	wlsgpals2@naver.com
 						</a></p>
 						<p class="stext-130 cl7 size-201">
 							● FAQ

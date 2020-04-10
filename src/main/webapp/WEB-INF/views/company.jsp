@@ -117,7 +117,7 @@
 						<ul class="main-menu">
 							<li>
 								<a href="homeview">홈</a>
-								
+
 							</li>
 
 							<li>
@@ -167,7 +167,15 @@
 			<ul class="main-menu-m">
 				<li>
 					<a href="homeview">홈</a>
+
 				
+
+					<ul class="sub-menu-m">
+						<!-- <li><a href="index.html">Homepage 1</a></li>
+						<li><a href="home-02.html">Homepage 2</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li> -->
+					</ul>
+
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
@@ -183,8 +191,10 @@
 				</li>
 
 				<li>
+
 					<a href="companyView">회사소개</a>				
 				</li>
+
 
 				<li>
 					<a href="asView">AS</a>
@@ -196,21 +206,13 @@
 				
 			</ul>
 		</div>
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide modal-search">
-					<img alt="CLOSE" src="images/icons/icon-close2.png"/>
-				</button>
-				<form class="wrap-search-header flex-w p-1-15">
-					<button class="flex c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form>
-			</div>
 
-		</div>
+		
+
+
+
+
+
 	</header> 
 
 	
@@ -678,7 +680,8 @@
 				</div>
 						
 			</div>
-	
+		</div>
+	</div>
 
 
 	<!-- Footer -->
@@ -904,6 +907,7 @@ $(document).ready(function() {
 		});
 	</script>
 <!--===============================================================================================-->
+
 	<script>
 	function scroll_follow( id )
 		{
@@ -916,6 +920,7 @@ $(document).ready(function() {
 		 scroll_follow( "#scroll" );
  </script>
  <script src="/ssmall/js/chat.js"></script>
+
 
 </body>
 </html>

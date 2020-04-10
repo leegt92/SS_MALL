@@ -164,7 +164,7 @@
 							</li>
 						
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="noticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>
@@ -233,7 +233,12 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
+
+
 						SSMALL with luxury watches and wallets
+					 Free shipping for standard order over $100
+
+
 					</div>
 				</li>
 

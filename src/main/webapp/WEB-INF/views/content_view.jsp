@@ -238,7 +238,8 @@
 					 	
 						<th >제목 </th>
 						<td>${content_view.bTitle}</td>
-					</tr>  
+					</tr> 
+					 
 					  <tr>
 					    
 						 <th >내용</th> 
