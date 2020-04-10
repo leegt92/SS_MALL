@@ -91,7 +91,6 @@
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 
-<<<<<<< HEAD
 			<!-- SEARCH FORM -->
 			<form class="form-inline ml-3" action="/ssmall/admin/productSearch">
 				<div class="input-group input-group-sm">
@@ -103,10 +102,7 @@
 					</div>
 				</div>
 			</form>
-=======
-			
-			
->>>>>>> origin/dev_yeojun
+
 		</nav>
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
