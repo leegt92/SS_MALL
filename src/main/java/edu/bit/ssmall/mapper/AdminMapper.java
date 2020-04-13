@@ -13,6 +13,7 @@ import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
+import edu.bit.ssmall.vo.Product_BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 public interface AdminMapper {
@@ -150,5 +151,28 @@ public interface AdminMapper {
 	//답변미완료 글 답변완료로 수정하기
 	@Update("update board set banswered ='답변완료' where bid = #{bId}")
 	public void updateBanswered(@Param("bId") String bId);
+	
+	/*===============================================기간별 판매량 통계 ====================================================*/
+
+	@Select("Select sum(b_total) from buy where b_date between TO_DATE(SYSDATE-7) AND TO_DATE(SYSDATE)+0.99999")
+	public int getWeeklySales();
+	
+	@Select("Select sum(b_total) from buy where b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
+	public int getMonthlySales();
+	
+	@Select("Select sum(b_total) from buy where b_date between TO_DATE(SYSDATE-366) AND TO_DATE(SYSDATE)+0.99999")
+	public int getYearlySales();
+	
+	@Select("Select sum(b_total) from buy ")
+	public int getTotalSales();
+	
+	/*===============================================기간별 판매량 통계 ====================================================*/
+	
+	@Select("select count(*) from product p , buy b where p.p_number = b.p_number and p.p_brand = #{p_brand} and b.b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
+	public int getBrandMonthSales(@Param("p_brand")String p_brand);
+	
+	
+	@Select("Select DISTINCT p_brand from product order by p_brand asc")
+	public String[] getBrand();
 
 }

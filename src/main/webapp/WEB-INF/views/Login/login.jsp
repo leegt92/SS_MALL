@@ -53,7 +53,7 @@
 	<div class="limiter" >
 		<div class="container-login100" style="background-image: url('login/images/bg-02.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">		
-				<form:form id="login" action="login" class="login100-form validate-form" method="post">				
+				<form:form id="login" action="login" class="login100-form validate-form" method="post">								
 					<c:if test="${param.error != null }">
 						<script>alert("로그인에 실패하셨습니다. 아이디와 비밀번호를 확인해주세요");</script>
 					</c:if>

@@ -34,8 +34,6 @@ public interface CartMapper {
 	@Delete("Delete from cart where c_id = #{c_id}")
 	public void cartDelete(@Param("c_id")String c_id);
 
-	public void cartBuy(@Param("p_number")int p_number, @Param("m_number")int m_number, @Param("b_amount")int b_amount, @Param("b_totalprice")int b_totalprice);
-	
 	@Select("Select p_name from product where p_number = #{p_number}")
 	public String getP_name(@Param("p_number")int p_number);
 	

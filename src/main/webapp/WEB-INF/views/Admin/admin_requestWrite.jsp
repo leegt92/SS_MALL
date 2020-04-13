@@ -210,7 +210,7 @@ span {
             </tr>
             <tr>
                 <th>문의 및 요청 내용: </th>
-                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control" style="height: 214px;">${FbContent}</textarea></td>
+                <td><textarea  id="askContent" cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control" style="height: 214px;">${FbContent}</textarea></td>
             </tr>
             <br>
              <tr>

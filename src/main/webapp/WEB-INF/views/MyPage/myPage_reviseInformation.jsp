@@ -19,53 +19,45 @@
     <!-- Custom styles for this template -->
     <link href="/ssmall/css/dashboard.css" rel="stylesheet"> 
     
-    <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
+    <!--===============================================================================================-->   
+   <link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/iconic/css/material-design-iconic-font.min.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/fonts/linearicons-v1.0.0/icon-font.min.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/css-hamburgers/hamburgers.min.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/animate/animate.css">
+<!--===============================================================================================-->   
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/animsition/css/animsition.min.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
-
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/slick/slick.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/MagnificPopup/magnific-popup.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 
-	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
-
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-
-
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/slick/slick.css">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="/ssmall/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
+   <link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
 <!--===============================================================================================-->
 <style>
 .bg-light {
-	background-color: rgba(149, 204, 210, 0.2)!important;
+   background-color: rgba(149, 204, 210, 0.2)!important;
 }
  ul li {
-		border-bottom: 1px solid #bebebe;
+      border-bottom: 1px solid #bebebe;
     }
 .navbar{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:.5rem 1rem}
 </style>
@@ -77,7 +69,7 @@
       <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
- 	"></a>
+    "></a>
       <a href="/ssmall/" style="color:white">홈</a>
       <a href="/ssmall/productView" style="color:white">상품</a>
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
@@ -88,11 +80,11 @@
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
-          	<form id="logout" action="/ssmall/logout" method="POST">
-          							Sign out
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />			
-			</form>
-		</a>
+             <form id="logout" action="/ssmall/logout" method="POST">
+                               Sign out
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />         
+         </form>
+      </a>
         </li>
       </ul>
     </nav>
@@ -101,7 +93,7 @@
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
+             <h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -149,45 +141,49 @@
           </div>
         </nav>
 
-		
-		<div class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px; ">
-		<div class="container-login100" style="background-color:#f8f8f8;height: 400px; border:3px solid black;">
+      
+      <div class="limiter" style="position:fixed; left: 810px; width: 400px; top: 100px; ">
+      <div class="container-login100" style="background-color:#f8f8f8;height: 750px; ">
 
       </div>
     </div>
-    
-<div style="overflow:hidden; position:fixed;width: 1600px;height: 940px;left: 320px;"> 
-    <div  class="limiter" style="position:fixed; left: 500px; width: 1000px; top: 250px;">
-		<div class="container-login100" style="background-color: #bebebe;height: 400px; border:3px solid black;">
-
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form:form id="login" action="/ssmall/mypage/myPage_reviseInformation" class="login100-form validate-form" method="POST">
-					
-
-					<div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px;">
-						<span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 330px;">
-						<font size="5em" style="position:absolute;bottom: 0px;left: 0px;top: 0px;width: 400px;"><b>비밀번호를 다시 입력해 주세요.</b></font></span>
-						<input id= "m_password" class="input100" type="password" name="m_password" placeholder="" maxlength="20" style="
+   
+<div style="overflow:hidden; position:fixed;width: 1600px;height: 940px;left: 320px; "> 
+    <div  class="limiter" style="position:fixed; left: 810px; width: 400px; top: 100px; ">
+       
+      <div class="container-login100" style="background-color: #f0f8ff;height: 750px; border: 1px solid skyblue; border-radius: 10px;">
+          
+         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            
+            <form:form id="login" action="/ssmall/mypage/myPage_reviseInformation" class="login100-form validate-form" method="POST">
+               <div style="position:fixed; left:805px;" >
+                  <img src="/ssmall/images/icons/productlogo.png" width="400" height="150">
+               </div>
+               <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요" style="position:fixed;left: 915px;top: 400px; ">
+                  <span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 340px; ">
+                  <font size="5em" style="position:absolute;bottom: 0px;left: 50px;top: 0px;width: 400px; color:black;"><b> 개인정보 확인을 위해</b></font></span>
+                  <span class="label-input100" style="position:fixed;bottom: 670px;left: 850px;top: 400px; ">
+                  <font size="5em" style="position:absolute;bottom: 0px;left: 0px;  top: 0px;width: 400px; color:black;"><b> 비밀번호를 다시 입력해 주세요.</b></font></span>
+                  <input id= "m_password" class="input100" type="password" name="m_password" placeholder="" maxlength="20" style="
     position:fiexd;
     height: 30px;
     border:1px solid black;
- 	
-    margin-top: 30px;
+    margin-top: 100px;
     
     " />
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					<br>
-					<div class="flex-c-m" style="position:fixed;top: 550px;left: 975px;">
-						<input id="submit" class="btn btn-primary" type="submit" value="로그인"><pre> </pre>
-						
-											
-					</div>
-				</form:form>
-			</div>
-		</div>
-	</div>
-	</div>
+                  <span class="focus-input100" data-symbol="&#xf190;"></span>
+               </div>
+               <br>
+               <div class="flex-c-m" style="position:fixed;top: 650px;left: 975px;">
+                  <input id="submit" class="btn btn-primary" type="submit" value="로그인"><pre> </pre>
+                  
+                                 
+               </div>
+            </form:form>
+         </div>
+      </div>
+   </div>
+   </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

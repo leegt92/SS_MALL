@@ -2,6 +2,7 @@
 package edu.bit.ssmall.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -202,6 +203,40 @@ public class AdminService {
 	//답변미완료 글 답변완료로 수정하기
 	public void updateBanswered(String bId) throws Exception{
 		adminMapper.updateBanswered(bId);
+	}
+	
+	/*====================================통계================================================*/
+	public int getWeeklySales() {
+		return adminMapper.getWeeklySales();
+		
+	}
+	public int getMonthlySales() {
+		return adminMapper.getMonthlySales();
+		
+	}
+	public int getYearlySales() {
+		return adminMapper.getYearlySales();
+		
+	}
+	public int getTotalSales() {
+		return adminMapper.getTotalSales();
+		
+	}
+
+	public HashMap<String, Integer> getBrand() {
+		
+		String[] p_brand = adminMapper.getBrand(); // 중복없는 전체브랜드
+		//iwc 고야드 구찌 롤렉스 루이비통 에르메스 오메가 태그호이어 파텍필립 프라다 순으로 들어옴
+		int result = 0;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		for (int i = 0; i < p_brand.length; i++) {
+			result = adminMapper.getBrandMonthSales(p_brand[i]); //브랜드별 판매량
+			map.put(p_brand[i], result);	
+		}
+		System.out.println(map);
+		
+		return map;
 	}
 
 }

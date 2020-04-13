@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -273,9 +274,23 @@ public class AdminPageController {
 
 	// 관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
 	@RequestMapping(value = "adminpage", method = { RequestMethod.GET, RequestMethod.POST })
-	public String adminpage(Model model) {
+	public String adminpage(Model model, HttpSession session) {
 		System.out.println("adminpage 시작");
 
+		HashMap<String, Integer> map = adminService.getBrand();
+		
+		int weeklySales = adminService.getWeeklySales();
+		int monthlySales = adminService.getMonthlySales();
+		int yearlySales = adminService.getYearlySales();
+		int totalSales = adminService.getTotalSales();
+		
+
+		model.addAttribute("map",map);
+		model.addAttribute("weeklySales", weeklySales);
+		model.addAttribute("monthlySales", monthlySales);
+		model.addAttribute("yearlySales", yearlySales);
+		model.addAttribute("totalSales", totalSales);
+		
 		return "Admin/adminpage";
 
 	}

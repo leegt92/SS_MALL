@@ -48,11 +48,6 @@ public class CartService {
 		
 	}
 
-	public void cartBuy(int p_number, int m_number, int b_amount, int b_totalprice) {
-		cartMapper.cartBuy(p_number,m_number,b_amount,b_totalprice);
-		
-	}
-
 	public ArrayList<CartViewVO> miniCartInfo(String m_id) {
 		
 		return cartMapper.miniCartInfo(m_id);
