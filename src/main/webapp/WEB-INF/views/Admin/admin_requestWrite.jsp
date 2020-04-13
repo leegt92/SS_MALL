@@ -121,7 +121,7 @@ span {
 			
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -137,7 +137,7 @@ span {
 				</div>
 
 				<!-- Sidebar Menu -->
-				<nav class="mt-2">
+				<nav class="mt-2" >
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
@@ -206,11 +206,13 @@ span {
         	<input type="hidden" value="${bId}" name="bId"/>
             <tr>
                 <th style="width: 168px;">문의 및 요청 제목: </th>
-                <td><input type="text" value="${FbTitle}" name="subject" class="form-control"/></td>
+                <td><input type="text" value="${FbTitle}" name="subject" readonly="readonly" class="form-control"/></td>
             </tr>
             <tr>
                 <th>문의 및 요청 내용: </th>
-                <td><textarea  id="askContent" cols="10" placeholder="내용을 입력하세요. " name="content" class="form-control" style="height: 214px;">${FbContent}</textarea></td>
+
+                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
+
             </tr>
             <br>
              <tr>
@@ -229,7 +231,7 @@ span {
 		</form>
    
 </table>
-</div>									
+							
 								</div>												
 							</div>										
 						</div>														
@@ -262,20 +264,29 @@ span {
 	<!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     
-    <script type="text/javascript">
+  <script type="text/javascript">
 		$(function(){
-			CKEDITOR.replace('askContent',{extraPlugins : 'confighelper',
+			CKEDITOR.replace('askContent',  {
+			      width : '930px', 
+			      height : '700px',
+			      startupFocus : false
+			    },{extraPlugins : 'confighelper',
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 			});
 		});
-	</script> 
+	</script>
 	
 	<script type="text/javascript">
 		$(function(){
-			CKEDITOR.replace('answerContent',{extraPlugins : 'confighelper',
+			CKEDITOR.replace('answerContent', {
+			      width : '930px', 
+			      height : '700px',
+			      startupFocus : false
+			    },{extraPlugins : 'confighelper',
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 			});
 		});
+		
 	</script> 
    
 </body>

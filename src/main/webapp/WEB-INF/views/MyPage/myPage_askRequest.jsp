@@ -289,7 +289,7 @@
 	<script type="text/javascript">
 		$(function(){
 			CKEDITOR.replace('bContent',{extraPlugins : 'confighelper',
-				filebrowserUploadUrl: '${pageContext.request.contextPath}/mypage/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 			});
 		});
 	</script> 
