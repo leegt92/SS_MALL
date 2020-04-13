@@ -155,16 +155,16 @@ public interface AdminMapper {
 	/*===============================================기간별 판매량 통계 ====================================================*/
 
 	@Select("Select sum(b_total) from buy where b_date between TO_DATE(SYSDATE-7) AND TO_DATE(SYSDATE)+0.99999")
-	public int getWeeklySales();
+	public String getWeeklySales();
 	
 	@Select("Select sum(b_total) from buy where b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
-	public int getMonthlySales();
+	public String getMonthlySales();
 	
 	@Select("Select sum(b_total) from buy where b_date between TO_DATE(SYSDATE-366) AND TO_DATE(SYSDATE)+0.99999")
-	public int getYearlySales();
+	public String getYearlySales();
 	
 	@Select("Select sum(b_total) from buy ")
-	public int getTotalSales();
+	public String getTotalSales();
 	
 	/*===============================================기간별 판매량 통계 ====================================================*/
 	

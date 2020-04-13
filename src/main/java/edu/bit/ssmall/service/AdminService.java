@@ -205,24 +205,37 @@ public class AdminService {
 		adminMapper.updateBanswered(bId);
 	}
 	
-	/*====================================통계================================================*/
+/*====================================통계================================================*/
 	public int getWeeklySales() {
-		return adminMapper.getWeeklySales();
+		
+		if (adminMapper.getWeeklySales() == null) {
+			return 0;
+		}
+		return Integer.parseInt(adminMapper.getWeeklySales());
 		
 	}
 	public int getMonthlySales() {
-		return adminMapper.getMonthlySales();
 		
+		if (adminMapper.getMonthlySales() == null) {
+			return 0;
+		}
+		return Integer.parseInt(adminMapper.getMonthlySales());
 	}
 	public int getYearlySales() {
-		return adminMapper.getYearlySales();
 		
+		if (adminMapper.getYearlySales() == null) {
+			return 0;
+		}
+		return Integer.parseInt(adminMapper.getYearlySales());
 	}
 	public int getTotalSales() {
-		return adminMapper.getTotalSales();
 		
+		if (adminMapper.getTotalSales() == null) {
+			return 0;
+		}
+		return Integer.parseInt(adminMapper.getTotalSales());
 	}
-
+/*==================================== 그래프 ================================================*/
 	public HashMap<String, Integer> getBrand() {
 		
 		String[] p_brand = adminMapper.getBrand(); // 중복없는 전체브랜드
@@ -234,6 +247,7 @@ public class AdminService {
 			result = adminMapper.getBrandMonthSales(p_brand[i]); //브랜드별 판매량
 			map.put(p_brand[i], result);	
 		}
+		
 		System.out.println(map);
 		
 		return map;
