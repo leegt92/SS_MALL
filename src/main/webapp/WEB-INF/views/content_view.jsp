@@ -230,7 +230,8 @@
 					 	
 						<th >제목 </th>
 						<td>${content_view.bTitle}</td>
-					</tr>  
+					</tr> 
+					 
 					  <tr>
 					    
 						 <th >내용</th> 
@@ -249,7 +250,7 @@
 			<a  href="boardnoticeView" class="btn btn-primary m-2">목록보기</a>
 		</div>							
 								
-
+		
 
 
 

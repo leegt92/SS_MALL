@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<!-- 가지치기 하기위해 백업 + 글목록불러오기를 ajax로 하기로 했다.-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>SS_MALL</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -39,6 +39,75 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
+<!--===============================================================================================-->
+
+
+<!-- 일단 멈춤 구매부분부터 -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+
+<!-- <style type="text/css">
+
+	/* .pagination>li>a, .pagination>li>span { 
+		border-radius: 50% !important;
+		margin: 0 5px;
+		background-color:gray;
+		color:white;
+		}
+	 .pagination>li>a, .pagination>li>span:hover {
+	    border-radius: 50% !important;
+		margin: 0 5px;
+		background-color:white;
+		color:gray;
+		} */
+
+ 	#custom-search-input{
+	    padding: 3px;
+	    border: solid 1px #E4E4E4;
+	    border-radius: 6px;
+	    background-color: #fff;
+	}
+	
+	#custom-search-input input{
+	    border: 0;
+	    box-shadow: none;
+	}
+	 
+	/* #SearchButtonImage{
+	    background-color: gray;
+	    border-color: gray;
+
+	} */
+ 	/* .page-item{
+		background-color: gray;
+		color:gray;
+	} */
+	
+ 	/* #SearchButtonImage{
+	    margin: 2px 0 0 0;
+	    background-color: gray;
+	    box-shadow: none;
+	    border: 0;
+	    color: #555555;
+	    padding: 0 8px 0 10px;
+	    border-left: solid 1px #ccc;
+	} */
+ 	
+	#custom-search-input button:hover{
+	    border: 0;
+	    box-shadow: none;
+	    border-left: solid 1px #ccc;
+	}
+	
+	#custom-search-input .glyphicon-search{
+	    font-size: 23px;
+<<<<<<< HEAD
+	} */
+</style> -->
+
 </head>
 <body class="animsition">
 	
@@ -54,15 +123,16 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="homeView" class="flex-c-m trans-04 p-lr-25">
+						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
-						
-						<a href="myPage" class="flex-c-m trans-04 p-lr-25">
+			
+
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
-						<a href="cartView" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
 							Cart
 						</a>
 
@@ -94,7 +164,7 @@
 							</li>
 						
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="noticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>
@@ -102,11 +172,15 @@
 							<li>
 								<a href="asView">AS</a>
 							</li>	
+							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
+							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
+					<!-- <div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
@@ -118,7 +192,7 @@
 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
-					</div>
+					</div> -->
 				</nav>
 			</div>	
 		</div>
@@ -159,7 +233,12 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
+
+
 						SSMALL with luxury watches and wallets
+					 Free shipping for standard order over $100
+
+
 					</div>
 				</li>
 
@@ -169,11 +248,11 @@
 							Home
 						</a>
 
-						<a href="myPage" class="flex-c-m p-lr-10 trans-04">
+						<a href="mypage/myPage_orderedList" class="flex-c-m p-lr-10 trans-04">
 							My
 						</a>
 
-						<a href="cartView" class="flex-c-m p-lr-10 trans-04">
+						<a href="cart/cartView" class="flex-c-m p-lr-10 trans-04">
 							cart
 						</a>
 						
@@ -238,9 +317,9 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<span class="stext-109 cl4">
+			<a href="productView" class="stext-109 cl8 hov-cl1 trans-04">
 				상품
-			</span>
+			</a>
 		</div>
 	</div>
 
@@ -260,71 +339,13 @@
 			</div>
 			
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
+				<ul id="miniCart" class='header-cart-wrapitem w-full'>
 				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
+				</ul>
+				<div id="total" class="w-full">
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -336,19 +357,26 @@
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
+					<a href="productView" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+						All Product
+					</a>
 					
-				
-					<button id="wallet1"class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  data-filter=".지갑">
-						Wallet
-					</button> 
-				
-		 		
-					<button id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".시계">
+					<a href="productViewSearchCategory?p_category=시계" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
 						Watch
+					</a>
+
+					<a href="productViewSearchCategory?p_category=지갑" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+						Wallet
+					</a>
+				
+					<a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}</a>
+		 		
+					<!-- <button id="watch1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".시계">
+						Watch1
 					</button>
+					<button id="wallet1" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 " data-filter=".지갑">
+						wallet
+					</button> -->
 				
 				
 				</div>
@@ -357,123 +385,164 @@
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Filter 조건설정
+						 Filter
 					</div>
 
 					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						Search 검색
+						Search
 					</div>
-				</div>
-				
+				</div>				
 				<!-- Search product -->
+					<!-- <div class="container">
+						<div class="row">
+					        <div class="col-md-6">
+					    		<h2>Custom search field</h2>
+					            <div id="custom-search-input">
+					            <form action="productViewSearch" method="get">
+					                <div class="input-group col-md-12">
+					                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search" />
+					                   	 	<span class="input-group-btn">
+					                        	<button class="btn btn-info btn-lg" type="submit">
+					                           	 	<i class="glyphicon glyphicon-search"></i>
+					                        	</button>
+					                    	</span>
+					                	</div>
+					                </form>
+					            </div>
+					        </div>
+						</div>
+					</div> -->
+				<!-- 원본-------------------------------------------------------------------------->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
-					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+					<!-- <div class="bor8 dis-flex p-l-15"> -->
+						<!-- <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
-						</button>
-						<p>373번째줄 search 구분</p>
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search_product" placeholder="Search">
-						<input type="submit" value="검색" width = "300"/>
-						
-					</div>	
+						</button> -->
+						<!-- <p>373번째줄 search 구분</p> -->
+						<!-- <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" value="keyword" name="search_product" placeholder="Search">
+						<input type="submit" value="검색" width = "300"/> -->
+						<form action="productViewSearch" method="get">
+							<!-- <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요1" />
+							<input type="submit" value="검색1" />
+								<input class="mtext-107 cl2 size-114 plh2 p-r-15" id="keyword" type="text" value="" name="keyword" placeholder="Search2">				
+								<button type="submit">검색2</button>
+							<input type="submit" value="검색1" width = "300"/> -->
+								<div class="input-group col-md-12">
+			                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search" />
+			                   	 	<span class="input-group-btn">
+			                        	<button id="SearchButtonImage" class="btn btn-info btn-lg" type="submit">
+			                           	 	<i class="glyphicon glyphicon-search"></i>
+			                        	</button>
+			                    	</span>
+			                	</div>
+						</form>
+						<!-- <input class="form-control" type="text" id="keyword" name="keyword" 
+								value="keyword" placeholder="검색어를 입력하세요"/>
+						<button id="searchBtn" class="btn btn-primary">Search</button>	 -->					
+					<!-- </div> -->	
 				</div>
-
+				<!-- 원본끝-------------------------------------------------------------------------- -->
 				<!-- Filter -->
 				<div class="dis-none panel-filter w-full p-t-10">
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Sort By 기준
+								Wallet By Brand
 							</div>
 
 							<ul>
+							
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Default 일반
+									<a href="productViewSearchCategory?p_category=지갑" class="filter-link stext-106 trans-04">
+										All Wallet
+									</a>
+								</li>							
+								
+								<li class="p-b-6">
+									<a href="productViewSearchBrand?p_brand=고야드" class="filter-link stext-106 trans-04">
+										고야드
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Popularity 인기순
+									<a href="productViewSearchBrand?p_brand=구찌" class="filter-link stext-106 trans-04">
+										구찌
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Average rating 평균가격
+									<a href="productViewSearchBrand?p_brand=루이비통" class="filter-link stext-106 trans-04">
+										루이비통
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Newness <!-- filter-link-active -->
+									<a href="productViewSearchBrand?p_brand=에르메스" class="filter-link stext-106 trans-04">
+										에르메스<!-- filter-link-active -->
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: Low to High 가격 오름차순
+									<a href="productViewSearchBrand?p_brand=프라다" class="filter-link stext-106 trans-04">
+										프라다
 									</a>
 								</li>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: High to Low 가격 내림차순
-									</a>
-								</li>
+								
 							</ul>
 						</div>
 
 						<div class="filter-col2 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Price 가격
+								Watch By Brand
 							</div>
 
 							<ul>
+							
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										All
+									<a href="productViewSearchCategory?p_category=시계" class="filter-link stext-106 trans-04">
+										All Watch
+									</a>
+								</li>
+							
+								<li class="p-b-6">
+									<a href="productViewSearchBrand?p_brand=iwc" class="filter-link stext-106 trans-04">
+										iwc
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$0.00 - $50.00
+									<a href="productViewSearchBrand?p_brand=롤렉스" class="filter-link stext-106 trans-04">
+										롤렉스
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$50.00 - $100.00
+									<a href="productViewSearchBrand?p_brand=오메가" class="filter-link stext-106 trans-04">
+										오메가
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$100.00 - $150.00
+									<a href="productViewSearchBrand?p_brand=태그호이어" class="filter-link stext-106 trans-04">
+										태그호이어
 									</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$150.00 - $200.00
+									<a href="productViewSearchBrand?p_brand=파텍필립" class="filter-link stext-106 trans-04">
+										파텍필립
 									</a>
 								</li>
 
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$200.00+
-									</a>
-								</li>
 							</ul>
 						</div>
 
 						<div class="filter-col3 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Color
+								순위
 							</div>
 
 							<ul>
@@ -482,8 +551,8 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Black
+									<a href="productViewRank?keyword=p_amount desc" class="filter-link stext-106 trans-04">
+										인기순
 									</a>
 								</li>
 
@@ -492,8 +561,8 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Blue
+									<a href="productViewRank?keyword=p_released_date desc" class="filter-link stext-106 trans-04">
+										최신순
 									</a>
 								</li>
 
@@ -502,8 +571,8 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Grey
+									<a href="productViewRank?keyword=p_price desc" class="filter-link stext-106 trans-04">
+										가격 높은순
 									</a>
 								</li>
 
@@ -512,12 +581,12 @@
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 
-									<a href="#" class="filter-link stext-106 trans-04">
-										Green
+									<a href="productViewRank?keyword=p_price asc" class="filter-link stext-106 trans-04">
+										가격 낮은순
 									</a>
 								</li>
 
-								<li class="p-b-6">
+								<!-- <li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
@@ -535,11 +604,11 @@
 									<a href="#" class="filter-link stext-106 trans-04">
 										White
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 
-						<div class="filter-col4 p-b-27">
+						<!-- <div class="filter-col4 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Tags
 							</div>
@@ -565,21 +634,31 @@
 									Crafts
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 
 			<div class="row isotope-grid">
-				<c:forEach items="${product}" var="product">
+				<c:forEach items="${product}" var="product" varStatus="status">
 				<div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.p_category}" >
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="productimage/${product.i_name}" alt="IMG-PRODUCT" width="300" height="300">
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<img src="productimage/${product.p_image}" alt="IMG-PRODUCT" width="300" height="300">
+							
+							<%-- <a href="productViewQuick?p_number=${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
-							</a>
+							</a> --%>
+							
+							<%-- <button type="button" id="QuickViewBtn" name="QuickViewBtn" value="${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+									Quick View123
+							</button> --%>
+							
+							<button type="button" id="QuickViewBtn" name="QuickViewBtn" value="${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+									Quick View123
+							</button>
+							
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -589,44 +668,103 @@
 									${product.p_name}
 								</a> --%>
 								
-								<a href="productDetail2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
+								<a href="productDetail?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
 									<!-- productDetail2 -->${product.p_name}
 								</a>
 								
-								<a href="product_replyAjax2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
-									ajax 확인
-								</a>
+								<%-- <a href="product_replyAjax2?p_number=${product.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">			
+									ajax 값 잘 넘어오나 확인버튼
+								</a> --%>
 								
 								<span class="stext-105 cl3">
 									<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
 								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
+							<!-- <div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					
 				</div>
 				</c:forEach>
 			</div>
-
-			<!-- Load more -->
+			<!-- 페이징 글번호 -->
+			
+			<!-- 검색기능을 사용하여 keyword에 값이 들어가 있을때 url에 keyword를 전달하여 페이징버튼을 눌러도 검색이 남아있게함. -->
+			<!-- otherwise는 검색기능을 사용하지 않은 일반 상태일때의 페이징.url에 keyword가 붙지않는다. -->
+			<nav aria-label="Page navigation example">
+				<ul class="pagination flex-c-m" >
+				<c:choose>
+					<c:when test="${keyword!=null}">
+						<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+							<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/productViewSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+							<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+						</c:if>
+						
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(idx)}&keyword=${keyword}">${idx}&nbsp;&nbsp;&nbsp;</a></li>
+						</c:forEach>																		
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+							<li class="page-item"><a href="productViewSearch${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${keyword}"> » </a></li>
+						</c:if><br>
+					</c:when>
+					
+					<c:when test="${rankKeyword!=null}">
+						<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+							<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/productViewSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+							<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(idx)}&keyword=${rankKeyword}">${idx}&nbsp;&nbsp;&nbsp;</a></li>
+						</c:forEach>																		
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productViewRank${pageMaker.makeQuery(pageMaker.endPage +1)}&keyword=${rankKeyword}"> » </a></li>
+						</c:if> <br>
+					</c:when>
+					
+					<c:otherwise>
+						<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+							<li class="page-item"><a class="page-link" aria-label="Previous" href="/ssmall/productViewSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}">«</a></li>
+							<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="idx">
+							<c:out value="${pageMaker.cri.page == idx?'':''}" />
+							<li class="page-item"><a href="productView${pageMaker.makeQuery(idx)}">${idx}&nbsp;&nbsp;&nbsp;</a></li>
+						</c:forEach>																										
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li class="page-item"><a href="productView${pageMaker.makeQuery(pageMaker.endPage +1)}"> » </a></li>
+						</c:if> <br>
+					</c:otherwise>
+				</c:choose>
+				</ul>
+			</nav>
+			
+			
 			<div class="flex-c-m flex-w w-full p-t-45">
+				<a href="productView" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					Return to List
+				</a>
+			</div>
+			<!-- 페이징 글번호 끝 -->
+			<!-- Load more -->
+			<!-- <div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Load More
 				</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 		
 
 	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
+		<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-2 p-b-50">
@@ -754,7 +892,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- 
 	<!--  Modal1  -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
+		<div class="overlay-modal1 js-hide-modal1" id="hideModal"></div>
 
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
@@ -763,40 +901,43 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</button>
 				
 				<%-- <c:if test="${p_number eq product?p_number=${product.p_number}"> --%>
-				<c:forEach items="${product}" var="product">
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
+				<%-- <c:forEach items="${quickViewList}" var="product"> --%>
+				<div id="quickViewModal" class="row">
+				<!-- ajax로 만든 modal 들어올 자리 -->
+<%-- 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
 							<div class="wrap-slick3 flex-sb flex-w">
 								<div class="wrap-slick3-dots"></div>
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="productimage/${quickViewList.p_image}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<div id="img">
+												
+											</div>
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${quickViewList.p_image}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="productimage/'${quickViewList.p_image}'">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="productimage/'${quickViewList.p_image}'" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/'${quickViewList.p_image}'">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="productimage/${product.i_name}">
+									<div class="item-slick3" data-thumb="productimage/'${quickViewList.p_image}'">
 										<div class="wrap-pic-w pos-relative">
-											<img src="productimage/${product.i_name}" alt="IMG-PRODUCT">
+											<img src="productimage/'${quickViewList.p_image}'" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/${product.i_name}">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="productimage/'${quickViewList.p_image}'">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -808,21 +949,39 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								${product.p_name}
+							<h4 id="QuickName" class="mtext-105 cl2 js-name-detail p-b-14">
+								${quickViewList.p_name}
 							</h4>
 
-							<span class="mtext-106 cl2">
-								<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/>원
+							<span id="QuickPrice" class="mtext-106 cl2">
+								<fmt:formatNumber value="${quickViewList.p_price}" pattern="###,###,###"/>원
 							</span>
 
-							<p class="stext-102 cl3 p-t-23">
-								${product.p_description}
-							</p>
+							<div class="stext-102 cl3 p-t-23">
+								<div class="size-203 flex-c-m respon6">
+									<table class="DetailTable">									
+									 <tr>
+									   <td>적립금</td>
+									   <td>
+									<fmt:formatNumber
+									value="3333333333" pattern="###,###,###" />원
+									 </tr>
+									 <tr>
+									   <td>배송비</td>
+									   <td>무료</td>
+									 </tr>
+									 <tr>
+									   <td>브랜드</td>
+									   <td>브랜드값들어갈자리</td>
+									 </tr>
+									</table>
+								</div>
+								
+							</div>
 							
 							
 							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
+								<!-- <div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
 										Size
 									</div>
@@ -839,9 +998,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
-								<div class="flex-w flex-r-m p-b-10">
+								<!-- <div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
 										Color
 									</div>
@@ -858,9 +1017,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
-								<div class="flex-w flex-r-m p-b-10">
+								<!-- <div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -878,7 +1037,41 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											Add to cart
 										</button>
 									</div>
-								</div>	
+								</div> -->	
+								
+								<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									<form:form role="form" method="post" id="buyForm" >
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+											<input type="hidden" name="p_number" value="${quickViewList.p_number}">
+											<div id="minus" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+											<input id="b_amount" readonly class="mtext-104 cl3 txt-center num-product" type="number" name="b_amount" value="0">
+											<div id="plus" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+											<span class="label-input100">최종가격</span>
+											<input id="finalPrice" type="text" class="form-control" style="width: 50%;" value="0" readonly>
+										<div>
+											<button id="cart" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button" style="float: left;">
+												장바구니
+											</button>
+											<button id="buy" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button">
+												구입하기
+											</button>
+											<!-- <button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" style="float: left;" onclick="javascript: form.action='/ssmall/cart/addCart';" >
+												장바구니
+											</button>
+											<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="submit" onclick="javascript: form.action='/ssmall/buy/buy';">
+												구입하기
+											</button>	 -->									
+										</div>
+									</form:form>
+								</div>
+							</div>
+								
 							</div>
 
 							
@@ -902,9 +1095,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 				</div>
-				</c:forEach>
+				<%-- </c:forEach> --%>
 				<%-- </c:if> --%>
 			</div>
 		</div>
@@ -1047,7 +1240,440 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 	
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+
+<script type="text/javascript">
+
+	
+	//검색 script
+/* 	function setSearchTypeSelect(){
+		var keyword = $('#keyword');
+
+		$('#searchBtn').on('click',function(){
+			var keywordVal = keyword.val();
+
+			//검색어 입력 안했으면 검색창
+			if(!keywordVal){
+				alert("검색어를 입력하세요!");
+				$('#keyword').focus();
+				return;
+			}
+			var url = "productView?page=1"
+				+ "&perPageNum=" + "${pageMaker.cri.perPageNum}"
+				+ "&keyword=" + encodeURIComponent(keywordVal);
+			window.location.href = url;
+		})
+	}*/
+
+</script>
+<script>
+	$(function(){
+		$(document).on("click","#QuickViewBtn",function(){
+			
+			/* alert($(this).attr("value")); */
+			var data = {
+					  p_number : $(this).attr("value")
+			  };
+			$.ajax({
+				method:"get",
+				url:"/ssmall/productViewQuick",
+				data:data,
+				async:false,
+				error:function(xhr,status,error){
+					alert(error);
+					alert("er");
+				},
+				success:function(data){
+					
+					function numberWithCommas(x) {
+						console.log("numberWithCommas");    
+						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					};
+					
+					$.each(data.slice(0, 1), function(key, data){
+						modalIname1 = data.i_name;
+						numberWithCommas = numberWithCommas(data.p_price);
+					})
+					$.each(data.slice(0, 2), function(key, data){
+						modalIname2 = data.i_name;
+					})
+					$.each(data.slice(0, 3), function(key, data){
+						modalIname3 = data.i_name;
+					})
+					
+					console.log(modalIname1);
+					console.log(modalIname2);
+					console.log(modalIname3);
+					
+					$.each(data.slice(0, 1), function(key, data){
+						/* console.log(data.i_name); */
+					
+					
+					/* var modal = {
+							p_name : data.p_name,
+							p_price : data.p_price,
+							p_number : data.p_number
+					}; */
+					
+					
+					var tag = "";
+					
+					tag = tag + "<div class='col-md-6 col-lg-7 p-b-30'>";
+					tag = tag + "<div class='p-l-25 p-r-30 p-lr-0-lg'>";
+					tag = tag + "<div class='wrap-slick3 flex-sb flex-w'>";
+					
+					tag = tag + "<div class='wrap-slick3-dots'>";
+					
+					tag = tag + "<ul class='slick3-dots' role='tablist' style=''>";
+
+					tag = tag + "<li class='slick-active' role='presentation' id='leftModalImage1'>";
+					tag = tag + "<img src='productimage/"+modalIname1+"' id='2leftModalImage1'>";
+					tag = tag + "<div class='slick3-dot-overlay'></div>";
+					tag = tag + "</li>";
+					tag = tag + "<li role='presentation' class='' id='leftModalImage2'>";
+					tag = tag + "<img src=' productimage/"+modalIname2+"' id='2leftModalImage2'>";
+					tag = tag + "<div class='slick3-dot-overlay'></div>";
+					tag = tag + "</li>";
+					tag = tag + "<li class='' role='presentation' class='' id='leftModalImage3'>";
+					tag = tag + "<img src=' productimage/"+modalIname3+"' id='2leftModalImage3'>";
+					tag = tag + "<div class='slick3-dot-overlay'></div>";
+					tag = tag + "</li>"
+					tag = tag + "</ul>";
+
+					tag = tag + "</div>";
+					
+
+
+					
+					
+					
+					
+
+					tag = tag + "<div class='slick3 gallery-lb'>";
+					tag = tag + "<div class='item-slick3' data-thumb='productimage/"+modalIname1+"'>";
+					tag = tag + "<div class='wrap-pic-w pos-relative'>";
+					tag = tag + "<img src='productimage/"+modalIname1+"' alt='IMG-PRODUCT' id='mainModalImage'>";
+					tag = tag + "<a class='flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04' href='productimage/"+modalIname1+"'>";
+					tag = tag + "<i class='fa fa-expand'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					
+					tag = tag + "<div class='col-md-6 col-lg-5 p-b-30'>";
+					tag = tag + "<div class='p-r-50 p-t-5 p-lr-0-lg'>";
+					tag = tag + "<h4 id='QuickName' class='mtext-105 cl2 js-name-detail p-b-14'>"+data.p_name+"</h4>";
+								
+					tag = tag + "<span id='QuickPrice' class='mtext-106 cl2'>"+numberWithCommas+"</span>원";
+
+					tag = tag + "<div class='stext-102 cl3 p-t-23'>";
+					tag = tag + "<div class='size-203 flex-c-m respon6' style='width: 250px'>";
+				    
+					
+					tag = tag + "<table class='table table-search'>";									
+					tag = tag + "<tr>";
+					tag = tag + "<td>적립금</td>";
+					tag = tag + "<td>";
+					tag = tag + +data.p_price/10+"원";
+					tag = tag + "</tr>";
+					tag = tag + "<tr>";
+					tag = tag + "<td>배송비</td>";
+					tag = tag + "<td>무료</td>";
+					tag = tag + "</tr>";
+					tag = tag + "<tr>";
+					tag = tag + "<td>브랜드</td>";
+					tag = tag + "<td>브랜드값들어갈자리</td>";
+					tag = tag + "</tr>";
+					tag = tag + "</table>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "<div class='p-t-33'>";
+					tag = tag + "<div class='flex-w flex-r-m p-b-10'>";
+					tag = tag + "<div class='size-204 flex-w flex-m respon6-next' style='width: 500px'>";
+					tag = tag + "<form:form role='form' method='post' id='buyForm' >";
+					tag = tag + "<div class='wrap-num-product flex-w m-r-20 m-tb-10' >";					
+					tag = tag + "<input type='hidden' name='p_number' id='p_number' value='"+data.p_number+"'>";
+					tag = tag + "<div id='minus' value='"+data.p_price+"' class='btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m'>";
+					tag = tag + "<i class='fs-16 zmdi zmdi-minus'></i>";
+					tag = tag + "</div>";
+					tag = tag + "<input id='b_amount' readonly class='mtext-104 cl3 txt-center num-product' type='number' name='b_amount' value='0'>";
+					tag = tag + "<div id='plus' value='"+data.p_price+"' class='btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m'>";
+					tag = tag + "<i class='fs-16 zmdi zmdi-plus'></i>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "<span class='label-input100'>최종가격</span>";
+					tag = tag + "<input id='finalPrice' type='text' class='form-control m-3' style='width: 50%;' value='0' readonly >";
+					tag = tag + "<div>";
+					tag = tag + "<button id='cart' class='stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' value='"+data.p_number+"' type='button' style='float: left;'>장바구니</button>";
+					tag = tag + "<button id='buy' class='stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail' value='"+data.p_number+"' type='button'>구입하기</button>";
+					tag = tag + "</div>";
+					tag = tag + "</form:form>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+
+					tag = tag + "<div class='flex-w flex-m p-l-100 p-t-40 respon7'>";
+					tag = tag + "<div class='flex-m bor9 p-r-10 m-r-11'>";
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100' data-tooltip='Add to Wishlist'>";
+					tag = tag + "<i class='zmdi zmdi-favorite'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Facebook'>";
+					tag = tag + "<i class='fa fa-facebook'></i>";
+					tag = tag + "</a>";
+
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Twitter'>";
+					tag = tag + "<i class='fa fa-twitter'></i>";
+					tag = tag + "</a>";
+
+					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Google Plus'>";
+					tag = tag + "<i class='fa fa-google-plus'></i>";
+					tag = tag + "</a>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					tag = tag + "</div>";
+					
+					
+					
+					$("#quickViewModal").html(tag);
+					 console.log("quickViewModal탐");
+					});
+			}
+		});
+	})
+})
+
+
+/* $('#QuickName').html(data.p_name);
+$('#QuickPrice').html('<p>'+data.p_price+'</p>');
+$('#QuickDescription').html(data.p_description); */
+
+
+
+//ajax 예시. 끝나면 지울것
+/* var tag = "";
+	tag = tag + "<div class='size-203 flex-c-m respon6'>";
+	tag = tag + "<table class='DetailTable'>";									
+	 tag = tag + "<tr>";
+	   tag = tag + "<td>적립금</td>";
+	   tag = tag + "<td>";
+	tag = tag + "<td>"+data.p_price/10+"</td>원";
+	 tag = tag + "</tr>";
+	 tag = tag + "<tr>";
+	   tag = tag + "<td>배송비</td>";
+	   tag = tag + "<td>무료</td>";
+	 tag = tag + "</tr>";
+	 tag = tag + "<tr>";
+	   tag = tag + "<td>브랜드</td>";
+	   tag = tag + "<td>"+data.p_brand+"</td>";
+	 tag = tag + "</tr>";
+	tag = tag + "</table>";
+tag = tag + "</div>";
+
+$("#QuickDescription").html(tag);
+		 console.log("QuickDescription탐"); */
+
+//QuickView의 modal에서 개수 버튼을 누르면 그 개수에 따라 값이 아래 나오는 코드+구매시 오류방지코드
+$(document).ready(function(){
+	
+	function numberWithCommas(x) {
+		console.log("numberWithCommas");    
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	};
+	//모달에서 +버튼을 누르면 개수가 변하지 않고, 그에 따라 최종값이 나오지 않는다.
+	//최종값 구하기는 어찌저찌 했는데, + 혹은 -버튼을 누를 때 b_amount가 +되거나 -되게 하는거에서 막혀있다.
+	//slick과 마찬가지로 호출 순서에 문제가 있어서 버튼이 작동하지 않아서 강제로 클릭이벤트로 하게 하고 있다.
+	//호출 순서 문제를 해결하면 한번에 될 것 같다.
+	$(document).on("click","#plus",function(){	
+		console.log("plus버튼");
+		var price = $(this).attr("value");
+		var amount = $("#b_amount").val();	
+		$("#b_amount").val(parseInt(amount)+1);
+		amount = $("#b_amount").val();
+		console.log("amount");
+		console.log(amount);
+		price = price * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });
+	
+	$(document).on("click","#minus",function(){	
+		console.log("minus버튼");
+		var price = $(this).attr("value");
+		var amount = $("#b_amount").val();
+		if(amount==0){
+			console.log("0일때");
+			return false;
+		}
+		$("#b_amount").val(parseInt(amount)-1);
+		amount = $("#b_amount").val();
+		console.log("amount");
+		console.log(amount);
+		price = price * amount;
+		
+		document.getElementById("finalPrice").value = numberWithCommas(price);
+		
+     });
+	//QuickView Modal의 왼쪽 3줄 버튼누르면 각각 화면 변환되는 코드.
+	//원래 slick이 자동으로 해주는 거지만 ajax쓰니 안먹혀서 직접구현
+	$(document).on("click","#leftModalImage1",function(){
+		console.log("leftModalImage1버튼");
+		var image = $("#2leftModalImage1").attr("src");
+		console.log(image);
+		$("#leftModalImage1").attr('class','slick-active');
+		$("#leftModalImage2").attr('class','');
+		$("#leftModalImage3").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	$(document).on("click","#leftModalImage2",function(){
+		console.log("leftModalImage2버튼");
+		var image = $("#2leftModalImage2").attr("src");
+		console.log(image);
+		$("#leftModalImage2").attr('class','slick-active');
+		$("#leftModalImage1").attr('class','');
+		$("#leftModalImage3").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	$(document).on("click","#leftModalImage3",function(){
+		console.log("leftModalImage3버튼");
+		var image = $("#2leftModalImage3").attr("src");
+		console.log(image);
+		$("#leftModalImage3").attr('class','slick-active');
+		$("#leftModalImage2").attr('class','');
+		$("#leftModalImage1").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	
+	/* 상품개수가 0인 상태로 장바구니 클릭시 카트로 넘어가서 0으로 나오는걸 막는 코드 */
+		$(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("장바구니 1개이상일때 1번");
+				var data = {
+						p_number : p_number,
+						b_amount : b_amount
+				}
+				console.log(p_number);
+				console.log(b_amount);
+				$.ajax({
+					url:"/ssmall/cart/addCart",
+					type:"get",
+					data : data,
+					success:function(){
+						console.log("장바구니ajax 성공");
+						window.location.href = '/ssmall/cart/cartView';
+					}
+				});
+			}
+		});
+	
+		$(document).on("click","#buy",function(){
+			console.log("구매 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
+			if(b_amount==0){
+				Swal.fire('구매','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("구매 1개이상일때 1번");
+				var data = {
+						p_number : p_number,
+						b_amount : b_amount
+				}
+				console.log(p_number);
+				console.log(b_amount);
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+				/*$.ajax({
+					url:"/ssmall/buy/buy",
+					type:"get",
+					data : data,
+					success:function(){
+						console.log("구매ajax 성공");
+						//window.location.href = '/ssmall/buy/buy';
+						
+					}
+				});
+				*/
+			}
+		});
+		
+		//백업용
+		/* $(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("장바구니 1개이상일때 1번");
+				var form = $('#buyForm');
+				console.log(form);
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/cart/addCart");
+				form.attr("method","get");												
+				form.submit();
+				$("#hideModal").trigger("click");//모달 닫는 버튼을 강제실행
+				$("#b_amount").val(0);//값 초기화
+				$("#finalPrice").val(0);
+				console.log("장바구니 1개이상일때 2번");
+			}
+			
+		});	 */
+		//form태그 전송이 아니라 직접 data에 넣어서 보내보겠음
+		/* $(document).on("click","#cart",function(){
+			console.log("장바구니 버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				console.log("장바구니 1개이상일때 1번");
+				var form = $('#buyForm');
+				console.log(form);
+				$.ajax({
+					url:"/ssmall/cart/addCart",
+					type:"get",
+					data : form.serialize(),
+					success:function(){
+						console.log("장바구니ajax 성공");
+					}
+				});
+			}
+		}); */
+	
+	
+		/* 상품개수가 0인 상태로 구매 클릭시 0으로 나오는걸 막는 코드 
+		$(document).on("click","#buy",function(){
+			console.log("구매버튼 클릭함");
+			var b_amount=$("#b_amount").val();
+			if(b_amount==0){
+				Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+			}else if(b_amount!=0){
+				var form = $('#buyForm');
+				//var form = $("form[role='form']");
+				form.attr("action",
+						"/ssmall/buy/buy");
+				form.attr("method","post");												
+				form.submit();
+			}
+			
+		});*/
+	});
+
+
+</script>
+<script src="/ssmall/js/chat.js"></script>
 
 </body>
+
 </html>

@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/ssmall/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -38,9 +38,209 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
-<!--===============================================================================================-->	
+	
+	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pay').click(function(){	
+			
+			if(checkForm() == false){
+				return; 
+			}
+			
+	
+			var IMP = window.IMP; 
+			IMP.init('imp09486615'); 
+			var price = $('#finalPrice').val();
+			var pname = "<c:out value='${productImageVO.p_name}'/>";
+			var email = "<c:out value='${member.m_email}'/>";			
+			var name = $('#receiver').val();
+			var tel = $('#tel').val();
+			var addr =  $('#addr2').val() + $('#addr3').val();			
+			var postcode = $('#addr1').val();	
+	
+			var csrf_parameterName = "<c:out value='${_csrf.parameterName}'/>";
+			var csrf_token = "<c:out value='${_csrf.token}'/>"
+			
+			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : pname,
+			    amount : price,
+			    buyer_email : email,
+			    buyer_name : name,
+			    buyer_tel : tel,
+			    buyer_addr : addr,
+			    buyer_postcode : postcode,
+			    m_redirect_url : '/ssmall/buy/payments/complete'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	console.log("rsp.success");
+			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+	                $.ajax({	                	
+	                    url: "/ssmall/buy/payments/complete?"+csrf_parameterName+"="+csrf_token, //cross-domain error가 발생하지 않도록 주의해주세요
+	                    type: 'POST',
+	                    dataType: 'text',
+	                    data: {
+	                        imp_uid : rsp.imp_uid, //아임포트 고유번호
+	                        price : rsp.paid_amount, //최종적으로 결제한 가격
+	                  
+	                        //기타 필요한 데이터가 있으면 추가 전달
+	                    },
+	                	success : function(data){
+	                   
+		                	//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+		                 	console.log("서버에서 REST API로 결제정보확인 및 서비스루틴이 정상");
+		                    console.log(data);
+		                    alert("성공적으로 구매완료 되었습니다.")
+		                    $('#iamportPay').submit();
+		                    
+						},
+	                	error : function(request, status, error) {           
+			             	console.log(request);
+			             	console.log(status);
+			             	console.log(error);
+						}	    		            
+					});
+				}
+			});
+		});
+	});
+		
+</script>
+<script>
+function checkForm(){
+	  var id = document.getElementById("receiver");
+	  // 아이디 입력 유무 체크
+	  if(id.value == '' || !(id.value.length >= 2 && id.value.length <= 10)) {
+	       alert("수령인 정보를 제대로 입력해주세요");
+	        $('#receiver').focus();
+	      	
+	        return false; // 아이디 입력이 안되어 있다면 submit 이벤트를 중지
+	  }
+	  
+	  var tel = document.getElementById('tel');
+	  
+	  if(tel.value=='' || !(tel.value.length == 11)){
+		  alert('핸드폰 번호를 제대로 입력해주세요');
+		  $('#tel').focus();
+		  return false;
+	  }
+	  
+	  var addr1 = document.getElementById('addr1');
+	  var addr2 = document.getElementById('addr2');
+	  var addr3 = document.getElementById('addr3');
+	    // 암호 입력 유무 체크
+	  if(addr1.value == '' || addr2.value =='' || addr3.value=='' || !(addr3.value.length >= 5)){
+	      alert('수령지를 제대로 입력해주세요');
+	      $('#addr3').focus();
+	      return false;
+	  }
+	    
+	  
+}
+</script>
+<!--===============================================================================================-->
+<script>
+	
+	$(document).ready(function(){
+		
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
+		$('#pointUseAll').on('click', function(){
+			console.log('전체포인트 사용 클릭발생');	
+			var usePoint = null;
+			if( ${totalprice * 0.01} < ${member.m_point}){
+				 //포인트 입력하는곳  상품금액의 1퍼센트 이상보다 더많은 포인트가 존재한다면  상품금액의 1퍼센트의 포인트가 들어가도록한다.
+				usePoint = ${totalprice * 0.01};
+				document.getElementById("pointInput").value = usePoint;
+			}else{
+				//아니면 적거나 같은거니까 m_point다사용
+				usePoint = ${member.m_point};
+				document.getElementById("pointInput").value = usePoint;
+			}
+	
+			var price = ${totalprice} - usePoint;			
+
+			document.getElementById("finalPrice").value = numberWithCommas(price); //최종가격
+			document.getElementById("usingPoint").value = usePoint; //컨트롤러에 넘어가는 사용포인트
+		});
+		
+		$("#pointInput").on("propertychange change keyup paste input", function() {
+ 			
+			var regexp = /^[0-9]*$/
+			var usePoint = $(this).val();
+			var price = null;
+			if( !regexp.test(usePoint) ) {
+
+				document.getElementById("pointInput").value = null;
+				document.getElementById("finalPrice").value = null;					
+				
+				return false;
+			}
+			
+			
+			console.log(usePoint);
+			if(usePoint > ${member.m_point} && usePoint > ${totalprice * 0.01}){	
+				alert('사용가능한 포인트보다 많음');
+				price = ${totalprice} - ${totalprice * 0.01};
+				document.getElementById("pointInput").value = ${totalprice * 0.01};
+				document.getElementById("finalPrice").value = numberWithCommas(price);
+				return false;
+			
+			}else if (usePoint > ${member.m_point}){
+				alert('보유한 포인트보다 많음');
+				price = ${totalprice} - ${member.m_point};
+				
+				document.getElementById("pointInput").value = ${member.m_point};	
+				document.getElementById("finalPrice").value = numberWithCommas(price);
+				return false;
+			
+			}else if(usePoint > ${totalprice * 0.01}){
+				alert('사용가능한 포인트보다 많음');
+				price = ${totalprice} - ${totalprice * 0.01};
+				document.getElementById("pointInput").value = ${totalprice * 0.01};
+				document.getElementById("finalPrice").value = numberWithCommas(price);
+				return false;
+			}
+				
+			price = ${totalprice} - usePoint;
+			
+			
+			document.getElementById("finalPrice").value = numberWithCommas(price);
+			
+			document.getElementById("usingPoint").value = usePoint;
+			
+         });
+		
+		$('#receiver').focus(function(){
+			var point = $('#pointInput').val()
+			console.log(point);
+			if (point > 0 && point < 1000){
+				alert("포인트는 1000원이상부터 사용가능합니다.")
+				$('#receiver').blur();
+				document.getElementById("pointInput").value = null;
+				document.getElementById("finalPrice").value = null;	
+				$('#pointInput').focus();
+				return;
+			}
+		})
+
+		
+	});
+	</script>
+
+<!--===============================================================================================-->			  
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 	<script>
 		function execPostCode() {
 			new daum.Postcode({
@@ -85,6 +285,7 @@
 			}).open();
 		}
 	</script>
+	
 </head>
 <body class="animsition">
 	
@@ -104,7 +305,7 @@
 							Home
 						</a>
 						
-						<a href="/ssmall/myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
@@ -220,7 +421,7 @@
 			</a>
 
 			<a href="/ssmall/productDetail?p_number=${productImageVO.p_number}" class="stext-109 cl4">
-				${productImageVO.p_description} 
+				${productImageVO.p_brand} ${productImageVO.p_name} 
 			</a>
 		</div>
 	</div>
@@ -253,42 +454,67 @@
 									<img src="/ssmall/productimage/${productImageVO.i_name}" alt="IMG" width="100px" height="auto">
 									</a>
 								</td>
-								<td style="text-align: center; vertical-align: middle;">${productImageVO.p_description}</td>
+								<td style="text-align: center; vertical-align: middle;">${productImageVO.p_brand} ${productImageVO.p_name}</td>
 								<td style="text-align: center; vertical-align: middle;">${amount}</td>
-								<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${totalprice}"
-										pattern="###,###,###" />원</td>
-							</tr>
-
+								<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</td>							
+							</tr>							
 						</table>
 					</div>
 				</div>
 			</div>
+			<br>
 			<hr>
-			<!-- 수령자 설정 -->
-			<form:form role="form" commandName="payVO" action="/ssmall/buy/buyDo">	
-			<div class="tab-content p-t-43">		
-				<div class="tab-pane fade show active" id="description"
-					role="tabpanel">
+			
+			<!-- 포인트 사용여부 -->
+			<div class="tab-content p-t-43">
+				<!-- 무신사는 7%까지 적립가능 -->
+				<div class="tab-pane fade show active" id="description" role="tabpanel">
 					<div class="how-pos2 p-lr-15-md">
-					<h4>수령자 정보</h4>
-					<br>		
+					<h4>포인트 사용여부</h4>
+					<br>
+						<div>
+						<form id="pointForm">			
+							<span class="label-input100">포인트</span><br>
+							<input id="pointInput" class="form-control" style="width: 20%; display: inline" name="point" type="text" value="0" />							
+							<input id="pointUseAll" type="button" class="btn btn-primary" value="전체사용" />
+							<span class="label-input100">현재 포인트 : <fmt:formatNumber value="${member.m_point}" pattern="###,###,###" /></span>
+							<span class="label-input100">사용가능 포인트 : <fmt:formatNumber value="${totalprice * 0.01}" pattern="###,###,###" /></span>
+							<br><br>
+							<span class="label-input100">최종가격</span>
+							<input id="finalPrice" type="text" class="form-control" style="width: 20%;" value="${totalprice}">
+						</form>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<br>
+			<hr>
+			
+			<!-- 수령자 설정 -->
+			<form id="iamportPay" action="/ssmall/buy/iamport">	
+			<input id="usingPoint" type="hidden" name="usingPoint" value="0">
+			<div class="tab-content p-t-43">		
+				<div class="tab-pane fade show active" id="description" role="tabpanel">
+					<div class="how-pos2 p-lr-15-md">
+					<i class="fas fa-user"></i><strong style="font-weight: bold; font-size: 1.5em;"> 수령자 정보</strong>
+					<br><br>		
 						<div class="wrap-input100 validate-input m-b-23">
 							<table class="table table-list-search">
 								<tr>
 									<td>
 										<span class="label-input100">수령인</span>
-										<form:input class="form-control" style="width: 40%;" 
-											name="name" type="text" placeholder="수령인" path="name"></form:input>
-										<form:errors path="name" cssStyle="color:red;"/> 
+										<input id="receiver" class="form-control" style="width: 40%;" 
+											name="name" type="text" placeholder="수령인">
+										
 									</td>
 								</tr>
 								
 								<tr>
 									<td>
 										<span class="label-input100">전화번호</span><br>
-										<form:input class="form-control" style="width: 40%;"
-											name="phonenum" type="text" placeholder="전화번호 -없이 입력해주세요" path="phonenum"></form:input>
-										<form:errors path="phonenum" cssStyle="color:red;"/>
+										<input id="tel" class="form-control" style="width: 40%;"
+											name="phonenum" type="text" placeholder="전화번호 입력해주세요">
+										
 									</td>
 								</tr>
 								
@@ -342,12 +568,12 @@
 			<div class="tab-content p-t-43">
 			
 				<div class="how-pos2 p-lr-15-md">
-		       		<button type="submit" class="btn btn-secondary">구매하기</button>
-		            <button type="reset" class="btn btn-secondary">취소하기</button>
+		       		<button id="pay" type="button" class="btn btn-secondary"><i class="far fa-credit-card"></i> 구매하기</button>
+		            <button type="reset" class="btn btn-secondary"><i class="fas fa-eraser"></i> 취소하기</button>
 				</div>				
 			</div>
 			
-			</form:form>		
+			</form>		
 		</div>
 	</div>
 
@@ -497,15 +723,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 
 
-<!--===============================================================================================-->	
-	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+
 <!--===============================================================================================-->
 	<script src="/ssmall/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
 	<script src="/ssmall/vendor/bootstrap/js/popper.js"></script>
 	<script src="/ssmall/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->	
-	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
+
 <!--===============================================================================================-->
 	<script src="/ssmall/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -544,7 +770,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 <script src="/ssmall/js/main.js"></script>
 	 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
 	<script>
 		$('#map').click(function(){
 			var container = document.getElementById('map');
@@ -556,7 +782,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 		});
 	</script> 
-	<span class="bt-basic" id="map"></span>  
+	<span class="bt-basic" id="map"></span>
+	
+	
 <!--===============================================================================================-->	
+<script src="/ssmall/js/chat.js"></script>
 </body>
+
 </html>

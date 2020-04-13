@@ -104,12 +104,12 @@ span {
 					href="adminpage" class="nav-link">Home</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
+
 			</ul>
-			
-			
+
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -154,16 +154,23 @@ span {
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+							
+
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
-						</li>			
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -177,7 +184,7 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>A/S</h1>
+							<h1>A/S 요청</h1>
 						</div>
 						
 					</div>
@@ -192,18 +199,61 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-								<div id="Line_Controls_Chart">
-      
-		</div>
-								
+					
+					<table class="table table-list-search">
+													<tr>
+														<th style="text-align: center;">회원 아이디</th>
+														<th style="text-align: center;">회원 이름</th>
+														<th style="text-align: center;">문의 제목</th>
+														<th style="text-align: center;">작성 날짜</th>	
+													</tr>										
+													<c:forEach items="${aSRequestboards}" var="aSRequestboards">
+													<tr>														
+														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_id}</td>																				
+														<td style="text-align: center; vertical-align: middle;">${aSRequestboards.m_name}</td>
+														<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/admin/requestWrite?bId=${aSRequestboards.bid}">${aSRequestboards.btitle}</a></td>
+														<td style="text-align: center; vertical-align: middle;"><p>${aSRequestboards.bdate}</p></td>										
+													</tr>
+													</c:forEach>													
+												</table>
+							<c:if test="${pageMaker.prev}">
+							<a href="/ssmall/admin/asList${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+							</c:if>
+							
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+									<c:out value="${pageMaker.cri.page == idx?'':''}" />
+									<a href="/ssmall/admin/asList${pageMaker.makeQuery(idx)}">${idx}</a>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<a href="/ssmall/admin/asList${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+							</c:if> <br>
+					
 					</div>	
+							
 																
-								</div>							
+								</div>								
 							</div>														
-						</div>
-						</section>						
+						</div>					
 					</div>
 				</div>
-</body>
 
+
+
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2014-2019 <a
+				href="http://adminlte.io">AdminLTE.io</a>.
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.0.2
+			</div>
+		</footer>
+	</div>
+</body>
 </html>

@@ -12,6 +12,7 @@
 
     <title>상승몰 관리자 페이지</title>
 
+
   <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
   
   <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
@@ -28,6 +29,7 @@
   
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
     <!-- google charts -->
@@ -136,7 +138,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -161,7 +163,7 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn">상품</button></a>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -170,7 +172,7 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -181,14 +183,18 @@
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
 						</li>			
 					</ul>
@@ -446,4 +452,4 @@ $(document).ready(function(){
 
 </body>
 </html>
-  
+

@@ -43,7 +43,15 @@
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
 <!--===============================================================================================-->
+
+
+	
+    
+   
 <style>
+
+
+
 .bg-light {
 	background-color: rgba(149, 204, 210, 0.2)!important;
 }
@@ -122,8 +130,18 @@ html {
   </head>
 
   <body>
-  
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+
+  <c:choose>
+	<c:when test="${fail eq 'fail'}">
+		<script>
+			alert("환불에 실패하셨습니다.")
+		</script>
+		<% session.removeAttribute("fail"); %>
+	</c:when>
+</c:choose>
+
+     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+
       <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -233,13 +251,12 @@ html {
 										</div>
 									</td>
 									<td style="text-align: center;"><c:out value = "${p_b_vo.p_name}"/></td>
-									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.p_price}" pattern="#,###" />원</td>
+									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
 									<td style="text-align: center;">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
-									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_amount*p_b_vo.p_price}" pattern="#,###" />원</td>
-									<c:set var="hap" value="${hap+p_b_vo.p_price*p_b_vo.b_amount}"/>
+									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
+									<c:set var="hap" value="${hap+p_b_vo.b_total}"/>
 									<td style="text-align: center;" style="padding-left:20px"><c:out value = "${p_b_vo.b_date}"/></td>
-									<td style="padding-left : 10px; cursor:pointer;" onclick="location.href = '/ssmall/refund/refund?b_number=${p_b_vo.b_number}'">취소</td>
-								</tr>
+									<td style="padding-left : 10px; cursor:pointer;" onclick="if(confirm('취소 하시겠습니까?')){return location.href = '/ssmall/refund/refund?imp_uid=${p_b_vo.imp_uid}'}">취소</td>						
 								</c:forEach>
 								
 							</table>

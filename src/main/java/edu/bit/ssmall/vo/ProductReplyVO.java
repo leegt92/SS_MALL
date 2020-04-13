@@ -11,9 +11,8 @@ public class ProductReplyVO {
 	private int bhit;
 	private String bcontent;
 	private int bstep;
-	private int bident;
+	private int bindent;
 	private int bgroup;
-	private int btotallike;
 	private String btype;
 	private int BTOTALREPOT;
 	private int m_number;
@@ -62,23 +61,17 @@ public class ProductReplyVO {
 	public void setBstep(int bstep) {
 		this.bstep = bstep;
 	}
-	public int getBident() {
-		return bident;
+	public int getBindent() {
+		return bindent;
 	}
-	public void setBident(int bident) {
-		this.bident = bident;
+	public void setBindent(int bindent) {
+		this.bindent = bindent;
 	}
 	public int getBgroup() {
 		return bgroup;
 	}
 	public void setBgroup(int bgroup) {
 		this.bgroup = bgroup;
-	}
-	public int getBtotallike() {
-		return btotallike;
-	}
-	public void setBtotallike(int btotallike) {
-		this.btotallike = btotallike;
 	}
 	public String getBtype() {
 		return btype;

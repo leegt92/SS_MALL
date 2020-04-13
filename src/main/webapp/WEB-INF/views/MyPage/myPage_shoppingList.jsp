@@ -71,7 +71,7 @@ html {
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
+      
      
       <ul class="navbar-nav px-2 d-none d-sm-block">
         <li class="nav-item text-nowrap">

@@ -1,3 +1,4 @@
+
 package edu.bit.ssmall.mapper;
 
 import java.sql.Date;
@@ -9,12 +10,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import edu.bit.ssmall.vo.MemberVO;
-import edu.bit.ssmall.vo.ProductVO;
-import edu.bit.ssmall.vo.Product_BuyVO;
-import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.vo.BoardVO;
+import edu.bit.ssmall.vo.BuyVO;
+import edu.bit.ssmall.vo.Product_BuyVO;
 
 public interface MypageMapper {
 	/*===================================MEMBER 관련 SQL문들============================================================*/
@@ -116,7 +115,7 @@ public interface MypageMapper {
 	public List<Product_BuyVO> getP_BVO (@Param("m_number") int m_number);
 	
 	@Select("select * from product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '결제완료' order by b_number desc")
-	public List<Product_BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
+	public List<BuyVO> getOrderedP_BVO (@Param("m_number") int m_number);
 	
 	/*===================================BOARD 관련 SQL문들============================================================*/
 	//한 회원이 작성한 모든 1:1문의글들을 가져오는 SQL문
@@ -127,14 +126,26 @@ public interface MypageMapper {
 	@Select("select * from board where m_number = #{m_number} and btype='AS요청' ORDER BY bid desc")
 	public List<BoardVO> getAllASRequest (@Param("m_number") int m_number);
 	
-	@Select("select * from board where banswerno = #{bid} and btype='문의/건의_답변'")
+	@Select("select * from board where banswerno = #{bid}")
 	public BoardVO getAllAskRequestAnswer(@Param("bid") String bid);
 	
-	@Select("select * from board where banswerno = #{bid} and btype='AS요청_답변'")
+	@Select("select * from board where banswerno = #{bid}")
 	public BoardVO getAllASRequestAnswer(@Param("bid") String bid);
 	
 	@Select("select count(*) from board")
 	public int selectCountBoard();
+	
+	@Select("select bTitle from board where bid = #{bid}")
+	public String selectFbTitle(@Param("bid") String bid);
+	
+	@Select("select bTitle from board where banswerno = #{bid}")
+	public String selectFanswerbTitle(@Param("bid") String bid);
+	
+	@Select("select bContent from board where bid = #{bid}")
+	public String selectFbContent(@Param("bid") String bid);
+	
+	@Select("select bContent from board where banswerno = #{bid}")
+	public String selectFanswerbContent(@Param("bid") String bid);
 	
 	@Select("select count(*) from board where m_number = #{m_number} and btype='문의/건의'")
 	public int selectAskCountBoard(@Param("m_number") int m_number);

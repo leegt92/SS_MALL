@@ -2,10 +2,10 @@ package edu.bit.ssmall.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,21 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.bit.ssmall.kakaopay.KakaoPay;
-import edu.bit.ssmall.kakaopay.KakaoPayCancelVO;
-import edu.bit.ssmall.noticepage.Criteria;
-import edu.bit.ssmall.noticepage.PageMaker;
+import edu.bit.ssmall.iamport.IamPort;
 import edu.bit.ssmall.service.RefundService;
-import edu.bit.ssmall.vo.BoardNoticeVO;
 import edu.bit.ssmall.vo.BuyVO;
-import edu.bit.ssmall.vo.RefundVO;
 
 @Controller
 @RequestMapping("refund")
 public class RefundController {
 	
 	@Autowired
-	KakaoPay kakaopay;
+	IamPort iamport;
 	
 	@Autowired
 	RefundService refundService;
@@ -36,29 +31,37 @@ public class RefundController {
 	@RequestMapping(value="refund", method= {RequestMethod.GET,RequestMethod.POST})
 	public String refund(HttpServletRequest request, HttpServletResponse response, Principal principal, Model model) throws Exception{		
 		System.out.println("refund 시작");
-		String b_number = request.getParameter("b_number"); //환불하려는 구매번호
+		String imp_uid = request.getParameter("imp_uid"); //환불하려는 구매번호
 		
-		System.out.println("b_number : "+b_number);
-		
+		System.out.println("imp_uid : "+imp_uid);
 
-		BuyVO buyVO = refundService.getBuyInfo(b_number); //구매내역 조회
+		ArrayList<BuyVO> buyVO = refundService.getBuyInfo(imp_uid); //구매내역 조회
 		System.out.println(buyVO);
 		
-		String amount = Integer.toString(buyVO.getB_amount());
-		String tid = buyVO.getB_kakao_tid();
+				
+		if(iamport.cancel(imp_uid) == null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("fail", "fail");
+			
+			return "redirect:/mypage/myPage_orderedList";			
+		}
+		for (int i = 0; i < buyVO.size(); i++) {
+			int m_number = buyVO.get(i).getM_number();
+			int p_number = buyVO.get(i).getP_number();
+			int b_number = buyVO.get(i).getB_number();
+			int b_amount = buyVO.get(i).getB_amount();
+			int b_total = buyVO.get(i).getB_total();
 		
-		KakaoPayCancelVO kakaoPayCancelVO = kakaopay.KakaoPayCancel(amount, tid, request); //취소시작
+			refundService.addRefund(m_number,p_number,b_number,b_amount,b_total, imp_uid);
+		}
 		
-		
-		System.out.println(kakaoPayCancelVO);
-		
-		//취소가 되면 db작업 환불테이블 추가 구매테이블 삭제 상품 재고증가  판매량 감소
-		String result = refundService.addRefund(tid,buyVO.getM_number(),buyVO.getP_number(),buyVO.getB_number(),buyVO.getB_amount(), buyVO.getB_total(), request);
-		
-		return "redirect:/"+result;
+		HttpSession session = request.getSession();
+		session.setAttribute("success", "success");
+
+		return "redirect:/mypage/myPage_refundList";
+	
 	}
 	
-
+}
 
 	
-}

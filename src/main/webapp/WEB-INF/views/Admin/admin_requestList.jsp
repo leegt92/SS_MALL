@@ -107,7 +107,7 @@ span {
 			</ul>					
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:fixed">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -152,14 +152,18 @@ span {
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
 						</li>			
 					</ul>
@@ -193,22 +197,32 @@ span {
 					
 					<table class="table table-list-search">
 													<tr>
-														<th style="text-align: center;">회원번호</th>
 														<th style="text-align: center;">회원 아이디</th>
 														<th style="text-align: center;">회원 이름</th>
 														<th style="text-align: center;">문의 제목</th>
-														<th style="text-align: center;">문의 내용</th>	
+														<th style="text-align: center;">작성 날짜</th>	
 													</tr>										
-													<c:forEach items="${list}" var="list">
+													<c:forEach items="${askRequestboards}" var="askRequestboards">
 													<tr>														
-														<td style="text-align: center; vertical-align: middle;">${list.m_number}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.m_id}</td>																				
-														<td style="text-align: center; vertical-align: middle;">${list.m_name}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.b_title}</td>
-														<td style="text-align: center; vertical-align: middle;">${list.b_content}</td>										
+														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_id}</td>																				
+														<td style="text-align: center; vertical-align: middle;">${askRequestboards.m_name}</td>
+														<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/admin/requestWrite?bId=${askRequestboards.bid}">${askRequestboards.btitle}</a></td>
+														<td style="text-align: center; vertical-align: middle;"><p>${askRequestboards.bdate}</p></td>										
 													</tr>
 													</c:forEach>													
 												</table>
+							<c:if test="${pageMaker.prev}">
+									<a href="/ssmall/admin/requestList${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+							</c:if>
+							
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+									<c:out value="${pageMaker.cri.page == idx?'':''}" />
+									<a href="/ssmall/admin/requestList${pageMaker.makeQuery(idx)}">${idx}</a>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<a href="/ssmall/admin/requestList${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+							</c:if> <br>
 					
 					</div>	
 							

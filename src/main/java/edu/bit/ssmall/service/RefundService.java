@@ -1,51 +1,48 @@
 package edu.bit.ssmall.service;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestClientException;
 
-import edu.bit.ssmall.kakaopay.KakaoPay;
-import edu.bit.ssmall.kakaopay.KakaoPayCancelVO;
+import edu.bit.ssmall.mapper.BuyMapper;
 import edu.bit.ssmall.mapper.RefundMapper;
 import edu.bit.ssmall.vo.BuyVO;
+import edu.bit.ssmall.vo.ProductImageVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 @Service
 public class RefundService {
-	@Autowired
-	KakaoPay kakaoPay;
+	
 	
 	@Autowired
 	RefundMapper refundMapper;
 	
+	@Autowired
+	BuyMapper buyMapper;
+	
 	//구매내역 조회
-	public BuyVO getBuyInfo(String b_number) {
+	public ArrayList<BuyVO> getBuyInfo(String imp_uid) {
 		
 		
-		return refundMapper.getBuyInfo(b_number);
+		return refundMapper.getBuyInfo(imp_uid);
 	}
 
 	//환불내역 추가 및 구매내역 삭제
 	@Transactional
-	public String addRefund(String tid, int m_number, int p_number,int b_number, int b_amount, int b_total, HttpServletRequest request) throws RestClientException, URISyntaxException {
-		KakaoPayCancelVO kakaoPayCancelVO = kakaoPay.KakaoPayCancel(Integer.toString(b_amount), tid, request);
-		if(kakaoPayCancelVO.equals(null)) {
-			//취소가 안된다면 메인페이지로 
-			return "/";
-		}
+	public void addRefund(int m_number, int p_number, int b_number, int b_amount, int b_total, String imp_uid)  {
+		
 		refundMapper.addRefund(m_number,p_number,b_amount,b_total);
-		refundMapper.removeBuy(m_number,b_number);
-		refundMapper.productRefund(p_number, b_amount);
-		HttpSession session = request.getSession();
-		session.setAttribute("success", "success");
-		return "mypage/myPage_refundList";
+		
+		ProductImageVO productImageVO = buyMapper.productinfo(Integer.toString(p_number));
+		
+		int point = (int)(productImageVO.getP_price() * 0.01 * b_amount);
+		
+		System.out.println("포인트회수 : "+ point);		
+		refundMapper.minusPoint(m_number, point); //포인트회수
+		refundMapper.removeBuy(m_number,b_number); //구매내역 삭제
+		refundMapper.productRefund(p_number, b_amount); //상품재고량 판매량 업데이트
 	}
 
 	//환불내역 확인
@@ -55,9 +52,4 @@ public class RefundService {
 		return refundMapper.refundInfo(m_number);
 	}
 
-	
-
-
-
-	
 }

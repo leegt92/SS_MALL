@@ -9,7 +9,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
+<link rel="icon" type="image/png"
+	href="/ssmall/images/icons/productlogo.png" />
 
 <title>상승몰 관리자 페이지</title>
 
@@ -34,16 +35,28 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="/ssmall/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
 
 
 
-<style >
+<style>
+background-color
+:
+ 
+rgba
+(149
+,
+204,
+210,
+0
+.2
+)!important;
 
-background-color: rgba(149, 204, 210, 0.2)!important;
+
 }
-	/*  html, body {
+/*  html, body {
 
         width: 100%;
         height: 100%;
@@ -55,101 +68,75 @@ background-color: rgba(149, 204, 210, 0.2)!important;
 
         background-color: #FFFFFF;
     }   */
+.accordion {
+	position: relative;
+	width: 500px;
+	height: 100%;
+	font-size: 16px;
+	margin: 0 auto;
+	padding-top: 30px;
+}
 
-    .accordion{
+.accordion1 {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
-        position: relative;
+.accordion2 {
+	border-bottom: 1px solid #bebebe;
+}
 
-        width: 500px;
-        height: 100%;
+.accordion2 h3 {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	/* text-align: center; */
+	color: black;
+	background-color: #FFFFFF;
+	cursor: pointer;
+	margin: 0px;
+	padding: 0px;
+	border-bottom: #ddd 1px solid;
+}
 
-        font-size: 16px;
+.accordion2 h3:hover {
+	color: #757575;
+	background-color: #e5e5e5;
+}
 
-        margin: 0 auto;
+.accordion2 h3.active {
+	color: #757575;
+	background-color: #f5f5f5;
+}
 
-        padding-top: 30px;
-    }
+.accordion2 div {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	background-color: #FFFFFF;
+	word-break: break-all;
+	word-wrap: break-word;
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
 
-    .accordion1{
-        position: relative;
+.accordion2 div span {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
 
-        width: 100%;
-        height: 100%;
-
-        list-style: none;
-
-        margin: 0;
-        padding: 0;
-    } 
-    
-    .accordion2 {
-		border-bottom: 1px solid #bebebe;
-    }
-
-    .accordion2 h3 {
-
-        position: relative;
-
-        width: 100%;
-        height: 30px;
-
-        line-height: 30px;
-
-        /* text-align: center; */
-
-        color: black;
-
-        background-color: #FFFFFF;
-
-        cursor: pointer;
-
-        margin: 0px;
-        padding: 0px;
-
-        border-bottom: #ddd 1px solid;
-    }
-
-    .accordion2 h3:hover{
-        color: #757575;
-        background-color: #e5e5e5;
-    }
-
-    .accordion2 h3.active {
-        color: #757575;
-        background-color: #f5f5f5;
-    }
-
-    .accordion2 div{
-
-        position: relative;
-
-        width: 100%;
-        height: 400px;
-
-        background-color: #FFFFFF;
-
-        word-break: break-all;
-        word-wrap: break-word;
-
-        overflow: auto;
-
-        margin: 0;
-        padding: 0;
-
-        display: none;
-    }
-
-    .accordion2 div span{
-
-        position: relative;
-
-        width: 100%;
-        height: 100%;
-    }
-
-
-body {overflow-y: hidden; overflow-x: hidden;}
-
+body {
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
 
 .dropdown button {
 	display: block;
@@ -202,7 +189,7 @@ span {
 }
 </style>
 </head>
-<body class="hold-transition sidebar-mini" >
+<body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 		<!-- Navbar -->
 		<nav
@@ -216,47 +203,48 @@ span {
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
 			</ul>
-			
+
 		</nav>
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
-			
-			<a href="/ssmall/admin/adminpage"><h3 class="brand-text font-weight-light" style="color:white; display: inline;">상승몰 관리자</h3></a>
+			<img src="/ssmall/images/logo.png" alt="logo"
+				class="brand-image img-circle elevation-3"> <a
+				href="/ssmall/admin/adminpage"><h3
+					class="brand-text font-weight-light"
+					style="color: white; display: inline;">상승몰 관리자</h3></a>
 
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">					
-					<div class="info">
-						
-					</div>
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="info"></div>
 				</div>
 
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
+					<ul class="nav nav-pills nav-sidebar flex-column"
+						data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>							
+								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">상품</button>
-								<div class="dropdown-content" >
-								    <a href="/ssmall/admin/productList">상품 목록</a>
-								    <a href="/ssmall/admin/addProduct">상품 등록</a>
-								 </div>															
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/productList">상품 목록</a> <a
+										href="/ssmall/admin/addProduct">상품 등록</a>
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">공지사항</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
-									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
+									<a href="/ssmall/admin/noticeList">공지사항 목록</a> <a
+										href="/ssmall/admin/noticeWrite">공지사항 작성</a>
 								</div>
 							</div>
 						</li>
@@ -264,16 +252,26 @@ span {
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+
+									<a href="/ssmall/admin/requestList">1:1문의 목록</a> <a
+										href="/ssmall/admin/requestWrite">1:1문의 답변</a>
+
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+							<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
-						</li>			
+						</li>		
+
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -294,14 +292,20 @@ span {
 				</div>
 				<!-- /.container-fluid -->
 			</section>
-			
-			<table class="table table-nomargin" style="margin-bottom: 0px;margin-top: 0px;">
-			
-           <thead>
-           <th style="width:60%; padding-left:12px !important;">제목(작성날짜)</th>
-           </thead>           	
-    </table>
-	<button onclick="window.location.href='/ssmall/admin/noticeWrite'" style="margin-top: 0px; margin-left: 1500px;"><font size="3em" style="border:2px solid black; background-color:#bebebe">공지사항 작성</font></button>
+
+			<table class="table table-nomargin"
+				style="margin-bottom: 0px; margin-top: 0px;">
+
+				<thead>
+					<th style="width: 60%; padding-left: 12px !important;">제목(작성날짜)</th>
+				</thead>
+			</table>
+			<button onclick="window.location.href='/ssmall/admin/noticeWrite'"
+				style="margin-top: 0px; margin-left: 1500px;">
+				<font size="3em"
+					style="border: 2px solid black; background-color: #bebebe">공지사항
+					작성</font>
+			</button>
 			<!-- Main content -->
 			<section class="content style=">
 				<div class="row">
@@ -309,21 +313,31 @@ span {
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
 							<div class="card-header">
-							
-							
-							<div class="accordion" style="left: 400px;width: 1200px;top: 100px;">
-    
-    
-    <ul class="accordion1" style="height: 220px;">
-    	<c:forEach items="${askRequestboards}" var="askRequestboards" varStatus="status">
-        <li class="accordion2">
-            <c:choose>
-            	<c:when test="${askRequestboards.banswered eq '답변완료'}">
-            		<h3 style="font-size:16px; color:green;" class="accordion3">
-            		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
-            		<c:set var="bId" value="${askRequestboards.bid}" />
-            		<button onclick="window.location.href='/ssmall/admin/noticeWrite2?bId=${askRequestboards.bid}'" style="left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
-            		<button onclick="Swal.fire({
+
+
+								<div class="accordion"
+									style="left: 400px; width: 1200px; top: 100px;">
+
+
+									<ul class="accordion1" style="height: 220px;">
+										<c:forEach items="${askRequestboards}" var="askRequestboards"
+											varStatus="status">
+											<li class="accordion2"><c:choose>
+													<c:when test="${askRequestboards.banswered eq '답변완료'}">
+														<h3 style="font-size: 16px; color: green;"
+															class="accordion3">
+															<c:out value="${askRequestboards.btitle}" />
+															<c:out value=" (${askRequestboards.bdate})" />
+															<c:out value=" (${askRequestboards.banswered})" />
+															<c:set var="bId" value="${askRequestboards.bid}" />
+															<button
+																onclick="window.location.href='/ssmall/admin/noticeWrite2?bId=${askRequestboards.bid}'"
+																style="left: 1505px;">
+																<font size="4em"
+																	style="border: 2px solid black; background-color: #bebebe">수정</font>
+															</button>
+															<button
+																onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
         				  icon: 'warning',
@@ -341,16 +355,28 @@ span {
         				    	window.location.href='/ssmall/mypage/delete.do?bId=' + ${askRequestboards.bid};
     	    				});
         				  }
-        				})" style="left: 1550px;">
-            		<font size="4em" style="style="left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
-            		</button>
-            		</h3>
-            	</c:when>
-            	<c:otherwise>
-            		<h3 style="font-size:16px; color:red;" class="accordion3">
-            		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
-            		<button onclick="window.location.href='/ssmall/admin/noticeWrite2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
-            		<button onclick="Swal.fire({
+        				})"
+																style="left: 1550px;">
+																<font size="4em" style=""left: 1505px;"><font
+																	size="4em"
+																	style="border: 2px solid black; background-color: #bebebe">삭제</font>
+															</button>
+														</h3>
+													</c:when>
+													<c:otherwise>
+														<h3 style="font-size: 16px; color: red;"
+															class="accordion3">
+															<c:out value="${askRequestboards.btitle}" />
+															<c:out value=" (${askRequestboards.bdate})" />
+															<c:out value=" (${askRequestboards.banswered})" />
+															<button
+																onclick="window.location.href='/ssmall/admin/noticeWrite2?bId=${askRequestboards.bid}'"
+																style="position: fixed; left: 1505px;">
+																<font size="4em"
+																	style="border: 2px solid black; background-color: #bebebe">수정</font>
+															</button>
+															<button
+																onclick="Swal.fire({
       				  title: '정말 삭제하시겠습니까?',
     				  text: '삭제 되면 복구되지 않습니다.',
     				  icon: 'warning',
@@ -368,89 +394,102 @@ span {
     				    	window.location.href='/ssmall/admin/delete.do?bId=' + ${askRequestboards.bid};
 	    				});
     				  }
-    				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
-            		</button>
-            		</h3>
-            	</c:otherwise>
-            </c:choose>
-            <div class="accordion3">
-            	<p><b>제목 : </b><c:out value = "${askRequestboards.btitle}"/></p>
-            	<br/>
-            	<p><b>내용 : </b><c:out value = "${askRequestboards.bcontent}"/></p>
-            	<br/>
-            	
-              	
-            </div>
-        </li>
-        </c:forEach>
-        <c:if test="${pageMaker.prev}">
-			<a href="//ssmall/admin/noticeList${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
-	</c:if>
-	
-	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="/ssmall/admin/noticeList${pageMaker.makeQuery(idx)}">${idx}</a>
-	</c:forEach>
-	
-	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="/ssmall/admin/noticeList${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
-	</c:if> <br>
-        
-    </ul>
-    
-</div>
-								
+    				})"
+																style="position: fixed; left: 1550px;">
+																<font size="4em"
+																	style="border: 2px solid black; background-color: #bebebe">삭제</font>
+															</button>
+														</h3>
+													</c:otherwise>
+												</c:choose>
+												<div class="accordion3">
+													<p>
+														<b>제목 : </b>
+														<c:out value="${askRequestboards.btitle}" />
+													</p>
+													<br />
+													<p>
+														<b>내용 : </b>
+														<c:out value="${askRequestboards.bcontent}" />
+													</p>
+													<br />
 
-					</div>	
-								</tbody>
-									</table>
-																
-								</div>		
-														
-							</div>	
-																			
+
+												</div></li>
+										</c:forEach>
+										<c:if test="${pageMaker.prev}">
+											<a
+												href="//ssmall/admin/noticeList${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+										</c:if>
+
+										<c:forEach begin="${pageMaker.startPage }"
+											end="${pageMaker.endPage }" var="idx">
+											<c:out value="${pageMaker.cri.page == idx?'':''}" />
+											<a href="/ssmall/admin/noticeList${pageMaker.makeQuery(idx)}">${idx}</a>
+										</c:forEach>
+
+										<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+											<a
+												href="/ssmall/admin/noticeList${pageMaker.makeQuery(pageMaker.endPage +1) }">
+												» </a>
+										</c:if>
+										<br>
+
+									</ul>
+
+								</div>
+
+
+							</div>
+							</tbody>
+							</table>
+
 						</div>
-											
+
 					</div>
-					
-					
+
 				</div>
-			</section>
 		</div>
 
 
+	</div>
+	</section>
+	</div>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<strong>Copyright &copy; 2014-2019 <a
-				href="http://adminlte.io">AdminLTE.io</a>.
-			</strong> All rights reserved.
-			<div class="float-right d-none d-sm-inline-block">
-				<b>Version</b> 3.0.2
-			</div>
-		</footer>
-	
+
+
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+		<!-- Control sidebar content goes here -->
+	</aside>
+	<!-- Main Footer -->
+	<footer class="main-footer">
+		<strong>Copyright &copy; 2014-2019 <a
+			href="http://adminlte.io">AdminLTE.io</a>.
+		</strong> All rights reserved.
+		<div class="float-right d-none d-sm-inline-block">
+			<b>Version</b> 3.0.2
+		</div>
+	</footer>
+
 	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
-    <script src="/ssmall/js/popper.min.js"></script>
-    <script src="/ssmall/js/bootstrap.min.js"></script>
-    <script src="/ssmall/js/sweetalert2.js"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="/ssmall/js/jquery-slim.min.js"><\/script>')</script>
+	<script src="/ssmall/js/popper.min.js"></script>
+	<script src="/ssmall/js/bootstrap.min.js"></script>
+	<script src="/ssmall/js/sweetalert2.js"></script>
 
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
+	<!-- Icons -->
+	<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+	<script>
       feather.replace()
     </script>
-	
-    <script>
+
+	<script>
     $(document).ready(function() {
 
 	    // click 이벤트가 발생된 마지막 element
@@ -637,6 +676,6 @@ span {
 			
     		
 	</script>
-	
+
 </body>
 </html>

@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/ssmall/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -38,6 +38,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 
 </head>
@@ -59,7 +60,7 @@
 							Home
 						</a>
 						
-						<a href="/ssmall/myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
@@ -97,14 +98,18 @@
 							<li>
 								<a href="/ssmall/boardnoticeView">공지사항</a>
 							</li>
-							
+					
 							<li>
 								<a href="/ssmall/companyView">회사소개</a>
 							</li>
 							
 							<li>
 								<a href="/ssmall/asView">AS</a>
-							</li>						
+							</li>	
+							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
+							</li>					
 						</ul>
 					</div>	
 
@@ -151,6 +156,10 @@
 				<li>
 					<a href="/ssmall/asView">AS</a>
 				</li>
+				
+				<li>
+					<a href="#" onclick="chat();">채팅</a>
+				</li>
 			</ul>
 		</div>
 		
@@ -166,84 +175,90 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<a href="/ssmall/cart/cartView" class="stext-109 cl4">
+			<a href="/ssmall/cart/cartView" class="stext-109 cl8 hov-cl1 trans-04">
 				장바구니
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
-
+			<i class="fas fa-cart-arrow-down"></i>
 	
 		</div>
 	</div>
 
 
-	<div class="bor10 m-t-50 p-t-43 p-b-40">
+	<section class="bg0 p-t-62 p-b-60"><!-- bg0 p-t-62 p-b-60 -->	
 		<!-- Tab01 -->
-		<div class="tab01">
+		<div class="container">
 			<!-- Tab panes -->
-			<div class="tab-content p-t-43">
-				<!-- - -->
-				<div class="tab-pane fade show active" id="description"
-					role="tabpanel">
-					<div class="how-pos2 p-lr-15-md">
-					<h4>장바구니</h4>
-					<br>
-						<c:choose>							
-				
-							<c:when test="${cartList[0] == NULL}">
-								<table class="table table-list-search">																					
-								
-									<h3>장바구니에 담긴 상품이 없습니다.</h3>
-								
-								</table>
-									
-							</c:when>
-							<c:otherwise>
-							<form:form role="form" action="/ssmall/cart/cartBuy" method="post" >
-							
-							<table class="table table-list-search">	
+			<div>
+				<div>
+					<strong style="font-size: 1.5em;">Your Cart </strong>
+					<br><br><br>
+					<c:choose>											
+						<c:when test="${cartList[0] == NULL}">
+							<h3>장바구니에 담긴 상품이 없습니다.</h3>	<br>
+							<table class="table table-list-search">																													
 								<tr>
-									<th></th>
-									<th style="text-align: center; vertical-align: middle;">상품명</th>
+									<th ><i class="fas fa-check" aria-hidden="true"></i></th>																						
+									<th colspan="2" style="text-align: center; vertical-align: middle;">상품명</th>
 									<th style="text-align: center; vertical-align: middle;">구매수량</th>
 									<th style="text-align: center; vertical-align: middle;">구매가격</th>
 									<th></th>
+								</tr>
+								<tr>
+									<td colspan="6" style="text-align: center; vertical-align: middle; color: black;">										
+										<a style="color: black; font-size: 1.5em;" href="/ssmall/productView">장바구니에 담으러 가기</a>
+									</td>
+															
+								</tr>
+							</table>									
+						</c:when>
+
+						<c:otherwise>
+							<form:form role="form" action="/ssmall/cart/cartBuy" method="post" >							
+							<table class="table table-list-search">	
+								<tr>
+									<th ><i class="fas fa-check" aria-hidden="true"></i></th>																						
+									<th colspan="2" style="text-align: center; vertical-align: middle;">상품명</th>
+									<th style="text-align: center; vertical-align: middle;">구매수량</th>
+									<th style="text-align: center; vertical-align: middle;">구매가격</th>
 									<th></th>
 								</tr>
+								
 								<c:set var="totalprice" value="0"></c:set>
-									
 								<c:forEach items="${cartList}" var="cart">
 								<tr>
+									<td style="text-align: center; vertical-align: middle;">										
+										<input type="checkbox" name="check" value="${cart.c_id}" checked="checked">
+									</td>								
+									
 									<td style="text-align: center; vertical-align: middle;">
 										<a href="/ssmall/productDetail?p_number=${cart.p_number}">
-										<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
-										</a>
-									</td>								
-									<td style="text-align: center; vertical-align: middle;">${cart.p_description}</td>						
-									<td style="text-align: center; vertical-align: middle;">${cart.c_amount}</td>
-									<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###" />원</td>									
+											<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="70px" height="70px" style="border-radius:10px; margin-right: 5px;">
+										</a>																
+									</td>
+									<td style="text-align: left; vertical-align: middle;"><strong>${cart.p_brand} ${cart.p_name}</strong></td>												
+									<td style="text-align: center; vertical-align: middle;"><strong>${cart.c_amount}</strong></td>
+									<td style="text-align: center; vertical-align: middle;"><strong><fmt:formatNumber value="${cart.c_grandtotal}" pattern="###,###,###"/>원</strong></td>									
 									<c:set var="totalprice" value="${totalprice + cart.c_grandtotal}"></c:set>
-									<td style="text-align: center; vertical-align: middle;"><a href="/ssmall/cart/cartDelete?c_id=${cart.c_id}">삭제</a></td>
-									<td style="text-align: center; vertical-align: middle;"><input type="checkbox" name="check" value="${cart.c_id}"></td>
+									<td style="text-align: left; vertical-align: middle;"><a href="/ssmall/cart/cartDelete?c_id=${cart.c_id}" onclick="return confirm('삭제하시겠습니까?');" style="color:black;"><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
 								</c:forEach>						
 								<tr>
-									<td colspan="6" align="right">
-									<h4>Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
+									<td colspan="7" align="right">
+									<h4 style="color:black;">Total <fmt:formatNumber value="${totalprice}" pattern="###,###,###" />원</h4></td>					
 								</tr>								
 								<tr>										
-									<td colspan="6" align="right">								
-									<button type="submit" class="btn icon-btn btn-success">구매하기</button></td>
+									<td colspan="7" align="right">								
+									<button type="submit" class="btn icon-btn btn-success" onclick="return confirm('선택한 제품을 구매하시겠습니까?');"><i class="far fa-credit-card"></i> 구매하기</button></td>
 								</tr>
-								</table>
+							</table>
 							</form:form>
-							</c:otherwise>
-						</c:choose>	
-					</div>
+						</c:otherwise>
+					</c:choose>	
 				</div>
 			</div>
-			<hr>
-			</div>
 		</div>
+	</section>
 
 
 	<!-- Footer -->
@@ -323,15 +338,15 @@
 					
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
+							<i class="fab fa-facebook"></i>
 						</a>
 
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
+							<i class="fab fa-instagram"></i>
 						</a>
 
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
+							<i class="fab fa-pinterest-p"></i>
 						</a>
 					</div>
 				</div>
@@ -460,6 +475,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 </script> 
 <span class="bt-basic" id="map"></span>  
+<script src="/ssmall/js/chat.js"></script>
 <!--===============================================================================================-->
 </body>
+
 </html>

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -35,7 +36,7 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
-	//로그인 페이지로 
+	//로그인 페이지로
 	@RequestMapping("/login")
 	public String login(Model model, HttpSession session) throws Exception {		
 		System.out.println("로그인 페이지로");
@@ -48,7 +49,8 @@ public class LoginController {
  
 
 		return "Login/login";
-	}
+	}		
+	
 	//네이버로그인 창에서 로그인하면 지정한 콜백함수로 토큰값 넘어옴 http://localhost:8282/ssmall/naver/callback이 콜백주소인데 그뒤에 ? 해서 겟방식으로 토큰 넘어옴
 	@RequestMapping(value="naver/callback", method = { RequestMethod.GET, RequestMethod.POST})
 	public String snsLoginCallback(Model model, @RequestParam String code, HttpServletRequest request,HttpServletResponse response)throws Exception {
@@ -146,3 +148,4 @@ public class LoginController {
 	}
 	
 }
+

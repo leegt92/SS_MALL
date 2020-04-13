@@ -16,9 +16,13 @@
         <intercept-url pattern="/mypage/**" access="hasRole('USER')" />
         <intercept-url pattern="/login/**" access="isAnonymous()" />
         <intercept-url pattern="/buy/**" access="hasAnyRole('USER, ADMIN')" />     
-        <intercept-url pattern="/cart/**" access="hasAnyRole('USER, ADMIN')" />      
+        <intercept-url pattern="/cart/**" access="hasAnyRole('USER, ADMIN')" />
+       	<intercept-url pattern="/chat/**" access="hasAnyRole('USER, ADMIN')" />           
+        <intercept-url pattern="/productDetailLogin/**" access="hasRole('USER')" />
+    	<intercept-url pattern="/resources/**" access="permitAll" /> 
+
         <intercept-url pattern="/**" access="permitAll" />
-        <intercept-url pattern="/resources/**" access="permitAll" /> 
+        
    
         <!-- 
         	순서도 중요하다 
@@ -102,7 +106,4 @@
 	
 	<context:component-scan base-package="edu.bit.ssmall.security"/>
 
-	
-
-   
 </beans:beans>
