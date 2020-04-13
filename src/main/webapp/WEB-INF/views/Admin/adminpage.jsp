@@ -52,7 +52,7 @@
 					['2020/03',  867,    663,4],
 					['2020/03',  867,    663,6],
 					['2020/04',  712,    691,7]
-				]);
+				]); 
 			var options = {
 					title : '월별 지갑, 시계 판매량',
 					vAxis: {title: 'Cups'},
@@ -115,19 +115,6 @@
 </script>
 
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to to the body tag
-to get the desired effect
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
-
-
-
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -221,12 +208,7 @@ to get the desired effect
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item ">Dashboard</li>
-            </ol>
-          </div>
+          
         </div>
       <!-- Main content -->
     <section class="content">

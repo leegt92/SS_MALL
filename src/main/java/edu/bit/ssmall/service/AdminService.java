@@ -20,7 +20,10 @@ public class AdminService {
 	}
 
 	public int countProduct() {
-		// TODO Auto-generated method stub
 		return adminMapper.countProduct();
 	}
+	
+	
+	
 }
+

@@ -70,6 +70,22 @@ function previewImage(f){
 </script>
 
 <style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:100px; padding:5px; }
+label[for='p_description'] { display:block; }
+input { width:150px; }
+textarea#p_description { width:400px; height:180px; }
+
+.select_img img { margin:20px 0; }
+
+.inputArea1 {
+	position: relative;
+	left: 20px;
+}
+</style>
+
+<style>
 .dropdown button {
 	display: block;
 	width: 230px;
@@ -207,34 +223,94 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>상품 등록</h1>
+							
 						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item"></li>
-							</ol>
-						</div>
+						
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
 
 			<!-- Main content -->
-			<section class="content style=">
-				<div class="row">
-					<!-- /.col -->
-					<div class="col-md-12">
-						<div class="card card-primary card-outline">
-										<div>
-																
-								</div>								
-							</div>
-						</div>
-					</div>
-				</section>														
-			</div>					
+			
+	<section id="container">
+		<div id="container_box">
+			<h2>상품 등록</h2>
+			
+			<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+			
+			<div class="inputArea1">	
+				<label>분류</label>
+				<select class="category1">
+					<option value="">전체</option>
+				</select>
+			</div>
+			
+			<div class="inputArea1">
+				<label for="p_name">상품명</label>
+				<input type="text" id="p_name" name="p_name" />
+			</div>
+			
+			<div class="inputArea1">
+				<label for="p_brand">상품 브랜드</label>
+				<input type="text" id="p_brand" name="p_brand" />
+			</div>
+			
+			<div class="inputArea1">
+				<label for="p_price">상품 가격</label>
+				<input type="text" id="p_price" name="p_price" />
+			</div>
+			
+			<div class="inputArea1">
+				<label for="p_stock">상품 재고</label>
+				<input type="text" id="p_stock" name="p_stock" />
+			</div>
+			
+			<div class="inputArea1">
+				<label for="p_description">상품소개</label>
+				<textarea rows="5" cols="50" id="p_description" name="p_description"></textarea>
+				
+				<script>
+					var ckeditor_config = {
+							resize_enaleb : false,
+							enterMode : CKEDITOR.ENTER_BR,
+							shiftEnterMode : CKEDITOR.ENTER_P,
+							filebrowserUploadUrl : ""
+					};
+					
+					CKEDITOR.replace("p_description", ckeditor_config);
+				</script>
+				
+			</div>
+			
+			<div class="inputArea1">
+				<label for="">이미지</label>
+				<input type="file" id="" name="file" />
+				<div class=""><img src="" /></div>
+				
+				<script>
+					$("#").change(function(){
+						if(this.files && this.files[0]) {
+							var reader = new FileReader;
+							reader.onload = function(data) {
+								$(". img").attr("src", data.target.result).width(500);								
+							}
+							reader.readAsDataURL(this.files[0]);
+						}
+					});
+				</script>
+			</div>
+			
+			<div class="inputArea1">
+				<td colspan="2"> <input type="submit" value="입력">			
+			</div>
+			
+			</form>
+			
 		</div>
+	</section>
+</div>					
+								</div>								
 
 
 		<!-- Control Sidebar -->

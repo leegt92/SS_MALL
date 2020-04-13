@@ -14,5 +14,6 @@ public interface AdminMapper {
 	
 	@Select("Select count(*) from product")
 	public int countProduct();
+	
 
 }

@@ -17,6 +17,7 @@ import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.AdminService;
 import edu.bit.ssmall.service.BoardNoticeService;
+import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.ProductVO;
 
@@ -32,6 +33,9 @@ public class AdminPageController {
 	
 	@Autowired
 	BoardNoticeService bservice;
+	
+	@Autowired
+	ProductService productService;
 
 	
 	@RequestMapping(value = "asList", method ={RequestMethod.GET,RequestMethod.POST})
@@ -107,11 +111,35 @@ public class AdminPageController {
 
 	}
 	
-	@RequestMapping(value = "addProduct", method = {RequestMethod.GET,RequestMethod.POST})
-	public String addProduct(Model model) {
-		
+	@RequestMapping(value = "addProduct", method = RequestMethod.GET)
+	public String addProduct(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println("addProduct 시작");
+		Object principal = auth.getPrincipal();
 		
+		String p_name = request.getParameter("P_Name");
+		String p_brand = request.getParameter("P_brand");
+		String p_price = request.getParameter("P_price");
+		String p_stock = request.getParameter("P_stock");
+		String p_description = request.getParameter("P_description");
+		String name= "";
+		if(principal != null) {
+			name = auth.getName();
+		}
+		
+		try {
+			int p_number = productService.getPnum(name);
+			model.addAttribute("p_number", p_number); 
+			String p_Name = productService.getPname(name);
+			model.addAttribute("p_Name", p_Name);
+			if(p_name != null && p_brand != null && p_price != null && p_stock != null && p_description != null) {
+				productService.insertProduct(p_Name, p_name, p_brand, p_price, p_stock, p_description);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "Admin/admin_addProduct";
 	}
