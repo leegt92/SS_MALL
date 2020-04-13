@@ -3,6 +3,7 @@ package edu.bit.ssmall.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -13,7 +14,6 @@ import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
-import edu.bit.ssmall.vo.Product_BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 public interface AdminMapper {
@@ -191,6 +191,9 @@ public interface AdminMapper {
 	
 	@Insert("Insert into board(bid,btitle,bname,bdate,bcontent,btype) values(board_seq.nextval, #{btitle}, '관리자', sysdate, #{bcontent}, '공지사항')")
 	public void noticeWrite(@Param("btitle")String btitle,  @Param("bcontent")String bcontent);
+	
+	@Delete("Delete from board where bid = #{bid}")
+	public void noticeDelete(@Param("bid")String bid);
 
 	
 

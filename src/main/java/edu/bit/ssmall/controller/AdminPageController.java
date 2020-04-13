@@ -453,7 +453,16 @@ public class AdminPageController {
 		
 		return "redirect:/admin/noticeView?bid="+bid;
 	}
-
+	
+	@RequestMapping(value = "noticeDelete", method = {RequestMethod.GET,RequestMethod.POST}) // 글 수정하는 창에 대한 컨트롤러
+	public String noticeDelete(Model model, HttpServletRequest request) {
+		String bid = request.getParameter("bid");
+		
+		adminService.noticeDelete(bid);
+		
+		return "redirect:/admin/noticeList";
+	}
+	
 	// 회원 검색
 	@RequestMapping(value = "memberSearch", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberSearch(Model model, HttpServletRequest request, Criteria criteria) {

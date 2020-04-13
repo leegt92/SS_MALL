@@ -219,7 +219,7 @@ span {
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2" style="text-align: right;"><button class="btn btn-primary" type="submit" >수정</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary">목록</button></a>&nbsp;&nbsp;</td>
+												<td colspan="2" style="text-align: right;"><a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary"><i class="fas fa-undo-alt"></i> 목록</button></a>&nbsp;&nbsp; <button class="btn btn-primary" type="submit"><i class="fas fa-edit"></i> 수정</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeDelete?bid=${board.bid}"><button type="button" class="btn btn-primary"><i class="fas fa-ban"></i> 삭제</button></a></td>
 											</tr>									
 										</table>
 									</form>

@@ -276,6 +276,11 @@ public class AdminService {
 		adminMapper.noticeWrite(btitle,bcontent);
 		
 	}
+	
+	public void noticeDelete(String bid) {
+		adminMapper.noticeDelete(bid);
+		
+	}
 
 
 }
