@@ -146,7 +146,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">상품</button>
+								<button class="dropbtn">상품</button>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -155,7 +155,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">공지사항</button>
+								<button class="dropbtn">공지사항</button>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -173,7 +173,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<button class="dropbtn">A/S요청</button>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
@@ -281,10 +281,10 @@ span {
 			CKEDITOR.replace('answerContent', {
 			      width : '930px', 
 			      height : '700px',
-			      startupFocus : false
-			    },{extraPlugins : 'confighelper',
-				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
-			});
+			      startupFocus : false,
+			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
+			      extraPlugins : 'confighelper'		  
+			    });
 		});
 		
 	</script> 

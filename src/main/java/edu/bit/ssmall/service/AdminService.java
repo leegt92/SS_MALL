@@ -46,6 +46,10 @@ public class AdminService {
 		
 		return adminMapper.countSearchMember(search);
 	}
+	public int countNotice() {
+		
+		return adminMapper.countNotice();
+	}
 
 /*===========================페이징처리 ========================================================*/	
 	
@@ -73,6 +77,11 @@ public class AdminService {
 	public List<MemberVO> searchMemberList(int startNum, int endNum, String search) {
 		System.out.println("회원의 검색 후  리스트");
 		return adminMapper.searchMemberList(startNum,endNum, search);
+	}
+	
+	public List<BoardVO> noticeList(int startNum, int endNum) {
+		System.out.println("공지사항 리스트");
+		return adminMapper.noticeList(startNum, endNum);
 	}
 	
 /*===========================회원관리========================================================*/	
@@ -252,5 +261,21 @@ public class AdminService {
 		
 		return map;
 	}
+	
+/*==================================== 공지사항 ================================================*/	
+	public BoardVO noticeView(String bid) {
+		
+		return adminMapper.noticeView(bid);
+	}
+	public void noticeUpdate(String bid, String btitle, String bcontent) {
+		
+		adminMapper.noticeUpdate(bid,btitle,bcontent);
+		
+	}
+	public void noticeWrite(String btitle, String bcontent) {
+		adminMapper.noticeWrite(btitle,bcontent);
+		
+	}
+
 
 }

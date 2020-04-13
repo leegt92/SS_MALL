@@ -34,7 +34,9 @@ public interface AdminMapper {
 	
 	@Select("Select count(*) from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc")
 	public int countSearchMember(String search);
-	
+
+	@Select("Select count(*) from board where btype ='공지사항'")
+	public int countNotice();
 
 /*=====================페이징 처리한 select문 쿼리======================================================================*/
 	
@@ -62,6 +64,11 @@ public interface AdminMapper {
 	
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (Select * from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<MemberVO> searchMemberList(@Param("startNum")int startNum, @Param("endNum")int endNum, @Param("search")String search);
+	
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where btype='공지사항' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum} ")
+	public List<BoardVO> noticeList(@Param("startNum")int startNum,  @Param("endNum")int endNum);
+
+	
 	
 /*===================================회원관리======================================================================*/	
 	@Select("Select * from member where m_number = #{m_number}")
@@ -169,10 +176,22 @@ public interface AdminMapper {
 	/*===============================================기간별 판매량 통계 ====================================================*/
 	
 	@Select("select count(*) from product p , buy b where p.p_number = b.p_number and p.p_brand = #{p_brand} and b.b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
-	public int getBrandMonthSales(@Param("p_brand")String p_brand);
-	
+	public int getBrandMonthSales(@Param("p_brand")String p_brand);	
 	
 	@Select("Select DISTINCT p_brand from product order by p_brand asc")
 	public String[] getBrand();
+	
+	/*===============================================공지사항 ====================================================*/
+	
+	@Select("Select * from board where bid = #{bid}")
+	public BoardVO noticeView(@Param("bid")String bid);
+	
+	@Update("Update board set btitle = #{btitle}, bcontent = #{bcontent} where bid = #{bid}")
+	public void noticeUpdate(@Param("bid")String bid, @Param("btitle")String btitle, @Param("bcontent")String bcontent);
+	
+	@Insert("Insert into board(bid,btitle,bname,bdate,bcontent,btype) values(board_seq.nextval, #{btitle}, '관리자', sysdate, #{bcontent}, '공지사항')")
+	public void noticeWrite(@Param("btitle")String btitle,  @Param("bcontent")String bcontent);
+
+	
 
 }

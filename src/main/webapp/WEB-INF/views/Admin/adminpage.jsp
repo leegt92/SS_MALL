@@ -250,15 +250,7 @@ to get the desired effect
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->			
-			<section class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h4>브랜드별 판매현황 그래프</h4>
-						</div>													
-					</div>					
-				</div>			
-			</section>
+			
 			
 			<section class="content style">
 				<div class="row">		

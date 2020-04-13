@@ -156,7 +156,7 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>							
 							</div>
 						</li>			
 					</ul>

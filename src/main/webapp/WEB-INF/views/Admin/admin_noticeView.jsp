@@ -13,29 +13,30 @@
 
 <title>상승몰 관리자 페이지</title>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
-
-
+<!-- Bootstrap core CSS -->
+<!-- IonIcons -->
+<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
 
 <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
 
-<link rel="stylesheet" href="/ssmall/css/adll.min.css">
-
-<link rel="stylesheet" href="/ssmall/css/bootstrap.css">
-
-<link rel="stylesheet" href="/ssmall/css/icheck-bootstrap.min.css">
-
-<link rel="stylesheet" href="/ssmall/css/fontawesome.min.css">
-
 <link rel="stylesheet" href="/ssmall/css/adminpage.css">
+
 <!-- Theme style -->
 <link rel="stylesheet" href="/ssmall/css/adminlte.min.css">
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
 
 
 
@@ -105,69 +106,70 @@ span {
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
 			</ul>
-			
-			
+
+
 		</nav>
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
-			
-			<a href="/ssmall/admin/adminpage"><h3 class="brand-text font-weight-light" style="color:white; display: inline;">상승몰 관리자</h3></a>
+			<img src="/ssmall/images/logo.png" alt="logo"
+				class="brand-image img-circle elevation-3"> <a
+				href="/ssmall/admin/adminpage"><h3
+					class="brand-text font-weight-light"
+					style="color: white; display: inline;">상승몰 관리자</h3></a>
 
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">					
-					<div class="info">
-						
-					</div>
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="info"></div>
 				</div>
 
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
+					<ul class="nav nav-pills nav-sidebar flex-column"
+						data-widget="treeview" role="menu" data-accordion="false">
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>							
+								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">상품</button>
-								<div class="dropdown-content" >
-								    <a href="/ssmall/admin/productList">상품 목록</a>
-								    <a href="/ssmall/admin/addProduct">상품 등록</a>
-								 </div>															
+								<button class="dropbtn">상품</button>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/productList">상품 목록</a> <a
+										href="/ssmall/admin/addProduct">상품 등록</a>
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">공지사항</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
-									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
+									<a href="/ssmall/admin/noticeList">공지사항 목록</a> <a
+										href="/ssmall/admin/noticeWrite">공지사항 작성</a>
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
+								<button class="dropbtn">1:1문의</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
-									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a> <a
+										href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<button class="dropbtn">A/S요청</button>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
-									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a> <a
+										href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>
 								</div>
 							</div>
-						</li>		
+						</li>
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -195,56 +197,44 @@ span {
 			</section>
 
 			<!-- Main content -->
-			<section class="content style=">
+			<section class="content style">
 				<div class="row">
 					<!-- /.col -->
 					<div class="col-md-12">
 						<div class="card card-primary card-outline">
-							<div class="card-header">
-								<h3 class="card-title">공지사항 리스트</h3>
-
-								<table width="500" cellpadding="0" cellspacing="0" border="1">
-		<form action="modify" method="post">
-			<input type="hidden" name="bId" value="${content_view.bId}">
-			<tr>
-				<td> 번호 </td>
-				<td> ${content_view.bId} </td>
-			</tr>
-			<tr>
-				<td> 히트 </td>
-				<td> ${content_view.bHit} </td>
-			</tr>
-			<tr>
-				<td> 이름 </td>
-				<td> <input type="text" name="bName" value="${content_view.bName}"></td>
-			</tr>
-			<tr>
-				<td> 제목 </td>
-				<td> <input type="text" name="bTitle" value="${content_view.bTitle}"></td>
-			</tr>
-			<tr>
-				<td> 내용 </td>
-				<td> <textarea rows="10" name="bContent" >${content_view.bContent}</textarea></td>
-			</tr>
-			<tr >
-				<td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp; <a href="noticeList">목록보기</a> &nbsp;&nbsp;</td>
-			</tr>
-		</form>
-	</table>							
-							</div>	
-								</tbody>
-									</table>								
-								</div>								
-							</div>														
-						</div>					
+							<div class="card-body p-0">
+								<div class="mailbox-controls">									
+									<div class="table-responsive mailbox-messages">						
+										<form action="/ssmall/admin/noticeUpdate?${_csrf.parameterName}=${_csrf.token}" method="post">
+										<input type="hidden" name="bid" value="${board.bid}">
+										<table class="table table-list-search">											
+											<tr>											
+												<td>
+													<textarea style="width: 1590px; height:auto; font-size: 1.5em; font-weight: bold;" name="btitle">${board.btitle}</textarea>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<textarea id="Content" style="width: 1590px; height:auto; vertical-align: center; font-size : 1.2em;" name="bcontent">${board.bcontent}</textarea>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" style="text-align: right;"><button class="btn btn-primary" type="submit" >수정</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary">목록</button></a>&nbsp;&nbsp;</td>
+											</tr>									
+										</table>
+									</form>
+							</div>				
+						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 		</div>
+	</section>
+	</div>
 
 
 
-		<!-- Control Sidebar -->
+	<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Control sidebar content goes here -->
 		</aside>
@@ -258,5 +248,18 @@ span {
 			</div>
 		</footer>
 	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('Content', {
+			      width : '1590px', 
+			      height : '700px',
+			      startupFocus : false,
+			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
+			      extraPlugins : 'confighelper'		  
+			    });
+		});
+		
+	</script> 
 </body>
 </html>

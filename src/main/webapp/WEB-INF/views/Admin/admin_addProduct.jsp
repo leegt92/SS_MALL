@@ -173,7 +173,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">공지사항</button>
+								<button class="dropbtn">공지사항</button>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -182,12 +182,8 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
+								<button class="dropbtn">1:1문의</button>
 								<div class="dropdown-content">
-
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
-
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
 
@@ -196,7 +192,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<button class="dropbtn">A/S요청</button>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
