@@ -1269,9 +1269,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </script>
 <script>
+
 	$(function(){
 		$(document).on("click","#QuickViewBtn",function(){
-			
+			var price = null;
+			var deposit = null;
+			function numberWithCommas(x) {
+				console.log("numberWithCommas");    
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			};
 			/* alert($(this).attr("value")); */
 			var data = {
 					  p_number : $(this).attr("value")
@@ -1287,17 +1293,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				},
 				success:function(data){
 
-					function numberWithCommas(x) {
-						console.log("numberWithCommas");    
-						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					};
+					
 					
 					$.each(data.slice(0, 1), function(key, data){
 						modalIname1 = data.i_name;
-						numberWithCommas = numberWithCommas(data.p_price);
+						price = numberWithCommas(data.p_price);					
+						deposit = numberWithCommas(data.p_price * 0.01);
+					
 					})
 					$.each(data.slice(0, 2), function(key, data){
 						modalIname2 = data.i_name;
+						
 					})
 					$.each(data.slice(0, 3), function(key, data){
 						modalIname3 = data.i_name;
@@ -1365,7 +1371,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "<div class='p-r-50 p-t-5 p-lr-0-lg'>";
 					tag = tag + "<h4 id='QuickName' class='mtext-105 cl2 js-name-detail p-b-14'>"+data.p_name+"</h4>";
 								
-					tag = tag + "<span id='QuickPrice' class='mtext-106 cl2'>"+numberWithCommas+"</span>원";
+					tag = tag + "<span id='QuickPrice' class='mtext-106 cl2'>"+price+"</span>원";
 
 					tag = tag + "<div class='stext-102 cl3 p-t-23'>";
 					tag = tag + "<div class='size-203 flex-c-m respon6' style='width: 250px'>";
@@ -1375,7 +1381,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "<tr>";
 					tag = tag + "<td>적립금</td>";
 					tag = tag + "<td>";
-					tag = tag + +data.p_price/10+"원";
+					tag = tag + deposit + "원";
 					tag = tag + "</tr>";
 					tag = tag + "<tr>";
 					tag = tag + "<td>배송비</td>";

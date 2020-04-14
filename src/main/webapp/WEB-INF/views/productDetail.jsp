@@ -707,7 +707,7 @@
 						<div class="tab-pane fade show active" id="description"
 							role="tabpanel">
 							<div class="how-pos2 p-lr-15-md" style="overflow:auto;">
-								<p>${productDetail[0].p_description}</p>
+								<div style="text-align: center;">${productDetail[0].p_description}</div>
 								<%-- <c:forEach items="${productDetail}" var="productDetail">
 								<p>${productDetail.p_description}</p>
 								</c:forEach> --%>
@@ -758,7 +758,7 @@
 												<button type="button" id="btn_collapse_notLogin"class="btn btn-info m-3" style="left:10px;">구매후기 작성</button>
 											</sec:authorize>
 															
-											<sec:authorize access="hasRole('USER')">												
+											<sec:authorize access="hasAnyRole('USER, ADMIN')">												
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
 												<button style='color:gray;' type = 'button' id = "write" name = "write"></button>
@@ -770,7 +770,7 @@
 												<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button>
 											</sec:authorize> --%>
 											
-											<sec:authorize access="hasRole('USER')">
+											<sec:authorize access="hasAnyRole('USER, ADMIN')">
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
 												<button type="button" class="btn btn-info m-3" id="writeModalBtn" style="left:10px;" >구매후기 작성</button>
@@ -1625,7 +1625,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<p>제목</p>
 						<input type="hidden"name="btitle" id="btitleUpdate" size="50" style="border:1px solid gray" value="btitlehidden"><br>
 						<p>내용</p>
-						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52"  style="border:1px solid gray; resize:none;"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
 					</form>
 				</div>
@@ -1911,6 +1911,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										})
 										
 											$(function(){
+												var bcontent = null;
 											    $(document).on("click","#modify",function(){
 											    	var bid = $(this).attr("value");
 											    	var data = {
@@ -1926,7 +1927,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 																console.log("모달스크립트");
 														    	/* alert(data.bid); */
 														        $('#modal').modal();
-														    	$('#bidUpdate').val(data.bid);	
+														    	$('#bidUpdate').val(data.bid);
+														    	
 															}
 															else{
 																Swal.fire('글 수정','작성자만 가능합니다','error');

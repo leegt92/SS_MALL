@@ -198,4 +198,9 @@ public class ProductService {
 		return productMapper.checkBrepotid2(bid);
 	}
 
+	public BoardVO getBoard(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.getBoard(bid);
+	}
+
 }

@@ -181,6 +181,9 @@ public interface ProductMapper {
 	//글에서 두번째 신고자의 id를 가져옴(brepotid2)
 	@Select("select brepotid2 from board where bid = ${value}")
 	public int checkBrepotid2(@Param("value")String bid);
+	
+	@Select("Select * from board where bid = #{bid}")
+	public BoardVO getBoard(String bid);
 
 	
 
