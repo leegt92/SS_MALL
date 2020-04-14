@@ -161,7 +161,7 @@ public class HomeController {
                             , @RequestParam(value="fileName") String fileName
                             , HttpServletRequest request, HttpServletResponse response)
  throws ServletException, IOException{
-        
+        System.out.println("피카츄");
         //서버에 저장된 이미지 경로
         String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\img\\";
     

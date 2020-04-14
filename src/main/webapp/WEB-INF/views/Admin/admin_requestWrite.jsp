@@ -279,10 +279,10 @@ span {
 			CKEDITOR.replace('answerContent', {
 			      width : '930px', 
 			      height : '700px',
-			      startupFocus : false
-			    },{extraPlugins : 'confighelper',
-				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
-			});
+			      startupFocus : false,
+			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
+			      extraPlugins : 'confighelper'
+			    });
 		});
 		
 	</script> 
