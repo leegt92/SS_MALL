@@ -144,12 +144,11 @@ span {
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#"><i class="fas fa-bars"></i></a></li>
+				
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="adminpage" class="nav-link">Home</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="#"
-					class="nav-link">Contact</a></li>
+					href="/ssmall/admin/adminpage" class="nav-link">Home</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a href="/ssmall/admin/productList"
+					class="nav-link">Product</a></li>
 			</ul>
 			
 			
@@ -241,7 +240,7 @@ span {
 			
 	<section id="container">
 		<div id="container_box">
-			<h2>상품 등록</h2>
+			<h2 class="inputArea1">상품 등록</h2>
 			
 
 			<form role="form" method="post" autocomplete="off" enctype="multipart/form-data" action="/ssmall/admin/productAdd?${_csrf.parameterName}=${_csrf.token}">
@@ -297,13 +296,14 @@ span {
 			
 
 			<div class="inputArea1" >
-				<label for="">썸네일</label><br>
-				<input type="file" id="" name="thumbnail1" size="10px"/><br>
-				<input type="file" id="" name="thumbnail2" /><br>
-				<input type="file" id="" name="thumbnail3" /><br>
+				<label for="sel1">썸네일</label><br>
+				<input type="file" id="" name="thumbnail1" size="10px"/><br/>
+				<input type="file" id="" name="thumbnail2" /><br/>
+				<input type="file" id="" name="thumbnail3" /><br/>
 
 				
 				<script>
+					
 					$("#").change(function(){
 						if(this.files && this.files[0]) {
 							var reader = new FileReader;
@@ -317,8 +317,8 @@ span {
 			</div>
 			
 			<div class="inputArea1">
-
-				<td colspan="2"> <input type="submit" value="등록">			
+				
+				<br><input type="submit" value="등록">			
 
 			</div>
 			

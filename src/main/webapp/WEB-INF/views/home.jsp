@@ -380,12 +380,10 @@ background: #f00;
 							
 							
 							<li>
-								<a href="boardnoticeView">새소식</a>
+								<a href="boardnoticeView">공지사항</a>
 								
 							</li>
-						
-							
-							
+					
 							<li>
 								<a href="companyView">회사소개</a>						
 							

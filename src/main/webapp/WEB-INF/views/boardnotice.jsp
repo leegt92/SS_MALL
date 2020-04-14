@@ -137,6 +137,10 @@
 							<li>
 								<a href="asView">AS</a>
 							</li>	
+							
+							<li>
+								<a href="#" onclick="chat();">채팅</a>
+							</li>
 						</ul>
 					</div>	
 			
@@ -188,6 +192,10 @@
 				
 				<li>
 					<a href="asView">AS</a>
+				</li>
+				
+				<li>
+					<a href="#" onclick="chat();">채팅</a>
 				</li>
 			
 
@@ -576,13 +584,11 @@ $(document).ready(function() {
 	</script>
 <!--===============================================================================================-->	
 
-
- 
-
 <!--===============================================================================================-->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>
 <!--===============================================================================================-->
+<script src="/ssmall/js/chat.js"></script> 
 </body>
 
 </html>
