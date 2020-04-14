@@ -9,6 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<base href="/">
 <link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
 
 <title>상승몰 관리자 페이지</title>
@@ -210,12 +211,13 @@ span {
 										<table class="table table-list-search">											
 											<tr>											
 												<td>
-													<textarea style="width: 1590px; height:auto; font-size: 1.5em; font-weight: bold;" name="btitle">${board.btitle}</textarea>
+													<textarea style="width: 1580px; height:auto; font-size: 1.5em; font-weight: bold;" name="btitle">${board.btitle}</textarea>
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<textarea id="Content" style="width: 1590px; height:auto; vertical-align: center; font-size : 1.2em;" name="bcontent">${board.bcontent}</textarea>
+													<%-- <div id="Content">${board.bcontent}</div> --%>
+													<textarea id="Content" style="font-size : 1.2em;" name="bcontent">${board.bcontent}</textarea>
 												</td>
 											</tr>
 											<tr>
@@ -249,17 +251,25 @@ span {
 		</footer>
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+	
 	<script type="text/javascript">
+	
 		$(function(){
-			CKEDITOR.replace('Content', {
-			      width : '1590px', 
+			CKEDITOR.replace('Content', {		
+				  width : '1570px', 
 			      height : '700px',
-			      startupFocus : false,
+			      startupFocus : false,			
 			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
-			      extraPlugins : 'confighelper'		  
+			      extraPlugins : 'confighelper',		 			      
+			      entermode : '2',
+			      shiftEnterMode : '3',
+			    
 			    });
+		
+			
 		});
 		
 	</script> 
+	
 </body>
 </html>

@@ -164,7 +164,7 @@
 							</li>
 						
 							<li>
-								<a href="noticeView">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>

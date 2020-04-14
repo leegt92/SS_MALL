@@ -32,7 +32,7 @@ public interface ProductMapper {
 	@Select("select * from product p , image i where p.p_number = i.p_number and i.i_type = '1' order by p_amount desc")
 	public List<ProductImageVO> selectProductListAmount();
 	
-	@Select("select * from product p, image i where p.p_number = #{p_number} and i.p_number = p.p_number order by i_type asc")
+	@Select("select * from product p, image i where p.p_number = #{p_number} and i.p_number = p.p_number and i_type < 4 order by i_type asc")
 	public List<ProductImageVO> selectProductOne(String p_number);
 	  
 	

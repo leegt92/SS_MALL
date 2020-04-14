@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
 
-<link rel="stylesheet" href="/ssmall/css/adll.min.css">
+<link rel="stylesheet" href="/ssmall/css/all.min.css">
 
 <link rel="stylesheet" href="/ssmall/css/bootstrap.css">
 
