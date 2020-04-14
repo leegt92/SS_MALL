@@ -136,6 +136,12 @@ public interface MypageMapper {
 	@Select("select count(*) from board")
 	public int selectCountBoard();
 	
+	@Select("select bTitle from board where bid = #{bid}")
+	public String selectFbTitle(@Param("bid") String bid);
+	
+	@Select("select bContent from board where bid = #{bid}")
+	public String selectFbContent(@Param("bid") String bid);
+	
 	@Select("select count(*) from board where m_number = #{m_number} and btype='문의/건의'")
 	public int selectAskCountBoard(@Param("m_number") int m_number);
 	

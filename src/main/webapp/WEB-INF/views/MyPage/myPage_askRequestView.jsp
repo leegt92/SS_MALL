@@ -300,16 +300,15 @@
             	</c:otherwise>
             </c:choose>
             <div class="accordion3">
-            	<p><b>문의/건의 제목:</b><c:out value = "${askRequestboards.btitle}"/></p>
+            	<p><b>문의/건의 제목:</b>${askRequestboards.btitle}</p>
             	<br/>
-            	<p><b>문의/건의 내용:</b><c:out value = "${askRequestboards.bcontent}"/></p>
-            	<br/>
-            	=======================================================================================================================
+            	<p><b>문의/건의 내용:</b>${askRequestboards.bcontent}</p>
             	<br/>
             	<br/>
-              	<p><b>답변 제목:</b><c:out value = "${askRequestboardsAnswers[status.index].btitle}"/></p>
+            	<br/>
+              	<p><b>답변 제목:</b>${askRequestboardsAnswers[status.index].btitle}</p>
               	<br/>
-              	<p><b>답변 내용:</b><c:out value = "${askRequestboardsAnswers[status.index].bcontent}"/></p>
+              	<p><b>답변 내용:</b>${askRequestboardsAnswers[status.index].bcontent}</p>
             </div>
         </li>
         </c:forEach>
@@ -325,7 +324,9 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
+
         <button onclick="window.location.href='/ssmall/mypage/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
+
     </ul>
     
 </div>

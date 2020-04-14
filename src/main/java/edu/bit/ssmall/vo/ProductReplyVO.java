@@ -18,7 +18,21 @@ public class ProductReplyVO {
 	private int m_number;
 	private String p_number;
 	private String m_id;
+	private int brepotid1;
+	private int brepotid2;
 	
+	public int getBrepotid1() {
+		return brepotid1;
+	}
+	public void setBrepotid1(int brepotid1) {
+		this.brepotid1 = brepotid1;
+	}
+	public int getBrepotid2() {
+		return brepotid2;
+	}
+	public void setBrepotid2(int brepotid2) {
+		this.brepotid2 = brepotid2;
+	}
 	public int getBid() {
 		return bid;
 	}

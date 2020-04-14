@@ -158,11 +158,11 @@
 		}
  
 		@media screen and (min-width: 768px) { 
-		        .modal:before {
-		                display: inline-block;
-		                vertical-align: middle;
-		                content: " ";
-		                height: 100%;
+		 .modal:before {
+		        display: inline-block;
+		        vertical-align: middle;
+		        content: " ";
+		        height: 100%;
 		        }
 		}
 		.modal-dialog {
@@ -171,8 +171,6 @@
 		        vertical-align: middle;
 		}
 		
-		
-		       
 </style>
 <style>
 .DetailTable{
@@ -200,6 +198,7 @@
 	    			 console.log(data);
 	    			 $.each(data, function(key, data){
 	    				 
+
 	    				 tag = tag+ "<p>";
 	    				 tag = tag+ "<span class='gallery_lv' style='margin-right: 10px;'>"+"작성자 : "+data.m_id+"</span>";
 	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+data.bdate+"</span>";												
@@ -211,7 +210,7 @@
 	    				 tag = tag+ "</div>";							
 	    				 tag = tag+ "<div class='col-12 p-b-5'>";
 	    				 tag = tag+ "<label class='stext-102 cl3' for='review'>Review</label>";
-	    				 tag = tag+ "<textarea readonly class='size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10' style='resize: none;' id='bcontent' name='bcontent'>"+data.bcontent+"</textarea>";
+	    				 tag = tag+ "<div style='overflow:auto; border:1px solid black;'>"+ data.bcontent+"</div>";
 	    				 tag = tag+ "</div>";
 	    				 tag = tag+ "</div>";
 	    				 
@@ -223,18 +222,23 @@
 							tag = tag+ "<input type='hidden' id = 'm_id' name='m_id' value='"+data.m_id+"'>";									
 							tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
 							tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
-							tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";	
+							tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
+							tag = tag + "<input type='text' value='"+data.btotalrepot+"' name='btotalrepot'>";//리폿당한 횟수
+							tag = tag + "<input type='text' value='"+data.brepotid1+"' name='btotalrepot'>";//리폿한 사용자1의 member number
+							tag = tag + "<input type='text' value='"+data.brepotid2+"' name='btotalrepot'>";//리폿한 사용자2의 member number
 							/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. */
 							tag = tag + "<sec:authorize access='hasRole("USER")'>";												
 							tag = tag + "<p class='text-success' style='font-weight:bold; font-size: 1.5em;'></p>";
 							/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
 							tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
-							tag = tag + "<button style='margin-right:10px; margin-left:10px; color:gray;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
-							tag = tag + "<button style='color:gray;' type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button>";
+							tag = tag + "<button class='btn btn-secondary m-3' style='margin-right:10px; margin-left:10px; color:white;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
+							tag = tag + "<button class='btn btn-secondary m-3' style='margin-right:10px; margin-left:10px; color:white;' type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button>";
+							tag = tag + "<button class='btn btn-danger m-3' style='color:white;' type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"신고"+"</button>";
 							/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
 							tag = tag + "</sec:authorize>";																									
 	/* 						tag = tag + "</p>"; */
 							tag = tag + "</form>";
+							tag = tag + "</table>"
     				 
 	    			 });
 	    			 $("section.reply_ajax ol").html(tag);
@@ -535,8 +539,6 @@
 									value="${productDetail.p_price}" pattern="###,###,###" />원
 							</span>
 
-							<p class="stext-102 cl3 p-t-23">
-								${productDetail.p_description}</p>
 						</c:forEach>
 
 						<!--  -->
@@ -646,7 +648,7 @@
 							</div>
 						</div>
 
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+						<!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#"
 									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
@@ -665,7 +667,7 @@
 								class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 								data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -682,9 +684,9 @@
 							data-toggle="tab" href="#description" role="tab">Description
 								상품설명 설명</a></li>
 
-						<li class="nav-item p-b-10"><a class="nav-link"
+						<!-- <li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#information" role="tab">Additional
-								information상세정보. 크기 길이 등</a></li>
+								information상세정보. 크기 길이 등</a></li> -->
 						<li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#reviews" role="tab">Reviews</a></li>
 
@@ -695,8 +697,11 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description"
 							role="tabpanel">
-							<div class="how-pos2 p-lr-15-md">
-								<p class="stext-102 cl6">상품설명</p>
+							<div class="how-pos2 p-lr-15-md" style="overflow:auto;">
+								<p>${productDetail[0].p_description}</p>
+								<%-- <c:forEach items="${productDetail}" var="productDetail">
+								<p>${productDetail.p_description}</p>
+								</c:forEach> --%>
 							</div>
 						</div>
 
@@ -741,7 +746,7 @@
 										<div class="container">
 											<sec:authorize access="isAnonymous()">												
 												<!-- <p style="font-weight: bold; font-size: 1.5em;">isAnonymous</p> -->
-												<button type="button" id="btn_collapse_notLogin"class="btn btn-info">구매후기 작성</button>
+												<button type="button" id="btn_collapse_notLogin"class="btn btn-info m-3" style="left:10px;">구매후기 작성</button>
 											</sec:authorize>
 															
 											<sec:authorize access="hasRole('USER')">												
@@ -759,7 +764,7 @@
 											<sec:authorize access="hasRole('USER')">
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
-												<button type="button" class="btn btn-info" id="writeModalBtn">구매후기 작성</button>
+												<button type="button" class="btn btn-info m-3" id="writeModalBtn" style="left:10px;" >구매후기 작성</button>
 											</sec:authorize>
 																																	
 											<!-- <button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button> -->
@@ -1144,9 +1149,9 @@
 	<section class="sec-relate-product bg0 p-t-45 p-b-105">
 		<div class="container">
 			<div class="p-b-45">
-				<h3 class="ltext-106 cl5 txt-center">
+				<!-- <h3 class="ltext-106 cl5 txt-center">
 					Related Products 관련상품 혹은 인기상품<br /> p_amount 높은순정렬했음.
-				</h3>
+				</h3> -->
 			</div>
 
 			<!-- Slide2 -->
@@ -1454,8 +1459,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</div>
 							</div>
 
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+							<!-- 구매하기 밑 좋아요버튼들 -->
+							<!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m bor9 p-r-10 m-r-11">
 									<a href="#"
 										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
@@ -1474,7 +1479,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 									data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1588,13 +1593,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 	
 
 	   <!-- 모달 -->
 	<div class="modal fade" id="modal">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="width:800px; height:500px;">
 				<!-- header -->
 				<div class="modal-header">
 					<!-- 닫기(x) 버튼 -->
@@ -1605,13 +1610,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				<!-- body -->
 				<div class="modal-body">
 					<form id="modalForm" name="modalForm" action="modifyReply2" method="post">
-						<input id="bid" type="hidden" name="bid">
+						<input id="bidUpdate" type="hidden" name="bid">
 						<input id="check" type="hidden" name="check" value="modal1">
-						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
+						<input id="p_numberUpdate" type="hidden" name="p_number" value="${productNum.p_number}">
 						<p>제목</p>
-						<input type="hidden"name="btitle" id="btitle" size="50" style="border:1px solid gray" value="btitlehidden"><br>
+						<input type="hidden"name="btitle" id="btitleUpdate" size="50" style="border:1px solid gray" value="btitlehidden"><br>
 						<p>내용</p>
-						<textarea name="bcontent" rows="10" cols="52" style="border:1px solid gray"></textarea>
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52" style="border:1px solid gray; resize:none;"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
 					</form>
 				</div>
@@ -1627,13 +1632,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	<div class="modal fade" id="writeModal">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="width:800px; height:500px;">
 				<!-- header -->
 				<div class="modal-header">
 					<!-- header title -->
 					<h4 class="modal-title">작성</h4>
 					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
+					<button type="button" id = "Xbutton" class="close" data-dismiss="modal">×</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
@@ -1642,9 +1647,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" />
 						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
 						<!-- <p>제목</p> -->
-						<input type="hidden"name="btitle" id="btitle" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden"><br>
+						<input type="hidden"name="btitle" id="btitleWrite" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden"><br>
 						<p>Review</p>
-						<textarea name="bcontent" id="bcontent" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<textarea name="bcontent" id="bcontentImage" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
 						<div align="right">
 						<input type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value="작성">
 						</div>
@@ -1659,47 +1664,103 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 		</div>
 	</div>
-	
-
-
+<!-- 글 작성시 이미지 삽입을 위한 CKEDITOR 스크립트 -->
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bcontentImage',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+					
+			});
+		});
+	</script>
+<!-- 이미지를 포함한 글 수정을 위한 CKEDITOR 스크립트 -->
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bcontentImageUpdate',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+					
+			});
+		});
+	</script>
+<!-- <script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bcontentShow',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+					
+			});
+		});
+		
+</script> -->
 
 								<script>
 									//수정modal창에서 수정확인 버튼을 눌럿을때,DB에서 값이 수정되고 난 후 화면(리스트)를 다시 갱신하는 스크립트.
 									$(function(){
 										$(document).on("click","#modalSubmit",function(){
-											/* alert("확인"); */
-											var queryString = $("form[name=modalForm]").serialize();
-											console.log(queryString);
+											console.log("modalSubmit(수정) 스크립트 탔음.");
+											var value = CKEDITOR.instances["bcontentImageUpdate"].getData();
+											
+											var data = {
+													bid : $("#bidUpdate").attr("value"),
+													p_number : $("#p_numberUpdate").attr("value"),
+													btitle : $("#btitleUpdate").attr("value"),
+													bcontent : value
+												};
+											console.log(data);
+											
 											$.ajax({
 												method:"get",
 												url:"/ssmall/modifyReply2",
-												data:queryString,
-												error:function(xhr,status,error){
-													alert(error);
-												},
-												success:function(){
-													replyList();
-												},
-											});												
-											})
-										})
-										//글쓰기 모달버전
-										$(function(){
-										$(document).on("click","#modalWriteSubmit",function(){
-											/* alert("확인"); */
-											var queryString = $("form[name=writeModalForm]").serialize();
-											console.log(queryString);
-											$.ajax({
-												method:"get",
-												url:"/ssmall/product_Write_reply",
-												data:queryString,
+												data:data,
 												error:function(xhr,status,error){
 													alert("에러");
 												},
 												success:function(){
 													replyList();
+													CKEDITOR.instances["bcontentImageUpdate"].setData("");
+												},
+											});												
+											})
+										})
+										
+										//X버튼 누르면(글쓰기 취소하면) 취소 전에 적었던 글자들 사라짐.초기화.
+										$(function(){
+										$(document).on("click","#Xbutton",function(){
+											CKEDITOR.instances["bcontentImage"].setData("");
+										})
+										})
+										
+										//글쓰기 모달버전
+										$(function(){
+										$(document).on("click","#modalWriteSubmit",function(){
+											console.log("modalWriteSubmit 스크립트 탔음.");
+											var value = CKEDITOR.instances["bcontentImage"].getData();
+											alert(value);
+											/* alert("확인"); */
+											/* var queryString = $("form[name=writeModalForm]").serialize();
+											console.log(queryString); */
+											
+											var data = {
+													m_number : $("#m_number").attr("value"),
+													m_id : $("#m_id").attr("value"),
+													p_number : $("#p_number").attr("value"),
+													btitle : $("#btitleWrite").attr("value"),
+													bcontent : value
+												};
+											
+											$.ajax({
+												method:"get",
+												url:"/ssmall/product_Write_reply",
+												/* data:queryString, */
+												data:data,
+												error:function(xhr,status,error){
+													alert("에러");
+												},
+												success:function(){
+													replyList();
+													CKEDITOR.instances["bcontentImage"].setData("");
+													/* $("#bcontentImage").val("");
 													$(".writeBtitle").val("");
-													$(".writeBcontent").val("");
+													$(".writeBcontent").val(""); */
 													
 												},
 											});												
@@ -1761,7 +1822,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 												   success : function(result){
 													 if(result == 1){
 														 console.log("result=1. 삭제완료 후 갱신");
-														 alert("삭제되었습니다.");
 													     replyList();
 													 }
 													 else{
@@ -1857,7 +1917,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 																console.log("모달스크립트");
 														    	/* alert(data.bid); */
 														        $('#modal').modal();
-														    	$('#bid').val(data.bid);	
+														    	$('#bidUpdate').val(data.bid);	
 															}
 															else{
 																Swal.fire('글 수정','작성자만 가능합니다','error');
@@ -1872,6 +1932,43 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											    $(document).on("click","#write",function(){
 											    	$('#writeModal').modal();											    	
 											    												    											    											    											    	
+											    })
+											})
+											//신고하기 버튼 누를 시 글의 btotalrepot 이 1 증가함.
+											$(function(){
+											    $(document).on("click","#report",function(){
+											    	var bid = $(this).attr("value");
+											    	var data = {
+											    			bid : bid											    			
+											    	};
+													$.ajax({
+														url:"/ssmall/report",
+														type:"get",
+														data:data,
+														success:function(result){
+															if(result==0){
+																alert("신고하였습니다.");
+																console.log("컨트롤러 report 탄 후 글목록 재구축");
+																replyList();
+															}
+															else if(result==1){
+																alert("중복신고 입니다.");
+																replyList();
+															}
+															else if(result==2){
+																alert("자신의 글은 신고할 수 없습니다.");
+																replyList();
+															}
+															else if(result==3){
+																alert("이미 삭제처리된 댓글입니다.");
+																replyList();
+															}
+														},
+														error:function(xhr,status,error){
+															alert("에러");
+														},
+														
+													})											    											    											    	
 											    })
 											})
 											

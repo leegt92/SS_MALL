@@ -163,7 +163,7 @@
 							</li>
 						
 							<li>
-								<a href="boardnoticeView">공지사항</a>
+								<a href="noticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>
@@ -228,7 +228,12 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
+
+
 						SSMALL with luxury watches and wallets
+					 Free shipping for standard order over $100
+
+
 					</div>
 				</li>
 
@@ -420,9 +425,9 @@
 								<button type="submit">검색2</button>
 							<input type="submit" value="검색1" width = "300"/> -->
 								<div class="input-group col-md-12">
-			                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search" />
+			                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search2" />
 			                   	 	<span class="input-group-btn">
-			                        	<button id="SearchButtonImage" class="btn btn-info btn-lg" type="submit">
+			                        	<button id="SearchButtonImage" class="btn btn-secondary btn-lg" type="submit">
 			                           	 	<i class="glyphicon glyphicon-search"></i>
 			                        	</button>
 			                    	</span>
@@ -646,7 +651,7 @@
 							</button> --%>
 							
 							<button type="button" id="QuickViewBtn" name="QuickViewBtn" value="${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View123
+									Quick View
 							</button>
 							
 						</div>
@@ -1412,7 +1417,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "</tr>";
 					tag = tag + "<tr>";
 					tag = tag + "<td>브랜드</td>";
-					tag = tag + "<td>브랜드값들어갈자리</td>";
+					tag = tag + "<td>"+data.p_brand+"</td>";
 					tag = tag + "</tr>";
 					tag = tag + "</table>";
 					tag = tag + "</div>";
@@ -1444,22 +1449,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 					tag = tag + "<div class='flex-w flex-m p-l-100 p-t-40 respon7'>";
 					tag = tag + "<div class='flex-m bor9 p-r-10 m-r-11'>";
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100' data-tooltip='Add to Wishlist'>";
-					tag = tag + "<i class='zmdi zmdi-favorite'></i>";
-					tag = tag + "</a>";
+
 					tag = tag + "</div>";
 
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Facebook'>";
-					tag = tag + "<i class='fa fa-facebook'></i>";
-					tag = tag + "</a>";
-
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Twitter'>";
-					tag = tag + "<i class='fa fa-twitter'></i>";
-					tag = tag + "</a>";
-
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Google Plus'>";
-					tag = tag + "<i class='fa fa-google-plus'></i>";
-					tag = tag + "</a>";
 					tag = tag + "</div>";
 					tag = tag + "</div>";
 					tag = tag + "</div>";
