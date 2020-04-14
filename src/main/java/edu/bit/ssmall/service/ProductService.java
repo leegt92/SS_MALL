@@ -21,6 +21,11 @@ public class ProductService {
 	@Inject
 	ProductMapper productMapper;
 	
+	public int getP_num(String m_id) throws Exception {
+
+		return productMapper.getP_num(m_id);
+	}
+	
 	public List<ProductImageVO> selectProductList() {		
 		return productMapper.selectProductList();
 	}

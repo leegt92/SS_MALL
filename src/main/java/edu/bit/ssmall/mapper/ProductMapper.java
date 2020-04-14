@@ -19,7 +19,9 @@ import edu.bit.ssmall.vo.ProductVO;
 
 public interface ProductMapper {
 	
-	//濡쒓렇�씤�릺�뼱�엳�굹 蹂닿퀬, 濡쒓렇�씤 �릺�뼱�엳�떎硫� 洹� �븘�씠�뵒瑜� 媛��졇�삤�뒗 遺�遺�
+	@Select("select m_number from member where m_id = #{m_id}")
+	public int getP_num(@Param("m_id") String m_id);
+	
 	@Select("select m_number from member where m_id = #{m_id}")
 	public int getMnum(@Param("m_id")String m_id);
 

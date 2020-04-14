@@ -19,6 +19,16 @@ import edu.bit.ssmall.vo.RefundVO;
 public interface AdminMapper {
 
 	
+	@Select("select p_number from product where m_id = #{m_id}")
+	public int getP_num(@Param("m_id") String m_id);
+	
+	@Select("select p_name from product where m_id = #{m_id}")
+	public String getP_name(@Param("m_id") String m_id);
+	
+	@Insert("insert into product (p_number,p_name,p_category,p_brand,p_price,p_stock,p_description,p_image, p_amount, p_released_date,p_enabled) values (product_seq.nextval,#{p_name},#{p_category},#{p_brand},#{p_price},#{p_stock},#{p_description},#{p_image},0,sysdate,1)")
+	public void insertProduct(@Param("p_name") String p_name, @Param("p_category") String p_category,@Param("p_brand") String p_brand,
+			@Param("p_price") String p_price, @Param("p_stock") String p_stock, @Param("p_description") String p_description, @Param("p_image")String p_image);
+	
 /*=====================페이징 처리를 위한 카운트 ======================================================================*/
 	@Select("Select count(*) from product")
 	public int countProduct();
@@ -174,5 +184,11 @@ public interface AdminMapper {
 	
 	@Select("Select DISTINCT p_brand from product order by p_brand asc")
 	public String[] getBrand();
+
+	@Insert("Insert into image(p_number, i_name, i_type) values(#{p_number}, #{originFileName}, #{i_type})")
+	public void productImageUpload(@Param("p_number")int p_number, @Param("originFileName")String originFileName, @Param("i_type")int i_type);
+	
+	@Select("Select p_number from product where p_name = #{p_name}")
+	public int getP_number(String p_name);
 
 }

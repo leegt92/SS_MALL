@@ -210,9 +210,7 @@ span {
             </tr>
             <tr>
                 <th>문의 및 요청 내용: </th>
-
                 <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
-
             </tr>
             <br>
              <tr>
@@ -278,13 +276,13 @@ span {
 	
 	<script type="text/javascript">
 		$(function(){
-			CKEDITOR.replace('answerContent', {
+			CKEDITOR.replace('answerContent', {	
 			      width : '930px', 
 			      height : '700px',
-			      startupFocus : false
-			    },{extraPlugins : 'confighelper',
-				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
-			});
+			      startupFocus : false,
+			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
+			      extraPlugins : 'confighelper'
+			    });
 		});
 		
 	</script> 

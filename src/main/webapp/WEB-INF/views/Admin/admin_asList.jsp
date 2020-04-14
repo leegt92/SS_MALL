@@ -153,10 +153,7 @@ span {
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
 								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
-								<div class="dropdown-content">
-
-									<a href="/ssmall/admin/requestList">1:1문의 목록</a>
-									<a href="/ssmall/admin/requestWrite">1:1문의 답변</a>							
+								<div class="dropdown-content">							
 
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							

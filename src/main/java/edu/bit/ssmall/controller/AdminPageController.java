@@ -23,6 +23,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -371,8 +372,9 @@ public class AdminPageController {
 	}
 
 	@RequestMapping(value = "addProduct", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addProduct(Model model) {
-
+	public String addProduct( Model model, HttpServletRequest product) {
+		
+		
 		System.out.println("addProduct 시작");
 
 		return "Admin/admin_addProduct";
@@ -941,6 +943,86 @@ public class AdminPageController {
 		}
 
 	}
+	
+	@RequestMapping(value = "productAdd", method={RequestMethod.GET, RequestMethod.POST})
+	public String productAdd(MultipartHttpServletRequest mtfRequest, Model model) {
+		
+		HttpSession session = mtfRequest.getSession();
+		String p_name = mtfRequest.getParameter("p_name");
+		String p_category = mtfRequest.getParameter("p_category");
+		String p_brand = mtfRequest.getParameter("p_brand");
+		String p_price = mtfRequest.getParameter("p_price");
+		String p_stock = mtfRequest.getParameter("p_stock");
+		String p_description = mtfRequest.getParameter("p_description");
+		
+		System.out.println("p_name : " + p_name);
+		System.out.println("p_category : " + p_category);
+		System.out.println("p_brand : " + p_brand);
+		System.out.println("p_price : " + p_price);
+		System.out.println("p_stock : " + p_stock);
+		
+		String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\resources\\productimage\\";
+		String realPath = session.getServletContext().getRealPath("/");		
 
+		System.out.println("productUpdate 시작");
+		System.out.println("==================");
+		System.out.println("path : " + path);
+		System.out.println("realPath : " + realPath);		
+		System.out.println("==================");
+		
+		MultipartFile thumbnail1 = mtfRequest.getFile("thumbnail1");
+		MultipartFile thumbnail2 = mtfRequest.getFile("thumbnail2");		
+		MultipartFile thumbnail3 = mtfRequest.getFile("thumbnail3");
+		
+		MultipartFile[] arr = {thumbnail1, thumbnail2, thumbnail3};
+		String p_image = thumbnail1.getOriginalFilename();
+		int i_type = 1;
+		adminService.insertProduct(p_name,p_category,p_brand,p_price,p_stock ,p_description, p_image);
+		
+		int p_number = adminService.getP_number(p_name);
+		System.out.println("p_number : " + p_number);
+		
+		for (int i = 0; i < arr.length; i++) {
+			String originFileName = arr[i].getOriginalFilename(); // 원본 파일 명
+			
+			//아무파일도 선택 안할시
+			if(originFileName.equals("")) {
+				i_type++;
+				System.out.println(i+"번째 파일 업로드안함");
+				continue;
+			}
+			
+	
+			long fileSize = arr[i].getSize(); // 파일 사이즈
+			String safeFile = path + originFileName; // 경로 + 이름
+			String realFile = realPath + "\\resources\\productimage\\" + originFileName;
+
+			System.out.println(i + "번째 사진 업로드 시작! ");
+			System.out.println("====================================");
+			System.out.println("originFileName : " + originFileName);
+			System.out.println("fileSize : " + fileSize);
+			System.out.println("savaFile : " + safeFile);
+			System.out.println("realFile : " + realFile);
+			System.out.println("====================================");
+
+			try {
+				arr[i].transferTo(new File(safeFile));
+				arr[i].transferTo(new File(realFile));
+				
+				adminService.productImageUpload(p_number, originFileName, i_type);
+				i_type++;
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	
+	
+		return "redirect:/admin/productList";
+	}
 }
 
