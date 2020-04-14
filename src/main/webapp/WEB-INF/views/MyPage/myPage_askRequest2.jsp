@@ -147,8 +147,6 @@
 				 height: 627px;
 				">
 
-
-
 					<form id="submitAskRequest" action="/ssmall/mypage/myPage_askRequest2_back">
 
 						<input type="hidden" name="bId" value="${bId}">
@@ -251,8 +249,11 @@
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/sweetalert2.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/dev_jiheon
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

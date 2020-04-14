@@ -248,10 +248,10 @@
 								<img src="/ssmall/images/as/refair.PNG">
 							</div>
 
+
 						</div>
 	
 						<div class="p-b-63">
-
 							<i class="fas fa-wrench"></i><span style="font-weight: bold; font-size: 1.5em;"> 협력체</span>
 							<br><br>
 							<div class="master">		

@@ -12,7 +12,12 @@
 <meta name="author" content="">
 <link rel="icon" href="favicon.ico">
 
-<title>상승몰 관리자 페이지</title>
+
+    <title>상승몰 관리자 페이지</title>
+
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
 
 
 <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
@@ -29,8 +34,12 @@
 	crossorigin="anonymous">
 
 <!-- Google Font: Source Sans Pro -->
+
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <!-- google charts -->

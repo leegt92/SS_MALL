@@ -10,9 +10,11 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import edu.bit.ssmall.vo.BoardVO;
+
 import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+
 import edu.bit.ssmall.vo.ProductVO;
 import edu.bit.ssmall.vo.RefundVO;
 
@@ -32,7 +34,6 @@ public interface AdminMapper {
 /*=====================페이징 처리를 위한 카운트 ======================================================================*/
 	@Select("Select count(*) from product")
 	public int countProduct();
-	
 
 	@Select("Select count(*) from member")
 	public int countMember();
@@ -129,7 +130,7 @@ public interface AdminMapper {
 
 
 	/*===================================AS 1:1문의 처리======================================================================*/	
-	
+
 	@Select("select * from board b, member m where b.m_number = m.m_number and btype='문의/건의' ORDER BY bid desc")
 	public List<Board_MemberVO> getAllAskRequest ();
 	
@@ -148,6 +149,7 @@ public interface AdminMapper {
 	@Select("select count(*) from board b, member m where b.m_number = m.m_number and btype='AS요청'")
 	public int selectASCountBoard();
 	
+
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board b join member m using(m_number) where btype='AS요청' and banswered='답변미완료' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<Board_MemberVO> selectUnAnsweredASBoardListPage(@Param("startNum") int startNum, @Param("endNum") int endNum);
 	
@@ -213,5 +215,9 @@ public interface AdminMapper {
 	
 	@Select("Select p_number from product where p_name = #{p_name}")
 	public int getP_number(String p_name);
+
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board b join member m using(m_number) where btype='AS요청' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	public List<Board_MemberVO> selectASBoardListPage(@Param("startNum") int startNum, @Param("endNum") int endNum);
+
 
 }

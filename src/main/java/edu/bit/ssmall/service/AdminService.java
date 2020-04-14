@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.AdminMapper;
 import edu.bit.ssmall.vo.BoardVO;
+
 import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+
 import edu.bit.ssmall.vo.ProductVO;
 import edu.bit.ssmall.vo.RefundVO;
 
@@ -160,6 +162,7 @@ public class AdminService {
 	}
 	
 
+
 	public void updateProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, String originFileName, int p_enabled) {
 		adminMapper.updateProduct(p_number, p_name, p_brand, p_price, p_stock, originFileName, p_enabled);		
 	}
@@ -177,6 +180,7 @@ public class AdminService {
 
 /*===========================상품 수정 처리========================================================*/	
 	
+
 	public List<Board_MemberVO> getAllAskRequest() throws Exception {
 		return adminMapper.getAllAskRequest();	
 	}
@@ -218,6 +222,7 @@ public class AdminService {
 	public void insertAnswer(String bName, String bTitle, String bContent, int m_number, String bId ) throws Exception{
 		adminMapper.insertAnswer(bName, bTitle, bContent, m_number, bId);
 	}
+
 	
 	//인서트된 답변 수정하기
 	public void updateAnswer(String bTitle, String bContent, String bId ) throws Exception{
@@ -308,8 +313,6 @@ public class AdminService {
 	
 		return adminMapper.getP_number(p_name);
 	}
-
-
 
 }
 

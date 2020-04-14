@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -277,9 +278,9 @@ public class AdminPageController {
 
 	}
 
-	// 관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
-	@RequestMapping(value = "adminpage", method = { RequestMethod.GET, RequestMethod.POST })
-	public String adminpage(Model model, HttpSession session) {
+	//관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
+	@RequestMapping(value = "adminpage", method ={RequestMethod.GET,RequestMethod.POST})
+	public String adminpage(Model model) {
 		System.out.println("adminpage 시작");
 
 		HashMap<String, Integer> map = adminService.getBrand();
@@ -361,7 +362,9 @@ public class AdminPageController {
 
 		int totalCount = adminService.countProduct();
 
+
 		System.out.println("상품 수 : " + totalCount);
+
 
 		pageMaker.setTotalCount(totalCount);
 
@@ -437,6 +440,7 @@ public class AdminPageController {
 
 	}
 
+
 	@RequestMapping(value = "noticeView", method = {RequestMethod.GET,RequestMethod.POST}) 																				
 	public String noticeView(Model model, HttpServletRequest request) {
 		System.out.println("noticeView() 시작");
@@ -469,8 +473,9 @@ public class AdminPageController {
 		return "redirect:/admin/noticeList";
 	}
 	
-	// 회원 검색
-	@RequestMapping(value = "memberSearch", method = { RequestMethod.GET, RequestMethod.POST })
+
+	//회원 검색
+	@RequestMapping(value = "memberSearch", method = {RequestMethod.GET, RequestMethod.POST}) 
 	public String memberSearch(Model model, HttpServletRequest request, Criteria criteria) {
 		System.out.println("memberSearch 시작");
 		System.out.println(request.getParameter("search"));
@@ -585,6 +590,7 @@ public class AdminPageController {
 		String m_authority = request.getParameter("m_authority");
 
 		adminService.updateAuthority(m_number, m_authority);
+
 
 		return "redirect:/admin/memberInfo?m_number=" + m_number;
 

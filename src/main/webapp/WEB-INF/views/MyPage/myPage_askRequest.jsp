@@ -149,9 +149,11 @@
 				">
 
 					<form id="submitAskRequest" action="/ssmall/mypage/myPage_askRequest_back">
+
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							문의 및 건의사항을 작성해 주세요.
 						</h4>
+
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input id="bTitle" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="bTitle" placeholder="글 제목을 입력하세요."

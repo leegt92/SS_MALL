@@ -148,7 +148,9 @@
 				">
 
 
+
 					<form id="submitASRequest" action="/ssmall/mypage/myPage_askAS2_back">
+
 					<input type="hidden" name="bId" value="${bId}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							수정할 A/S신청할 제품의 이름과 제품의 하자사항을 입력하세요

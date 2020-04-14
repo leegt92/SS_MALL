@@ -44,7 +44,7 @@ public class ProductService {
 	public List<ProductImageVO> selectProductOne(String p_number) {		
 		return productMapper.selectProductOne(p_number);
 	}
-	 
+	
 	public List<ProductImageVO> selectProductListAmount() {	  
 		return productMapper.selectProductListAmount(); 
 	}
@@ -165,6 +165,37 @@ public class ProductService {
 	public List<ProductVO> selectProductListPageRank(int startNum, int endNum, String keyword) {
 		// TODO Auto-generated method stub
 		return productMapper.selectProductListPageRank(startNum, endNum, keyword);
+	}
+	//글에서 신고하기 누르면 글 내부 btotalRepot 1 증가 
+	public void boardReport(int m_number, String bid) {
+		productMapper.boardReport(m_number, bid);
+		
+	}
+	
+	//글에서 신고하기 누르면 글 내부 btotalRepot 1 증가 
+	public void boardReport2(int m_number, String bid) {
+		productMapper.boardReport2(m_number, bid);
+			
+	}
+	//해당 글의 btotalRepot 수 체크
+	public int checkBtotalRepot(String bid) {
+		
+		return productMapper.checkBoardBtotalRepot(bid);
+	}
+	//신고수가 3 초과했을 경우 해당 글의 글내용 강제변경
+	public void boardReportWriteUpdate(String bid) {
+		// TODO Auto-generated method stub
+		productMapper.boardReportWriteUpdate(bid);
+	}
+	//글에서 첫번째 신고자의 id를 가져옴(brepotid1)
+	public int checkBrepotid1(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.checkBrepotid1(bid);
+	}
+	//글에서 두번째 신고자의 id를 가져옴(brepotid1)
+	public int checkBrepotid2(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.checkBrepotid2(bid);
 	}
 
 }
