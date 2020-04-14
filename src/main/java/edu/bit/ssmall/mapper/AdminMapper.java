@@ -32,6 +32,7 @@ public interface AdminMapper {
 /*=====================페이징 처리를 위한 카운트 ======================================================================*/
 	@Select("Select count(*) from product")
 	public int countProduct();
+	
 
 	@Select("Select count(*) from member")
 	public int countMember();

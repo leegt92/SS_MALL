@@ -96,7 +96,7 @@ public class AdminService {
 		System.out.println("해당회원 정보");
 		return adminMapper.memberInfo(m_number);
 	}
-
+	
 	public ArrayList<BuyVO> buyList(String m_number) {
 		System.out.println("해당회원 구매내역");
 		return adminMapper.buyList(m_number);
@@ -219,6 +219,7 @@ public class AdminService {
 	public void updateBanswered(String bId) throws Exception{
 		adminMapper.updateBanswered(bId);
 	}
+
 	
 	/*====================================통계================================================*/
 	public int getWeeklySales() {
@@ -264,4 +265,7 @@ public class AdminService {
 		return adminMapper.getP_number(p_name);
 	}
 
+
+
 }
+

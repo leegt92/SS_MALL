@@ -243,6 +243,7 @@ span {
 		<div id="container_box">
 			<h2>상품 등록</h2>
 			
+<<<<<<< HEAD
 			<form role="form" method="post" autocomplete="off" enctype="multipart/form-data" action="/ssmall/admin/productAdd?${_csrf.parameterName}=${_csrf.token}">
 			
 			<div class="inputArea1">	
@@ -250,6 +251,14 @@ span {
 				<select class="category1" name="p_category">
 					<option>지갑</option>
 					<option>시계</option>
+=======
+			<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+			
+			<div class="inputArea1">	
+				<label>분류</label>
+				<select class="category1">
+					<option value="">전체</option>
+>>>>>>> 2b19173962dc801ccaae198f097fc0242909e14b
 				</select>
 			</div>
 			
@@ -284,18 +293,23 @@ span {
 							shiftEnterMode : CKEDITOR.ENTER_P,
 							filebrowserUploadUrl : ""
 					};
-					p_description
+
 					CKEDITOR.replace('p_description', {filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'});
+
+					
+					CKEDITOR.replace("p_description", ckeditor_config);
+
 				</script>
 				
 			</div>
 			
+
 			<div class="inputArea1" >
 				<label for="">썸네일</label><br>
 				<input type="file" id="" name="thumbnail1" size="10px"/><br>
 				<input type="file" id="" name="thumbnail2" /><br>
 				<input type="file" id="" name="thumbnail3" /><br>
-				
+
 				
 				<script>
 					$("#").change(function(){
@@ -311,7 +325,9 @@ span {
 			</div>
 			
 			<div class="inputArea1">
+
 				<td colspan="2"> <input type="submit" value="등록">			
+
 			</div>
 			
 			</form>

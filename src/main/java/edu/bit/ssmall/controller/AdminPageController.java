@@ -34,6 +34,7 @@ import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.AdminService;
 import edu.bit.ssmall.service.BoardNoticeService;
+import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.service.MypageService;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.Board_MemberVO;
@@ -54,6 +55,9 @@ public class AdminPageController {
 
 	@Autowired
 	BoardNoticeService bservice;
+	
+	@Autowired
+	ProductService productService;
 
 	@Autowired
 	MypageService mypageService;
@@ -371,14 +375,14 @@ public class AdminPageController {
 
 	}
 
+
 	@RequestMapping(value = "addProduct", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addProduct( Model model, HttpServletRequest product) {
 		
-		
-		System.out.println("addProduct 시작");
-
 		return "Admin/admin_addProduct";
 	}
+
+	
 
 	// 공지사항 관리하는 컨트롤
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET) // 문의글들 띄워놓는 부분에 대한 컨트롤러

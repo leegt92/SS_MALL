@@ -41,9 +41,36 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 	
+
 	<script>
 		 var brand = new Array();
 		 var sales = new Array(); 		
+
+		function drawVisualization() { 
+			var data = google.visualization.arrayToDataTable([
+					['Month'  , '지갑', 	'시계',   '시계'],
+					['2019/12',  742,    938,123],
+					['2020/01',  594,    783,1],
+					['2020/02',  923,    630,1],
+					['2020/03',  867,    663,1],
+					['2020/03',  867,    663,2],
+					['2020/03',  867,    663,3],
+					['2020/03',  867,    663,4],
+					['2020/03',  867,    663,6],
+					['2020/04',  712,    691,7]
+				]); 
+			var options = {
+					title : '월별 지갑, 시계 판매량',
+					vAxis: {title: 'Cups'},
+					hAxis: {title: 'Month'}, 
+					seriesType: 'bars',
+					series: {5: {type: 'line'}}
+				};
+			
+			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+
 	</script>
 	
 	<c:set var="index" value="0"/>
@@ -151,6 +178,7 @@
 </script>
 
 </head>
+
 <!--
 BODY TAG OPTIONS:
 =================
@@ -161,6 +189,7 @@ to get the desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
+
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -247,6 +276,7 @@ to get the desired effect
 			<!-- /.sidebar -->
 		</aside>
 
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->		
@@ -266,6 +296,26 @@ to get the desired effect
 					<!-- Small boxes (Stat box) -->
 					<!-- 1번째 줄 -->
 					<div class="col-md-12">
+
+	<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 853px; ">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+
+	<div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div>
+          
+        </div>
+      <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <!-- 1번째 줄 -->
+        <div class="col-md-12">
+
 						<div class="card card-primary card-outline">
 							<div class="card-body p-0">
 								
