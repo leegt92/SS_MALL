@@ -21,6 +21,22 @@ public class ProductService {
 	@Inject
 	ProductMapper productMapper;
 	
+
+	public int getPnum(String m_id) throws Exception{
+
+		return productMapper.getPnum(m_id);
+	}
+	
+	public String getPname(String m_id) throws Exception{
+		
+		return productMapper.getPname(m_id);
+	}
+	
+	public void insertProduct(String p_Num, String p_Name, String p_Category, String p_Price, String p_Stock, String p_Description ) throws Exception{
+		productMapper.insertProduct(p_Num, p_Name, p_Category, p_Price, p_Stock, p_Description);
+
+	}
+	
 	public List<ProductImageVO> selectProductList() {		
 		return productMapper.selectProductList();
 	}

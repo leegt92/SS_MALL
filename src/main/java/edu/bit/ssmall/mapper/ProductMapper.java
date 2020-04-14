@@ -19,12 +19,24 @@ import edu.bit.ssmall.vo.ProductVO;
 
 public interface ProductMapper {
 	
-	//濡쒓렇�씤�릺�뼱�엳�굹 蹂닿퀬, 濡쒓렇�씤 �릺�뼱�엳�떎硫� 洹� �븘�씠�뵒瑜� 媛��졇�삤�뒗 遺�遺�
+	@Select("select m_number from member where m_id = #{m_id}")
+	public int getP_num(@Param("m_id") String m_id);
+	
 	@Select("select m_number from member where m_id = #{m_id}")
 	public int getMnum(@Param("m_id")String m_id);
 
+	@Select("select m_number from member where m_id = #{m_id}")
+	public int getPnum(@Param("m_id")String m_id);
+	
+	@Select("select m_name from member where m_id = #{m_id}")
+	public String getPname(@Param("m_id")String m_id);
+	
 	@Select("select * from product p , image i where p.p_number = i.p_number and i.i_type = '1' order by p_name desc")
 	public List<ProductImageVO> selectProductList();
+	
+	@Insert("insert into product (p_number,p_name,p_category,p_price,p_stock,p_description) values (board_seq.nextval,#{bName},#{bTitle},#{bContent},#{m_number},'상품등록',sysdate)")
+	public void insertProduct(@Param("p_Number")String p_Number, @Param("p_Name")String p_Name, @Param("p_Category")String p_Category,
+			@Param("p_Price") String p_Price, @Param("p_Stock") String p_Stock, @Param("p_Description") String p_Description);
 	
 	@Select("select * from boardVO")
 	public List<BoardVO> boardVO();

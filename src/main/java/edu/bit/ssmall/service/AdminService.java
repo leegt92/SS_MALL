@@ -21,6 +21,21 @@ public class AdminService {
 	
 	@Autowired
 	AdminMapper adminMapper;
+	
+	
+	public int getP_num(String m_id) throws Exception {
+
+		return adminMapper.getP_num(m_id);
+	}
+	
+	public String getP_name(String m_id) throws Exception {
+
+		return adminMapper.getP_name(m_id);
+	}
+	
+	public void insertProduct(String p_name,String p_category, String p_brand,String p_price,String p_stock, String p_description, String p_image)  {
+		adminMapper.insertProduct(p_name,p_category,p_brand,p_price,p_stock,p_description,p_image);
+	}
 
 /*===========================페이징을 위한 카운트 ========================================================*/
 	public int countMember() {
@@ -90,7 +105,7 @@ public class AdminService {
 		System.out.println("해당회원 정보");
 		return adminMapper.memberInfo(m_number);
 	}
-
+	
 	public ArrayList<BuyVO> buyList(String m_number) {
 		System.out.println("해당회원 구매내역");
 		return adminMapper.buyList(m_number);
@@ -213,6 +228,7 @@ public class AdminService {
 	public void updateBanswered(String bId) throws Exception{
 		adminMapper.updateBanswered(bId);
 	}
+
 	
 /*====================================통계================================================*/
 	public int getWeeklySales() {
@@ -283,4 +299,17 @@ public class AdminService {
 	}
 
 
+	public void productImageUpload(int p_number, String originFileName, int i_type) {
+		adminMapper.productImageUpload(p_number, originFileName, i_type);
+		
+	}
+
+	public int getP_number(String p_name) {
+	
+		return adminMapper.getP_number(p_name);
+	}
+
+
+
 }
+

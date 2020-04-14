@@ -1,4 +1,3 @@
-
 package edu.bit.ssmall;
 
 import java.io.ByteArrayOutputStream;
@@ -10,7 +9,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -27,11 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import edu.bit.ssmall.service.CartService;
-import edu.bit.ssmall.service.HomeService;
 import edu.bit.ssmall.vo.CartViewVO;
-import edu.bit.ssmall.vo.ProductImageVO;
 
 /**
  * Handles requests for the application home page.
@@ -39,12 +34,9 @@ import edu.bit.ssmall.vo.ProductImageVO;
 @Controller
 public class HomeController {
 	
+
 	@Autowired
 	CartService cartService;
-	
-	@Autowired
-	HomeService homeService;
-	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -75,14 +67,20 @@ public class HomeController {
 		return "as";
 
 	}
-
+	
+	@RequestMapping(value="corona", method= {RequestMethod.GET, RequestMethod.POST})
+	public String corona(Model model, HttpServletRequest request){
+		return "corona";
+	}
+	
+	
+	
 	@ResponseBody
 	@RequestMapping("miniCart")
 	public ArrayList<CartViewVO> miniCart(Principal principal){
 		System.out.println(cartService.miniCartInfo(principal.getName()));
 		return cartService.miniCartInfo(principal.getName());
 	}
-	
 	@RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
             HttpServletResponse response, MultipartHttpServletRequest multiFile
@@ -145,7 +143,7 @@ public class HomeController {
                             , @RequestParam(value="fileName") String fileName
                             , HttpServletRequest request, HttpServletResponse response)
  throws ServletException, IOException{
-        
+        System.out.println("피카츄");
         //서버에 저장된 이미지 경로
         String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\img\\";
     
@@ -187,16 +185,4 @@ public class HomeController {
             }
         }
     }
-
-
-	@ResponseBody
-	@RequestMapping("/hitItem")
-	public List<ProductImageVO> hitItem(ProductImageVO productimage, HttpServletRequest request, Model model){
-		System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-		System.out.println(homeService.selectProductListAmount());
-		//model.addAttribute(,homeService.selectProductListAmount(productimage));
-		return homeService.selectProductListAmount();
-	}
-	
-	
 }

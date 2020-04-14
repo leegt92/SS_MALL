@@ -154,8 +154,10 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
+
 								<button class="dropbtn">1:1문의</button>
 								<div class="dropdown-content">
+
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
 								</div>
@@ -185,12 +187,7 @@ span {
 						<div class="col-sm-6">
 							<h1>A/S 요청</h1>
 						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item"></li>
-							</ol>
-						</div>
+						
 					</div>
 				</div>
 				<!-- /.container-fluid -->

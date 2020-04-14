@@ -41,6 +41,7 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 	
+
 	<script>
 		 var brand = new Array();
 		 var sales = new Array(); 		
@@ -151,6 +152,7 @@
 </script>
 
 </head>
+
 <!--
 BODY TAG OPTIONS:
 =================
@@ -161,6 +163,7 @@ to get the desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
+
 
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -247,11 +250,12 @@ to get the desired effect
 			<!-- /.sidebar -->
 		</aside>
 
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
+
 			<!-- Content Header (Page header) -->			
-			
-			
+		
 			<section class="content style">
 				<div class="row">		
 					<div class="col-md-12">
