@@ -213,7 +213,7 @@ span {
 											</tr>										
 											<tr>											
 												<td>
-													<textarea placeholder="제목을 입력하세요" style="width: 1590px; height:auto; font-size: 1.5em; font-weight: bold;" name="btitle"></textarea>
+													<textarea placeholder="제목을 입력하세요" style="width: 1590px; height:auto; font-size: 1.5em; font-weight: bold;" id="btitle" name="btitle"></textarea>
 												</td>
 											</tr>
 											<tr>
@@ -222,7 +222,7 @@ span {
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2" style="text-align: right;"><button class="btn btn-primary" type="submit" >작성</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary">목록</button></a>&nbsp;&nbsp;</td>
+												<td colspan="2" style="text-align: right;"><button id="nullCheck" class="btn btn-primary" type="button" >작성</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary">목록</button></a>&nbsp;&nbsp;</td>
 											</tr>									
 										</table>
 									</form>
@@ -264,5 +264,34 @@ span {
 		});
 		
 	</script> 
+	
+	<script>
+	$('#nullCheck').click(function(){
+		 	
+			var title = document.getElementById("btitle");
+			var content = document.getElementById("Content");
+
+			if(title.value == '' || title.value.length < 4 ){
+				alert('공지사항 제목 입력해주세요');
+				return;
+			}
+			if(content.value == '' || content.length < 3 ){
+				alert('공지사항 내용 입력해주세요');
+				return;
+			}
+			
+				
+			
+			console.log("널값이 없다.")
+			if(confirm('등록 하시겠습니까?')){
+					
+				return $('#addProduct').submit();
+			}else{
+				return false;
+			}
+			
+		})
+	
+	</script>
 </body>
 </html>
