@@ -246,11 +246,7 @@
             	<c:when test="${aSRequestboards.banswered eq '답변완료'}">
             		<h3 style="font-size:16px; color:green;" class="accordion3">
             		<c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/>
-<%-- <<<<<<< HEAD
-            		<button onclick="window.location.href='/ssmall/myPage_askAS2?bId=${aSRequestboards.bid}?bTitle=${aSRequestboards.btitle}?bContent=${aSRequestboards.bcontent}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
-======= --%>
-            		<button onclick="window.location.href='/ssmall/mypage/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
-
+            		<button onclick="window.location.href='/ssmall/mypage/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:1px solid gray; border-radius: 5px 5px 5px 5px; background-color:#98ebdc">수정</font></button>
             		<button onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
@@ -270,14 +266,14 @@
     	    				});
         				  }
         				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
+            		<font size="4em" style="border:1px solid black; border-radius: 5px 5px 5px 5px; background-color:#FF99CC">삭제</font>
             		</button>
             		</h3>
             	</c:when>
             	<c:otherwise>
             		<h3 style="font-size:16px; color:red;" class="accordion3">
             		<c:out value = "${aSRequestboards.btitle}"/><c:out value = " (${aSRequestboards.bdate})"/><c:out value = " (${aSRequestboards.banswered})"/>
-            		<button onclick="window.location.href='/ssmall/mypage/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button onclick="window.location.href='/ssmall/mypage/myPage_askAS2?bId=${aSRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:1px solid gray; border-radius: 5px 5px 5px 5px; background-color:#98ebdc">수정</font></button>
             		<button onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
@@ -297,7 +293,7 @@
     	    				});
         				  }
         				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
+            		<font size="4em" style="border:1px solid black; border-radius: 5px 5px 5px 5px; background-color:#FF99CC">삭제</font>
             		</button>
             		</h3>
             	</c:otherwise>
@@ -316,22 +312,24 @@
             </div>
         </li>
         </c:forEach>
-        <c:if test="${pageMaker.prev}">
-			<a href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
-	</c:if>
-	
-	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(idx)}">${idx}</a>
-	</c:forEach>
-	
-	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
-	</c:if> <br>
-<!-- <<<<<<< HEAD
-        <button id=btnToAskAs onclick="window.location.href='/ssmall/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#f0f8ff">A/S서비스 신청하기</font></button>
-======= -->
-        <button onclick="window.location.href='/ssmall/mypage/myPage_askAS'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">A/S서비스 신청하기</font></button>
+        <ul class="pagination m-5 flex-c-m" >
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_aSRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+			</ul>
+        <button onclick="window.location.href='/ssmall/mypage/myPage_askAS'" style="margin-top: 0px;margin-left: 500px;"><font size="5em" style="border:1px solid black; border-radius: 5px 5px 5px 5px; background-color:#99FFFF">A/S서비스 신청하기</font></button>
 
     </ul>
     
