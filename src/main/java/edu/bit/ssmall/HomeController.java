@@ -73,14 +73,14 @@ public class HomeController {
 		return "corona";
 	}
 	
-	
-	
+		
 	@ResponseBody
 	@RequestMapping("miniCart")
 	public ArrayList<CartViewVO> miniCart(Principal principal){
 		System.out.println(cartService.miniCartInfo(principal.getName()));
 		return cartService.miniCartInfo(principal.getName());
 	}
+	
 	@RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
             HttpServletResponse response, MultipartHttpServletRequest multiFile

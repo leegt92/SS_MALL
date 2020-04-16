@@ -163,8 +163,8 @@ public class AdminService {
 	
 
 
-	public void updateProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, String originFileName, int p_enabled) {
-		adminMapper.updateProduct(p_number, p_name, p_brand, p_price, p_stock, originFileName, p_enabled);		
+	public void updateProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock,String p_description, String originFileName, int p_enabled) {
+		adminMapper.updateProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, originFileName, p_enabled);		
 	}
 	
 
@@ -173,8 +173,8 @@ public class AdminService {
 		adminMapper.updateImage(p_number, originFileName,i_type);			
 	}
 	
-	public void updateOnlyProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, int p_enabled) {
-		adminMapper.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock, p_enabled);
+	public void updateOnlyProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock,String p_description, int p_enabled) {
+		adminMapper.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, p_enabled);
 		
 	}
 
@@ -288,13 +288,13 @@ public class AdminService {
 		
 		return adminMapper.noticeView(bid);
 	}
-	public void noticeUpdate(String bid, String btitle, String bcontent) {
+	public void noticeUpdate(String btype, String bid, String btitle, String bcontent) {
 		
-		adminMapper.noticeUpdate(bid,btitle,bcontent);
+		adminMapper.noticeUpdate(btype,bid,btitle,bcontent);
 		
 	}
-	public void noticeWrite(String btitle, String bcontent) {
-		adminMapper.noticeWrite(btitle,bcontent);
+	public void noticeWrite(String btype, String btitle, String bcontent) {
+		adminMapper.noticeWrite(btype,btitle,bcontent);
 		
 	}
 	

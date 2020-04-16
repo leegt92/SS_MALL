@@ -121,7 +121,7 @@
 					</div>
 				</div>
 
-				<!-- Sidebar Menu -->
+			<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
 						<li class="nav-item has-treeview">
@@ -149,14 +149,24 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>							
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
+								<div class="dropdown-content">							
+
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
-						</li>			
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -253,18 +263,43 @@
 													<form action="/ssmall/admin/updateAutoritiy">
 													<input type="hidden" name="m_number" value="${member.m_number}">	
 													<div class="modal-body">
-														
-															<div class="form-group">
-																<label for="sel1">등급</label> 
-																<select class="form-control" id="sel1" name="m_authority">
-																	<option>일반회원</option>
-																	<option>관리자</option>
-																	<option>VIP</option>
-																	<option>BC</option>
-																</select>
-																
-															</div>
-														
+														<div class="form-group">
+															<label for="sel1">등급</label> 
+															<c:choose>
+																<c:when test="${member.m_authority eq '일반회원' }">
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>일반회원</option>
+																		<option>관리자</option>
+																		<option>VIP</option>
+																		<option>BC</option>
+																	</select>	
+																</c:when>
+																<c:when test="${member.m_authority eq '관리자' }">
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>관리자</option>
+																		<option>일반회원</option>																	
+																		<option>VIP</option>
+																		<option>BC</option>
+																	</select>	
+																</c:when>
+																<c:when test="${member.m_authority eq 'VIP' }">
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>VIP</option>
+																		<option>일반회원</option>
+																		<option>관리자</option>																	
+																		<option>BC</option>
+																	</select>	
+																</c:when>
+																<c:otherwise>
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>BC</option>
+																		<option>VIP</option>
+																		<option>일반회원</option>
+																		<option>관리자</option>																																			
+																	</select>		
+																</c:otherwise>
+															</c:choose>								
+														</div>														
 													</div>
 									
 													<!-- Modal footer -->													

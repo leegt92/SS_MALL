@@ -101,12 +101,10 @@ span {
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="adminpage" class="nav-link">Home</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="#"
-					class="nav-link">Contact</a></li>
+					href="/ssmall/admin/adminpage" class="nav-link">Home</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a 
+					href="/ssmall/admin/asList" class="nav-link">A/S</a></li>
 			</ul>					
 		</nav>
 		<!-- Main Sidebar Container -->
@@ -135,7 +133,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn">상품</button></a>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -144,7 +142,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -153,22 +151,24 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">1:1문의</button>
-								<div class="dropdown-content">
+								<a href="/ssmall/admin/requestList"><button class="dropbtn" >1:1문의</button></a>
+								<div class="dropdown-content">							
+
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn" style="font-weight: bold;">A/S요청</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
 								</div>
 							</div>
-						</li>			
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->

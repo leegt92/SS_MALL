@@ -179,7 +179,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn" style="font-weight: bold;">상품</button></a>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -188,7 +188,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -197,7 +197,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
 								<div class="dropdown-content">							
 
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
@@ -208,7 +208,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">A/S요청</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
@@ -280,18 +280,7 @@ span {
 				<input id="thumbnail3" type="file" name="thumbnail3" />
 
 				
-				<script>
-					
-					$("#").change(function(){
-						if(this.files && this.files[0]) {
-							var reader = new FileReader;
-							reader.onload = function(data) {
-								$(". img").attr("src", data.target.result).width(500);								
-							}
-							reader.readAsDataURL(this.files[0]);
-						}
-					});
-				</script>
+			
 			</div>
 			
 			<div class="inputArea1">

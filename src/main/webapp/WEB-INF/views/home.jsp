@@ -289,8 +289,8 @@ position: absolute;
    <tr > 
       <form name="notice_form"> 
           <td align=left bgcolor= white  >
-          <input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
-          오늘 하루 이 창을 열지 않음
+          &nbsp;<input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
+        	 오늘 하루 이 창을 열지 않음
              
               <a href="javascript:closeWin();"><B>[닫기]</B></a> 
           </td> 
@@ -323,11 +323,9 @@ position: absolute;
                      
                      
                      <li>
-                        <a href="boardnoticeView">새소식</a>
+                        <a href="boardnoticeView">공지사항</a>
                         
-                     </li>
-                  
-                     
+                     </li>                                  
                      
                      <li>
                         <a href="companyView">회사소개</a>                  
@@ -335,6 +333,10 @@ position: absolute;
                      <li>
                         <a href="asView">AS</a>
                      </li>
+                     
+                     <li>
+						<a href="#" onclick="chat();">채팅</a>
+					</li>
                      
                   </ul>
                </div>   
@@ -403,6 +405,10 @@ position: absolute;
             <li>
                <a href="asView">AS</a>
             </li>
+            
+            <li>
+				<a href="#" onclick="chat();">채팅</a>
+			</li>
 
          </ul>
       </div>
@@ -1554,6 +1560,7 @@ if ( cookiedata.indexOf("maindiv=done") < 0 ){
    </script>
 <!--===============================================================================================-->
     <script src="js/main.js"></script>
+    <script src="/ssmall/js/chat.js"></script>
 </body>
  
 </html>

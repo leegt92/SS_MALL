@@ -428,13 +428,14 @@ public class AdminPageController {
 	@RequestMapping(value = "noticeWriteDo", method = {RequestMethod.GET,RequestMethod.POST}) // 실제로 입력하는 창 에 대한 컨트롤러 밑에꺼랑 세트
 	public String noticeWriteDo(Model model, HttpServletRequest request) {
 		System.out.println("noticeWriteDo() 시작");
-
+		
+		String btype = request.getParameter("btype");
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
 		System.out.println(btitle);
 		System.out.println(bcontent);
 		
-		adminService.noticeWrite(btitle,bcontent);
+		adminService.noticeWrite(btype,btitle,bcontent);
 		
 		return "redirect:/admin/noticeList";
 
@@ -457,9 +458,10 @@ public class AdminPageController {
 	@RequestMapping(value = "noticeUpdate", method = {RequestMethod.GET,RequestMethod.POST}) // 글 수정하는 창에 대한 컨트롤러
 	public String noticeUpdate(Model model, HttpServletRequest request) {
 		String bid = request.getParameter("bid");
+		String btype = request.getParameter("btype");
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
-		adminService.noticeUpdate(bid,btitle,bcontent);
+		adminService.noticeUpdate(btype,bid,btitle,bcontent);
 		
 		return "redirect:/admin/noticeView?bid="+bid;
 	}
@@ -692,6 +694,7 @@ public class AdminPageController {
 		String p_brand = mtfRequest.getParameter("p_brand");
 		String p_price = mtfRequest.getParameter("p_price");
 		String p_stock = mtfRequest.getParameter("p_stock");
+		String p_description = mtfRequest.getParameter("p_description");
 		String enabled = mtfRequest.getParameter("p_enabled");
 		int p_enabled = 1;
 		if (enabled.equals("비활성화")) {
@@ -714,9 +717,9 @@ public class AdminPageController {
 		System.out.println("realPath : " + realPath);		
 		System.out.println("==================");
 		
-		MultipartFile file1 = mtfRequest.getFile("file1");
-		MultipartFile file2 = mtfRequest.getFile("file2");		
-		MultipartFile file3 = mtfRequest.getFile("file3");
+		MultipartFile file1 = mtfRequest.getFile("thumbnail1");
+		MultipartFile file2 = mtfRequest.getFile("thumbnail2");		
+		MultipartFile file3 = mtfRequest.getFile("thumbnail3");
 
 		MultipartFile[] arr = {file1, file2, file3};
 		
@@ -761,9 +764,9 @@ public class AdminPageController {
 		}
 	
 		if(!file1.getOriginalFilename().equals("")) {
-			adminService.updateProduct(p_number, p_name, p_brand, p_price, p_stock, file1.getOriginalFilename(), p_enabled);
+			adminService.updateProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, file1.getOriginalFilename(), p_enabled);
 		}else {
-			adminService.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock, p_enabled);
+			adminService.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, p_enabled);
 		}
 		return "redirect:/admin/productList";
 	}

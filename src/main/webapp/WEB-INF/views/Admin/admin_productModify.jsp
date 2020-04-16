@@ -85,14 +85,15 @@
 }
 </style>
 
+
 <script>
-	$(document).ready(function(){
-	  $("#myBtn").click(function(){
-	    $("#myModal").modal();
-	  });
+			
+	$(document).ready(function() {
+		$("#myBtn").click(function() {
+			$("#myModal").modal();
+		});
 	});
 </script>
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -161,14 +162,24 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>							
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
+								<div class="dropdown-content">							
+
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
-						</li>			
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -183,7 +194,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>상품 목록</h1>
+							<h1>${product.p_brand} ${product.p_name}</h1>
 						</div>
 											
 					</div>					
@@ -230,59 +241,83 @@
 					</div>				
 				</div>				
 			</section>	
-		</div>
-
-
-		<!-- The Modal -->
-		<div class="modal fade" id="myModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">상품 수정</h4>
-						<button type="button" class="close" data-dismiss="modal">×</button>
-					</div>
-
-					<!-- Modal body -->
-					<form id="modifyForm" action="/ssmall/admin/productUpdate?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="p_number" value="${product.p_number}"/>
+			
+			<!-- Main content -->
+			<section class="content style=">
+				<div class="row">
+					<!-- /.col -->
+					<div class="col-md-12">
+						<div class="card card-primary card-outline">							
+							<div class="card-body p-0">
+								<div class="mailbox-controls">							
+									<div class="table-responsive mailbox-messages">
+										<div style="margin-left: 10px; margin-top: 10px;">
+										<form id="modifyForm" action="/ssmall/admin/productUpdate?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+										<input type="hidden" name="p_number" value="${product.p_number}"/>
+										
+											<label>활성화 여부</label>
+											<c:choose>
+												<c:when test="${product.p_enabled == 1 }">
+													<select class="form-control" id="sel1" name="p_enabled">
+														<option>활성화</option>
+														<option>비활성화</option>
+													</select>		
+												</c:when>
+												<c:otherwise>
+													<select class="form-control" id="sel1" name="p_enabled">
+														<option>비활성화</option>
+														<option>활성화</option>
+													</select>		
+												</c:otherwise>
+											</c:choose>												
+																							
+											<br><label>상품 명</label><br>
+											<c:choose>
+												<c:when test="${product.p_category eq '시계' }">
+													<select class="form-control" id="sel1" name="btype">
+														<option>시계</option>
+														<option>지갑</option>
+													</select>
+												</c:when>
+												<c:otherwise>
+													<select class="form-control" id="sel1" name="btype">
+														<option>지갑</option>
+														<option>시계</option>																
+													</select>
+												</c:otherwise>
+											</c:choose>					
 						
-						<div class="modal-body">
-
-							<div class="form-group">
-								<label for="sel1">활성화</label>
-									<select class="form-control" id="sel1" name="p_enabled" value="">
-										<option>활성화</option>
-										<option>비활성화</option>
-									</select>
-								<br><label for="sel1">상품 명</label> <br>
-									<input type="text" class="form-control" name="p_name" value="${product.p_name}">
-								<br><label for="sel1">상품 브랜드</label> <br>
-									<input type="text" class="form-control" name="p_brand" value="${product.p_brand}">
-								<br><label for="sel1">상품 가격</label> <br>
-									<input type="text" class="form-control" name="p_price" value="${product.p_price}">
-								<br><label for="sel1">상품 재고</label> <br>
-									<input type="text" class="form-control" name="p_stock" value="${product.p_stock}">								
-								<br><label for="sel1">대표 사진</label><br>
-									<input type="file" name="file1" />
-								<br><label for="sel1">상품 사진1</label><br>	
-									<input type="file" name="file2" />	
-								<br><label for="sel1">상품 사진2</label><br>	
-									<input type="file" name="file3" />																				
-							</div>
-						</div>
-
-						<!-- Modal footer -->
-						<div class="modal-footer">
-							<button id="modify" type="button" class="btn btn-danger">수정</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-						</div>
-					</form>
-
-				</div>
-			</div>
+											<br><label>상품 명</label> <br>
+												<input type="text" class="form-control" name="p_name" value="${product.p_name}">
+											<br><label>상품 브랜드</label> <br>
+												<input type="text" class="form-control" name="p_brand" value="${product.p_brand}">
+											<br><label>상품 가격</label> <br>
+												<input type="text" class="form-control" name="p_price" value="${product.p_price}">
+											<br><label>상품 재고</label> <br>
+												<input type="text" class="form-control" name="p_stock" value="${product.p_stock}">								
+											<br><label>썸네일</label><br>
+												<input id="thumbnail1"  type="file" name="thumbnail1" style="display: inline;"/>&nbsp;
+												<input id="thumbnail2"  type="file" name="thumbnail2" style="display: inline;"/>&nbsp;
+												<input id="thumbnail3"  type="file" name="thumbnail3" style="display: inline;"/>
+											<br><br><br><label>상품 설명</label><br>
+												<textarea id="p_description" name="p_description">${product.p_description}</textarea>
+										
+										
+											<br><br><button id="modify" style="text-align: right;" type="button" class="btn btn-primary">수정 완료</button><br>					
+											
+										</form>	
+										</div>									
+									</div>
+								</div>								
+							</div>						
+						</div>						
+					</div>				
+				</div>				
+			</section>		
 		</div>
+
+
+		
 
 		<footer class="main-footer">
 			<strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io.</a>
@@ -293,6 +328,7 @@
 		</footer>		
 	</div>
 </body>
+
 <script>
 	$('#modify').click(function(){
 		if("confirm('수정 하시겠습니까?')"){
@@ -300,4 +336,20 @@
 		}
 	})
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>	
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('p_description', {
+					width : '1600px', 
+					height : '700px',
+					startupFocus : false,
+					filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
+					extraPlugins : 'confighelper'
+			
+				});					
+		});
+					
+	</script>
+
+
 </html>
