@@ -43,6 +43,9 @@
 <!--===============================================================================================-->
 
 
+
+<!-- 일단 멈춤 구매부분부터 -->
+
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -110,6 +113,20 @@
 	}
 >>>>>>> origin/dev_jiheon
 </style> -->
+
+<style>
+
+	input[type="Search"]::placeholder {  
+            /* Firefox, Chrome, Opera */ 
+            text-align: center; 
+     }
+            
+    input[type="Search"]:-ms-input-placeholder { 
+        /* Internet Explorer 10-11 */ 
+        text-align: center; 
+    }  
+
+</style>
 
 </head>
 <body class="animsition">
@@ -433,10 +450,10 @@
 								<button type="submit">검색2</button>
 							<input type="submit" value="검색1" width = "300"/> -->
 								<div class="input-group col-md-12">
-			                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search2" />
+			                   	 <input type="Search" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search"/>
 			                   	 	<span class="input-group-btn">
-			                        	<button id="SearchButtonImage" class="btn btn-secondary btn-lg" type="submit">
-			                           	 	<i class="glyphicon glyphicon-search"></i>
+			                        	<button id="SearchButtonImage1" class="btn btn-secondary btn-lg" style="width:40px; height:35px;"type="submit">
+			                           	 	<!-- <i class="glyphicon glyphicon-search"></i> -->
 			                        	</button>
 			                    	</span>
 			                	</div>
@@ -1608,7 +1625,8 @@ $(document).ready(function(){
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+				//Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+				alert("상품 수량을 입력해 주세요");
 			}else if(b_amount!=0){
 				console.log("장바구니 1개이상일때 1번");
 				var data = {
@@ -1636,7 +1654,8 @@ $(document).ready(function(){
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('구매','구매수량을 입력해 주세요','error');
+				//Swal.fire('구매','구매수량을 입력해 주세요','error');
+				alert("상품 수량을 입력해 주세요");
 			}else if(b_amount!=0){
 				console.log("구매 1개이상일때 1번");
 				var data = {

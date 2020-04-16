@@ -65,9 +65,14 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <style type="text/css">
-
+	div#ck_content img {
+		width:60%;
+		max-width:400px; 
+		height:auto;	
+	}
 /* .cArea{
 	border: 2px solid;
 	padding: 5px;
@@ -173,12 +178,37 @@
 		
 </style>
 <style>
+
 .DetailTable{
 		font-size:15px;
 		width:"200";
 
 
 	}
+</style>
+<style>
+/* 상품소감에 별표주기 */
+.starR1{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1.on{background-position:0 0;}
+.starR2.on{background-position:-15px 0;}
+
 </style>
 
 <script>	    	    	
@@ -198,50 +228,39 @@
 	    			 console.log(data);
 	    			 $.each(data, function(key, data){
 	    				 
-
-	    				 tag = tag+ "<p>";
-	    				 tag = tag+ "<span class='gallery_lv' style='margin-right: 10px;'>"+"작성자 : "+data.m_id+"</span>";
-	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+data.bdate+"</span>";												
-	    				 tag = tag+ "</p>";
-	    				 tag = tag+ "<div class='row p-b-25'>"; <!-- class="container" -->
-	    				 tag = tag+ "<div class='col-sm-6 p-b-5'>";
-	    				 tag = tag+ "<label class='stext-102 cl3' for='name'></label>";//Title
-	    				 tag = tag+ "<input readonly class='size-111 bor8 stext-102 cl2 p-lr-20' type='hidden' id='btitle' name='btitle' value='"+data.btitle+"'>";
-	    				 tag = tag+ "</div>";							
-	    				 tag = tag+ "<div class='col-12 p-b-5'>";
-	    				 tag = tag+ "<label class='stext-102 cl3' for='review'>Review</label>";
-	    				 tag = tag+ "<div style='overflow:auto; border:1px solid black;'>"+ data.bcontent+"</div>";
-	    				 tag = tag+ "</div>";
-	    				 tag = tag+ "</div>";
-	    				 
-	    				 tag = tag+ "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
-							tag = tag+ "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>";
-							tag = tag+ "<input type='hidden' id = 'bstep_"+data.bid+"' name='bstep' value='"+data.bstep+"'>";/* 대댓글의 세로단을 위한 인자 */
-							tag = tag+ "<input type='hidden' id = 'bindent_"+data.bid+"' name='bindent' value='"+data.bindent+"'>";/* 대댓글의 가로단을 위한 인자 */
-							tag = tag+ "<input type='hidden' id = 'm_number' name='m_number' value='"+data.m_number+"'>";/* 회원번호.글 수정 삭제시 본인만 가능하게 하기 위해 */
-							tag = tag+ "<input type='hidden' id = 'm_id' name='m_id' value='"+data.m_id+"'>";									
-							tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
-							tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
-							tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
-							tag = tag + "<input type='text' value='"+data.btotalrepot+"' name='btotalrepot'>";//리폿당한 횟수
-							tag = tag + "<input type='text' value='"+data.brepotid1+"' name='btotalrepot'>";//리폿한 사용자1의 member number
-							tag = tag + "<input type='text' value='"+data.brepotid2+"' name='btotalrepot'>";//리폿한 사용자2의 member number
-							/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. */
-							tag = tag + "<sec:authorize access='hasRole("USER")'>";												
-							tag = tag + "<p class='text-success' style='font-weight:bold; font-size: 1.5em;'></p>";
-							/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
-							tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
-							tag = tag + "<button class='btn btn-secondary m-3' style='margin-right:10px; margin-left:10px; color:white;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
-							tag = tag + "<button class='btn btn-secondary m-3' style='margin-right:10px; margin-left:10px; color:white;' type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button>";
-							tag = tag + "<button class='btn btn-danger m-3' style='color:white;' type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"신고"+"</button>";
-							/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
-							tag = tag + "</sec:authorize>";																									
-	/* 						tag = tag + "</p>"; */
-							tag = tag + "</form>";
-							tag = tag + "</table>"
+						tag = tag + "<div class='container'> "
+	    				tag = tag + "<div style=' border: 1px solid #e6e6e6;'>";
+	    				tag = tag + "<div style='margin-bottom : 10px; margin-left : 10px;'><strong><br>&nbsp;작성자 : "+data.m_id+"&nbsp;</strong>";
+	    				tag = tag + "<strong>작성날짜 : "+data.bdate+"</strong><br>";															 
+	    				tag = tag + "<hr><div id='ck_content'>"+data.bcontent+"</div></div>";
+	    			 	tag = tag + "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
+						tag = tag + "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>";
+						tag = tag + "<input type='hidden' id = 'bstep_"+data.bid+"' name='bstep' value='"+data.bstep+"'>";/* 대댓글의 세로단을 위한 인자 */
+						tag = tag + "<input type='hidden' id = 'bindent_"+data.bid+"' name='bindent' value='"+data.bindent+"'>";/* 대댓글의 가로단을 위한 인자 */
+						tag = tag + "<input type='hidden' id = 'm_number' name='m_number' value='"+data.m_number+"'>";/* 회원번호.글 수정 삭제시 본인만 가능하게 하기 위해 */
+						tag = tag + "<input type='hidden' id = 'm_id' name='m_id' value='"+data.m_id+"'>";									
+						tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
+						tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
+						tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
+						tag = tag + "<input type='hidden' value='"+data.btotalrepot+"' name='btotalrepot'>";//리폿당한 횟수
+						tag = tag + "<input type='hidden' value='"+data.brepotid1+"' name='btotalrepot'>";//리폿한 사용자1의 member number
+						tag = tag + "<input type='hidden' value='"+data.brepotid2+"' name='btotalrepot'>";//리폿한 사용자2의 member number
+						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. */
+						tag = tag + "<sec:authorize access='hasRole("USER")'>";												
+						/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
+						tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
+						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
+						tag = tag + "&nbsp;<button class='btn btn-info '  type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"<i class='fas fa-pencil-alt'></i> 수정</button>";
+						tag = tag + "&nbsp;<button class='btn btn-danger '  type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='fas fa-ban'></i> 신고</button></div>";
+						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
+						tag = tag + "</sec:authorize>";																									
+	/* 					tag = tag + "</p>"; */
+						tag = tag + "</form>";
+						tag = tag+ "</div></div><br>"
+							
     				 
 	    			 });
-	    			 $("section.reply_ajax ol").html(tag);
+	    			 $("section.reply_ajax").html(tag);
     				 console.log("html탐");
 	    			 
 	    		 },
@@ -752,17 +771,18 @@
 																			
 <!-- ----------------------------------------------------구매감상 게시판----------------------------------------------------------------- -->
 																												
-										<div class="container">
+										
 											<sec:authorize access="isAnonymous()">												
 												<!-- <p style="font-weight: bold; font-size: 1.5em;">isAnonymous</p> -->
-												<button type="button" id="btn_collapse_notLogin"class="btn btn-info m-3" style="left:10px;">구매후기 작성</button>
+
+												<button type="button" id="btn_collapse_notLogin"class="btn btn-info m-3" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
 											</sec:authorize>
 															
-											<sec:authorize access="hasAnyRole('USER, ADMIN')">												
-												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
-												<p>principal_m_id:"${principal_m_id}"</p> --%>
-												<button style='color:gray;' type = 'button' id = "write" name = "write"></button>
+											<sec:authorize access="hasAnyRole('USER')">												
+												<button type="button" id="btn_collapse_notLogin"class="btn btn-dark" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
+
 											</sec:authorize>
+										
 											<%-- 콜햅스 원본버튼. 모달로 바꿔보기 위해 주석처리함.
 											<sec:authorize access="hasRole('USER')">콜햅스원본												
 												<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
@@ -773,7 +793,7 @@
 											<sec:authorize access="hasAnyRole('USER, ADMIN')">
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
-												<button type="button" class="btn btn-info m-3" id="writeModalBtn" style="left:10px;" >구매후기 작성</button>
+												<button type="button" class="btn btn-dark" id="writeModalBtn" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
 											</sec:authorize>
 																																	
 											<!-- <button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button> -->
@@ -862,8 +882,16 @@
 															})
 															
 															$("#writeModalBtn").click(function(){
-																$('#writeModal').modal();																
-															})
+																/* console.log("checkBuyList확인1");
+																console.log(${checkBuyList});
+																console.log("checkBuyList확인2"); */
+																if(${checkBuyList}!="0"){
+																	alert("${checkBuyList}!=0 즉 구매한 상품");
+																	$('#writeModal').modal();
+																}else{
+																alert("구입 후 이용하실수 있습니다.");
+																}
+															});
 															
 															
 															/* $("#btn08").click(function(){
@@ -940,12 +968,10 @@
 														
 													</form>																									
 												</div>									
-											</div>																																											
+																																																					
 															<!-- 댓글 출력  -->
 									<section class="reply_ajax">
-										<ol>
-										
-										</ol>									
+																		
 									</section>
 									<!-- <div class="reply_ajax" id="reply_ajax" > -->
 
@@ -1605,10 +1631,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 	
 
-	   <!-- 모달 -->
+	 <%--   <!-- 모달 -->
 	<div class="modal fade" id="modal">
 		<div class="modal-dialog">
-			<div class="modal-content" style="width:800px; height:500px;">
+			<div class="modal-content" style="position:relative;width:800px; height:500px; right:150px;">
 				<!-- header -->
 				<div class="modal-header">
 					<!-- 닫기(x) 버튼 -->
@@ -1622,11 +1648,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<input id="bidUpdate" type="hidden" name="bid">
 						<input id="check" type="hidden" name="check" value="modal1">
 						<input id="p_numberUpdate" type="hidden" name="p_number" value="${productNum.p_number}">
-						<p>제목</p>
 						<input type="hidden"name="btitle" id="btitleUpdate" size="50" style="border:1px solid gray" value="btitlehidden"><br>
+<<<<<<< HEAD
 						<p>내용</p>
 						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52"  style="border:1px solid gray; resize:none;"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
+=======
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<div align="center">
+						<input class="btn btn-secondary m-1" type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
+						</div>
+>>>>>>> origin/dev_jiheon
 					</form>
 				</div>
 				<!-- Footer -->
@@ -1638,45 +1670,73 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</div>
-	
-	<div class="modal fade" id="writeModal">
+	 --%>
+	<div class="modal fade" id="modal">
 		<div class="modal-dialog">
-			<div class="modal-content" style="width:800px; height:500px;">
+			<div class="modal-content" style="position:relative;width:800px; height:500px; right:150px; margin:0px; padding:0px;">
 				<!-- header -->
 				<div class="modal-header">
 					<!-- header title -->
-					<h4 class="modal-title">작성</h4>
+					<h4 class="modal-title">수정</h4>
 					<!-- 닫기(x) 버튼 -->
 					<button type="button" id = "Xbutton" class="close" data-dismiss="modal">×</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
+					<form id="modalForm" name="modalForm" action="modifyReply2" method="post">
+						<input id="bidUpdate" type="hidden" name="bid">
+						<input id="check" type="hidden" name="check" value="modal1">
+						<input id="p_numberUpdate" type="hidden" name="p_number" value="${productNum.p_number}">
+						<input type="hidden"name="btitle" id="btitleUpdate" size="50" style="border:1px solid gray" value="btitlehidden">
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<div align="center">
+						<input class="btn btn-secondary m-1" type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
+						</div>
+					</form>
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="writeModal">
+		<div class="modal-dialog">
+			<div class="modal-content" style="position:relative;width:800px; height:500px; right:150px;">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- header title -->
+					<h4 class="modal-title">작성</h4>
+					<!-- 닫기(x) 버튼 -->
+					<!-- <button type="button" id = "Xbutton" class="close" data-dismiss="modal">×</button> -->
+				</div>
+				<!-- body -->
+				<div class="modal-body" >
 					<form id="writeModalForm" name="writeModalForm" action="product_Write_reply" method="post">
 						<input type="hidden" id="m_number" value="${principal_m_number}" name="m_number">
-						<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" />
+						<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" >
 						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
-						<!-- <p>제목</p> -->
-						<input type="hidden"name="btitle" id="btitleWrite" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden"><br>
-						<p>Review</p>
-						<textarea name="bcontent" id="bcontentImage" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
-						<div align="right">
-						<input type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value="작성">
+						<input type="hidden"name="btitle" id="btitleWrite" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden">
+						<textarea name="bcontent" id="bcontentImage" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray;"></textarea>
+						<div align="center">
+						<input class="btn btn-secondary m-1" type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value=" 작성  ">
 						</div>
 					</form>
 				</div>					
 			</div>
 				<!-- Footer -->
-				<div class="modal-footer">
+				<!-- <div class="modal-footer">
 					
-					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 
-				</div>
+				</div> -->
 		</div>
 	</div>
+
 <!-- 글 작성시 이미지 삽입을 위한 CKEDITOR 스크립트 -->
 	<script type="text/javascript">
 		$(function(){
 			CKEDITOR.replace('bcontentImage',{extraPlugins : 'confighelper',
+				disallowedContent : 'img{width,height}',
+				height:'270px',
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 					
 			});
@@ -1686,6 +1746,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script type="text/javascript">
 		$(function(){
 			CKEDITOR.replace('bcontentImageUpdate',{extraPlugins : 'confighelper',
+				height:'270px',
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 					
 			});
@@ -1865,9 +1926,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 													/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
 												})
 												
-												$("#writeModalBtn").click(function(){
+												/* $("#writeModalBtn").click(function(){
 													$('#writeModal').modal();																
-												})	 
+												}) */	 
 											 
 											 
 										$(document).on("click", "#deleteBoard", function(){

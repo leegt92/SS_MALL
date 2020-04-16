@@ -466,17 +466,26 @@ public class ProductController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
 	 
+	    String p_number = request.getParameter("p_number");
+	    
 	    String name = "";
 	    if(principal != "anonymousUser") {
 	        name = auth.getName();
 	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
 			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
+			//로그인상태에서, 상품을 이미 구매했는지 안했는지 확인
+			if(productService.checkBuyList(p_number,m_number)!=null) {
+				model.addAttribute("checkBuyList", productService.checkBuyList(p_number,m_number));
+			}else {
+				model.addAttribute("checkBuyList", "0");
+			}
+			
+			System.out.println("구매했는지 안했는지. buy_number 확인 : "+productService.checkBuyList(p_number,m_number));
 	    }
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
 	    System.out.println("auth.getName() : "+auth.getName());
 		System.out.println("productDetail시작");
-		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 : "+p_number);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));
 		model.addAttribute("productAmount", productService.selectProductListAmount());

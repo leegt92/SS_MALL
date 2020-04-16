@@ -197,6 +197,11 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return productMapper.checkBrepotid2(bid);
 	}
+	//댓글쓸때 상품을 구매 했는지 안했는지 확인
+	public Object checkBuyList(String p_number, int m_number) {
+		// TODO Auto-generated method stub
+		return productMapper.checkBuyList(p_number, m_number);
+	}
 
 	public BoardVO getBoard(String bid) {
 		// TODO Auto-generated method stub
