@@ -177,7 +177,7 @@
 							<span class="lnr lnr-map-marker"></span>
 						</span>
 
-						<div class="size-212 p-t-2">
+						<div class="size-212 p-t-2" style="margin-bottom: 31px;">
 							<span class="mtext-110 cl2">
 								주소
 							</span>
