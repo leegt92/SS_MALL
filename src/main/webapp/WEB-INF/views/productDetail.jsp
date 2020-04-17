@@ -30,8 +30,8 @@
 <link rel="stylesheet" type="text/css"
 	href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="fonts/iconic/css/material-design-iconic-font.min.css">
@@ -65,6 +65,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <style type="text/css">
 	div#ck_content img {
@@ -1288,17 +1289,17 @@
 					<div class="p-t-10">			
 						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
 									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-										<i class="fa fa-facebook"></i>
+										<i class="fab fa-facebook"></i>
 									</a>
 					
 						
 							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-instagram"></i>
+								<i class="fab fa-instagram"></i>
 							</a>
 					
 					
 							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-twitter"></i>
+								<i class="fab fa-twitter"></i>
 							</a>
 						</div>
 					</div>
