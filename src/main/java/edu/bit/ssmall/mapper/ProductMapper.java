@@ -168,8 +168,8 @@ public interface ProductMapper {
 	public int checkBrepotid2(@Param("value")String bid);
 	
 	//상품댓글등록시 현재 로그인한 회원이 해당 상품을 구매했는가 확인
-	@Select("select b_number from buy where p_number = ${p_number} and m_number = ${m_number}")
-	public Object checkBuyList(@Param("p_number")String p_number, @Param("m_number")int m_number);
+	@Select("select count(*) from buy where p_number = ${p_number} and m_number = ${m_number}")
+	public int checkBuyList(@Param("p_number")String p_number, @Param("m_number")int m_number);
 
 	
 
