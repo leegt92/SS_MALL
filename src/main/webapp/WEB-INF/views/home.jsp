@@ -237,15 +237,6 @@ position: absolute;
 
 </style>
 
-
-
-
-
-
-
-
-
-
 </head>
 <body class="animsition ">
    <!-- POPUP --> 
@@ -289,8 +280,8 @@ position: absolute;
    <tr > 
       <form name="notice_form"> 
           <td align=left bgcolor= white  >
-          &nbsp;<input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
-        	 오늘 하루 이 창을 열지 않음
+          <input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
+          오늘 하루 이 창을 열지 않음
              
               <a href="javascript:closeWin();"><B>[닫기]</B></a> 
           </td> 
@@ -323,9 +314,11 @@ position: absolute;
                      
                      
                      <li>
-                        <a href="boardnoticeView">공지사항</a>
+                        <a href="boardnoticeView">새소식</a>
                         
-                     </li>                                  
+                     </li>
+                  
+                     
                      
                      <li>
                         <a href="companyView">회사소개</a>                  
@@ -337,7 +330,6 @@ position: absolute;
                      <li>
 						<a href="#" onclick="chat();">채팅</a>
 					</li>
-                     
                   </ul>
                </div>   
                
@@ -647,7 +639,7 @@ position: absolute;
 
 
 
-   <!-- Slider -->
+<!-- Slider -->
    <section  class="section-slide ">
       <div class="wrap-slick1 rs2-slick1" >
          <div class="slick1">
@@ -669,8 +661,8 @@ position: absolute;
 
                         <!-- <button id="watch" type="button"class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">Shop Now</button> -->
                   
-                     <div  class="layer-slick1 animated visible-false " data-appear="zoomIn" data-delay="1600"  data-filter=".시계">
-                        <a id="watch2" href="productViewWatch" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
+                     <div class="layer-slick1 animated visible-false " data-appear="zoomIn" data-delay="1600"  data-filter=".시계">
+                        <a id="watch2" href="productViewSearchCategory?p_category=시계" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
                            Shop Now
                         </a><!-- href="productView" id=abc&pw=1234 -->
                      </div>
@@ -693,7 +685,7 @@ position: absolute;
                      </div>
                   
                      <div id="wallet2" class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                        <a href="productViewWallet" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
+                        <a href="productViewSearchCategory?p_category=지갑" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04" >
                            Shop Now
                         </a>
                      </div>
@@ -706,7 +698,7 @@ position: absolute;
    </section>
 
 
-   <!-- Banner -->
+	<!-- Banner -->
    <div class="sec-banner bg0 p-t-95 p-b-55">
       <div class="container">
          <div class="row">
@@ -715,7 +707,7 @@ position: absolute;
                <div class="block1 wrap-pic-w">
                   <img src="images/banner1.PNG" alt="IMG-BANNER">
 
-                  <a href="productViewWatch" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
+                  <a href="productViewSearchCategory?p_category=시계" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".시계">
                   <div class="block1-txt-child1 flex-col-l">
                      <span class="block1-name ltext-102 trans-04 p-b-8">
                         Watch
@@ -738,7 +730,7 @@ position: absolute;
                <div class="block1 wrap-pic-w">
                   <img src="images/banner2.PNG" alt="IMG-BANNER">
 
-                  <a href="productViewWallet" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".지갑">
+                  <a href="productViewSearchCategory?p_category=지갑" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" data-filter=".지갑">
                      <div class="block1-txt-child1 flex-col-l">
                         <span class="block1-name ltext-102 trans-04 p-b-8">
                            Wallet
@@ -759,33 +751,29 @@ position: absolute;
       
    </div>
 </div>
-      <div class="p-b-10" >
-         <div class="container">
-            <h3>주간 인기상품</h3>
-               
-            
-         </div>
-   </div>
 
-         <div class="container" style="margin:10px; padding-bottom:300px;">
-            <div class="banner_wraper" >
-                   <img id="banner"src="images/blog-01.jpg">
-                   <img id="banner"src="images/blog-02.jpg">
-                   <img id="banner"src="images/blog-03.jpg">
-                   <img id="banner"src="images/blog-04.jpg">
-                   <img id="banner"src="images/blog-05.jpg">
-                   <img id="banner"src="images/blog-06.jpg">
-                   <img id="banner"src="images/blog-02.jpg">
-                   <img id="banner"src="images/blog-01.jpg">   
-                </div>
-            </div>
-         
-   <section  class="bg0 p-t-23 p-b-130">
+	<div class="p-b-10">
+		<div class="container">
+			   <h3 class="ltext-103 cl5"><font style="vertical-align: inherit;">신규 상품</font></h3>
+		</div>
+	</div>
+
+	<div class="container" style="margin: 10px; padding-bottom: 300px;">
+		<div class="banner_wraper">
+			<c:forEach items="${recommendItem}" var="recommendItem" end="7">
+				<a href="/ssmall/productDetail?p_number=${recommendItem.p_number}">
+					<img id="banner" src="/ssmall/productimage/${recommendItem.p_image}">
+				</a>
+			</c:forEach>	
+		</div>
+	</div>
+
+	<section  class="bg0 p-t-23 p-b-130">
       <div  class="container">
          <div class="p-b-10">
-            <h3 class="ltext-103 cl5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+            <h3 class="ltext-103 cl5"><font style="vertical-align: inherit;">
                이달의 인기상품
-            </font></font></h3>
+            </font></h3>
          </div>
 
          <div class="flex-w flex-sb-m p-b-52">
@@ -811,283 +799,64 @@ position: absolute;
    
          <div class="autoplay">
          <div  class="row isotope-grid" style="position: relative; height: 1513.81px;">
-            
-            <div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watch" style="position: absolute; left: 0%; top: 0px;">
-               <!-- Block2 -->
-               <div class="block2">
-                  <div class="block2-pic hov-img0 " >
-                     <img src="productimage/watch1.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;">
-                     <font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font>
-                     </a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           에스프리 프릴 셔츠
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 16.64
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watch" style="position: absolute; left: 24.9516%; top: 0px;">
-               <!-- Block2 -->
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/watch2.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           허셜 공급
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 35.31
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watch" style="position: absolute; left: 50%; top: 0px;">
-               <!-- Block2 -->
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/watch3.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           바지 만 확인
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 25.50
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watch" style="position: absolute; left: 74.9516%; top: 0px;">
-               <!-- Block2 -->
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/watch4.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           클래식 트렌치 코트
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 75.00
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item wallet" style="position: absolute; left: 0%; top: 377px;">
-               
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/wallet1.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           프론트 포켓 점퍼
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 34.75
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item wallet" style="position: absolute; left: 24.9516%; top: 377px;">
-               
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/wallet2.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           빈티지 인스파이어 드 클래식 
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 93.20
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item wallet" style="position: absolute; left: 50%; top: 377px;">
-               
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/wallet3.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           스트레치 코튼 셔츠
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 52.66
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item wallet" style="position: absolute; left: 74.9516%; top: 377px;">
-               
-               <div class="block2">
-                  <div class="block2-pic hov-img0">
-                     <img src="productimage/wallet4.PNG" alt="IMG- 제품" height="390">
-
-                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Quick View
-                     </font></font></a>
-                  </div>
-
-                  <div class="block2-txt flex-w flex-t p-t-14">
-                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           조각 메탈 프린트
-                         </font></font></a>
-
-                        <span class="stext-105 cl3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                           $ 18.96
-                        </font></font></span>
-                     </div>
-
-                     <div class="block2-txt-child2 flex-r p-t-3">
-                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                           <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="상">
-                           <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="상">
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-         </div> 
-
-      
-      <!--    <div class="flex-c-m flex-w w-full p-t-38">
-            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-               1
-             </font></font></a>
-
-            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-               2
-            </font></font></a>
-         </div>  -->
+            <c:forEach items="${hitWatchItem}" var="hitWatchItem" end="3">
+	            <div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watch" style="position: absolute; left: 0%; top: 0px;">
+	               <!-- Block2 -->
+	               <div class="block2">
+	                  <div class="block2-pic hov-img0 " >
+	                     <img src="/ssmall/productimage/${hitWatchItem.p_image}" alt="IMG- 제품" height="390">                  
+	                  </div>
+	
+	                  <div class="block2-txt flex-w flex-t p-t-14">
+	                     <div class="block2-txt-child1 flex-col-l ">
+	                        <a href="/ssmall/productDetail?p_number=${hitWatchItem.p_image}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+		                        <font style="vertical-align: inherit;">
+		                       		${hitWatchItem.p_brand} ${hitWatchItem.p_name}
+		                        </font>
+	                        </a>
+	
+	                        <span class="stext-105 cl3">
+		                        <font style="vertical-align: inherit;">
+		                          <fmt:formatNumber value="${hitWatchItem.p_price}" pattern="###,###,###"/>원 
+		                       </font>
+		                    </span>
+	                     </div>                   
+	                  </div>
+	               </div>
+	            </div>
+            </c:forEach>
+			 <c:forEach items="${hitWalletItem}" var="hitWalletItem" end="3">
+	            <div  class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item wallet" style="position: absolute; left: 0%; top: 0px;">
+	               <!-- Block2 -->
+	               <div class="block2">
+	                  <div class="block2-pic hov-img0 " >
+	                     <img src="/ssmall/productimage/${hitWalletItem.p_image}" alt="IMG- 제품" height="390">                  
+	                  </div>
+	
+	                  <div class="block2-txt flex-w flex-t p-t-14">
+	                     <div class="block2-txt-child1 flex-col-l ">
+	                        <a href="/ssmall/productDetail?p_number=${hitWalletItem.p_image}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+		                        <font style="vertical-align: inherit;">
+		                       		${hitWalletItem.p_brand} ${hitWalletItem.p_name}
+		                        </font>
+	                        </a>
+	
+	                        <span class="stext-105 cl3">
+		                        <font style="vertical-align: inherit;">
+		                           <fmt:formatNumber value="${hitWalletItem.p_price}" pattern="###,###,###"/>원 
+		                       </font>
+		                    </span>
+	                     </div>                   
+	                  </div>
+	               </div>
+	            </div>
+            </c:forEach>
+  
           </div> 
             </div>
             
          
-   
+   </div>
  </section>
       
       

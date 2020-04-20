@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import edu.bit.ssmall.service.CartService;
+import edu.bit.ssmall.service.HomeService;
 import edu.bit.ssmall.vo.CartViewVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 /**
  * Handles requests for the application home page.
@@ -39,18 +42,34 @@ public class HomeController {
 	@Autowired
 	CartService cartService;
 	
+	@Autowired
+	HomeService homeService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-
+		
+		List<ProductVO> recommendItem = homeService.recommendItem();
+		model.addAttribute("recommendItem", recommendItem);
+		
+		List<ProductVO> hitWatchItem = homeService.hitWatchItem();
+		List<ProductVO> hitWalletItem = homeService.hitWalletItem();
+		model.addAttribute("hitWatchItem", hitWatchItem);
+		model.addAttribute("hitWalletItem", hitWalletItem);
 		return "home";
 	}	
 	
 	 @RequestMapping(value = "/homeview", method = RequestMethod.GET) 
 	 public String home2(Model model) {
-	 
-	  return "home";
-	 
-	 
+		
+		List<ProductVO> list = homeService.recommendItem();
+		model.addAttribute("recommendItem", list);
+		
+		List<ProductVO> hitWatchItem = homeService.hitWatchItem();
+		List<ProductVO> hitWalletItem = homeService.hitWalletItem();
+		model.addAttribute("hitWatchItem", hitWatchItem);
+		model.addAttribute("hitWalletItem", hitWalletItem);
+		return "home";
+ 
 	 }
 	
 
@@ -68,10 +87,7 @@ public class HomeController {
 
 	}
 	
-	@RequestMapping(value="corona", method= {RequestMethod.GET, RequestMethod.POST})
-	public String corona(Model model, HttpServletRequest request){
-		return "corona";
-	}
+
 	
 		
 	@ResponseBody
