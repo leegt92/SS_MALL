@@ -87,7 +87,7 @@
                tag = tag + "</div>";
                tag = tag + "<div class='header-cart-item-txt p-t-8'>";
                tag = tag + "<a href='/ssmall/productDetail?p_number=" + value.p_number + "' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>";
-               tag = tag + value.p_description + " x " + value.c_amount;
+               tag = tag + value.p_brand + value.p_name + " x " + value.c_amount;
                tag = tag + "</a>";
                tag = tag + "<span class='header-cart-item-info'>";
                tag = tag + numberFormat(value.c_grandtotal)+"원";
@@ -280,7 +280,7 @@ position: absolute;
    <tr > 
       <form name="notice_form"> 
           <td align=left bgcolor= white  >
-          <input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
+          &nbsp;<input id="box" type="checkbox" name="chkbox" value="checkbox" style="display: inline-block;">
           오늘 하루 이 창을 열지 않음
              
               <a href="javascript:closeWin();"><B>[닫기]</B></a> 
@@ -314,11 +314,9 @@ position: absolute;
                      
                      
                      <li>
-                        <a href="boardnoticeView">새소식</a>
+                        <a href="boardnoticeView">공지사항</a>
                         
-                     </li>
-                  
-                     
+                     </li>            
                      
                      <li>
                         <a href="companyView">회사소개</a>                  

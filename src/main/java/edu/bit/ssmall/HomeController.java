@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import edu.bit.ssmall.service.CartService;
 import edu.bit.ssmall.service.HomeService;
 import edu.bit.ssmall.vo.CartViewVO;
+import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductVO;
 
 /**
@@ -87,14 +88,14 @@ public class HomeController {
 
 	}
 	
-
-	
 		
 	@ResponseBody
 	@RequestMapping("miniCart")
 	public ArrayList<CartViewVO> miniCart(Principal principal){
-		System.out.println(cartService.miniCartInfo(principal.getName()));
-		return cartService.miniCartInfo(principal.getName());
+		
+		MemberVO memberVO = cartService.memberInfo(principal.getName());
+		
+		return cartService.miniCartInfo(memberVO.getM_number());
 	}
 	
 	@RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)

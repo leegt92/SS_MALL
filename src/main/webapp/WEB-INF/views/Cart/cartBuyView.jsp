@@ -452,7 +452,7 @@ function checkForm(){
 										<img src="/ssmall/productimage/${cart.i_name}" alt="IMG" width="100px" height="100px" >
 									</a>	
 								</td>
-								<td style="text-align: left; vertical-align: middle;"><strong>${cart.p_description}</strong></td>
+								<td style="text-align: left; vertical-align: middle;"><strong>${cart.p_brand} ${cart.p_name}</strong></td>
 								<td style="text-align: center; vertical-align: middle;"><strong>${cart.c_amount}</strong></td>
 								<td style="text-align: center; vertical-align: middle;"><strong><fmt:formatNumber value="${cart.c_grandtotal}"
 										pattern="###,###,###" />원</strong></td>

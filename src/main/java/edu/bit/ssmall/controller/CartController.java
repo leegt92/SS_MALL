@@ -79,8 +79,9 @@ public class CartController {
 		HttpSession session = request.getSession();		
 	
 		String[] check = request.getParameterValues("check"); //구매할 상품 체크한 수 받아옴. value는 체크한 카트아이디임
-		
-		
+		System.out.println("================");
+		System.out.println("장바구니 체크확인 : "+check);
+		System.out.println("================");
 		if(check == null) {
 			//체크한게 없으면 다시 장바구니로			
 			session.setAttribute("checkNull", "checkNull");

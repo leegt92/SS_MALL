@@ -30,10 +30,10 @@ public interface PageMapper {
 	@Select("Select count(*) from product p, buy b where p.p_number = b.p_number and m_number = #{m_number} and b_status = '결제완료'")
 	public int countShoppingList(@Param("m_number")int m_number);
 	
-	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '배송완료' order by b_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status != '배송완료' order by b_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<Product_BuyVO> orderedListPage(@Param("m_number")int m_number, @Param("startNum")int startNum, @Param("endNum")int endNum);
 	
-	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM product p join buy b on b.p_number = p.p_number where m_number = #{m_number} and b_status = '결제완료' order by b_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM product p join buy b on b.p_number = p.p_number where m_number = #{m_number} order by b_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<Product_BuyVO> shoppingListPage(@Param("m_number")int m_number, @Param("startNum")int startNum, @Param("endNum")int endNum);
 
 	

@@ -282,10 +282,7 @@ span {
 			      startupFocus : false,
 			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
 			      extraPlugins : 'confighelper'
-<<<<<<< HEAD
 
-=======
->>>>>>> f221b0d36a47de8c5cf23bcc4f19750b05d8ae88
 			    });
 		});
 		
