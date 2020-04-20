@@ -192,6 +192,10 @@ public interface ProductMapper {
 	public int checkBuyList(@Param("p_number")String p_number, @Param("m_number")int m_number);
 
 
+	//글 번호로 해당 글의 총 신고수를 확인함
+	@Select("select btotalrepot from board where bid = ${value}")
+	public int checkRepotCount(@Param("value")String bid);
+
 	
 
 }

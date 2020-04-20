@@ -1960,14 +1960,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 													   data : data,
 													   success : function(result){
 														 if(result == 1){
-															 console.log("result=1. 삭제완료 후 갱신");
-															 alert("삭제되었습니다.");
-														     replyList();
+														    console.log("result1. repot<3 삭제완료 후 갱신");
+															alert("삭제되었습니다.");
+															replyList();
 														 }
-														 else{
+														 else if(result ==0){
 															 console.log("result=0. 삭제 실패");
 															 alert("작성자만 삭제 가능합니다.");
 														     replyList();
+														 }else if(result ==2){
+															 console.log("result2 repot>3. 신고횟수3회이상 삭제불가");
+															 alert("신고로 인해 삭제할 수 없습니다.");
 														 }
 													   }
 													  });
@@ -2029,12 +2032,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 																/* alert("유저인증 확인"); */
 																console.log("모달스크립트");
 														    	/* alert(data.bid); */
+
 														        $('#modal').modal();
 														    	$('#bidUpdate').val(data.bid);
 														    	
+
 															}
-															else{
+															else if(result == 0){
 																alert("작성자만 수정 가능합니다.");
+															}
+															else if(result ==2){
+																alert("신고로 인해 수정할 수 없습니다.");
 															}
 														}
 														
