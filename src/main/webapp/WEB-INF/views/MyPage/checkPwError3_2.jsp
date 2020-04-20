@@ -230,7 +230,7 @@
 		title: '수정사항 미입력',
 		text: '수정할 사항을 입력해 주세요.',	
 		}).then(function() {
-			window.location = "/ssmall/mypage/myPage_reviseInformation";
+			window.location = "/ssmall/mypage/myPage_reviseInformation2-3";
 		});
 	</script>
 
