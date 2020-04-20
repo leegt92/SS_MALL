@@ -30,8 +30,8 @@
 <link rel="stylesheet" type="text/css"
 	href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="fonts/iconic/css/material-design-iconic-font.min.css">
@@ -245,15 +245,21 @@
 						tag = tag + "<input type='hidden' value='"+data.btotalrepot+"' name='btotalrepot'>";//리폿당한 횟수
 						tag = tag + "<input type='hidden' value='"+data.brepotid1+"' name='btotalrepot'>";//리폿한 사용자1의 member number
 						tag = tag + "<input type='hidden' value='"+data.brepotid2+"' name='btotalrepot'>";//리폿한 사용자2의 member number
-						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. */
-						tag = tag + "<sec:authorize access='hasAnyRole("USER, ADMIN")'>";												
+
 						/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
 						tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
+						/* 로그인 되어있을때, 그 m_number가 댓글에 저장되어 있는 m_number와 같을때 수정 삭제 버튼이 나타나도록 함 */
+						
+						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. 신고버튼만 보이게 변경*/
+						tag = tag + "<sec:authorize access='hasRole("USER")'>";
 						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
 						tag = tag + "&nbsp;<button class='btn btn-info '  type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"<i class='fas fa-pencil-alt'></i> 수정</button>";
 						tag = tag + "&nbsp;<button class='btn btn-danger '  type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='fas fa-ban'></i> 신고</button></div>";
 						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
-						tag = tag + "</sec:authorize>";																									
+						tag = tag + "</sec:authorize>";	
+						tag = tag + "<sec:authorize access='isAnonymous()'>";
+						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-danger'  type='button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='i class='fas fa-ban'></i> 신고</button></div>";
+						tag = tag + "</sec:authorize>";	
 	/* 					tag = tag + "</p>"; */
 						tag = tag + "</form>";
 						tag = tag+ "</div></div><br>"
@@ -858,8 +864,9 @@
 														
 														
 														 <script>
-															$("#btn_collapse_notLogin").click(function(){
+															/* $("#btn_collapse_notLogin").click(function(){
 																console.log("btn_collapse_notLogin 버튼이벤트 탐");
+												
 																Swal.fire({
 																	title:'글쓰기',
 																	text:'로그인 후 이용 가능합니다.',
@@ -873,14 +880,17 @@
 																		location.href="productDetailLogin?p_number=${productNum.p_number}";
 																	}
 																})
-																/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
-															})
+																/* location.href="productDetailLogin?p_number=${productNum.p_number}"; 
+															})*/
 															
 															$("#writeModalBtn").click(function(){
 																/* console.log("checkBuyList확인1");
 																console.log(${checkBuyList});
 																console.log("checkBuyList확인2"); */
-																if(${checkBuyList} != "0"){
+
+																if(${checkBuyList}!="0"){
+																	//alert("${checkBuyList}!=0 즉 구매한 상품");
+
 																	$('#writeModal').modal();
 																}else{
 																alert("구입 후 이용하실수 있습니다.");
@@ -1167,9 +1177,9 @@
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25"> 상품 짤막설명? </span> <span
-				class="stext-107 cl6 p-lr-25"> Categories: Jacket, Men 카테고리나
-				등등 </span>
+			<span class="stext-107 cl6 p-lr-25">인기상품</span> <span
+				class="stext-107 cl6 p-lr-25"> SSMALL
+				</span>
 		</div>
 	</section>
 
@@ -1208,7 +1218,7 @@
 										</span>
 									</div>
 
-									<div class="block2-txt-child2 flex-r p-t-3">
+									<!-- <div class="block2-txt-child2 flex-r p-t-3">
 										<a href="#"
 											class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 											<img class="icon-heart1 dis-block trans-04"
@@ -1216,7 +1226,7 @@
 											class="icon-heart2 dis-block trans-04 ab-t-l"
 											src="images/icons/icon-heart-02.png" alt="ICON">
 										</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -1798,6 +1808,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										$(document).on("click","#modalWriteSubmit",function(){
 											console.log("modalWriteSubmit 스크립트 탔음.");
 											var value = CKEDITOR.instances["bcontentImage"].getData();
+
 											/* alert("확인"); */
 											/* var queryString = $("form[name=writeModalForm]").serialize();
 											console.log(queryString); */
@@ -1903,7 +1914,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											 
 											 $("#btn_collapse_notLogin").click(function(){
 													console.log("btn_collapse_notLogin 버튼이벤트 탐");
-													Swal.fire({
+													alert("로그인이 필요한 서비스 입니다.");
+													location.href="productDetailLogin?p_number=${productNum.p_number}";
+													/* var result = confirm("로그인이 필요한 서비스 입니다");
+													if(result){
+													    location.href="productDetailLogin?p_number=${productNum.p_number}";
+													}else{
+														
+													} */
+													/* Swal.fire({
 														title:'글쓰기',
 														text:'로그인 후 이용 가능합니다.',
 														type:'warning',
@@ -1915,7 +1934,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 														if(result.value){
 															location.href="productDetailLogin?p_number=${productNum.p_number}";
 														}
-													})
+													}) */
 													/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
 												})
 												
@@ -1926,7 +1945,37 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											 
 										$(document).on("click", "#deleteBoard", function(){
 											  /* alert($(this).attr("value")); */
-											Swal.fire({
+											var result = confirm("글을 지우시겠습니까?");
+											if(result){
+													var m_number = $("#m_number").val();
+													  console.log("m_number : "+m_number);
+													  console.log("딜리트보드 밑 m_number 옮기기");
+													  var data = {
+															  bid : $(this).attr("value"),
+															  m_number : m_number											  
+													  };											  											  
+													  $.ajax({
+													   url : "/ssmall/deleteReply",
+													   type : "get",
+													   data : data,
+													   success : function(result){
+														 if(result == 1){
+															 console.log("result=1. 삭제완료 후 갱신");
+															 alert("삭제되었습니다.");
+														     replyList();
+														 }
+														 else{
+															 console.log("result=0. 삭제 실패");
+															 alert("작성자만 삭제 가능합니다.");
+														     replyList();
+														 }
+													   }
+													  });
+												}
+											else{
+												
+											}
+											/* Swal.fire({
 												title:'글 삭제',
 												text:'글을 지우시겠습니까?',
 												type:'warning',
@@ -1934,7 +1983,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 												confirmButtonColor:'#3085d6',
 												cancelButtonColor:'#d33',
 												confirmButtonText:'OK'
-											}).then((result)=>{
+											}).then((result)=>{ 
 												if(result.value){
 													var m_number = $("#m_number").val();
 													  console.log("m_number : "+m_number);
@@ -1961,7 +2010,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 													   }
 													  });
 												}
-											}) 
+											}) */ 
 										})
 										
 											$(function(){
@@ -1985,7 +2034,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 														    	
 															}
 															else{
-																Swal.fire('글 수정','작성자만 가능합니다','error');
+																alert("작성자만 수정 가능합니다.");
 															}
 														}
 														
@@ -2027,6 +2076,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 															else if(result==3){
 																alert("이미 삭제처리된 댓글입니다.");
 																replyList();
+															}
+															else if(result==4){
+																alert("로그인 후 사용 가능합니다.");
+																location.href="productDetailLogin?p_number=${productNum.p_number}";
 															}
 														},
 														error:function(xhr,status,error){
@@ -2291,8 +2344,27 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$(document).on("click","#cart",function(){
 			console.log("장바구니 버튼 클릭함");
 			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+				alert("구매수량을 입력해 주세요");
+				//Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(${principal_m_number} == ""){
+				alert("로그인 후 이용가능합니다.");
+				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				//location.href='/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				/* Swal.fire({
+					title:'장바구니',
+					text:'로그인 후 이용 가능합니다.',
+					type:'warning',
+					showCancelButton: true,
+					confirmButtonColor:'#3085d6',
+					cancelButtonColor:'#d33',
+					confirmButtonText:'Login'
+				}).then((result)=>{
+					if(result.value){
+						window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+					}
+				}); */
 			}else if(b_amount!=0){
 				var form = $('#buyForm');
 				console.log(form);
@@ -2308,8 +2380,27 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$(document).on("click","#buy",function(){
 			console.log("구매버튼 클릭함");
 			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+				alert("구매 수량을 입력해 주세요.");
+				//Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+			}else if(${principal_m_number} == "0"){
+				alert("로그인 후 이용 가능합니다.");
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+				//location.href='/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+				/* Swal.fire({
+					title:'구입하기',
+					text:'로그인 후 이용 가능합니다.',
+					type:'warning',
+					showCancelButton: true,
+					confirmButtonColor:'#3085d6',
+					cancelButtonColor:'#d33',
+					confirmButtonText:'Login'
+				}).then((result)=>{
+					if(result.value){
+						window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+					}
+				}); */
 			}else if(b_amount!=0){
 				var form = $('#buyForm');
 				//var form = $("form[role='form']");

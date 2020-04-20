@@ -35,6 +35,17 @@ public class ProductController {
 	
 	@RequestMapping("/productView")
 	public String productview(HttpServletRequest request,Model model, Criteria criteria) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != "anonymousUser") {
+	        name = auth.getName();
+	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.			
+	    }
+	    else {
+	    	model.addAttribute("principal_m_number","0");
+	    }
 		System.out.println("productview");
 		//페이징
 		PageMaker pageMaker = new PageMaker();
@@ -347,6 +358,13 @@ public class ProductController {
 	    String name = "";
 	    name = auth.getName();//현재 로그인한 id = leegt92 이런것.
 	    
+	  //비회원이 신고하기 누를경우
+	  	if(name == "anonymousUser") {
+	  		System.out.println("비회원신고");
+	  		result = 4;
+	  		return result;
+	  	}
+	    
 	    System.out.println("report탔나");
 	    System.out.println("현재 로그인한 name 확인 name이 이름인지 로그인한 아이디인지 : "+name);
 	    
@@ -362,6 +380,8 @@ public class ProductController {
 		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
 		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
 		System.out.println(bid);
+		
+		
 		
 		//현재 id와 글에 기록된 id를 가져와서, 둘이 동일하다면 글쓴이가 자신의 글을 신고하는 것이므로 신고불가.
 		if(m_number == b_m_number) {
@@ -474,13 +494,16 @@ public class ProductController {
 	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
 			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
 			//로그인상태에서, 상품을 이미 구매했는지 안했는지 확인
-			if(productService.checkBuyList(p_number,m_number) != 0) {
+
+			if(productService.checkBuyList(p_number,m_number)!=0) {
 				model.addAttribute("checkBuyList", productService.checkBuyList(p_number,m_number));
 			}else {
 				model.addAttribute("checkBuyList", "0");
 			}
 			
 			System.out.println("구매했는지 안했는지. buy_number 확인 : "+productService.checkBuyList(p_number,m_number));
+	    }else {
+	    	model.addAttribute("principal_m_number","0");
 	    }
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
@@ -503,18 +526,28 @@ public class ProductController {
 		model.addAttribute("modelCheck",check);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
+	    
+	    String p_number = request.getParameter("p_number");
 	 
 	    String name = "";
 	    if(principal != "anonymousUser") {
 	        name = auth.getName();
 	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
 			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
+			//로그인상태에서, 상품을 이미 구매했는지 안했는지 확인
+			if(productService.checkBuyList(p_number,m_number)!=0) {
+				model.addAttribute("checkBuyList", productService.checkBuyList(p_number,m_number));
+			}else {
+				model.addAttribute("checkBuyList", "0");
+			}
+			
+			System.out.println("구매했는지 안했는지. buy_number 확인 : "+productService.checkBuyList(p_number,m_number));
 	    }
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
 	    System.out.println("auth.getName() : "+auth.getName());	    
 		System.out.println("productDetail시작");
-		String p_number = request.getParameter("p_number");
+		
 		System.out.println("상품번호 : "+p_number);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));
 		model.addAttribute("productAmount", productService.selectProductListAmount());

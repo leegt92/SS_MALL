@@ -1627,25 +1627,11 @@ $(document).ready(function(){
 			if(b_amount==0){
 				//Swal.fire('장바구니','구매수량을 입력해 주세요','error');
 				alert("상품 수량을 입력해 주세요");
-			}else if(b_amount!=0){
-				console.log("장바구니 1개이상일때 1번");
-				var data = {
-						p_number : p_number,
-						b_amount : b_amount
-				}
-				console.log(p_number);
-				console.log(b_amount);
+			}else if(${principal_m_number} == "0"){
+				alert("로그인이 필요한 서비스 입니다.");
 				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
-				//위에껄로 다됨...
-				/*$.ajax({
-					url:"/ssmall/cart/addCart",
-					type:"get",
-					data : data,
-					success:function(){
-						console.log("장바구니ajax 성공");
-						window.location.href = '/ssmall/cart/cartView';
-					}
-				});*/
+			}else{
+				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
 			}
 		});
 	
@@ -1654,19 +1640,31 @@ $(document).ready(function(){
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				//Swal.fire('구매','구매수량을 입력해 주세요','error');
-				alert("상품 수량을 입력해 주세요");
-			}else if(b_amount!=0){
-				console.log("구매 1개이상일때 1번");
-				var data = {
-						p_number : p_number,
-						b_amount : b_amount
-				}
-				console.log(p_number);
-				console.log(b_amount);
+				alert("상품 수량을 입력해 주세요");				
+			}else if(${principal_m_number} == "0"){
+				alert("로그인이 필요한 서비스 입니다.");
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+			}else{
 				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
 			}
-		});
+
+		});	
+			
+				
+				
+			/*	$.ajax({
+					url:"/ssmall/buy/buy",
+					type:"get",
+					data : data,
+					success:function(){
+						console.log("구매ajax 성공");
+						window.location.href = '/ssmall/buy/buy?'+p_number;
+						
+					}
+				});
+			*/
+		
+
 		
 		//백업용
 		/* $(document).on("click","#cart",function(){
