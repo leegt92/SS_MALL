@@ -64,7 +64,6 @@
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -82,7 +81,7 @@
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage_orderedList" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -178,13 +177,13 @@
 							<span class="lnr lnr-map-marker"></span>
 						</span>
 
-						<div class="size-212 p-t-2">
+						<div class="size-212 p-t-2" style="margin-bottom: 31px;">
 							<span class="mtext-110 cl2">
 								주소
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+								서울 마포구 백범로 23 구프라자 3층
 							</p>
 						</div>
 					</div>
@@ -202,7 +201,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								+1 800 1236879
+								02-707-1480
 							</p>
 						</div>
 					</div>
@@ -221,7 +220,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
+								ssmall@naver.com
 							</p>
 						</div>
 					</div>

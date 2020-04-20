@@ -41,6 +41,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/ssmall/css/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
 <style type="text/css">
 .bg-light {
@@ -164,7 +165,6 @@
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -182,7 +182,7 @@
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage_orderedList" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -247,7 +247,7 @@
             		<h3 style="font-size:16px; color:green;" class="accordion3">
             		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
             		<c:set var="bId" value="${askRequestboards.bid}" />
-            		<button onclick="window.location.href='/ssmall/mypage/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button onclick="window.location.href='/ssmall/mypage/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:1px solid gray; border-radius: 5px 5px 5px 5px; background-color:#98ebdc">수정</font></button>
             		<button onclick="Swal.fire({
         				  title: '정말 삭제하시겠습니까?',
         				  text: '삭제 되면 복구되지 않습니다.',
@@ -267,14 +267,14 @@
     	    				});
         				  }
         				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
+            		<font size="4em" style="border:1px solid black; border-radius: 5px 5px 5px 5px; background-color:#FF99CC">삭제</font>
             		</button>
             		</h3>
             	</c:when>
             	<c:otherwise>
             		<h3 style="font-size:16px; color:red;" class="accordion3">
             		<c:out value = "${askRequestboards.btitle}"/><c:out value = " (${askRequestboards.bdate})"/><c:out value = " (${askRequestboards.banswered})"/>
-            		<button onclick="window.location.href='/ssmall/mypage/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:2px solid black; background-color:#bebebe">수정</font></button>
+            		<button onclick="window.location.href='/ssmall/mypage/myPage_askRequest2?bId=${askRequestboards.bid}'" style="position:fixed;left: 1505px;"><font size="4em" style="border:1px solid gray; border-radius: 5px 5px 5px 5px; background-color:#98ebdc">수정</font></button>
             		<button onclick="Swal.fire({
       				  title: '정말 삭제하시겠습니까?',
     				  text: '삭제 되면 복구되지 않습니다.',
@@ -294,7 +294,7 @@
 	    				});
     				  }
     				})" style="position:fixed;left: 1550px;">
-            		<font size="4em" style="border:2px solid black; background-color:#bebebe">삭제</font>
+            		<font size="4em" style="border:1px solid black; border-radius: 5px 5px 5px 5px; background-color:#FF99CC">삭제</i></font>
             		</button>
             		</h3>
             	</c:otherwise>
@@ -312,20 +312,24 @@
             </div>
         </li>
         </c:forEach>
-        <c:if test="${pageMaker.prev}">
-			<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
-	</c:if>
-	
-	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-			<c:out value="${pageMaker.cri.page == idx?'':''}" />
-			<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(idx)}">${idx}</a>
-	</c:forEach>
-	
-	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<a href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
-	</c:if> <br>
-
-        <button onclick="window.location.href='/ssmall/mypage/myPage_askRequest'" style="margin-top: 50px; margin-left: 530px;"><font size="5em" style="border:2px solid black; background-color:#bebebe">1:1문의 글쓰기</font></button>
+        <ul class="pagination m-5 flex-c-m" >
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_askRequestView${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+			</ul>
+        <button onclick="window.location.href='/ssmall/mypage/myPage_askRequest'" style="margin-top: 0px;margin-left: 520px;"><font size="5em" style="border:1px solid black; border-radius: 5px 5px 5px 5px; background-color:#99FFFF">1:1문의 글쓰기</font></button>
 
     </ul>
     

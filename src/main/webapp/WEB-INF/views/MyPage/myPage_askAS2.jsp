@@ -64,7 +64,6 @@
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-3 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -82,7 +81,7 @@
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage_orderedList" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -133,7 +132,7 @@
 	<!-- Content page -->
 	<section class="bg0 p-t-104 p-b-116" style="
 	    margin-left: 0px;
-	    margin-top: 100px;
+	    margin-top: 50px;
 	    padding-top: 0px;
 	    padding-left: 0px;
 	    position: fixed;
@@ -144,7 +143,8 @@
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md" 
 				 style="
 				 width: 1142px;
-				 height: 627px;
+				 height: 707px;
+				 padding-top: 35px;
 				">
 
 
@@ -165,7 +165,7 @@
 							<textarea id="bContent" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="bContent">${FbContent}</textarea>
 						</div>
 
-						<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+						<button id = "ASRequest2Button" type="button" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							수정
 						</button>
 					</form>
@@ -184,13 +184,13 @@
 							<span class="lnr lnr-map-marker"></span>
 						</span>
 
-						<div class="size-212 p-t-2">
+						<div class="size-212 p-t-2" style="margin-bottom: 31px;">
 							<span class="mtext-110 cl2">
 								주소
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+								서울 마포구 백범로 23 구프라자 3층
 							</p>
 						</div>
 					</div>
@@ -208,7 +208,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								+1 800 1236879
+								02-707-1480
 							</p>
 						</div>
 					</div>
@@ -227,7 +227,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
+								ssmall@naver.com
 							</p>
 						</div>
 					</div>
@@ -257,43 +257,54 @@
     <script>
       feather.replace()
     </script>
-  	<script>
-  	
-    	
-  	$("#submitASRequest").submit(function(event) {
+  	 <script>	
+  	$("#ASRequest2Button").click(function(event) {
 		var a1 = document.getElementById("bTitle").value;
-		var a2 = document.getElementById("bContent").value;
-		if(a1 == "" || a2 == "") {
+		
+		var ckeditor = CKEDITOR.instances['bContent']; 
+		if (ckeditor.getData()==""){
 			event.preventDefault();
 			Swal.fire({
 				icon: 'error',
 				position: 'center',
-				title: '제품명 및 세부요청 사항 미입력',
-				text: '제품명과 세부요청 사항을 모두 입력해 주십시오.',	
+				title: '세부 내용 미입력',
+				text: "세부 내용을 입력해 주십시오.",	
 			})
-		}
-		else {
+			ckeditor.focus();
+			return;
+		}	
+		
+		if(a1 == "") {
 			event.preventDefault();
 			Swal.fire({
-				icon: 'success',
+				icon: 'error',
 				position: 'center',
-				title: 'AS신청 수정 완료',
-				text: 'AS신청 수정이 완료되었습니다.',	
-				}).then(function() {
-					var elem = document.getElementById('submitASRequest');
-					elem.submit();
-				});
+				title: '제품명 미입력',
+				text: '제품명을 입력해 주십시오.',	
+			})
+			return;
 		}
 		
+		event.preventDefault();
+		Swal.fire({
+			icon: 'success',
+			position: 'center',
+			title: 'A/S 신청 수정 완료',
+			text: 'A/S 신청 수정이 완료되었습니다.',	
+			}).then(function() {
+				var elem = document.getElementById('submitASRequest');
+				elem.submit();
+			});
+		
+		
 });
-    		
-			
-    		
-	</script>
+	
+  	</script> 
 	
 	<script type="text/javascript">
 		$(function(){
 			CKEDITOR.replace('bContent',{extraPlugins : 'confighelper',
+				height:'320px',
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/mypage/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
 			});
 		});
