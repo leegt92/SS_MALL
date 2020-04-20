@@ -22,7 +22,7 @@ public interface CartMapper {
 	@Select("Select * from product p , image i where p.p_number = #{p_number} and i.p_number = p.p_number and i_type=1")
 	public ProductImageVO productInfo(String p_number);
 		
-	@Select("Select * from cart c ,product p,image i, member m where i.i_type=1 and c.m_number = m.m_number and p.p_number = c.p_number and p.p_number = i.p_number and m.m_number = #{m_number}")
+	@Select("Select * from cart c ,product p,image i, member m where i.i_type=1 and c.m_number = m.m_number and p.p_number = c.p_number and p.p_number = i.p_number and m.m_number = #{m_number} order by c.c_id desc")
 	public ArrayList<CartViewVO> cartInfo(@Param("m_number")int m_number);
 	
 	@Select("Select * from cart c ,product p,image i, member m where m.m_number = c.m_number and p.p_number = c.p_number and p.p_number = i.p_number and i.i_type = 1 and c_id = #{c_id}")

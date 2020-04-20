@@ -665,8 +665,11 @@ QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담�
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next" style="width: 500px">
 									<form:form role="form" method="post" id="buyForm" >
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+										<span class="label-input100">수량</span>
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">					
+											
 											<input type="hidden" name="p_number" value="${productNum.p_number}">
+											
 											<div id="minus" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>

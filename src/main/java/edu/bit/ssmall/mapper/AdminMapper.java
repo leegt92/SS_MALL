@@ -191,7 +191,7 @@ public interface AdminMapper {
 	@Select("select count(*) from product p , buy b where p.p_number = b.p_number and p.p_brand = #{p_brand} and b.b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
 	public int getBrandMonthSales(@Param("p_brand")String p_brand);	
 	
-	@Select("Select DISTINCT p_brand from product order by p_brand asc")
+	@Select("Select DISTINCT p_brand from product where p_enabled = 1 order by p_brand asc")
 	public String[] getBrand();
 	
 	/*===============================================공지사항 ====================================================*/

@@ -758,9 +758,9 @@ position: absolute;
 
 	<div class="container" style="margin: 10px; padding-bottom: 300px;">
 		<div class="banner_wraper">
-			<c:forEach items="${recommendItem}" var="recommendItem" end="7">
+			<c:forEach items="${recommendItem}" var="recommendItem" end="9">
 				<a href="/ssmall/productDetail?p_number=${recommendItem.p_number}">
-					<img id="banner" src="/ssmall/productimage/${recommendItem.p_image}">
+					<img style="margin-right: 10px;" id="banner" src="/ssmall/productimage/${recommendItem.p_image}">
 				</a>
 			</c:forEach>	
 		</div>

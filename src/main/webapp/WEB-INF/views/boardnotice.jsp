@@ -258,7 +258,7 @@
               </div>
                  <div id= "search" >
                     
-                  <form class="form-inline" action="boardnoticeView">
+                  <form class="form-inline" action="boardnoticesearchView">
                      <input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput" name="keyword">
                      <button class="btn btn-success" type="submit" >Search</button>
                </form>
@@ -281,7 +281,7 @@
                </table>
                <ul class="pagination m-5 flex-c-m" >
                <c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
-                  <li class="page-item"><a class="page-link"  href=boardnoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+                  <li class="page-item"><a class="page-link"  href="boardnoticeView${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
                   <!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
                </c:if>
             <!-- var="idx"하게되면 1씩증가  -->
@@ -300,7 +300,7 @@
             <c:otherwise>
             <h1 class="m-5">혜택</h1>
             <div id= "search">
-               <form class="form-inline" action="boardgradenoticeView">
+               <form class="form-inline" action="boardgradenoticesearchView">
                      <input class="form-control mr-sm-2" type="text" placeholder="Search" id="myInput" name="keyword">
                      <button class="btn btn-success" type="submit" >Search</button>
                </form>
@@ -336,7 +336,7 @@
          </table>
          <ul class="pagination m-5 flex-c-m" >
                <c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
-                  <li class="page-item"><a class="page-link"  href=boardgradenoticeView"${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+                  <li class="page-item"><a class="page-link"  href="boardgradenoticeView${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
                   <!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
                </c:if>
             <!-- var="idx"하게되면 1씩증가  -->

@@ -113,7 +113,7 @@ public interface ProductMapper {
 	public int selectCountProduct();
 	
 	//페이징처리된 상품목록을 불러오기 위한 sql문11111111111111111111111111111111111111111111111111111
-	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum} and p_enabled = '1'")
+	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_enabled = '1' order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum} ")
 	public List<ProductVO> selectProductListPage(@Param("startNum")int startNum, @Param("endNum")int endNum);
 	
 	//페이징처리된 상품목록을 불러오기 위한 sql문
