@@ -564,12 +564,149 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
+		return "redirect:/mypage/myPage_reviseInformation2_back";
+
+	}
+	
+	@RequestMapping(value = "/myPage_reviseInformation2_back")
+	public String myPage_reviseInformation2_back(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String m_password = request.getParameter("m_password");
+	    String m_checkpassword = request.getParameter("m_checkpassword");
+	    String m_name = request.getParameter("m_name");
+	    String m_age = request.getParameter("m_age");
+	    String m_adress = request.getParameter("m_adress");
+	    String m_phonenum = request.getParameter("m_phonenum");
+	    String m_receive_email = request.getParameter("m_receive_email");
+	    if(m_name == "" && m_age == "" && m_adress == "" && m_phonenum == "" && m_password == "" && m_receive_email == null) {
+	    	return "MyPage/checkPwError3";
+	    }
+	    
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String m_id = mypageService.getMid(name);
+			model.addAttribute("m_id",m_id);
+			String m_email = mypageService.getMemail(name);
+			model.addAttribute("m_email",m_email);
+			String m_name2 = mypageService.getMname(name);
+			model.addAttribute("m_name2",m_name2);
+			int m_age3 = mypageService.getMage(name);
+			model.addAttribute("m_age3",m_age3);
+			String m_adress2 = mypageService.getMadress(name);
+			model.addAttribute("m_adress2",m_adress2);
+			String m_phonenum2 = mypageService.getMphonenum(name);
+			model.addAttribute("m_phonenum2",m_phonenum2);
+			
+			if(m_password != "") {
+				if(m_password.equals(m_checkpassword)) {
+					String hashpw = passwordEncoder.encode(m_password); 
+					mypageService.updateMpassword(hashpw, name);
+				}
+				else {
+					return "MyPage/myPage_reviseInformation2";
+				}
+			}
+			if(m_name != "") {
+		    	mypageService.updateMname(m_name, name);
+		    }
+			if(m_age != "") {
+				int m_age2 = Integer.parseInt(m_age);
+		    	mypageService.updateMage(m_age2, name);
+		    }
+			if(m_adress != "") {
+		    	mypageService.updateMadress(m_adress, name);
+		    }
+			if(m_phonenum != "") {
+		    	mypageService.updateMphonenum(m_phonenum, name);
+		    }
+			if(m_receive_email.equals("0")) {
+				mypageService.updateMreceiveToYes(name);
+			}
+			if(m_receive_email.equals("1")) {
+				mypageService.updateMreceiveToNo(name);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return "MyPage/myPage_reviseInformation2";
 
 	}
 	
 	@RequestMapping(value = "/myPage_reviseInformation2_3", method = RequestMethod.POST)
 	public String myPage_reviseInformation2_2(Model model, HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    
+	    String m_age = request.getParameter("m_age");
+	    String m_adress = request.getParameter("m_adress");
+	    String m_phonenum = request.getParameter("m_phonenum");
+	    String m_receive_email = request.getParameter("m_receive_email");
+	    if(m_age == "" && m_adress == "" && m_phonenum == ""  && m_receive_email == null) {
+	    	return "MyPage/checkPwError3_2";
+	    }
+	    
+	    String name = "";
+	    if(principal != null) {
+	        name = auth.getName();
+	    }
+	    
+	    
+	    try {
+			int m_number = mypageService.getMnum(name);
+			model.addAttribute("m_number", m_number);
+			String m_id = mypageService.getMid(name);
+			model.addAttribute("m_id",m_id);
+			String m_email = mypageService.getMemail(name);
+			model.addAttribute("m_email",m_email);
+			String m_name2 = mypageService.getMname(name);
+			model.addAttribute("m_name2",m_name2);
+			int m_age3 = mypageService.getMage(name);
+			model.addAttribute("m_age3",m_age3);
+			String m_adress2 = mypageService.getMadress(name);
+			model.addAttribute("m_adress2",m_adress2);
+			String m_phonenum2 = mypageService.getMphonenum(name);
+			model.addAttribute("m_phonenum2",m_phonenum2);
+			
+			if(m_age != "") {
+				int m_age2 = Integer.parseInt(m_age);
+		    	mypageService.updateMage(m_age2, name);
+		    }
+			if(m_adress != "") {
+		    	mypageService.updateMadress(m_adress, name);
+		    }
+			if(m_phonenum != "") {
+		    	mypageService.updateMphonenum(m_phonenum, name);
+		    }
+			if(m_receive_email.equals("0")) {
+				mypageService.updateMreceiveToYes(name);
+			}
+			if(m_receive_email.equals("1")) {
+				mypageService.updateMreceiveToNo(name);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    return "redirect:/mypage/myPage_reviseInformation2_3_back";
+
+	}
+	
+	@RequestMapping(value = "/myPage_reviseInformation2_3_back", method = RequestMethod.POST)
+	public String myPage_reviseInformation2_3_back(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
 	    
