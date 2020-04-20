@@ -492,7 +492,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation2")
 	public String myPage_reviseInformation2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -564,7 +564,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/";
+		return "MyPage/myPage_reviseInformation2";
 
 	}
 	
@@ -625,7 +625,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:/";
+	    return "MyPage/myPage_reviseInformation2-3";
 
 	}
 	
