@@ -298,15 +298,20 @@ public class ProductController {
 			    
 		System.out.println("/deleteReply");
 		String bid = request.getParameter("bid");//삭제할 글의 번호
+		int checkRepotCount = productService.checkRepotCount(bid);//글 번호로 해당 글의 총 신고횟수 확인
 		int b_m_number = productService.checkMid(bid);
 		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
 		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
 		System.out.println(bid);
 		
 		if(m_number == b_m_number) {
-			productService.replyDelete(boardVO);
-			System.out.println("/deleteReply끝 + if문 탔음");
-			result = 1;
+			if(checkRepotCount<3) {
+				productService.replyDelete(boardVO);
+				System.out.println("/deleteReply끝 + if문 탔음");
+				result = 1;
+			} else {
+				result = 2;
+			}
 		}
 		else {
 			System.out.println("/deleteReply끝  + else부분");
@@ -334,10 +339,14 @@ public class ProductController {
 		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
 		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
 		System.out.println(bid);
-		
+		int checkRepotCount = productService.checkRepotCount(bid);
 		if(m_number == b_m_number) {
+			if(checkRepotCount<3) {
 			System.out.println("/checkUser끝 + if문 탔음");
 			result = 1;
+			} else {
+				result = 2;
+			}
 		}
 		else {
 			System.out.println("/checkUser끝  + else부분");

@@ -185,5 +185,10 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return productMapper.checkBuyList(p_number, m_number);
 	}
+	//글 번호로 해당 글의 총 신고수를 확인함
+	public int checkRepotCount(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.checkRepotCount(bid);
+	}
 
 }
