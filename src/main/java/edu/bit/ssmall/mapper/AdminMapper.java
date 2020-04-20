@@ -86,7 +86,7 @@ public interface AdminMapper {
 	@Select("Select * from member where m_number = #{m_number}")
 	public MemberVO memberInfo(@Param("m_number")String m_number);
 	
-	@Select("Select * from buy b, product p where b.p_number = p.p_number and b.m_number = #{m_number}")
+	@Select("Select * from buy b, product p where b.p_number = p.p_number and b.m_number = #{m_number} order by b_date desc")
 	public ArrayList<BuyVO> buyList(@Param("m_number")String m_number);
 
 	@Select("Select * from refund r, product p where r.p_number = p.p_number and r.m_number = #{m_number} order by r.r_date desc")
@@ -218,6 +218,10 @@ public interface AdminMapper {
 
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board b join member m using(m_number) where btype='AS요청' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<Board_MemberVO> selectASBoardListPage(@Param("startNum") int startNum, @Param("endNum") int endNum);
-
+	
+	@Update("Update buy set b_status = #{b_status} where b_number = #{b_number}")
+	public void updateStatus(@Param("b_number")String b_number, @Param("b_status")String b_status);
+	
+	
 
 }

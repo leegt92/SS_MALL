@@ -20,13 +20,14 @@ public class Product_BuyVO {
 	private String b_done;
 	private int b_amount;
 	private String imp_uid;
+	private String b_code;
 	
-	Product_BuyVO(){}
+	public Product_BuyVO() {}
 	
 	public Product_BuyVO(int p_number, String p_name, int p_price, String p_brand, int p_stock, String p_description,
 			String p_released_date, int p_amount, String p_category, String p_image, int b_number, int m_number,
-			Date b_date, String b_done, int b_amount, String imp_uid) {
-		super();
+			Date b_date, String b_done, int b_amount, String imp_uid, String b_code) {
+
 		this.p_number = p_number;
 		this.p_name = p_name;
 		this.p_price = p_price;
@@ -43,7 +44,18 @@ public class Product_BuyVO {
 		this.b_done = b_done;
 		this.b_amount = b_amount;
 		this.imp_uid = imp_uid;
+		this.b_code = b_code;
 	}
+
+	public String getB_code() {
+		return b_code;
+	}
+
+	public void setB_code(String b_code) {
+		this.b_code = b_code;
+	}
+
+	
 
 	public int getP_number() {
 		return p_number;

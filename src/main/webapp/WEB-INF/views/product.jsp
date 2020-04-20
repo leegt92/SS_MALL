@@ -453,7 +453,7 @@
 			                   	 <input type="Search" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search"/>
 			                   	 	<span class="input-group-btn">
 			                        	<button id="SearchButtonImage1" class="btn btn-secondary btn-lg" style="width:40px; height:35px;"type="submit">
-			                           	 	<!-- <i class="glyphicon glyphicon-search"></i> -->
+			                           	 	<i class="zmdi zmdi-search"></i>
 			                        	</button>
 			                    	</span>
 			                	</div>

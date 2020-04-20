@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import edu.bit.ssmall.service.CartService;
 import edu.bit.ssmall.vo.CartViewVO;
 
@@ -42,7 +43,6 @@ public class HomeController {
 	public String home(Model model) {
 
 		return "home";
-
 	}	
 	
 	 @RequestMapping(value = "/homeview", method = RequestMethod.GET) 

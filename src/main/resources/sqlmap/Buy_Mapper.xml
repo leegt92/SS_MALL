@@ -7,9 +7,9 @@
 			
 	<insert id="buy">
 		<![CDATA[ 
-        Insert into buy(b_number, m_number, p_number, b_amount, b_status, b_total, imp_uid, b_memo, b_name, b_phonenum, b_addr,b_date) 
+        Insert into buy(b_number, m_number, p_number, b_amount, b_status, b_total, imp_uid, b_memo, b_name, b_phonenum, b_addr,b_date,b_code) 
         values(buy_seq.nextval, #{m_number}, #{p_number}, #{amount}, '결제완료', #{totalprice}, #{imp_uid},
-		#{b_memo}, #{b_name}, #{b_phonenum}, #{b_addr}, sysdate)
+		#{b_memo}, #{b_name}, #{b_phonenum}, #{b_addr}, sysdate, #{deliveryCode})
 		]]>
 	</insert>		
 	

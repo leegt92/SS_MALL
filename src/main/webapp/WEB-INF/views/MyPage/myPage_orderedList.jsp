@@ -236,7 +236,7 @@ html {
 								<tr class="table_head">
 									<th style="text-align: center;"></th>
 									<th style="text-align: center;">상품명</th>
-									<th style="text-align: center;">상품가격</th>
+									<th style="text-align: center;">배송확인</th>
 									<th style="text-align: center;">구매수량</th>
 									<th style="text-align: center;">총구매가격</th>
 									<th style="text-align: center;">구매일자</th>
@@ -251,7 +251,7 @@ html {
 										</div>
 									</td>
 									<td style="text-align: center;"><c:out value = "${p_b_vo.p_name}"/></td>
-									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
+									<td style="text-align: center;"><a href="https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%ED%83%9D%EB%B0%B0%EC%A1%B0%ED%9A%8C">${p_b_vo.b_code}</a></td>
 									<td style="text-align: center;">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
 									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.b_total}"/>

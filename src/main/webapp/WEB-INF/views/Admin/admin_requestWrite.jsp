@@ -202,7 +202,7 @@ span {
 		
    
     
-        <form action="/ssmall/admin/doAnswer" method="get">
+        <form id="answer" action="/ssmall/admin/doAnswer" method="get">
         	<input type="hidden" value="${bId}" name="bId"/>
             <tr>
                 <th style="width: 168px;">문의 및 요청 제목: </th>
@@ -210,20 +210,20 @@ span {
             </tr>
             <tr>
                 <th>문의 및 요청 내용: </th>
-                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
+                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="askContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
             </tr>
             <br>
              <tr>
                 <th>답변 제목: </th>
-                <td><input type="text" value="${FanswerbTitle}" name="answerTitle" class="form-control"/></td>
+                <td><input id="answerTitle" type="text" value="${FanswerbTitle}" name="answerTitle" class="form-control"/></td>
             </tr>
             <tr>
                 <th>답변 내용: </th>
                 <td><textarea id="answerContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" style="height: 214px;">${FanswerbContent}</textarea></td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <input type="submit" value="답변 등록 및 수정"  class="pull-right"/>
+                <td colspan="2" style="text-align: right;">
+                    <button id="nullCheck" type="button" class="btn btn-info" style="font-weight: bold;">답변 등록 및 수정</button>
                 </td>
             </tr>
 		</form>
@@ -288,5 +288,35 @@ span {
 		
 	</script> 
    
+   <script>
+	$('#nullCheck').click(function(){
+		 	
+			var answerTitle = document.getElementById("answerTitle");
+		
+		
+			var ckeditor = CKEDITOR.instances['answerContent']; 
+			if (ckeditor.getData()==""){
+				alert('내용을 입력 하세요');
+				ckeditor.focus();
+				return;
+			}		
+			
+			if(answerTitle.value == '' ){
+				alert('제목을 입력해주세요');
+				$('#answerTitle').focus();
+				return;
+			}
+			
+
+			if(confirm('작성 하시겠습니까?')){
+					
+				return $('#answer').submit();
+			}else{
+				return false;
+			}
+			
+		})
+	
+	</script>
 </body>
 </html>

@@ -159,6 +159,7 @@ public class MypageService {
 		return mypageMapper.getP_BVO(m_number);	
 	}
 	
+	
 	public List<BuyVO> getOrderedP_BVO(int m_number) throws Exception {
 		return mypageMapper.getOrderedP_BVO(m_number);	
 	}

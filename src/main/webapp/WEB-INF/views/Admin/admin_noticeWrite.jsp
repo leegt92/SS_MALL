@@ -200,7 +200,7 @@ span {
 							<div class="card-body p-0">
 								<div class="mailbox-controls">									
 									<div class="table-responsive mailbox-messages">						
-										<form action="/ssmall/admin/noticeWriteDo?${_csrf.parameterName}=${_csrf.token}" method="post">
+										<form id="noticeWrite" action="/ssmall/admin/noticeWriteDo?${_csrf.parameterName}=${_csrf.token}" method="post">
 										
 										<table class="table table-list-search">	
 											<tr>
@@ -267,25 +267,26 @@ span {
 	
 	<script>
 	$('#nullCheck').click(function(){
-		 	
-			var title = document.getElementById("btitle");
-			var content = document.getElementById("Content");
-
-			if(title.value == '' || title.value.length < 4 ){
+			var ckeditor = CKEDITOR.instances['Content']; 
+			if (ckeditor.getData()==""){
+				alert('내용을 입력 하세요');
+				ckeditor.focus();
+				return;
+			}			 
+			
+			var title = document.getElementById("btitle");			
+			
+			if(title.value == ''){
 				alert('공지사항 제목 입력해주세요');
-				return;
-			}
-			if(content.value == '' || content.length < 3 ){
-				alert('공지사항 내용 입력해주세요');
-				return;
-			}
-			
+				$('#btitle').focus();
 				
+				return;
+			}
 			
-			console.log("널값이 없다.")
+
 			if(confirm('등록 하시겠습니까?')){
 					
-				return $('#addProduct').submit();
+				return $('#noticeWrite').submit();
 			}else{
 				return false;
 			}

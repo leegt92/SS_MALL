@@ -49,7 +49,7 @@
 
 	
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-	    <beans:constructor-arg value="http://localhost:8282/ssmall/naver/callback" />
+	    <beans:constructor-arg value="http://192.168.6.17:8282/ssmall/naver/callback" />
 	</beans:bean>
     
 	<beans:bean id="naverSns" class="edu.bit.ssmall.oauth.SnsValue">

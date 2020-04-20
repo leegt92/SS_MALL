@@ -1,6 +1,7 @@
 package edu.bit.ssmall.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import edu.bit.ssmall.service.RegisterService;
 import edu.bit.ssmall.vo.CartViewVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductImageVO;
+import oracle.sql.TIMESTAMP;
 
 //구매관련 컨트롤러
 @Controller
@@ -128,7 +130,9 @@ public class BuyController {
 			
 			String totalprice = (String) session.getAttribute("price");
 			String amount = (String) session.getAttribute("amount");
-	
+			
+			
+			
 			buyService.buy(Integer.toString(memberVO.getM_number()), Integer.toString(productImageVO.getP_number()), amount, totalprice, imp_uid, b_memo, b_name, b_phonenum, b_addr, Integer.parseInt(usePoint));
 			//포인트사용
 			buyService.minusPoint(memberVO.getM_number(), Integer.parseInt(usePoint));

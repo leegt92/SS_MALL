@@ -23,7 +23,8 @@ public class BuyService {
 	public void buy(String m_number, String p_number, String amount, String totalprice, String imp_uid, String b_memo,
 			String b_name, String b_phonenum, String b_addr, int usePoint) {
 		//구매 
-		buyMapper.buy(m_number, p_number, amount, totalprice, imp_uid, b_memo, b_name, b_phonenum, b_addr);
+		String deliveryCode = m_number + System.currentTimeMillis();
+		buyMapper.buy(m_number, p_number, amount, totalprice, imp_uid, b_memo, b_name, b_phonenum, b_addr,deliveryCode);
 		
 		//재고 및 판매량 업데이트		
 		buyMapper.updateProduct(p_number,amount);
@@ -64,5 +65,9 @@ public class BuyService {
 		
 		return buyMapper.memberInfo(m_id);
 	}
+	
+	
+	
 
+	
 }

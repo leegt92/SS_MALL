@@ -314,5 +314,11 @@ public class AdminService {
 		return adminMapper.getP_number(p_name);
 	}
 
+	public void updateStatus(String b_number, String b_status) {
+		adminMapper.updateStatus(b_number, b_status);
+		
+	}
+
+
 }
 

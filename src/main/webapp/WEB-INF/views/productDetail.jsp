@@ -246,7 +246,7 @@
 						tag = tag + "<input type='hidden' value='"+data.brepotid1+"' name='btotalrepot'>";//리폿한 사용자1의 member number
 						tag = tag + "<input type='hidden' value='"+data.brepotid2+"' name='btotalrepot'>";//리폿한 사용자2의 member number
 						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. */
-						tag = tag + "<sec:authorize access='hasRole("USER")'>";												
+						tag = tag + "<sec:authorize access='hasAnyRole("USER, ADMIN")'>";												
 						/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
 						tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
 						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
@@ -777,12 +777,7 @@
 
 												<button type="button" id="btn_collapse_notLogin"class="btn btn-info m-3" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
 											</sec:authorize>
-															
-											<sec:authorize access="hasAnyRole('USER')">												
-												<button type="button" id="btn_collapse_notLogin"class="btn btn-dark" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
-
-											</sec:authorize>
-										
+									
 											<%-- 콜햅스 원본버튼. 모달로 바꿔보기 위해 주석처리함.
 											<sec:authorize access="hasRole('USER')">콜햅스원본												
 												<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
@@ -885,13 +880,12 @@
 																/* console.log("checkBuyList확인1");
 																console.log(${checkBuyList});
 																console.log("checkBuyList확인2"); */
-																if(${checkBuyList}!="0"){
-																	alert("${checkBuyList}!=0 즉 구매한 상품");
+																if(${checkBuyList} != "0"){
 																	$('#writeModal').modal();
 																}else{
 																alert("구입 후 이용하실수 있습니다.");
 																}
-															});
+															})
 															
 															
 															/* $("#btn08").click(function(){
@@ -1297,17 +1291,17 @@
 					<div class="p-t-10">			
 						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
 									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-										<i class="fa fa-facebook"></i>
+										<i class="fab fa-facebook"></i>
 									</a>
 					
 						
 							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-instagram"></i>
+								<i class="fab fa-instagram"></i>
 							</a>
 					
 					
 							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-twitter"></i>
+								<i class="fab fa-twitter"></i>
 							</a>
 						</div>
 					</div>
@@ -1804,7 +1798,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										$(document).on("click","#modalWriteSubmit",function(){
 											console.log("modalWriteSubmit 스크립트 탔음.");
 											var value = CKEDITOR.instances["bcontentImage"].getData();
-											alert(value);
 											/* alert("확인"); */
 											/* var queryString = $("form[name=writeModalForm]").serialize();
 											console.log(queryString); */

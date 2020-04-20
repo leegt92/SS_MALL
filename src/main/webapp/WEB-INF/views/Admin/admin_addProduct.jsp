@@ -287,11 +287,7 @@ span {
 				<br>
 				<label for="p_description">상품소개</label>
 				<textarea style="height: 214px;" id="p_description" name="p_description"></textarea>
-				
-				
-				
-				
-				
+					
 			</div>
 			
 
@@ -342,6 +338,7 @@ span {
 					
 	</script> 
 	
+
 	<script>
 	$('#nullCheck').click(function(){
 		 	
@@ -352,44 +349,50 @@ span {
 			var thumbnail1 = document.getElementById("thumbnail1");
 			var thumbnail2 = document.getElementById("thumbnail2");
 			var thumbnail3 = document.getElementById("thumbnail3");
-			var description = document.getElementById("p_description");
-			
 		
+			var ckeditor = CKEDITOR.instances['p_description']; 
+			if (ckeditor.getData()==""){
+				alert('내용을 입력 하세요');
+				ckeditor.focus();
+				return;
+			}		
 			
-			if(name.value == '' || name.value.length < 4 ){
+			if(name.value == '' ){
 				alert('상품명 입력해주세요');
+				$('#p_name').focus();
 				return;
 			}
-			if(brand.value == '' || brand.length < 3 ){
+			if(brand.value == '' ){
 				alert('브랜드 입력해주세요');
+				$('#p_brand').focus();
 				return;
 			}
-			if(price.value == '' || price.length < 4 ){
+			if(price.value == '' ){
 				alert('가격 입력해주세요');
+				$('#p_price').focus();
 				return;
 			}
-			if(stock.value == '' || stock.length < 4 ){
+			if(stock.value == '' ){
 				alert('재고 입력해주세요');
+				$('#p_stock').focus();
 				return;
 			}
 			if(thumbnail1.value == ''){
 				alert('사진을 등록해주세요');
+				$('#thumbnail1').focus();
 				return;
 			}
 			if(thumbnail2.value == ''){
 				alert('사진을 등록해주세요');
+				$('#thumbnail2').focus();
 				return;
 			}
 			if(thumbnail3.value == ''){
 				alert('사진을 등록해주세요');
+				$('#thumbnail3').focus();
 				return;
 			}
-			
-			
-				
-				
-			
-			console.log("널값이 없다.")
+
 			if(confirm('등록 하시겠습니까?')){
 					
 				return $('#addProduct').submit();

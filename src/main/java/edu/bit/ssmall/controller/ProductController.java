@@ -474,7 +474,7 @@ public class ProductController {
 	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
 			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
 			//로그인상태에서, 상품을 이미 구매했는지 안했는지 확인
-			if(productService.checkBuyList(p_number,m_number)!=null) {
+			if(productService.checkBuyList(p_number,m_number) != 0) {
 				model.addAttribute("checkBuyList", productService.checkBuyList(p_number,m_number));
 			}else {
 				model.addAttribute("checkBuyList", "0");

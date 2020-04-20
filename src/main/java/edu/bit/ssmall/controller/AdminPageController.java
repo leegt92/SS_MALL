@@ -28,6 +28,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -962,5 +963,17 @@ public class AdminPageController {
 	
 		return "redirect:/admin/productList";
 	}
+	@RequestMapping(value = "updateStatus", method={RequestMethod.GET, RequestMethod.POST})
+	public String updateStatus(HttpServletRequest request, Model model) {
+		String m_number = request.getParameter("m_number");
+		String b_number = request.getParameter("b_number");
+		String b_status = request.getParameter("b_status");
+		
+		adminService.updateStatus(b_number,b_status);
+		
+		return "redirect:/admin/memberInfo?m_number="+m_number;
+		
+	}
+
 }
 
