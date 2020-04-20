@@ -644,7 +644,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2_3", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation2_3")
 	public String myPage_reviseInformation2_2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -705,7 +705,7 @@ public class MyPageController {
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2_3_back", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation2_3_back")
 	public String myPage_reviseInformation2_3_back(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
