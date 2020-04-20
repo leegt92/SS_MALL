@@ -807,7 +807,7 @@ position: absolute;
 	
 	                  <div class="block2-txt flex-w flex-t p-t-14">
 	                     <div class="block2-txt-child1 flex-col-l ">
-	                        <a href="/ssmall/productDetail?p_number=${hitWatchItem.p_image}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+	                        <a href="/ssmall/productDetail?p_number=${hitWatchItem.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 		                        <font style="vertical-align: inherit;">
 		                       		${hitWatchItem.p_brand} ${hitWatchItem.p_name}
 		                        </font>
@@ -833,7 +833,7 @@ position: absolute;
 	
 	                  <div class="block2-txt flex-w flex-t p-t-14">
 	                     <div class="block2-txt-child1 flex-col-l ">
-	                        <a href="/ssmall/productDetail?p_number=${hitWalletItem.p_image}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+	                        <a href="/ssmall/productDetail?p_number=${hitWalletItem.p_number}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 		                        <font style="vertical-align: inherit;">
 		                       		${hitWalletItem.p_brand} ${hitWalletItem.p_name}
 		                        </font>
@@ -912,7 +912,7 @@ position: absolute;
                <h4 class="stext-500 cl0 p-b-30">
                   Directions
              </h4>
-                <button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+                <button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
                   
                
          </div>

@@ -19,7 +19,7 @@
 %>
 <head>
 
-<title>Product Detail</title>
+<title>SS_MALL</title>
 <!-- <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script> -->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">

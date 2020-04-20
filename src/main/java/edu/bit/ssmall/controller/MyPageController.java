@@ -625,7 +625,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-	    return "redirect:/";
+	    return "redirect:/mypage/myPage_reviseInformation2_3";
 
 	}
 	
