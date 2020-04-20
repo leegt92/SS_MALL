@@ -35,10 +35,11 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	
-	//장바구니에 추가
+	//productDetail에서 장바구니에 추가
 	@RequestMapping(value = "addCart", method = {RequestMethod.POST,RequestMethod.GET})
 	public String addCart(Model model, HttpServletRequest request, Principal principal) {
 		System.out.println("addCart() 장바구니에 추가!");
+		HttpSession session = request.getSession();//세션 기본설정
 		
 		String p_number = request.getParameter("p_number"); //장바구니에 추가하려는 상품번호
 		String b_amount = request.getParameter("b_amount"); //해당상품 구매갯수				
@@ -51,8 +52,34 @@ public class CartController {
 		int totalprice = productImageVO.getP_price() * Integer.parseInt(b_amount); //상품의 가격과 구매하려는 갯수를 곱해 총가격
 		
 		cartService.addCart(p_number, memberVO.getM_number(), b_amount, totalprice); //상품번호, 회원번호, 구매갯수, 총가격으로 카트테이블에 삽입
-
-		return "redirect:/cart/cartView";				
+		
+		session.setAttribute("QuickAddCart", "성공");//장바구니에 상품을 담았을때, 세션을 생성해서 jsp로 보낸다.
+		//jsp에서 QuickAddCart의 값이 성공일때(구매하지 않은 상태라면 성공이 아닐때. 즉 if문을 써야하는데 jsp내부에서 eq로 썻다.)
+		//jsp에서 alert가 나오게 했다. jsp 참조.
+		//return "redirect:/cart/cartView";	
+		return "redirect:/productDetail?p_number="+p_number;
+	}
+	
+	//product에서 장바구니에 추가
+	@RequestMapping(value = "QuickaddCart", method = {RequestMethod.POST,RequestMethod.GET})
+	public String QuickaddCart(Model model, HttpServletRequest request, Principal principal) {
+		System.out.println("addCart() 장바구니에 추가!");
+		HttpSession session = request.getSession();
+		
+		String p_number = request.getParameter("p_number"); //장바구니에 추가하려는 상품번호
+		String b_amount = request.getParameter("b_amount"); //해당상품 구매갯수				
+		String m_id = principal.getName(); //로그인한 사용자 id가져옴
+		
+		MemberVO memberVO = cartService.memberInfo(m_id); //id를 이용해서 해당회원 정보 가져옴
+		ProductImageVO productImageVO = cartService.productInfo(p_number); //해당 상품번호 이용해서 이미지하나포함한 상품정보 가져옴
+		
+		System.out.println(productImageVO);
+		int totalprice = productImageVO.getP_price() * Integer.parseInt(b_amount); //상품의 가격과 구매하려는 갯수를 곱해 총가격
+		
+		cartService.addCart(p_number, memberVO.getM_number(), b_amount, totalprice); //상품번호, 회원번호, 구매갯수, 총가격으로 카트테이블에 삽입
+		session.setAttribute("QuickAddCart", "성공");
+		//return "redirect:/cart/cartView";	
+		return "redirect:/productView";
 	}
 	
 	//장바구니 탭 눌렀을 때 

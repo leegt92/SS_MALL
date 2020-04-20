@@ -130,6 +130,16 @@
 
 </head>
 <body class="animsition">
+	<c:choose>
+		<c:when test="${QuickAddCart eq '성공'}">
+			<script>
+				alert("장바구니에 담겼습니다!");
+			</script>
+			<%
+				session.removeAttribute("QuickAddCart");
+			%>
+		</c:when>
+	</c:choose>
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -1629,9 +1639,9 @@ $(document).ready(function(){
 				alert("상품 수량을 입력해 주세요");
 			}else if(${principal_m_number} == "0"){
 				alert("로그인이 필요한 서비스 입니다.");
-				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				window.location.href = '/ssmall/cart/QuickaddCart?p_number='+p_number+'&b_amount='+b_amount;
 			}else{
-				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				window.location.href = '/ssmall/cart/QuickaddCart?p_number='+p_number+'&b_amount='+b_amount;
 			}
 		});
 	
