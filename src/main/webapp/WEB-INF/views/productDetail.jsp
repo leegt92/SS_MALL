@@ -67,6 +67,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
+<!-- 장바구니에 물건을 담았을때, 장바구니에 담겼음을 알리기 위한 세션. 로그인한 상태에서도
+비 로그인한 상태에서도 둘 다 뜨게 하기 위해 세션을 썻다. 장바구니에 담기를 클릭하지 않은 상태에서는
+QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담기를 클릭했을경우
+로그인된 상태에서는 바로 장바구니에 담기게 되고, 담길 때 세션이 생성되므로 해당 alert이 뜬다.
+비 로그인 상태에서는 시큐리티에 의해 로그인창으로 이동 후 로그인에 성공하면 장바구니에 담기고, 담긴 후
+세션이 생성되므로 alert이 실행된다. -->
+<c:choose>
+		<c:when test="${QuickAddCart eq '성공'}">
+			<script>
+				alert("장바구니에 담겼습니다!");
+			</script>
+			<%
+				session.removeAttribute("QuickAddCart");
+			%>
+		</c:when>
+	</c:choose>
+
 <style type="text/css">
 	div#ck_content img {
 		width:60%;
