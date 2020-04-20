@@ -174,7 +174,7 @@ html {
 							</table>
 						</div>
 						<nav aria-label="Page navigation example">
-			<ul class="pagination m-5 flex-c-m" >
+				<ul class="pagination m-5 flex-c-m" >
 					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
 						<li class="page-item"><a class="page-link"  href="/ssmall/mypage/myPage_shoppingList${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
 						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
@@ -190,11 +190,10 @@ html {
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_shoppingList${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
 					</c:if>
-			</ul>
+				</ul>
 						</nav>
 					</div>
 				</div>
-				
 
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style = 
 					"height: 900px;

@@ -19,6 +19,7 @@ public class Product_BuyVO {
 	private Date b_date;
 	private String b_done;
 	private int b_amount;
+	private int b_total;
 	private String imp_uid;
 	
 	Product_BuyVO(){}
@@ -42,9 +43,17 @@ public class Product_BuyVO {
 		this.b_date = b_date;
 		this.b_done = b_done;
 		this.b_amount = b_amount;
+		this.b_total = b_total;
 		this.imp_uid = imp_uid;
 	}
+	
+	public int getB_total() {
+		return b_total;
+	}
 
+	public void setB_total(int b_total) {
+		this.b_total = b_total;
+	}
 	public int getP_number() {
 		return p_number;
 	}

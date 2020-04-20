@@ -106,7 +106,10 @@ public class MyPageController {
 	}	
 	
 	@RequestMapping(value = "/myPage_shoppingList", method = RequestMethod.GET)
-	public String myPage_shoppingList(Model model) {
+	public String myPage_shoppingList(Criteria criteria, Model model) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
 	 
@@ -119,7 +122,12 @@ public class MyPageController {
 			model.addAttribute("m_number", m_number);
 			int m_point = mypageService.getMpoint(name);
 			model.addAttribute("m_point", m_point);
-			List<Product_BuyVO> p_b_vos = mypageService.getP_BVO(m_number);
+			int startNum = criteria.getStartNum();
+			int endNum = criteria.getEndNum();
+			int totalCount = pageService.countShoppingList(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker",pageMaker);
+			List<Product_BuyVO> p_b_vos = pageService.shoppingListPage(m_number, startNum, endNum);
 			model.addAttribute("p_b_vos",p_b_vos);
 			
 			
@@ -133,7 +141,10 @@ public class MyPageController {
 	}	
 	
 	@RequestMapping(value = "/myPage_orderedList", method = RequestMethod.GET)
-	public String myPage_orderedList(Model model) {
+	public String myPage_orderedList(Criteria criteria, Model model) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(criteria);
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
 	 
@@ -143,13 +154,18 @@ public class MyPageController {
 	    }
 	    
 	    try {
+	    	
 			int m_number = mypageService.getMnum(name);
 			model.addAttribute("m_number", m_number);
 			int m_point = mypageService.getMpoint(name);
 			model.addAttribute("m_point", m_point);
-			List<BuyVO> p_b_vos = mypageService.getOrderedP_BVO(m_number);
+			int startNum = criteria.getStartNum();
+			int endNum = criteria.getEndNum();
+			int totalCount = pageService.countOrderedList(m_number);
+			pageMaker.setTotalCount(totalCount);
+			model.addAttribute("pageMaker",pageMaker);
+			List<Product_BuyVO> p_b_vos = pageService.orderedListPage(m_number, startNum, endNum);
 			model.addAttribute("p_b_vos",p_b_vos);
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
