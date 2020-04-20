@@ -132,7 +132,7 @@
       
       <div class="limiter" style="position:fixed;left: 770px;width: 330px;top: 100px;">
       <div class="container-login100"
-         style="background-color: #bebebe;border:3px solid black;width: 660px;height: 806px;">
+         style="background-color: #f0f8ff;border:1px solid skyblue;border-radius:50px 50px 50px 50px;width: 660px;height: 806px;">
          <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
             
 
@@ -156,7 +156,7 @@
                   <span class="label-input100"><font size="4em" color="black">비밀번호 (8자리 이상 12자리 이하)</font></span> 
                   <input class="input100" id="m_password"
                      type="password" name="m_password" placeholder="수정할 비밀번호를 입력해주세요"
-                     maxlength="20" style="width: 545px;"> <span class="focus-input100"
+                     maxlength="20" style="border:1px solid black;width: 545px;"> <span class="focus-input100"
                      data-symbol="&#xf190;"></span>
                </div>
                <div class="wrap-input100 validate-input m-b-23"
@@ -164,14 +164,14 @@
                   <span class="label-input100"><font size="4em" color="black">비밀번호 확인</font></span> 
                   <input id="m_checkpassword" class="input100" id="m_checkpassword"
                      type="password" name="m_checkpassword"
-                     placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="width: 545px;"> <span
+                     placeholder="수정할 비밀번호를 확인해주세요" maxlength="20" style="border:1px solid black;width: 545px;"> <span
                      class="focus-input100" data-symbol="&#xf190;"></span>
                </div>
 
                <div class="wrap-input100 validate-input m-b-23"
                   data-validate="이름 입력해주세요">
                   <span class="label-input100"><font size="4em" color="black">이름 (완전한 한글만 입력가능)</font></span> <input id = "m_name" class="input100"
-                     type="text" name="m_name" placeholder= "<c:out value="${m_name2}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="5" style="width: 545px;">
+                     type="text" name="m_name" placeholder= "<c:out value="${m_name2}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="5" style="border:1px solid black;width: 545px;">
                   <span class="focus-input100" data-symbol="&#xf206;"></span>
                   
                </div>
@@ -179,7 +179,7 @@
                <div class="wrap-input100 validate-input m-b-23"
                   data-validate="나이 입력해주세요">
                   <span class="label-input100"><font size="4em" color="black">나이 (숫자만 입력가능)</font></span> <input id="m_age" class="input100"
-                     type="text" name="m_age" placeholder="<c:out value="${m_age3}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="2" style="width: 545px;">
+                     type="text" name="m_age" placeholder="<c:out value="${m_age3}"/>(클릭하여 수정할 값을 입력하세요)" maxlength="2" style="border:1px solid black;width: 545px;">
                   <span class="focus-input100" data-symbol="&#xf206;"></span>
                </div>
 
@@ -192,7 +192,7 @@
                <div class="wrap-input100 validate-input m-b-23"
                   data-validate="배송지 입력해주세요">
                   <span class="label-input100"><font size="4em" color="black">주소 (클릭 후 팝업창 이용, 세부주소는 이어서 직접 입력)</font></span> <input id="m_adress" class="input100"
-                     type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="width: 545px;"> <span
+                     type="text" name="m_adress" placeholder="<c:out value="${m_adress2}"/>(클릭하여 수정할 값을 입력하세요)" style="border:1px solid black;width: 545px;"> <span
                      class="focus-input100" data-symbol="&#xf206;"></span>
                </div>
 
@@ -200,35 +200,25 @@
                   data-validate="핸드폰번호 입력해주세요">
                   <span class="label-input100"><font size="4em" color="black">핸드폰번호 ('-'없이 11자리만 입력가능)</font></span> <input id = "m_phonenum" class="input100"
                      type="text" name="m_phonenum" placeholder="<c:out value="${m_phonenum2}"/>(클릭하여 수정할 값을 입력하세요)"
-                     maxlength="11" style="width: 545px;"> <span class="focus-input100"
+                     maxlength="11" style="border:1px solid black;width: 545px;"> <span class="focus-input100"
                      data-symbol="&#xf206;"></span>
                </div>
 
                <div class="wrap-input100 validate-input m-b-23">
                   <span class="label-input100"><font size="4em" color="black">이메일 수신여부</font></span> <input type="radio"
-                     name="m_receive_email" value="1"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 99px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
+                     name="m_receive_email" value="1" style="position:fixed;top: 800px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 90px;width: 300px;right: 0px;">광고성 이메일을 수신하겠습니다.</font> 
                      <input type="radio"
-                     name="m_receive_email" value="0" style="position:fixed;top: 790px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 119px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
+                     name="m_receive_email" value="0" style="position:fixed;top: 780px;"><font size="2em" color="black" style="position:absolute;left: 75px;bottom: 110px;width: 300px;right: 0px;">광고성 이메일을 수신하지 않겠습니다.</font>
                </div>
 
                <div class="flex-c-m">
-                  <button id="revise_submit" class="btn btn-secondary" style="position:fixed;top: 830px;left: 1010px;">수정완료</button>
-                  <button id="withdraw_submit" class="btn btn-secondary" style="
-                      position:fixed;
-                      margin-left: 10px;
-                      padding-left: 0px;
-                      padding-bottom: 0px;
-                      padding-top: 0px;
-                      padding-right: 0px;
-                      top: 830px;
-                      left: 1090px;
-                      height: 35px;
-                      ">
+                  <button id="revise_submit" class="btn btn-info" style="position:fixed;top: 827px;left: 1010px;">수정완료</button>
+                  
                       
                </div>
             </form:form>
             <form:form action="/ssmall/mypage/myPage_reviseInformation3" class="login100-form validate-form" method="POST">
-                <input class="btn btn-secondary" type="submit" value="회원탈퇴" style="
+                <input class="btn btn-danger" type="submit" value="회원탈퇴" style="
                 margin-left: 280px;
                   margin-top: 23px;
                ">

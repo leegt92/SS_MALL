@@ -362,7 +362,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "MyPage/myPage_askRequestView";
+		return "redirect:/mypage/myPage_askRequestView";
 
 	}
 	
@@ -438,7 +438,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "MyPage/myPage_aSRequestView";
+		return "redirect:/mypage/myPage_aSRequestView";
 
 	}
 	
@@ -475,11 +475,11 @@ public class MyPageController {
 			model.addAttribute("m_phonenum2",m_phonenum2);
 			
 			 if(m_naver != null || m_kakao != null) {
-				 return "MyPage/myPage_reviseInformation2-2";
+				 return "MyPage/myPage_reviseInformation2-3";
 			 }
 			 
 			 if(passwordEncoder.matches(pw, m_pw)) {
-				 return "MyPage/myPage_reviseInformation2-2";
+				 return "MyPage/myPage_reviseInformation2";
 			 }else {
 				 return "MyPage/checkPwError";
 			 }
@@ -564,11 +564,11 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "MyPage/myPage_reviseInformation2";
+		return "redirect:/";
 
 	}
 	
-	@RequestMapping(value = "/myPage_reviseInformation2_2", method = RequestMethod.POST)
+	@RequestMapping(value = "/myPage_reviseInformation2_3", method = RequestMethod.POST)
 	public String myPage_reviseInformation2_2(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
@@ -625,7 +625,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "MyPage/myPage_reviseInformation2-2";
+	    return "redirect:/";
 
 	}
 	
@@ -763,7 +763,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "MyPage/myPage_askRequestView";
+		return "redirect:/mypage/myPage_askRequestView";
 
 	}
 	
@@ -847,7 +847,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "MyPage/myPage_aSRequestView";
+		return "redirect:/mypage/myPage_aSRequestView";
 
 	}
 	

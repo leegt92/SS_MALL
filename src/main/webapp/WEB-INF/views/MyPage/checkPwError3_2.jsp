@@ -165,8 +165,8 @@ table#tabletype td {
       <div class="container-login100"><!-- style="background-color: #f8f8f8;width: 660px;height: 686px;" -->
          <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 
-            <form:form action="myPage_reviseInformation2_2" class="container-login100">
-            <form:form action="/ssmall/mypage/myPage_reviseInformation2_2" class="container-login100">
+            
+            <form:form id = "reviseInformation" action="/ssmall/mypage/myPage_reviseInformation2_2" class="container-login100">
 
                
                <!-- <span class="login100-form-title p-b-49" style="position:absolute;left: 245px;bottom: 700px;width: 300px;right: 0px;"   ><font size="5em"><b>회원정보 수정</b></font></span> -->
@@ -308,7 +308,6 @@ table#tabletype td {
                   margin-top: 40px;">
             </form:form>   
             
-          </form:form>
           
       </div>
    </div>
