@@ -13,10 +13,10 @@
     <title>상승몰</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ssmall/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet"> 
+    <link href="/ssmall/css/dashboard.css" rel="stylesheet"> 
     
     <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/ssmall/images/icons/productlogo.png"/>
@@ -107,16 +107,16 @@
                   <b>나의 구매 내역</b>
                 </a>
               </li>
-             <li class="nav-item">
-                <a class="nav-link" href="/ssmall/mypage/myPage_askRequestView">
-                  <span data-feather="users"></span>
-                  <b>1:1 문의</b>
-                </a>
-              </li>
                <li class="nav-item">
                 <a class="nav-link" href="/ssmall/mypage/myPage_refundList">
                   <span data-feather="shopping-cart"></span>
                   <b>나의 환불 내역</b>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/ssmall/mypage/myPage_askRequestView">
+                  <span data-feather="users"></span>
+                  <b>1:1 문의</b>
                 </a>
               </li>
               <li class="nav-item">
