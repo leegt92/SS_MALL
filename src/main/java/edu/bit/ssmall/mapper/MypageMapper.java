@@ -84,7 +84,7 @@ public interface MypageMapper {
 	@Insert("insert into board (bid,bname,btitle,bcontent,m_number,btype,bdate,banswered) values (board_seq.nextval,#{bName},#{bTitle},#{bContent},#{m_number},'AS요청',sysdate,'답변미완료')")
 	public void insertAS(@Param("bName")String bName, @Param("bTitle")String bTitle, @Param("bContent")String bContent, @Param("m_number") int m_number);
 	
-	@Delete("delete from member where m_id = #{m_id}")
+	@Update("update member set m_enabled = 0 where m_id = #{m_id}")
 	public void withdrawMember(@Param("m_id")String m_id);
 
 	/*===================================PRODUCT 관련 SQL문들============================================================*/
