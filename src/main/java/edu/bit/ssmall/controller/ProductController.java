@@ -355,7 +355,10 @@ public class ProductController {
 		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
 		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
 		System.out.println(bid);
-		
+		if(m_number == 1) {
+			productService.replyDelete(boardVO);
+			result = 1;
+		}
 		if(m_number == b_m_number) {
 			if(checkRepotCount<3) {
 				productService.replyDelete(boardVO);

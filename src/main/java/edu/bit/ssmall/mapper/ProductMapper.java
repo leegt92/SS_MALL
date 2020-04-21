@@ -133,14 +133,14 @@ public interface ProductMapper {
 	@Select("select count(*) from Product where p_name like '%'||#{keyword}||'%' or p_brand like '%'||#{keyword}||'%'")
 	public int searchCountProduct(@Param("keyword")String keyword);
 	//product에서 검색하기 위한 쿼리문
-	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_name like '%'||#{keyword}||'%' or p_brand like '%'||#{keyword}||'%' order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum}")
+	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_name like '%'||#{keyword}||'%' or p_brand like '%'||#{keyword}||'%' order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum} and p_enabled = '1'")
 	public List<ProductVO> searchProductListPage(@Param("startNum")int startNum, @Param("endNum")int endNum ,@Param("keyword")String keyword);
-	
 	
 	//검색시 페이징에 사용되는 검색어에 대응하는 전체상품의 갯수를 확인하기 위해.
 	//product 왼쪽상단 시계, 지갑 클릭시 카테고리에 맞는 상품만 나오면서 페이징도 되도록.
 	@Select("select count(*) from Product where p_category like '%'||#{keyword}||'%' and p_enabled = '1'")
 	public int searchCountProductCategory(@Param("keyword")String keyword);
+	
 	//product에서 검색하기 위한 쿼리문
 	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_category like '%'||#{keyword}||'%'order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum} and p_enabled = '1'")
 	public List<ProductVO> searchProductListPageCategory(@Param("startNum")int startNum, @Param("endNum")int endNum ,@Param("keyword")String keyword);

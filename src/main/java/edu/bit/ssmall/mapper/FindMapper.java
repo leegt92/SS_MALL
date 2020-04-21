@@ -8,10 +8,10 @@ import edu.bit.ssmall.vo.MemberVO;
 
 public interface FindMapper {
 	
-	@Select("Select count(*) from member where m_email = #{email}")
+	@Select("Select count(*) from member where m_email = #{email} and m_kakao = null and m_naver = null")
 	public int emailCheck(@Param("email")String email);
 
-	@Select("Select m_id from member where m_email = #{email}")
+	@Select("Select m_id from member where m_email = #{email} and m_kakao = null and m_naver = null")
 	public String getId(String m_email);
 	
 	@Select("Select count(*) from member where m_id = #{id} and m_name = #{name} and m_email = #{email}")

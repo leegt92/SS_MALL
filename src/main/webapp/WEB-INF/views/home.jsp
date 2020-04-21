@@ -871,13 +871,13 @@ position: absolute;
 
                <ul>
                   <li class="p-b-10">
-                     <a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
+                     <a href="productViewSearchCategory?p_category=시계" class="stext-130 cl7 hov-cl1 trans-04">
                         Watch
                      </a>
                   </li>
 
                   <li class="p-b-10">
-                     <a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
+                     <a href="productViewSearchCategory?p_category=지갑" class="stext-130 cl7 hov-cl1 trans-04">
                         Wallet
                      </a>
                   </li>

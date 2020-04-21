@@ -464,7 +464,7 @@ public class AdminPageController {
 		String bcontent = request.getParameter("bcontent");
 		adminService.noticeUpdate(btype,bid,btitle,bcontent);
 		
-		return "redirect:/admin/noticeView?bid="+bid;
+		return "redirect:/admin/noticeList";
 	}
 	
 	@RequestMapping(value = "noticeDelete", method = {RequestMethod.GET,RequestMethod.POST}) // 글 수정하는 창에 대한 컨트롤러
@@ -918,7 +918,7 @@ public class AdminPageController {
 		int i_type = 1;
 		adminService.insertProduct(p_name,p_category,p_brand,p_price,p_stock ,p_description, p_image);
 		
-		int p_number = adminService.getP_number(p_name);
+		int p_number = adminService.getP_number(p_image);
 		System.out.println("p_number : " + p_number);
 		
 		for (int i = 0; i < arr.length; i++) {

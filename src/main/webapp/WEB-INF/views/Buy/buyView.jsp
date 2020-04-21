@@ -139,7 +139,7 @@ function checkForm(){
 	  var addr2 = document.getElementById('addr2');
 	  var addr3 = document.getElementById('addr3');
 	    // 암호 입력 유무 체크
-	  if(addr1.value == '' || addr2.value =='' || addr3.value=='' || !(addr3.value.length >= 5)){
+	  if(addr1.value == '' || addr2.value =='' || addr3.value==''){
 	      alert('수령지를 제대로 입력해주세요');
 	      $('#addr3').focus();
 	      return false;
@@ -657,15 +657,15 @@ function checkForm(){
 					
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
+							<i class="fab fa-facebook"></i>
 						</a>
 
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
+							<i class="fab fa-instagram"></i>
 						</a>
 
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
+							<i class="fab fa-pinterest-p"></i>
 						</a>
 					</div>
 				</div>

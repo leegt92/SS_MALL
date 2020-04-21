@@ -83,7 +83,7 @@
 		}
 		
 		var options = {
-			title : '브랜드 별 월간 통계',
+			title : '브랜드 별 전체 통계',
 			width: 1500,
 		    height: 500,
 			

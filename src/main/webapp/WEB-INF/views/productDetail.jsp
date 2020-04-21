@@ -268,12 +268,19 @@ QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담�
 						/* 로그인 되어있을때, 그 m_number가 댓글에 저장되어 있는 m_number와 같을때 수정 삭제 버튼이 나타나도록 함 */
 						
 						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. 신고버튼만 보이게 변경*/
-						tag = tag + "<sec:authorize access='hasAnyRole("USER","ADMIN")'>";
+						tag = tag + "<sec:authorize access='hasRole("USER")'>";
 						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
 						tag = tag + "&nbsp;<button class='btn btn-info '  type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"<i class='fas fa-pencil-alt'></i> 수정</button>";
 						tag = tag + "&nbsp;<button class='btn btn-danger '  type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='fas fa-ban'></i> 신고</button></div>";
-						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
 						tag = tag + "</sec:authorize>";	
+						//관리자가 로그인 했을시. 관리자의 버튼은 모든걸 다 할수 있음
+						tag = tag + "<sec:authorize access='hasRole("ADMIN")'>";
+						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoardAdmin name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
+						tag = tag + "&nbsp;<button class='btn btn-info '  type = 'button' id = modifyAdmin name = 'modify' value='"+data.bid+"'>"+"<i class='fas fa-pencil-alt'></i> 수정</button>";
+						tag = tag + "&nbsp;<button class='btn btn-danger '  type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='fas fa-ban'></i> 신고</button></div>";
+						tag = tag + "</sec:authorize>";	
+						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
+						
 						tag = tag + "<sec:authorize access='isAnonymous()'>";
 						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-danger'  type='button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='i class='fas fa-ban'></i> 신고</button></div>";
 						tag = tag + "</sec:authorize>";	
@@ -619,7 +626,7 @@ QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담�
 									   <td>적립금</td>
 									   <td>
 									<fmt:formatNumber
-									value="${productNum.p_price/10}" pattern="###,###,###" />원
+									value="${productNum.p_price * 0.01}" pattern="###,###,###" />원
 									 </tr>
 									 <tr>
 									   <td>배송비</td>
@@ -736,7 +743,7 @@ QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담�
 							
 						<li class="nav-item p-b-10"><a class="nav-link active"
 							data-toggle="tab" href="#description" role="tab">Description
-								상품설명 설명</a></li>
+								</a></li>
 
 						<!-- <li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#information" role="tab">Additional
@@ -2036,6 +2043,37 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											}) */ 
 										})
 										
+										$(document).on("click", "#deleteBoardAdmin", function(){
+											  /* alert($(this).attr("value")); */
+											var result = confirm("글을 지우시겠습니까?");
+											if(result){
+													var m_number = $("#m_number").val();
+													  console.log("m_number : "+m_number);
+													  console.log("딜리트보드 밑 m_number 옮기기");
+													  var data = {
+															  bid : $(this).attr("value"),
+															  m_number : m_number											  
+													  };											  											  
+													  $.ajax({
+													   url : "/ssmall/deleteReply",
+													   type : "get",
+													   data : data,
+													   success : function(result){
+														 if(result == 0 || result == 1 || result == 2){
+														    console.log("result1. repot<3 삭제완료 후 갱신");
+															alert("삭제되었습니다.");
+															replyList();
+														 }
+													   }
+													  });
+												}
+											else{
+												
+											}
+											
+										})
+										
+										
 											$(function(){
 												var bcontent = null;
 											    $(document).on("click","#modify",function(){
@@ -2064,6 +2102,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 															else if(result ==2){
 																alert("신고로 인해 수정할 수 없습니다.");
 															}
+														}
+														
+													})											    											    											    	
+											    })
+											})
+											//관리자가 수정할때 조건없이 수정 가능하게
+											$(function(){
+												var bcontent = null;
+											    $(document).on("click","#modifyAdmin",function(){
+											    	var bid = $(this).attr("value");
+											    	var data = {
+											    			bid : bid											    			
+											    	};											    		
+													$.ajax({
+														url:"/ssmall/checkUser",
+														type:"get",
+														data:data,
+														success:function(result){
+															if(result == 0 || result == 1 || result == 2){
+																/* alert("유저인증 확인"); */
+																console.log("모달스크립트");
+														    	/* alert(data.bid); */
+
+														        $('#modal').modal();
+														    	$('#bidUpdate').val(data.bid);
+														    	
+
+															}
+															
 														}
 														
 													})											    											    											    	
@@ -2374,7 +2441,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				alert("구매수량을 입력해 주세요");
+				alert("상품 수량을 입력해 주세요");
 				//Swal.fire('장바구니','구매수량을 입력해 주세요','error');
 			}else if(${principal_m_number} == ""){
 				alert("로그인 후 이용가능합니다.");
@@ -2410,7 +2477,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				alert("구매 수량을 입력해 주세요.");
+				alert("상품 수량을 입력해 주세요.");
 				//Swal.fire('구입하기','구매수량을 입력해 주세요','error');
 			}else if(${principal_m_number} == "0"){
 				alert("로그인 후 이용 가능합니다.");
@@ -2443,6 +2510,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		
 </script>
 <script src="/ssmall/js/chat.js"></script>
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
+   <script>
+      $('#map').click(function(){
+         var container = document.getElementById('map');
+          var options = {
+            center: new kakao.maps.LatLng(37.552475, 126.937825),
+            level: 3
+         }; 
+          window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+
+      });
+   </script> 
+   <span class="bt-basic" id="map"></span>  
 </body>
 
 </html>

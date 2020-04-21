@@ -189,7 +189,7 @@ public interface AdminMapper {
 	
 	/*===============================================기간별 판매량 통계 ====================================================*/
 	
-	@Select("select count(*) from product p , buy b where p.p_number = b.p_number and p.p_brand = #{p_brand} and b.b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
+	@Select("select count(*) from product p , buy b where p.p_number = b.p_number and p.p_brand = #{p_brand}")
 	public int getBrandMonthSales(@Param("p_brand")String p_brand);	
 	
 	@Select("Select DISTINCT p_brand from product where p_enabled = 1 order by p_brand asc")
@@ -214,8 +214,8 @@ public interface AdminMapper {
 	@Insert("Insert into image(p_number, i_name, i_type) values(#{p_number}, #{originFileName}, #{i_type})")
 	public void productImageUpload(@Param("p_number")int p_number, @Param("originFileName")String originFileName, @Param("i_type")int i_type);
 	
-	@Select("Select p_number from product where p_name = #{p_name}")
-	public int getP_number(String p_name);
+	@Select("Select p_number from product where p_image = #{p_image}")
+	public int getP_number(@Param("p_image")String p_image);
 
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board b join member m using(m_number) where btype='AS요청' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<Board_MemberVO> selectASBoardListPage(@Param("startNum") int startNum, @Param("endNum") int endNum);
@@ -224,5 +224,7 @@ public interface AdminMapper {
 	public void updateStatus(@Param("b_number")String b_number, @Param("b_status")String b_status);
 	
 
+	
+	
 
 }

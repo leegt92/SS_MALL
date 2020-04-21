@@ -66,7 +66,7 @@
 							Home
 						</a>
 						
-						<a href="mypage/myPage" class="flex-c-m trans-04 p-lr-25">
+						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
@@ -347,7 +347,7 @@
 					
 							<li>	
 								<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
-									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+									<a href="https://www.facebook.com/ssmall1111111" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 										<img src="/ssmall/images/facebook.PNG" width="105" height="40" style="border-radius: 20px; margin-top: 5px">
 									</a>
 								</div>

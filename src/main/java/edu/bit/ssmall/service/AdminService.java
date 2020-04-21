@@ -322,9 +322,9 @@ public class AdminService {
 		
 	}
 
-	public int getP_number(String p_name) {
+	public int getP_number(String p_image) {
 	
-		return adminMapper.getP_number(p_name);
+		return adminMapper.getP_number(p_image);
 	}
 
 	public void updateStatus(String b_number, String b_status) {
