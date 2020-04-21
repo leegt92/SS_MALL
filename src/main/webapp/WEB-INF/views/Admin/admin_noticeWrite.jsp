@@ -99,12 +99,11 @@ span {
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#"><i class="fas fa-bars"></i></a></li>
+
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="adminpage" class="nav-link">Home</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="#"
-					class="nav-link">Contact</a></li>
+					href="/ssmall/admin/adminpage" class="nav-link">Home</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a
+					href="/ssmall/admin/noticeList" class="nav-link">Notice</a></li>		
 			</ul>
 
 
@@ -127,49 +126,50 @@ span {
 
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column"
-						data-widget="treeview" role="menu" data-accordion="false">
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>
+								<a href="/ssmall/admin/memberList"><button class="dropbtn">회원관리</button></a>							
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn">상품</button></a>
+								<div class="dropdown-content" >
+								    <a href="/ssmall/admin/productList">상품 목록</a>
+								    <a href="/ssmall/admin/addProduct">상품 등록</a>
+								 </div>															
+							</div>
+						</li>
+						<li class="nav-item has-treeview">
+							<div class="dropdown">
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn" style="font-weight: bold;">공지사항</button></a>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/productList">상품 목록</a> <a
-										href="/ssmall/admin/addProduct">상품 등록</a>
+									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
+									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">공지사항</button>
-								<div class="dropdown-content">
-									<a href="/ssmall/admin/noticeList">공지사항 목록</a> <a
-										href="/ssmall/admin/noticeWrite">공지사항 작성</a>
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
+								<div class="dropdown-content">							
+
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">1:1문의</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a> <a
-										href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
 								</div>
 							</div>
-						</li>
-						<li class="nav-item has-treeview">
-							<div class="dropdown">
-								<button class="dropbtn">A/S요청</button>
-								<div class="dropdown-content">
-									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a> <a
-										href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>
-								</div>
-							</div>
-						</li>
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -185,12 +185,7 @@ span {
 						<div class="col-sm-6">
 							<h1>공지사항</h1>
 						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item"></li>
-							</ol>
-						</div>
+						
 					</div>
 				</div>
 				<!-- /.container-fluid -->
@@ -205,12 +200,20 @@ span {
 							<div class="card-body p-0">
 								<div class="mailbox-controls">									
 									<div class="table-responsive mailbox-messages">						
-										<form action="/ssmall/admin/noticeWriteDo?${_csrf.parameterName}=${_csrf.token}" method="post">
+										<form id="noticeWrite" action="/ssmall/admin/noticeWriteDo?${_csrf.parameterName}=${_csrf.token}" method="post">
 										
-										<table class="table table-list-search">											
+										<table class="table table-list-search">	
+											<tr>
+												<td>										
+													<select class="form-control" id="sel1" name="btype">
+														<option>공지사항</option>
+														<option>혜택</option>
+													</select>
+												</td>
+											</tr>										
 											<tr>											
 												<td>
-													<textarea placeholder="제목을 입력하세요" style="width: 1590px; height:auto; font-size: 1.5em; font-weight: bold;" name="btitle"></textarea>
+													<textarea placeholder="제목을 입력하세요" style="width: 1590px; height:auto; font-size: 1.5em; font-weight: bold;" id="btitle" name="btitle"></textarea>
 												</td>
 											</tr>
 											<tr>
@@ -219,7 +222,7 @@ span {
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2" style="text-align: right;"><button class="btn btn-primary" type="submit" >작성</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary">목록</button></a>&nbsp;&nbsp;</td>
+												<td colspan="2" style="text-align: right;"><button id="nullCheck" class="btn btn-primary" type="button" >작성</button> &nbsp;&nbsp; <a href="/ssmall/admin/noticeList"><button type="button" class="btn btn-primary">목록</button></a>&nbsp;&nbsp;</td>
 											</tr>									
 										</table>
 									</form>
@@ -261,5 +264,35 @@ span {
 		});
 		
 	</script> 
+	
+	<script>
+	$('#nullCheck').click(function(){
+			var ckeditor = CKEDITOR.instances['Content']; 
+			if (ckeditor.getData()==""){
+				alert('내용을 입력 하세요');
+				ckeditor.focus();
+				return;
+			}			 
+			
+			var title = document.getElementById("btitle");			
+			
+			if(title.value == ''){
+				alert('공지사항 제목 입력해주세요');
+				$('#btitle').focus();
+				
+				return;
+			}
+			
+
+			if(confirm('등록 하시겠습니까?')){
+					
+				return $('#noticeWrite').submit();
+			}else{
+				return false;
+			}
+			
+		})
+	
+	</script>
 </body>
 </html>

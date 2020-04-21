@@ -61,7 +61,7 @@ html {
 
   <body>
   
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -89,7 +89,7 @@ html {
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage_orderedList" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -173,9 +173,27 @@ html {
 								</c:forEach>
 							</table>
 						</div>
+						<nav aria-label="Page navigation example">
+				<ul class="pagination m-5 flex-c-m" >
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href="/ssmall/mypage/myPage_shoppingList${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_shoppingList${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_shoppingList${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+				</ul>
+						</nav>
 					</div>
 				</div>
-				
 
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" style = 
 					"height: 900px;

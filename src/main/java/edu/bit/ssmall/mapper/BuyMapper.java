@@ -21,7 +21,7 @@ public interface BuyMapper {
 	public void buy(@Param("m_number") String m_number, @Param("p_number") String p_number,
 			@Param("amount") String amount, @Param("totalprice") String totalprice, @Param("imp_uid") String imp_uid,
 			@Param("b_memo") String b_memo, @Param("b_name") String b_name, @Param("b_phonenum") String b_phonenum,
-			@Param("b_addr") String b_addr);
+			@Param("b_addr") String b_addr, @Param("deliveryCode")String deliveryCode);
 
 	@Update("Update member set m_point = m_point + #{point} where m_number = #{m_number}")
 	public void plusPoint(@Param("m_number") String m_number, @Param("point") int point);

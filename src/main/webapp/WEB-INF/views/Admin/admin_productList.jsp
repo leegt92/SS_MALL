@@ -152,16 +152,18 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">1:1문의</button>
-								<div class="dropdown-content">
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
+								<div class="dropdown-content">							
+
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">A/S요청</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
@@ -184,12 +186,7 @@
 						<div class="col-sm-6">
 							<h1>상품 목록</h1>
 						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<td colspan="5"> <a href="addProduct">상품추가</a> </td>
-							</ol>
-							
-						</div>					
+										
 					</div>					
 				</div>			
 			</section>

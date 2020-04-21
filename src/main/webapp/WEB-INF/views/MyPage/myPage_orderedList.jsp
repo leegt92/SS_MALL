@@ -140,7 +140,7 @@ html {
 	</c:when>
 </c:choose>
 
-     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
 
       <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
@@ -151,7 +151,6 @@ html {
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
      
       <ul class="navbar-nav px-2 d-none d-sm-block">
         <li class="nav-item text-nowrap">
@@ -169,7 +168,7 @@ html {
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage_orderedList" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <!-- <li class="nav-item">
                 <a class="nav-link active" href="#">
@@ -236,7 +235,7 @@ html {
 								<tr class="table_head">
 									<th style="text-align: center;"></th>
 									<th style="text-align: center;">상품명</th>
-									<th style="text-align: center;">상품가격</th>
+									<th style="text-align: center;">배송확인</th>
 									<th style="text-align: center;">구매수량</th>
 									<th style="text-align: center;">총구매가격</th>
 									<th style="text-align: center;">구매일자</th>
@@ -251,7 +250,7 @@ html {
 										</div>
 									</td>
 									<td style="text-align: center;"><c:out value = "${p_b_vo.p_name}"/></td>
-									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
+									<td style="text-align: center;"><a href="https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%ED%83%9D%EB%B0%B0%EC%A1%B0%ED%9A%8C">${p_b_vo.b_code}</a></td>
 									<td style="text-align: center;">총 <c:out value = "${p_b_vo.b_amount}"/>개</td>
 									<td style="text-align: center;"><fmt:formatNumber value="${p_b_vo.b_total}" pattern="#,###" />원</td>
 									<c:set var="hap" value="${hap+p_b_vo.b_total}"/>
@@ -261,7 +260,25 @@ html {
 								
 							</table>
 						</div>
-
+						<nav aria-label="Page navigation example">
+			<ul class="pagination m-5 flex-c-m" >
+					<c:if test="${pageMaker.prev}"><!--pageMaker.getprev출력, 트루이게되면 링크를걸음 -->
+						<li class="page-item"><a class="page-link"  href="/ssmall/mypage/myPage_orderedList${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+						<!--get방식의 key value를 넘김, 함수를 다이렉트로 추출하는 소스(직접호출) -->
+					</c:if>
+				<!-- var="idx"하게되면 1씩증가  -->
+				
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<c:out value="${pageMaker.cri.page == idx?'':''}" />
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_orderedList${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li class="page-item"><a class="page-link" href="/ssmall/mypage/myPage_orderedList${pageMaker.makeQuery(pageMaker.endPage +1) }"> 다음 </a></li>
+					</c:if>
+			</ul>
+						</nav>
 						
 					</div>
 				</div>

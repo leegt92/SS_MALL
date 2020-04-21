@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
 
-<link rel="stylesheet" href="/ssmall/css/adll.min.css">
+<link rel="stylesheet" href="/ssmall/css/all.min.css">
 
 <link rel="stylesheet" href="/ssmall/css/bootstrap.css">
 
@@ -36,7 +36,7 @@
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <script>
 function previewImage(f){
 
@@ -68,6 +68,22 @@ function previewImage(f){
 	}
 }
 </script>
+
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:100px; padding:5px; }
+label[for='p_description'] { display:block; }
+
+textarea#p_description { width:400px; height:180px; }
+
+.select_img img { margin:20px 0; }
+
+.inputArea1 {
+	position: relative;
+	left: 20px;
+}
+</style>
 
 <style>
 .dropdown button {
@@ -128,18 +144,17 @@ span {
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#"><i class="fas fa-bars"></i></a></li>
+				
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="adminpage" class="nav-link">Home</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="#"
-					class="nav-link">Contact</a></li>
+					href="/ssmall/admin/adminpage" class="nav-link">Home</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a href="/ssmall/admin/productList"
+					class="nav-link">Product</a></li>
 			</ul>
 			
 			
 		</nav>
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
 			<!-- Brand Logo -->
 			<img src="/ssmall/images/logo.png" alt="logo" class="brand-image img-circle elevation-3">
 			
@@ -164,7 +179,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn" style="font-weight: bold;">상품</button></a>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -173,7 +188,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -182,8 +197,9 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">1:1문의</button>
-								<div class="dropdown-content">
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
+								<div class="dropdown-content">							
+
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
 
@@ -192,7 +208,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">A/S요청</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
@@ -212,34 +228,83 @@ span {
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>상품 등록</h1>
+							
 						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item"></li>
-							</ol>
-						</div>
+						
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
 
 			<!-- Main content -->
-			<section class="content style=">
-				<div class="row">
-					<!-- /.col -->
-					<div class="col-md-12">
-						<div class="card card-primary card-outline">
-										<div>
-																
-								</div>								
-							</div>
-						</div>
-					</div>
-				</section>														
-			</div>					
+			
+	<section id="container">
+		<div id="container_box">
+			<h2 class="inputArea1">상품 등록</h2>
+			
+
+			<form id="addProduct" role="form" method="post" autocomplete="off" enctype="multipart/form-data" action="/ssmall/admin/productAdd?${_csrf.parameterName}=${_csrf.token}">
+
+			<div class="inputArea1">	
+				<br><label>분류</label>
+				<select id="p_category" class="category1" name="p_category">
+					<option>지갑</option>
+					<option>시계</option>
+				</select>
+			</div>
+			
+			<div class="inputArea1">
+				<label>상품명</label>
+				<input  type="text" id="p_name" name="p_name" />
+			</div>
+			
+			<div class="inputArea1">
+				<label>상품 브랜드</label>
+				<input type="text" id="p_brand" name="p_brand" />
+			</div>
+			
+			<div class="inputArea1">
+				<label>상품 가격</label>
+				<input  type="text" id="p_price" name="p_price" />
+			</div>
+			
+			<div class="inputArea1">
+				<label>상품 재고</label>
+				<input id="p_stock" name="p_stock" />
+			</div>
+			
+			<div class="inputArea1" >
+				<br><label>썸네일</label>
+				<input id="thumbnail1" type="file" name="thumbnail1" />
+				<input id="thumbnail2" type="file" name="thumbnail2" />
+				<input id="thumbnail3" type="file" name="thumbnail3" />
+
+				
+			
+			</div>
+			
+			<div class="inputArea1">
+				<br>
+				<label for="p_description">상품소개</label>
+				<textarea style="height: 214px;" id="p_description" name="p_description"></textarea>
+					
+			</div>
+			
+
+			
+			
+			<div class="inputArea1">
+				
+				<br><br><button id="nullCheck" type="button" class="btn btn-success">등록</button>			
+
+			</div>
+			
+			</form>
+			
 		</div>
+	</section>
+</div>					
+								</div>								
 
 
 		<!-- Control Sidebar -->
@@ -256,5 +321,87 @@ span {
 			</div>
 		</footer>
 	</div>
+	
+	
+	<script src="/ssmall/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('p_description', {	
+					width : '930px', 
+					height : '700px',
+					startupFocus : false,
+					filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
+					extraPlugins : 'confighelper'
+			
+				});
+		});
+					
+	</script> 
+	
+
+	<script>
+	$('#nullCheck').click(function(){
+		 	
+			var name = document.getElementById("p_name");
+			var brand = document.getElementById("p_brand");
+			var price = document.getElementById("p_price");
+			var stock = document.getElementById("p_stock");
+			var thumbnail1 = document.getElementById("thumbnail1");
+			var thumbnail2 = document.getElementById("thumbnail2");
+			var thumbnail3 = document.getElementById("thumbnail3");
+		
+			var ckeditor = CKEDITOR.instances['p_description']; 
+			if (ckeditor.getData()==""){
+				alert('내용을 입력 하세요');
+				ckeditor.focus();
+				return;
+			}		
+			
+			if(name.value == '' ){
+				alert('상품명 입력해주세요');
+				$('#p_name').focus();
+				return;
+			}
+			if(brand.value == '' ){
+				alert('브랜드 입력해주세요');
+				$('#p_brand').focus();
+				return;
+			}
+			if(price.value == '' ){
+				alert('가격 입력해주세요');
+				$('#p_price').focus();
+				return;
+			}
+			if(stock.value == '' ){
+				alert('재고 입력해주세요');
+				$('#p_stock').focus();
+				return;
+			}
+			if(thumbnail1.value == ''){
+				alert('사진을 등록해주세요');
+				$('#thumbnail1').focus();
+				return;
+			}
+			if(thumbnail2.value == ''){
+				alert('사진을 등록해주세요');
+				$('#thumbnail2').focus();
+				return;
+			}
+			if(thumbnail3.value == ''){
+				alert('사진을 등록해주세요');
+				$('#thumbnail3').focus();
+				return;
+			}
+
+			if(confirm('등록 하시겠습니까?')){
+					
+				return $('#addProduct').submit();
+			}else{
+				return false;
+			}
+			
+		})
+	
+	</script>
 </body>
 </html>

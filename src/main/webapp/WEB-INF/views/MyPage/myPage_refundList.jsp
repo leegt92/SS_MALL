@@ -64,6 +64,10 @@
  ul li {
 		border-bottom: 1px solid #bebebe;
 }
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 /* .table-shopping-cart2 {
  	border-collapse: collapse;
   	width: 100%;
@@ -236,7 +240,7 @@ table th {
 
   <body>
   
-     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
       <a href="/ssmall/" class="logo"><img src="/ssmall/images/icons/mainlogo.png" alt="IMG-LOGO" style="
     width: 200px;
     height: 60px;
@@ -246,9 +250,8 @@ table th {
       <a href="/ssmall/cart/cartView" style="color:white">장바구니</a>
       <a href="/ssmall/boardnoticeView" style="color:white">공지사항</a>
       <a href="/ssmall/companyView" style="color:white">회사소개</a>
-      <a href="/ssmall/asView" style="color:white">AS</a>
      
-      <ul class="navbar-nav px-3 d-none d-sm-block">
+      <ul class="navbar-nav px-2 d-none d-sm-block">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
           	<form id="logout" action="/ssmall/logout" method="POST">
@@ -264,7 +267,7 @@ table th {
       <div class="row">
         <nav class="col-md-2 d-md-block bg-light sidebar m-t-37" style = "width:320px;top: 23px;">
           <div class="sidebar-sticky">
-          	<h3><a href="/ssmall/mypage/myPage" style="color:black">MyPage</a></h3>
+          	<h3><a href="/ssmall/mypage/myPage_orderedList" style="color:black">MyPage</a></h3>
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link" href="/ssmall/mypage/myPage_reviseInformation">
@@ -308,17 +311,12 @@ table th {
         </nav>
 		
 		<!-- Shoping Cart -->
-		<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20">
+		<DIV style="overflow:scroll;width:100vw;height:100vh;margin-left: 320px;">
+		<form class="bg0 p-t-140 p-b-85 m-l-130 p-l-300 m-t-20" style="padding-left: 0px;margin-left: 110px;padding-right: 300px;margin-right: 26px;margin-top: 80px;height: 1192px;">
 		<div class="container">
 			<div class="row">
-
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="
-				bottom: 70px;
-				right: 50px;
-				">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="
-					width: 1000px;
-					">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" style="z-index:1;bottom: 70px; right: 50px;">
+					<div class="m-l-25 m-r--38 m-lr-0-xl" style="background-color:white; width: 1000px;">
 						<div class="wrap-table-shopping-cart">
 						<c:set var="hap" value="0"/>
 							<table class="table-shopping-cart2">
@@ -346,8 +344,6 @@ table th {
 									<td style="text-align: center;">${refund.r_status}</td>	
 								</tr>
 								</c:forEach>
-
-								
 							</table>		
 						</div>
 				
@@ -395,6 +391,7 @@ table th {
 			</div>
 		</div>
 		</form>
+		</DIV>
       </div>
     </div>
 

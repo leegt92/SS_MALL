@@ -12,7 +12,12 @@
 <meta name="author" content="">
 <link rel="icon" href="favicon.ico">
 
-<title>상승몰 관리자 페이지</title>
+
+    <title>상승몰 관리자 페이지</title>
+
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
 
 
 <link rel="stylesheet" href="/ssmall/css/OverlayScrollbars.min.css">
@@ -29,8 +34,12 @@
 	crossorigin="anonymous">
 
 <!-- Google Font: Source Sans Pro -->
+
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <!-- google charts -->
@@ -41,6 +50,7 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 	
+
 	<script>
 		 var brand = new Array();
 		 var sales = new Array(); 		
@@ -151,6 +161,7 @@
 </script>
 
 </head>
+
 <!--
 BODY TAG OPTIONS:
 =================
@@ -162,16 +173,17 @@ to get the desired effect
 |---------------------------------------------------------|
 -->
 
+
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 		<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#"><i class="fas fa-bars"></i></a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a 
+					href="/ssmall/" class="nav-link"><i class="fas fa-home"></i> Main</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="adminpage" class="nav-link">Home</a></li>
+					href="/ssmall/admin/adminpage" class="nav-link">Home</a></li>
 
 			</ul>
 		</nav>
@@ -217,14 +229,14 @@ to get the desired effect
 							<div class="dropdown">
 								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
-									<a href="/ssmall/admin/noticeList">공지사항 목록</a> <a
-										href="/ssmall/admin/noticeWrite">공지사항 작성</a>
+									<a href="/ssmall/admin/noticeList">공지사항 목록</a> 
+									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a> <a
 										href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>
@@ -233,7 +245,7 @@ to get the desired effect
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">A/S요청</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a> <a
 										href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>
@@ -247,10 +259,20 @@ to get the desired effect
 			<!-- /.sidebar -->
 		</aside>
 
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
+
 			<!-- Content Header (Page header) -->			
-			
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h4>통계</h4>
+						</div>													
+					</div>					
+				</div>			
+			</section>
 			
 			<section class="content style">
 				<div class="row">		

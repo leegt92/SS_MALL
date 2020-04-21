@@ -48,9 +48,9 @@ public class CartService {
 		
 	}
 
-	public ArrayList<CartViewVO> miniCartInfo(String m_id) {
+	public ArrayList<CartViewVO> miniCartInfo(int m_number) {
 		
-		return cartMapper.miniCartInfo(m_id);
+		return cartMapper.cartInfo(m_number);
 	}
 
 	public String getP_name(int p_number) {

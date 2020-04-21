@@ -3,6 +3,7 @@ package edu.bit.ssmall.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -34,6 +35,17 @@ public class ProductController {
 	
 	@RequestMapping("/productView")
 	public String productview(HttpServletRequest request,Model model, Criteria criteria) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != "anonymousUser") {
+	        name = auth.getName();
+	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.			
+	    }
+	    else {
+	    	model.addAttribute("principal_m_number","0");
+	    }
 		System.out.println("productview");
 		//페이징
 		PageMaker pageMaker = new PageMaker();
@@ -229,11 +241,11 @@ public class ProductController {
 		System.out.println("/product_Write_replyAjax");		
 
 		String p_number = request.getParameter("p_number");
-		System.out.println("상품번호 확인 "+ p_number);
+		System.out.println("상품번호 확인: "+ p_number);
 		String btitle = request.getParameter("btitle");
-		System.out.println("btitle 확인 "+ btitle);
+		System.out.println("btitle 확인:"+ btitle);
 		String bcontent = request.getParameter("bcontent");
-		System.out.println("bcontent 확인 "+ bcontent);
+		System.out.println("bcontent 확인: "+ bcontent);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));	
 		System.out.println(productService.selectProductOne(p_number));		
 		productService.productReplyWrite(productReplyVO);
@@ -286,15 +298,20 @@ public class ProductController {
 			    
 		System.out.println("/deleteReply");
 		String bid = request.getParameter("bid");//삭제할 글의 번호
+		int checkRepotCount = productService.checkRepotCount(bid);//글 번호로 해당 글의 총 신고횟수 확인
 		int b_m_number = productService.checkMid(bid);
 		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
 		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
 		System.out.println(bid);
 		
 		if(m_number == b_m_number) {
-			productService.replyDelete(boardVO);
-			System.out.println("/deleteReply끝 + if문 탔음");
-			result = 1;
+			if(checkRepotCount<3) {
+				productService.replyDelete(boardVO);
+				System.out.println("/deleteReply끝 + if문 탔음");
+				result = 1;
+			} else {
+				result = 2;
+			}
 		}
 		else {
 			System.out.println("/deleteReply끝  + else부분");
@@ -322,10 +339,14 @@ public class ProductController {
 		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
 		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
 		System.out.println(bid);
-		
+		int checkRepotCount = productService.checkRepotCount(bid);
 		if(m_number == b_m_number) {
+			if(checkRepotCount<3) {
 			System.out.println("/checkUser끝 + if문 탔음");
 			result = 1;
+			} else {
+				result = 2;
+			}
 		}
 		else {
 			System.out.println("/checkUser끝  + else부분");
@@ -334,6 +355,121 @@ public class ProductController {
 		return result;
 				
 	}
+
+	//댓글에서 신고하기 누르면 그 글의 btotalrepot이 1 증가한다.
+	@ResponseBody
+	@RequestMapping("/report")
+	public int report(BoardVO boardVO,Model model,HttpServletRequest request) {
+		int result = 0;
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    name = auth.getName();//현재 로그인한 id = leegt92 이런것.
+	    
+	  //비회원이 신고하기 누를경우
+	  	if(name == "anonymousUser") {
+	  		System.out.println("비회원신고");
+	  		result = 4;
+	  		return result;
+	  	}
+	    
+	    System.out.println("report탔나");
+	    System.out.println("현재 로그인한 name 확인 name이 이름인지 로그인한 아이디인지 : "+name);
+	    
+	    int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+		model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
+		
+		String bid = request.getParameter("bid");//변경할 글의 번호
+		int brepotid1 = productService.checkBrepotid1(bid);//변경할 글의 첫번째 신고자member number 회원번호 말하는거. 아이디는 중복될 수 있기 때문
+		int brepotid2 = productService.checkBrepotid2(bid);//변경할 글의 두번째 신고자member number	
+
+		
+		int b_m_number = productService.checkMid(bid);//글 번호로 그 글에 저장되어 있는 m_number를 가져옴.
+		System.out.println("m_number : "+m_number);//로그인한 사람의 멤버번호
+		System.out.println("b_m_number : "+b_m_number);//글 번호로 뽑아온 글 번호 안에 있는 멤버번호.
+		System.out.println(bid);
+		
+		
+		
+		//현재 id와 글에 기록된 id를 가져와서, 둘이 동일하다면 글쓴이가 자신의 글을 신고하는 것이므로 신고불가.
+		if(m_number == b_m_number) {
+			System.out.println("글쓴이가 자신의 글 신고");
+			result = 2;
+			return result;
+		}
+
+		//대상 글의 btotalrepot 횟수를 확인
+		int bTotalRepot = productService.checkBtotalRepot(bid);
+		System.out.println("bTotalRepot : "+bTotalRepot);
+		if(bTotalRepot ==3) {
+			System.out.println("신고수 3 이상. 이미 삭제된 댓글");
+			result = 3;
+			return result;
+		}
+		System.out.println("bTotalRepot : "+bTotalRepot);
+		
+		if(bTotalRepot==0) {
+			System.out.println("/bTotalRepot==0");
+			/*
+			if(m_number == b_m_number) {
+				System.out.println("글쓴이가 자신의 글 신고");
+				result = 2;
+				return result;
+			}
+			*/
+			//첫번째 신고자. 대상 글의 btotalrepot을 1 증가 + 리폿한 ID 저장
+			productService.boardReport(m_number, bid);
+		}
+		else if(bTotalRepot==1){
+			/*
+			if(m_number == b_m_number) {
+				System.out.println("글쓴이가 자신의 글 신고");
+				result = 2;
+				return result;
+			}
+			*/
+			System.out.println("/bTotalRepot==1");
+			System.out.println("m_number :"+m_number);
+			System.out.println("brepotid1 :"+brepotid1);
+
+			if(m_number == brepotid1) {
+				System.out.println("m_number = brepotid1 이미 신고한 아이디입니다.");
+				result = 1;
+				return result;
+			}else {
+				System.out.println("m_number != brepotid1 두번째 신고자 입니다.");
+			//두번째 신고자
+			productService.boardReport2(m_number, bid);
+			}
+		}
+		else if(bTotalRepot==2) {
+			/*
+			if(m_number == b_m_number) {
+				System.out.println("글쓴이가 자신의 글 신고");
+				result = 2;
+				return result;
+			}
+			*/
+			System.out.println("/bTotalRepot==2");
+			if(m_number == brepotid1) {
+				System.out.println("m_number = brepotid1 이미 신고한 아이디입니다.");
+				result = 1;
+				return result;
+			}else if(m_number == brepotid2){
+				System.out.println("m_number = brepotid2 이미 신고한 아이디입니다.");
+				result = 1;
+				return result;
+			}else {
+			System.out.println("1,2,3 전부 다른 사람이 신고했습니다.");
+			productService.boardReport(m_number, bid);
+			//신고수가 3 초과했을 경우 해당 글의 글 내용을 강제변경
+			productService.boardReportWriteUpdate(bid);
+			}
+		}
+		return result;
+	}
+	
 	//수정modal에서 확인을 누르면, 거기서 ajax를 통해 컨트롤러로 온다. 그래서 리턴값이 없다.
 	//ajax는 리턴값을 지정하지 않아도(지정할 수도 있음)알아서 오류없이 끝나면 다시 ajax의 success를 타기때문.
 	//modal 페이지에서 받은 data로 글을 고침.
@@ -359,17 +495,29 @@ public class ProductController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
 	 
+	    String p_number = request.getParameter("p_number");
+	    
 	    String name = "";
 	    if(principal != "anonymousUser") {
 	        name = auth.getName();
 	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
 			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
+			//로그인상태에서, 상품을 이미 구매했는지 안했는지 확인
+
+			if(productService.checkBuyList(p_number,m_number)!=0) {
+				model.addAttribute("checkBuyList", productService.checkBuyList(p_number,m_number));
+			}else {
+				model.addAttribute("checkBuyList", "0");
+			}
+			
+			System.out.println("구매했는지 안했는지. buy_number 확인 : "+productService.checkBuyList(p_number,m_number));
+	    }else {
+	    	model.addAttribute("principal_m_number","0");
 	    }
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
 	    System.out.println("auth.getName() : "+auth.getName());
 		System.out.println("productDetail시작");
-		String p_number = request.getParameter("p_number");
 		System.out.println("상품번호 : "+p_number);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));
 		model.addAttribute("productAmount", productService.selectProductListAmount());
@@ -387,18 +535,28 @@ public class ProductController {
 		model.addAttribute("modelCheck",check);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Object principal = auth.getPrincipal();
+	    
+	    String p_number = request.getParameter("p_number");
 	 
 	    String name = "";
 	    if(principal != "anonymousUser") {
 	        name = auth.getName();
 	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
 			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.
+			//로그인상태에서, 상품을 이미 구매했는지 안했는지 확인
+			if(productService.checkBuyList(p_number,m_number)!=0) {
+				model.addAttribute("checkBuyList", productService.checkBuyList(p_number,m_number));
+			}else {
+				model.addAttribute("checkBuyList", "0");
+			}
+			
+			System.out.println("구매했는지 안했는지. buy_number 확인 : "+productService.checkBuyList(p_number,m_number));
 	    }
 	    System.out.println("principal : "+principal);
 	    System.out.println("name : "+ name);
 	    System.out.println("auth.getName() : "+auth.getName());	    
 		System.out.println("productDetail시작");
-		String p_number = request.getParameter("p_number");
+		
 		System.out.println("상품번호 : "+p_number);
 		model.addAttribute("productDetail", productService.selectProductOne(p_number));
 		model.addAttribute("productAmount", productService.selectProductListAmount());

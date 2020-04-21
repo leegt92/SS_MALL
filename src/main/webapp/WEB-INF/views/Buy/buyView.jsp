@@ -109,6 +109,7 @@
 						}	    		            
 					});
 				}
+			    alert("결제에 실패하셨습니다. 확인 후 다시 시도해주세요.");
 			});
 		});
 	});
@@ -227,8 +228,8 @@ function checkForm(){
 			if (point > 0 && point < 1000){
 				alert("포인트는 1000원이상부터 사용가능합니다.")
 				$('#receiver').blur();
-				document.getElementById("pointInput").value = null;
-				document.getElementById("finalPrice").value = null;	
+				document.getElementById("pointInput").value = 0;
+				document.getElementById("finalPrice").value = ${totalprice};	
 				$('#pointInput').focus();
 				return;
 			}

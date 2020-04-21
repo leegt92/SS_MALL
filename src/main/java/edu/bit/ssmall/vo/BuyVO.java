@@ -20,7 +20,16 @@ public class BuyVO {
 	private String p_image;//상품이미지
 	private String p_brand; //브랜드
 	private String p_name; //상품명
+	private String b_code;
 	
+	
+	
+	public String getB_code() {
+		return b_code;
+	}
+	public void setB_code(String b_code) {
+		this.b_code = b_code;
+	}
 	public int getB_number() {
 		return b_number;
 	}
@@ -120,11 +129,12 @@ public class BuyVO {
 	@Override
 	public String toString() {
 		return "BuyVO [b_number=" + b_number + ", m_number=" + m_number + ", p_number=" + p_number + ", b_date="
-				+ b_date + ", b_amount=" + b_amount + ", b_status=" + b_status + ", b_total=" + b_total
-				+ ", imp_uid=" + imp_uid + ", b_memo=" + b_memo + ", b_name=" + b_name + ", b_phonenum="
-				+ b_phonenum + ", b_addr=" + b_addr + ", p_price=" + p_price + ", p_image=" + p_image + ", p_brand="
-				+ p_brand + ", p_name=" + p_name + "]";
+				+ b_date + ", b_amount=" + b_amount + ", b_status=" + b_status + ", b_total=" + b_total + ", imp_uid="
+				+ imp_uid + ", b_memo=" + b_memo + ", b_name=" + b_name + ", b_phonenum=" + b_phonenum + ", b_addr="
+				+ b_addr + ", p_price=" + p_price + ", p_image=" + p_image + ", p_brand=" + p_brand + ", p_name="
+				+ p_name + ", b_code=" + b_code + "]";
 	}
+	
 	
 	
 	

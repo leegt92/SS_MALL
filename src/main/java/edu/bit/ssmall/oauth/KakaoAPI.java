@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class KakaoAPI {
 	
 	private final static String K_CLIENT_ID = "1cd5b3a08c4bf89e83a34596e4626259"; 
-	private final static String K_REDIRECT_URI = "http://localhost:8282/ssmall/kakao/callback";
+	private final static String K_REDIRECT_URI = "http://192.168.6.17:8282/ssmall/kakao/callback";
 
 	public static String getAuthorizationUrl(HttpSession session) {
 		//엑세스 토큰 획득

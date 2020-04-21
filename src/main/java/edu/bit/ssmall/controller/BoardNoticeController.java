@@ -129,7 +129,7 @@ public class BoardNoticeController {
 		
 		List<BoardNoticeVO> boardList = bservice.BoardGradeSearchListPage(startNum, endNum, keyword);
 	
-		model.addAttribute("list", boardList);
+		model.addAttribute("gradelist", boardList);
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "boardnotice";

@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -33,6 +36,7 @@ import edu.bit.ssmall.page.Criteria;
 import edu.bit.ssmall.page.PageMaker;
 import edu.bit.ssmall.service.AdminService;
 import edu.bit.ssmall.service.BoardNoticeService;
+import edu.bit.ssmall.service.ProductService;
 import edu.bit.ssmall.service.MypageService;
 import edu.bit.ssmall.vo.BoardVO;
 import edu.bit.ssmall.vo.Board_MemberVO;
@@ -53,6 +57,9 @@ public class AdminPageController {
 
 	@Autowired
 	BoardNoticeService bservice;
+	
+	@Autowired
+	ProductService productService;
 
 	@Autowired
 	MypageService mypageService;
@@ -272,9 +279,9 @@ public class AdminPageController {
 
 	}
 
-	// 관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
-	@RequestMapping(value = "adminpage", method = { RequestMethod.GET, RequestMethod.POST })
-	public String adminpage(Model model, HttpSession session) {
+	//관리자 게시판 첫 화면 여긴 통계같은거 나오면 좋을듯?
+	@RequestMapping(value = "adminpage", method ={RequestMethod.GET,RequestMethod.POST})
+	public String adminpage(Model model) {
 		System.out.println("adminpage 시작");
 
 		HashMap<String, Integer> map = adminService.getBrand();
@@ -356,7 +363,9 @@ public class AdminPageController {
 
 		int totalCount = adminService.countProduct();
 
+
 		System.out.println("상품 수 : " + totalCount);
+
 
 		pageMaker.setTotalCount(totalCount);
 
@@ -370,13 +379,14 @@ public class AdminPageController {
 
 	}
 
+
 	@RequestMapping(value = "addProduct", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addProduct(Model model) {
-
-		System.out.println("addProduct 시작");
-
+	public String addProduct( Model model, HttpServletRequest product) {
+		
 		return "Admin/admin_addProduct";
 	}
+
+	
 
 	// 공지사항 관리하는 컨트롤
 	@RequestMapping(value = "noticeList", method = {RequestMethod.GET,RequestMethod.POST}) // 문의글들 띄워놓는 부분에 대한 컨트롤러
@@ -419,17 +429,19 @@ public class AdminPageController {
 	@RequestMapping(value = "noticeWriteDo", method = {RequestMethod.GET,RequestMethod.POST}) // 실제로 입력하는 창 에 대한 컨트롤러 밑에꺼랑 세트
 	public String noticeWriteDo(Model model, HttpServletRequest request) {
 		System.out.println("noticeWriteDo() 시작");
-
+		
+		String btype = request.getParameter("btype");
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
 		System.out.println(btitle);
 		System.out.println(bcontent);
 		
-		adminService.noticeWrite(btitle,bcontent);
+		adminService.noticeWrite(btype,btitle,bcontent);
 		
 		return "redirect:/admin/noticeList";
 
 	}
+
 
 	@RequestMapping(value = "noticeView", method = {RequestMethod.GET,RequestMethod.POST}) 																				
 	public String noticeView(Model model, HttpServletRequest request) {
@@ -447,15 +459,26 @@ public class AdminPageController {
 	@RequestMapping(value = "noticeUpdate", method = {RequestMethod.GET,RequestMethod.POST}) // 글 수정하는 창에 대한 컨트롤러
 	public String noticeUpdate(Model model, HttpServletRequest request) {
 		String bid = request.getParameter("bid");
+		String btype = request.getParameter("btype");
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
-		adminService.noticeUpdate(bid,btitle,bcontent);
+		adminService.noticeUpdate(btype,bid,btitle,bcontent);
 		
 		return "redirect:/admin/noticeView?bid="+bid;
 	}
+	
+	@RequestMapping(value = "noticeDelete", method = {RequestMethod.GET,RequestMethod.POST}) // 글 수정하는 창에 대한 컨트롤러
+	public String noticeDelete(Model model, HttpServletRequest request) {
+		String bid = request.getParameter("bid");
+		
+		adminService.noticeDelete(bid);
+		
+		return "redirect:/admin/noticeList";
+	}
+	
 
-	// 회원 검색
-	@RequestMapping(value = "memberSearch", method = { RequestMethod.GET, RequestMethod.POST })
+	//회원 검색
+	@RequestMapping(value = "memberSearch", method = {RequestMethod.GET, RequestMethod.POST}) 
 	public String memberSearch(Model model, HttpServletRequest request, Criteria criteria) {
 		System.out.println("memberSearch 시작");
 		System.out.println(request.getParameter("search"));
@@ -571,6 +594,7 @@ public class AdminPageController {
 
 		adminService.updateAuthority(m_number, m_authority);
 
+
 		return "redirect:/admin/memberInfo?m_number=" + m_number;
 
 	}
@@ -671,6 +695,7 @@ public class AdminPageController {
 		String p_brand = mtfRequest.getParameter("p_brand");
 		String p_price = mtfRequest.getParameter("p_price");
 		String p_stock = mtfRequest.getParameter("p_stock");
+		String p_description = mtfRequest.getParameter("p_description");
 		String enabled = mtfRequest.getParameter("p_enabled");
 		int p_enabled = 1;
 		if (enabled.equals("비활성화")) {
@@ -693,9 +718,9 @@ public class AdminPageController {
 		System.out.println("realPath : " + realPath);		
 		System.out.println("==================");
 		
-		MultipartFile file1 = mtfRequest.getFile("file1");
-		MultipartFile file2 = mtfRequest.getFile("file2");		
-		MultipartFile file3 = mtfRequest.getFile("file3");
+		MultipartFile file1 = mtfRequest.getFile("thumbnail1");
+		MultipartFile file2 = mtfRequest.getFile("thumbnail2");		
+		MultipartFile file3 = mtfRequest.getFile("thumbnail3");
 
 		MultipartFile[] arr = {file1, file2, file3};
 		
@@ -740,9 +765,9 @@ public class AdminPageController {
 		}
 	
 		if(!file1.getOriginalFilename().equals("")) {
-			adminService.updateProduct(p_number, p_name, p_brand, p_price, p_stock, file1.getOriginalFilename(), p_enabled);
+			adminService.updateProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, file1.getOriginalFilename(), p_enabled);
 		}else {
-			adminService.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock, p_enabled);
+			adminService.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, p_enabled);
 		}
 		return "redirect:/admin/productList";
 	}
@@ -856,6 +881,98 @@ public class AdminPageController {
 			}
 		}
 
+	}
+	
+	@RequestMapping(value = "productAdd", method={RequestMethod.GET, RequestMethod.POST})
+	public String productAdd(MultipartHttpServletRequest mtfRequest, Model model) {
+		
+		HttpSession session = mtfRequest.getSession();
+		String p_name = mtfRequest.getParameter("p_name");
+		String p_category = mtfRequest.getParameter("p_category");
+		String p_brand = mtfRequest.getParameter("p_brand");
+		String p_price = mtfRequest.getParameter("p_price");
+		String p_stock = mtfRequest.getParameter("p_stock");
+		String p_description = mtfRequest.getParameter("p_description");
+		
+		System.out.println("p_name : " + p_name);
+		System.out.println("p_category : " + p_category);
+		System.out.println("p_brand : " + p_brand);
+		System.out.println("p_price : " + p_price);
+		System.out.println("p_stock : " + p_stock);
+		
+		String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\resources\\productimage\\";
+		String realPath = session.getServletContext().getRealPath("/");		
+
+		System.out.println("productUpdate 시작");
+		System.out.println("==================");
+		System.out.println("path : " + path);
+		System.out.println("realPath : " + realPath);		
+		System.out.println("==================");
+		
+		MultipartFile thumbnail1 = mtfRequest.getFile("thumbnail1");
+		MultipartFile thumbnail2 = mtfRequest.getFile("thumbnail2");		
+		MultipartFile thumbnail3 = mtfRequest.getFile("thumbnail3");
+		
+		MultipartFile[] arr = {thumbnail1, thumbnail2, thumbnail3};
+		String p_image = thumbnail1.getOriginalFilename();
+		int i_type = 1;
+		adminService.insertProduct(p_name,p_category,p_brand,p_price,p_stock ,p_description, p_image);
+		
+		int p_number = adminService.getP_number(p_name);
+		System.out.println("p_number : " + p_number);
+		
+		for (int i = 0; i < arr.length; i++) {
+			String originFileName = arr[i].getOriginalFilename(); // 원본 파일 명
+			
+			//아무파일도 선택 안할시
+			if(originFileName.equals("")) {
+				i_type++;
+				System.out.println(i+"번째 파일 업로드안함");
+				continue;
+			}
+			
+	
+			long fileSize = arr[i].getSize(); // 파일 사이즈
+			String safeFile = path + originFileName; // 경로 + 이름
+			String realFile = realPath + "\\resources\\productimage\\" + originFileName;
+
+			System.out.println(i + "번째 사진 업로드 시작! ");
+			System.out.println("====================================");
+			System.out.println("originFileName : " + originFileName);
+			System.out.println("fileSize : " + fileSize);
+			System.out.println("savaFile : " + safeFile);
+			System.out.println("realFile : " + realFile);
+			System.out.println("====================================");
+
+			try {
+				arr[i].transferTo(new File(safeFile));
+				arr[i].transferTo(new File(realFile));
+				
+				adminService.productImageUpload(p_number, originFileName, i_type);
+				i_type++;
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	
+	
+		return "redirect:/admin/productList";
+	}
+	@RequestMapping(value = "updateStatus", method={RequestMethod.GET, RequestMethod.POST})
+	public String updateStatus(HttpServletRequest request, Model model) {
+		String m_number = request.getParameter("m_number");
+		String b_number = request.getParameter("b_number");
+		String b_status = request.getParameter("b_status");
+		
+		adminService.updateStatus(b_number,b_status);
+		
+		return "redirect:/admin/memberInfo?m_number="+m_number;
+		
 	}
 
 }

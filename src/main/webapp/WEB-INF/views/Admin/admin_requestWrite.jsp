@@ -22,7 +22,7 @@
 
 <link rel="stylesheet" href="/ssmall/css/sidemenu.css">
 
-<link rel="stylesheet" href="/ssmall/css/adll.min.css">
+<link rel="stylesheet" href="/ssmall/css/all.min.css">
 
 <link rel="stylesheet" href="/ssmall/css/bootstrap.css">
 
@@ -111,12 +111,10 @@ span {
 			class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="adminpage" class="nav-link">Home</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="#"
-					class="nav-link">Contact</a></li>
+					href="/ssmall/admin/adminpage" class="nav-link">Home</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a 
+					href="/ssmall/admin/requestList" class="nav-link">Request</a></li>
 			</ul>
 			
 		</nav>
@@ -137,7 +135,7 @@ span {
 				</div>
 
 				<!-- Sidebar Menu -->
-				<nav class="mt-2" >
+				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
@@ -146,7 +144,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">상품</button>
+								<a href="/ssmall/admin/productList"><button class="dropbtn">상품</button></a>
 								<div class="dropdown-content" >
 								    <a href="/ssmall/admin/productList">상품 목록</a>
 								    <a href="/ssmall/admin/addProduct">상품 등록</a>
@@ -155,7 +153,7 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">공지사항</button>
+								<a href="/ssmall/admin/noticeList"><button class="dropbtn">공지사항</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/noticeList">공지사항 목록</a>
 									<a href="/ssmall/admin/noticeWrite">공지사항 작성</a>							
@@ -164,16 +162,18 @@ span {
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn" style="font-weight: bold;">1:1문의</button>
-								<div class="dropdown-content">
+								<a href="/ssmall/admin/requestList"><button class="dropbtn" style="font-weight: bold;">1:1문의</button></a>
+								<div class="dropdown-content">							
+
 									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
 									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
 								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<button class="dropbtn">A/S요청</button>
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
 								<div class="dropdown-content">
 									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
 									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
@@ -202,7 +202,7 @@ span {
 		
    
     
-        <form action="/ssmall/admin/doAnswer" method="get">
+        <form id="answer" action="/ssmall/admin/doAnswer" method="get">
         	<input type="hidden" value="${bId}" name="bId"/>
             <tr>
                 <th style="width: 168px;">문의 및 요청 제목: </th>
@@ -210,22 +210,20 @@ span {
             </tr>
             <tr>
                 <th>문의 및 요청 내용: </th>
-
-                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
-
+                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="askContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
             </tr>
             <br>
              <tr>
                 <th>답변 제목: </th>
-                <td><input type="text" value="${FanswerbTitle}" name="answerTitle" class="form-control"/></td>
+                <td><input id="answerTitle" type="text" value="${FanswerbTitle}" name="answerTitle" class="form-control"/></td>
             </tr>
             <tr>
                 <th>답변 내용: </th>
                 <td><textarea id="answerContent" cols="10" placeholder="내용을 입력하세요. " name="answerContent" class="form-control" style="height: 214px;">${FanswerbContent}</textarea></td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <input type="submit" value="답변 등록 및 수정"  class="pull-right"/>
+                <td colspan="2" style="text-align: right;">
+                    <button id="nullCheck" type="button" class="btn btn-info" style="font-weight: bold;">답변 등록 및 수정</button>
                 </td>
             </tr>
 		</form>
@@ -278,16 +276,47 @@ span {
 	
 	<script type="text/javascript">
 		$(function(){
-			CKEDITOR.replace('answerContent', {
+			CKEDITOR.replace('answerContent', {	
 			      width : '930px', 
 			      height : '700px',
 			      startupFocus : false,
 			      filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}',
-			      extraPlugins : 'confighelper'		  
+			      extraPlugins : 'confighelper'
+
 			    });
 		});
 		
 	</script> 
    
+   <script>
+	$('#nullCheck').click(function(){
+		 	
+			var answerTitle = document.getElementById("answerTitle");
+		
+		
+			var ckeditor = CKEDITOR.instances['answerContent']; 
+			if (ckeditor.getData()==""){
+				alert('내용을 입력 하세요');
+				ckeditor.focus();
+				return;
+			}		
+			
+			if(answerTitle.value == '' ){
+				alert('제목을 입력해주세요');
+				$('#answerTitle').focus();
+				return;
+			}
+			
+
+			if(confirm('작성 하시겠습니까?')){
+					
+				return $('#answer').submit();
+			}else{
+				return false;
+			}
+			
+		})
+	
+	</script>
 </body>
 </html>

@@ -126,7 +126,9 @@ public class EchoHandler extends TextWebSocketHandler {
     private String getName(WebSocketSession session) {
 		
 		MemberVO memberVO = chatService.getMemberInfo(session.getPrincipal().getName());
-		
+		if(memberVO.getM_authority().equals("관리자")) {
+			memberVO.setM_name("상승몰 관리자");
+		}
 		return memberVO.getM_name();
 	}
 

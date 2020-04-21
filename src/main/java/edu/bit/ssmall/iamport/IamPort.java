@@ -70,7 +70,7 @@ public class IamPort {
        
          
         restTemplate.setErrorHandler(new RestTemplateErrorHandler()); //400페이지 에러 안뜨게 할수있음 
-        //coronaVO = restTemplate.getForObject(HOST +"/storesByAddr/json?address="+address,CoronaVO.class);         
+               
         paymentInfoVO = restTemplate.getForObject(HOST + "/payments/" + imp_uid + "?_token=" + token , PaymentInfoVO.class); 
 		
             
@@ -108,7 +108,7 @@ public class IamPort {
         
        
         restTemplate.setErrorHandler(new RestTemplateErrorHandler()); //400페이지 에러 안뜨게 할수있음 
-        //coronaVO = restTemplate.getForObject(HOST +"/storesByAddr/json?address="+address,CoronaVO.class);         
+                
         iamPortCancelVO = restTemplate.postForObject(HOST + "/payments/cancel" , body, IamPortCancelVO.class); 
        
         System.out.println(iamPortCancelVO);

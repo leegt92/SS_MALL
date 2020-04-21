@@ -1,6 +1,7 @@
 package edu.bit.ssmall.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import edu.bit.ssmall.service.RegisterService;
 import edu.bit.ssmall.vo.CartViewVO;
 import edu.bit.ssmall.vo.MemberVO;
 import edu.bit.ssmall.vo.ProductImageVO;
+import oracle.sql.TIMESTAMP;
 
 //구매관련 컨트롤러
 @Controller
@@ -46,7 +48,9 @@ public class BuyController {
 		String amount = request.getParameter("b_amount"); //구매수량
 		String p_number = request.getParameter("p_number"); //상품번호
 		System.out.println("p_number : "+p_number);
+
 		System.out.println("amount : "+amount);
+
 		//구매버튼 누르면 주문에 필요한 정보를 담아서 넘겨야한다.
 		//몇개를 살지 넘어올것이고, 해당 p_number가 넘어올것 
 		//해당 p_number를 가지고 상품 정보를 빼낸다.
@@ -67,7 +71,7 @@ public class BuyController {
 
 		return "Buy/buyView"; 
 	}
-
+	
 	@ResponseBody
 	@RequestMapping(value = "pointInfo", method = { RequestMethod.POST, RequestMethod.GET})
 	public MemberVO pointInfo(Principal principal) throws Exception {
@@ -126,7 +130,9 @@ public class BuyController {
 			
 			String totalprice = (String) session.getAttribute("price");
 			String amount = (String) session.getAttribute("amount");
-	
+			
+			
+			
 			buyService.buy(Integer.toString(memberVO.getM_number()), Integer.toString(productImageVO.getP_number()), amount, totalprice, imp_uid, b_memo, b_name, b_phonenum, b_addr, Integer.parseInt(usePoint));
 			//포인트사용
 			buyService.minusPoint(memberVO.getM_number(), Integer.parseInt(usePoint));

@@ -19,7 +19,7 @@
 %>
 <head>
 
-<title>Product Detail</title>
+<title>SS_MALL</title>
 <!-- <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script> -->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
@@ -30,8 +30,8 @@
 <link rel="stylesheet" type="text/css"
 	href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="fonts/iconic/css/material-design-iconic-font.min.css">
@@ -65,9 +65,31 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script><!-- alert버튼대체제 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!--===============================================================================================-->
-<style type="text/css">
+<!-- 장바구니에 물건을 담았을때, 장바구니에 담겼음을 알리기 위한 세션. 로그인한 상태에서도
+비 로그인한 상태에서도 둘 다 뜨게 하기 위해 세션을 썻다. 장바구니에 담기를 클릭하지 않은 상태에서는
+QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담기를 클릭했을경우
+로그인된 상태에서는 바로 장바구니에 담기게 되고, 담길 때 세션이 생성되므로 해당 alert이 뜬다.
+비 로그인 상태에서는 시큐리티에 의해 로그인창으로 이동 후 로그인에 성공하면 장바구니에 담기고, 담긴 후
+세션이 생성되므로 alert이 실행된다. -->
+<c:choose>
+		<c:when test="${QuickAddCart eq '성공'}">
+			<script>
+				alert("장바구니에 담겼습니다!");
+			</script>
+			<%
+				session.removeAttribute("QuickAddCart");
+			%>
+		</c:when>
+	</c:choose>
 
+<style type="text/css">
+	div#ck_content img {
+		width:60%;
+		max-width:400px; 
+		height:auto;	
+	}
 /* .cArea{
 	border: 2px solid;
 	padding: 5px;
@@ -158,11 +180,11 @@
 		}
  
 		@media screen and (min-width: 768px) { 
-		        .modal:before {
-		                display: inline-block;
-		                vertical-align: middle;
-		                content: " ";
-		                height: 100%;
+		 .modal:before {
+		        display: inline-block;
+		        vertical-align: middle;
+		        content: " ";
+		        height: 100%;
 		        }
 		}
 		.modal-dialog {
@@ -171,16 +193,39 @@
 		        vertical-align: middle;
 		}
 		
-		
-		       
 </style>
 <style>
+
 .DetailTable{
 		font-size:15px;
 		width:"200";
 
 
 	}
+</style>
+<style>
+/* 상품소감에 별표주기 */
+.starR1{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1.on{background-position:0 0;}
+.starR2.on{background-position:-15px 0;}
+
 </style>
 
 <script>	    	    	
@@ -200,44 +245,45 @@
 	    			 console.log(data);
 	    			 $.each(data, function(key, data){
 	    				 
-	    				 tag = tag+ "<p>";
-	    				 tag = tag+ "<span class='gallery_lv' style='margin-right: 10px;'>"+"작성자 : "+data.m_id+"</span>";
-	    				 tag = tag+ "<span class='date'>"+"작성날짜 : "+data.bdate+"</span>";												
-	    				 tag = tag+ "</p>";
-	    				 tag = tag+ "<div class='row p-b-25'>"; <!-- class="container" -->
-	    				 tag = tag+ "<div class='col-sm-6 p-b-5'>";
-	    				 tag = tag+ "<label class='stext-102 cl3' for='name'></label>";//Title
-	    				 tag = tag+ "<input readonly class='size-111 bor8 stext-102 cl2 p-lr-20' type='hidden' id='btitle' name='btitle' value='"+data.btitle+"'>";
-	    				 tag = tag+ "</div>";							
-	    				 tag = tag+ "<div class='col-12 p-b-5'>";
-	    				 tag = tag+ "<label class='stext-102 cl3' for='review'>Review</label>";
-	    				 tag = tag+ "<textarea readonly class='size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10' style='resize: none;' id='bcontent' name='bcontent'>"+data.bcontent+"</textarea>";
-	    				 tag = tag+ "</div>";
-	    				 tag = tag+ "</div>";
-	    				 
-	    				 tag = tag+ "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
-							tag = tag+ "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>";
-							tag = tag+ "<input type='hidden' id = 'bstep_"+data.bid+"' name='bstep' value='"+data.bstep+"'>";/* 대댓글의 세로단을 위한 인자 */
-							tag = tag+ "<input type='hidden' id = 'bindent_"+data.bid+"' name='bindent' value='"+data.bindent+"'>";/* 대댓글의 가로단을 위한 인자 */
-							tag = tag+ "<input type='hidden' id = 'm_number' name='m_number' value='"+data.m_number+"'>";/* 회원번호.글 수정 삭제시 본인만 가능하게 하기 위해 */
-							tag = tag+ "<input type='hidden' id = 'm_id' name='m_id' value='"+data.m_id+"'>";									
-							tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
-							tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
-							tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";	
-							/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. */
-							tag = tag + "<sec:authorize access='hasRole("USER")'>";												
-							tag = tag + "<p class='text-success' style='font-weight:bold; font-size: 1.5em;'></p>";
-							/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
-							tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
-							tag = tag + "<button style='margin-right:10px; margin-left:10px; color:gray;' type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"삭제 "+"</button>";
-							tag = tag + "<button style='color:gray;' type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"수정"+"</button>";
-							/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
-							tag = tag + "</sec:authorize>";																									
-	/* 						tag = tag + "</p>"; */
-							tag = tag + "</form>";
+						tag = tag + "<div class='container'> "
+	    				tag = tag + "<div style=' border: 1px solid #e6e6e6;'>";
+	    				tag = tag + "<div style='margin-bottom : 10px; margin-left : 10px;'><strong><br>&nbsp;작성자 : "+data.m_id+"&nbsp;</strong>";
+	    				tag = tag + "<strong>작성날짜 : "+data.bdate+"</strong><br>";															 
+	    				tag = tag + "<hr><div id='ck_content'>"+data.bcontent+"</div></div>";
+	    			 	tag = tag + "<form role='form' method='post' autocomplete='off' id='form_'"+data.bid+"'>";
+						tag = tag + "<input type='hidden' id = 'p_number' name='p_number' value='"+data.p_number+"'>";
+						tag = tag + "<input type='hidden' id = 'bstep_"+data.bid+"' name='bstep' value='"+data.bstep+"'>";/* 대댓글의 세로단을 위한 인자 */
+						tag = tag + "<input type='hidden' id = 'bindent_"+data.bid+"' name='bindent' value='"+data.bindent+"'>";/* 대댓글의 가로단을 위한 인자 */
+						tag = tag + "<input type='hidden' id = 'm_number' name='m_number' value='"+data.m_number+"'>";/* 회원번호.글 수정 삭제시 본인만 가능하게 하기 위해 */
+						tag = tag + "<input type='hidden' id = 'm_id' name='m_id' value='"+data.m_id+"'>";									
+						tag = tag + "<input type='hidden' id = parentBid value='"+data.bid+"'name='"+data.bid+"'>";
+						tag = tag + "<input type='hidden' value='"+data.btitle+"' name='btitle'>";
+						tag = tag + "<input type='hidden' value='"+data.bcontent+"' name='bcontent'>";
+						tag = tag + "<input type='hidden' value='"+data.btotalrepot+"' name='btotalrepot'>";//리폿당한 횟수
+						tag = tag + "<input type='hidden' value='"+data.brepotid1+"' name='btotalrepot'>";//리폿한 사용자1의 member number
+						tag = tag + "<input type='hidden' value='"+data.brepotid2+"' name='btotalrepot'>";//리폿한 사용자2의 member number
+
+						/* tag = tag + "<p>현재 로그인한 아이디 principal_m_id:'${principal_m_id}'</p>";
+						tag = tag + "<p>글에 저장된 아이디 data.m_id:"+data.m_id+"</p>"; */
+						/* 로그인 되어있을때, 그 m_number가 댓글에 저장되어 있는 m_number와 같을때 수정 삭제 버튼이 나타나도록 함 */
+						
+						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. 신고버튼만 보이게 변경*/
+						tag = tag + "<sec:authorize access='hasRole("USER")'>";
+						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
+						tag = tag + "&nbsp;<button class='btn btn-info '  type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"<i class='fas fa-pencil-alt'></i> 수정</button>";
+						tag = tag + "&nbsp;<button class='btn btn-danger '  type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='fas fa-ban'></i> 신고</button></div>";
+						/* tag = tag + "<button type = 'button' id = reply_reply name = 'reply_reply' value='"+data.bid+"'>"+"댓글"+"</button>"; 대댓글을 위한 버튼*/
+						tag = tag + "</sec:authorize>";	
+						tag = tag + "<sec:authorize access='isAnonymous()'>";
+						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-danger'  type='button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='i class='fas fa-ban'></i> 신고</button></div>";
+						tag = tag + "</sec:authorize>";	
+	/* 					tag = tag + "</p>"; */
+						tag = tag + "</form>";
+						tag = tag+ "</div></div><br>"
+							
     				 
 	    			 });
-	    			 $("section.reply_ajax ol").html(tag);
+	    			 $("section.reply_ajax").html(tag);
     				 console.log("html탐");
 	    			 
 	    		 },
@@ -543,8 +589,6 @@
 									value="${productDetail.p_price}" pattern="###,###,###" />원
 							</span>
 
-							<p class="stext-102 cl3 p-t-23">
-								${productDetail.p_description}</p>
 						</c:forEach>
 
 						<!--  -->
@@ -621,8 +665,11 @@
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next" style="width: 500px">
 									<form:form role="form" method="post" id="buyForm" >
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10" >					
+										<span class="label-input100">수량</span>
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">					
+											
 											<input type="hidden" name="p_number" value="${productNum.p_number}">
+											
 											<div id="minus" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
@@ -631,8 +678,10 @@
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
+											<div>
 											<span class="label-input100">최종가격</span>
 											<input id="finalPrice" type="text" class="form-control m-3" style="width: 50%;" value="0" readonly>
+											</div>
 											<div>
 											<button id="cart" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" type="button" style="float: left;">
 												장바구니
@@ -653,7 +702,7 @@
 							</div>
 						</div>
 
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+						<!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#"
 									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
@@ -672,7 +721,7 @@
 								class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 								data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -689,9 +738,9 @@
 							data-toggle="tab" href="#description" role="tab">Description
 								상품설명 설명</a></li>
 
-						<li class="nav-item p-b-10"><a class="nav-link"
+						<!-- <li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#information" role="tab">Additional
-								information상세정보. 크기 길이 등</a></li>
+								information상세정보. 크기 길이 등</a></li> -->
 						<li class="nav-item p-b-10"><a class="nav-link"
 							data-toggle="tab" href="#reviews" role="tab">Reviews</a></li>
 
@@ -702,8 +751,11 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description"
 							role="tabpanel">
-							<div class="how-pos2 p-lr-15-md">
-								<p class="stext-102 cl6">상품설명</p>
+							<div class="how-pos2 p-lr-15-md" style="overflow:auto;">
+								<div style="text-align: center;">${productDetail[0].p_description}</div>
+								<%-- <c:forEach items="${productDetail}" var="productDetail">
+								<p>${productDetail.p_description}</p>
+								</c:forEach> --%>
 							</div>
 						</div>
 
@@ -745,17 +797,13 @@
 																			
 <!-- ----------------------------------------------------구매감상 게시판----------------------------------------------------------------- -->
 																												
-										<div class="container">
+										
 											<sec:authorize access="isAnonymous()">												
 												<!-- <p style="font-weight: bold; font-size: 1.5em;">isAnonymous</p> -->
-												<button type="button" id="btn_collapse_notLogin"class="btn btn-info">구매후기 작성</button>
+
+												<button type="button" id="btn_collapse_notLogin"class="btn btn-info m-3" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
 											</sec:authorize>
-															
-											<sec:authorize access="hasRole('USER')">												
-												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
-												<p>principal_m_id:"${principal_m_id}"</p> --%>
-												<button style='color:gray;' type = 'button' id = "write" name = "write"></button>
-											</sec:authorize>
+									
 											<%-- 콜햅스 원본버튼. 모달로 바꿔보기 위해 주석처리함.
 											<sec:authorize access="hasRole('USER')">콜햅스원본												
 												<p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
@@ -763,10 +811,10 @@
 												<button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button>
 											</sec:authorize> --%>
 											
-											<sec:authorize access="hasRole('USER')">
+											<sec:authorize access="hasAnyRole('USER, ADMIN')">
 												<%-- <p class="text-success" style="font-weight:bold; font-size: 1.5em;"><%=name%>님</p>
 												<p>principal_m_id:"${principal_m_id}"</p> --%>
-												<button type="button" class="btn btn-info" id="writeModalBtn">구매후기 작성</button>
+												<button type="button" class="btn btn-dark" id="writeModalBtn" style="margin-bottom: 20px; margin-left: 15px;"><i class="fas fa-user-edit"></i> 구매후기 작성</button>
 											</sec:authorize>
 																																	
 											<!-- <button type="button" class="btn btn-info"data-toggle="collapse" data-target="#demo">구매후기 작성</button> -->
@@ -836,8 +884,9 @@
 														
 														
 														 <script>
-															$("#btn_collapse_notLogin").click(function(){
+															/* $("#btn_collapse_notLogin").click(function(){
 																console.log("btn_collapse_notLogin 버튼이벤트 탐");
+												
 																Swal.fire({
 																	title:'글쓰기',
 																	text:'로그인 후 이용 가능합니다.',
@@ -851,11 +900,21 @@
 																		location.href="productDetailLogin?p_number=${productNum.p_number}";
 																	}
 																})
-																/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
-															})
+																/* location.href="productDetailLogin?p_number=${productNum.p_number}"; 
+															})*/
 															
 															$("#writeModalBtn").click(function(){
-																$('#writeModal').modal();																
+																/* console.log("checkBuyList확인1");
+																console.log(${checkBuyList});
+																console.log("checkBuyList확인2"); */
+
+																if(${checkBuyList}!="0"){
+																	//alert("${checkBuyList}!=0 즉 구매한 상품");
+
+																	$('#writeModal').modal();
+																}else{
+																alert("구입 후 이용하실수 있습니다.");
+																}
 															})
 															
 															
@@ -933,12 +992,10 @@
 														
 													</form>																									
 												</div>									
-											</div>																																											
+																																																					
 															<!-- 댓글 출력  -->
 									<section class="reply_ajax">
-										<ol>
-										
-										</ol>									
+																		
 									</section>
 									<!-- <div class="reply_ajax" id="reply_ajax" > -->
 
@@ -1140,9 +1197,9 @@
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25"> 상품 짤막설명? </span> <span
-				class="stext-107 cl6 p-lr-25"> Categories: Jacket, Men 카테고리나
-				등등 </span>
+			<span class="stext-107 cl6 p-lr-25">인기상품</span> <span
+				class="stext-107 cl6 p-lr-25"> SSMALL
+				</span>
 		</div>
 	</section>
 
@@ -1151,9 +1208,9 @@
 	<section class="sec-relate-product bg0 p-t-45 p-b-105">
 		<div class="container">
 			<div class="p-b-45">
-				<h3 class="ltext-106 cl5 txt-center">
+				<!-- <h3 class="ltext-106 cl5 txt-center">
 					Related Products 관련상품 혹은 인기상품<br /> p_amount 높은순정렬했음.
-				</h3>
+				</h3> -->
 			</div>
 
 			<!-- Slide2 -->
@@ -1165,10 +1222,10 @@
 							<div class="block2">
 								<div class="block2-pic hov-img0">
 									<img src="productimage/${productAmount.i_name}"
-										alt="IMG-PRODUCT" width="300" height="300"> <a
+										alt="IMG-PRODUCT" width="300" height="300"> <%-- <a
 										href="productDetail?p_number=${product.p_number}"
 										class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Quick View </a>
+										Quick View </a> --%>
 								</div>
 
 								<div class="block2-txt flex-w flex-t p-t-14">
@@ -1181,7 +1238,7 @@
 										</span>
 									</div>
 
-									<div class="block2-txt-child2 flex-r p-t-3">
+									<!-- <div class="block2-txt-child2 flex-r p-t-3">
 										<a href="#"
 											class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 											<img class="icon-heart1 dis-block trans-04"
@@ -1189,7 +1246,7 @@
 											class="icon-heart2 dis-block trans-04 ab-t-l"
 											src="images/icons/icon-heart-02.png" alt="ICON">
 										</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -1264,17 +1321,17 @@
 					<div class="p-t-10">			
 						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
 									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-										<i class="fa fa-facebook"></i>
+										<i class="fab fa-facebook"></i>
 									</a>
 					
 						
 							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-instagram"></i>
+								<i class="fab fa-instagram"></i>
 							</a>
 					
 					
 							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-twitter"></i>
+								<i class="fab fa-twitter"></i>
 							</a>
 						</div>
 					</div>
@@ -1461,8 +1518,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</div>
 							</div>
 
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+							<!-- 구매하기 밑 좋아요버튼들 -->
+							<!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m bor9 p-r-10 m-r-11">
 									<a href="#"
 										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
@@ -1481,7 +1538,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
 									data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1595,13 +1652,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 	
 
-	   <!-- 모달 -->
+	 <%--   <!-- 모달 -->
 	<div class="modal fade" id="modal">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="position:relative;width:800px; height:500px; right:150px;">
 				<!-- header -->
 				<div class="modal-header">
 					<!-- 닫기(x) 버튼 -->
@@ -1612,14 +1669,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				<!-- body -->
 				<div class="modal-body">
 					<form id="modalForm" name="modalForm" action="modifyReply2" method="post">
-						<input id="bid" type="hidden" name="bid">
+						<input id="bidUpdate" type="hidden" name="bid">
 						<input id="check" type="hidden" name="check" value="modal1">
-						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
-						<p>제목</p>
-						<input type="hidden"name="btitle" id="btitle" size="50" style="border:1px solid gray" value="btitlehidden"><br>
+						<input id="p_numberUpdate" type="hidden" name="p_number" value="${productNum.p_number}">
+						<input type="hidden"name="btitle" id="btitleUpdate" size="50" style="border:1px solid gray" value="btitlehidden"><br>
+<<<<<<< HEAD
 						<p>내용</p>
-						<textarea name="bcontent" rows="10" cols="52" style="border:1px solid gray"></textarea>
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52"  style="border:1px solid gray; resize:none;"></textarea>
 						<input type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
+=======
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="10" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<div align="center">
+						<input class="btn btn-secondary m-1" type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
+						</div>
+>>>>>>> origin/dev_jiheon
 					</form>
 				</div>
 				<!-- Footer -->
@@ -1631,82 +1694,167 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</div>
+	 --%>
+	<div class="modal fade" id="modal">
+		<div class="modal-dialog">
+			<div class="modal-content" style="position:relative;width:800px; height:500px; right:150px; margin:0px; padding:0px;">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- header title -->
+					<h4 class="modal-title">수정</h4>
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" id = "Xbutton" class="close" data-dismiss="modal">×</button>
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<form id="modalForm" name="modalForm" action="modifyReply2" method="post">
+						<input id="bidUpdate" type="hidden" name="bid">
+						<input id="check" type="hidden" name="check" value="modal1">
+						<input id="p_numberUpdate" type="hidden" name="p_number" value="${productNum.p_number}">
+						<input type="hidden"name="btitle" id="btitleUpdate" size="50" style="border:1px solid gray" value="btitlehidden">
+						<textarea name="bcontent" id="bcontentImageUpdate" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
+						<div align="center">
+						<input class="btn btn-secondary m-1" type="button" id = "modalSubmit" type="submit" data-dismiss="modal" value="입력">
+						</div>
+					</form>
+				</div>	
+			</div>
+		</div>
+	</div>
 	
 	<div class="modal fade" id="writeModal">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="position:relative;width:800px; height:500px; right:150px;">
 				<!-- header -->
 				<div class="modal-header">
 					<!-- header title -->
 					<h4 class="modal-title">작성</h4>
 					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- <button type="button" id = "Xbutton" class="close" data-dismiss="modal">×</button> -->
 				</div>
 				<!-- body -->
-				<div class="modal-body">
+				<div class="modal-body" >
 					<form id="writeModalForm" name="writeModalForm" action="product_Write_reply" method="post">
 						<input type="hidden" id="m_number" value="${principal_m_number}" name="m_number">
-						<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" />
+						<input type="hidden" id="m_id" value="${principal_m_id}" name="m_id" >
 						<input id="p_number" type="hidden" name="p_number" value="${productNum.p_number}">
-						<!-- <p>제목</p> -->
-						<input type="hidden"name="btitle" id="btitle" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden"><br>
-						<p>Review</p>
-						<textarea name="bcontent" id="bcontent" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray; resize:none;"></textarea>
-						<div align="right">
-						<input type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value="작성">
+						<input type="hidden"name="btitle" id="btitleWrite" class="writeBtitle" size="50" style="border:1px solid gray" value="btitehidden">
+						<textarea name="bcontent" id="bcontentImage" class="writeBcontent" rows="8" cols="52" style="border:1px solid gray;"></textarea>
+						<div align="center">
+						<input class="btn btn-secondary m-1" type="button" id = "modalWriteSubmit" name="modalWriteSubmit" type="submit" data-dismiss="modal" value=" 작성  ">
 						</div>
 					</form>
 				</div>					
 			</div>
 				<!-- Footer -->
-				<div class="modal-footer">
+				<!-- <div class="modal-footer">
 					
-					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 
-				</div>
+				</div> -->
 		</div>
 	</div>
-	
 
-
+<!-- 글 작성시 이미지 삽입을 위한 CKEDITOR 스크립트 -->
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bcontentImage',{extraPlugins : 'confighelper',
+				disallowedContent : 'img{width,height}',
+				height:'270px',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+					
+			});
+		});
+	</script>
+<!-- 이미지를 포함한 글 수정을 위한 CKEDITOR 스크립트 -->
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bcontentImageUpdate',{extraPlugins : 'confighelper',
+				height:'270px',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+					
+			});
+		});
+	</script>
+<!-- <script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bcontentShow',{extraPlugins : 'confighelper',
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/mine/imageUpload.do?${_csrf.parameterName}=${_csrf.token}'
+					
+			});
+		});
+		
+</script> -->
 
 								<script>
 									//수정modal창에서 수정확인 버튼을 눌럿을때,DB에서 값이 수정되고 난 후 화면(리스트)를 다시 갱신하는 스크립트.
 									$(function(){
 										$(document).on("click","#modalSubmit",function(){
-											/* alert("확인"); */
-											var queryString = $("form[name=modalForm]").serialize();
-											console.log(queryString);
+											console.log("modalSubmit(수정) 스크립트 탔음.");
+											var value = CKEDITOR.instances["bcontentImageUpdate"].getData();
+											
+											var data = {
+													bid : $("#bidUpdate").attr("value"),
+													p_number : $("#p_numberUpdate").attr("value"),
+													btitle : $("#btitleUpdate").attr("value"),
+													bcontent : value
+												};
+											console.log(data);
+											
 											$.ajax({
 												method:"get",
 												url:"/ssmall/modifyReply2",
-												data:queryString,
-												error:function(xhr,status,error){
-													alert(error);
-												},
-												success:function(){
-													replyList();
-												},
-											});												
-											})
-										})
-										//글쓰기 모달버전
-										$(function(){
-										$(document).on("click","#modalWriteSubmit",function(){
-											/* alert("확인"); */
-											var queryString = $("form[name=writeModalForm]").serialize();
-											console.log(queryString);
-											$.ajax({
-												method:"get",
-												url:"/ssmall/product_Write_reply",
-												data:queryString,
+												data:data,
 												error:function(xhr,status,error){
 													alert("에러");
 												},
 												success:function(){
 													replyList();
+													CKEDITOR.instances["bcontentImageUpdate"].setData("");
+												},
+											});												
+											})
+										})
+										
+										//X버튼 누르면(글쓰기 취소하면) 취소 전에 적었던 글자들 사라짐.초기화.
+										$(function(){
+										$(document).on("click","#Xbutton",function(){
+											CKEDITOR.instances["bcontentImage"].setData("");
+										})
+										})
+										
+										//글쓰기 모달버전
+										$(function(){
+										$(document).on("click","#modalWriteSubmit",function(){
+											console.log("modalWriteSubmit 스크립트 탔음.");
+											var value = CKEDITOR.instances["bcontentImage"].getData();
+
+											/* alert("확인"); */
+											/* var queryString = $("form[name=writeModalForm]").serialize();
+											console.log(queryString); */
+											
+											var data = {
+													m_number : $("#m_number").attr("value"),
+													m_id : $("#m_id").attr("value"),
+													p_number : $("#p_number").attr("value"),
+													btitle : $("#btitleWrite").attr("value"),
+													bcontent : value
+												};
+											
+											$.ajax({
+												method:"get",
+												url:"/ssmall/product_Write_reply",
+												/* data:queryString, */
+												data:data,
+												error:function(xhr,status,error){
+													alert("에러");
+												},
+												success:function(){
+													replyList();
+													CKEDITOR.instances["bcontentImage"].setData("");
+													/* $("#bcontentImage").val("");
 													$(".writeBtitle").val("");
-													$(".writeBcontent").val("");
+													$(".writeBcontent").val(""); */
 													
 												},
 											});												
@@ -1768,7 +1916,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 												   success : function(result){
 													 if(result == 1){
 														 console.log("result=1. 삭제완료 후 갱신");
-														 alert("삭제되었습니다.");
 													     replyList();
 													 }
 													 else{
@@ -1787,7 +1934,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											 
 											 $("#btn_collapse_notLogin").click(function(){
 													console.log("btn_collapse_notLogin 버튼이벤트 탐");
-													Swal.fire({
+													alert("로그인이 필요한 서비스 입니다.");
+													location.href="productDetailLogin?p_number=${productNum.p_number}";
+													/* var result = confirm("로그인이 필요한 서비스 입니다");
+													if(result){
+													    location.href="productDetailLogin?p_number=${productNum.p_number}";
+													}else{
+														
+													} */
+													/* Swal.fire({
 														title:'글쓰기',
 														text:'로그인 후 이용 가능합니다.',
 														type:'warning',
@@ -1799,18 +1954,51 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 														if(result.value){
 															location.href="productDetailLogin?p_number=${productNum.p_number}";
 														}
-													})
+													}) */
 													/* location.href="productDetailLogin?p_number=${productNum.p_number}"; */
 												})
 												
-												$("#writeModalBtn").click(function(){
+												/* $("#writeModalBtn").click(function(){
 													$('#writeModal').modal();																
-												})	 
+												}) */	 
 											 
 											 
 										$(document).on("click", "#deleteBoard", function(){
 											  /* alert($(this).attr("value")); */
-											Swal.fire({
+											var result = confirm("글을 지우시겠습니까?");
+											if(result){
+													var m_number = $("#m_number").val();
+													  console.log("m_number : "+m_number);
+													  console.log("딜리트보드 밑 m_number 옮기기");
+													  var data = {
+															  bid : $(this).attr("value"),
+															  m_number : m_number											  
+													  };											  											  
+													  $.ajax({
+													   url : "/ssmall/deleteReply",
+													   type : "get",
+													   data : data,
+													   success : function(result){
+														 if(result == 1){
+														    console.log("result1. repot<3 삭제완료 후 갱신");
+															alert("삭제되었습니다.");
+															replyList();
+														 }
+														 else if(result ==0){
+															 console.log("result=0. 삭제 실패");
+															 alert("작성자만 삭제 가능합니다.");
+														     replyList();
+														 }else if(result ==2){
+															 console.log("result2 repot>3. 신고횟수3회이상 삭제불가");
+															 alert("신고로 인해 삭제할 수 없습니다.");
+														 }
+													   }
+													  });
+												}
+											else{
+												
+											}
+											/* Swal.fire({
 												title:'글 삭제',
 												text:'글을 지우시겠습니까?',
 												type:'warning',
@@ -1818,7 +2006,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 												confirmButtonColor:'#3085d6',
 												cancelButtonColor:'#d33',
 												confirmButtonText:'OK'
-											}).then((result)=>{
+											}).then((result)=>{ 
 												if(result.value){
 													var m_number = $("#m_number").val();
 													  console.log("m_number : "+m_number);
@@ -1845,10 +2033,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 													   }
 													  });
 												}
-											}) 
+											}) */ 
 										})
 										
 											$(function(){
+												var bcontent = null;
 											    $(document).on("click","#modify",function(){
 											    	var bid = $(this).attr("value");
 											    	var data = {
@@ -1863,11 +2052,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 																/* alert("유저인증 확인"); */
 																console.log("모달스크립트");
 														    	/* alert(data.bid); */
+
 														        $('#modal').modal();
-														    	$('#bid').val(data.bid);	
+														    	$('#bidUpdate').val(data.bid);
+														    	
+
 															}
-															else{
-																Swal.fire('글 수정','작성자만 가능합니다','error');
+															else if(result == 0){
+																alert("작성자만 수정 가능합니다.");
+															}
+															else if(result ==2){
+																alert("신고로 인해 수정할 수 없습니다.");
 															}
 														}
 														
@@ -1879,6 +2074,47 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											    $(document).on("click","#write",function(){
 											    	$('#writeModal').modal();											    	
 											    												    											    											    											    	
+											    })
+											})
+											//신고하기 버튼 누를 시 글의 btotalrepot 이 1 증가함.
+											$(function(){
+											    $(document).on("click","#report",function(){
+											    	var bid = $(this).attr("value");
+											    	var data = {
+											    			bid : bid											    			
+											    	};
+													$.ajax({
+														url:"/ssmall/report",
+														type:"get",
+														data:data,
+														success:function(result){
+															if(result==0){
+																alert("신고하였습니다.");
+																console.log("컨트롤러 report 탄 후 글목록 재구축");
+																replyList();
+															}
+															else if(result==1){
+																alert("중복신고 입니다.");
+																replyList();
+															}
+															else if(result==2){
+																alert("자신의 글은 신고할 수 없습니다.");
+																replyList();
+															}
+															else if(result==3){
+																alert("이미 삭제처리된 댓글입니다.");
+																replyList();
+															}
+															else if(result==4){
+																alert("로그인 후 사용 가능합니다.");
+																location.href="productDetailLogin?p_number=${productNum.p_number}";
+															}
+														},
+														error:function(xhr,status,error){
+															alert("에러");
+														},
+														
+													})											    											    											    	
 											    })
 											})
 											
@@ -2136,8 +2372,27 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$(document).on("click","#cart",function(){
 			console.log("장바구니 버튼 클릭함");
 			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+				alert("구매수량을 입력해 주세요");
+				//Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+			}else if(${principal_m_number} == ""){
+				alert("로그인 후 이용가능합니다.");
+				window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				//location.href='/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+				/* Swal.fire({
+					title:'장바구니',
+					text:'로그인 후 이용 가능합니다.',
+					type:'warning',
+					showCancelButton: true,
+					confirmButtonColor:'#3085d6',
+					cancelButtonColor:'#d33',
+					confirmButtonText:'Login'
+				}).then((result)=>{
+					if(result.value){
+						window.location.href = '/ssmall/cart/addCart?p_number='+p_number+'&b_amount='+b_amount;
+					}
+				}); */
 			}else if(b_amount!=0){
 				var form = $('#buyForm');
 				console.log(form);
@@ -2153,8 +2408,27 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$(document).on("click","#buy",function(){
 			console.log("구매버튼 클릭함");
 			var b_amount=$("#b_amount").val();
+			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+				alert("구매 수량을 입력해 주세요.");
+				//Swal.fire('구입하기','구매수량을 입력해 주세요','error');
+			}else if(${principal_m_number} == "0"){
+				alert("로그인 후 이용 가능합니다.");
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+				//location.href='/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+				/* Swal.fire({
+					title:'구입하기',
+					text:'로그인 후 이용 가능합니다.',
+					type:'warning',
+					showCancelButton: true,
+					confirmButtonColor:'#3085d6',
+					cancelButtonColor:'#d33',
+					confirmButtonText:'Login'
+				}).then((result)=>{
+					if(result.value){
+						window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+					}
+				}); */
 			}else if(b_amount!=0){
 				var form = $('#buyForm');
 				//var form = $("form[role='form']");

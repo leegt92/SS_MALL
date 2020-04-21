@@ -3,21 +3,33 @@ package edu.bit.ssmall.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import edu.bit.ssmall.vo.BoardVO;
+
 import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+
 import edu.bit.ssmall.vo.ProductVO;
-import edu.bit.ssmall.vo.Product_BuyVO;
 import edu.bit.ssmall.vo.RefundVO;
 
 public interface AdminMapper {
 
+	
+	@Select("select p_number from product where m_id = #{m_id}")
+	public int getP_num(@Param("m_id") String m_id);
+	
+	@Select("select p_name from product where m_id = #{m_id}")
+	public String getP_name(@Param("m_id") String m_id);
+	
+	@Insert("insert into product (p_number,p_name,p_category,p_brand,p_price,p_stock,p_description,p_image, p_amount, p_released_date,p_enabled) values (product_seq.nextval,#{p_name},#{p_category},#{p_brand},#{p_price},#{p_stock},#{p_description},#{p_image},0,sysdate,1)")
+	public void insertProduct(@Param("p_name") String p_name, @Param("p_category") String p_category,@Param("p_brand") String p_brand,
+			@Param("p_price") String p_price, @Param("p_stock") String p_stock, @Param("p_description") String p_description, @Param("p_image")String p_image);
 	
 /*=====================페이징 처리를 위한 카운트 ======================================================================*/
 	@Select("Select count(*) from product")
@@ -35,7 +47,7 @@ public interface AdminMapper {
 	@Select("Select count(*) from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc")
 	public int countSearchMember(String search);
 
-	@Select("Select count(*) from board where btype ='공지사항'")
+	@Select("Select count(*) from board where btype ='공지사항' or btype = '혜택'")
 	public int countNotice();
 
 /*=====================페이징 처리한 select문 쿼리======================================================================*/
@@ -65,7 +77,7 @@ public interface AdminMapper {
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (Select * from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<MemberVO> searchMemberList(@Param("startNum")int startNum, @Param("endNum")int endNum, @Param("search")String search);
 	
-	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where btype='공지사항' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum} ")
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board where btype='공지사항' or btype='혜택' ORDER BY bdate desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum} ")
 	public List<BoardVO> noticeList(@Param("startNum")int startNum,  @Param("endNum")int endNum);
 
 	
@@ -74,7 +86,7 @@ public interface AdminMapper {
 	@Select("Select * from member where m_number = #{m_number}")
 	public MemberVO memberInfo(@Param("m_number")String m_number);
 	
-	@Select("Select * from buy b, product p where b.p_number = p.p_number and b.m_number = #{m_number}")
+	@Select("Select * from buy b, product p where b.p_number = p.p_number and b.m_number = #{m_number} order by b_date desc")
 	public ArrayList<BuyVO> buyList(@Param("m_number")String m_number);
 
 	@Select("Select * from refund r, product p where r.p_number = p.p_number and r.m_number = #{m_number} order by r.r_date desc")
@@ -105,20 +117,20 @@ public interface AdminMapper {
 	@Select("Select * from product where p_number = #{p_number}")
 	public ProductVO productOne(@Param("p_number")String p_number);
 
-	@Update("Update product set p_name = #{p_name} , p_brand = #{p_brand}, p_price = #{p_price}, p_stock = #{p_stock}, p_image = #{originFileName}, p_enabled = #{p_enabled} where p_number = #{p_number}")
+	@Update("Update product set p_name = #{p_name} , p_brand = #{p_brand}, p_price = #{p_price}, p_stock = #{p_stock}, p_description = #{p_description}, p_image = #{originFileName}, p_enabled = #{p_enabled} where p_number = #{p_number}")
 	public void updateProduct(@Param("p_number")String p_number, @Param("p_name")String p_name, @Param("p_brand")String p_brand, @Param("p_price")String p_price, @Param("p_stock")String p_stock,
-			@Param("originFileName")String originFileName, @Param("p_enabled")int p_enabled);
+			@Param("p_description")String p_description, @Param("originFileName")String originFileName, @Param("p_enabled")int p_enabled);
 
 	@Update("Update image set i_name = #{originFileName} where p_number = #{p_number} and i_type = #{i_type} ")
 	public void updateImage(@Param("p_number")String p_number, @Param("originFileName")String originFileName, @Param("i_type")int i_type);
 	
-	@Update("Update product set p_name = #{p_name} , p_brand = #{p_brand}, p_price = #{p_price}, p_stock = #{p_stock}, p_enabled = #{p_enabled} where p_number = #{p_number}")
+	@Update("Update product set p_name = #{p_name} , p_brand = #{p_brand}, p_price = #{p_price}, p_stock = #{p_stock}, p_description = #{p_description}, p_enabled = #{p_enabled} where p_number = #{p_number}")
 	public void updateOnlyProduct(@Param("p_number")String p_number, @Param("p_name")String p_name, @Param("p_brand")String p_brand, @Param("p_price")String p_price, @Param("p_stock")String p_stock,
-			@Param("p_enabled")int p_enabled);
+			@Param("p_description")String p_description, @Param("p_enabled")int p_enabled);
 
 
 	/*===================================AS 1:1문의 처리======================================================================*/	
-	
+
 	@Select("select * from board b, member m where b.m_number = m.m_number and btype='문의/건의' ORDER BY bid desc")
 	public List<Board_MemberVO> getAllAskRequest ();
 	
@@ -137,6 +149,7 @@ public interface AdminMapper {
 	@Select("select count(*) from board b, member m where b.m_number = m.m_number and btype='AS요청'")
 	public int selectASCountBoard();
 	
+
 	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board b join member m using(m_number) where btype='AS요청' and banswered='답변미완료' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
 	public List<Board_MemberVO> selectUnAnsweredASBoardListPage(@Param("startNum") int startNum, @Param("endNum") int endNum);
 	
@@ -178,7 +191,7 @@ public interface AdminMapper {
 	@Select("select count(*) from product p , buy b where p.p_number = b.p_number and p.p_brand = #{p_brand} and b.b_date between TO_DATE(SYSDATE-31) AND TO_DATE(SYSDATE)+0.99999")
 	public int getBrandMonthSales(@Param("p_brand")String p_brand);	
 	
-	@Select("Select DISTINCT p_brand from product order by p_brand asc")
+	@Select("Select DISTINCT p_brand from product where p_enabled = 1 order by p_brand asc")
 	public String[] getBrand();
 	
 	/*===============================================공지사항 ====================================================*/
@@ -186,12 +199,29 @@ public interface AdminMapper {
 	@Select("Select * from board where bid = #{bid}")
 	public BoardVO noticeView(@Param("bid")String bid);
 	
-	@Update("Update board set btitle = #{btitle}, bcontent = #{bcontent} where bid = #{bid}")
-	public void noticeUpdate(@Param("bid")String bid, @Param("btitle")String btitle, @Param("bcontent")String bcontent);
+	@Update("Update board set btitle = #{btitle}, bcontent = #{bcontent}, btype = #{btype}, bdate = sysdate where bid = #{bid}")
+	public void noticeUpdate(@Param("btype")String btype, @Param("bid")String bid, @Param("btitle")String btitle, @Param("bcontent")String bcontent);
 	
-	@Insert("Insert into board(bid,btitle,bname,bdate,bcontent,btype) values(board_seq.nextval, #{btitle}, '관리자', sysdate, #{bcontent}, '공지사항')")
-	public void noticeWrite(@Param("btitle")String btitle,  @Param("bcontent")String bcontent);
+	@Insert("Insert into board(bid,btitle,bname,bdate,bcontent,btype) values(board_seq.nextval, #{btitle}, '관리자', sysdate, #{bcontent}, #{btype})")
+	public void noticeWrite(@Param("btype")String btype, @Param("btitle")String btitle,  @Param("bcontent")String bcontent);
+	
+	@Delete("Delete from board where bid = #{bid}")
+	public void noticeDelete(@Param("bid")String bid);
 
+	
+
+	@Insert("Insert into image(p_number, i_name, i_type) values(#{p_number}, #{originFileName}, #{i_type})")
+	public void productImageUpload(@Param("p_number")int p_number, @Param("originFileName")String originFileName, @Param("i_type")int i_type);
+	
+	@Select("Select p_number from product where p_name = #{p_name}")
+	public int getP_number(String p_name);
+
+	@Select("SELECT * FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM (SELECT * FROM board b join member m using(m_number) where btype='AS요청' ORDER BY bid desc) A )WHERE RNUM >= #{startNum} AND RNUM <= #{endNum}")
+	public List<Board_MemberVO> selectASBoardListPage(@Param("startNum") int startNum, @Param("endNum") int endNum);
+	
+	@Update("Update buy set b_status = #{b_status} where b_number = #{b_number}")
+	public void updateStatus(@Param("b_number")String b_number, @Param("b_status")String b_status);
+	
 	
 
 }

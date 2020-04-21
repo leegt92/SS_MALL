@@ -4,99 +4,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SS_MALL</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
+   <title>SS_MALL</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->   
+   <link rel="icon" type="image/png" href="images/icons/productlogo.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+   <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+   <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+   <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->   
+   <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+   <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+   <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+   <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+   <link rel="stylesheet" type="text/css" href="css/util.css">
+   <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
-	#box {
-	       
-		 	width:965px;
-			height:300px;
-			overflow-y:scroll;
-			overflow-x:scroll;
-			white-space:nowrap;
-			border:1px solid gray;
-			
-	      
-	    }
-	
-   	#box pre{
-        	white-space: pre-wrap;
-        	width:100%;
+   #box {
+          
+          width:965px;
+         height:300px;
+         overflow-y:scroll;
+         overflow-x:scroll;
+         white-space:nowrap;
+         border:1px solid gray;
+         
+         
+       }
+   
+      #box pre{
+           white-space: pre-wrap;
+           width:100%;
        
      } 
      #floating { 
-     	 
-	     position: fixed; 
-	     right: 50%; 
-	     top: 180px; 
-	     margin-right: -690px; 
-	     text-align:reft; 
-	     width: 200px; 
+         
+        position: fixed; 
+        right: 50%; 
+        top: 180px; 
+        margin-right: -690px; 
+        text-align:reft; 
+        width: 200px; 
      }
-	 .color{
-	 	background-color:#F8F8F8;
-	 } 
-	  .color3{
-	 	background-color:#F8F8F8;
-	 } 
-	 
- /* 회사소개 슬라이드 배너 */
-.mcBanC { 
-	border:2px solid gray;
-	width:325px; 
-	height:203px;
- 	overflow:hidden;
-  	position:relative; 
-  	left:300px;
-  }
-.mcBanSlides {
-	 width:325px;
-	 height:203px; 
-	 position:absolute;
- }
-.mcBanSlides li { 
- border:2px solid gray;
-	width:325px; 
-	float:left; 
-}
+    .color{
+       background-color:#F8F8F8;
+    } 
+     .color3{
+       background-color:#F8F8F8;
+    } 
+    
 
-.mcBanDot { 
-	cursor:pointer; 
-	
-	position:absolute; 
-	left:10px;
-	vertical-align: middle;
-}
-.mcBanDot li { 
-	margin:0 3px; 
-	float:left; 
-}
 
 
 
@@ -105,354 +75,349 @@
 </style>
 </head>
 <body class="animsition" background-color="#F8F8F8"><!-- class="animsition" -->
-	
-	<!-- Header -->
-	<header class="header-v4">
-		<!-- Header desktop -->
-		<div class="container-menu-desktop">
-			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">						
-						SSMALL with luxury watches and wallets
-					</div>
+   
+   <!-- Header -->
+   <header class="header-v4">
+      <!-- Header desktop -->
+      <div class="container-menu-desktop">
+         <!-- Topbar -->
+         <div class="top-bar">
+            <div class="content-topbar flex-sb-m h-full container">
+               <div class="left-top-bar">                  
+                  SSMALL with luxury watches and wallets
+               </div>
 
-					<div class="right-top-bar flex-w h-full">
-						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
-							Home
-						</a>
-						
-						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
-							My
-						</a>
-						
-						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
-							Cart
-						</a>
+               <div class="right-top-bar flex-w h-full">
+                  <a href="homeview" class="flex-c-m trans-04 p-lr-25">
+                     Home
+                  </a>
+                  
+                  <a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
+                     My
+                  </a>
+                  
+                  <a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
+                     Cart
+                  </a>
 
-						<a href="boardnoticeView" class="flex-c-m trans-04 p-lr-25">
-							notice
-						</a>					
-					</div>
-				</div>
-			</div>
+                  <a href="boardnoticeView" class="flex-c-m trans-04 p-lr-25">
+                     notice
+                  </a>               
+               </div>
+            </div>
+         </div>
 
-			<div class="wrap-menu-desktop how-shadow1">
-				<nav class="limiter-menu-desktop container">
+         <div class="wrap-menu-desktop how-shadow1">
+            <nav class="limiter-menu-desktop container">
+               
+               <!-- Logo desktop -->      
+               <a href="#" class="logo">
+                  <img src="images/icons/productlogo.png" alt="IMG-LOGO">
+               </a>
+
+               <!-- Menu desktop -->
+               <div class="menu-desktop">
+                  <ul class="main-menu">
+                     <li>
+                        <a href="homeview">홈</a>
+
+                     </li>
+
+                     <li>
+                        <a href="productView">상품</a>
+                     </li>
+   
+                     <li>
+                        <a href="boardnoticeView">공지사항</a>
+                     </li>
+
+                     <li class="active-menu"> 
+                        <a href="companyView">회사소개</a>
+                     </li>
+                     
+                     <li>
+                        <a href="asView">AS</a>
+                     </li>
+                     
+                     <li>
+						<a href="#" onclick="chat();">채팅</a>
+					 </li>
 					
-					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/icons/productlogo.png" alt="IMG-LOGO">
-					</a>
+                  </ul>
+               </div>   
+            </nav>
+         </div>   
+      </div>
 
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-							<li>
-								<a href="homeview">홈</a>
+      <!-- Header Mobile -->
+      <div class="wrap-header-mobile">
+         <!-- Logo moblie -->      
+         <div class="logo-mobile">
+            <a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
+         </div>
 
-							</li>
-
-							<li>
-								<a href="productView">상품</a>
-							</li>
-	
-							<li>
-								<a href="boardnoticeView">공지사항</a>
-							</li>
-
-							<li class="active-menu"> 
-								<a href="companyView">회사소개</a>
-							</li>
-							
-							<li>
-								<a href="asView">AS</a>
-							</li>
-						</ul>
-					</div>	
-				</nav>
-			</div>	
-		</div>
-
-		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
-			<div class="logo-mobile">
-				<a href="homeview"><img src="images/icons/productlogo.png" alt="IMG-LOGO"></a>
-			</div>
-
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</div>
-		</div>
+         <!-- Button show menu -->
+         <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+            <span class="hamburger-box">
+               <span class="hamburger-inner"></span>
+            </span>
+         </div>
+      </div>
 
 
-		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-			
-			<ul class="main-menu-m">
-				<li>
-					<a href="homeview">홈</a>
+      <!-- Menu Mobile -->
+      <div class="menu-mobile">
+         
+         <ul class="main-menu-m">
+            <li>
+               <a href="homeview">홈</a>
 
-				
+            
 
-					<ul class="sub-menu-m">
-						<!-- <li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li> -->
-					</ul>
+               <ul class="sub-menu-m">
+                  <!-- <li><a href="index.html">Homepage 1</a></li>
+                  <li><a href="home-02.html">Homepage 2</a></li>
+                  <li><a href="home-03.html">Homepage 3</a></li> -->
+               </ul>
 
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
-				</li>
+               <span class="arrow-main-menu-m">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+               </span>
+            </li>
 
-				<li>
-					<a href="productView">상품</a>
-				</li>
-				
+            <li>
+               <a href="productView">상품</a>
+            </li>
+            
 
-				<li>
-					<a href="boardnoticeView">공지사항</a>
-				</li>
+            <li>
+               <a href="boardnoticeView">공지사항</a>
+            </li>
 
-				<li>
+            <li>
 
-					<a href="companyView">회사소개</a>				
-				</li>
+               <a href="companyView">회사소개</a>            
+            </li>
 
 
-				<li>
-					<a href="asView">AS</a>
-				</li>
-				
-			</ul>
-		</div>
+            <li>
+               <a href="asView">AS</a>
+            </li>
+            
+            <li>
+				<a href="#" onclick="chat();">채팅</a>
+			</li>
+         </ul>
+      </div>
 
-		
+      
 
 
 
 
 
-	</header> 
+   </header> 
 
-	
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
-				홈
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
+   
+   <!-- breadcrumb -->
+   <div class="container">
+      <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+         <a href="homeview" class="stext-109 cl8 hov-cl1 trans-04">
+            홈
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+         </a>
 
-			<span class="stext-109 cl4">
-				회사소개
-			</span>
-		</div>
-	</div>
-	
-	<!-- 슬라이드 배너 -->
-	<div class="mcBanC">
-       <ul class="mcBanSlides">
-            <li>인기상품</li>
-            <li>AS</li>
-            <li>테스트</li>
-       </ul>
-       <ul class="mcBanDot">
-            <li><img src="/ssmall/images/icons/productlogo.png" width="100"height="100"></li>
-            <li><img src="/ssmall/images/icons/mainlogo.png" width="100"height="100"></li>
-            <li><img src="/ssmall/images/icons/productlogo.png" width="100"height="100"></li>
-        </ul>
-
-</div>
+         <span class="stext-109 cl4">
+            회사소개
+         </span>
+      </div>
+   </div>
+   
+   
 
 
 
 
-	<!-- Content page -->
-	
-	<section class="color"><!-- bg0 p-t-62 p-b-60 -->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-20">
-					<div class="p-r-45 p-r-0-lg">
-						<!-- item blog -->
-					<div id="company" >
-						<div class="p-b-63">
-							<p class="hov-img0 how-pos5-parent"><!-- hov-img0 -->
-								<img src="images/icons/productlogo.png" alt="IMG-BLOG">
-							</p>
-							<hr width="960" color="gray"></hr>
+   <!-- Content page -->
+   
+   <section class="color"><!-- bg0 p-t-62 p-b-60 -->
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-lg-9 p-b-20">
+               <div class="p-r-45 p-r-0-lg">
+                  <!-- item blog -->
+               <div id="company" >
+                  <div class="p-b-63">
+                     <p class="hov-img0 how-pos5-parent"><!-- hov-img0 -->
+                        <img src="images/icons/productlogo.png" alt="IMG-BLOG">
+                     </p>
+                     <hr width="960" color="gray"></hr>
 
-							<div class="p-t-32">
-								<!-- <h4 class="p-b-15"> -->
-									<p class="ltext-108 cl2 trans-04"> <!-- hov-cl1  -->
-										회사소개
-									</p>
-									<hr width="100" color="gray"></hr>
-								<!-- </h4> -->
+                     <div class="p-t-32">
+                        <!-- <h4 class="p-b-15"> -->
+                           <p class="ltext-108 cl2 trans-04"> <!-- hov-cl1  -->
+                              회사소개
+                           </p>
+                           <hr width="100" color="gray"></hr>
+                        <!-- </h4> -->
 
-								<p class="stext-117 cl6">
-									남성 명품 전문 쇼핑몰 상승몰입니다. 저희 회사는 보다 편리하게 구매를 할 수 있게끔 홈페이지를 꾸며 놓았습니다.
-									또한 체계화된 AS로 고객분들의 편리함에 최선을 다하도록 하였습니다. 
-								</p>
+                        <p class="stext-117 cl6">
+                           남성 명품 전문 쇼핑몰 상승몰입니다. 저희 회사는 보다 편리하게 구매를 할 수 있게끔 홈페이지를 꾸며 놓았습니다.
+                           또한 체계화된 AS로 고객분들의 편리함에 최선을 다하도록 하였습니다. 
+                        </p>
 
-								<!-- <div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin  
-											<span class="cl12 m-l-4 m-r-6">|</span>
-										</span>
+                        <!-- <div class="flex-w flex-sb-m p-t-18">
+                           <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+                              <span>
+                                 <span class="cl4">By</span> Admin  
+                                 <span class="cl12 m-l-4 m-r-6">|</span>
+                              </span>
 
-										<span>
-											StreetStyle, Fashion, Couple  
-											<span class="cl12 m-l-4 m-r-6">|</span>
-										</span>
+                              <span>
+                                 StreetStyle, Fashion, Couple  
+                                 <span class="cl12 m-l-4 m-r-6">|</span>
+                              </span>
 
-										<span>
-											8 Comments
-										</span>
-									</span>
+                              <span>
+                                 8 Comments
+                              </span>
+                           </span>
 
-									<a href="blogview2" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-										Continue Reading
+                           <a href="blogview2" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+                              Continue Reading
 
-										<i class="fa fa-long-arrow-right m-l-9"></i>
-									</a>
-								</div> -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>					
-	</div>
+                              <i class="fa fa-long-arrow-right m-l-9"></i>
+                           </a>
+                        </div> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>               
+   </div>
 </section>
 
  <section class="color2">
-	<div id="companylocation">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 m-5 ">
-					<div class="p-r-45 p-r-0-lg">
-						
-						
-						<div class="p-b-63">
-							<p  class="hov-img0 how-pos5-parent">
-								
-								<div id="map" style="width:100%;height:350px;"></div>
-									
-									<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
-									<script>
-											var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-											    mapOption = { 
-											        center: new kakao.maps.LatLng(37.552475,126.937825), // 지도의 중심좌표
-											        level: 3 // 지도의 확대 레벨
-											    };
-											var map = new kakao.maps.Map(mapContainer, mapOption);
-											
-											// 마커가 표시될 위치입니다 
-											var markerPosition  = new kakao.maps.LatLng(37.552475,126.937825); 
+   <div id="companylocation">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-lg-9 m-5 ">
+               <div class="p-r-45 p-r-0-lg">
+                  
+                  
+                  <div class="p-b-63">
+                     <p  class="hov-img0 how-pos5-parent">
+                        
+                        <div id="map" style="width:100%;height:350px;"></div>
+                           
+                           <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624ac9c2319aa06a302fcc79733d72fb"></script>
+                           <script>
+                                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                                     mapOption = { 
+                                         center: new kakao.maps.LatLng(37.552475,126.937825), // 지도의 중심좌표
+                                         level: 3 // 지도의 확대 레벨
+                                     };
+                                 var map = new kakao.maps.Map(mapContainer, mapOption);
+                                 
+                                 // 마커가 표시될 위치입니다 
+                                 var markerPosition  = new kakao.maps.LatLng(37.552475,126.937825); 
 
-											// 마커를 생성합니다
-											var marker = new kakao.maps.Marker({
-											    position: markerPosition
-											});
+                                 // 마커를 생성합니다
+                                 var marker = new kakao.maps.Marker({
+                                     position: markerPosition
+                                 });
 
-											// 마커가 지도 위에 표시되도록 설정합니다
-											marker.setMap(map);
+                                 // 마커가 지도 위에 표시되도록 설정합니다
+                                 marker.setMap(map);
 
-											var iwContent = '<div style="padding:5px;">비트캠프 신촌센터 <br><a href="https://map.kakao.com/link/map/비트캠프 신촌센터,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/비트캠프 신촌센터,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-											    iwPosition = new kakao.maps.LatLng(37.552475,126.937825); //인포윈도우 표시 위치입니다
+                                 var iwContent = '<div style="padding:5px;">비트캠프 신촌센터 <br><a href="https://map.kakao.com/link/map/비트캠프 신촌센터,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/비트캠프 신촌센터,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                                     iwPosition = new kakao.maps.LatLng(37.552475,126.937825); //인포윈도우 표시 위치입니다
 
-											// 인포윈도우를 생성합니다
-											var infowindow = new kakao.maps.InfoWindow({
-											    position : iwPosition, 
-											    content : iwContent 
-											});
-											  
-											// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-											infowindow.open(map, marker); 
-											
-											// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-											var mapTypeControl = new kakao.maps.MapTypeControl();
+                                 // 인포윈도우를 생성합니다
+                                 var infowindow = new kakao.maps.InfoWindow({
+                                     position : iwPosition, 
+                                     content : iwContent 
+                                 });
+                                   
+                                 // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                                 infowindow.open(map, marker); 
+                                 
+                                 // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+                                 var mapTypeControl = new kakao.maps.MapTypeControl();
 
-											// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-											// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-											map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+                                 // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+                                 // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+                                 map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-											// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-											var zoomControl = new kakao.maps.ZoomControl();
-											map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);s
-											
-									</script>
-								<hr width="960" color="gray"></hr>
+                                 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+                                 var zoomControl = new kakao.maps.ZoomControl();
+                                 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);s
+                                 
+                           </script>
+                        <hr width="960" color="gray"></hr>
 
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
-									<span class="ltext-107 cl2 txt-center">
-										18
-									</span>
+                        <div class="flex-col-c-m size-123 bg9 how-pos5">
+                           <span class="ltext-107 cl2 txt-center">
+                              18
+                           </span>
 
-									<span class="stext-109 cl3 txt-center">
-										Jan 2018
-									</span>
-								</div>
-							</p>
+                           <span class="stext-109 cl3 txt-center">
+                              Jan 2018
+                           </span>
+                        </div>
+                     </p>
 
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<p  class="ltext-108 cl2  trans-04">
-										오시는길
-									</p>
-									<hr width="100" color="gray"></hr>
-								</h4>
+                     <div class="p-t-32">
+                        <h4 class="p-b-15">
+                           <p  class="ltext-108 cl2  trans-04">
+                              오시는길
+                           </p>
+                           <hr width="100" color="gray"></hr>
+                        </h4>
 
-								<p class="stext-117 cl6">
-									서울 마포구 백범로 23 구프라자 3층
-								</p>
-								<p class="stext-117 cl6">
-									지번 : 서울 마포구 신수동 63-14 구프라자 3층
-								</p>
+                        <p class="stext-117 cl6">
+                           서울 마포구 백범로 23 구프라자 3층
+                        </p>
+                        <p class="stext-117 cl6">
+                           지번 : 서울 마포구 신수동 63-14 구프라자 3층
+                        </p>
 
-				
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </section> 
 
 
-	<section class="color3"><!-- bg0 p-t-62 p-b-60 -->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 m-5"><!-- p-b-80 -->
-					<div class="p-r-45 p-r-0-lg">
-						<!-- item blog -->
-						<div id="terms">
-						<div class="p-b-63">
-							<a  class="hov-img0 how-pos5-parent">
-								<img src="images/company01.PNG" alt="IMG-BLOG">
-							</a>
-							<hr width="960" color="gray"></hr>
+   <section class="color3"><!-- bg0 p-t-62 p-b-60 -->
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-lg-9 m-5"><!-- p-b-80 -->
+               <div class="p-r-45 p-r-0-lg">
+                  <!-- item blog -->
+                  <div id="terms">
+                  <div class="p-b-63">
+                     <a  class="hov-img0 how-pos5-parent">
+                        <img src="images/company01.PNG" alt="IMG-BLOG">
+                     </a>
+                     <hr width="960" color="gray"></hr>
 
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<p class="ltext-108 cl2 trans-04">
-										상승몰 이용약관
-									</p>
-									<hr width="183" color="gray"></hr>
-								</h4>
-								
+                     <div class="p-t-32">
+                        <h4 class="p-b-15">
+                           <p class="ltext-108 cl2 trans-04">
+                              상승몰 이용약관
+                           </p>
+                           <hr width="183" color="gray"></hr>
+                        </h4>
+                        
 
 <div id="box">
-									
+                           
 <pre>
 제1조(목적)
  이 약관은 oooo 회사(전자상거래 사업자)가 운영하는 oooo 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련
@@ -680,328 +645,276 @@
 </div>
 </div>
 
-							</div>
-						</div>	
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-			
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu">
-						<div class="p-t-55">
-					 <div id="floating">
-							<h4 class="mtext-100 cl2 p-b-33">
-								Categories
-							</h4>
+                     </div>
+                  </div>   
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+         
+            <div class="col-md-4 col-lg-3 p-b-80">
+               <div class="side-menu">
+                  <div class="p-t-55">
+                <div id="floating">
+                     <h4 class="mtext-100 cl2 p-b-33">
+                        Categories
+                     </h4>
 
-							<ul>
-								<li class="bor18">
-									<a href="#company" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										회사소개									
-									</a>
-								</li>
+                     <ul>
+                        <li class="bor18">
+                           <a href="#company" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                              회사소개                           
+                           </a>
+                        </li>
 
-								<li class="bor18">
-									<a href="#companylocation" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4 " >
-										오시는길
-									</a>
-								</li>
+                        <li class="bor18">
+                           <a href="#companylocation" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4 " >
+                              오시는길
+                           </a>
+                        </li>
 
-								<li class="bor18">
-									<a href="#terms" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										이용약관
-									</a>
-								</li>	
-							</ul>	
-						 </div>
-					</div>
-				</div>
-						
-			</div>
-		</div>
-	</div>
-
-
-	<footer class="bg3 p-t-75 p-b-32">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-2 p-b-50">
-					<h4 class="stext-500 cl0 p-b-30">
-						Category
-					</h4>
-
-					<ul>
-						<li class="p-b-10">
-							<a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
-								Watch
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
-								Wallet
-							</a>
-						</li>
-
-					
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-500 cl0 p-b-30">
-						Help
-					</h4>
+                        <li class="bor18">
+                           <a href="#terms" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                              이용약관
+                           </a>
+                        </li>   
+                     </ul>   
+                   </div>
+               </div>
+            </div>
+                  
+         </div>
+      </div>
+   </div>
 
 
-						<p class="stext-130 cl7 size-201">
-							● 대표 전화번호: 02-1234-5678
-						</p>
-						<p class="stext-130 cl7 size-201">
-							● 고객센터 : 1234-5678
-						</p>
-						<p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
-						 	abcdefg@abcdefg.com
-						</a></p>
-						<p class="stext-130 cl7 size-201">
-							● FAQ
-						</p>
-					
-					
-				</div> 
+   <footer class="bg3 p-t-75 p-b-32">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-6 col-lg-2 p-b-50">
+               <h4 class="stext-500 cl0 p-b-30">
+                  Category
+               </h4>
 
-				<div class="col-sm-2 col-lg-50 p-b-40" >
-					<h4 class="stext-500 cl0 p-b-30">
-						Directions
-				 </h4>
-				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
-						
-					
-			</div>
-				
-				<div class="col-sm-2 col-lg-40 p-b-40" >
-					<h4 class="stext-500 cl0 p-b-30">
-						SNS Page
-				 	</h4>
-				 		
-					<div class="p-t-10">			
-						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
-									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-										<i class="fa fa-facebook"></i>
-									</a>
-					
-						
-							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-instagram"></i>
-							</a>
-					
-					
-							<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-								<i class="fa fa-twitter"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-				  <div class="col-sm-6 col-lg-3 p-b-50">
-				  	<img src="images/icons/mainlogo.png" width="500">
-				</div>  
-			</div>
-			
+               <ul>
+                  <li class="p-b-10">
+                     <a href="productViewWatch" class="stext-130 cl7 hov-cl1 trans-04">
+                        Watch
+                     </a>
+                  </li>
 
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
+                  <li class="p-b-10">
+                     <a href="productViewWallet" class="stext-130 cl7 hov-cl1 trans-04">
+                        Wallet
+                     </a>
+                  </li>
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
+               
+               </ul>
+            </div>
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
+            <div class="col-sm-6 col-lg-3 p-b-50">
+               <h4 class="stext-500 cl0 p-b-30">
+                  Help
+               </h4>
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
+                  <p class="stext-130 cl7 size-201">
+                     ● 대표 전화번호: 02-1234-5678
+                  </p>
+                  <p class="stext-130 cl7 size-201">
+                     ● 고객센터 : 1234-5678
+                  </p>
+                  <p class="stext-130 cl7 size-201">● 이메일문의 :<a href="mailto:abcdefg@abcdefg.com" title="이메일 문의"class="stext-130 cl7 size-201">
+                      abcdefg@abcdefg.com
+                  </a></p>
+                  <p class="stext-130 cl7 size-201">
+                     ● FAQ
+                  </p>
+               
+               
+            </div> 
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <div class="col-sm-2 col-lg-50 p-b-40" >
+               <h4 class="stext-500 cl0 p-b-30">
+                  Directions
+             </h4>
+                <button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+                  
+               
+         </div>
+            
+            <div class="col-sm-2 col-lg-40 p-b-40" >
+               <h4 class="stext-500 cl0 p-b-30">
+                  SNS Page
+                </h4>
+                   
+               <div class="p-t-10">         
+                  <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">         
+                           <a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                              <i class="fa fa-facebook"></i>
+                           </a>
+               
+                  
+                     <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fa fa-instagram"></i>
+                     </a>
+               
+               
+                     <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                        <i class="fa fa-twitter"></i>
+                     </a>
+                  </div>
+               </div>
+            </div>
+            
+              <div class="col-sm-6 col-lg-3 p-b-50">
+                 <img src="images/icons/mainlogo.png" width="500">
+            </div>  
+         </div>
+         
+
+         <div class="p-t-40">
+            <div class="flex-c-m flex-w p-b-18">
+               <a href="#" class="m-all-1">
+                  <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+               </a>
+
+               <a href="#" class="m-all-1">
+                  <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+               </a>
+
+               <a href="#" class="m-all-1">
+                  <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+               </a>
+
+               <a href="#" class="m-all-1">
+                  <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+               </a>
+
+               <a href="#" class="m-all-1">
+                  <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+               </a>
+            </div>
+
+            <p class="stext-107 cl6 txt-center">
+               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
-				</p>
-			</div>
-		</div>
-	</footer>
-		
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
-<!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+            </p>
+         </div>
+      </div>
+   </footer>
+      
+   <!-- Back to top -->
+   <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+         <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+   </div>
+<!--===============================================================================================-->   
+   <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+   <script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+   <script src="vendor/bootstrap/js/popper.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
+   <script src="vendor/select2/select2.min.js"></script>
+   <script>
+      $(".js-select2").each(function(){
+         $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
+         });
+      })
+   </script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+   <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
+   <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script>
+      $('.js-pscroll').each(function(){
+         $(this).css('position','relative');
+         $(this).css('overflow','hidden');
+         var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+         });
 
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
+         $(window).on('resize', function(){
+            ps.update();
+         })
+      });
+   </script>
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
-	 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
-	<script>
-		$('#map1').click(function(){
-			var container = document.getElementById('map1');
-			 var options = {
-				center: new kakao.maps.LatLng(37.552475, 126.937825),
-				level: 3
-			}; 
-			 window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
+       
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5630cc013f43366cb57b2e70f3f6e69c"></script>
+   <script>
+      $('#map1').click(function(){
+         var container = document.getElementById('map1');
+          var options = {
+            center: new kakao.maps.LatLng(37.552475, 126.937825),
+            level: 3
+         }; 
+          window.open("https://map.kakao.com/link/to/비트캠프 신촌센터,37.552475, 126.937825");
 
-		});
-	</script> 
-	<span class="bt-basic" id="map"></span> 
+      });
+   </script> 
+   <span class="bt-basic" id="map"></span> 
 <!--===============================================================================================-->
 <script>
 $(document).ready(function() {
 
-	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("#floatMenu").css('top'));
-	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+   // 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+   var floatPosition = parseInt($("#floatMenu").css('top'));
+   // 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
-	$(window).scroll(function() {
-		// 현재 스크롤 위치를 가져온다.
-		var scrollTop = $(window).scrollTop();
-		var newPosition = scrollTop + floatPosition + "px";
+   $(window).scroll(function() {
+      // 현재 스크롤 위치를 가져온다.
+      var scrollTop = $(window).scrollTop();
+      var newPosition = scrollTop + floatPosition + "px";
 
-		/* 애니메이션 없이 바로 따라감
-		 $("#floatMenu").css('top', newPosition);
-		 */
+      /* 애니메이션 없이 바로 따라감
+       $("#floatMenu").css('top', newPosition);
+       */
 
-		$("#floatMenu").stop().animate({
-			"top" : newPosition
-		}, 300);
+      $("#floatMenu").stop().animate({
+         "top" : newPosition
+      }, 300);
 
-	}).scroll();
+   }).scroll();
 });
 </script>
 <!--===============================================================================================-->
-<script>
-var $list = $('ul.mcBanSlides');
-var size = $list.children().outerWidth();
-var len =  $list.children().length;
-var speed = 5000;
-var timer = null;
-var auto = true;
-var cnt = 1;
-$list.css('width',len*size);
-if(auto) timer = setInterval(autoSlide, speed);
-$list.children().bind({
-    'mouseenter': function(){
-        if(!auto) return false;
-        clearInterval(timer);
-        auto = false;
-    },
-    'mouseleave': function(){
-        timer = setInterval(autoSlide, speed);
-        auto = true;
-    }
-})
-$('.mcBanDot').children().bind({
-    'click': function(){
-        var idx = $('.mcBanDot').children().index(this);
-        cnt = idx;
-        autoSlide();
-        return false;
-    },
-    'mouseenter': function(){
-        if(!auto) return false;
-        clearInterval(timer);
-        auto = false;
-    },
-    'mouseleave': function(){
-        timer = setInterval(autoSlide, speed);
-        auto = true;
-    }
-});
-function autoSlide(){
-    if(cnt>len-1){
-        cnt = 0;
-    }
-    $list.animate({'left': -(cnt*size)+'px' },'normal');
-    var source2 = $('.mcBanDot').children().find('img').attr('src').replace('_.png','.png');
-    $('.mcBanDot').children().find('img').attr('src',source2);
-    var source = $('.mcBanDot').children().find('img').attr('src').replace('.png','_.png');
-    $('.mcBanDot').children().eq(cnt).find('img').attr('src',source);
-    cnt++;
 
-}
-
-</script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+   <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-	
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
+   
+   <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+   <script>
+      $('.js-pscroll').each(function(){
+         $(this).css('position','relative');
+         $(this).css('overflow','hidden');
+         var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+         });
 
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
+         $(window).on('resize', function(){
+            ps.update();
+         })
+      });
+   </script>
 <!--===============================================================================================-->
-
-	
+<script src="/ssmall/js/chat.js"></script> 
+   
 
 </body>
-
 </html>

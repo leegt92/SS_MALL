@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import edu.bit.ssmall.mapper.AdminMapper;
 import edu.bit.ssmall.vo.BoardVO;
+
 import edu.bit.ssmall.vo.Board_MemberVO;
 import edu.bit.ssmall.vo.BuyVO;
 import edu.bit.ssmall.vo.MemberVO;
+
 import edu.bit.ssmall.vo.ProductVO;
 import edu.bit.ssmall.vo.RefundVO;
 
@@ -21,6 +23,21 @@ public class AdminService {
 	
 	@Autowired
 	AdminMapper adminMapper;
+	
+	
+	public int getP_num(String m_id) throws Exception {
+
+		return adminMapper.getP_num(m_id);
+	}
+	
+	public String getP_name(String m_id) throws Exception {
+
+		return adminMapper.getP_name(m_id);
+	}
+	
+	public void insertProduct(String p_name,String p_category, String p_brand,String p_price,String p_stock, String p_description, String p_image)  {
+		adminMapper.insertProduct(p_name,p_category,p_brand,p_price,p_stock,p_description,p_image);
+	}
 
 /*===========================페이징을 위한 카운트 ========================================================*/
 	public int countMember() {
@@ -90,7 +107,7 @@ public class AdminService {
 		System.out.println("해당회원 정보");
 		return adminMapper.memberInfo(m_number);
 	}
-
+	
 	public ArrayList<BuyVO> buyList(String m_number) {
 		System.out.println("해당회원 구매내역");
 		return adminMapper.buyList(m_number);
@@ -145,8 +162,9 @@ public class AdminService {
 	}
 	
 
-	public void updateProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, String originFileName, int p_enabled) {
-		adminMapper.updateProduct(p_number, p_name, p_brand, p_price, p_stock, originFileName, p_enabled);		
+
+	public void updateProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock,String p_description, String originFileName, int p_enabled) {
+		adminMapper.updateProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, originFileName, p_enabled);		
 	}
 	
 
@@ -155,13 +173,14 @@ public class AdminService {
 		adminMapper.updateImage(p_number, originFileName,i_type);			
 	}
 	
-	public void updateOnlyProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock, int p_enabled) {
-		adminMapper.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock, p_enabled);
+	public void updateOnlyProduct(String p_number, String p_name, String p_brand, String p_price, String p_stock,String p_description, int p_enabled) {
+		adminMapper.updateOnlyProduct(p_number, p_name, p_brand, p_price, p_stock,p_description, p_enabled);
 		
 	}
 
 /*===========================상품 수정 처리========================================================*/	
 	
+
 	public List<Board_MemberVO> getAllAskRequest() throws Exception {
 		return adminMapper.getAllAskRequest();	
 	}
@@ -203,6 +222,7 @@ public class AdminService {
 	public void insertAnswer(String bName, String bTitle, String bContent, int m_number, String bId ) throws Exception{
 		adminMapper.insertAnswer(bName, bTitle, bContent, m_number, bId);
 	}
+
 	
 	//인서트된 답변 수정하기
 	public void updateAnswer(String bTitle, String bContent, String bId ) throws Exception{
@@ -213,6 +233,7 @@ public class AdminService {
 	public void updateBanswered(String bId) throws Exception{
 		adminMapper.updateBanswered(bId);
 	}
+
 	
 /*====================================통계================================================*/
 	public int getWeeklySales() {
@@ -267,15 +288,37 @@ public class AdminService {
 		
 		return adminMapper.noticeView(bid);
 	}
-	public void noticeUpdate(String bid, String btitle, String bcontent) {
+	public void noticeUpdate(String btype, String bid, String btitle, String bcontent) {
 		
-		adminMapper.noticeUpdate(bid,btitle,bcontent);
+		adminMapper.noticeUpdate(btype,bid,btitle,bcontent);
 		
 	}
-	public void noticeWrite(String btitle, String bcontent) {
-		adminMapper.noticeWrite(btitle,bcontent);
+	public void noticeWrite(String btype, String btitle, String bcontent) {
+		adminMapper.noticeWrite(btype,btitle,bcontent);
+		
+	}
+	
+	public void noticeDelete(String bid) {
+		adminMapper.noticeDelete(bid);
+		
+	}
+
+
+	public void productImageUpload(int p_number, String originFileName, int i_type) {
+		adminMapper.productImageUpload(p_number, originFileName, i_type);
+		
+	}
+
+	public int getP_number(String p_name) {
+	
+		return adminMapper.getP_number(p_name);
+	}
+
+	public void updateStatus(String b_number, String b_status) {
+		adminMapper.updateStatus(b_number, b_status);
 		
 	}
 
 
 }
+

@@ -21,6 +21,22 @@ public class ProductService {
 	@Inject
 	ProductMapper productMapper;
 	
+
+	public int getPnum(String m_id) throws Exception{
+
+		return productMapper.getPnum(m_id);
+	}
+	
+	public String getPname(String m_id) throws Exception{
+		
+		return productMapper.getPname(m_id);
+	}
+	
+	public void insertProduct(String p_Num, String p_Name, String p_Category, String p_Price, String p_Stock, String p_Description ) throws Exception{
+		productMapper.insertProduct(p_Num, p_Name, p_Category, p_Price, p_Stock, p_Description);
+
+	}
+	
 	public List<ProductImageVO> selectProductList() {		
 		return productMapper.selectProductList();
 	}
@@ -28,7 +44,7 @@ public class ProductService {
 	public List<ProductImageVO> selectProductOne(String p_number) {		
 		return productMapper.selectProductOne(p_number);
 	}
-	 
+	
 	public List<ProductImageVO> selectProductListAmount() {	  
 		return productMapper.selectProductListAmount(); 
 	}
@@ -149,6 +165,52 @@ public class ProductService {
 	public List<ProductVO> selectProductListPageRank(int startNum, int endNum, String keyword) {
 		// TODO Auto-generated method stub
 		return productMapper.selectProductListPageRank(startNum, endNum, keyword);
+	}
+	//글에서 신고하기 누르면 글 내부 btotalRepot 1 증가 
+	public void boardReport(int m_number, String bid) {
+		productMapper.boardReport(m_number, bid);
+		
+	}
+	
+	//글에서 신고하기 누르면 글 내부 btotalRepot 1 증가 
+	public void boardReport2(int m_number, String bid) {
+		productMapper.boardReport2(m_number, bid);
+			
+	}
+	//해당 글의 btotalRepot 수 체크
+	public int checkBtotalRepot(String bid) {
+		
+		return productMapper.checkBoardBtotalRepot(bid);
+	}
+	//신고수가 3 초과했을 경우 해당 글의 글내용 강제변경
+	public void boardReportWriteUpdate(String bid) {
+		// TODO Auto-generated method stub
+		productMapper.boardReportWriteUpdate(bid);
+	}
+	//글에서 첫번째 신고자의 id를 가져옴(brepotid1)
+	public int checkBrepotid1(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.checkBrepotid1(bid);
+	}
+	//글에서 두번째 신고자의 id를 가져옴(brepotid1)
+	public int checkBrepotid2(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.checkBrepotid2(bid);
+	}
+	//댓글쓸때 상품을 구매 했는지 안했는지 확인
+	public int checkBuyList(String p_number, int m_number) {
+
+		return productMapper.checkBuyList(p_number, m_number);
+	}
+	//글 번호로 해당 글의 총 신고수를 확인함
+	public int checkRepotCount(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.checkRepotCount(bid);
+	}
+
+	public BoardVO getBoard(String bid) {
+		// TODO Auto-generated method stub
+		return productMapper.getBoard(bid);
 	}
 
 }

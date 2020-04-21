@@ -43,7 +43,9 @@
 <!--===============================================================================================-->
 
 
+
 <!-- 일단 멈춤 구매부분부터 -->
+
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -105,11 +107,39 @@
 	#custom-search-input .glyphicon-search{
 	    font-size: 23px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} */
+=======
+	}
+>>>>>>> origin/dev_jiheon
 </style> -->
+
+<style>
+
+	input[type="Search"]::placeholder {  
+            /* Firefox, Chrome, Opera */ 
+            text-align: center; 
+     }
+            
+    input[type="Search"]:-ms-input-placeholder { 
+        /* Internet Explorer 10-11 */ 
+        text-align: center; 
+    }  
+
+</style>
 
 </head>
 <body class="animsition">
+	<c:choose>
+		<c:when test="${QuickAddCart eq '성공'}">
+			<script>
+				alert("장바구니에 담겼습니다!");
+			</script>
+			<%
+				session.removeAttribute("QuickAddCart");
+			%>
+		</c:when>
+	</c:choose>
 	
 	<!-- Header -->
 	<header class="header-v4">
@@ -126,13 +156,13 @@
 						<a href="homeview" class="flex-c-m trans-04 p-lr-25">
 							Home
 						</a>
-			
 
 						<a href="/ssmall/mypage/myPage_orderedList" class="flex-c-m trans-04 p-lr-25">
 							My
 						</a>
 						
 						<a href="/ssmall/cart/cartView" class="flex-c-m trans-04 p-lr-25">
+
 							Cart
 						</a>
 
@@ -164,7 +194,7 @@
 							</li>
 						
 							<li>
-								<a href="noticeView">공지사항</a>
+								<a href="boardnoticeView">공지사항</a>
 							</li>
 							<li>
 								<a href="companyView">회사소개</a>
@@ -430,10 +460,10 @@
 								<button type="submit">검색2</button>
 							<input type="submit" value="검색1" width = "300"/> -->
 								<div class="input-group col-md-12">
-			                   	 <input type="text" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search" />
+			                   	 <input type="Search" id="keyword" name="keyword" class="form-control input-lg" placeholder="Search"/>
 			                   	 	<span class="input-group-btn">
-			                        	<button id="SearchButtonImage" class="btn btn-info btn-lg" type="submit">
-			                           	 	<i class="glyphicon glyphicon-search"></i>
+			                        	<button id="SearchButtonImage1" class="btn btn-secondary btn-lg" style="width:40px; height:35px;"type="submit">
+			                           	 	<i class="zmdi zmdi-search"></i>
 			                        	</button>
 			                    	</span>
 			                	</div>
@@ -656,7 +686,7 @@
 							</button> --%>
 							
 							<button type="button" id="QuickViewBtn" name="QuickViewBtn" value="${product.p_number}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View123
+									Quick View
 							</button>
 							
 						</div>
@@ -1266,9 +1296,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </script>
 <script>
+
 	$(function(){
 		$(document).on("click","#QuickViewBtn",function(){
-			
+			var price = null;
+			var deposit = null;
+			function numberWithCommas(x) {
+				console.log("numberWithCommas");    
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			};
 			/* alert($(this).attr("value")); */
 			var data = {
 					  p_number : $(this).attr("value")
@@ -1283,18 +1319,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					alert("er");
 				},
 				success:function(data){
+
 					
-					function numberWithCommas(x) {
-						console.log("numberWithCommas");    
-						return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					};
 					
 					$.each(data.slice(0, 1), function(key, data){
 						modalIname1 = data.i_name;
-						numberWithCommas = numberWithCommas(data.p_price);
+						price = numberWithCommas(data.p_price);					
+						deposit = numberWithCommas(data.p_price * 0.01);
+					
 					})
 					$.each(data.slice(0, 2), function(key, data){
 						modalIname2 = data.i_name;
+						
 					})
 					$.each(data.slice(0, 3), function(key, data){
 						modalIname3 = data.i_name;
@@ -1341,11 +1377,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 					tag = tag + "</div>";
 					
-
-
-					
-					
-					
 					
 
 					tag = tag + "<div class='slick3 gallery-lb'>";
@@ -1367,7 +1398,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "<div class='p-r-50 p-t-5 p-lr-0-lg'>";
 					tag = tag + "<h4 id='QuickName' class='mtext-105 cl2 js-name-detail p-b-14'>"+data.p_name+"</h4>";
 								
-					tag = tag + "<span id='QuickPrice' class='mtext-106 cl2'>"+numberWithCommas+"</span>원";
+					tag = tag + "<span id='QuickPrice' class='mtext-106 cl2'>"+price+"</span>원";
 
 					tag = tag + "<div class='stext-102 cl3 p-t-23'>";
 					tag = tag + "<div class='size-203 flex-c-m respon6' style='width: 250px'>";
@@ -1377,7 +1408,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "<tr>";
 					tag = tag + "<td>적립금</td>";
 					tag = tag + "<td>";
-					tag = tag + +data.p_price/10+"원";
+					tag = tag + deposit + "원";
 					tag = tag + "</tr>";
 					tag = tag + "<tr>";
 					tag = tag + "<td>배송비</td>";
@@ -1385,7 +1416,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					tag = tag + "</tr>";
 					tag = tag + "<tr>";
 					tag = tag + "<td>브랜드</td>";
-					tag = tag + "<td>브랜드값들어갈자리</td>";
+					tag = tag + "<td>"+data.p_brand+"</td>";
 					tag = tag + "</tr>";
 					tag = tag + "</table>";
 					tag = tag + "</div>";
@@ -1417,22 +1448,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 					tag = tag + "<div class='flex-w flex-m p-l-100 p-t-40 respon7'>";
 					tag = tag + "<div class='flex-m bor9 p-r-10 m-r-11'>";
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100' data-tooltip='Add to Wishlist'>";
-					tag = tag + "<i class='zmdi zmdi-favorite'></i>";
-					tag = tag + "</a>";
+
 					tag = tag + "</div>";
 
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Facebook'>";
-					tag = tag + "<i class='fa fa-facebook'></i>";
-					tag = tag + "</a>";
-
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Twitter'>";
-					tag = tag + "<i class='fa fa-twitter'></i>";
-					tag = tag + "</a>";
-
-					tag = tag + "<a href='#' class='fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100' data-tooltip='Google Plus'>";
-					tag = tag + "<i class='fa fa-google-plus'></i>";
-					tag = tag + "</a>";
 					tag = tag + "</div>";
 					tag = tag + "</div>";
 					tag = tag + "</div>";
@@ -1444,6 +1462,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					});
 			}
 		});
+
 	})
 })
 
@@ -1521,6 +1540,64 @@ $(document).ready(function(){
      });
 	//QuickView Modal의 왼쪽 3줄 버튼누르면 각각 화면 변환되는 코드.
 	//원래 slick이 자동으로 해주는 거지만 ajax쓰니 안먹혀서 직접구현
+	
+	//화살표 누르면 바뀌는 코드인데 처음은 되는데 그 다음이 안됨
+	/* $(document).on("click","#arrowLeft",function(){
+		console.log("arrowLeft버튼");
+		var mainImage = $("#mainModalImage").attr("src");
+		console.log(mainImage);
+		var image1 = $("#2leftModalImage1").attr("src");
+		console.log(image1);
+		var image2 = $("#2leftModalImage2").attr("src");
+		console.log(image2);
+		var image3 = $("#2leftModalImage3").attr("src");
+		console.log(image3);
+		
+		if(mainImage = image1){
+			console.log("1번사진");
+			var image = $("#2leftModalImage3").attr("src");
+			console.log(image);
+			$("#leftModalImage3").attr('class','slick-active');
+			$("#leftModalImage2").attr('class','');
+			$("#leftModalImage1").attr('class','');
+			$("#mainModalImage").attr('src',image);
+		}else if(mainImage = image2){
+			console.log("2번사진");
+			console.log("leftModalImage1버튼");
+			var image = $("#2leftModalImage1").attr("src");
+			console.log(image);
+			$("#leftModalImage1").attr('class','slick-active');
+			$("#leftModalImage2").attr('class','');
+			$("#leftModalImage3").attr('class','');
+			$("#mainModalImage").attr('src',image);
+		}else if(mainImage = image3){
+			console.log("3번사진");
+			console.log("leftModalImage1버튼");
+			var image = $("#2leftModalImage1").attr("src");
+			console.log(image);
+			$("#leftModalImage2").attr('class','slick-active');
+			$("#leftModalImage1").attr('class','');
+			$("#leftModalImage3").attr('class','');
+			$("#mainModalImage").attr('src',image);
+		}
+     });
+	tag = tag + "<div class='wrap-slick3-arrows flex-sb-m flex-w'>";
+	tag = tag + "<button class='arrow-slick3 prev-slick3 slick-arrow' id='arrowLeft' style=''><i class='fa fa-angle-left' aria-hidden='true'></i></button>";
+	tag = tag + "<button class='arrow-slick3 next-slick3 slick-arrow' id='arrowRight' style=''><i class='fa fa-angle-right' aria-hidden='true'></i></button>";
+	tag = tag + "</div>";
+	*/
+	
+	$(document).on("click","#arrowRight",function(){
+		console.log("arrowRight버튼");
+		var image = $("#mainModalImage").attr("src");
+		console.log(image);
+		$("#leftModalImage1").attr('class','slick-active');
+		$("#leftModalImage2").attr('class','');
+		$("#leftModalImage3").attr('class','');
+		$("#mainModalImage").attr('src',image);
+		
+     });
+	
 	$(document).on("click","#leftModalImage1",function(){
 		console.log("leftModalImage1버튼");
 		var image = $("#2leftModalImage1").attr("src");
@@ -1558,24 +1635,13 @@ $(document).ready(function(){
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('장바구니','구매수량을 입력해 주세요','error');
-			}else if(b_amount!=0){
-				console.log("장바구니 1개이상일때 1번");
-				var data = {
-						p_number : p_number,
-						b_amount : b_amount
-				}
-				console.log(p_number);
-				console.log(b_amount);
-				$.ajax({
-					url:"/ssmall/cart/addCart",
-					type:"get",
-					data : data,
-					success:function(){
-						console.log("장바구니ajax 성공");
-						window.location.href = '/ssmall/cart/cartView';
-					}
-				});
+				//Swal.fire('장바구니','구매수량을 입력해 주세요','error');
+				alert("상품 수량을 입력해 주세요");
+			}else if(${principal_m_number} == "0"){
+				alert("로그인이 필요한 서비스 입니다.");
+				window.location.href = '/ssmall/cart/QuickaddCart?p_number='+p_number+'&b_amount='+b_amount;
+			}else{
+				window.location.href = '/ssmall/cart/QuickaddCart?p_number='+p_number+'&b_amount='+b_amount;
 			}
 		});
 	
@@ -1584,29 +1650,31 @@ $(document).ready(function(){
 			var b_amount=$("#b_amount").val();
 			var p_number=$("#p_number").val();
 			if(b_amount==0){
-				Swal.fire('구매','구매수량을 입력해 주세요','error');
-			}else if(b_amount!=0){
-				console.log("구매 1개이상일때 1번");
-				var data = {
-						p_number : p_number,
-						b_amount : b_amount
-				}
-				console.log(p_number);
-				console.log(b_amount);
+				alert("상품 수량을 입력해 주세요");				
+			}else if(${principal_m_number} == "0"){
+				alert("로그인이 필요한 서비스 입니다.");
 				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
-				/*$.ajax({
+			}else{
+				window.location.href = '/ssmall/buy/buy?p_number='+p_number+'&b_amount='+b_amount;
+			}
+
+		});	
+			
+				
+				
+			/*	$.ajax({
 					url:"/ssmall/buy/buy",
 					type:"get",
 					data : data,
 					success:function(){
 						console.log("구매ajax 성공");
-						//window.location.href = '/ssmall/buy/buy';
+						window.location.href = '/ssmall/buy/buy?'+p_number;
 						
 					}
 				});
-				*/
-			}
-		});
+			*/
+		
+
 		
 		//백업용
 		/* $(document).on("click","#cart",function(){

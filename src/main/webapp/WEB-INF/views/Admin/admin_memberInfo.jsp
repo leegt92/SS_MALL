@@ -88,10 +88,21 @@
 
 
 <script>
+
 	$(document).ready(function(){
-	  $("#myBtn").click(function(){
-	    $("#myModal").modal();
-	  });
+		var b_number = null;
+		$("#myBtn").click(function(){
+	   	 	$("#myModal").modal();
+	  	});
+	 
+	 	$("#status").click(function(){
+	 	
+	 		b_number = 	$(this).attr("value");
+	 	 	
+	 		
+			$('#b_num').val(b_number);
+			$("#statusModal").modal();	
+	  	});
 	});
 </script>
 
@@ -121,7 +132,7 @@
 					</div>
 				</div>
 
-				<!-- Sidebar Menu -->
+			<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">							
 						<li class="nav-item has-treeview">
@@ -149,14 +160,24 @@
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>							
+								<a href="/ssmall/admin/requestList"><button class="dropbtn">1:1문의</button></a>
+								<div class="dropdown-content">							
+
+									<a href="/ssmall/admin/requestList">답변완료된 1:1문의 목록</a>
+									<a href="/ssmall/admin/unAnsweredrequestList">답변미완료된 1:1문의 목록</a>							
+
+								</div>
 							</div>
 						</li>
 						<li class="nav-item has-treeview">
 							<div class="dropdown">
-								<a href="/ssmall/admin/asList"><button class="dropbtn">AS</button></a>							
+								<a href="/ssmall/admin/asList"><button class="dropbtn">A/S요청</button></a>
+								<div class="dropdown-content">
+									<a href="/ssmall/admin/asList">답변완료된 A/S요청 목록</a>
+									<a href="/ssmall/admin/unAnsweredasList">답변미완료된 A/S요청 목록</a>							
+								</div>
 							</div>
-						</li>			
+						</li>		
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -253,18 +274,43 @@
 													<form action="/ssmall/admin/updateAutoritiy">
 													<input type="hidden" name="m_number" value="${member.m_number}">	
 													<div class="modal-body">
-														
-															<div class="form-group">
-																<label for="sel1">등급</label> 
-																<select class="form-control" id="sel1" name="m_authority">
-																	<option>일반회원</option>
-																	<option>관리자</option>
-																	<option>VIP</option>
-																	<option>BC</option>
-																</select>
-																
-															</div>
-														
+														<div class="form-group">
+															<label for="sel1">등급</label> 
+															<c:choose>
+																<c:when test="${member.m_authority eq '일반회원' }">
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>일반회원</option>
+																		<option>관리자</option>
+																		<option>VIP</option>
+																		<option>BC</option>
+																	</select>	
+																</c:when>
+																<c:when test="${member.m_authority eq '관리자' }">
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>관리자</option>
+																		<option>일반회원</option>																	
+																		<option>VIP</option>
+																		<option>BC</option>
+																	</select>	
+																</c:when>
+																<c:when test="${member.m_authority eq 'VIP' }">
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>VIP</option>
+																		<option>일반회원</option>
+																		<option>관리자</option>																	
+																		<option>BC</option>
+																	</select>	
+																</c:when>
+																<c:otherwise>
+																	<select class="form-control" id="sel1" name="m_authority">
+																		<option>BC</option>
+																		<option>VIP</option>
+																		<option>일반회원</option>
+																		<option>관리자</option>																																			
+																	</select>		
+																</c:otherwise>
+															</c:choose>								
+														</div>														
 													</div>
 									
 													<!-- Modal footer -->													
@@ -322,7 +368,8 @@
 														<th style="text-align: center; vertical-align: middle;">구매일자</th>
 														<th style="text-align: center; vertical-align: middle;">구매상태</th>
 													</tr>		
-													<c:forEach items="${buyList}"  var="buyList">													
+													<c:forEach items="${buyList}"  var="buyList">
+																									
 													<tr>													
 														<td style="text-align: center;">
 															<a href="/ssmall/productDetail?p_number=${buyList.p_number}">
@@ -334,12 +381,54 @@
 														<td style="text-align: center; vertical-align: middle;">${buyList.b_amount}</td>			
 														<td style="text-align: center; vertical-align: middle;"><fmt:formatNumber value="${buyList.b_total}" pattern="###,###,###" />원</td>																														
 														<td style="text-align: center; vertical-align: middle;">${buyList.b_date}</td>
-														<td style="text-align: center; vertical-align: middle;">${buyList.b_status}</td>	
+														<td style="text-align: center; vertical-align: middle;">
+														<button type="button" value="${buyList.b_number}" class="btn btn-link" id="status" style="text-decoration: none; color: black;">${buyList.b_status}</button>														
+														</td>	
 													</tr>
+													
 													</c:forEach>														
 												</table>																																						
 											</c:otherwise>																		
-										</c:choose>											
+										</c:choose>	
+										<!-- The Modal -->
+										<div class="modal fade" id="statusModal">
+											<div class="modal-dialog">
+												<div class="modal-content">
+									
+													<!-- Modal Header -->
+													<div class="modal-header">
+														<h4 class="modal-title">배송상태 수정</h4>
+														<button type="button" class="close" data-dismiss="modal">×</button>
+													</div>
+									
+													<!-- Modal body -->
+													<form action="/ssmall/admin/updateStatus">													
+													<input id="b_num" type="hidden" name="b_number" >
+													<input type="hidden" name="m_number" value="${member.m_number}">	
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="sel1">배송상태</label> 
+															<select class="form-control" id="sel1" name="b_status">
+																<option>선택해주세요</option>
+																<option>결제완료</option>
+																<option>배송중</option>
+																<option>배송완료</option>
+															</select>	
+																						
+														</div>														
+													</div>
+									
+													<!-- Modal footer -->													
+													<div class="modal-footer">
+														<button type="submit" class="btn btn-danger" onclick="confirm('수정하시겠습니까?');">수정</button>
+														<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+													</div>
+													</form>
+									
+												</div>
+											</div>
+										</div>			
+																	
 									</div>
 								</div>								
 							</div>						

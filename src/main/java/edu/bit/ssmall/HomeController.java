@@ -1,4 +1,3 @@
-
 package edu.bit.ssmall;
 
 import java.io.ByteArrayOutputStream;
@@ -31,7 +30,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import edu.bit.ssmall.service.CartService;
 import edu.bit.ssmall.service.HomeService;
 import edu.bit.ssmall.vo.CartViewVO;
-import edu.bit.ssmall.vo.ProductImageVO;
+import edu.bit.ssmall.vo.MemberVO;
+import edu.bit.ssmall.vo.ProductVO;
 
 /**
  * Handles requests for the application home page.
@@ -39,26 +39,38 @@ import edu.bit.ssmall.vo.ProductImageVO;
 @Controller
 public class HomeController {
 	
+
 	@Autowired
 	CartService cartService;
 	
 	@Autowired
 	HomeService homeService;
 	
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-
+		
+		List<ProductVO> recommendItem = homeService.recommendItem();
+		model.addAttribute("recommendItem", recommendItem);
+		
+		List<ProductVO> hitWatchItem = homeService.hitWatchItem();
+		List<ProductVO> hitWalletItem = homeService.hitWalletItem();
+		model.addAttribute("hitWatchItem", hitWatchItem);
+		model.addAttribute("hitWalletItem", hitWalletItem);
 		return "home";
-
 	}	
 	
 	 @RequestMapping(value = "/homeview", method = RequestMethod.GET) 
 	 public String home2(Model model) {
-	 
-	  return "home";
-	 
-	 
+		
+		List<ProductVO> list = homeService.recommendItem();
+		model.addAttribute("recommendItem", list);
+		
+		List<ProductVO> hitWatchItem = homeService.hitWatchItem();
+		List<ProductVO> hitWalletItem = homeService.hitWalletItem();
+		model.addAttribute("hitWatchItem", hitWatchItem);
+		model.addAttribute("hitWalletItem", hitWalletItem);
+		return "home";
+ 
 	 }
 	
 
@@ -75,12 +87,15 @@ public class HomeController {
 		return "as";
 
 	}
-
+	
+		
 	@ResponseBody
 	@RequestMapping("miniCart")
 	public ArrayList<CartViewVO> miniCart(Principal principal){
-		System.out.println(cartService.miniCartInfo(principal.getName()));
-		return cartService.miniCartInfo(principal.getName());
+		
+		MemberVO memberVO = cartService.memberInfo(principal.getName());
+		
+		return cartService.miniCartInfo(memberVO.getM_number());
 	}
 	
 	@RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
@@ -145,7 +160,6 @@ public class HomeController {
                             , @RequestParam(value="fileName") String fileName
                             , HttpServletRequest request, HttpServletResponse response)
  throws ServletException, IOException{
-        
         //서버에 저장된 이미지 경로
         String path = "C:\\Users\\user\\git\\SS_MALL\\src\\main\\webapp\\img\\";
     
@@ -187,16 +201,4 @@ public class HomeController {
             }
         }
     }
-
-
-	@ResponseBody
-	@RequestMapping("/hitItem")
-	public List<ProductImageVO> hitItem(ProductImageVO productimage, HttpServletRequest request, Model model){
-		System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-		System.out.println(homeService.selectProductListAmount());
-		//model.addAttribute(,homeService.selectProductListAmount(productimage));
-		return homeService.selectProductListAmount();
-	}
-	
-	
 }
