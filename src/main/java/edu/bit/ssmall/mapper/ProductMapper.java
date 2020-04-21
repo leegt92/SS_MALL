@@ -130,10 +130,10 @@ public interface ProductMapper {
 	public List<BoardVO> selectAskBoardListPage(@Param("m_number") int m_number, @Param("startNum") int startNum, @Param("endNum") int endNum);
 	*/
 	//검색시 페이징에 사용되는 검색어에 대응하는 전체상품의 갯수를 확인하기 위해.
-	@Select("select count(*) from Product where p_name like '%'||#{keyword}||'%'")
+	@Select("select count(*) from Product where p_name like '%'||#{keyword}||'%' or p_brand like '%'||#{keyword}||'%'")
 	public int searchCountProduct(@Param("keyword")String keyword);
 	//product에서 검색하기 위한 쿼리문
-	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_name like '%'||#{keyword}||'%'order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum}")
+	@Select("select * from (select a.*, rownum as rnum, count(*) over() as totcnt from (select * from product where p_name like '%'||#{keyword}||'%' or p_brand like '%'||#{keyword}||'%' order by p_name desc) a)where rnum >= #{startNum} and rnum <= #{endNum}")
 	public List<ProductVO> searchProductListPage(@Param("startNum")int startNum, @Param("endNum")int endNum ,@Param("keyword")String keyword);
 	
 	

@@ -101,8 +101,9 @@ public interface AdminMapper {
 	@Select("Select * from member where m_authority='관리자' order by m_name")
 	public ArrayList<MemberVO> adminList();
 	
-	@Update("Update member set m_authority = #{m_authority} where m_number = #{m_number}")
-	public void updateAuthority(@Param("m_number")String m_number, @Param("m_authority")String m_authority);
+	@Update("Update member set m_authority = #{m_authority}, m_enabled = #{m_enabled} where m_number = #{m_number}")
+	public void updateAuthority(@Param("m_number")String m_number, @Param("m_authority")String m_authority, @Param("m_enabled")String m_enabled );
+
 	
 /*===================================검색했을때 처리======================================================================*/
 	@Select("Select * from member where m_authority != '관리자' and m_name like '%'||#{search}||'%' or m_id like '%'||#{search}||'%' order by m_number desc")
@@ -222,6 +223,6 @@ public interface AdminMapper {
 	@Update("Update buy set b_status = #{b_status} where b_number = #{b_number}")
 	public void updateStatus(@Param("b_number")String b_number, @Param("b_status")String b_status);
 	
-	
+
 
 }

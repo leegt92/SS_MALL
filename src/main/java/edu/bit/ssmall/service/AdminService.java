@@ -138,7 +138,20 @@ public class AdminService {
 	}
 	
 	public void updateAuthority(String m_number, String m_authority) {
-		adminMapper.updateAuthority(m_number, m_authority);
+		String m_enabled = null;
+		
+		
+		if(m_authority.equals("BC")){
+			
+			m_enabled = "0";			
+			adminMapper.updateAuthority(m_number, m_authority, m_enabled);
+		
+		}else{
+		
+			m_enabled = "1";			
+			adminMapper.updateAuthority(m_number, m_authority, m_enabled);	
+	
+		}	
 		
 	}
 /*===========================검색했을때 처리========================================================*/		

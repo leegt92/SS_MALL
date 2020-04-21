@@ -84,7 +84,7 @@ public class IamPort {
 		return status;
 	
     }
-    //결제정보 조회
+    //결제 취소 조회
     public String cancel(String imp_uid) throws RestClientException, URISyntaxException {
     	
     	System.out.println("-----------------------------"); 
@@ -101,7 +101,7 @@ public class IamPort {
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-        params.add("imp_uid", imp_uid); //가맹점 코드 테스트라 TC0ONETIME
+        params.add("imp_uid", imp_uid); 
  
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         //헤더와 바디를 합친다.

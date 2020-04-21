@@ -99,6 +99,19 @@ public class ProductController {
 	//검색시 페이징된 목록을 불러오기 위한 메소드. 위와 거의 똑같다.
 	@RequestMapping("/productViewSearch")
 	public String productViewSearch(HttpServletRequest request,Model model, SearchCriteria serchCriteria) {
+		//상품검색 후 Quick View 버튼을 누르면 principal_m_number이 안들어가서 생기는 오류를 처리함
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != "anonymousUser") {
+	        name = auth.getName();
+	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.			
+	    }
+	    else {
+	    	model.addAttribute("principal_m_number","0");
+	    }
+	    
 		System.out.println("productview");
 		//페이징
 		PageMaker pageMaker = new PageMaker();
@@ -128,6 +141,19 @@ public class ProductController {
 	//product 왼쪽상단 시계 버튼 눌럿을때 시계만 나오면서 페이징도 되도록 하기 위해 만듬======================================================
 	@RequestMapping("/productViewSearchCategory")
 	public String productViewSearchCategory(HttpServletRequest request,Model model, SearchCriteria serchCriteria) {
+		//카테고리 누른 후 Quick View 버튼을 누르면 principal_m_number이 안들어가서 생기는 오류를 처리함
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = auth.getPrincipal();
+	    String name = "";
+	    if(principal != "anonymousUser") {
+	        name = auth.getName();
+	        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+			model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.			
+	    }
+	    else {
+	    	model.addAttribute("principal_m_number","0");
+	    }
+		
 		System.out.println("productview");
 		//페이징
 		PageMaker pageMaker = new PageMaker();
@@ -159,6 +185,19 @@ public class ProductController {
 	//product의 filter 브랜드별 필터 기능.
 		@RequestMapping("/productViewSearchBrand")
 		public String productViewSearchBrand(HttpServletRequest request,Model model, SearchCriteria serchCriteria) {
+			//브랜드별분류 누른 후 Quick View 버튼을 누르면 principal_m_number이 안들어가서 생기는 오류를 처리함
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    Object principal = auth.getPrincipal();
+		    String name = "";
+		    if(principal != "anonymousUser") {
+		        name = auth.getName();
+		        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+				model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.			
+		    }
+		    else {
+		    	model.addAttribute("principal_m_number","0");
+		    }
+			
 			System.out.println("productview");
 			//페이징
 			PageMaker pageMaker = new PageMaker();
@@ -194,6 +233,19 @@ public class ProductController {
 		//생각해보니 keyword로 sql문에 직접 영향을 줄 수 있나 확인해보기로함. 할 수 있다면 코드 줄일 수 있음.
 		@RequestMapping("/productViewRank")
 		public String productviewRank(HttpServletRequest request,Model model, Criteria criteria) {
+			//가격별 누른 후 Quick View 버튼을 누르면 principal_m_number이 안들어가서 생기는 오류를 처리함
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    Object principal = auth.getPrincipal();
+		    String name = "";
+		    if(principal != "anonymousUser") {
+		        name = auth.getName();
+		        int m_number = productService.principalGetMid(name);//principal에서 뽑은 회원id로 회원number를 가져옴		
+				model.addAttribute("principal_m_number",m_number);//가져온것을 model에 넣어서 jsp에 전달함.			
+		    }
+		    else {
+		    	model.addAttribute("principal_m_number","0");
+		    }
+			
 			System.out.println("productviewRank");
 			//페이징
 			PageMaker pageMaker = new PageMaker();

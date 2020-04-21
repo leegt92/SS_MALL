@@ -845,7 +845,7 @@
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
-				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
 						
 					
 			</div>
@@ -857,7 +857,7 @@
 				 		
 					<div class="p-t-10">			
 						<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true">			
-									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+									<a href="https://www.facebook.com/ssmall1111111" class="fs-18 cl7 hov-cl1 trans-04 m-r-16" target="_blank">
 										<i class="fa fa-facebook"></i>
 									</a>
 					

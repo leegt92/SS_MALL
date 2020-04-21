@@ -268,7 +268,7 @@ QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담�
 						/* 로그인 되어있을때, 그 m_number가 댓글에 저장되어 있는 m_number와 같을때 수정 삭제 버튼이 나타나도록 함 */
 						
 						/* 로그인이 되어있을때 수정, 삭제버튼이 보인다. 비 로그인유저는 버튼을 보지 못한다. 신고버튼만 보이게 변경*/
-						tag = tag + "<sec:authorize access='hasRole("USER")'>";
+						tag = tag + "<sec:authorize access='hasAnyRole("USER","ADMIN")'>";
 						tag = tag + "<hr><div style='margin-top : 10px; margin-bottom : 10px; margin-right : 10px; text-align : right;'><button class='btn btn-secondary'  type='button' id = deleteBoard name = 'deleteBoard' value='"+data.bid+"'>"+"<i class='fas fa-trash-alt'></i> 삭제</button>";
 						tag = tag + "&nbsp;<button class='btn btn-info '  type = 'button' id = modify name = 'modify' value='"+data.bid+"'>"+"<i class='fas fa-pencil-alt'></i> 수정</button>";
 						tag = tag + "&nbsp;<button class='btn btn-danger '  type = 'button' id = report name = 'report' value='"+data.bid+"'>"+"<i class='fas fa-ban'></i> 신고</button></div>";
@@ -1308,7 +1308,7 @@ QuickAddCart는 null이므로 alert이 생성되지 않는다. 장바구니 담�
 					<h4 class="stext-500 cl0 p-b-30">
 						Directions
 				 </h4>
-				 	<button id="map1" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
+				 	<button id="map" type="button"class="btn btn-link stext-130 cl7 hov-cl1 trans-04">오시는 길</button> 
 						
 					
 			</div>
