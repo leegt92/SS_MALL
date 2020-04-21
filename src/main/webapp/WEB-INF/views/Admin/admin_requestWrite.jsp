@@ -209,8 +209,8 @@ span {
                 <td><input type="text" value="${FbTitle}" name="subject" readonly="readonly" class="form-control"/></td>
             </tr>
             <tr>
-                <th>문의 및 요청 내용: </th>
-                <td><textarea id="askContent" cols="10" placeholder="내용을 입력하세요. " name="askContent" class="form-control" readonly="readonly" style="height: 214px;">${FbContent}</textarea></td>
+                <th>문의 및 요청 내용: </th>    
+                <td><div style="overflow:auto;width:950px;">${FbContent}</div></td>
             </tr>
             <br>
              <tr>
