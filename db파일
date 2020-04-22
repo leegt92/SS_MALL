@@ -647,7 +647,7 @@ CREATE TABLE Board (
 
 	banswerno VARCHAR2(200), /* 답변번호 */
        
-       brepotid VARCHAR2(20), /*신고자ID1*/
+       brepotid1 VARCHAR2(20), /*신고자ID1*/
 
        brepotid2 VARCHAR2(20) /*신고자ID2*/
  
@@ -785,9 +785,9 @@ COMMENT ON COLUMN Board.banswered IS '답변여부';
 
 COMMENT ON COLUMN Board.banswerno IS '답변번호';
 
-COMMENT ON COLUMN Board.brepot1 IS '신고자ID1';
+COMMENT ON COLUMN Board.brepotid1 IS '신고자ID1';
 
-COMMENT ON COLUMN Board.brepot2 IS '신고자ID2';
+COMMENT ON COLUMN Board.brepotid2 IS '신고자ID2';
 
 
 
