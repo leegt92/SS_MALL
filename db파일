@@ -261,8 +261,8 @@ CREATE TABLE Product (
 	p_category VARCHAR2(200), /* 카테고리 */
 
 
-	p_image VARCHAR2(20) /* 메인사진 */
-       p_enabled number(1,0) /* 메인사진 */
+	p_image VARCHAR2(20), /* 메인사진 */
+       p_enabled number(1,0) /* 상품활성여부 */
 
 
 );
@@ -645,9 +645,9 @@ CREATE TABLE Board (
 	banswered VARCHAR2(20), /* 답변여부 */
 
 
-	banswerno VARCHAR2(200) /* 답변번호 */
+	banswerno VARCHAR2(200), /* 답변번호 */
        
-       brepotid VARCHAR2(20) /*신고자ID1*/
+       brepotid VARCHAR2(20), /*신고자ID1*/
 
        brepotid2 VARCHAR2(20) /*신고자ID2*/
  
