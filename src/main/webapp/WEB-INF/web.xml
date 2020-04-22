@@ -105,7 +105,8 @@
 	
 	<error-page>
 		<error-code>404</error-code>
-		<location>/WEB-INF/views/errorPage.jsp</location>
+		<location>/WEB-INF/views/error404.jsp</location>
 	</error-page>
+
 
 </web-app>
