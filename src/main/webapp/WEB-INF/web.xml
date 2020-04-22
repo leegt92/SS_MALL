@@ -103,6 +103,7 @@
 	</servlet-mapping>
 	<!-- CKFINDER END -->
 	
+	<!-- Error 처리 404 이면 jsp로 -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error404.jsp</location>
